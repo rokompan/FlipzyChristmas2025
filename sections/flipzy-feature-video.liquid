@@ -1,0 +1,193 @@
+{% schema %}
+{
+  "name": "Flipzy Feature Video",
+  "class": "flipzy-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color & Layout"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "options": [
+        { "value": "scheme-white", "label": "White" },
+        { "value": "scheme-cream", "label": "Cream" },
+        { "value": "scheme-sage", "label": "Sage" },
+        { "value": "scheme-dark", "label": "Dark" }
+      ],
+      "default": "scheme-white"
+    },
+    {
+      "type": "select",
+      "id": "desktop_layout",
+      "label": "Desktop Layout",
+      "default": "media_right",
+      "options": [
+        { "value": "media_left", "label": "Video Left" },
+        { "value": "media_right", "label": "Video Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Mobile Layout",
+      "default": "text_first",
+      "options": [
+        { "value": "text_first", "label": "Text First" },
+        { "value": "media_first", "label": "Video First" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Title",
+      "default": "What is Flipzy?"
+    },
+    {
+      "type": "header",
+      "content": "Media"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL (MP4)",
+      "info": "Upload to Settings > Files, paste URL here."
+    },
+    {
+      "type": "image_picker",
+      "id": "fallback_image",
+      "label": "Fallback Image",
+      "info": "Shows while video loads."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature_point",
+      "name": "Feature Point",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon (PNG/SVG)",
+          "info": "Upload your custom icon here."
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Feature benefit goes here"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flipzy Feature Video",
+      "blocks": [
+        { "type": "feature_point", "settings": { "text": "7 customizable wooden pieces" }},
+        { "type": "feature_point", "settings": { "text": "Simple flip action to mark tasks" }},
+        { "type": "feature_point", "settings": { "text": "Easy to mount anywhere" }}
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div class="flipzy-feature-section {{ section.settings.color_scheme }} layout-desktop-{% if section.settings.desktop_layout == 'media_left' %}left{% else %}right{% endif %} layout-mobile-{{ section.settings.mobile_layout }}">
+  <div class="flipzy-feature-inner">
+    
+    <div class="flipzy-feature-media">
+      <div class="flipzy-feature-media-inner">
+        {% if section.settings.fallback_image != blank %}
+          <img
+            class="flipzy-feature-image"
+            src="{{ section.settings.fallback_image | image_url: width: 1200 }}"
+            alt="{{ section.settings.heading | escape }}"
+            loading="lazy"
+          >
+        {% endif %}
+
+        {% if section.settings.video_url != blank %}
+        <video
+          class="flipzy-feature-video"
+          autoplay muted loop playsinline
+          preload="none"
+          {% if section.settings.fallback_image != blank %}
+            poster="{{ section.settings.fallback_image | image_url: width: 1200 }}"
+          {% endif %}
+          aria-hidden="true"
+        ></video>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="flipzy-feature-content">
+      {% if section.settings.heading != blank %}
+        <h2 class="flipzy-feature-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      <div class="flipzy-feature-points">
+        {% for block in section.blocks %}
+          <div class="flipzy-feature-point" {{ block.shopify_attributes }}>
+            {% if block.settings.icon != blank %}
+              <img
+                class="flipzy-feature-icon-img"
+                src="{{ block.settings.icon | image_url: width: 64 }}"
+                alt="icon"
+                loading="lazy"
+              >
+            {% else %}
+               <div style="width: 12px; height: 12px; background: var(--color-mustard); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
+            {% endif %}
+            <p class="flipzy-feature-point-text">{{ block.settings.text }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Select this specific video in this section instance
+    const container = document.currentScript.previousElementSibling;
+    const video = container.querySelector('.flipzy-feature-video');
+    const image = container.querySelector('.flipzy-feature-image');
+    
+    // Safety check: is there a video configured?
+    if (!video) return;
+    
+    const videoSrc = "{{ section.settings.video_url }}";
+    if (!videoSrc) return;
+
+    function isSlowConnection() {
+      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (!connection) return false;
+      return connection.saveData || connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g';
+    }
+
+    const loadVideo = function () {
+      if (video.dataset.loaded === 'true') return;
+      video.src = videoSrc;
+      video.dataset.loaded = 'true';
+    };
+
+    // Performance Logic: Only load video if connection is good
+    if (!isSlowConnection()) {
+      loadVideo();
+    }
+
+    // UX Logic: Once video frames are ready, hide the image and show video
+    video.addEventListener('loadeddata', function () {
+      video.style.display = 'block';
+      if (image) image.classList.add('is-hidden');
+    });
+  });
+</script>
