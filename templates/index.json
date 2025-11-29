@@ -99,6 +99,14 @@
         "fallback_image": "shopify://shop_images/palca.jpg"
       }
     },
+    "flipzy_anchor_94NFEW": {
+      "type": "flipzy-anchor",
+      "name": "Flipzy Scroll Anchor",
+      "settings": {
+        "anchor_id": "buy",
+        "offset": 100
+      }
+    },
     "featured_product_AFBizT": {
       "type": "featured-product",
       "blocks": {
@@ -156,7 +164,7 @@
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "flipzy-wooden-routine-board",
-        "color_scheme": "scheme-4",
+        "color_scheme": "scheme-c359c2bf-0c0e-4470-9782-7d25559e01fc",
         "secondary_background": false,
         "media_size": "medium",
         "constrain_to_viewport": true,
@@ -173,6 +181,7 @@
   "order": [
     "flipzy_hero_yHQ9UX",
     "flipzy_feature_video_Wf8y33",
+    "flipzy_anchor_94NFEW",
     "featured_product_AFBizT"
   ]
 }
