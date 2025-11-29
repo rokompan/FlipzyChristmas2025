@@ -1,25 +1,31 @@
 /* =========================================
    1. GLOBAL VARIABLES & IMPORTS
    ========================================= */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
+    /* Fonts */
     --font-poppins: 'Poppins', sans-serif;
+
+    /* Palette */
     --color-cream: #F9F7F2;
     --color-sage: #9AB8A2;
+    --color-mint: #96Debb;  /* The specific Mint from your screenshot */
     --color-mustard: #F4D35E;
     --color-terracotta: #E09F7D;
-    --color-charcoal: #2D2D2D;
+    --color-charcoal: #1F2937; /* Slightly softer black */
     --color-white: #FFFFFF;
 }
 
+/* Force Poppins globally for custom sections */
 .flipzy-section h1, .flipzy-section h2, .flipzy-section h3, 
-.flipzy-section p, .flipzy-section a, .flipzy-section button {
+.flipzy-section p, .flipzy-section a, .flipzy-section button,
+.flipzy-section li, .flipzy-section span {
     font-family: var(--font-poppins) !important;
 }
 
 /* =========================================
-   2. HERO SLIDER SECTION
+   2. HERO SLIDER SECTION (Keep as is)
    ========================================= */
 .flipzy-hero-container {
     position: relative;
@@ -43,7 +49,7 @@
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* iOS smooth scroll */
+    -webkit-overflow-scrolling: touch; 
     scrollbar-width: none;
 }
 .flipzy-slider-track::-webkit-scrollbar { display: none; }
@@ -56,7 +62,6 @@
     scroll-snap-align: center;
 }
 
-/* Media + Dark Overlay */
 .flipzy-media-wrapper {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
@@ -65,7 +70,7 @@
     content: "";
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* 30% Dark Tint */
+    background: rgba(0, 0, 0, 0.3);
     z-index: 2;
     pointer-events: none;
 }
@@ -73,7 +78,6 @@
     width: 100%; height: 100%; object-fit: cover; display: block;
 }
 
-/* Text Content */
 .flipzy-content-wrapper {
     position: absolute;
     z-index: 3;
@@ -90,7 +94,7 @@
 .flipzy-text-box { max-width: 900px; color: var(--color-white); }
 
 .flipzy-heading {
-    font-size: 2.5rem; /* Bigger mobile heading */
+    font-size: 2.5rem;
     line-height: 1.2;
     margin-bottom: 2rem;
     color: var(--color-white);
@@ -102,16 +106,15 @@
     .flipzy-heading { font-size: 4.5rem; }
 }
 
-/* BIGGER BUTTON */
 .flipzy-btn {
     display: inline-block;
     background-color: var(--color-mustard);
     color: var(--color-charcoal);
-    padding: 18px 54px; /* Significantly bigger padding */
+    padding: 18px 54px;
     border-radius: 50px;
     font-weight: 700;
     text-decoration: none;
-    font-size: 1.5rem; /* Significantly bigger text */
+    font-size: 1.5rem;
     margin-bottom: 25px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
@@ -119,25 +122,22 @@
 }
 .flipzy-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(244, 211, 94, 0.7); /* Stronger glow */
+    box-shadow: 0 0 25px rgba(244, 211, 94, 0.7);
 }
 
-/* BIGGER CONSTANT BOUNCE CUE */
 .flipzy-scroll-cue {
-    font-size: 1.3rem; /* Bigger */
+    font-size: 1.3rem;
     font-weight: 600;
     color: rgba(255,255,255,0.95);
     margin-top: 10px;
     cursor: default;
-    animation: continuous-bounce 1.5s infinite ease-in-out; /* Constant motion */
+    animation: continuous-bounce 1.5s infinite ease-in-out;
 }
-
 @keyframes continuous-bounce {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); } /* Smooth up/down */
+    50% { transform: translateY(-15px); }
 }
 
-/* Nav Arrows */
 .flipzy-nav-btn {
     position: absolute;
     top: 50%;
@@ -146,7 +146,7 @@
     background: rgba(0, 0, 0, 0.5); 
     border: 1px solid rgba(255,255,255,0.2);
     color: white;
-    width: 60px; height: 60px; /* Slightly bigger */
+    width: 60px; height: 60px;
     border-radius: 50%;
     cursor: pointer;
     backdrop-filter: blur(4px);
@@ -156,125 +156,20 @@
 .flipzy-nav-btn:hover { background: rgba(0, 0, 0, 0.8); transform: translateY(-50%) scale(1.1); }
 .flipzy-prev { left: 20px; }
 .flipzy-next { right: 20px; }
+
+
 /* =========================================
-   3. FEATURE SPLIT SECTION (What is Flipzy?)
-   ========================================= */
-
-/* --- Color Schemes Utility Classes --- */
-.scheme-cream { background-color: var(--color-cream); color: var(--color-charcoal); }
-.scheme-sage  { background-color: var(--color-sage); color: var(--color-white); }
-.scheme-white { background-color: var(--color-white); color: var(--color-charcoal); }
-.scheme-dark  { background-color: var(--color-charcoal); color: var(--color-white); }
-
-.flipzy-split-section {
-    padding: 60px 20px;
-    width: 100%;
-}
-
-.flipzy-split-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr; /* Mobile default: 1 column */
-    gap: 40px;
-    align-items: center;
-}
-
-@media screen and (min-width: 900px) {
-    .flipzy-split-container {
-        grid-template-columns: 1fr 1fr; /* Desktop: 2 columns */
-        gap: 80px;
-    }
-}
-
-/* --- Layout Logic (Desktop) --- */
-/* By default, media is right. If class 'layout-flip' is present, we swap grid areas */
-.layout-media-left .flipzy-split-text { order: 2; }
-.layout-media-left .flipzy-split-media { order: 1; }
-
-/* --- Text Column --- */
-.flipzy-split-text h2 {
-    font-size: 2.5rem;
-    line-height: 1.2;
-    margin-bottom: 30px;
-    font-weight: 700;
-}
-
-.flipzy-feature-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.flipzy-feature-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    font-size: 1.1rem;
-    line-height: 1.5;
-}
-
-.flipzy-icon-box {
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.flipzy-icon-box svg {
-    width: 100%;
-    height: 100%;
-    stroke: currentColor; /* Inherits text color */
-    stroke-width: 2;
-}
-
-/* --- Media Column --- */
-.flipzy-split-media {
-    position: relative;
-    width: 100%;
-    height: auto;
-    border-radius: 24px; /* Rounded corners */
-    overflow: hidden;
-    box-shadow: 20px 20px 0px rgba(0,0,0,0.1); /* Hard shadow "Vibe" */
-    transform: rotate(0deg);
-    transition: transform 0.3s ease;
-}
-
-.flipzy-split-media:hover {
-    transform: scale(1.02); /* Slight hover effect */
-}
-
-/* Aspect Ratio wrapper for video/image stability */
-.flipzy-media-aspect {
-    position: relative;
-    padding-bottom: 75%; /* 4:3 Aspect Ratio */
-    height: 0;
-    width: 100%;
-    background: #e5e5e5;
-}
-
-.flipzy-media-aspect video,
-.flipzy-media-aspect img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-/* =========================================
-   3. FLIPZY FEATURE VIDEO SECTION
+   3. FLIPZY FEATURE VIDEO SECTION (REDO)
    ========================================= */
 .flipzy-feature-section {
-    padding: 60px 20px;
+    padding: 80px 20px; /* Increased padding for breathing room */
     width: 100%;
 }
 
 .flipzy-feature-inner {
     display: flex;
-    gap: 4rem;
+    /* Bigger gap for that "balanced" look */
+    gap: 6rem; 
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -286,14 +181,15 @@
     flex: 1 1 50%;
 }
 
-/* --- Media Card (Rounded + Shadow) --- */
+/* --- Media Card --- */
 .flipzy-feature-media-inner {
-    border-radius: 32px; /* Smooth large rounding */
+    border-radius: 32px;
     overflow: hidden;
-    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.15); /* The "Float" shadow */
+    /* Softer, more diffuse shadow like the reference */
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08); 
     background: #f5f5f5;
     position: relative;
-    line-height: 0; /* Fixes tiny gap below video */
+    line-height: 0;
 }
 
 .flipzy-feature-image,
@@ -301,60 +197,61 @@
     display: block;
     width: 100%;
     height: auto;
+    object-fit: cover;
 }
 
-/* Logic: Video hidden by default until loaded */
 .flipzy-feature-video { display: none; }
 .flipzy-feature-image.is-hidden { display: none; }
 
 /* --- Content Side --- */
-/* --- Content Side --- */
 .flipzy-feature-heading {
-    font-size: 2.5rem;
+    font-size: 3rem; /* Larger, bolder */
     font-weight: 700;
-    margin: 0 0 2rem; /* More space below heading */
-    line-height: 1.2;
+    margin: 0 0 2.5rem; /* More space below heading */
+    line-height: 1.1;
+    color: var(--color-charcoal);
 }
 
 .flipzy-feature-points {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.8rem; /* More space between items */
 }
 
 .flipzy-feature-point {
     display: flex;
-    align-items: flex-start; /* Align icon to top of text */
-    gap: 1.2rem;
+    align-items: flex-start;
+    gap: 1.5rem; /* Space between icon and text */
 }
 
+/* The Icon Box - Mint Color */
 .flipzy-feature-icon-box {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
-    color: var(--color-charcoal); /* Icon color */
-    margin-top: 4px; /* Optical alignment with text line-height */
+    color: var(--color-mint); /* THE MINT COLOR */
+    margin-top: 3px; /* Optical alignment */
 }
 
 .flipzy-feature-icon-box svg {
     width: 100%;
     height: 100%;
     stroke: currentColor;
+    stroke-width: 2px;
 }
 
 .flipzy-feature-point-text {
     margin: 0;
-    font-size: 1.15rem; /* Slightly larger text */
-    line-height: 1.6;
+    font-size: 1.25rem; /* Larger, readable text */
+    line-height: 1.5;
     font-weight: 500;
-}
-.flipzy-feature-point-text p {
-    margin: 0; /* Remove default p margin from rich text */
+    color: #4B5563; /* Grey-700 for softer text */
 }
 
+.flipzy-feature-point-text p { margin: 0; }
+
 /* --- Responsive Layout Logic --- */
-/* Desktop Swapping */
-@media (min-width: 750px) {
+@media (min-width: 900px) {
     .layout-desktop-left .flipzy-feature-media { order: 1; }
     .layout-desktop-left .flipzy-feature-content { order: 2; }
 
@@ -362,18 +259,16 @@
     .layout-desktop-right .flipzy-feature-media { order: 2; }
 }
 
-/* Mobile Stacking */
-@media (max-width: 749px) {
-    .flipzy-feature-section { padding-top: 3rem; padding-bottom: 3rem; }
+@media (max-width: 899px) {
+    .flipzy-feature-section { padding-top: 4rem; padding-bottom: 4rem; }
     
     .flipzy-feature-inner {
         flex-direction: column;
-        gap: 2rem;
+        gap: 3rem;
     }
 
-    .flipzy-feature-heading { font-size: 2rem; }
+    .flipzy-feature-heading { font-size: 2.2rem; text-align: center; }
 
-    /* Mobile Order Logic */
     .layout-mobile-media-first .flipzy-feature-media { order: 1; }
     .layout-mobile-media-first .flipzy-feature-content { order: 2; }
     
