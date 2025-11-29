@@ -25,6 +25,8 @@
         "slide_ecyxRA": {
           "type": "slide",
           "settings": {
+            "video_file": "shopify://files/videos/flat06.mp4",
+            "image_fallback": "shopify://shop_images/kvaje3.jpg",
             "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
             "button_text": "Go to Shop",
             "button_link": ""
