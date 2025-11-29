@@ -16,7 +16,7 @@
     --color-white: #FFFFFF;
 }
 
-/* Force Poppins globally for your custom sections */
+/* Force Poppins globally for custom sections */
 .flipzy-section h1, .flipzy-section h2, .flipzy-section h3, 
 .flipzy-section p, .flipzy-section a, .flipzy-section button {
     font-family: var(--font-poppins) !important;
@@ -28,15 +28,14 @@
 .flipzy-hero-container {
     position: relative;
     width: 100%;
-    /* 85dvh ensures it takes 85% of the visible screen, leaving space below */
-    height: 85dvh; 
-    max-height: 850px; /* Cap it on giant screens */
-    min-height: 500px; /* Safety for tiny screens */
-    background-color: var(--color-charcoal); /* Loading background */
+    height: 85dvh; /* Mobile dynamic height */
+    max-height: 850px; 
+    min-height: 500px;
+    background-color: var(--color-charcoal);
     overflow: hidden;
 }
 
-/* Desktop Adjustment: Make it slightly shorter to show more context */
+/* Desktop Adjustment */
 @media screen and (min-width: 750px) {
     .flipzy-hero-container {
         height: 80vh;
@@ -53,25 +52,24 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    /* Hide Scrollbars */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .flipzy-slider-track::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    display: none;
 }
 
 /* Individual Slide */
 .flipzy-slide {
-    flex: 0 0 100%; /* Force 100% width, no shrinking */
+    flex: 0 0 100%;
     width: 100%;
     height: 100%;
     position: relative;
     scroll-snap-align: center;
 }
 
-/* Media (Video/Image) styling */
+/* Media (Video/Image) */
 .flipzy-media-wrapper {
     position: absolute;
     top: 0;
@@ -81,46 +79,59 @@
     z-index: 1;
 }
 
+/* THE 0.3 DARK OVERLAY FIX */
+.flipzy-media-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* 30% Dark Tint everywhere */
+    z-index: 2;
+    pointer-events: none;
+}
+
 .flipzy-media-wrapper video,
 .flipzy-media-wrapper img,
 .flipzy-media-wrapper svg {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures image/video fills the box without stretching */
+    object-fit: cover;
     display: block;
 }
 
 /* Overlay Content */
 .flipzy-content-wrapper {
     position: absolute;
-    z-index: 2;
+    z-index: 3; /* Above the dark tint */
     bottom: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%);
+    /* Gradient at the very bottom for extra text readability */
+    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     text-align: center;
-    padding: 0 20px 60px 20px; /* Bottom padding to lift text up */
+    padding: 0 20px 50px 20px;
 }
 
 .flipzy-text-box {
     max-width: 800px;
     color: var(--color-white);
-    animation: fadeIn 1s ease-out;
 }
 
 .flipzy-heading {
-    font-size: 2rem;
+    font-size: 2.2rem;
     line-height: 1.2;
     margin-bottom: 1.5rem;
     color: var(--color-white);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
-/* Bold text highlight logic */
 .flipzy-heading strong {
     color: var(--color-mustard);
     font-weight: 700;
@@ -128,84 +139,75 @@
 
 @media screen and (min-width: 750px) {
     .flipzy-heading {
-        font-size: 3.5rem; /* Larger on desktop */
+        font-size: 4rem;
     }
 }
 
-/* Button Styling */
+/* Button Styling (Fixed) */
 .flipzy-btn {
     display: inline-block;
     background-color: var(--color-mustard);
     color: var(--color-charcoal);
-    padding: 14px 40px;
+    padding: 16px 48px; /* Larger hit area */
     border-radius: 50px;
-    font-weight: 600;
+    font-weight: 700; /* Bolder */
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1.2rem; /* Larger Text */
     margin-bottom: 20px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     border: 2px solid var(--color-mustard);
 }
 
+/* GLOW EFFECT ON HOVER */
 .flipzy-btn:hover {
-    background-color: transparent;
-    color: var(--color-mustard);
+    transform: scale(1.05); /* Grow slightly */
+    box-shadow: 0 0 20px rgba(244, 211, 94, 0.6); /* Yellow Glow */
+    background-color: var(--color-mustard); /* Keep background yellow */
+    color: var(--color-charcoal);
 }
 
-/* Scroll Cue (Text at bottom) */
+/* Scroll Cue (Bouncier & Larger) */
 .flipzy-scroll-cue {
-    font-size: 0.9rem;
-    opacity: 0.8;
-    color: rgba(255,255,255,0.8);
-    margin-top: 10px;
-    animation: bounce 2s infinite;
+    font-size: 1.1rem; /* Larger */
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    margin-top: 15px;
+    cursor: default;
+    animation: ball-bounce 2s infinite;
 }
 
-@keyframes bounce {
+@keyframes ball-bounce {
     0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-5px);}
-    60% {transform: translateY(-3px);}
+    40% {transform: translateY(-12px);} /* High jump */
+    60% {transform: translateY(-6px);}  /* Small bounce */
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Navigation Arrows */
+/* Navigation Arrows (More Visible) */
 .flipzy-nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
+    /* Dark semi-transparent background for visibility on light videos */
+    background: rgba(0, 0, 0, 0.5); 
+    border: 1px solid rgba(255,255,255,0.2);
     color: white;
-    width: 50px;
-    height: 50px;
+    width: 56px; /* Larger */
+    height: 56px;
     border-radius: 50%;
     cursor: pointer;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.3s;
+    transition: all 0.2s ease;
 }
 
 .flipzy-nav-btn:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .flipzy-prev { left: 20px; }
 .flipzy-next { right: 20px; }
-
-/* Hide arrows on mobile if preferred, or keep them small. keeping them for now */
-@media screen and (max-width: 750px) {
-    .flipzy-nav-btn {
-        width: 40px;
-        height: 40px;
-        background: rgba(0,0,0,0.2); /* Darker bg for visibility on mixed backgrounds */
-    }
-    .flipzy-prev { left: 10px; }
-    .flipzy-next { right: 10px; }
-}
