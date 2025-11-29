@@ -62,8 +62,7 @@
     {
       "type": "image_picker",
       "id": "fallback_image",
-      "label": "Fallback Image",
-      "info": "Shows while video loads."
+      "label": "Fallback Image"
     }
   ],
   "blocks": [
@@ -72,16 +71,24 @@
       "name": "Feature Point",
       "settings": [
         {
-          "type": "image_picker",
-          "id": "icon",
-          "label": "Icon (PNG/SVG)",
-          "info": "Upload your custom icon here."
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon",
+          "options": [
+            { "value": "bulb", "label": "Lightbulb (Idea)" },
+            { "value": "puzzle", "label": "Puzzle Piece" },
+            { "value": "cycle", "label": "Cycle / Refresh" },
+            { "value": "wrench", "label": "Wrench / Tools" },
+            { "value": "check", "label": "Checkmark" },
+            { "value": "star", "label": "Star" }
+          ],
+          "default": "check"
         },
         {
-          "type": "text",
+          "type": "richtext",
           "id": "text",
           "label": "Text",
-          "default": "Feature benefit goes here"
+          "default": "<p>Feature text here</p>"
         }
       ]
     }
@@ -90,9 +97,34 @@
     {
       "name": "Flipzy Feature Video",
       "blocks": [
-        { "type": "feature_point", "settings": { "text": "7 customizable wooden pieces" }},
-        { "type": "feature_point", "settings": { "text": "Simple flip action to mark tasks" }},
-        { "type": "feature_point", "settings": { "text": "Easy to mount anywhere" }}
+        { 
+          "type": "feature_point", 
+          "settings": { 
+            "icon_type": "bulb",
+            "text": "<p>A wooden board that helps kids follow daily routines.</p>" 
+          }
+        },
+        { 
+          "type": "feature_point", 
+          "settings": { 
+            "icon_type": "puzzle",
+            "text": "<p>7 customizable wooden pieces</p>" 
+          }
+        },
+        { 
+          "type": "feature_point", 
+          "settings": { 
+            "icon_type": "cycle",
+            "text": "<p>Simple flip action to mark tasks as complete</p>" 
+          }
+        },
+        { 
+          "type": "feature_point", 
+          "settings": { 
+            "icon_type": "wrench",
+            "text": "<p>Easy to mount anywhere</p>" 
+          }
+        }
       ]
     }
   ]
@@ -135,17 +167,23 @@
       <div class="flipzy-feature-points">
         {% for block in section.blocks %}
           <div class="flipzy-feature-point" {{ block.shopify_attributes }}>
-            {% if block.settings.icon != blank %}
-              <img
-                class="flipzy-feature-icon-img"
-                src="{{ block.settings.icon | image_url: width: 64 }}"
-                alt="icon"
-                loading="lazy"
-              >
-            {% else %}
-               <div style="width: 12px; height: 12px; background: var(--color-mustard); border-radius: 50%; margin-top: 6px; flex-shrink: 0;"></div>
-            {% endif %}
-            <p class="flipzy-feature-point-text">{{ block.settings.text }}</p>
+            <div class="flipzy-feature-icon-box">
+              {% case block.settings.icon_type %}
+                {% when 'bulb' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z"></path><path d="M9 21h6"></path></svg>
+                {% when 'puzzle' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.439 15.424a1 1 0 0 0-1.025.99c0 .605.342 1.586.342 1.586.683 1.93-1.082 3.69-3.007 3s-1.442-2.502-3.483-2.502-2.31 1.767-2.31 1.767c-.66 2.05-3.05 1.536-3.71.696-.66-.84-.342-2.486-.342-2.486a1 1 0 0 0-1.025-.99 1 1 0 0 0-1.025.99c0 .605.342 2.652.342 2.652 1.346 3.86 6.22 4.545 7.562 2.652 1.342 1.893 6.216 1.208 7.562-2.652 0 0 .342-2.047.342-2.652a1 1 0 0 0-1.025-.99z"></path></svg>
+                {% when 'cycle' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"></path><path d="M21.34 5.5A10 10 0 1 0 22 12"></path></svg>
+                {% when 'wrench' %}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                {% when 'check' %}
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                {% when 'star' %}
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              {% endcase %}
+            </div>
+            <div class="flipzy-feature-point-text">{{ block.settings.text }}</div>
           </div>
         {% endfor %}
       </div>
@@ -156,12 +194,10 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    // Select this specific video in this section instance
     const container = document.currentScript.previousElementSibling;
     const video = container.querySelector('.flipzy-feature-video');
     const image = container.querySelector('.flipzy-feature-image');
     
-    // Safety check: is there a video configured?
     if (!video) return;
     
     const videoSrc = "{{ section.settings.video_url }}";
@@ -179,12 +215,10 @@
       video.dataset.loaded = 'true';
     };
 
-    // Performance Logic: Only load video if connection is good
     if (!isSlowConnection()) {
       loadVideo();
     }
 
-    // UX Logic: Once video frames are ready, hide the image and show video
     video.addEventListener('loadeddata', function () {
       video.style.display = 'block';
       if (image) image.classList.add('is-hidden');

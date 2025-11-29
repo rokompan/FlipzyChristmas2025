@@ -308,10 +308,11 @@
 .flipzy-feature-image.is-hidden { display: none; }
 
 /* --- Content Side --- */
+/* --- Content Side --- */
 .flipzy-feature-heading {
     font-size: 2.5rem;
     font-weight: 700;
-    margin: 0 0 1.5rem;
+    margin: 0 0 2rem; /* More space below heading */
     line-height: 1.2;
 }
 
@@ -323,22 +324,32 @@
 
 .flipzy-feature-point {
     display: flex;
-    align-items: flex-start;
-    gap: 1rem;
+    align-items: flex-start; /* Align icon to top of text */
+    gap: 1.2rem;
 }
 
-.flipzy-feature-icon-img {
-    width: 32px;
-    height: 32px;
+.flipzy-feature-icon-box {
+    width: 28px;
+    height: 28px;
     flex-shrink: 0;
-    object-fit: contain;
+    color: var(--color-charcoal); /* Icon color */
+    margin-top: 4px; /* Optical alignment with text line-height */
+}
+
+.flipzy-feature-icon-box svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
 }
 
 .flipzy-feature-point-text {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: 1.15rem; /* Slightly larger text */
     line-height: 1.6;
     font-weight: 500;
+}
+.flipzy-feature-point-text p {
+    margin: 0; /* Remove default p margin from rich text */
 }
 
 /* --- Responsive Layout Logic --- */
