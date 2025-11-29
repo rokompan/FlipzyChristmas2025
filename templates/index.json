@@ -40,6 +40,54 @@
       "name": "Flipzy Hero Slider",
       "settings": {}
     },
+    "flipzy_feature_split_9QcLWt": {
+      "type": "flipzy-feature-split",
+      "blocks": {
+        "feature_item_FdqwcB": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "bulb",
+            "text": "<p>A wooden board that helps kids follow daily routines.</p>"
+          }
+        },
+        "feature_item_z9j3Mg": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "puzzle",
+            "text": "<p>7 customizable wooden pieces</p>"
+          }
+        },
+        "feature_item_3yF83P": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "cycle",
+            "text": "<p>Simple flip action to mark tasks as complete</p>"
+          }
+        },
+        "feature_item_ekpwqH": {
+          "type": "feature_item",
+          "settings": {
+            "icon": "wrench",
+            "text": "<p>Easy to mount anywhere</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_item_FdqwcB",
+        "feature_item_z9j3Mg",
+        "feature_item_3yF83P",
+        "feature_item_ekpwqH"
+      ],
+      "name": "Flipzy Feature Split",
+      "settings": {
+        "color_scheme": "scheme-cream",
+        "desktop_layout": "media_right",
+        "mobile_text_first": true,
+        "heading": "What is Flipzy?",
+        "video_file": "shopify://files/videos/long-05-assembling_d724ef81-607a-4db2-9472-3c778cb4d166.mp4",
+        "image_file": "shopify://shop_images/kvaje3.jpg"
+      }
+    },
     "rich_text_xWpMda": {
       "type": "rich-text",
       "blocks": {
@@ -86,6 +134,7 @@
   },
   "order": [
     "flipzy_hero_yHQ9UX",
+    "flipzy_feature_split_9QcLWt",
     "rich_text_xWpMda"
   ]
 }
