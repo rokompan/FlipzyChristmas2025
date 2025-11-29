@@ -12,6 +12,16 @@
     "flipzy_hero_yHQ9UX": {
       "type": "flipzy-hero",
       "blocks": {
+        "slide_pde3JQ": {
+          "type": "slide",
+          "settings": {
+            "video_file": "shopify://files/videos/under-hero.mp4",
+            "image_fallback": "shopify://shop_images/mizar.jpg",
+            "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
+            "button_text": "Go to Shop",
+            "button_link": ""
+          }
+        },
         "slide_M6LaR3": {
           "type": "slide",
           "settings": {
@@ -34,6 +44,7 @@
         }
       },
       "block_order": [
+        "slide_pde3JQ",
         "slide_M6LaR3",
         "slide_wiHe7j"
       ],
@@ -88,22 +99,80 @@
         "fallback_image": "shopify://shop_images/palca.jpg"
       }
     },
-    "flipzy_offer_strip_6UMWwa": {
-      "type": "flipzy-offer-strip",
-      "name": "Flipzy Offer Strip",
+    "featured_product_AFBizT": {
+      "type": "featured-product",
+      "blocks": {
+        "text_c9fdxR": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_ARVFzF": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_AXz3A4": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_7Ff46k": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_wqQt7Y": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_DaiTn9": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_n3bxhQ": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text_c9fdxR",
+        "title_ARVFzF",
+        "price_AXz3A4",
+        "variant_picker_7Ff46k",
+        "quantity_selector_wqQt7Y",
+        "buy_buttons_DaiTn9",
+        "share_n3bxhQ"
+      ],
+      "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "flipzy-wooden-routine-board",
-        "color_scheme": "offer-scheme-cream",
-        "heading": "Special Offer – While Supplies Last",
-        "subtitle": "Don't miss this exclusive opportunity to transform your family's daily routines.",
-        "shipping_text": "Delivery 2-4 working days",
-        "guarantee_text": "✓ 30-day money-back guarantee • 24 months warranty"
+        "color_scheme": "scheme-4",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
     "flipzy_hero_yHQ9UX",
     "flipzy_feature_video_Wf8y33",
-    "flipzy_offer_strip_6UMWwa"
+    "featured_product_AFBizT"
   ]
 }
