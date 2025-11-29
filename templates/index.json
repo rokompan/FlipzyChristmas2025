@@ -40,32 +40,43 @@
       "name": "Flipzy Hero Slider",
       "settings": {}
     },
-    "flipzy_feature_video_HQQKfm": {
+    "flipzy_feature_video_Wf8y33": {
       "type": "flipzy-feature-video",
       "blocks": {
-        "feature_point_8xwRKe": {
+        "feature_point_n9yna3": {
           "type": "feature_point",
           "settings": {
-            "text": "7 customizable wooden pieces"
+            "icon_type": "star",
+            "text": "<p>A wooden board that helps kids follow daily routines.</p>"
           }
         },
-        "feature_point_fiWzK9": {
+        "feature_point_k7FK4C": {
           "type": "feature_point",
           "settings": {
-            "text": "Simple flip action to mark tasks"
+            "icon_type": "puzzle",
+            "text": "<p>7 customizable wooden pieces</p>"
           }
         },
-        "feature_point_k7FFQ7": {
+        "feature_point_G7aqUK": {
           "type": "feature_point",
           "settings": {
-            "text": "Easy to mount anywhere"
+            "icon_type": "cycle",
+            "text": "<p>Simple flip action to mark tasks as complete</p>"
+          }
+        },
+        "feature_point_afGgPe": {
+          "type": "feature_point",
+          "settings": {
+            "icon_type": "ruler",
+            "text": "<p>Easy to mount anywhere</p>"
           }
         }
       },
       "block_order": [
-        "feature_point_8xwRKe",
-        "feature_point_fiWzK9",
-        "feature_point_k7FFQ7"
+        "feature_point_n9yna3",
+        "feature_point_k7FK4C",
+        "feature_point_G7aqUK",
+        "feature_point_afGgPe"
       ],
       "name": "Flipzy Feature Video",
       "settings": {
@@ -80,6 +91,6 @@
   },
   "order": [
     "flipzy_hero_yHQ9UX",
-    "flipzy_feature_video_HQQKfm"
+    "flipzy_feature_video_Wf8y33"
   ]
 }
