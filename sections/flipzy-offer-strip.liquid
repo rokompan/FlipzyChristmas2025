@@ -76,3 +76,36 @@
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("/// FLIPZY DEBUGGER ///");
+    
+    // 1. Check if the Form Exists
+    const formRoot = document.getElementById('buy');
+    const productForm = formRoot ? formRoot.querySelector('product-form') : null;
+    console.log("1. Product Form Element:", productForm);
+
+    if (productForm) {
+       // 2. Check for the Button
+       const btn = productForm.querySelector('button[type="submit"]');
+       console.log("2. Submit Button:", btn);
+       
+       if (btn) {
+           // 3. Check for the Spinner (Dawn needs this!)
+           const spinner = btn.querySelector('.loading-overlay__spinner');
+           console.log("3. Loading Spinner inside Button:", spinner);
+       } else {
+           console.error("3. ERROR: Submit Button NOT FOUND inside product-form");
+       }
+    }
+
+    // 4. Check if the Cart Drawer exists on the page
+    const cartDrawer = document.querySelector('cart-drawer');
+    const cartNotification = document.querySelector('cart-notification');
+    
+    console.log("4. Cart Drawer Element (The target):", cartDrawer);
+    console.log("5. Cart Notification Element:", cartNotification);
+    
+    console.log("/// END DEBUG ///");
+  });
+</script>
