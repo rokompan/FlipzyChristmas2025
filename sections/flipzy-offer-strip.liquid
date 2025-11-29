@@ -49,9 +49,18 @@
       <product-form class="product-form">
         {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
           <input type="hidden" name="id" value="{{ variant.id }}">
+          
           <button type="submit" name="add" class="flipzy-offer-btn" {% unless variant.available %}disabled{% endunless %}>
-            {% if variant.available %}Add to cart – {{ price | money }}{% else %}Sold Out{% endif %}
+            <span>
+              {% if variant.available %}Add to cart – {{ price | money }}{% else %}Sold Out{% endif %}
+            </span>
+            <div class="loading-overlay__spinner hidden">
+              <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
           </button>
+          
         {%- endform -%}
       </product-form>
     {% else %}

@@ -215,3 +215,24 @@
     .flipzy-price-current { font-size: 2.5rem; }
     .flipzy-offer-btn { font-size: 1.2rem; padding: 16px 20px; }
 }
+/* Spinner Style Fix */
+.flipzy-offer-btn .loading-overlay__spinner {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+.flipzy-offer-btn .spinner {
+    animation: rotator 1.4s linear infinite;
+}
+.flipzy-offer-btn .path {
+    stroke-dasharray: 280;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    stroke: currentColor;
+    animation: dash 1.4s ease-in-out infinite;
+}
+@keyframes rotator { 0% { transform: rotate(0deg); } 100% { transform: rotate(270deg); } }
+@keyframes dash { 0% { stroke-dashoffset: 280; } 50% { stroke-dashoffset: 75; transform: rotate(135deg); } 100% { stroke-dashoffset: 280; transform: rotate(450deg); } }
