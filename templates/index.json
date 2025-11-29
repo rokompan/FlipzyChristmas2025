@@ -50,6 +50,13 @@
             "text": "<p>A wooden board that helps kids follow daily routines.</p>"
           }
         },
+        "feature_point_k7FK4C": {
+          "type": "feature_point",
+          "settings": {
+            "icon_type": "puzzle",
+            "text": "<p>7 customizable wooden pieces</p>"
+          }
+        },
         "feature_point_G7aqUK": {
           "type": "feature_point",
           "settings": {
@@ -67,6 +74,7 @@
       },
       "block_order": [
         "feature_point_n9yna3",
+        "feature_point_k7FK4C",
         "feature_point_G7aqUK",
         "feature_point_afGgPe"
       ],
