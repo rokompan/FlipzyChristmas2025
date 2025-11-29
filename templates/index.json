@@ -11,22 +11,25 @@
   "sections": {
     "flipzy_hero_yHQ9UX": {
       "type": "flipzy-hero",
+      "name": "Flipzy Hero Slider",
+      "settings": {}
+    },
+    "flipzy_hero_fcemtg": {
+      "type": "flipzy-hero",
       "blocks": {
-        "slide_7gciiH": {
+        "slide_LibiEF": {
           "type": "slide",
           "settings": {
-            "video_file": "shopify://files/videos/hero03.mp4",
-            "image_fallback": "shopify://shop_images/palca.jpg",
+            "image_fallback": "shopify://shop_images/image1.png",
             "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
             "button_text": "Go to Shop",
-            "button_link": "#buy"
+            "button_link": ""
           }
         },
-        "slide_ecyxRA": {
+        "slide_RMwFQ4": {
           "type": "slide",
           "settings": {
-            "video_file": "shopify://files/videos/flat06.mp4",
-            "image_fallback": "shopify://shop_images/kvaje3.jpg",
+            "image_fallback": "shopify://shop_images/palca.jpg",
             "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
             "button_text": "Go to Shop",
             "button_link": ""
@@ -34,17 +37,15 @@
         }
       },
       "block_order": [
-        "slide_7gciiH",
-        "slide_ecyxRA"
+        "slide_LibiEF",
+        "slide_RMwFQ4"
       ],
       "name": "Flipzy Hero Slider",
-      "settings": {
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
+      "settings": {}
     }
   },
   "order": [
-    "flipzy_hero_yHQ9UX"
+    "flipzy_hero_yHQ9UX",
+    "flipzy_hero_fcemtg"
   ]
 }
