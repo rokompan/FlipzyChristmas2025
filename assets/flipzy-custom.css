@@ -156,3 +156,111 @@
 .flipzy-nav-btn:hover { background: rgba(0, 0, 0, 0.8); transform: translateY(-50%) scale(1.1); }
 .flipzy-prev { left: 20px; }
 .flipzy-next { right: 20px; }
+/* =========================================
+   3. FEATURE SPLIT SECTION (What is Flipzy?)
+   ========================================= */
+
+/* --- Color Schemes Utility Classes --- */
+.scheme-cream { background-color: var(--color-cream); color: var(--color-charcoal); }
+.scheme-sage  { background-color: var(--color-sage); color: var(--color-white); }
+.scheme-white { background-color: var(--color-white); color: var(--color-charcoal); }
+.scheme-dark  { background-color: var(--color-charcoal); color: var(--color-white); }
+
+.flipzy-split-section {
+    padding: 60px 20px;
+    width: 100%;
+}
+
+.flipzy-split-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile default: 1 column */
+    gap: 40px;
+    align-items: center;
+}
+
+@media screen and (min-width: 900px) {
+    .flipzy-split-container {
+        grid-template-columns: 1fr 1fr; /* Desktop: 2 columns */
+        gap: 80px;
+    }
+}
+
+/* --- Layout Logic (Desktop) --- */
+/* By default, media is right. If class 'layout-flip' is present, we swap grid areas */
+.layout-media-left .flipzy-split-text { order: 2; }
+.layout-media-left .flipzy-split-media { order: 1; }
+
+/* --- Text Column --- */
+.flipzy-split-text h2 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.flipzy-feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.flipzy-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.flipzy-icon-box {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flipzy-icon-box svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor; /* Inherits text color */
+    stroke-width: 2;
+}
+
+/* --- Media Column --- */
+.flipzy-split-media {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: 24px; /* Rounded corners */
+    overflow: hidden;
+    box-shadow: 20px 20px 0px rgba(0,0,0,0.1); /* Hard shadow "Vibe" */
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.flipzy-split-media:hover {
+    transform: scale(1.02); /* Slight hover effect */
+}
+
+/* Aspect Ratio wrapper for video/image stability */
+.flipzy-media-aspect {
+    position: relative;
+    padding-bottom: 75%; /* 4:3 Aspect Ratio */
+    height: 0;
+    width: 100%;
+    background: #e5e5e5;
+}
+
+.flipzy-media-aspect video,
+.flipzy-media-aspect img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
