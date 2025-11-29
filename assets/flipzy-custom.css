@@ -4,446 +4,214 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
-    /* Fonts */
     --font-poppins: 'Poppins', sans-serif;
-
-    /* Palette */
     --color-cream: #F9F7F2;
     --color-sage: #9AB8A2;
-    --color-mint: #96Debb;  /* The specific Mint from your screenshot */
+    --color-mint: #96Debb;
     --color-mustard: #F4D35E;
-    --color-terracotta: #E09F7D;
-    --color-charcoal: #1F2937; /* Slightly softer black */
+    --color-charcoal: #111827; /* Darker, sharper black */
     --color-white: #FFFFFF;
 }
 
-/* Force Poppins globally for custom sections */
+/* Global Font Override */
 .flipzy-section h1, .flipzy-section h2, .flipzy-section h3, 
-.flipzy-section p, .flipzy-section a, .flipzy-section button,
-.flipzy-section li, .flipzy-section span {
+.flipzy-section p, .flipzy-section a, .flipzy-section button, 
+.flipzy-section li, .flipzy-section span, .flipzy-section div {
     font-family: var(--font-poppins) !important;
 }
 
 /* =========================================
-   2. HERO SLIDER SECTION (Keep as is)
+   2. HERO SLIDER SECTION (Stable)
    ========================================= */
 .flipzy-hero-container {
-    position: relative;
-    width: 100%;
-    height: 85dvh; 
-    max-height: 850px; 
-    min-height: 500px;
-    background-color: var(--color-charcoal);
-    overflow: hidden;
+    position: relative; width: 100%; height: 85dvh; 
+    max-height: 850px; min-height: 500px;
+    background-color: var(--color-charcoal); overflow: hidden;
 }
-
-@media screen and (min-width: 750px) {
-    .flipzy-hero-container { height: 80vh; }
-}
+@media screen and (min-width: 750px) { .flipzy-hero-container { height: 80vh; } }
 
 .flipzy-slider-track {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; 
-    scrollbar-width: none;
+    display: flex; width: 100%; height: 100%;
+    overflow-x: scroll; overflow-y: hidden;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
 .flipzy-slider-track::-webkit-scrollbar { display: none; }
 
-.flipzy-slide {
-    flex: 0 0 100%;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    scroll-snap-align: center;
-}
+.flipzy-slide { flex: 0 0 100%; width: 100%; height: 100%; position: relative; scroll-snap-align: center; }
 
-.flipzy-media-wrapper {
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
-}
+.flipzy-media-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 .flipzy-media-wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    z-index: 2;
-    pointer-events: none;
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.3); z-index: 2; pointer-events: none;
 }
 .flipzy-media-wrapper video, .flipzy-media-wrapper img, .flipzy-media-wrapper svg {
     width: 100%; height: 100%; object-fit: cover; display: block;
 }
 
 .flipzy-content-wrapper {
-    position: absolute;
-    z-index: 3;
-    bottom: 0; left: 0; width: 100%; height: 100%;
+    position: absolute; z-index: 3; bottom: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px 60px 20px;
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+    text-align: center; padding: 0 20px 60px 20px;
 }
-
 .flipzy-text-box { max-width: 900px; color: var(--color-white); }
-
 .flipzy-heading {
-    font-size: 2.5rem;
-    line-height: 1.2;
-    margin-bottom: 2rem;
-    color: var(--color-white);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    font-size: 2.5rem; line-height: 1.2; margin-bottom: 2rem;
+    color: var(--color-white); text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 .flipzy-heading strong { color: var(--color-mustard); font-weight: 700; }
-
-@media screen and (min-width: 750px) {
-    .flipzy-heading { font-size: 4.5rem; }
-}
+@media screen and (min-width: 750px) { .flipzy-heading { font-size: 4.5rem; } }
 
 .flipzy-btn {
-    display: inline-block;
-    background-color: var(--color-mustard);
-    color: var(--color-charcoal);
-    padding: 18px 54px;
-    border-radius: 50px;
-    font-weight: 700;
-    text-decoration: none;
-    font-size: 1.5rem;
-    margin-bottom: 25px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    border: 2px solid var(--color-mustard);
+    display: inline-block; background-color: var(--color-mustard); color: var(--color-charcoal);
+    padding: 18px 54px; border-radius: 50px; font-weight: 700; text-decoration: none;
+    font-size: 1.5rem; margin-bottom: 25px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); border: 2px solid var(--color-mustard);
 }
-.flipzy-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(244, 211, 94, 0.7);
-}
+.flipzy-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(244, 211, 94, 0.7); }
 
 .flipzy-scroll-cue {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: rgba(255,255,255,0.95);
-    margin-top: 10px;
-    cursor: default;
-    animation: continuous-bounce 1.5s infinite ease-in-out;
+    font-size: 1.3rem; font-weight: 600; color: rgba(255,255,255,0.95);
+    margin-top: 10px; cursor: default; animation: continuous-bounce 1.5s infinite ease-in-out;
 }
-@keyframes continuous-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
-}
+@keyframes continuous-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
 .flipzy-nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.5); 
-    border: 1px solid rgba(255,255,255,0.2);
-    color: white;
-    width: 60px; height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-    backdrop-filter: blur(4px);
-    display: flex; align-items: center; justify-content: center;
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+    background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255,255,255,0.2);
+    color: white; width: 60px; height: 60px; border-radius: 50%; cursor: pointer;
+    backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center;
     transition: all 0.2s ease;
 }
 .flipzy-nav-btn:hover { background: rgba(0, 0, 0, 0.8); transform: translateY(-50%) scale(1.1); }
 .flipzy-prev { left: 20px; }
 .flipzy-next { right: 20px; }
 
-
 /* =========================================
-   3. FLIPZY FEATURE VIDEO SECTION (REDO)
+   3. FLIPZY FEATURE VIDEO (Updated to "Balanced" Look)
    ========================================= */
 .flipzy-feature-section {
-    padding: 80px 20px; /* Increased padding for breathing room */
-    width: 100%;
+    padding-top: 4rem; padding-bottom: 4rem;
+    width: 100%; background: #ffffff;
 }
-
 .flipzy-feature-inner {
-    display: flex;
-    /* Bigger gap for that "balanced" look */
-    gap: 6rem; 
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: flex; gap: 4rem; align-items: center;
+    max-width: 1200px; margin: 0 auto; padding: 0 20px;
 }
+.flipzy-feature-media, .flipzy-feature-content { flex: 1 1 50%; }
 
-/* Layout Columns */
-.flipzy-feature-media,
-.flipzy-feature-content {
-    flex: 1 1 50%;
-}
-
-/* --- Media Card --- */
+/* The Rounded Card + Shadow from your snippet */
 .flipzy-feature-media-inner {
-    border-radius: 32px;
-    overflow: hidden;
-    /* Softer, more diffuse shadow like the reference */
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08); 
-    background: #f5f5f5;
-    position: relative;
-    line-height: 0;
+    border-radius: 32px; overflow: hidden;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.15);
+    background: #f5f5f5; position: relative; line-height: 0;
 }
-
-.flipzy-feature-image,
-.flipzy-feature-video {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
+.flipzy-feature-image, .flipzy-feature-video { width: 100%; height: auto; display: block; }
 .flipzy-feature-video { display: none; }
 .flipzy-feature-image.is-hidden { display: none; }
 
-/* --- Content Side --- */
+/* Typography from snippet */
 .flipzy-feature-heading {
-    font-size: 3rem; /* Larger, bolder */
-    font-weight: 700;
-    margin: 0 0 2.5rem; /* More space below heading */
-    line-height: 1.1;
-    color: var(--color-charcoal);
+    font-size: clamp(2rem, 2.7vw, 2.6rem); /* Responsive clamp */
+    font-weight: 700; margin: 0 0 1.4rem; color: var(--color-charcoal);
+    line-height: 1.2;
 }
+.flipzy-feature-points { display: flex; flex-direction: column; gap: 0.9rem; }
+.flipzy-feature-point { display: flex; align-items: flex-start; gap: 0.75rem; }
 
-.flipzy-feature-points {
-    display: flex;
-    flex-direction: column;
-    gap: 1.8rem; /* More space between items */
-}
-
-.flipzy-feature-point {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem; /* Space between icon and text */
-}
-
-/* The Icon Box - Mint Color */
+/* Icons */
 .flipzy-feature-icon-box {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    color: var(--color-mint); /* THE MINT COLOR */
-    margin-top: 3px; /* Optical alignment */
+    width: 2rem; height: 2rem; flex-shrink: 0;
+    color: var(--color-mint); /* Mint color */
+    margin-top: 2px;
 }
-
-.flipzy-feature-icon-box svg {
-    width: 100%;
-    height: 100%;
-    stroke: currentColor;
-    stroke-width: 2px;
-}
+.flipzy-feature-icon-box svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 2px; }
 
 .flipzy-feature-point-text {
-    margin: 0;
-    font-size: 1.25rem; /* Larger, readable text */
-    line-height: 1.5;
-    font-weight: 500;
-    color: #4B5563; /* Grey-700 for softer text */
+    margin: 0; font-size: 1.3rem; line-height: 1.75;
+    font-weight: 500; color: var(--color-charcoal);
 }
-
 .flipzy-feature-point-text p { margin: 0; }
 
-/* --- Responsive Layout Logic --- */
-@media (min-width: 900px) {
+@media (max-width: 749px) {
+    .flipzy-feature-section { padding-top: 3rem; padding-bottom: 3rem; }
+    .flipzy-feature-inner { flex-direction: column; gap: 2.25rem; }
+    .layout-mobile-media-first .flipzy-feature-media { order: 1; }
+    .layout-mobile-media-first .flipzy-feature-content { order: 2; }
+    .layout-mobile-text-first .flipzy-feature-content { order: 1; }
+    .layout-mobile-text-first .flipzy-feature-media { order: 2; }
+}
+@media (min-width: 750px) {
     .layout-desktop-left .flipzy-feature-media { order: 1; }
     .layout-desktop-left .flipzy-feature-content { order: 2; }
-
     .layout-desktop-right .flipzy-feature-content { order: 1; }
     .layout-desktop-right .flipzy-feature-media { order: 2; }
 }
 
-@media (max-width: 899px) {
-    .flipzy-feature-section { padding-top: 4rem; padding-bottom: 4rem; }
-    
-    .flipzy-feature-inner {
-        flex-direction: column;
-        gap: 3rem;
-    }
-
-    .flipzy-feature-heading { font-size: 2.2rem; text-align: center; }
-
-    .layout-mobile-media-first .flipzy-feature-media { order: 1; }
-    .layout-mobile-media-first .flipzy-feature-content { order: 2; }
-    
-    .layout-mobile-text-first .flipzy-feature-content { order: 1; }
-    .layout-mobile-text-first .flipzy-feature-media { order: 2; }
-}
 /* =========================================
-   4. FLIPZY CONVERSION OFFER STRIP
+   4. FLIPZY OFFER STRIP (Conversion Engine)
    ========================================= */
-.flipzy-offer-section {
-    padding: 60px 20px;
-    width: 100%;
-    text-align: center;
-}
+.flipzy-offer-section { padding: 60px 20px; width: 100%; text-align: center; }
 
 .flipzy-offer-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px;
-    border-radius: 32px;
-    /* Soft shadow to lift it off the page */
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05); 
+    max-width: 800px; margin: 0 auto; padding: 40px;
+    border-radius: 32px; /* Matches feature card */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
 }
-
-/* Color Schemes (Specific to this section) */
 .offer-scheme-cream { background: var(--color-cream); color: var(--color-charcoal); }
 .offer-scheme-white { background: var(--color-white); color: var(--color-charcoal); border: 1px solid #eee; }
-.offer-scheme-soft-blue { background: #EAF4F4; color: var(--color-charcoal); }
 
-/* Typography */
-.flipzy-offer-heading {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-}
+.flipzy-offer-heading { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
+.flipzy-offer-sub { font-size: 1.1rem; opacity: 0.8; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-.flipzy-offer-sub {
-    font-size: 1.1rem;
-    opacity: 0.8;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Price Box */
-.flipzy-price-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 1.5rem;
-    font-family: var(--font-poppins);
-}
-
-.flipzy-price-compare {
-    text-decoration: line-through;
-    opacity: 0.5;
-    font-size: 1.5rem;
-    font-weight: 500;
-}
-
-.flipzy-price-current {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--color-charcoal);
-}
-
+/* Price Styling */
+.flipzy-price-box { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 1.5rem; }
+.flipzy-price-compare { text-decoration: line-through; opacity: 0.5; font-size: 1.5rem; font-weight: 500; }
+.flipzy-price-current { font-size: 3rem; font-weight: 700; color: var(--color-charcoal); }
 .flipzy-price-save-badge {
-    background: #FF6B6B; /* Urgent Red/Pink */
-    color: white;
-    padding: 4px 12px;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 700;
-    transform: rotate(-5deg); /* Playful tilt */
+    background: #000; color: #fff; /* High contrast */
+    padding: 4px 12px; border-radius: 6px; font-size: 1rem; font-weight: 700;
 }
 
-/* Shipping / Urgency Text */
+/* Shipping Text */
 .flipzy-shipping-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: #16A34A; /* Green for "Go" */
-    font-weight: 600;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    color: #16A34A; /* Green */
+    font-weight: 600; margin-bottom: 2rem; font-size: 1.1rem;
 }
 
-/* THE CONVERSION BUTTON */
+/* Pulse Button */
 .flipzy-offer-btn {
-    width: 100%;
-    max-width: 450px;
-    background: var(--color-mustard);
-    color: var(--color-charcoal);
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding: 20px 30px;
-    border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    box-shadow: 0 10px 25px rgba(244, 211, 94, 0.4);
-    position: relative;
-    overflow: hidden;
+    width: 100%; max-width: 450px; background: var(--color-mustard); color: var(--color-charcoal);
+    font-size: 1.5rem; font-weight: 700; padding: 20px 30px; border-radius: 50px;
+    border: none; cursor: pointer; transition: transform 0.2s ease;
+    box-shadow: 0 10px 25px rgba(244, 211, 94, 0.4); position: relative; overflow: hidden;
 }
-
-.flipzy-offer-btn:hover {
-    transform: scale(1.02);
-}
-
-/* The "Pulse" Glow Animation */
+.flipzy-offer-btn:hover { transform: scale(1.02); }
 .flipzy-offer-btn::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50px;
-    box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
     animation: pulse-yellow 2s infinite;
 }
-
 @keyframes pulse-yellow {
     0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7); }
     70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(244, 211, 94, 0); }
     100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0); }
 }
 
-/* Trust Badges (Guarantee Pill) */
+/* Guarantee & Trust */
 .flipzy-guarantee-pill {
-    display: inline-block;
-    background: #EAF9F0;
-    border: 1px solid #B2F0C8;
-    color: #065F46;
-    padding: 8px 24px;
-    border-radius: 50px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    margin-top: 1.5rem;
-    margin-bottom: 2.5rem;
+    display: inline-block; background: #EAF9F0; border: 1px solid #B2F0C8;
+    color: #065F46; padding: 8px 24px; border-radius: 50px;
+    font-size: 0.95rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 2.5rem;
 }
+.flipzy-trust-footer { display: flex; justify-content: center; gap: 40px; opacity: 0.7; flex-wrap: wrap; }
+.flipzy-trust-item { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; }
+.flipzy-trust-icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-/* Trust Footer Icons */
-.flipzy-trust-footer {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    opacity: 0.7;
-    flex-wrap: wrap;
-}
-
-.flipzy-trust-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
-    font-weight: 500;
-}
-
-.flipzy-trust-icon {
-    width: 24px;
-    height: 24px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2;
-}
-
-/* Mobile Adjustments */
 @media (max-width: 750px) {
     .flipzy-offer-container { padding: 30px 20px; }
-    .flipzy-offer-heading { font-size: 1.8rem; }
     .flipzy-price-current { font-size: 2.5rem; }
     .flipzy-offer-btn { font-size: 1.2rem; padding: 16px 20px; }
-    .flipzy-trust-footer { gap: 20px; }
-    .flipzy-price-box { flex-wrap: wrap; gap: 8px; }
 }

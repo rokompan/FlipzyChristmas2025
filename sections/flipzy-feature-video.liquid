@@ -3,93 +3,20 @@
   "name": "Flipzy Feature Video",
   "class": "flipzy-section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Color & Layout"
-    },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "options": [
-        { "value": "scheme-white", "label": "White" },
-        { "value": "scheme-cream", "label": "Cream" },
-        { "value": "scheme-sage", "label": "Sage" },
-        { "value": "scheme-dark", "label": "Dark" }
-      ],
-      "default": "scheme-white"
-    },
-    {
-      "type": "select",
-      "id": "desktop_layout",
-      "label": "Desktop Layout",
-      "default": "media_right",
-      "options": [
-        { "value": "media_left", "label": "Video Left" },
-        { "value": "media_right", "label": "Video Right" }
-      ]
-    },
-    {
-      "type": "select",
-      "id": "mobile_layout",
-      "label": "Mobile Layout",
-      "default": "text_first",
-      "options": [
-        { "value": "text_first", "label": "Text First" },
-        { "value": "media_first", "label": "Video First" }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "Content"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Title",
-      "default": "What is Flipzy?"
-    },
-    {
-      "type": "header",
-      "content": "Media"
-    },
-    {
-      "type": "text",
-      "id": "video_url",
-      "label": "Video URL (MP4)",
-      "info": "Upload to Settings > Files, paste URL here."
-    },
-    {
-      "type": "image_picker",
-      "id": "fallback_image",
-      "label": "Fallback Image"
-    }
+    { "type": "select", "id": "color_scheme", "label": "Color Scheme", "options": [ { "value": "scheme-white", "label": "White" }, { "value": "scheme-cream", "label": "Cream" } ], "default": "scheme-white" },
+    { "type": "select", "id": "desktop_layout", "label": "Desktop Layout", "default": "media_right", "options": [ { "value": "media_left", "label": "Video Left" }, { "value": "media_right", "label": "Video Right" } ] },
+    { "type": "select", "id": "mobile_layout", "label": "Mobile Layout", "default": "text_first", "options": [ { "value": "text_first", "label": "Text First" }, { "value": "media_first", "label": "Video First" } ] },
+    { "type": "text", "id": "heading", "label": "Title", "default": "What is Flipzy?" },
+    { "type": "text", "id": "video_url", "label": "Video URL (MP4)" },
+    { "type": "image_picker", "id": "fallback_image", "label": "Fallback Image" }
   ],
   "blocks": [
     {
       "type": "feature_point",
       "name": "Feature Point",
       "settings": [
-        {
-          "type": "select",
-          "id": "icon_type",
-          "label": "Icon",
-          "options": [
-            { "value": "puzzle", "label": "Puzzle (Pieces)" },
-            { "value": "cycle", "label": "Cycle (Refresh)" },
-            { "value": "ruler", "label": "Ruler (Measure)" },
-            { "value": "bulb", "label": "Lightbulb" },
-            { "value": "check", "label": "Checkmark" },
-            { "value": "star", "label": "Star" }
-          ],
-          "default": "check"
-        },
-        {
-          "type": "richtext",
-          "id": "text",
-          "label": "Text",
-          "default": "<p>Feature text here</p>"
-        }
+        { "type": "select", "id": "icon_type", "label": "Icon", "options": [ { "value": "puzzle", "label": "Puzzle" }, { "value": "cycle", "label": "Cycle" }, { "value": "ruler", "label": "Ruler" }, { "value": "bulb", "label": "Lightbulb" }, { "value": "check", "label": "Checkmark" } ], "default": "check" },
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Feature text</p>" }
       ]
     }
   ],
@@ -97,27 +24,9 @@
     {
       "name": "Flipzy Feature Video",
       "blocks": [
-        { 
-          "type": "feature_point", 
-          "settings": { 
-            "icon_type": "puzzle",
-            "text": "<p>8 customizable wooden pieces with 30+ activity stickers</p>" 
-          }
-        },
-        { 
-          "type": "feature_point", 
-          "settings": { 
-            "icon_type": "cycle",
-            "text": "<p>Simple flip action to mark tasks as complete</p>" 
-          }
-        },
-        { 
-          "type": "feature_point", 
-          "settings": { 
-            "icon_type": "ruler",
-            "text": "<p>Compact 20x8cm design, easy to mount anywhere</p>" 
-          }
-        }
+        { "type": "feature_point", "settings": { "icon_type": "puzzle", "text": "<p>8 customizable wooden pieces with 30+ activity stickers</p>" } },
+        { "type": "feature_point", "settings": { "icon_type": "cycle", "text": "<p>Simple flip action to mark tasks as complete</p>" } },
+        { "type": "feature_point", "settings": { "icon_type": "ruler", "text": "<p>Compact 20x8cm design, easy to mount anywhere</p>" } }
       ]
     }
   ]
@@ -126,54 +35,24 @@
 
 <div class="flipzy-feature-section {{ section.settings.color_scheme }} layout-desktop-{% if section.settings.desktop_layout == 'media_left' %}left{% else %}right{% endif %} layout-mobile-{{ section.settings.mobile_layout }}">
   <div class="flipzy-feature-inner">
-    
     <div class="flipzy-feature-media">
       <div class="flipzy-feature-media-inner">
-        {% if section.settings.fallback_image != blank %}
-          <img
-            class="flipzy-feature-image"
-            src="{{ section.settings.fallback_image | image_url: width: 1200 }}"
-            alt="{{ section.settings.heading | escape }}"
-            loading="lazy"
-          >
-        {% endif %}
-
-        {% if section.settings.video_url != blank %}
-        <video
-          class="flipzy-feature-video"
-          autoplay muted loop playsinline
-          preload="none"
-          {% if section.settings.fallback_image != blank %}
-            poster="{{ section.settings.fallback_image | image_url: width: 1200 }}"
-          {% endif %}
-          aria-hidden="true"
-        ></video>
-        {% endif %}
+        {% if section.settings.fallback_image != blank %}<img class="flipzy-feature-image" src="{{ section.settings.fallback_image | image_url: width: 1200 }}" loading="lazy">{% endif %}
+        {% if section.settings.video_url != blank %}<video class="flipzy-feature-video" autoplay muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
       </div>
     </div>
-
     <div class="flipzy-feature-content">
-      {% if section.settings.heading != blank %}
-        <h2 class="flipzy-feature-heading">{{ section.settings.heading }}</h2>
-      {% endif %}
-
+      {% if section.settings.heading != blank %}<h2 class="flipzy-feature-heading">{{ section.settings.heading }}</h2>{% endif %}
       <div class="flipzy-feature-points">
         {% for block in section.blocks %}
           <div class="flipzy-feature-point" {{ block.shopify_attributes }}>
             <div class="flipzy-feature-icon-box">
               {% case block.settings.icon_type %}
-                {% when 'puzzle' %}
-                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 6c-2.61.7-2.61 3.3 0 4c1.93.5 1.68 3-1.21 3.5a8 8 0 1 0-9.29 9.29c.5-2.89 3-2.64 3.5-1.21.7 2.61 3.3 2.61 4 0 1.78-.66 1.78-3.34 0-4-2.61-.7-2.61-3.3 0-4 1.78-.66 1.78-3.34 0-4-.7-2.61-3.3-2.61-4 0z"></path></svg>
-                {% when 'cycle' %}
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-                {% when 'ruler' %}
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12.5a.5.5 0 0 1 .5-.5h21a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-21a.5.5 0 0 1-.5-.5v-9Z"/><path d="M6 12v4"/><path d="M10 12v6"/><path d="M14 12v4"/><path d="M18 12v6"/></svg>
-                {% when 'bulb' %}
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z"></path><path d="M9 21h6"></path></svg>
-                {% when 'check' %}
-                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                {% when 'star' %}
-                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                {% when 'puzzle' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 6c-2.61.7-2.61 3.3 0 4c1.93.5 1.68 3-1.21 3.5a8 8 0 1 0-9.29 9.29c.5-2.89 3-2.64 3.5-1.21.7 2.61 3.3 2.61 4 0 1.78-.66 1.78-3.34 0-4-2.61-.7-2.61-3.3 0-4 1.78-.66 1.78-3.34 0-4-.7-2.61-3.3-2.61-4 0z"></path></svg>
+                {% when 'cycle' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                {% when 'ruler' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12.5a.5.5 0 0 1 .5-.5h21a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-21a.5.5 0 0 1-.5-.5v-9Z"/><path d="M6 12v4"/><path d="M10 12v6"/><path d="M14 12v4"/><path d="M18 12v6"/></svg>
+                {% when 'bulb' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z"></path><path d="M9 21h6"></path></svg>
+                {% when 'check' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
               {% endcase %}
             </div>
             <div class="flipzy-feature-point-text">{{ block.settings.text }}</div>
@@ -181,40 +60,6 @@
         {% endfor %}
       </div>
     </div>
-
   </div>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const container = document.currentScript.previousElementSibling;
-    const video = container.querySelector('.flipzy-feature-video');
-    const image = container.querySelector('.flipzy-feature-image');
-    
-    if (!video) return;
-    
-    const videoSrc = "{{ section.settings.video_url }}";
-    if (!videoSrc) return;
-
-    function isSlowConnection() {
-      const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      if (!connection) return false;
-      return connection.saveData || connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g';
-    }
-
-    const loadVideo = function () {
-      if (video.dataset.loaded === 'true') return;
-      video.src = videoSrc;
-      video.dataset.loaded = 'true';
-    };
-
-    if (!isSlowConnection()) {
-      loadVideo();
-    }
-
-    video.addEventListener('loadeddata', function () {
-      video.style.display = 'block';
-      if (image) image.classList.add('is-hidden');
-    });
-  });
-</script>
+<script>document.addEventListener('DOMContentLoaded',function(){const c=document.currentScript.previousElementSibling,v=c.querySelector('.flipzy-feature-video'),i=c.querySelector('.flipzy-feature-image');if(!v)return;const s="{{ section.settings.video_url }}";if(!s)return;function isSlow(){const n=navigator.connection;return n&&(n.saveData||n.effectiveType.includes('2g'))}const l=()=>{if(v.dataset.loaded)return;v.src=s;v.dataset.loaded='true'};if(!isSlow())l();v.addEventListener('loadeddata',()=>{v.style.display='block';if(i)i.classList.add('is-hidden')});});</script>
