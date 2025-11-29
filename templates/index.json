@@ -11,24 +11,21 @@
   "sections": {
     "flipzy_hero_yHQ9UX": {
       "type": "flipzy-hero",
-      "name": "Flipzy Hero Slider",
-      "settings": {}
-    },
-    "flipzy_hero_fcemtg": {
-      "type": "flipzy-hero",
       "blocks": {
-        "slide_LibiEF": {
+        "slide_wiHe7j": {
           "type": "slide",
           "settings": {
-            "image_fallback": "shopify://shop_images/image1.png",
+            "video_file": "shopify://files/videos/flat06.mp4",
+            "image_fallback": "shopify://shop_images/kvaje3.jpg",
             "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
             "button_text": "Go to Shop",
             "button_link": ""
           }
         },
-        "slide_RMwFQ4": {
+        "slide_M6LaR3": {
           "type": "slide",
           "settings": {
+            "video_file": "shopify://files/videos/hero03.mp4",
             "image_fallback": "shopify://shop_images/palca.jpg",
             "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
             "button_text": "Go to Shop",
@@ -37,15 +34,58 @@
         }
       },
       "block_order": [
-        "slide_LibiEF",
-        "slide_RMwFQ4"
+        "slide_wiHe7j",
+        "slide_M6LaR3"
       ],
       "name": "Flipzy Hero Slider",
       "settings": {}
+    },
+    "rich_text_xWpMda": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_7wTw97": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "text_HCBXzx": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_UAX3JB": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_7wTw97",
+        "text_HCBXzx",
+        "button_UAX3JB"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
     "flipzy_hero_yHQ9UX",
-    "flipzy_hero_fcemtg"
+    "rich_text_xWpMda"
   ]
 }
