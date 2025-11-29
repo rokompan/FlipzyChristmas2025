@@ -1,0 +1,43 @@
+{% schema %}
+{
+  "name": "Flipzy Scroll Anchor",
+  "class": "section-flipzy-anchor",
+  "settings": [
+    {
+      "type": "text",
+      "id": "anchor_id",
+      "label": "Anchor ID",
+      "default": "buy",
+      "info": "Uporabi ta ID v povezavah gumbov (npr. #buy). Brez lojtre (#)."
+    },
+    {
+      "type": "range",
+      "id": "offset",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Header Offset (Odmik)",
+      "default": 100,
+      "info": "Povečaj, če fiksni meni prekriva naslov spodaj."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flipzy Scroll Anchor"
+    }
+  ]
+}
+{% endschema %}
+
+<div 
+  id="{{ section.settings.anchor_id }}" 
+  style="
+    display: block; 
+    position: relative; 
+    top: -{{ section.settings.offset }}px; 
+    visibility: hidden; 
+    pointer-events: none;
+    height: 0;
+  "
+></div>
