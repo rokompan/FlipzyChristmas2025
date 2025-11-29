@@ -275,3 +275,175 @@
     .layout-mobile-text-first .flipzy-feature-content { order: 1; }
     .layout-mobile-text-first .flipzy-feature-media { order: 2; }
 }
+/* =========================================
+   4. FLIPZY CONVERSION OFFER STRIP
+   ========================================= */
+.flipzy-offer-section {
+    padding: 60px 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.flipzy-offer-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 32px;
+    /* Soft shadow to lift it off the page */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05); 
+}
+
+/* Color Schemes (Specific to this section) */
+.offer-scheme-cream { background: var(--color-cream); color: var(--color-charcoal); }
+.offer-scheme-white { background: var(--color-white); color: var(--color-charcoal); border: 1px solid #eee; }
+.offer-scheme-soft-blue { background: #EAF4F4; color: var(--color-charcoal); }
+
+/* Typography */
+.flipzy-offer-heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.flipzy-offer-sub {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Price Box */
+.flipzy-price-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-poppins);
+}
+
+.flipzy-price-compare {
+    text-decoration: line-through;
+    opacity: 0.5;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.flipzy-price-current {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-charcoal);
+}
+
+.flipzy-price-save-badge {
+    background: #FF6B6B; /* Urgent Red/Pink */
+    color: white;
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    transform: rotate(-5deg); /* Playful tilt */
+}
+
+/* Shipping / Urgency Text */
+.flipzy-shipping-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #16A34A; /* Green for "Go" */
+    font-weight: 600;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* THE CONVERSION BUTTON */
+.flipzy-offer-btn {
+    width: 100%;
+    max-width: 450px;
+    background: var(--color-mustard);
+    color: var(--color-charcoal);
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 20px 30px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    box-shadow: 0 10px 25px rgba(244, 211, 94, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.flipzy-offer-btn:hover {
+    transform: scale(1.02);
+}
+
+/* The "Pulse" Glow Animation */
+.flipzy-offer-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50px;
+    box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
+    animation: pulse-yellow 2s infinite;
+}
+
+@keyframes pulse-yellow {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(244, 211, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0); }
+}
+
+/* Trust Badges (Guarantee Pill) */
+.flipzy-guarantee-pill {
+    display: inline-block;
+    background: #EAF9F0;
+    border: 1px solid #B2F0C8;
+    color: #065F46;
+    padding: 8px 24px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+/* Trust Footer Icons */
+.flipzy-trust-footer {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    opacity: 0.7;
+    flex-wrap: wrap;
+}
+
+.flipzy-trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.flipzy-trust-icon {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 750px) {
+    .flipzy-offer-container { padding: 30px 20px; }
+    .flipzy-offer-heading { font-size: 1.8rem; }
+    .flipzy-price-current { font-size: 2.5rem; }
+    .flipzy-offer-btn { font-size: 1.2rem; padding: 16px 20px; }
+    .flipzy-trust-footer { gap: 20px; }
+    .flipzy-price-box { flex-wrap: wrap; gap: 8px; }
+}
