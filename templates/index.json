@@ -87,10 +87,23 @@
         "video_url": "https://cdn.shopify.com/videos/c/o/v/efa91ddb30bb4e00bc1b3a1456b8a2d0.mp4",
         "fallback_image": "shopify://shop_images/palca.jpg"
       }
+    },
+    "flipzy_offer_strip_6UMWwa": {
+      "type": "flipzy-offer-strip",
+      "name": "Flipzy Offer Strip",
+      "settings": {
+        "product": "flipzy-wooden-routine-board",
+        "color_scheme": "offer-scheme-cream",
+        "heading": "Special Offer – While Supplies Last",
+        "subtitle": "Don't miss this exclusive opportunity to transform your family's daily routines.",
+        "shipping_text": "Delivery 2-4 working days",
+        "guarantee_text": "✓ 30-day money-back guarantee • 24 months warranty"
+      }
     }
   },
   "order": [
     "flipzy_hero_yHQ9UX",
-    "flipzy_feature_video_Wf8y33"
+    "flipzy_feature_video_Wf8y33",
+    "flipzy_offer_strip_6UMWwa"
   ]
 }
