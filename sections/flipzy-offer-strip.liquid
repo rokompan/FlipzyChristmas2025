@@ -14,11 +14,14 @@
 }
 {% endschema %}
 
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
 {%- liquid
   assign product = section.settings.product
   assign variant = product.selected_or_first_available_variant
   assign compare_price = variant.compare_at_price
   assign price = variant.price
+  assign product_form_id = 'product-form-' | append: section.id
 -%}
 
 <div id="buy" class="flipzy-offer-section">
@@ -44,7 +47,7 @@
 
     {% if product != blank %}
       <product-form class="product-form">
-        {%- form 'product', product, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+        {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
           <input type="hidden" name="id" value="{{ variant.id }}">
           <button type="submit" name="add" class="flipzy-offer-btn" {% unless variant.available %}disabled{% endunless %}>
             {% if variant.available %}Add to cart – {{ price | money }}{% else %}Sold Out{% endif %}
