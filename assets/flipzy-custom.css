@@ -1,0 +1,19 @@
+/* --- 1. Global Imports & Variables --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    /* Fonts */
+    --font-poppins: 'Poppins', sans-serif;
+
+    /* Warm Pastel Palette (Adjustable here) */
+    --color-cream: #F9F7F2;       /* Warm background */
+    --color-sage: #9AB8A2;        /* Soft Green */
+    --color-mustard: #F4D35E;     /* The yellow from your screenshot */
+    --color-terracotta: #E09F7D;  /* Warm accent */
+    --color-charcoal: #2D2D2D;    /* Soft Black for text */
+}
+
+/* Force Poppins on Headings & Body for now (we can refine later) */
+h1, h2, h3, h4, h5, h6, body, p, a {
+    font-family: var(--font-poppins) !important;
+}
