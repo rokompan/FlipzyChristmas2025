@@ -4,10 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
 :root {
-    /* Fonts */
     --font-poppins: 'Poppins', sans-serif;
-
-    /* Palette */
     --color-cream: #F9F7F2;
     --color-sage: #9AB8A2;
     --color-mustard: #F4D35E;
@@ -16,7 +13,6 @@
     --color-white: #FFFFFF;
 }
 
-/* Force Poppins globally for custom sections */
 .flipzy-section h1, .flipzy-section h2, .flipzy-section h3, 
 .flipzy-section p, .flipzy-section a, .flipzy-section button {
     font-family: var(--font-poppins) !important;
@@ -28,21 +24,17 @@
 .flipzy-hero-container {
     position: relative;
     width: 100%;
-    height: 85dvh; /* Mobile dynamic height */
+    height: 85dvh; 
     max-height: 850px; 
     min-height: 500px;
     background-color: var(--color-charcoal);
     overflow: hidden;
 }
 
-/* Desktop Adjustment */
 @media screen and (min-width: 750px) {
-    .flipzy-hero-container {
-        height: 80vh;
-    }
+    .flipzy-hero-container { height: 80vh; }
 }
 
-/* The Scrolling Track */
 .flipzy-slider-track {
     display: flex;
     width: 100%;
@@ -51,16 +43,11 @@
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; /* iOS smooth scroll */
     scrollbar-width: none;
-    -ms-overflow-style: none;
 }
+.flipzy-slider-track::-webkit-scrollbar { display: none; }
 
-.flipzy-slider-track::-webkit-scrollbar {
-    display: none;
-}
-
-/* Individual Slide */
 .flipzy-slide {
     flex: 0 0 100%;
     width: 100%;
@@ -69,145 +56,103 @@
     scroll-snap-align: center;
 }
 
-/* Media (Video/Image) */
+/* Media + Dark Overlay */
 .flipzy-media-wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+    top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
 }
-
-/* THE 0.3 DARK OVERLAY FIX */
 .flipzy-media-wrapper::after {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* 30% Dark Tint everywhere */
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.3); /* 30% Dark Tint */
     z-index: 2;
     pointer-events: none;
 }
-
-.flipzy-media-wrapper video,
-.flipzy-media-wrapper img,
-.flipzy-media-wrapper svg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+.flipzy-media-wrapper video, .flipzy-media-wrapper img, .flipzy-media-wrapper svg {
+    width: 100%; height: 100%; object-fit: cover; display: block;
 }
 
-/* Overlay Content */
+/* Text Content */
 .flipzy-content-wrapper {
     position: absolute;
-    z-index: 3; /* Above the dark tint */
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Gradient at the very bottom for extra text readability */
-    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+    z-index: 3;
+    bottom: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     text-align: center;
-    padding: 0 20px 50px 20px;
+    padding: 0 20px 60px 20px;
 }
 
-.flipzy-text-box {
-    max-width: 800px;
-    color: var(--color-white);
-}
+.flipzy-text-box { max-width: 900px; color: var(--color-white); }
 
 .flipzy-heading {
-    font-size: 2.2rem;
+    font-size: 2.5rem; /* Bigger mobile heading */
     line-height: 1.2;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     color: var(--color-white);
     text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
-
-.flipzy-heading strong {
-    color: var(--color-mustard);
-    font-weight: 700;
-}
+.flipzy-heading strong { color: var(--color-mustard); font-weight: 700; }
 
 @media screen and (min-width: 750px) {
-    .flipzy-heading {
-        font-size: 4rem;
-    }
+    .flipzy-heading { font-size: 4.5rem; }
 }
 
-/* Button Styling (Fixed) */
+/* BIGGER BUTTON */
 .flipzy-btn {
     display: inline-block;
     background-color: var(--color-mustard);
     color: var(--color-charcoal);
-    padding: 16px 48px; /* Larger hit area */
+    padding: 18px 54px; /* Significantly bigger padding */
     border-radius: 50px;
-    font-weight: 700; /* Bolder */
+    font-weight: 700;
     text-decoration: none;
-    font-size: 1.2rem; /* Larger Text */
-    margin-bottom: 20px;
+    font-size: 1.5rem; /* Significantly bigger text */
+    margin-bottom: 25px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
     border: 2px solid var(--color-mustard);
 }
-
-/* GLOW EFFECT ON HOVER */
 .flipzy-btn:hover {
-    transform: scale(1.05); /* Grow slightly */
-    box-shadow: 0 0 20px rgba(244, 211, 94, 0.6); /* Yellow Glow */
-    background-color: var(--color-mustard); /* Keep background yellow */
-    color: var(--color-charcoal);
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(244, 211, 94, 0.7); /* Stronger glow */
 }
 
-/* Scroll Cue (Bouncier & Larger) */
+/* BIGGER CONSTANT BOUNCE CUE */
 .flipzy-scroll-cue {
-    font-size: 1.1rem; /* Larger */
-    font-weight: 500;
-    color: rgba(255,255,255,0.9);
-    margin-top: 15px;
+    font-size: 1.3rem; /* Bigger */
+    font-weight: 600;
+    color: rgba(255,255,255,0.95);
+    margin-top: 10px;
     cursor: default;
-    animation: ball-bounce 2s infinite;
+    animation: continuous-bounce 1.5s infinite ease-in-out; /* Constant motion */
 }
 
-@keyframes ball-bounce {
-    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-    40% {transform: translateY(-12px);} /* High jump */
-    60% {transform: translateY(-6px);}  /* Small bounce */
+@keyframes continuous-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); } /* Smooth up/down */
 }
 
-/* Navigation Arrows (More Visible) */
+/* Nav Arrows */
 .flipzy-nav-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 10;
-    /* Dark semi-transparent background for visibility on light videos */
     background: rgba(0, 0, 0, 0.5); 
     border: 1px solid rgba(255,255,255,0.2);
     color: white;
-    width: 56px; /* Larger */
-    height: 56px;
+    width: 60px; height: 60px; /* Slightly bigger */
     border-radius: 50%;
     cursor: pointer;
     backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     transition: all 0.2s ease;
 }
-
-.flipzy-nav-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-    transform: translateY(-50%) scale(1.1);
-}
-
+.flipzy-nav-btn:hover { background: rgba(0, 0, 0, 0.8); transform: translateY(-50%) scale(1.1); }
 .flipzy-prev { left: 20px; }
 .flipzy-next { right: 20px; }

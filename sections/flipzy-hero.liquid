@@ -62,10 +62,10 @@
 <div class="flipzy-hero-container">
   
   <button class="flipzy-nav-btn flipzy-prev" onclick="scrollHero(-1)" aria-label="Previous Slide">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
   </button>
   <button class="flipzy-nav-btn flipzy-next" onclick="scrollHero(1)" aria-label="Next Slide">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
   </button>
 
   <div class="flipzy-slider-track" id="FlipzyHeroTrack">
@@ -116,9 +116,25 @@
   function scrollHero(direction) {
     const track = document.getElementById('FlipzyHeroTrack');
     const slideWidth = track.offsetWidth;
-    track.scrollBy({
-      left: direction * slideWidth,
-      behavior: 'smooth'
-    });
+    const currentScroll = track.scrollLeft;
+    const maxScroll = track.scrollWidth - slideWidth;
+    
+    // Check if we are at the end or start (with small buffer for math errors)
+    const isAtEnd = currentScroll >= maxScroll - 10;
+    const isAtStart = currentScroll <= 10;
+
+    if (direction === 1 && isAtEnd) {
+      // If at end and click next, Loop to Start
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else if (direction === -1 && isAtStart) {
+      // If at start and click prev, Loop to End
+      track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+    } else {
+      // Normal Scroll
+      track.scrollBy({
+        left: direction * slideWidth,
+        behavior: 'smooth'
+      });
+    }
   }
 </script>
