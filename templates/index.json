@@ -12,6 +12,16 @@
     "flipzy_hero_yHQ9UX": {
       "type": "flipzy-hero",
       "blocks": {
+        "slide_M6LaR3": {
+          "type": "slide",
+          "settings": {
+            "video_file": "shopify://files/videos/hero03.mp4",
+            "image_fallback": "shopify://shop_images/palca.jpg",
+            "heading": "<p><strong>Flipzy</strong> - Wooden Planner That Makes Tasks <strong>Fun</strong></p>",
+            "button_text": "Go to Shop",
+            "button_link": "#buy"
+          }
+        },
         "slide_wiHe7j": {
           "type": "slide",
           "settings": {
@@ -21,21 +31,11 @@
             "button_text": "Go to Shop",
             "button_link": ""
           }
-        },
-        "slide_M6LaR3": {
-          "type": "slide",
-          "settings": {
-            "video_file": "shopify://files/videos/hero03.mp4",
-            "image_fallback": "shopify://shop_images/palca.jpg",
-            "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
-            "button_text": "Go to Shop",
-            "button_link": ""
-          }
         }
       },
       "block_order": [
-        "slide_wiHe7j",
-        "slide_M6LaR3"
+        "slide_M6LaR3",
+        "slide_wiHe7j"
       ],
       "name": "Flipzy Hero Slider",
       "settings": {}
