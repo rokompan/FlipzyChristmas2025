@@ -12,6 +12,16 @@
     "flipzy_hero_yHQ9UX": {
       "type": "flipzy-hero",
       "blocks": {
+        "slide_pde3JQ": {
+          "type": "slide",
+          "settings": {
+            "video_file": "shopify://files/videos/under-hero.mp4",
+            "image_fallback": "shopify://shop_images/mizar.jpg",
+            "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
+            "button_text": "Go to Shop",
+            "button_link": ""
+          }
+        },
         "slide_M6LaR3": {
           "type": "slide",
           "settings": {
@@ -34,6 +44,7 @@
         }
       },
       "block_order": [
+        "slide_pde3JQ",
         "slide_M6LaR3",
         "slide_wiHe7j"
       ],
