@@ -354,7 +354,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 50px;
-    align-items: center;
+    align-items: center; /* Vertikalno centriranje */
 }
 
 @media screen and (min-width: 990px) {
@@ -378,14 +378,20 @@
 .flipzy-super-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-start; /* Default levo */
     text-align: left;
     padding: 20px 0;
 }
 
-/* Značka - CENTRIRANA */
+/* Značka - CENTRIRANA NA SREDINO DESNEGA STOLPCA */
+.flipzy-badge-center-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* To centrira značko */
+    margin-bottom: 20px;
+}
+
 .flipzy-super-badge {
-    align-self: center; /* Centrira samo ta element */
     display: inline-block;
     background: #FEF3C7; 
     color: #D97706;
@@ -395,36 +401,35 @@
     letter-spacing: 1px;
     padding: 8px 16px;
     border-radius: 6px;
-    margin-bottom: 25px;
 }
 
-/* Naslov - MANJŠI */
+/* Naslov - MANJŠI (2.2rem) */
 .flipzy-super-title {
-    font-size: 2.2rem; /* Zmanjšano iz 2.8rem */
+    font-size: 2.2rem; 
     font-weight: 700;
     line-height: 1.2;
     color: var(--color-charcoal);
     margin-bottom: 15px;
+    width: 100%;
 }
 
-/* Price Box */
+/* Price Box - VEČJI TEKST */
 .flipzy-super-price-row {
     display: flex;
     align-items: center;
     gap: 15px;
     margin-bottom: 20px;
     flex-wrap: wrap;
-    font-size: 1.3rem; /* Enotna velikost */
 }
 
 .flipzy-super-price-new {
-    font-size: 2rem; /* Malo manjša, a še vedno bold */
+    font-size: 2.2rem; /* Velika cena */
     font-weight: 700;
     color: var(--color-charcoal);
 }
 
 .flipzy-super-price-old {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     text-decoration: line-through;
     color: #9CA3AF;
     font-weight: 500;
@@ -439,27 +444,27 @@
     font-size: 1rem;
 }
 
-/* Meta Info - VEČJI FONT */
+/* Meta Info - Low Stock - VEČJI FONT */
 .flipzy-super-meta {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-bottom: 30px;
     width: 100%;
-    font-size: 1.1rem; /* Povečano */
+    font-size: 1.15rem; /* Povečano */
 }
 
 .flipzy-meta-row {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #4B5563;
+    color: #374151;
     font-weight: 500;
 }
 
-/* Opis - VEČJI FONT */
+/* Opis - VEČJI FONT (Enotna velikost) */
 .flipzy-super-desc {
-    font-size: 1.15rem; /* Povečano */
+    font-size: 1.25rem; /* Povečano za berljivost */
     line-height: 1.6;
     color: #374151;
     margin-bottom: 2.5rem;
@@ -468,15 +473,15 @@
 /* GUMB */
 .flipzy-super-content .flipzy-offer-btn {
     width: 100%;
-    max-width: 100%; /* Raztegne čez celo širino stolpca */
-    font-size: 1.3rem;
+    max-width: 100%; 
+    font-size: 1.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
 }
 
-/* Dynamic Checkout (PayPal) Container */
+/* PayPal Gumb */
 .flipzy-dynamic-checkout {
     margin-top: 15px;
     width: 100%;
@@ -503,7 +508,7 @@
 .flipzy-super-footer {
     margin-top: 35px;
     display: flex;
-    justify-content: center; /* Centrirano spodaj */
+    justify-content: center;
     gap: 40px;
     opacity: 0.6;
     border-top: 1px solid #E5E7EB;
@@ -512,7 +517,7 @@
 }
 
 .pulsing-dot {
-    width: 10px; height: 10px; background-color: #EF4444; border-radius: 50%;
+    width: 12px; height: 12px; background-color: #EF4444; border-radius: 50%;
     display: inline-block; animation: pulse-red 1.5s infinite;
 }
 @keyframes pulse-red {
@@ -522,9 +527,9 @@
 }
 
 @media (max-width: 750px) {
-    .flipzy-super-title { font-size: 1.8rem; }
+    .flipzy-super-title { font-size: 1.8rem; text-align: center; }
     .flipzy-super-footer { gap: 20px; font-size: 0.8rem; }
     .flipzy-super-content { align-items: center; text-align: center; }
     .flipzy-meta-row { justify-content: center; }
-    .flipzy-super-badge { align-self: center; } /* Še vedno centrirano */
+    .flipzy-super-price-row { justify-content: center; }
 }

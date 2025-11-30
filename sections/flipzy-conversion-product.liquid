@@ -3,102 +3,35 @@
   "name": "Flipzy Conversion Product",
   "class": "flipzy-section",
   "settings": [
-    {
-      "type": "header",
-      "content": "Product"
-    },
-    {
-      "type": "product",
-      "id": "product",
-      "label": "Select Product"
-    },
-    {
-      "type": "header",
-      "content": "Offer Content"
-    },
-    {
-      "type": "text",
-      "id": "badge",
-      "label": "Top Badge",
-      "default": "SPECIAL OFFER – WHILE SUPPLIES LAST"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Custom Heading",
-      "default": "Kids Routine Board That Works"
-    },
-    {
-      "type": "richtext",
-      "id": "description",
-      "label": "Short Description",
-      "default": "<p>Don't miss this exclusive opportunity to transform your family's daily routines. Order now and save!</p>"
-    },
-    {
-      "type": "header",
-      "content": "Urgency & Trust"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_stock",
-      "label": "Show Low Stock Indicator",
-      "default": true
-    },
-    {
-      "type": "text",
-      "id": "stock_text",
-      "label": "Stock Text",
-      "default": "Low stock - selling fast"
-    },
-    {
-      "type": "text",
-      "id": "shipping_text",
-      "label": "Shipping Text",
-      "default": "Ships within 24h • Free Shipping over €50"
-    },
-    {
-      "type": "text",
-      "id": "guarantee_text",
-      "label": "Guarantee Text",
-      "default": "30-day money-back guarantee • 24 months warranty"
-    },
-    {
-      "type": "text",
-      "id": "button_text",
-      "label": "Button Text",
-      "default": "Add to Cart"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_dynamic_checkout",
-      "label": "Show Dynamic Checkout Buttons (PayPal/GPay)",
-      "default": false,
-      "info": "These will appear below the main Add to Cart button."
-    }
+    { "type": "header", "content": "Product" },
+    { "type": "product", "id": "product", "label": "Select Product" },
+    { "type": "header", "content": "Offer Content" },
+    { "type": "text", "id": "badge", "label": "Top Badge", "default": "SPECIAL OFFER – WHILE SUPPLIES LAST" },
+    { "type": "text", "id": "heading", "label": "Custom Heading", "default": "Kids Routine Board That Works" },
+    { "type": "richtext", "id": "description", "label": "Short Description", "default": "<p>Don't miss this exclusive opportunity to transform your family's daily routines. Order now and save!</p>" },
+    { "type": "header", "content": "Urgency & Trust" },
+    { "type": "checkbox", "id": "show_stock", "label": "Show Low Stock Indicator", "default": true },
+    { "type": "text", "id": "stock_text", "label": "Stock Text", "default": "Low stock - selling fast" },
+    { "type": "text", "id": "shipping_text", "label": "Shipping Text", "default": "Ships within 24h • Free Shipping over €50" },
+    { "type": "text", "id": "guarantee_text", "label": "Guarantee Text", "default": "30-day money-back guarantee • 24 months warranty" },
+    { "type": "text", "id": "button_text", "label": "Button Text", "default": "Add to Cart" },
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show Dynamic Checkout (PayPal)", "default": false }
   ],
-  "presets": [
-    {
-      "name": "Flipzy Conversion Product"
-    }
-  ]
+  "presets": [ { "name": "Flipzy Conversion Product" } ]
 }
 {% endschema %}
-
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   assign product = section.settings.product
   assign variant = product.selected_or_first_available_variant
   assign compare_price = variant.compare_at_price
   assign price = variant.price
-  assign product_form_id = 'product-form-conversion-' | append: section.id
-  
   assign title = section.settings.heading | default: product.title
   
   if compare_price > price
     assign saved_amount = compare_price | minus: price
     assign raw_pct = saved_amount | times: 100.0 | divided_by: compare_price
-    # Round to nearest 5
+    # Round to nearest 5 (e.g. 41 -> 40, 43 -> 45)
     assign saved_pct = raw_pct | divided_by: 5 | round | times: 5
   endif
 -%}
@@ -120,7 +53,9 @@
     <div class="flipzy-super-content">
       
       {% if section.settings.badge != blank %}
-        <div class="flipzy-super-badge">{{ section.settings.badge }}</div>
+        <div class="flipzy-badge-center-wrapper">
+          <div class="flipzy-super-badge">{{ section.settings.badge }}</div>
+        </div>
       {% endif %}
       
       <h2 class="flipzy-super-title">{{ title }}</h2>
@@ -162,36 +97,34 @@
       </div>
 
       {% if product != blank %}
-        <product-form class="product-form">
-          <div class="product-form__error-message-wrapper" role="alert" hidden>
-            <svg aria-hidden="true" focusable="false" class="icon icon-error" viewBox="0 0 13 13"><circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/><circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/><path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/></svg>
-            <span class="product-form__error-message"></span>
-          </div>
+        <div style="width: 100%;">
+          <button 
+            type="button" 
+            onclick="addFlipzyToCart(this, '{{ variant.id }}')"
+            class="flipzy-offer-btn" 
+            {% unless variant.available %}disabled style="opacity: 0.6; cursor: not-allowed;"{% endunless %}
+          >
+            <span class="btn-text">
+              {% if variant.available %}
+                {{ section.settings.button_text }} - {{ price | money }}
+              {% else %}
+                Sold Out
+              {% endif %}
+            </span>
+            <div class="loading-overlay__spinner hidden" style="position: absolute;">
+              <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px;"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30" stroke="currentColor"></circle></svg>
+            </div>
+          </button>
 
-          {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-            <input type="hidden" name="id" value="{{ variant.id }}">
-            
-            <button type="submit" name="add" class="product-form__submit flipzy-offer-btn" {% unless variant.available %}disabled{% endunless %}>
-              <span>
-                {% if variant.available %}
-                  {{ section.settings.button_text }} - {{ price | money }}
-                {% else %}
-                  Sold Out
-                {% endif %}
-              </span>
-              <div class="loading-overlay__spinner hidden">
-                <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg>
-              </div>
-            </button>
-
-            {% if section.settings.show_dynamic_checkout %}
-              <div class="flipzy-dynamic-checkout">
+          {% if section.settings.show_dynamic_checkout %}
+            <div class="flipzy-dynamic-checkout">
+              {% form 'product', product %}
+                <input type="hidden" name="id" value="{{ variant.id }}">
                 {{ form | payment_button }}
-              </div>
-            {% endif %}
-
-          {%- endform -%}
-        </product-form>
+              {% endform %}
+            </div>
+          {% endif %}
+        </div>
       {% else %}
         <button class="flipzy-offer-btn">Add to Cart - €29,00</button>
       {% endif %}
@@ -210,3 +143,69 @@
     </div>
   </div>
 </div>
+
+<script>
+  function addFlipzyToCart(btn, variantId) {
+    if(!variantId) return;
+    
+    // 1. Show Spinner
+    const spinner = btn.querySelector('.loading-overlay__spinner');
+    const text = btn.querySelector('.btn-text');
+    if(spinner) spinner.classList.remove('hidden');
+    if(text) text.style.opacity = '0';
+    
+    // 2. AJAX Add
+    const formData = {
+      'items': [{
+        'id': variantId,
+        'quantity': 1
+      }]
+    };
+
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      // 3. Update Cart Bubble (Optional, but nice)
+      // fetch('/cart.js').then(...) - Dawn usually handles this via event but let's force open.
+      
+      // 4. OPEN DRAWER (The "Nuclear" Option)
+      const cartDrawer = document.querySelector('cart-drawer');
+      const cartNotification = document.querySelector('cart-notification');
+      
+      if (cartDrawer) {
+        // Force Dawn to re-render cart contents
+        // We dispatch a bubbling event that Dawn listens to
+        document.dispatchEvent(new CustomEvent('cart:build')); // Some themes use this
+        
+        // Dawn specific: We need to tell the cart-drawer to render. 
+        // The safest way in Dawn is to fetch the cart HTML section.
+        fetch(`${window.Shopify.routes.root}?sections=cart-drawer`)
+          .then(res => res.json())
+          .then(sections => {
+             cartDrawer.renderContents(sections['cart-drawer']);
+             cartDrawer.open();
+          });
+      } else if (cartNotification) {
+         cartNotification.renderContents(data); // If notification is used instead of drawer
+         cartNotification.open();
+      } else {
+         // Fallback if no drawer exists
+         window.location.href = '/cart';
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    })
+    .finally(() => {
+      // Reset Button
+      if(spinner) spinner.classList.add('hidden');
+      if(text) text.style.opacity = '1';
+    });
+  }
+</script>
