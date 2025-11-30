@@ -7,7 +7,7 @@
     --font-poppins: 'Poppins', sans-serif;
     --color-cream: #F9F7F2;
     --color-sage: #9AB8A2;
-    --color-mint: #96Debb;
+    --color-mint: #96Debb; /* Tvoja glavna zelena barva */
     --color-mustard: #F4D35E;
     --color-charcoal: #111827; 
     --color-white: #FFFFFF;
@@ -74,7 +74,7 @@
 .flipzy-next { right: 20px; }
 
 /* =========================================
-   3. FLIPZY FEATURE VIDEO (Fixed & Clean)
+   3. FLIPZY FEATURE VIDEO
    ========================================= */
 .flipzy-feature-section { padding-top: 6rem; padding-bottom: 6rem; width: 100%; background: #ffffff; }
 .flipzy-feature-inner {
@@ -86,28 +86,20 @@
     border-radius: 32px; overflow: hidden; box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
     background: #f5f5f5; position: relative; line-height: 0;
 }
-
-/* VIDEO FIX: Removed display:none logic. Let HTML5 handle posters. */
 .flipzy-feature-image, .flipzy-feature-video { width: 100%; height: auto; display: block; object-fit: cover; }
-
 .flipzy-feature-heading {
     font-size: clamp(2.2rem, 3vw, 3.2rem); font-weight: 700; margin: 0 0 2rem;
     color: var(--color-charcoal); line-height: 1.1;
 }
 .flipzy-feature-points { display: flex; flex-direction: column; gap: 2rem; }
-
-/* Vertical Centering Fix */
 .flipzy-feature-point { display: flex; align-items: center; gap: 1.5rem; }
-
 .flipzy-feature-icon-box {
-    width: 36px; height: 36px; flex-shrink: 0;
-    color: var(--color-mint);
+    width: 36px; height: 36px; flex-shrink: 0; color: var(--color-mint);
     display: flex; align-items: center; justify-content: center;
 }
 .flipzy-feature-icon-box svg, .flipzy-feature-icon-box img { 
     width: 100%; height: 100%; object-fit: contain; stroke-width: 2px; stroke: currentColor; fill: none;
 }
-
 .flipzy-feature-point-text {
     margin: 0; font-size: 1.6rem; line-height: 1.4; font-weight: 400; color: var(--color-charcoal);
 }
@@ -126,7 +118,7 @@
 }
 
 /* =========================================
-   4. FLIPZY OFFER STRIP (Shadow & Conversion)
+   4. FLIPZY OFFER STRIP
    ========================================= */
 .flipzy-offer-section { padding: 80px 20px; width: 100%; text-align: center; }
 .flipzy-offer-container {
@@ -166,7 +158,6 @@
 .flipzy-trust-footer { display: flex; justify-content: center; gap: 40px; opacity: 0.7; flex-wrap: wrap; }
 .flipzy-trust-item { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; }
 .flipzy-trust-icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
-
 .flipzy-offer-btn .loading-overlay__spinner {
     width: 24px; height: 24px; display: inline-block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
@@ -180,95 +171,75 @@
     .flipzy-price-current { font-size: 2.5rem; }
     .flipzy-offer-btn { font-size: 1.2rem; padding: 16px 20px; }
 }
+
 /* =========================================
-   6. FLIPZY BADGES SECTION (Trusted Families)
+   5. FLIPZY FEATURED PRODUCT (Conversion Focused)
+   ========================================= */
+.flipzy-featured-section { padding: 60px 20px; width: 100%; }
+.flipzy-featured-wrapper {
+    max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;
+}
+@media screen and (min-width: 900px) {
+    .flipzy-featured-wrapper { grid-template-columns: 1fr 1fr; gap: 60px; }
+}
+.flipzy-featured-media {
+    position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); background: #f5f5f5; line-height: 0;
+}
+.flipzy-featured-img { width: 100%; height: auto; object-fit: cover; display: block; }
+.flipzy-featured-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+.flipzy-featured-badge { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; font-weight: 700; color: var(--color-mustard); margin-bottom: 10px; }
+.flipzy-featured-title { font-size: 2.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; color: var(--color-charcoal); }
+.flipzy-featured-desc { font-size: 1.1rem; line-height: 1.6; color: #4B5563; margin-bottom: 2rem; }
+.flipzy-featured-content .flipzy-price-box { justify-content: flex-start; margin-bottom: 2rem; }
+.flipzy-featured-content .flipzy-offer-btn { max-width: 100%; }
+.flipzy-featured-content .flipzy-guarantee-pill { margin-top: 2rem; margin-bottom: 2rem; text-align: center; align-self: flex-start; }
+.flipzy-featured-content .flipzy-trust-footer { justify-content: flex-start; gap: 30px; }
+@media (max-width: 750px) {
+    .flipzy-featured-title { font-size: 2rem; }
+    .flipzy-featured-content { align-items: center; text-align: center; }
+    .flipzy-featured-content .flipzy-price-box { justify-content: center; }
+    .flipzy-featured-content .flipzy-trust-footer { justify-content: center; }
+    .flipzy-featured-content .flipzy-guarantee-pill { align-self: center; }
+}
+
+/* =========================================
+   6. FLIPZY BADGES SECTION
    ========================================= */
 .flipzy-badges-section {
     padding: 60px 20px;
     width: 100%;
-    /* Privzeto ozadje, če ni izbrano v nastavitvah */
-    background-color: #F6DACE; /* Peach barva iz screenshota */
+    background-color: #F6DACE; /* Default, overridden by section settings */
 }
-
-.flipzy-badges-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-}
-
+.flipzy-badges-container { max-width: 1200px; margin: 0 auto; text-align: center; }
 .flipzy-badges-heading {
-    font-size: 2rem;
-    font-weight: 500; /* Malo tanjši kot bold */
-    margin-bottom: 3rem;
-    color: var(--color-charcoal);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    font-size: 2rem; font-weight: 500; margin-bottom: 3rem; color: var(--color-charcoal);
+    display: inline-flex; align-items: center; gap: 10px;
 }
+.flipzy-badges-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media screen and (min-width: 600px) { .flipzy-badges-grid { grid-template-columns: repeat(2, 1fr); } }
+@media screen and (min-width: 1000px) { .flipzy-badges-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; } }
 
-.flipzy-badges-grid {
-    display: grid;
-    grid-template-columns: 1fr; /* Mobile: 1 stolpec */
-    gap: 20px;
-}
-
-/* Tablet: 2x2 */
-@media screen and (min-width: 600px) {
-    .flipzy-badges-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Desktop: 4 v vrsto */
-@media screen and (min-width: 1000px) {
-    .flipzy-badges-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 30px;
-    }
-}
-
-/* --- The Badge Card --- */
+/* Badge Card */
 .flipzy-badge-card {
-    background: #FFFFFF;
-    border-radius: 20px; /* Zaobljenost */
-    padding: 30px 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Mehka senca */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s ease;
-    height: 100%; /* Enaka višina vseh kartic */
+    background: #FFFFFF; border-radius: 24px; padding: 40px 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    display: flex; flex-direction: column; align-items: center;
+    transition: transform 0.3s ease; height: 100%;
 }
+.flipzy-badge-card:hover { transform: translateY(-5px); }
 
-.flipzy-badge-card:hover {
-    transform: translateY(-5px);
-}
-
+/* Icons: Big & Mint */
 .flipzy-badge-icon {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 20px;
-    color: var(--color-charcoal); /* Ali pa specifična barva */
+    width: 64px; height: 64px; margin-bottom: 25px;
+    color: var(--color-mint); /* Mint Green override */
+    display: flex; align-items: center; justify-content: center;
 }
-
-.flipzy-badge-icon svg, 
-.flipzy-badge-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+.flipzy-badge-icon svg, .flipzy-badge-icon img { width: 100%; height: 100%; object-fit: contain; stroke-width: 1.5px; stroke: currentColor; fill: none; }
 
 .flipzy-badge-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: var(--color-charcoal);
-    line-height: 1.2;
+    font-size: 1.5rem; font-weight: 700; margin-bottom: 15px;
+    color: var(--color-charcoal); line-height: 1.2;
 }
-
 .flipzy-badge-text {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: #6B7280; /* Sivkast tekst */
-    margin: 0;
+    font-size: 1.1rem; line-height: 1.6; color: #4B5563; margin: 0; max-width: 90%;
 }
