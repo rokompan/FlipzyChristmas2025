@@ -162,6 +162,35 @@ class CartItems extends HTMLElement {
       .then((state) => {
         const parsedState = JSON.parse(state);
 
+        // --- FLIPZY FIX START ---
+        // Preverimo, če manjkajo sekcije (kar se zgodi pri incognito/zavrnjenih piškotkih).
+        // Če manjkajo, ustavimo izvajanje, počakamo in ročno osvežimo.
+        const hasSections = parsedState.sections && Object.keys(parsedState.sections).length > 0;
+
+        if (!hasSections) {
+             console.log("Flipzy: Sections missing in /cart/change response. Fetching manually...");
+             setTimeout(() => {
+                 // Uporabimo obstoječo logiko onCartUpdate, ki že zna osvežiti drawer!
+                 // Ta metoda potegne ?section_id=cart-drawer in zamenja HTML.
+                 this.onCartUpdate().then(() => {
+                     // Po uspešni osvežitvi moramo še ročno ugasniti loading spinnerje,
+                     // ker se "finally" blok spodaj morda ne bo pravilno izvedel oz. moramo počistiti UI.
+                     this.disableLoading(line);
+                     
+                     // Posodobimo še bubble (ikonico v headerju), ker onCartUpdate tega ne naredi vedno
+                     fetch(`${window.location.pathname}?section_id=cart-icon-bubble`)
+                         .then(res => res.text())
+                         .then(text => {
+                             const bubble = document.getElementById('cart-icon-bubble');
+                             if(bubble) bubble.innerHTML = text;
+                         });
+                 });
+             }, 600); // 600ms zamika za stabilizacijo seje
+             
+             return; // NUJNO: Prekinemo funkcijo, da se ne izvede koda spodaj, ki bi povzročila crash.
+        }
+        // --- FLIPZY FIX END ---
+
         CartPerformance.measure(`${eventTarget}:paint-updated-sections"`, () => {
           const quantityElement =
             document.getElementById(`Quantity-${line}`) || document.getElementById(`Drawer-quantity-${line}`);
@@ -183,11 +212,18 @@ class CartItems extends HTMLElement {
           this.getSectionsToRender().forEach((section) => {
             const elementToReplace =
               document.getElementById(section.id).querySelector(section.selector) || document.getElementById(section.id);
-            elementToReplace.innerHTML = this.getSectionInnerHTML(
+            
+            // Uporabimo varno metodo (glej spodaj)
+            const htmlContent = this.getSectionInnerHTML(
               parsedState.sections[section.section],
               section.selector
             );
+            
+            if (elementToReplace && htmlContent) {
+                elementToReplace.innerHTML = htmlContent;
+            }
           });
+          
           const updatedValue = parsedState.items[line - 1] ? parsedState.items[line - 1].quantity : undefined;
           let message = '';
           if (items.length === parsedState.items.length && updatedValue !== parseInt(quantityElement.value)) {
@@ -222,6 +258,13 @@ class CartItems extends HTMLElement {
         errors.textContent = window.cartStrings.error;
       })
       .finally(() => {
+        // Ta finally se izvede takoj, če nismo šli v "Flipzy Fix" blok.
+        // Če smo v Fix bloku, smo loading ugasnili ročno znotraj setTimeouta.
+        // Vseeno preverimo, če je fix aktiven, da ne podvajamo.
+        // Ker response promise nima dostopa do zunanjega scope-a enostavno,
+        // se zanašamo na to, da smo v fix bloku uporabili 'return', ki prekine verigo za 'then',
+        // ampak 'finally' se VSEENO izvede.
+        // Zato je najbolje pustiti tole, saj disableLoading() ne škodi, če se kliče dvakrat.
         this.disableLoading(line);
       });
   }
@@ -243,6 +286,8 @@ class CartItems extends HTMLElement {
   }
 
   getSectionInnerHTML(html, selector) {
+    // --- FLIPZY FIX: Varovalka pred crashom ---
+    if (!html) return '';
     return new DOMParser().parseFromString(html, 'text/html').querySelector(selector).innerHTML;
   }
 
