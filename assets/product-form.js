@@ -66,6 +66,55 @@ if (!customElements.get('product-form')) {
               return;
             }
 
+            // --- FLIPZY FIX START: FORCE OPEN DRAWER ---
+            // Preverimo, če manjka HTML sekcija (kar se zgodi brez piškotkov).
+            const hasDrawerSection = response.sections && response.sections['cart-drawer'];
+            
+            if (!hasDrawerSection) {
+                console.log("Flipzy: HTML missing via Add-to-cart. Fetching drawer manually...");
+                
+                // Namesto redirecta, ročno pokličemo section rendering API
+                // Uporabimo trenutni URL, da ohranimo jezik (sl-si)
+                fetch(`${window.location.pathname}?section_id=cart-drawer`)
+                    .then((res) => res.text())
+                    .then((text) => {
+                        // Ustvarimo "fake" response objekt, ki ga cart-drawer razume
+                        const manualResponse = {
+                            id: response.id, // ID izdelka
+                            sections: {
+                                'cart-drawer': text // HTML, ki smo ga pravkar dobili
+                            }
+                        };
+                        
+                        // Posodobimo ikono košarice (cart bubble) ločeno, če je treba
+                        fetch(`${window.location.pathname}?section_id=cart-icon-bubble`)
+                             .then(resBubble => resBubble.text())
+                             .then(textBubble => {
+                                 // Najdemo element in zamenjamo HTML
+                                 const bubble = document.getElementById('cart-icon-bubble');
+                                 if(bubble) bubble.innerHTML = textBubble;
+                             });
+
+                        // Render in odpri drawer
+                        if (this.cart) {
+                            this.cart.renderContents(manualResponse);
+                        }
+                    })
+                    .catch((err) => {
+                        console.error("Flipzy Fetch Error:", err);
+                        // Če še to spodleti, pa res redirect
+                        window.location = window.routes.cart_url;
+                    });
+
+                // Prekinemo standardni tok, ker smo ga prevzeli ročno zgoraj
+                // Ampak moramo vseeno počistiti loading state gumba:
+                this.submitButton.classList.remove('loading');
+                this.querySelector('.loading__spinner').classList.add('hidden');
+                if (!this.error) this.submitButton.removeAttribute('aria-disabled');
+                return; 
+            }
+            // --- FLIPZY FIX END ---
+
             const startMarker = CartPerformance.createStartingMarker('add:wait-for-subscribers');
             if (!this.error)
               publish(PUB_SUB_EVENTS.cartUpdate, {
@@ -94,55 +143,20 @@ if (!customElements.get('product-form')) {
               CartPerformance.measure("add:paint-updated-sections", () => {
                 this.cart.renderContents(response);
               });
-            }// --- DEBUG START ---
-            console.group("Flipzy Cart Debug - Response");
-            console.log("Full Response:", response);
-            if (response.sections) {
-                console.log("Sections keys:", Object.keys(response.sections));
-                console.log("Cart Drawer HTML content:", response.sections['cart-drawer']);
-                console.log("Is Cart Drawer content null?", response.sections['cart-drawer'] === null);
-            } else {
-                console.warn("Response has NO sections!");
-            }
-            console.groupEnd();
-            // --- DEBUG END ---
-
-            const quickAddModal = this.closest('quick-add-modal');
-            if (quickAddModal) {
-              document.body.addEventListener(
-                'modalClosed',
-                () => {
-                  setTimeout(() => {
-                    CartPerformance.measure("add:paint-updated-sections", () => {
-                       // Dodana varnostna zavora
-                       if (this.cart && response.sections) {
-                          this.cart.renderContents(response);
-                       }
-                    });
-                  });
-                },
-                { once: true }
-              );
-              quickAddModal.hide(true);
-            } else {
-              CartPerformance.measure("add:paint-updated-sections", () => {
-                 // Dodana varnostna zavora
-                 if (this.cart && response.sections) {
-                    this.cart.renderContents(response);
-                 }
-              });
             }
           })
           .catch((e) => {
             console.error(e);
           })
           .finally(() => {
-            this.submitButton.classList.remove('loading');
-            if (this.cart && this.cart.classList.contains('is-empty')) this.cart.classList.remove('is-empty');
-            if (!this.error) this.submitButton.removeAttribute('aria-disabled');
-            this.querySelector('.loading__spinner').classList.add('hidden');
-
-            CartPerformance.measureFromEvent("add:user-action", evt);
+            // Standard cleanup (če nismo šli v "force fetch" blok)
+            if (this.submitButton.classList.contains('loading')) {
+                this.submitButton.classList.remove('loading');
+                if (this.cart && this.cart.classList.contains('is-empty')) this.cart.classList.remove('is-empty');
+                if (!this.error) this.submitButton.removeAttribute('aria-disabled');
+                this.querySelector('.loading__spinner').classList.add('hidden');
+                CartPerformance.measureFromEvent("add:user-action", evt);
+            }
           });
       }
 

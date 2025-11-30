@@ -89,8 +89,13 @@ class CartDrawer extends HTMLElement {
     });
   }
 
-  getSectionInnerHTML(html, selector = '.shopify-section') {
-    return new DOMParser().parseFromString(html, 'text/html').querySelector(selector).innerHTML;
+getSectionInnerHTML(html, selector = '.shopify-section') {
+    // VARNOSTNI DODATEK: Če ni HTML-ja, vrni prazno in ne sesuj strani
+    if (!html) return '';
+    
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const el = doc.querySelector(selector);
+    return el ? el.innerHTML : '';
   }
 
   getSectionsToRender() {
