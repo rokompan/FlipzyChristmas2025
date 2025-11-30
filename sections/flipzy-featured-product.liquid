@@ -32,51 +32,19 @@
     }
   }
 
-  /* --- FLIPZY CONVERSION STYLES (INJECTED) --- */
+  /* --- FLIPZY CUSTOM STYLES (Injected) --- */
   
-  /* 1. Special Offer Badge (Targeting Text Block with Uppercase) */
-  .section-{{ section.id }}-padding .caption-with-letter-spacing {
-      display: inline-block;
-      background: #FEF3C7; /* Soft Yellow */
-      color: #D97706;      /* Dark Yellow Text */
-      font-weight: 700;
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      margin-bottom: 10px;
-      border: none;
-  }
-
-  /* 2. Main Title Size */
-  .section-{{ section.id }}-padding .product__title h2 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      line-height: 1.2;
-  }
-
-  /* 3. Price Size & Color */
-  .section-{{ section.id }}-padding .price-item--regular {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #111827; /* Charcoal */
-  }
-  .section-{{ section.id }}-padding .price-item--sale {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #111827;
-  }
-
-  /* 4. THE CONVERSION BUTTON (Mustard + Glow) */
+  /* 1. Gumb za nakup (Mustard + Glow) */
   .section-{{ section.id }}-padding .product-form__submit {
-      background-color: #F4D35E; /* Flipzy Mustard */
+      background-color: #F4D35E; /* Flipzy Rumena */
       color: #111827;
-      border: none;
-      border-radius: 50px;
+      border-radius: 50px; /* Zaobljen */
       font-weight: 700;
+      text-transform: none; /* Brez velikih tiskanih črk */
       font-size: 1.2rem;
-      text-transform: none; /* Remove default uppercase */
       padding: 15px 30px;
-      box-shadow: 0 10px 25px rgba(244, 211, 94, 0.4);
+      margin-bottom: 10px;
+      box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4);
       position: relative;
       overflow: hidden;
       transition: transform 0.2s ease;
@@ -86,10 +54,11 @@
       transform: scale(1.02);
   }
 
-  /* Pulse Animation */
+  /* Utripajoča animacija gumba */
   .section-{{ section.id }}-padding .product-form__submit::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
+      border-radius: 50px; 
+      box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
       animation: flipzy-pulse 2s infinite;
   }
   @keyframes flipzy-pulse {
@@ -98,13 +67,17 @@
       100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0); }
   }
 
-  /* 5. Trust Elements */
+  /* 2. Trust Elements (Garancija + Ikone) */
+  .flipzy-trust-wrapper {
+      margin-top: 1.5rem;
+      width: 100%;
+  }
+
   .flipzy-guarantee-pill {
-      margin-top: 20px;
       background: #ECFDF5;
       border: 1px solid #6EE7B7;
       color: #065F46;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border-radius: 12px;
       font-size: 0.9rem;
       font-weight: 600;
@@ -113,17 +86,18 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      margin-bottom: 1.5rem;
+      width: 100%;
   }
 
   .flipzy-trust-footer {
-      margin-top: 25px;
-      padding-top: 20px;
-      border-top: 1px solid #E5E7EB;
       display: flex;
       justify-content: flex-start;
       gap: 25px;
       opacity: 0.7;
       flex-wrap: wrap;
+      padding-top: 15px;
+      border-top: 1px solid #e5e7eb;
   }
   
   .flipzy-trust-item {
@@ -133,6 +107,18 @@
   
   .flipzy-trust-icon { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
 
+  /* 3. Special Offer Text (Če uporabiš Uppercase text block) */
+  .section-{{ section.id }}-padding .caption-with-letter-spacing {
+      display: inline-block;
+      background: #FEF3C7; 
+      color: #D97706;      
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      border: none;
+  }
 {%- endstyle -%}
 
 <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -338,16 +324,20 @@
                   section_id: section.id
                 -%}
                 
-                <div class="flipzy-guarantee-pill">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                  30-day money-back guarantee • 24 months warranty
+                {%- unless placeholder -%}
+                <div class="flipzy-trust-wrapper">
+                    <div class="flipzy-guarantee-pill">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                      {{ section.settings.guarantee_text }}
+                    </div>
+                
+                    <div class="flipzy-trust-footer">
+                      <div class="flipzy-trust-item"><svg class="flipzy-trust-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span>SSL Secure</span></div>
+                      <div class="flipzy-trust-item"><svg class="flipzy-trust-icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg><span>Secure Payment</span></div>
+                      <div class="flipzy-trust-item"><svg class="flipzy-trust-icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span>GDPR Compliant</span></div>
+                    </div>
                 </div>
-
-                <div class="flipzy-trust-footer">
-                  <div class="flipzy-trust-item"><svg class="flipzy-trust-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span>SSL Secure</span></div>
-                  <div class="flipzy-trust-item"><svg class="flipzy-trust-icon" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg><span>Secure Payment</span></div>
-                  <div class="flipzy-trust-item"><svg class="flipzy-trust-icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span>GDPR Compliant</span></div>
-                </div>
+                {%- endunless -%}
                 {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
               {%- when 'rating' -%}
@@ -423,6 +413,12 @@
       "type": "product",
       "id": "product",
       "label": "t:sections.featured-product.settings.product.label"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_text",
+      "label": "Guarantee Text",
+      "default": "30-day money-back guarantee • 24 months warranty"
     },
     {
       "type": "color_scheme",
@@ -608,34 +604,15 @@
   ],
   "presets": [
     {
-      "name": "t:sections.featured-product.presets.name",
+      "name": "Flipzy Featured Product",
       "blocks": [
-        {
-          "type": "text",
-          "settings": {
-            "text": "SPECIAL OFFER – WHILE SUPPLIES LAST",
-            "text_style": "uppercase"
-          }
-        },
-        {
-          "type": "title"
-        },
-        {
-          "type": "price"
-        },
-        {
-          "type": "text",
-          "settings": {
-            "text": "🔴 Low stock - selling fast",
-            "text_style": "body"
-          }
-        },
-        {
-          "type": "variant_picker"
-        },
-        {
-          "type": "buy_buttons"
-        }
+        { "type": "text", "settings": { "text": "SPECIAL OFFER – WHILE SUPPLIES LAST", "text_style": "uppercase" } },
+        { "type": "title" },
+        { "type": "price" },
+        { "type": "variant_picker" },
+        { "type": "quantity_selector" },
+        { "type": "buy_buttons" },
+        { "type": "share" }
       ]
     }
   ]
