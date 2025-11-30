@@ -297,33 +297,46 @@
     max-width: 100%;
 }
 /* =========================================
-   Flipzy Custom CSS Layer
+   WEGLOT & HEADER FIXES (The "Invisible Bridge")
    ========================================= */
 
-/* --- WEGLOT & HEADER FIXES --- */
-
-/* 1. FORCE HEADER VISIBILITY: Allow the dropdown to "spill" out of the header */
-.header-wrapper, 
-.header, 
-.header__icons {
-  overflow: visible !important;
-  z-index: 50 !important; /* Ensure Header stays ON TOP of the Hero section */
-}
-
-/* 2. THE BRIDGE: Extends the click area significantly */
-.weglot-container ul, 
-.wg-drop {
-  /* This creates a large invisible block ensuring your mouse never "leaves" */
-  padding-top: 50px !important; 
-  margin-top: -20px !important; /* Pulls the list up visually to reduce the gap */
-  
-  /* Ensure it floats above everything */
-  z-index: 1001 !important;
-  display: block; /* Prevents flickering */
-}
-
-/* 3. ANCHOR: Keep the button stable */
-.wg-default {
+/* 1. Stack Order: Ensure Header sits on top of Hero */
+.section-header, 
+.header-wrapper {
   position: relative;
-  z-index: 1002;
+  z-index: 1000 !important; 
+}
+
+/* 2. Target the Weglot Dropdown List */
+.weglot-container .wg-drop, 
+.weglot-container ul {
+  display: block !important; /* Prevent JS from hiding it too fast */
+  opacity: 0;               /* Hide it visually by default */
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s; /* Smooth fade */
+  
+  /* Reset positioning to prevent conflicts */
+  margin-top: 10px !important; 
+}
+
+/* 3. Show it on Hover (Parent Container) */
+.weglot-container:hover .wg-drop,
+.weglot-container:hover ul {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 4. THE BRIDGE: Create an invisible "Safety Block" above the list */
+/* This fills the gap between the flag and the list so the mouse never "leaves" */
+.weglot-container .wg-drop::before,
+.weglot-container ul::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -20px; /* Extends 20px UPWARD towards the flag */
+  left: 0;
+  width: 100%;
+  height: 20px; /* The height of the safety gap */
+  background: transparent; /* Invisible */
+  z-index: 1001;
 }
