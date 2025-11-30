@@ -167,7 +167,7 @@
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "flipzy-wooden-routine-board",
-        "color_scheme": "scheme-c359c2bf-0c0e-4470-9782-7d25559e01fc",
+        "color_scheme": "scheme-2",
         "secondary_background": false,
         "media_size": "small",
         "constrain_to_viewport": true,
