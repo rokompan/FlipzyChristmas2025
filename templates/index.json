@@ -107,20 +107,74 @@
         "offset": 100
       }
     },
-    "flipzy_conversion_product_9zHmdT": {
-      "type": "flipzy-conversion-product",
-      "name": "Flipzy Conversion Product",
+    "featured_product_x9hCHm": {
+      "type": "featured-product",
+      "blocks": {
+        "text_xLXfEf": {
+          "type": "text",
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title_b8BHKQ": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h1"
+          }
+        },
+        "price_w6Xkzz": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker_FtpAbT": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector_TRw8AA": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_RFHj8z": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "share_n79q7e": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "text_xLXfEf",
+        "title_b8BHKQ",
+        "price_w6Xkzz",
+        "variant_picker_FtpAbT",
+        "quantity_selector_TRw8AA",
+        "buy_buttons_RFHj8z",
+        "share_n79q7e"
+      ],
+      "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "flipzy-wooden-routine-board",
-        "badge": "Special Offer – While Supplies Last",
-        "heading": "Kids Routine Board That Works",
-        "description": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>",
-        "show_stock": true,
-        "stock_text": "Low stock - selling fast",
-        "shipping_text": "Ships within 24h • Free Shipping over €50",
-        "guarantee_text": "30-day money-back guarantee • 24 months warranty",
-        "button_text": "Add to Cart",
-        "show_dynamic_checkout": true
+        "color_scheme": "",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "flipzy_badges_YjLTAp": {
@@ -177,7 +231,7 @@
     "flipzy_hero_yHQ9UX",
     "flipzy_feature_video_Wf8y33",
     "flipzy_anchor_94NFEW",
-    "flipzy_conversion_product_9zHmdT",
+    "featured_product_x9hCHm",
     "flipzy_badges_YjLTAp"
   ]
 }
