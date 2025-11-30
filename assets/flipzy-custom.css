@@ -83,8 +83,8 @@
 
 .flipzy-btn {
     display: inline-block; background-color: var(--color-mustard); color: var(--color-charcoal);
-    padding: 16px 48px; border-radius: 50px; font-weight: 700; text-decoration: none;
-    font-size: 1.2rem; margin-bottom: 10px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 8px 48px; border-radius: 50px; font-weight: 700; text-decoration: none;
+    font-size: 1.6rem; margin-bottom: 10px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 4px 6px rgba(0,0,0,0.2); border: 2px solid var(--color-mustard);
 }
 .flipzy-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(244, 211, 94, 0.7); }
