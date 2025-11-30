@@ -104,42 +104,42 @@
         "list_item_YGhDY8": {
           "type": "list_item",
           "settings": {
-            "icon": "check_circle",
+            "icon": "check",
             "text": "1x Wooden Wall Board"
           }
         },
         "list_item_dNcpJi": {
           "type": "list_item",
           "settings": {
-            "icon": "check_circle",
+            "icon": "check",
             "text": "7x Task Pieces"
           }
         },
         "list_item_4Ymr9k": {
           "type": "list_item",
           "settings": {
-            "icon": "check_circle",
+            "icon": "check",
             "text": "30 Customization Stickers"
           }
         },
         "list_item_zBzaaw": {
           "type": "list_item",
           "settings": {
-            "icon": "check_circle",
+            "icon": "check",
             "text": "Sun and moon for morning and evening routines"
           }
         },
         "list_item_rzGMPj": {
           "type": "list_item",
           "settings": {
-            "icon": "check_circle",
-            "text": "Mounting Kit + Instructions"
+            "icon": "check",
+            "text": "Mounting tape + Instructions"
           }
         },
         "list_item_9FkCYy": {
           "type": "list_item",
           "settings": {
-            "icon": "check_circle",
+            "icon": "check",
             "text": "Easy Setup Guide"
           }
         }
@@ -164,7 +164,7 @@
         "price_new": "€29,00",
         "description": "Take advantage of the special price and give your family calmer days at a great value. Get the complete Flipzy system at the lowest price of the season.",
         "btn_text": "Go to Shop",
-        "btn_link": ""
+        "btn_link": "#buy"
       }
     },
     "flipzy_anchor_94NFEW": {
