@@ -201,42 +201,45 @@
     .flipzy-featured-content .flipzy-trust-footer { justify-content: center; }
     .flipzy-featured-content .flipzy-guarantee-pill { align-self: center; }
 }
-
 /* =========================================
    6. FLIPZY BADGES SECTION
    ========================================= */
 .flipzy-badges-section {
-    padding: 80px 20px; /* Več prostora zgoraj/spodaj */
+    padding: 60px 20px; /* Malo manjši zunanji padding */
     width: 100%;
     background-color: #F6DACE; 
 }
-.flipzy-badges-container { max-width: 1400px; margin: 0 auto; text-align: center; } /* Širši container */
+.flipzy-badges-container { max-width: 1400px; margin: 0 auto; text-align: center; }
+
 .flipzy-badges-heading {
-    font-size: 2.5rem; /* Večji glavni naslov */
+    font-size: 2.2rem; 
     font-weight: 600; 
-    margin-bottom: 4rem; 
+    margin-bottom: 3rem; 
     color: var(--color-charcoal);
     display: inline-flex; align-items: center; gap: 15px;
 }
-.flipzy-badges-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+.flipzy-badges-grid { display: grid; grid-template-columns: 1fr; gap: 15px; } /* Manjši gap med karticami */
 @media screen and (min-width: 600px) { .flipzy-badges-grid { grid-template-columns: repeat(2, 1fr); } }
-@media screen and (min-width: 1100px) { .flipzy-badges-grid { grid-template-columns: repeat(4, 1fr); gap: 30px; } }
-/* Badge Card */
+@media screen and (min-width: 1100px) { .flipzy-badges-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; } }
+
+/* Badge Card - KOMPAKTNEJŠI IZGLED */
 .flipzy-badge-card {
     background: #FFFFFF; 
-    border-radius: 30px; /* Bolj okroglo */
-    padding: 50px 30px; /* Več "zraka" znotraj kartice */
-    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    border-radius: 24px; /* Malo manjši radius, da izgleda širše */
+    padding: 35px 20px; /* ZMANJŠANO (prej 50px 30px) */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     display: flex; flex-direction: column; align-items: center;
     transition: transform 0.3s ease; height: 100%;
+    justify-content: center; /* Centrira vsebino vertikalno */
 }
-.flipzy-badge-card:hover { transform: translateY(-8px); }
+.flipzy-badge-card:hover { transform: translateY(-5px); }
 
-/* Icons: HUGE & Mint */
+/* Icons */
 .flipzy-badge-icon {
-    width: 72px; /* Povečano iz 64px */
-    height: 72px; 
-    margin-bottom: 30px;
+    width: 64px; /* Malo manjša, da ne "poje" vsega prostora */
+    height: 64px; 
+    margin-bottom: 15px; /* ZMANJŠAN ODMIK (prej 30px) */
     color: var(--color-mint);
     display: flex; align-items: center; justify-content: center;
 }
@@ -247,18 +250,18 @@
 
 /* NASLOV KARTICE */
 .flipzy-badge-title {
-    font-size: 1.8rem; /* Zelo veliko */
+    font-size: 1.6rem; 
     font-weight: 700; 
-    margin-bottom: 15px;
+    margin-bottom: 8px; /* ZMANJŠAN ODMIK (prej 15px) */
     color: var(--color-charcoal); 
     line-height: 1.1;
 }
 
-/* OPIS KARTICE */
+/* OPIS KARTICE - POVEČAN */
 .flipzy-badge-text {
-    font-size: 1.25rem; /* Zelo berljivo */
-    line-height: 1.5; 
+    font-size: 1.4rem; /* POVEČANO (prej 1.25rem) */
+    line-height: 1.4; 
     color: #4B5563; 
     margin: 0; 
-    max-width: 95%;
+    max-width: 100%;
 }
