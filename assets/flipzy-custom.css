@@ -650,6 +650,8 @@
     font-size: 1.8rem; /* Povečano */
     font-weight: 700;
     margin-bottom: 20px; /* Zmanjšan odmik */
+    margin-top: 0px; 
+    padding-top: 0px; 
     color: var(--color-charcoal);
     line-height: 1.2;
 }
