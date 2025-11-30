@@ -66,51 +66,47 @@ if (!customElements.get('product-form')) {
               return;
             }
 
-            // --- FLIPZY FIX START: FORCE OPEN DRAWER ---
-            // Preverimo, če manjka HTML sekcija (kar se zgodi brez piškotkov).
+            // --- FLIPZY FIX START ---
             const hasDrawerSection = response.sections && response.sections['cart-drawer'];
             
             if (!hasDrawerSection) {
-                console.log("Flipzy: HTML missing via Add-to-cart. Fetching drawer manually...");
+                console.log("Flipzy: HTML missing via Add-to-cart. Waiting 600ms then fetching manually...");
                 
-                // Namesto redirecta, ročno pokličemo section rendering API
-                // Uporabimo trenutni URL, da ohranimo jezik (sl-si)
-                  fetch(`${window.location.pathname}?section_id=cart-drawer`)
-                    .then((res) => res.text())
-                    .then((text) => {
-                        // Ustvarimo "fake" response objekt, ki ga cart-drawer razume
-                        const manualResponse = {
-                            id: response.id, // ID izdelka
-                            sections: {
-                                'cart-drawer': text // HTML, ki smo ga pravkar dobili
+                // FIX: Dodan 600ms delay, da preprečimo "Race Condition" pri novi seji
+                setTimeout(() => {
+                    fetch(`${window.location.pathname}?section_id=cart-drawer`)
+                        .then((res) => res.text())
+                        .then((text) => {
+                            const manualResponse = {
+                                id: response.id,
+                                sections: {
+                                    'cart-drawer': text
+                                }
+                            };
+                            
+                            // Posodobimo še bubble
+                            fetch(`${window.location.pathname}?section_id=cart-icon-bubble`)
+                                 .then(resBubble => resBubble.text())
+                                 .then(textBubble => {
+                                     const bubble = document.getElementById('cart-icon-bubble');
+                                     if(bubble) bubble.innerHTML = textBubble;
+                                 });
+
+                            if (this.cart) {
+                                this.cart.renderContents(manualResponse);
                             }
-                        };
-                        
-                        // Posodobimo ikono košarice (cart bubble) ločeno, če je treba
-                        fetch(`${window.location.pathname}?section_id=cart-icon-bubble`)
-                             .then(resBubble => resBubble.text())
-                             .then(textBubble => {
-                                 // Najdemo element in zamenjamo HTML
-                                 const bubble = document.getElementById('cart-icon-bubble');
-                                 if(bubble) bubble.innerHTML = textBubble;
-                             });
+                        })
+                        .catch((err) => {
+                            console.error("Flipzy Fetch Error:", err);
+                            window.location = window.routes.cart_url;
+                        });
 
-                        // Render in odpri drawer
-                        if (this.cart) {
-                            this.cart.renderContents(manualResponse);
-                        }
-                    })
-                    .catch((err) => {
-                        console.error("Flipzy Fetch Error:", err);
-                        // Če še to spodleti, pa res redirect
-                        window.location = window.routes.cart_url;
-                    });
+                    // Cleanup gumba
+                    this.submitButton.classList.remove('loading');
+                    this.querySelector('.loading__spinner').classList.add('hidden');
+                    if (!this.error) this.submitButton.removeAttribute('aria-disabled');
+                }, 600); // 600ms zamika
 
-                // Prekinemo standardni tok, ker smo ga prevzeli ročno zgoraj
-                // Ampak moramo vseeno počistiti loading state gumba:
-                this.submitButton.classList.remove('loading');
-                this.querySelector('.loading__spinner').classList.add('hidden');
-                if (!this.error) this.submitButton.removeAttribute('aria-disabled');
                 return; 
             }
             // --- FLIPZY FIX END ---
@@ -132,7 +128,7 @@ if (!customElements.get('product-form')) {
                 () => {
                   setTimeout(() => {
                     CartPerformance.measure("add:paint-updated-sections", () => {
-                      this.cart.renderContents(response);
+                      if(this.cart && response.sections) this.cart.renderContents(response);
                     });
                   });
                 },
@@ -141,7 +137,7 @@ if (!customElements.get('product-form')) {
               quickAddModal.hide(true);
             } else {
               CartPerformance.measure("add:paint-updated-sections", () => {
-                this.cart.renderContents(response);
+                 if(this.cart && response.sections) this.cart.renderContents(response);
               });
             }
           })
@@ -149,7 +145,6 @@ if (!customElements.get('product-form')) {
             console.error(e);
           })
           .finally(() => {
-            // Standard cleanup (če nismo šli v "force fetch" blok)
             if (this.submitButton.classList.contains('loading')) {
                 this.submitButton.classList.remove('loading');
                 if (this.cart && this.cart.classList.contains('is-empty')) this.cart.classList.remove('is-empty');
