@@ -94,10 +94,8 @@ class CartItems extends HTMLElement {
         .then((responseText) => {
           const html = new DOMParser().parseFromString(responseText, 'text/html');
           
-          // --- FLIPZY FIX START: Posodobimo tudi "Empty State" ---
-          // Dodamo '.drawer__inner-empty' v selektorje, da se osveži tudi sporočilo za prazno košarico.
+          // Posodobimo vsebino (izdelke, footer in 'empty state' sporočilo)
           const selectors = ['cart-drawer-items', '.cart-drawer__footer', '.drawer__inner-empty'];
-          
           for (const selector of selectors) {
             const targetElement = document.querySelector(selector);
             const sourceElement = html.querySelector(selector);
@@ -105,20 +103,6 @@ class CartItems extends HTMLElement {
               targetElement.replaceWith(sourceElement);
             }
           }
-
-          // NUJNO: Sinhronizirajmo 'is-empty' class na glavnem wrapperju.
-          // Če je fetched košarica prazna, moramo to povedati CSS-u, da skrije artikle in pokaže "Prazno".
-          const fetchedDrawer = html.querySelector('cart-drawer');
-          const targetDrawer = document.querySelector('cart-drawer');
-
-          if (fetchedDrawer && targetDrawer) {
-             if (fetchedDrawer.classList.contains('is-empty')) {
-                 targetDrawer.classList.add('is-empty');
-             } else {
-                 targetDrawer.classList.remove('is-empty');
-             }
-          }
-          // --- FLIPZY FIX END ---
         })
         .catch((e) => {
           console.error(e);
@@ -180,27 +164,43 @@ class CartItems extends HTMLElement {
       .then((state) => {
         const parsedState = JSON.parse(state);
 
-        // --- FLIPZY FIX: Preveri manjkajoče sekcije ---
+        // --- FLIPZY FIX START ---
         const hasSections = parsedState.sections && Object.keys(parsedState.sections).length > 0;
 
         if (!hasSections) {
-             console.log("Flipzy: Sections missing in /cart/change response. Fetching manually...");
+             console.log("Flipzy: Sections missing. Fallback fetching...");
              setTimeout(() => {
                  this.onCartUpdate().then(() => {
                      this.disableLoading(line);
                      
+                     // 1. Posodobi ikono v headerju
                      fetch(`${window.location.pathname}?section_id=cart-icon-bubble`)
                          .then(res => res.text())
                          .then(text => {
                              const bubble = document.getElementById('cart-icon-bubble');
                              if(bubble) bubble.innerHTML = text;
                          });
+
+                     // 2. POPRAVEK ZA BEL ZASLON: Ročno preklopi 'is-empty' class
+                     // Ker sections manjkajo, pogledamo item_count neposredno iz JSON-a
+                     if (parsedState.item_count === 0) {
+                        const cartDrawer = document.querySelector('cart-drawer');
+                        const cartFooter = document.getElementById('main-cart-footer');
+                        
+                        // Dodamo class, da CSS skrije artikle in pokaže "Empty State"
+                        if (cartDrawer) cartDrawer.classList.add('is-empty');
+                        if (cartFooter) cartFooter.classList.add('is-empty');
+                        if (this) this.classList.add('is-empty'); // this = cart-items
+                     } else {
+                        const cartDrawer = document.querySelector('cart-drawer');
+                        if (cartDrawer) cartDrawer.classList.remove('is-empty');
+                     }
                  });
              }, 600);
              
-             return; // Prekinemo, ker bomo vse uredili v onCartUpdate zgoraj
+             return; // STOP. Ne izvajaj kode spodaj.
         }
-        // --- END FIX ---
+        // --- FLIPZY FIX END ---
 
         CartPerformance.measure(`${eventTarget}:paint-updated-sections"`, () => {
           const quantityElement =
