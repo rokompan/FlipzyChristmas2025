@@ -127,6 +127,13 @@
           "type": "price",
           "settings": {}
         },
+        "text_cYFGaA": {
+          "type": "text",
+          "settings": {
+            "text": "Don't miss this exclusive opportunity to transform your family's daily routines.",
+            "text_style": "uppercase"
+          }
+        },
         "text_DcUqDi": {
           "type": "text",
           "disabled": true,
@@ -159,6 +166,7 @@
         "text_k8nqXE",
         "title_npi7eh",
         "price_nehWDA",
+        "text_cYFGaA",
         "text_DcUqDi",
         "variant_picker_CHAiYU",
         "quantity_selector_cH66U8",
