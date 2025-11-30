@@ -107,88 +107,6 @@
         "offset": 100
       }
     },
-    "flipzy_featured_product_EX69Mb": {
-      "type": "flipzy-featured-product",
-      "blocks": {
-        "text_k8nqXE": {
-          "type": "text",
-          "settings": {
-            "text": "SPECIAL OFFER – WHILE SUPPLIES LAST",
-            "text_style": "uppercase"
-          }
-        },
-        "title_npi7eh": {
-          "type": "title",
-          "settings": {
-            "heading_size": "h2"
-          }
-        },
-        "price_nehWDA": {
-          "type": "price",
-          "settings": {}
-        },
-        "text_cYFGaA": {
-          "type": "text",
-          "settings": {
-            "text": "Don't miss this exclusive opportunity to transform your family's daily routines.",
-            "text_style": "uppercase"
-          }
-        },
-        "text_DcUqDi": {
-          "type": "text",
-          "disabled": true,
-          "settings": {
-            "text": "🔴 Low stock - selling fast",
-            "text_style": "uppercase"
-          }
-        },
-        "variant_picker_CHAiYU": {
-          "type": "variant_picker",
-          "disabled": true,
-          "settings": {
-            "picker_type": "button"
-          }
-        },
-        "quantity_selector_cH66U8": {
-          "type": "quantity_selector",
-          "disabled": true,
-          "settings": {}
-        },
-        "buy_buttons_beLhf3": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": false,
-            "show_gift_card_recipient": true
-          }
-        }
-      },
-      "block_order": [
-        "text_k8nqXE",
-        "title_npi7eh",
-        "price_nehWDA",
-        "text_cYFGaA",
-        "text_DcUqDi",
-        "variant_picker_CHAiYU",
-        "quantity_selector_cH66U8",
-        "buy_buttons_beLhf3"
-      ],
-      "name": "Flipzy Super Product",
-      "settings": {
-        "product": "flipzy-wooden-routine-board",
-        "guarantee_text": "30-day money-back guarantee • 24 months warranty",
-        "color_scheme": "scheme-2",
-        "secondary_background": false,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "media_size": "small",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "media_position": "left",
-        "image_zoom": "hover",
-        "hide_variants": true,
-        "enable_video_looping": true
-      }
-    },
     "featured_product_x9hCHm": {
       "type": "featured-product",
       "blocks": {
@@ -246,7 +164,6 @@
         "buy_buttons_RFHj8z",
         "share_n79q7e"
       ],
-      "disabled": true,
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "flipzy-wooden-routine-board",
@@ -317,7 +234,6 @@
     "flipzy_hero_yHQ9UX",
     "flipzy_feature_video_Wf8y33",
     "flipzy_anchor_94NFEW",
-    "flipzy_featured_product_EX69Mb",
     "featured_product_x9hCHm",
     "flipzy_badges_YjLTAp"
   ]
