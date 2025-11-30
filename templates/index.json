@@ -114,10 +114,13 @@
         "product": "flipzy-wooden-routine-board",
         "badge": "Special Offer – While Supplies Last",
         "heading": "Kids Routine Board That Works",
-        "description": "<p>Don't miss this exclusive opportunity to transform your family's daily routines. Order now and save!</p>",
+        "description": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>",
+        "show_stock": true,
         "stock_text": "Low stock - selling fast",
         "shipping_text": "Ships within 24h • Free Shipping over €50",
-        "guarantee_text": "30-day money-back guarantee • 24 months warranty"
+        "guarantee_text": "30-day money-back guarantee • 24 months warranty",
+        "button_text": "Add to Cart",
+        "show_dynamic_checkout": true
       }
     },
     "flipzy_badges_YjLTAp": {
