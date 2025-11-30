@@ -94,6 +94,43 @@ if (!customElements.get('product-form')) {
               CartPerformance.measure("add:paint-updated-sections", () => {
                 this.cart.renderContents(response);
               });
+            }// --- DEBUG START ---
+            console.group("Flipzy Cart Debug - Response");
+            console.log("Full Response:", response);
+            if (response.sections) {
+                console.log("Sections keys:", Object.keys(response.sections));
+                console.log("Cart Drawer HTML content:", response.sections['cart-drawer']);
+                console.log("Is Cart Drawer content null?", response.sections['cart-drawer'] === null);
+            } else {
+                console.warn("Response has NO sections!");
+            }
+            console.groupEnd();
+            // --- DEBUG END ---
+
+            const quickAddModal = this.closest('quick-add-modal');
+            if (quickAddModal) {
+              document.body.addEventListener(
+                'modalClosed',
+                () => {
+                  setTimeout(() => {
+                    CartPerformance.measure("add:paint-updated-sections", () => {
+                       // Dodana varnostna zavora
+                       if (this.cart && response.sections) {
+                          this.cart.renderContents(response);
+                       }
+                    });
+                  });
+                },
+                { once: true }
+              );
+              quickAddModal.hide(true);
+            } else {
+              CartPerformance.measure("add:paint-updated-sections", () => {
+                 // Dodana varnostna zavora
+                 if (this.cart && response.sections) {
+                    this.cart.renderContents(response);
+                 }
+              });
             }
           })
           .catch((e) => {
