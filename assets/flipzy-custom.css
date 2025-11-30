@@ -21,11 +21,26 @@
    2. HERO SLIDER
    ========================================= */
 .flipzy-hero-container {
-    position: relative; width: 100%; height: 85dvh; 
-    max-height: 850px; min-height: 500px;
-    background-color: var(--color-charcoal); overflow: hidden;
+    position: relative;
+    width: 100%;
+    
+    /* SPREMENI TOLE: */
+    height: 75dvh;  /* Prej 85dvh. Manjša višina = več se vidi spodaj. */
+    
+    max-height: 850px;
+    
+    /* SPREMENI TUDI TOLE (za vsak slučaj na manjših ekranih): */
+    min-height: 450px; /* Prej 500px. Da ne bo prevelik na majhnih telefonih. */
+    
+    background-color: var(--color-charcoal);
+    overflow: hidden;
 }
-@media screen and (min-width: 750px) { .flipzy-hero-container { height: 80vh; } }
+@media screen and (min-width: 750px) {
+    .flipzy-hero-container {
+        /* Tudi na desktopu malo zmanjšaj, če želiš isti efekt */
+        height: 70vh; /* Prej 80vh */
+    }
+}
 .flipzy-slider-track {
     display: flex; width: 100%; height: 100%;
     overflow-x: scroll; overflow-y: hidden;
