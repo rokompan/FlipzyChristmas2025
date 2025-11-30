@@ -292,9 +292,38 @@
         "card_title": "Everything you need to start your journey to smoother routines",
         "price_old": "€49,00",
         "price_new": "€29,00",
+        "trust_1": "Free shipping",
+        "trust_2": "Taxes included",
+        "trust_3": "Ships in 24h",
+        "trust_4": "30-day money-back guarantee",
+        "trust_5": "24 months warranty",
         "description": "Take advantage of the special price and give your family calmer days at a great value. Get the complete Flipzy system at the lowest price of the season.",
         "btn_text": "Go to Shop",
         "btn_link": "#buy"
+      }
+    },
+    "flipzy_feature_video_3VptYe": {
+      "type": "flipzy-feature-video",
+      "blocks": {
+        "feature_point_PH9QPk": {
+          "type": "feature_point",
+          "settings": {
+            "icon_type": "play",
+            "text": "<p>Choose from our extensive collection of pre-made task stickers. With over 30 different activities, you can create the perfect routine that matches your family's unique needs.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_point_PH9QPk"
+      ],
+      "name": "Flipzy Feature Video",
+      "settings": {
+        "color_scheme": "scheme-white",
+        "desktop_layout": "media_right",
+        "mobile_layout": "text_first",
+        "heading": "30 Customizable Tasks",
+        "video_url": "",
+        "fallback_image": "shopify://shop_images/tasks-30.jpg"
       }
     }
   },
@@ -304,6 +333,7 @@
     "flipzy_anchor_94NFEW",
     "featured_product_x9hCHm",
     "flipzy_badges_YjLTAp",
-    "flipzy_whats_in_the_box_tDc44V"
+    "flipzy_whats_in_the_box_tDc44V",
+    "flipzy_feature_video_3VptYe"
   ]
 }
