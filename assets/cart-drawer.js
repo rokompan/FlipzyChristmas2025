@@ -3,7 +3,10 @@ class CartDrawer extends HTMLElement {
     super();
 
     this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
-    this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
+    const overlay = this.querySelector('#CartDrawer-Overlay');
+    if (overlay) {
+      overlay.addEventListener('click', this.close.bind(this));
+    }
     this.setHeaderCartIconAccessibility();
   }
 
@@ -29,7 +32,7 @@ class CartDrawer extends HTMLElement {
     if (triggeredBy) this.setActiveElement(triggeredBy);
     const cartDrawerNote = this.querySelector('[id^="Details-"] summary');
     if (cartDrawerNote && !cartDrawerNote.hasAttribute('role')) this.setSummaryAccessibility(cartDrawerNote);
-    // here the animation doesn't seem to always get triggered. A timeout seem to help
+    
     setTimeout(() => {
       this.classList.add('animate', 'active');
     });
@@ -40,8 +43,15 @@ class CartDrawer extends HTMLElement {
         const containerToTrapFocusOn = this.classList.contains('is-empty')
           ? this.querySelector('.drawer__inner-empty')
           : document.getElementById('CartDrawer');
+        
         const focusElement = this.querySelector('.drawer__inner') || this.querySelector('.drawer__close');
-        trapFocus(containerToTrapFocusOn, focusElement);
+        
+        // --- FLIPZY FIX 1: Varovalka za trapFocus ---
+        // Če element ne obstaja (ker se HTML še nalaga ali je error), ne kliči trapFocus, da ne sesuješ strani.
+        if (containerToTrapFocusOn && focusElement && typeof trapFocus === 'function') {
+           trapFocus(containerToTrapFocusOn, focusElement);
+        }
+        // --------------------------------------------
       },
       { once: true }
     );
@@ -51,7 +61,9 @@ class CartDrawer extends HTMLElement {
 
   close() {
     this.classList.remove('active');
-    removeTrapFocus(this.activeElement);
+    if (typeof removeTrapFocus === 'function' && this.activeElement) {
+        removeTrapFocus(this.activeElement);
+    }
     document.body.classList.remove('overflow-hidden');
   }
 
@@ -59,7 +71,7 @@ class CartDrawer extends HTMLElement {
     cartDrawerNote.setAttribute('role', 'button');
     cartDrawerNote.setAttribute('aria-expanded', 'false');
 
-    if (cartDrawerNote.nextElementSibling.getAttribute('id')) {
+    if (cartDrawerNote.nextElementSibling && cartDrawerNote.nextElementSibling.getAttribute('id')) {
       cartDrawerNote.setAttribute('aria-controls', cartDrawerNote.nextElementSibling.id);
     }
 
@@ -71,31 +83,60 @@ class CartDrawer extends HTMLElement {
   }
 
   renderContents(parsedState) {
-    this.querySelector('.drawer__inner').classList.contains('is-empty') &&
-      this.querySelector('.drawer__inner').classList.remove('is-empty');
+    const innerDrawer = this.querySelector('.drawer__inner');
+    if (innerDrawer && innerDrawer.classList.contains('is-empty')) {
+        innerDrawer.classList.remove('is-empty');
+    }
+
     this.productId = parsedState.id;
+    
     this.getSectionsToRender().forEach((section) => {
       const sectionElement = section.selector
         ? document.querySelector(section.selector)
         : document.getElementById(section.id);
 
       if (!sectionElement) return;
-      sectionElement.innerHTML = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
+
+      const htmlContent = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
+      
+      // --- FLIPZY FIX 2: Preveri, če imamo vsebino ---
+      if (htmlContent) {
+          sectionElement.innerHTML = htmlContent;
+      } else {
+          // Če selector ni našel ničesar, morda HTML struktura ne ustreza.
+          // Poskusimo vstaviti celoten response (fallback), da vsaj nekaj prikažemo.
+          if (parsedState.sections[section.id]) {
+             // Zadnji poskus: samo vstavimo raw HTML
+             // To pomaga, če ID #CartDrawer manjka v response-u
+             sectionElement.innerHTML = parsedState.sections[section.id];
+          }
+      }
     });
 
     setTimeout(() => {
-      this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
+      const overlay = this.querySelector('#CartDrawer-Overlay');
+      if (overlay) overlay.addEventListener('click', this.close.bind(this));
       this.open();
     });
   }
 
-getSectionInnerHTML(html, selector = '.shopify-section') {
-    // VARNOSTNI DODATEK: Če ni HTML-ja, vrni prazno in ne sesuj strani
+  getSectionInnerHTML(html, selector = '.shopify-section') {
+    // --- FLIPZY FIX 3: Robustno parsanje ---
     if (!html) return '';
     
     const doc = new DOMParser().parseFromString(html, 'text/html');
     const el = doc.querySelector(selector);
-    return el ? el.innerHTML : '';
+    
+    // Če najdemo točno določen selector (npr #CartDrawer), vrnemo njegov innerHTML
+    if (el) return el.innerHTML;
+    
+    // Če selectorja ne najdemo (npr. ker je ID na wrapperju), vrnemo raje celo telo, 
+    // kot pa da vrnemo prazno in pokažemo bel zaslon.
+    if (doc.body && doc.body.innerHTML.trim().length > 0) {
+        return doc.body.innerHTML;
+    }
+
+    return '';
   }
 
   getSectionsToRender() {
