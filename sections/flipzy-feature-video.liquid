@@ -8,7 +8,7 @@
     { "type": "select", "id": "mobile_layout", "label": "Mobile Layout", "default": "text_first", "options": [ { "value": "text_first", "label": "Text First" }, { "value": "media_first", "label": "Video First" } ] },
     { "type": "text", "id": "heading", "label": "Title", "default": "What is Flipzy?" },
     { "type": "text", "id": "video_url", "label": "Video URL (MP4)" },
-    { "type": "image_picker", "id": "fallback_image", "label": "Fallback Image" }
+    { "type": "image_picker", "id": "fallback_image", "label": "Fallback Image / Poster" }
   ],
   "blocks": [
     {
@@ -19,13 +19,29 @@
           "type": "image_picker",
           "id": "custom_icon",
           "label": "Custom Icon (PNG/SVG)",
-          "info": "Upload your own icon here. Overrides the selection below."
+          "info": "Upload your own icon here. Overrides selection."
         },
         { 
           "type": "select", 
           "id": "icon_type", 
           "label": "Standard Icon", 
-          "options": [ { "value": "puzzle", "label": "Puzzle" }, { "value": "cycle", "label": "Cycle" }, { "value": "ruler", "label": "Ruler" }, { "value": "bulb", "label": "Lightbulb" }, { "value": "check", "label": "Checkmark" } ], 
+          "options": [ 
+            { "value": "check", "label": "Checkmark" },
+            { "value": "puzzle", "label": "Puzzle" }, 
+            { "value": "cycle", "label": "Cycle / Loop" }, 
+            { "value": "ruler", "label": "Ruler" }, 
+            { "value": "bulb", "label": "Lightbulb" }, 
+            { "value": "star", "label": "Star" },
+            { "value": "heart", "label": "Heart" },
+            { "value": "truck", "label": "Truck / Shipping" },
+            { "value": "shield", "label": "Shield / Secure" },
+            { "value": "leaf", "label": "Leaf / Eco" },
+            { "value": "gift", "label": "Gift" },
+            { "value": "user", "label": "User / Community" },
+            { "value": "clock", "label": "Clock / Time" },
+            { "value": "box", "label": "Box / Package" },
+            { "value": "settings", "label": "Settings / Gear" }
+          ], 
           "default": "check" 
         },
         { 
@@ -41,9 +57,9 @@
     {
       "name": "Flipzy Feature Video",
       "blocks": [
-        { "type": "feature_point", "settings": { "icon_type": "puzzle", "text": "<p>8 customizable wooden pieces with 30+ activity stickers</p>" } },
-        { "type": "feature_point", "settings": { "icon_type": "cycle", "text": "<p>Simple flip action to mark tasks as complete</p>" } },
-        { "type": "feature_point", "settings": { "icon_type": "ruler", "text": "<p>Compact 20x8cm design, easy to mount anywhere</p>" } }
+        { "type": "feature_point", "settings": { "icon_type": "puzzle", "text": "<p>8 customizable wooden pieces</p>" } },
+        { "type": "feature_point", "settings": { "icon_type": "cycle", "text": "<p>Simple flip action</p>" } },
+        { "type": "feature_point", "settings": { "icon_type": "ruler", "text": "<p>Compact design</p>" } }
       ]
     }
   ]
@@ -52,12 +68,25 @@
 
 <div class="flipzy-feature-section {{ section.settings.color_scheme }} layout-desktop-{% if section.settings.desktop_layout == 'media_left' %}left{% else %}right{% endif %} layout-mobile-{{ section.settings.mobile_layout }}">
   <div class="flipzy-feature-inner">
+    
     <div class="flipzy-feature-media">
       <div class="flipzy-feature-media-inner">
-        {% if section.settings.fallback_image != blank %}<img class="flipzy-feature-image" src="{{ section.settings.fallback_image | image_url: width: 1200 }}" loading="lazy">{% endif %}
-        {% if section.settings.video_url != blank %}<video class="flipzy-feature-video" autoplay muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
+        {% if section.settings.video_url != blank %}
+          <video 
+            class="flipzy-feature-video" 
+            autoplay muted loop playsinline 
+            {% if section.settings.fallback_image != blank %}
+              poster="{{ section.settings.fallback_image | image_url: width: 1200 }}"
+            {% endif %}
+          >
+            <source src="{{ section.settings.video_url }}" type="video/mp4">
+          </video>
+        {% elsif section.settings.fallback_image != blank %}
+          <img class="flipzy-feature-image" src="{{ section.settings.fallback_image | image_url: width: 1200 }}" loading="lazy">
+        {% endif %}
       </div>
     </div>
+
     <div class="flipzy-feature-content">
       {% if section.settings.heading != blank %}<h2 class="flipzy-feature-heading">{{ section.settings.heading }}</h2>{% endif %}
       <div class="flipzy-feature-points">
@@ -73,6 +102,16 @@
                   {% when 'ruler' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12.5a.5.5 0 0 1 .5-.5h21a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-21a.5.5 0 0 1-.5-.5v-9Z"/><path d="M6 12v4"/><path d="M10 12v6"/><path d="M14 12v4"/><path d="M18 12v6"/></svg>
                   {% when 'bulb' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z"></path><path d="M9 21h6"></path></svg>
                   {% when 'check' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  {% when 'star' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  {% when 'heart' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                  {% when 'truck' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                  {% when 'shield' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  {% when 'leaf' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                  {% when 'gift' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                  {% when 'user' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  {% when 'clock' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  {% when 'box' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                  {% when 'settings' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                 {% endcase %}
               {% endif %}
             </div>
@@ -83,4 +122,3 @@
     </div>
   </div>
 </div>
-<script>document.addEventListener('DOMContentLoaded',function(){const c=document.currentScript.previousElementSibling,v=c.querySelector('.flipzy-feature-video'),i=c.querySelector('.flipzy-feature-image');if(!v)return;const s="{{ section.settings.video_url }}";if(!s)return;function isSlow(){const n=navigator.connection;return n&&(n.saveData||n.effectiveType.includes('2g'))}const l=()=>{if(v.dataset.loaded)return;v.src=s;v.dataset.loaded='true'};if(!isSlow())l();v.addEventListener('loadeddata',()=>{v.style.display='block';if(i)i.classList.add('is-hidden')});});</script>

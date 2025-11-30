@@ -38,49 +38,23 @@
 .flipzy-media-wrapper::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); z-index: 2; pointer-events: none; }
 .flipzy-media-wrapper video, .flipzy-media-wrapper img, .flipzy-media-wrapper svg { width: 100%; height: 100%; object-fit: cover; display: block; }
 .flipzy-content-wrapper {
-    position: absolute; 
-    z-index: 3; 
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    /* Malenkost močnejši gradient spodaj, da je tekst berljiv, ko je na dnu */
+    position: absolute; z-index: 3; bottom: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
-    display: flex; 
-    flex-direction: column; 
-    justify-content: flex-end; /* Potisne na dno */
-    align-items: center;
-    text-align: center; 
-    /* Zmanjšan odmik od dna (30px) */
-    padding: 0 20px 30px 20px; 
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+    text-align: center; padding: 0 20px 30px 20px;
 }
 .flipzy-text-box { max-width: 900px; color: var(--color-white); }
-.flipzy-heading { font-size: 2.5rem; line-height: 1.2; margin-bottom: 2rem; color: var(--color-white); text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-.flipzy-heading p {
-    margin: 0;
-    padding: 0;
-}
+.flipzy-heading { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; color: var(--color-white); text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.flipzy-heading p { margin: 0; padding: 0; }
 .flipzy-heading strong { color: var(--color-mustard); font-weight: 700; }
 @media screen and (min-width: 750px) { 
-    .flipzy-heading { 
-        font-size: 3.5rem; /* Zmanjšano iz 4.5rem */
-        max-width: 800px; /* Da se lepše prelomi */
-        margin-bottom: 1.5rem;
-    } 
+    .flipzy-heading { font-size: 3.5rem; max-width: 800px; margin-bottom: 1.5rem; } 
 }
 .flipzy-btn {
-    display: inline-block; 
-    background-color: var(--color-mustard); 
-    color: var(--color-charcoal);
-    padding: 16px 48px; /* Malo manjši padding */
-    border-radius: 50px; 
-    font-weight: 700; 
-    text-decoration: none;
-    font-size: 1.2rem; /* Malo manjši font */
-    margin-bottom: 15px; /* Manjši odmik do "scroll cue" */
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2); 
-    border: 2px solid var(--color-mustard);
+    display: inline-block; background-color: var(--color-mustard); color: var(--color-charcoal);
+    padding: 16px 48px; border-radius: 50px; font-weight: 700; text-decoration: none;
+    font-size: 1.2rem; margin-bottom: 15px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); border: 2px solid var(--color-mustard);
 }
 .flipzy-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(244, 211, 94, 0.7); }
 .flipzy-scroll-cue {
@@ -100,7 +74,7 @@
 .flipzy-next { right: 20px; }
 
 /* =========================================
-   3. FLIPZY FEATURE VIDEO (Fixed Alignment)
+   3. FLIPZY FEATURE VIDEO (Fixed & Clean)
    ========================================= */
 .flipzy-feature-section { padding-top: 6rem; padding-bottom: 6rem; width: 100%; background: #ffffff; }
 .flipzy-feature-inner {
@@ -112,54 +86,35 @@
     border-radius: 32px; overflow: hidden; box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
     background: #f5f5f5; position: relative; line-height: 0;
 }
+
+/* VIDEO FIX: Removed display:none logic. Let HTML5 handle posters. */
 .flipzy-feature-image, .flipzy-feature-video { width: 100%; height: auto; display: block; object-fit: cover; }
-.flipzy-feature-video { display: none; }
-.flipzy-feature-image.is-hidden { display: none; }
+
 .flipzy-feature-heading {
     font-size: clamp(2.2rem, 3vw, 3.2rem); font-weight: 700; margin: 0 0 2rem;
     color: var(--color-charcoal); line-height: 1.1;
 }
-.flipzy-feature-points { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 2rem; /* Malo večji razmik med vrsticami, ker je pisava večja */
-}
+.flipzy-feature-points { display: flex; flex-direction: column; gap: 2rem; }
 
-/* ALIGNMENT FIX: Flex start aligns icon to top */
-
-.flipzy-feature-point { 
-    display: flex; 
-    align-items: center; /* To poravna ikono in tekst točno na sredino */
-    gap: 1.5rem; 
-}
+/* Vertical Centering Fix */
+.flipzy-feature-point { display: flex; align-items: center; gap: 1.5rem; }
 
 .flipzy-feature-icon-box {
-    width: 36px; /* Malenkost večja ikona, da paše k večjemu tekstu */
-    height: 36px; 
-    flex-shrink: 0;
+    width: 36px; height: 36px; flex-shrink: 0;
     color: var(--color-mint);
-    margin-top: 0; /* Odstranjen odmik, ker imamo align-items: center */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
 }
-.flipzy-feature-icon-box svg,
-.flipzy-feature-icon-box img { 
-    width: 100%; 
-    height: 100%; 
-    object-fit: contain; /* Da se PNG lepo prilagodi */
-    stroke-width: 2px;
+.flipzy-feature-icon-box svg, .flipzy-feature-icon-box img { 
+    width: 100%; height: 100%; object-fit: contain; stroke-width: 2px; stroke: currentColor; fill: none;
+}
+
+.flipzy-feature-point-text {
+    margin: 0; font-size: 1.6rem; line-height: 1.4; font-weight: 400; color: var(--color-charcoal);
 }
 .flipzy-feature-point-text p { margin: 0; }
-.flipzy-feature-point-text {
-    margin: 0; 
-    font-size: 1.6rem; /* Tvoja želja */
-    line-height: 1.4;
-    font-weight: 400;  /* Tvoja želja (Regular) */
-    color: var(--color-charcoal);
-}
+
 @media (max-width: 899px) {
-    .flipzy-feature-section { padding-top: 0rem; padding-bottom: 0rem; }
+    .flipzy-feature-section { padding-top: 4rem; padding-bottom: 4rem; }
     .flipzy-feature-inner { flex-direction: column; gap: 3rem; padding-left: 5%; padding-right: 5%; }
     .layout-mobile-media-first .flipzy-feature-media { order: 1; } .layout-mobile-media-first .flipzy-feature-content { order: 2; }
     .layout-mobile-text-first .flipzy-feature-content { order: 1; } .layout-mobile-text-first .flipzy-feature-media { order: 2; }
@@ -176,7 +131,7 @@
 .flipzy-offer-section { padding: 80px 20px; width: 100%; text-align: center; }
 .flipzy-offer-container {
     max-width: 850px; margin: 0 auto; padding: 50px; border-radius: 32px;
-    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.12); /* DEEPER SHADOW */
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.12);
 }
 .offer-scheme-cream { background: var(--color-cream); color: var(--color-charcoal); }
 .offer-scheme-white { background: var(--color-white); color: var(--color-charcoal); border: 1px solid #eee; }
@@ -212,7 +167,6 @@
 .flipzy-trust-item { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; }
 .flipzy-trust-icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-/* SPINNER FIX */
 .flipzy-offer-btn .loading-overlay__spinner {
     width: 24px; height: 24px; display: inline-block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
