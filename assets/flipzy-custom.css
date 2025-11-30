@@ -18,29 +18,27 @@
 }
 
 /* =========================================
-   2. HERO SLIDER
+   2. HERO SLIDER (Narrower & Tight)
    ========================================= */
 .flipzy-hero-container {
-    position: relative;
-    width: 100%;
+    position: relative; 
+    width: 100%; 
     
-    /* SPREMENI TOLE: */
-    height: 75dvh;  /* Prej 85dvh. Manjša višina = več se vidi spodaj. */
+    /* ZMANJŠANA VIŠINA za "Peek" efekt */
+    height: 70dvh; 
     
-    max-height: 850px;
-    
-    /* SPREMENI TUDI TOLE (za vsak slučaj na manjših ekranih): */
-    min-height: 450px; /* Prej 500px. Da ne bo prevelik na majhnih telefonih. */
-    
-    background-color: var(--color-charcoal);
+    max-height: 850px; 
+    min-height: 400px; /* Malo manjši minimum */
+    background-color: var(--color-charcoal); 
     overflow: hidden;
 }
-@media screen and (min-width: 750px) {
-    .flipzy-hero-container {
-        /* Tudi na desktopu malo zmanjšaj, če želiš isti efekt */
-        height: 70vh; /* Prej 80vh */
-    }
+
+@media screen and (min-width: 750px) { 
+    .flipzy-hero-container { 
+        height: 60vh; /* Še manjša na desktopu */
+    } 
 }
+
 .flipzy-slider-track {
     display: flex; width: 100%; height: 100%;
     overflow-x: scroll; overflow-y: hidden;
@@ -52,31 +50,51 @@
 .flipzy-media-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
 .flipzy-media-wrapper::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); z-index: 2; pointer-events: none; }
 .flipzy-media-wrapper video, .flipzy-media-wrapper img, .flipzy-media-wrapper svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 .flipzy-content-wrapper {
     position: absolute; z-index: 3; bottom: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
     display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-    text-align: center; padding: 0 20px 30px 20px;
+    text-align: center; 
+    
+    /* TVOJ PADDING FIX: */
+    padding: 0 20px 10px 20px; 
 }
+
 .flipzy-text-box { max-width: 900px; color: var(--color-white); }
-.flipzy-heading { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; color: var(--color-white); text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+
+.flipzy-heading { 
+    font-size: 2.2rem; 
+    line-height: 1.2; 
+    margin-bottom: 1rem; 
+    color: var(--color-white); 
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3); 
+}
 .flipzy-heading p { margin: 0; padding: 0; }
 .flipzy-heading strong { color: var(--color-mustard); font-weight: 700; }
+
 @media screen and (min-width: 750px) { 
-    .flipzy-heading { font-size: 3.5rem; max-width: 800px; margin-bottom: 1.5rem; } 
+    .flipzy-heading { 
+        font-size: 3rem; /* ZMANJŠAN FONT (Tvoja želja) */
+        max-width: 800px; 
+        margin-bottom: 1.5rem; 
+    } 
 }
+
 .flipzy-btn {
     display: inline-block; background-color: var(--color-mustard); color: var(--color-charcoal);
     padding: 16px 48px; border-radius: 50px; font-weight: 700; text-decoration: none;
-    font-size: 1.2rem; margin-bottom: 15px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 1.2rem; margin-bottom: 10px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 4px 6px rgba(0,0,0,0.2); border: 2px solid var(--color-mustard);
 }
 .flipzy-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(244, 211, 94, 0.7); }
+
 .flipzy-scroll-cue {
-    font-size: 1.3rem; font-weight: 600; color: rgba(255,255,255,0.95); margin-top: 10px; cursor: default;
+    font-size: 1.1rem; font-weight: 500; color: rgba(255,255,255,0.9); margin-top: 5px; cursor: default;
     animation: continuous-bounce 1.5s infinite ease-in-out;
 }
-@keyframes continuous-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+@keyframes continuous-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
 .flipzy-nav-btn {
     position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
     background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255,255,255,0.2);
@@ -216,6 +234,7 @@
     .flipzy-featured-content .flipzy-trust-footer { justify-content: center; }
     .flipzy-featured-content .flipzy-guarantee-pill { align-self: center; }
 }
+
 /* =========================================
    6. FLIPZY BADGES SECTION
    ========================================= */
@@ -234,47 +253,44 @@
     display: inline-flex; align-items: center; gap: 15px;
 }
 
-.flipzy-badges-grid { display: grid; grid-template-columns: 1fr; gap: 15px; } /* Manjši gap med karticami */
+.flipzy-badges-grid { display: grid; grid-template-columns: 1fr; gap: 15px; } /* Manjši gap */
 @media screen and (min-width: 600px) { .flipzy-badges-grid { grid-template-columns: repeat(2, 1fr); } }
 @media screen and (min-width: 1100px) { .flipzy-badges-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; } }
 
 /* Badge Card - KOMPAKTNEJŠI IZGLED */
 .flipzy-badge-card {
     background: #FFFFFF; 
-    border-radius: 24px; /* Malo manjši radius, da izgleda širše */
-    padding: 35px 20px; /* ZMANJŠANO (prej 50px 30px) */
+    border-radius: 24px; 
+    padding: 35px 20px; /* ZMANJŠANO */
     box-shadow: 0 10px 30px rgba(0,0,0,0.06);
     display: flex; flex-direction: column; align-items: center;
     transition: transform 0.3s ease; height: 100%;
-    justify-content: center; /* Centrira vsebino vertikalno */
+    justify-content: center; 
 }
 .flipzy-badge-card:hover { transform: translateY(-5px); }
 
-/* Icons */
+/* Icons: Big & Mint */
 .flipzy-badge-icon {
-    width: 64px; /* Malo manjša, da ne "poje" vsega prostora */
+    width: 64px; 
     height: 64px; 
-    margin-bottom: 15px; /* ZMANJŠAN ODMIK (prej 30px) */
+    margin-bottom: 15px; /* ZMANJŠAN ODMIK */
     color: var(--color-mint);
     display: flex; align-items: center; justify-content: center;
 }
-.flipzy-badge-icon svg, .flipzy-badge-icon img { 
-    width: 100%; height: 100%; object-fit: contain; 
-    stroke-width: 1.5px; stroke: currentColor; fill: none; 
-}
+.flipzy-badge-icon svg, .flipzy-badge-icon img { width: 100%; height: 100%; object-fit: contain; stroke-width: 1.5px; stroke: currentColor; fill: none; }
 
 /* NASLOV KARTICE */
 .flipzy-badge-title {
     font-size: 1.6rem; 
     font-weight: 700; 
-    margin-bottom: 8px; /* ZMANJŠAN ODMIK (prej 15px) */
+    margin-bottom: 8px; /* ZMANJŠAN ODMIK */
     color: var(--color-charcoal); 
     line-height: 1.1;
 }
 
 /* OPIS KARTICE - POVEČAN */
 .flipzy-badge-text {
-    font-size: 1.4rem; /* POVEČANO (prej 1.25rem) */
+    font-size: 1.4rem; /* POVEČANO */
     line-height: 1.4; 
     color: #4B5563; 
     margin: 0; 
