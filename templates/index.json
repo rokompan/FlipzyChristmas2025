@@ -113,14 +113,14 @@
         "text_xLXfEf": {
           "type": "text",
           "settings": {
-            "text": "{{ section.settings.product.vendor }}",
+            "text": "SPECIAL OFFER - WHILE SUPPLIES LAST",
             "text_style": "uppercase"
           }
         },
         "title_b8BHKQ": {
           "type": "title",
           "settings": {
-            "heading_size": "h1"
+            "heading_size": "h2"
           }
         },
         "price_w6Xkzz": {
@@ -129,6 +129,7 @@
         },
         "variant_picker_FtpAbT": {
           "type": "variant_picker",
+          "disabled": true,
           "settings": {
             "picker_type": "button",
             "swatch_shape": "circle"
@@ -136,6 +137,7 @@
         },
         "quantity_selector_TRw8AA": {
           "type": "quantity_selector",
+          "disabled": true,
           "settings": {}
         },
         "buy_buttons_RFHj8z": {
@@ -147,6 +149,7 @@
         },
         "share_n79q7e": {
           "type": "share",
+          "disabled": true,
           "settings": {
             "share_label": "Share"
           }
@@ -164,17 +167,17 @@
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "flipzy-wooden-routine-board",
-        "color_scheme": "",
+        "color_scheme": "scheme-c359c2bf-0c0e-4470-9782-7d25559e01fc",
         "secondary_background": false,
-        "media_size": "medium",
+        "media_size": "small",
         "constrain_to_viewport": true,
-        "media_fit": "contain",
+        "media_fit": "cover",
         "media_position": "left",
-        "image_zoom": "lightbox",
+        "image_zoom": "hover",
         "hide_variants": false,
         "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "padding_top": 24,
+        "padding_bottom": 24
       }
     },
     "flipzy_badges_YjLTAp": {
