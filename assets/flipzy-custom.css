@@ -567,32 +567,31 @@
         width: 100% !important;
         max-width: 100% !important;
     }
-}
-/* =========================================
+}/* =========================================
    8. FLIPZY "WHAT'S IN THE BOX" SECTION
    ========================================= */
 .flipzy-box-section {
-    padding: 80px 20px;
-    background-color: #F6DACE; /* Peach default */
+    padding: 60px 20px; /* Malo manjši zunanji padding */
+    background-color: #F6DACE; 
 }
 
 .flipzy-box-header {
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto 50px auto;
+    max-width: 900px;
+    margin: 0 auto 35px auto; /* Zmanjšan odmik (prej 50px) */
 }
 
 .flipzy-box-title {
-    font-size: 2.5rem;
+    font-size: 2.8rem; /* Večji naslov */
     font-weight: 700;
     color: var(--color-charcoal);
-    margin-bottom: 15px;
-    line-height: 1.2;
+    margin-bottom: 10px; /* Manjši odmik */
+    line-height: 1.1;
 }
 
 .flipzy-box-subtitle {
-    font-size: 1.2rem;
-    line-height: 1.6;
+    font-size: 1.35rem; /* Povečano (prej 1.2rem) */
+    line-height: 1.5;
     color: #4B5563;
 }
 
@@ -608,8 +607,8 @@
 
 @media screen and (min-width: 990px) {
     .flipzy-box-grid {
-        grid-template-columns: 1fr 1fr; /* 50/50 split */
-        gap: 50px;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px; /* Malo bolj skupaj */
     }
 }
 
@@ -617,14 +616,14 @@
 .flipzy-box-media-col {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px; /* Zmanjšan razmik med slikama */
 }
 
 .flipzy-box-img-card {
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    background: #fff; /* Default belo */
+    background: #fff; 
 }
 
 .flipzy-box-img-card img {
@@ -634,67 +633,71 @@
     object-fit: cover;
 }
 
-/* Specifika za drugo sliko (Dimenzije) */
 .flipzy-box-img-card.dimensions-card {
-    background-color: #EADBC8; /* Bež barva iz screenshota */
-    padding: 20px; /* Malo paddinga, če je slika transparentna */
+    background-color: #EADBC8;
+    padding: 15px; 
 }
 
 /* --- DESNA STRAN (Content) --- */
 .flipzy-box-content-card {
     background: #FFFFFF;
     border-radius: 24px;
-    padding: 50px 40px;
+    padding: 40px 30px; /* Zmanjšan padding (bolj kompaktno) */
     box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
 .flipzy-box-content-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem; /* Povečano */
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* Zmanjšan odmik */
     color: var(--color-charcoal);
+    line-height: 1.2;
 }
 
 /* Checklist */
 .flipzy-box-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 30px 0;
+    margin: 0 0 25px 0; /* Zmanjšan odmik */
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px; /* Zmanjšan razmik med točkami */
 }
 
 .flipzy-box-item {
     display: flex;
-    align-items: flex-start; /* Ikona poravnana zgoraj */
-    gap: 15px;
-    font-size: 1.15rem;
+    align-items: center; /* FIX: Poravnava tekst in ikono na sredino */
+    gap: 12px;
+    font-size: 1.3rem; /* Povečano (prej 1.15rem) */
     color: #374151;
-    line-height: 1.5;
+    line-height: 1.4;
+    font-weight: 500;
 }
 
 .flipzy-box-icon {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
-    color: #10B981; /* Zelena za kljukice */
-    margin-top: 3px;
+    color: #10B981; 
+    margin-top: 0; /* Odstranjen odmik, ker imamo align-items: center */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
 }
 .flipzy-box-icon svg { width: 100%; height: 100%; }
 
 /* Price Row */
 .flipzy-box-price {
-    font-size: 2rem;
+    font-size: 2.2rem; /* Večje */
     font-weight: 700;
-    margin-bottom: 25px;
+    margin-bottom: 20px; /* Zmanjšan odmik */
     color: var(--color-charcoal);
     display: flex;
     align-items: center;
     gap: 15px;
 }
 .flipzy-box-price s {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #9CA3AF;
     font-weight: 500;
 }
@@ -703,45 +706,47 @@
 .flipzy-box-trust {
     background-color: #ECFDF5;
     border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 30px;
+    padding: 15px 20px; /* Bolj kompaktno */
+    margin-bottom: 25px; /* Zmanjšan odmik */
 }
 
 .flipzy-box-trust-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 10px;
+    gap: 15px;
+    margin-bottom: 8px;
 }
 .flipzy-box-trust-row:last-child { margin-bottom: 0; }
 
 .flipzy-trust-mini {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.95rem;
+    gap: 6px;
+    font-size: 1rem; /* Povečano */
     font-weight: 600;
     color: #065F46;
 }
-.flipzy-trust-mini svg { width: 18px; height: 18px; }
+.flipzy-trust-mini svg { width: 20px; height: 20px; }
 
 /* Description & Button */
 .flipzy-box-desc {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
+    font-size: 1.25rem; /* Povečano (prej 1.1rem) */
+    line-height: 1.5;
+    margin-bottom: 25px; /* Zmanjšan odmik */
     color: #4B5563;
 }
 
-/* Button override for width */
+/* Button override */
 .flipzy-box-content-card .flipzy-btn {
     width: 100%;
     text-align: center;
     margin-bottom: 0;
+    font-size: 1.4rem; /* Večji gumb */
+    padding: 18px 30px;
 }
 
 @media (max-width: 750px) {
     .flipzy-box-content-card { padding: 30px 20px; }
-    .flipzy-box-title { font-size: 2rem; }
-    .flipzy-box-price { font-size: 1.8rem; }
+    .flipzy-box-title { font-size: 2.2rem; }
+    .flipzy-box-price { font-size: 2rem; }
 }
