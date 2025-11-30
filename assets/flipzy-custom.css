@@ -129,7 +129,7 @@
 }
 .flipzy-feature-point-text p { margin: 0; }
 @media (max-width: 899px) {
-    .flipzy-feature-section { padding-top: 4rem; padding-bottom: 4rem; }
+    .flipzy-feature-section { padding-top: 0rem; padding-bottom: 0rem; }
     .flipzy-feature-inner { flex-direction: column; gap: 3rem; padding-left: 5%; padding-right: 5%; }
     .layout-mobile-media-first .flipzy-feature-media { order: 1; } .layout-mobile-media-first .flipzy-feature-content { order: 2; }
     .layout-mobile-text-first .flipzy-feature-content { order: 1; } .layout-mobile-text-first .flipzy-feature-media { order: 2; }
