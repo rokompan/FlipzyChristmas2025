@@ -533,3 +533,38 @@
     .flipzy-meta-row { justify-content: center; }
     .flipzy-super-price-row { justify-content: center; }
 }
+/* Mobile Centering Fix */
+@media (max-width: 750px) {
+    .flipzy-super-content {
+        align-items: center !important;
+        text-align: center !important;
+        padding-top: 0 !important;
+    }
+    
+    .flipzy-super-title,
+    .flipzy-super-desc,
+    .flipzy-super-meta {
+        text-align: center !important;
+        width: 100%;
+    }
+
+    .flipzy-super-price-row {
+        justify-content: center !important;
+    }
+
+    .flipzy-meta-row {
+        justify-content: center !important;
+    }
+
+    .flipzy-super-footer {
+        justify-content: center !important;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    /* Gumb naj bo poln, a centriran */
+    .flipzy-super-content .flipzy-offer-btn {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
