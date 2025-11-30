@@ -107,68 +107,17 @@
         "offset": 100
       }
     },
-    "featured_product_AFBizT": {
-      "type": "featured-product",
-      "blocks": {
-        "title_ARVFzF": {
-          "type": "title",
-          "settings": {
-            "heading_size": "h1"
-          }
-        },
-        "price_AXz3A4": {
-          "type": "price",
-          "settings": {}
-        },
-        "variant_picker_7Ff46k": {
-          "type": "variant_picker",
-          "settings": {
-            "picker_type": "button",
-            "swatch_shape": "circle"
-          }
-        },
-        "quantity_selector_wqQt7Y": {
-          "type": "quantity_selector",
-          "disabled": true,
-          "settings": {}
-        },
-        "buy_buttons_DaiTn9": {
-          "type": "buy_buttons",
-          "settings": {
-            "show_dynamic_checkout": true,
-            "show_gift_card_recipient": true
-          }
-        },
-        "share_n3bxhQ": {
-          "type": "share",
-          "disabled": true,
-          "settings": {
-            "share_label": "Share"
-          }
-        }
-      },
-      "block_order": [
-        "title_ARVFzF",
-        "price_AXz3A4",
-        "variant_picker_7Ff46k",
-        "quantity_selector_wqQt7Y",
-        "buy_buttons_DaiTn9",
-        "share_n3bxhQ"
-      ],
-      "name": "t:sections.featured-product.presets.name",
+    "flipzy_conversion_product_9zHmdT": {
+      "type": "flipzy-conversion-product",
+      "name": "Flipzy Conversion Product",
       "settings": {
         "product": "flipzy-wooden-routine-board",
-        "color_scheme": "scheme-c359c2bf-0c0e-4470-9782-7d25559e01fc",
-        "secondary_background": false,
-        "media_size": "medium",
-        "constrain_to_viewport": true,
-        "media_fit": "contain",
-        "media_position": "left",
-        "image_zoom": "lightbox",
-        "hide_variants": false,
-        "enable_video_looping": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "badge": "Special Offer – While Supplies Last",
+        "heading": "",
+        "description": "<p>Don't miss this exclusive opportunity to transform your family's daily routines. Order now and save!</p>",
+        "stock_text": "Low stock - selling fast",
+        "shipping_text": "Ships within 24h • Free Shipping",
+        "guarantee_text": "30-day money-back guarantee • 24 months warranty"
       }
     },
     "flipzy_badges_YjLTAp": {
@@ -225,7 +174,7 @@
     "flipzy_hero_yHQ9UX",
     "flipzy_feature_video_Wf8y33",
     "flipzy_anchor_94NFEW",
-    "featured_product_AFBizT",
+    "flipzy_conversion_product_9zHmdT",
     "flipzy_badges_YjLTAp"
   ]
 }
