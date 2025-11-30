@@ -744,7 +744,7 @@
     text-align: center;
     margin-bottom: 0;
     font-size: 1.6rem; /* Večji gumb */
-    padding: 13px 30px;
+    padding: 10px 30px;
 }
 
 @media (max-width: 750px) {
