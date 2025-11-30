@@ -19,7 +19,7 @@
             "image_fallback": "shopify://shop_images/mizar.jpg",
             "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
             "button_text": "Go to Shop",
-            "button_link": ""
+            "button_link": "#buy"
           }
         },
         "slide_M6LaR3": {
@@ -57,7 +57,7 @@
         "feature_point_n9yna3": {
           "type": "feature_point",
           "settings": {
-            "icon_type": "star",
+            "icon_type": "bulb",
             "text": "<p>A wooden board that helps kids follow daily routines.</p>"
           }
         },
@@ -97,6 +97,14 @@
         "heading": "What is Flipzy?",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/efa91ddb30bb4e00bc1b3a1456b8a2d0.mp4",
         "fallback_image": "shopify://shop_images/palca.jpg"
+      }
+    },
+    "flipzy_anchor_94NFEW": {
+      "type": "flipzy-anchor",
+      "name": "Flipzy Scroll Anchor",
+      "settings": {
+        "anchor_id": "buy",
+        "offset": 100
       }
     },
     "featured_product_AFBizT": {
@@ -156,7 +164,7 @@
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "flipzy-wooden-routine-board",
-        "color_scheme": "scheme-4",
+        "color_scheme": "scheme-c359c2bf-0c0e-4470-9782-7d25559e01fc",
         "secondary_background": false,
         "media_size": "medium",
         "constrain_to_viewport": true,
@@ -173,6 +181,7 @@
   "order": [
     "flipzy_hero_yHQ9UX",
     "flipzy_feature_video_Wf8y33",
+    "flipzy_anchor_94NFEW",
     "featured_product_AFBizT"
   ]
 }
