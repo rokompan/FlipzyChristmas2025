@@ -119,19 +119,45 @@
     font-size: clamp(2.2rem, 3vw, 3.2rem); font-weight: 700; margin: 0 0 2rem;
     color: var(--color-charcoal); line-height: 1.1;
 }
-.flipzy-feature-points { display: flex; flex-direction: column; gap: 1.5rem; }
+.flipzy-feature-points { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 2rem; /* Malo večji razmik med vrsticami, ker je pisava večja */
+}
 
 /* ALIGNMENT FIX: Flex start aligns icon to top */
-.flipzy-feature-point { display: flex; align-items: flex-start; gap: 1.5rem; }
-.flipzy-feature-icon-box {
-    width: 32px; height: 32px; flex-shrink: 0; color: var(--color-mint);
-    margin-top: 4px; /* Optical adjustment */
+
+.flipzy-feature-point { 
+    display: flex; 
+    align-items: center; /* To poravna ikono in tekst točno na sredino */
+    gap: 1.5rem; 
 }
-.flipzy-feature-icon-box svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 2px; }
-.flipzy-feature-point-text {
-    margin: 0; font-size: 1.35rem; line-height: 1.6; font-weight: 500; color: #374151;
+
+.flipzy-feature-icon-box {
+    width: 36px; /* Malenkost večja ikona, da paše k večjemu tekstu */
+    height: 36px; 
+    flex-shrink: 0;
+    color: var(--color-mint);
+    margin-top: 0; /* Odstranjen odmik, ker imamo align-items: center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.flipzy-feature-icon-box svg,
+.flipzy-feature-icon-box img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; /* Da se PNG lepo prilagodi */
+    stroke-width: 2px;
 }
 .flipzy-feature-point-text p { margin: 0; }
+.flipzy-feature-point-text {
+    margin: 0; 
+    font-size: 1.6rem; /* Tvoja želja */
+    line-height: 1.4;
+    font-weight: 400;  /* Tvoja želja (Regular) */
+    color: var(--color-charcoal);
+}
 @media (max-width: 899px) {
     .flipzy-feature-section { padding-top: 0rem; padding-bottom: 0rem; }
     .flipzy-feature-inner { flex-direction: column; gap: 3rem; padding-left: 5%; padding-right: 5%; }

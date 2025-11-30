@@ -15,8 +15,25 @@
       "type": "feature_point",
       "name": "Feature Point",
       "settings": [
-        { "type": "select", "id": "icon_type", "label": "Icon", "options": [ { "value": "puzzle", "label": "Puzzle" }, { "value": "cycle", "label": "Cycle" }, { "value": "ruler", "label": "Ruler" }, { "value": "bulb", "label": "Lightbulb" }, { "value": "check", "label": "Checkmark" } ], "default": "check" },
-        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Feature text</p>" }
+        {
+          "type": "image_picker",
+          "id": "custom_icon",
+          "label": "Custom Icon (PNG/SVG)",
+          "info": "Upload your own icon here. Overrides the selection below."
+        },
+        { 
+          "type": "select", 
+          "id": "icon_type", 
+          "label": "Standard Icon", 
+          "options": [ { "value": "puzzle", "label": "Puzzle" }, { "value": "cycle", "label": "Cycle" }, { "value": "ruler", "label": "Ruler" }, { "value": "bulb", "label": "Lightbulb" }, { "value": "check", "label": "Checkmark" } ], 
+          "default": "check" 
+        },
+        { 
+          "type": "richtext", 
+          "id": "text", 
+          "label": "Text", 
+          "default": "<p>Feature text here</p>" 
+        }
       ]
     }
   ],
@@ -47,13 +64,17 @@
         {% for block in section.blocks %}
           <div class="flipzy-feature-point" {{ block.shopify_attributes }}>
             <div class="flipzy-feature-icon-box">
-              {% case block.settings.icon_type %}
-                {% when 'puzzle' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 6c-2.61.7-2.61 3.3 0 4c1.93.5 1.68 3-1.21 3.5a8 8 0 1 0-9.29 9.29c.5-2.89 3-2.64 3.5-1.21.7 2.61 3.3 2.61 4 0 1.78-.66 1.78-3.34 0-4-2.61-.7-2.61-3.3 0-4 1.78-.66 1.78-3.34 0-4-.7-2.61-3.3-2.61-4 0z"></path></svg>
-                {% when 'cycle' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-                {% when 'ruler' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12.5a.5.5 0 0 1 .5-.5h21a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-21a.5.5 0 0 1-.5-.5v-9Z"/><path d="M6 12v4"/><path d="M10 12v6"/><path d="M14 12v4"/><path d="M18 12v6"/></svg>
-                {% when 'bulb' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z"></path><path d="M9 21h6"></path></svg>
-                {% when 'check' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              {% endcase %}
+              {% if block.settings.custom_icon != blank %}
+                <img src="{{ block.settings.custom_icon | image_url: width: 64 }}" alt="icon" loading="lazy">
+              {% else %}
+                {% case block.settings.icon_type %}
+                  {% when 'puzzle' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 6c-2.61.7-2.61 3.3 0 4c1.93.5 1.68 3-1.21 3.5a8 8 0 1 0-9.29 9.29c.5-2.89 3-2.64 3.5-1.21.7 2.61 3.3 2.61 4 0 1.78-.66 1.78-3.34 0-4-2.61-.7-2.61-3.3 0-4 1.78-.66 1.78-3.34 0-4-.7-2.61-3.3-2.61-4 0z"></path></svg>
+                  {% when 'cycle' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                  {% when 'ruler' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12.5a.5.5 0 0 1 .5-.5h21a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-21a.5.5 0 0 1-.5-.5v-9Z"/><path d="M6 12v4"/><path d="M10 12v6"/><path d="M14 12v4"/><path d="M18 12v6"/></svg>
+                  {% when 'bulb' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z"></path><path d="M9 21h6"></path></svg>
+                  {% when 'check' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                {% endcase %}
+              {% endif %}
             </div>
             <div class="flipzy-feature-point-text">{{ block.settings.text }}</div>
           </div>
