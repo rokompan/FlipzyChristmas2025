@@ -26,7 +26,7 @@
           "type": "slide",
           "settings": {
             "image_fallback": "shopify://shop_images/Gemini_Generated_Image_6h7f436h7f436h7f.jpg",
-            "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
+            "heading": "<p>Start your day <strong>screen-free</strong> and <strong>fight-free</strong>.</p>",
             "button_text": "Go to Shop",
             "button_link": "#buy"
           }
@@ -36,7 +36,7 @@
           "settings": {
             "video_file": "shopify://files/videos/flat06.mp4",
             "image_fallback": "shopify://shop_images/kvaje3.jpg",
-            "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
+            "heading": "<p>Bedtime routine that <strong>finally</strong> works</p>",
             "button_text": "Go to Shop",
             "button_link": ""
           }
