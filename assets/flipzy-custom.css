@@ -300,23 +300,30 @@
    Flipzy Custom CSS Layer
    ========================================= */
 
-/* --- WEGLOT FIXES --- */
+/* --- WEGLOT & HEADER FIXES --- */
 
-/* 1. The Bridge: Fixes the "Hover Tunnel" bug */
-.weglot-container .wg-drop,
-.weglot-container ul {
-  /* Remove the physical gap that closes the menu */
-  margin-top: 0 !important;
-  
-  /* Add invisible padding so the mouse stays "inside" while moving down */
-  padding-top: 20px !important;
-  
-  /* 2. The Z-Index: Ensures flags float ABOVE the Hero image */
-  z-index: 1000 !important;
+/* 1. FORCE HEADER VISIBILITY: Allow the dropdown to "spill" out of the header */
+.header-wrapper, 
+.header, 
+.header__icons {
+  overflow: visible !important;
+  z-index: 50 !important; /* Ensure Header stays ON TOP of the Hero section */
 }
 
-/* 3. Visual Tweak: Ensure the dropdown starts exactly at the bottom of the flag */
+/* 2. THE BRIDGE: Extends the click area significantly */
+.weglot-container ul, 
+.wg-drop {
+  /* This creates a large invisible block ensuring your mouse never "leaves" */
+  padding-top: 50px !important; 
+  margin-top: -20px !important; /* Pulls the list up visually to reduce the gap */
+  
+  /* Ensure it floats above everything */
+  z-index: 1001 !important;
+  display: block; /* Prevents flickering */
+}
+
+/* 3. ANCHOR: Keep the button stable */
 .wg-default {
   position: relative;
-  z-index: 1001; /* Button stays above dropdown */
+  z-index: 1002;
 }
