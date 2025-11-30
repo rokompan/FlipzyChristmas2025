@@ -567,30 +567,31 @@
         width: 100% !important;
         max-width: 100% !important;
     }
-}/* =========================================
+
+    /* =========================================
    8. FLIPZY "WHAT'S IN THE BOX" SECTION
    ========================================= */
 .flipzy-box-section {
-    padding: 60px 20px; /* Malo manjši zunanji padding */
+    padding: 60px 20px; 
     background-color: #F6DACE; 
 }
 
 .flipzy-box-header {
     text-align: center;
     max-width: 900px;
-    margin: 0 auto 35px auto; /* Zmanjšan odmik (prej 50px) */
+    margin: 0 auto 35px auto; 
 }
 
 .flipzy-box-title {
-    font-size: 2.8rem; /* Večji naslov */
+    font-size: 2.8rem; 
     font-weight: 700;
     color: var(--color-charcoal);
-    margin-bottom: 10px; /* Manjši odmik */
+    margin-bottom: 10px; 
     line-height: 1.1;
 }
 
 .flipzy-box-subtitle {
-    font-size: 1.35rem; /* Povečano (prej 1.2rem) */
+    font-size: 1.35rem; 
     line-height: 1.5;
     color: #4B5563;
 }
@@ -608,7 +609,7 @@
 @media screen and (min-width: 990px) {
     .flipzy-box-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 40px; /* Malo bolj skupaj */
+        gap: 40px; 
     }
 }
 
@@ -616,13 +617,13 @@
 .flipzy-box-media-col {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Zmanjšan razmik med slikama */
+    gap: 20px; 
 }
 
 .flipzy-box-img-card {
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    box-shadow: none; /* SENCA ODSTRANJENA */
     background: #fff; 
 }
 
@@ -642,16 +643,14 @@
 .flipzy-box-content-card {
     background: #FFFFFF;
     border-radius: 24px;
-    padding: 40px 30px; /* Zmanjšan padding (bolj kompaktno) */
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    padding: 40px 30px; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08); /* Senca na kartici z vsebino ostaja, da izstopa */
 }
 
 .flipzy-box-content-title {
-    font-size: 1.8rem; /* Povečano */
+    font-size: 1.8rem; 
     font-weight: 700;
-    margin-bottom: 20px; /* Zmanjšan odmik */
-    margin-block-start: 0px; 
-    padding-top: 0px; 
+    margin-bottom: 20px; 
     color: var(--color-charcoal);
     line-height: 1.2;
 }
@@ -660,17 +659,17 @@
 .flipzy-box-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 25px 0; /* Zmanjšan odmik */
+    margin: 0 0 25px 0; 
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Zmanjšan razmik med točkami */
+    gap: 12px; 
 }
 
 .flipzy-box-item {
     display: flex;
-    align-items: center; /* FIX: Poravnava tekst in ikono na sredino */
+    align-items: center; 
     gap: 12px;
-    font-size: 1.3rem; /* Povečano (prej 1.15rem) */
+    font-size: 1.3rem; 
     color: #374151;
     line-height: 1.4;
     font-weight: 500;
@@ -681,7 +680,7 @@
     height: 24px;
     flex-shrink: 0;
     color: #10B981; 
-    margin-top: 0; /* Odstranjen odmik, ker imamo align-items: center */
+    margin-top: 0; 
     display: flex; 
     align-items: center; 
     justify-content: center;
@@ -690,9 +689,9 @@
 
 /* Price Row */
 .flipzy-box-price {
-    font-size: 2.2rem; /* Večje */
+    font-size: 2.2rem; 
     font-weight: 700;
-    margin-bottom: 20px; /* Zmanjšan odmik */
+    margin-bottom: 20px; 
     color: var(--color-charcoal);
     display: flex;
     align-items: center;
@@ -708,8 +707,8 @@
 .flipzy-box-trust {
     background-color: #ECFDF5;
     border-radius: 12px;
-    padding: 15px 20px; /* Bolj kompaktno */
-    margin-bottom: 25px; /* Zmanjšan odmik */
+    padding: 15px 20px; 
+    margin-bottom: 25px; 
 }
 
 .flipzy-box-trust-row {
@@ -724,7 +723,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 1rem; /* Povečano */
+    font-size: 1rem; 
     font-weight: 600;
     color: #065F46;
 }
@@ -732,9 +731,9 @@
 
 /* Description & Button */
 .flipzy-box-desc {
-    font-size: 1.25rem; /* Povečano (prej 1.1rem) */
+    font-size: 1.25rem; 
     line-height: 1.5;
-    margin-bottom: 25px; /* Zmanjšan odmik */
+    margin-bottom: 25px; 
     color: #4B5563;
 }
 
@@ -743,8 +742,8 @@
     width: 100%;
     text-align: center;
     margin-bottom: 0;
-    font-size: 1.6rem; /* Večji gumb */
-    padding: 10px 30px;
+    font-size: 1.4rem; 
+    padding: 18px 30px;
 }
 
 @media (max-width: 750px) {
