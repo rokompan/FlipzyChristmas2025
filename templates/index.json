@@ -129,6 +129,7 @@
         },
         "text_DcUqDi": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "🔴 Low stock - selling fast",
             "text_style": "uppercase"
