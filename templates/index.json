@@ -15,8 +15,7 @@
         "slide_pde3JQ": {
           "type": "slide",
           "settings": {
-            "video_file": "shopify://files/videos/under-hero.mp4",
-            "image_fallback": "shopify://shop_images/mizar.jpg",
+            "image_fallback": "shopify://shop_images/Gemini_Generated_Image_6h7f436h7f436h7f.jpg",
             "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
             "button_text": "Go to Shop",
             "button_link": "#buy"
