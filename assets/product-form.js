@@ -67,12 +67,10 @@ if (!customElements.get('product-form')) {
             }
 
             // --- FLIPZY FIX START ---
-            const hasDrawerSection = response.sections && response.sections['cart-drawer'];
+            const sections = response.sections || {};
+            const hasDrawerSection = sections['cart-drawer'];
             
             if (!hasDrawerSection) {
-                console.log("Flipzy: HTML missing via Add-to-cart. Waiting 600ms then fetching manually...");
-                
-                // FIX: Dodan 600ms delay, da preprečimo "Race Condition" pri novi seji
                 setTimeout(() => {
                     fetch(`${window.location.pathname}?section_id=cart-drawer`)
                         .then((res) => res.text())
@@ -84,7 +82,6 @@ if (!customElements.get('product-form')) {
                                 }
                             };
                             
-                            // Posodobimo še bubble
                             fetch(`${window.location.pathname}?section_id=cart-icon-bubble`)
                                  .then(resBubble => resBubble.text())
                                  .then(textBubble => {
@@ -101,11 +98,10 @@ if (!customElements.get('product-form')) {
                             window.location = window.routes.cart_url;
                         });
 
-                    // Cleanup gumba
                     this.submitButton.classList.remove('loading');
                     this.querySelector('.loading__spinner').classList.add('hidden');
                     if (!this.error) this.submitButton.removeAttribute('aria-disabled');
-                }, 600); // 600ms zamika
+                }, 600);
 
                 return; 
             }
@@ -128,7 +124,7 @@ if (!customElements.get('product-form')) {
                 () => {
                   setTimeout(() => {
                     CartPerformance.measure("add:paint-updated-sections", () => {
-                      if(this.cart && response.sections) this.cart.renderContents(response);
+                      this.cart.renderContents(response);
                     });
                   });
                 },
@@ -137,7 +133,7 @@ if (!customElements.get('product-form')) {
               quickAddModal.hide(true);
             } else {
               CartPerformance.measure("add:paint-updated-sections", () => {
-                 if(this.cart && response.sections) this.cart.renderContents(response);
+                this.cart.renderContents(response);
               });
             }
           })

@@ -4,7 +4,9 @@ class CartDrawer extends HTMLElement {
 
     this.addEventListener('keyup', (evt) => evt.code === 'Escape' && this.close());
     const overlay = this.querySelector('#CartDrawer-Overlay');
-    if(overlay) overlay.addEventListener('click', this.close.bind(this));
+    if (overlay) {
+      overlay.addEventListener('click', this.close.bind(this));
+    }
     this.setHeaderCartIconAccessibility();
   }
 
@@ -31,6 +33,14 @@ class CartDrawer extends HTMLElement {
     const cartDrawerNote = this.querySelector('[id^="Details-"] summary');
     if (cartDrawerNote && !cartDrawerNote.hasAttribute('role')) this.setSummaryAccessibility(cartDrawerNote);
     
+    // --- FLIPZY EXTRA: Popravi link "Nadaljuj z nakupovanjem" na HOME ---
+    // Poiščemo gumb v praznem drawerju in mu nastavimo href na "/"
+    const emptyStateLink = this.querySelector('.cart-drawer__empty-content a');
+    if (emptyStateLink) {
+        emptyStateLink.href = '/';
+    }
+    // ---------------------------------------------------------------------
+
     setTimeout(() => {
       this.classList.add('animate', 'active');
     });
@@ -43,7 +53,7 @@ class CartDrawer extends HTMLElement {
           : document.getElementById('CartDrawer');
         const focusElement = this.querySelector('.drawer__inner') || this.querySelector('.drawer__close');
         
-        // FIX: Varovalka pred crash-om
+        // FIX: Varovalka za trapFocus
         if (containerToTrapFocusOn && focusElement && typeof trapFocus === 'function') {
            trapFocus(containerToTrapFocusOn, focusElement);
         }
@@ -57,7 +67,7 @@ class CartDrawer extends HTMLElement {
   close() {
     this.classList.remove('active');
     if (typeof removeTrapFocus === 'function' && this.activeElement) {
-       removeTrapFocus(this.activeElement);
+        removeTrapFocus(this.activeElement);
     }
     document.body.classList.remove('overflow-hidden');
   }
@@ -78,13 +88,13 @@ class CartDrawer extends HTMLElement {
   }
 
   renderContents(parsedState) {
-    // FIX: Zagotovimo, da odstranimo is-empty class, če ga imamo
     const innerDrawer = this.querySelector('.drawer__inner');
     if (innerDrawer && innerDrawer.classList.contains('is-empty')) {
         innerDrawer.classList.remove('is-empty');
     }
 
     this.productId = parsedState.id;
+    
     this.getSectionsToRender().forEach((section) => {
       const sectionElement = section.selector
         ? document.querySelector(section.selector)
@@ -93,6 +103,7 @@ class CartDrawer extends HTMLElement {
       if (!sectionElement) return;
 
       const htmlContent = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
+      
       if (htmlContent) {
           sectionElement.innerHTML = htmlContent;
       }
@@ -108,8 +119,8 @@ class CartDrawer extends HTMLElement {
   getSectionInnerHTML(html, selector = '.shopify-section') {
     if (!html) return '';
     const doc = new DOMParser().parseFromString(html, 'text/html');
-    const el = doc.querySelector(selector);
-    return el ? el.innerHTML : '';
+    const element = doc.querySelector(selector);
+    return element ? element.innerHTML : '';
   }
 
   getSectionsToRender() {

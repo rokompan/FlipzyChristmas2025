@@ -87,48 +87,29 @@ class CartItems extends HTMLElement {
     this.validateQuantity(event);
   }
 
-onCartUpdate() {
-    console.log("Flipzy Debug: onCartUpdate STARTED");
-    
+  onCartUpdate() {
     if (this.tagName === 'CART-DRAWER-ITEMS') {
       return fetch(`${routes.cart_url}?section_id=cart-drawer`)
         .then((response) => response.text())
         .then((responseText) => {
-          console.log("Flipzy Debug: Fetch successful. HTML length:", responseText.length);
-          
           const html = new DOMParser().parseFromString(responseText, 'text/html');
           
-          // Debugging Empty State Detection
+          // --- FLIPZY FIX START ---
           const newInnerEmpty = html.querySelector('.drawer__inner-empty');
-          console.log("Flipzy Debug: New HTML has .drawer__inner-empty?", !!newInnerEmpty);
-          
-          const currentInnerEmpty = document.querySelector('.drawer__inner-empty');
-          console.log("Flipzy Debug: Current DOM has .drawer__inner-empty?", !!currentInnerEmpty);
-          
-          const targetInner = document.querySelector('.drawer__inner');
-          console.log("Flipzy Debug: Found target .drawer__inner in DOM?", !!targetInner);
-
           const cartDrawer = document.querySelector('cart-drawer');
-          console.log("Flipzy Debug: Found <cart-drawer>?", !!cartDrawer);
 
+          // Če je nova košarica prazna, zamenjamo celo notranjost
           if (newInnerEmpty) {
-              console.log("Flipzy Debug: DETECTED EMPTY CART in response. Trying to swap inner HTML...");
+              const targetInner = document.querySelector('.drawer__inner');
               const sourceInner = html.querySelector('.drawer__inner');
-              console.log("Flipzy Debug: Source HTML has .drawer__inner?", !!sourceInner);
               
               if (targetInner && sourceInner) {
-                  console.log("Flipzy Debug: Performing SWAP of innerHTML");
                   targetInner.innerHTML = sourceInner.innerHTML;
-              } else {
-                  console.error("Flipzy Debug: SWAP FAILED - Missing target or source element");
               }
               
-              if (cartDrawer) {
-                  console.log("Flipzy Debug: Adding 'is-empty' class to cart-drawer");
-                  cartDrawer.classList.add('is-empty');
-              }
+              if (cartDrawer) cartDrawer.classList.add('is-empty');
           } else {
-              console.log("Flipzy Debug: Cart NOT empty. Doing standard replacement.");
+              // Če ni prazna, zamenjamo samo elemente
               const selectors = ['cart-drawer-items', '.cart-drawer__footer'];
               for (const selector of selectors) {
                 const targetElement = document.querySelector(selector);
@@ -139,12 +120,12 @@ onCartUpdate() {
               }
               if (cartDrawer) cartDrawer.classList.remove('is-empty');
           }
+          // --- FLIPZY FIX END ---
         })
         .catch((e) => {
-          console.error("Flipzy Debug Error:", e);
+          console.error(e);
         });
     } else {
-      // ... (standard logic for main cart items)
       return fetch(`${routes.cart_url}?section_id=main-cart-items`)
         .then((response) => response.text())
         .then((responseText) => {
@@ -201,17 +182,13 @@ onCartUpdate() {
       .then((state) => {
         const parsedState = JSON.parse(state);
 
-        // --- FLIPZY FIX: Fallback for Missing Sections (Cookies/Incognito) ---
+        // --- FLIPZY FIX: Fallback for Missing Sections ---
         const hasSections = parsedState.sections && Object.keys(parsedState.sections).length > 0;
 
         if (!hasSections) {
-             console.log("Flipzy: Sections missing. Fallback fetching...");
              setTimeout(() => {
-                 // Pokličemo onCartUpdate, ki ima zdaj pametno logiko za Empty State!
                  this.onCartUpdate().then(() => {
                      this.disableLoading(line);
-                     
-                     // Posodobi še ikono v headerju
                      fetch(`${window.location.pathname}?section_id=cart-icon-bubble`)
                          .then(res => res.text())
                          .then(text => {
@@ -220,8 +197,7 @@ onCartUpdate() {
                          });
                  });
              }, 600);
-             
-             return; // STOP.
+             return; 
         }
         // --- END FIX ---
 
