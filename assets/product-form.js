@@ -75,7 +75,7 @@ if (!customElements.get('product-form')) {
                 
                 // Namesto redirecta, ročno pokličemo section rendering API
                 // Uporabimo trenutni URL, da ohranimo jezik (sl-si)
-                fetch(`${window.location.pathname}?section_id=cart-drawer`)
+                  fetch(`${window.location.pathname}?section_id=cart-drawer`, { credentials: 'include' })
                     .then((res) => res.text())
                     .then((text) => {
                         // Ustvarimo "fake" response objekt, ki ga cart-drawer razume

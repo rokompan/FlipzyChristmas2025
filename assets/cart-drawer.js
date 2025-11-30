@@ -46,12 +46,10 @@ class CartDrawer extends HTMLElement {
         
         const focusElement = this.querySelector('.drawer__inner') || this.querySelector('.drawer__close');
         
-        // --- FLIPZY FIX 1: Varovalka za trapFocus ---
-        // Če element ne obstaja (ker se HTML še nalaga ali je error), ne kliči trapFocus, da ne sesuješ strani.
+        // FIX: Varovalka za trapFocus
         if (containerToTrapFocusOn && focusElement && typeof trapFocus === 'function') {
            trapFocus(containerToTrapFocusOn, focusElement);
         }
-        // --------------------------------------------
       },
       { once: true }
     );
@@ -99,17 +97,8 @@ class CartDrawer extends HTMLElement {
 
       const htmlContent = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
       
-      // --- FLIPZY FIX 2: Preveri, če imamo vsebino ---
       if (htmlContent) {
           sectionElement.innerHTML = htmlContent;
-      } else {
-          // Če selector ni našel ničesar, morda HTML struktura ne ustreza.
-          // Poskusimo vstaviti celoten response (fallback), da vsaj nekaj prikažemo.
-          if (parsedState.sections[section.id]) {
-             // Zadnji poskus: samo vstavimo raw HTML
-             // To pomaga, če ID #CartDrawer manjka v response-u
-             sectionElement.innerHTML = parsedState.sections[section.id];
-          }
       }
     });
 
@@ -121,18 +110,28 @@ class CartDrawer extends HTMLElement {
   }
 
   getSectionInnerHTML(html, selector = '.shopify-section') {
-    // --- FLIPZY FIX 3: Robustno parsanje ---
     if (!html) return '';
     
     const doc = new DOMParser().parseFromString(html, 'text/html');
     const el = doc.querySelector(selector);
     
-    // Če najdemo točno določen selector (npr #CartDrawer), vrnemo njegov innerHTML
-    if (el) return el.innerHTML;
+    // 1. Poskusimo najti točen selektor (npr. #CartDrawer)
+    if (el) {
+        return el.innerHTML;
+    }
     
-    // Če selectorja ne najdemo (npr. ker je ID na wrapperju), vrnemo raje celo telo, 
-    // kot pa da vrnemo prazno in pokažemo bel zaslon.
+    // 2. FLIPZY FIX: Če selektorja nismo našli, je morda HTML *že* vsebina tega selektorja.
+    // To se zgodi pri ročnem fetchu. Preverimo, če je vsebina ovita v iskani ID.
+    // Če ID-ja ne najdemo, vrnemo celoten body, da ne dobimo belega zaslona.
     if (doc.body && doc.body.innerHTML.trim().length > 0) {
+        // Tu je trik: Če vrnemo cel body in ga vstavimo v #CartDrawer, lahko podremo layout.
+        // Ampak bolje je imeti vsebino kot nič.
+        // Če je v body-ju samo en element in ima ID CartDrawer, vzemi njegovo vsebino.
+        const firstChild = doc.body.firstElementChild;
+        if (firstChild && selector.startsWith('#') && firstChild.id === selector.substring(1)) {
+            return firstChild.innerHTML;
+        }
+        
         return doc.body.innerHTML;
     }
 
