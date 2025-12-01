@@ -477,9 +477,8 @@
     .flipzy-box-content-card { padding: 25px 20px 30px 20px; }
     .flipzy-box-price { font-size: 2rem; }
 }
-
 /* =========================================
-   9. FLIPZY STICKY BAR (Native Logic Style)
+   9. FLIPZY STICKY BAR (Mobile Optimized)
    ========================================= */
 .flipzy-sticky {
     position: fixed;
@@ -499,7 +498,7 @@
     opacity: 1;
 }
 
-.flipzy-sticky__inner {
+.flipzy-sticky-inner {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -508,67 +507,75 @@
     gap: 20px;
 }
 
-.flipzy-sticky__info {
+/* Info (Levo) */
+.flipzy-sticky-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.flipzy-sticky__title {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--color-charcoal);
-    margin: 0;
-    line-height: 1.2;
+.flipzy-sticky-title {
+    font-size: 1rem; font-weight: 700; color: var(--color-charcoal); margin: 0; line-height: 1.2;
 }
 
-.flipzy-sticky__sub {
-    font-size: 0.85rem;
-    color: #4B5563;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.flipzy-sticky-sub {
+    font-size: 0.85rem; color: #4B5563; display: flex; align-items: center; gap: 8px;
+}
+
+/* Cena - Na Desktopu je skrita v levem delu (ker je v podnaslovu), na mobilcu jo rabimo */
+.flipzy-sticky-price-mobile {
+    display: none; /* Hidden on Desktop */
+    flex-direction: column;
+    justify-content: center;
 }
 
 .flipzy-sticky-new { font-weight: 700; color: var(--color-charcoal); font-size: 1rem; }
 .flipzy-sticky-old { text-decoration: line-through; color: #9CA3AF; font-size: 0.9rem; }
 
-.flipzy-sticky__cta {
-    flex-shrink: 0;
-}
-
-.flipzy-sticky__cta .product-form__submit {
-    background-color: #F4D35E;
-    color: #111827;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1rem;
-    padding: 12px 30px;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s ease;
-    margin: 0;
+/* GUMB - Odstranjevanje obrobe */
+.flipzy-sticky-action .product-form__submit {
+    background-color: #F4D35E !important;
+    color: #111827 !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    padding: 12px 30px !important;
+    
+    /* FIX ZA OBROBO */
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.3) !important;
+    
+    margin: 0 !important;
     min-width: 160px;
 }
+.flipzy-sticky-action .product-form__submit:hover { transform: scale(1.05); }
 
-.flipzy-sticky__cta .product-form__submit:hover {
-    transform: scale(1.05);
+/* Spinner */
+.flipzy-sticky-action .loading-overlay__spinner {
+    width: 20px; height: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
 
-.flipzy-sticky__cta .product-form__submit::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
-    animation: flipzy-pulse 2s infinite;
-}
-
+/* MOBILE LAYOUT: Skrij text, pokaži ceno + gumb */
 @media (max-width: 750px) {
-    .flipzy-sticky { padding: 12px 15px; bottom: 0; }
-    .flipzy-sticky__sub { display: none; }
-    .flipzy-sticky__title { font-size: 0.9rem; max-width: 140px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .flipzy-sticky__cta .product-form__submit { padding: 10px 20px; font-size: 0.9rem; min-width: auto; }
+    .flipzy-sticky { padding: 10px 15px; bottom: 0; }
+    
+    /* Skrijemo naslov in podnaslov */
+    .flipzy-sticky-info { display: none; }
+    
+    /* Pokažemo ločeno ceno na levi */
+    .flipzy-sticky-price-mobile { 
+        display: flex; 
+        font-size: 1.1rem;
+    }
+    .flipzy-sticky-new { font-size: 1.2rem; }
+    
+    /* Gumb manjši in desno */
+    .flipzy-sticky-action .product-form__submit { 
+        padding: 10px 20px !important; 
+        font-size: 0.95rem !important; 
+        min-width: auto; 
+    }
 }
 
 /* =========================================

@@ -9,73 +9,11 @@
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 {%- style -%}
-  /* Sticky Bar Wrapper */
-  #flipzy-sticky-bar-{{ section.id }} {
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      z-index: 999;
-      background: #FFFFFF;
-      border-top: 1px solid #E5E7EB;
-      box-shadow: 0 -10px 40px rgba(0,0,0,0.08);
-      transform: translateY(101%); /* Skrito */
-      opacity: 0;
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: center;
-  }
-
-  #flipzy-sticky-bar-{{ section.id }}.is-visible {
-      transform: translateY(0);
-      opacity: 1;
-  }
-
-  .flipzy-sticky-inner {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-  }
-
-  /* Info (Levo) */
-  .flipzy-sticky-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-  }
-  .flipzy-sticky-title { font-size: 1rem; font-weight: 700; margin: 0; line-height: 1.2; }
-  .flipzy-sticky-sub { font-size: 0.85rem; color: #4B5563; display: flex; align-items: center; gap: 8px; }
-
-  /* Cena (Desno, zraven gumba) */
-  .flipzy-sticky-price-wrap { display: flex; align-items: center; gap: 8px; }
-  .flipzy-sticky-new { font-weight: 700; color: var(--color-charcoal); }
-  .flipzy-sticky-old { text-decoration: line-through; color: #9CA3AF; font-size: 0.9rem; }
-
-  /* Gumb - Preoblečen Dawn Gumb */
-  .flipzy-sticky-action .product-form__submit {
-      background-color: #F4D35E !important; /* Mustard */
-      color: #111827 !important;
-      border-radius: 50px !important;
-      font-weight: 700 !important;
-      padding: 12px 30px !important;
-      border: none !important;
-      box-shadow: 0 4px 15px rgba(244, 211, 94, 0.3) !important;
-      margin: 0 !important;
-      min-width: 160px;
-  }
-  .flipzy-sticky-action .product-form__submit:hover { transform: scale(1.05); }
-
-  /* Skrij odvečne elemente v mobilnem pogledu */
-  @media (max-width: 750px) {
-      .flipzy-sticky-sub { display: none; }
-      .flipzy-sticky-title { font-size: 0.9rem; max-width: 140px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-  }
+  /* CSS je v flipzy-custom.css */
 {%- endstyle -%}
 
 {% if product != blank %}
-  <div id="flipzy-sticky-bar-{{ section.id }}" class="flipzy-sticky-bar">
+  <div id="flipzy-sticky-bar-{{ section.id }}" class="flipzy-sticky">
     <div class="flipzy-sticky-inner">
       
       <div class="flipzy-sticky-info">
@@ -91,6 +29,13 @@
             <span style="opacity: 0.4; margin: 0 5px;">|</span> {{ section.settings.subline_text }}
           {% endif %}
         </div>
+      </div>
+
+      <div class="flipzy-sticky-price-mobile">
+         <span class="flipzy-sticky-new">{{ product.selected_or_first_available_variant.price | money }}</span>
+         {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+            <span class="flipzy-sticky-old" style="font-size: 0.8rem;">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+         {% endif %}
       </div>
 
       <div class="flipzy-sticky-action">
@@ -120,18 +65,16 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const bar = document.getElementById('flipzy-sticky-bar-{{ section.id }}');
-  // Poišči katerokoli "visoko" sekcijo za trigger
   const triggerSection = document.querySelector('.flipzy-hero-container') || document.querySelector('.section-featured-product');
 
   function checkScroll() {
     if (!triggerSection) {
-       // Fallback
        if(window.scrollY > 400) bar.classList.add('is-visible');
        else bar.classList.remove('is-visible');
        return;
     }
     const triggerBottom = triggerSection.getBoundingClientRect().bottom;
-    if (triggerBottom < 0) { // Ko je hero izven ekrana
+    if (triggerBottom < 0) { 
       bar.classList.add('is-visible');
     } else {
       bar.classList.remove('is-visible');
@@ -146,28 +89,10 @@ document.addEventListener('DOMContentLoaded', function () {
 {
   "name": "Flipzy Sticky Bar",
   "settings": [
-    {
-      "type": "product",
-      "id": "product",
-      "label": "Product"
-    },
-    {
-      "type": "text",
-      "id": "text",
-      "label": "Headline",
-      "default": "Kids Routine Board"
-    },
-    {
-      "type": "text",
-      "id": "subline_text",
-      "label": "Subline",
-      "default": "Special Offer"
-    }
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "text", "label": "Headline", "default": "Kids Routine Board" },
+    { "type": "text", "id": "subline_text", "label": "Subline", "default": "Special Offer" }
   ],
-  "presets": [
-    {
-      "name": "Flipzy Sticky Bar"
-    }
-  ]
+  "presets": [ { "name": "Flipzy Sticky Bar" } ]
 }
 {% endschema %}
