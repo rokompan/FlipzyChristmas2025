@@ -288,7 +288,7 @@
           "type": "list_item",
           "settings": {
             "icon": "check",
-            "text": "7x Task Pieces"
+            "text": "7x Task Pieces + sun and moon for morning and evening routines"
           }
         },
         "list_item_4Ymr9k": {
@@ -298,25 +298,11 @@
             "text": "30 Customization Stickers"
           }
         },
-        "list_item_zBzaaw": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "Sun and moon for morning and evening routines"
-          }
-        },
         "list_item_rzGMPj": {
           "type": "list_item",
           "settings": {
             "icon": "check",
             "text": "Mounting tape + Instructions"
-          }
-        },
-        "list_item_9FkCYy": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "Easy Setup Guide"
           }
         }
       },
@@ -324,9 +310,7 @@
         "list_item_YGhDY8",
         "list_item_dNcpJi",
         "list_item_4Ymr9k",
-        "list_item_zBzaaw",
-        "list_item_rzGMPj",
-        "list_item_9FkCYy"
+        "list_item_rzGMPj"
       ],
       "name": "Flipzy 8. Box Content",
       "settings": {
@@ -338,7 +322,7 @@
         "card_title": "Everything you need to start your journey to smoother routines",
         "price_old": "€49,00",
         "price_new": "€29,00",
-        "trust_1": "Free shipping",
+        "trust_1": "Free shipping over 50€",
         "trust_2": "Taxes included",
         "trust_3": "Ships in 24h",
         "trust_4": "30-day money-back guarantee",
