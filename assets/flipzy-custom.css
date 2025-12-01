@@ -477,8 +477,9 @@
     .flipzy-box-content-card { padding: 25px 20px 30px 20px; }
     .flipzy-box-price { font-size: 2rem; }
 }
+
 /* =========================================
-   9. FLIPZY STICKY BAR (Mobile Optimized)
+   9. FLIPZY STICKY BAR (Mobile Optimized + No Border)
    ========================================= */
 .flipzy-sticky {
     position: fixed;
@@ -515,40 +516,54 @@
 }
 
 .flipzy-sticky-title {
-    font-size: 1rem; font-weight: 700; color: var(--color-charcoal); margin: 0; line-height: 1.2;
+    font-size: 1.1rem; /* Večji naslov */
+    font-weight: 700;
+    color: var(--color-charcoal);
+    margin: 0;
+    line-height: 1.2;
 }
 
 .flipzy-sticky-sub {
-    font-size: 0.85rem; color: #4B5563; display: flex; align-items: center; gap: 8px;
+    font-size: 0.9rem; /* Večji podnaslov */
+    color: #4B5563;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Cena - Na Desktopu je skrita v levem delu (ker je v podnaslovu), na mobilcu jo rabimo */
-.flipzy-sticky-price-mobile {
-    display: none; /* Hidden on Desktop */
-    flex-direction: column;
-    justify-content: center;
-}
+/* Cena */
+.flipzy-sticky-price-mobile { display: none; flex-direction: column; justify-content: center; }
 
-.flipzy-sticky-new { font-weight: 700; color: var(--color-charcoal); font-size: 1rem; }
+.flipzy-sticky-new { font-weight: 700; color: var(--color-charcoal); font-size: 1.2rem; } /* Velika cena */
 .flipzy-sticky-old { text-decoration: line-through; color: #9CA3AF; font-size: 0.9rem; }
 
-/* GUMB - Odstranjevanje obrobe */
+/* GUMB - KILL THE BORDER */
+.flipzy-sticky-action { flex-shrink: 0; }
+
 .flipzy-sticky-action .product-form__submit {
-    background-color: #F4D35E !important;
+    background-color: #F4D35E !important; /* Mustard */
     color: #111827 !important;
     border-radius: 50px !important;
     font-weight: 700 !important;
-    font-size: 1rem !important;
-    padding: 12px 30px !important;
+    font-size: 1.1rem !important; /* Večji font v gumbu */
+    padding: 14px 35px !important;
+    cursor: pointer;
     
-    /* FIX ZA OBROBO */
+    /* GLOW */
+    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
+    
+    /* UNIČI DAWN OBROBO */
     border: none !important;
     outline: none !important;
-    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.3) !important;
+    --border-offset: 0 !important;
+    --border-opacity: 0 !important;
+    --alpha-button-border: 0 !important;
     
     margin: 0 !important;
-    min-width: 160px;
+    min-width: 180px;
+    transition: transform 0.2s ease;
 }
+
 .flipzy-sticky-action .product-form__submit:hover { transform: scale(1.05); }
 
 /* Spinner */
@@ -556,28 +571,21 @@
     width: 20px; height: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
 
-/* MOBILE LAYOUT: Skrij text, pokaži ceno + gumb */
+/* MOBILE LAYOUT */
 @media (max-width: 750px) {
     .flipzy-sticky { padding: 10px 15px; bottom: 0; }
     
-    /* Skrijemo naslov in podnaslov */
+    /* Skrij tekst, pokaži ceno levo */
     .flipzy-sticky-info { display: none; }
+    .flipzy-sticky-price-mobile { display: flex; }
     
-    /* Pokažemo ločeno ceno na levi */
-    .flipzy-sticky-price-mobile { 
-        display: flex; 
-        font-size: 1.1rem;
-    }
-    .flipzy-sticky-new { font-size: 1.2rem; }
-    
-    /* Gumb manjši in desno */
+    /* Gumb */
     .flipzy-sticky-action .product-form__submit { 
-        padding: 10px 20px !important; 
-        font-size: 0.95rem !important; 
+        padding: 12px 20px !important; 
+        font-size: 1rem !important; 
         min-width: auto; 
     }
 }
-
 /* =========================================
    10. FLIPZY FEATURED PRODUCT (Native Hybrid)
    ========================================= */

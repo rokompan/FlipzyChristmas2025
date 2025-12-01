@@ -25,6 +25,7 @@
             <span class="flipzy-sticky-old">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
           {% endif %}
           <span class="flipzy-sticky-new">{{ product.selected_or_first_available_variant.price | money }}</span>
+          
           {% if section.settings.subline_text != blank %}
             <span style="opacity: 0.4; margin: 0 5px;">|</span> {{ section.settings.subline_text }}
           {% endif %}
@@ -32,10 +33,10 @@
       </div>
 
       <div class="flipzy-sticky-price-mobile">
-         <span class="flipzy-sticky-new">{{ product.selected_or_first_available_variant.price | money }}</span>
          {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
             <span class="flipzy-sticky-old" style="font-size: 0.8rem;">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
          {% endif %}
+         <span class="flipzy-sticky-new">{{ product.selected_or_first_available_variant.price | money }}</span>
       </div>
 
       <div class="flipzy-sticky-action">
@@ -91,7 +92,8 @@ document.addEventListener('DOMContentLoaded', function () {
   "settings": [
     { "type": "product", "id": "product", "label": "Product" },
     { "type": "text", "id": "text", "label": "Headline", "default": "Kids Routine Board" },
-    { "type": "text", "id": "subline_text", "label": "Subline", "default": "Special Offer" }
+    { "type": "text", "id": "subline_text", "label": "Subline", "default": "Special Offer" },
+    { "type": "text", "id": "button_label", "label": "Button Label", "default": "Add to Cart" }
   ],
   "presets": [ { "name": "Flipzy Sticky Bar" } ]
 }
