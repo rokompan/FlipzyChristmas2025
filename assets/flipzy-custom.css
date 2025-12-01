@@ -165,7 +165,6 @@
     .layout-desktop-left .flipzy-feature-media { order: 1; } .layout-desktop-left .flipzy-feature-content { order: 2; }
     .layout-desktop-right .flipzy-feature-content { order: 1; } .layout-desktop-right .flipzy-feature-media { order: 2; }
 }
-
 /* =========================================
    4. FLIPZY OFFER STRIP
    ========================================= */
@@ -176,7 +175,10 @@
 }
 .offer-scheme-cream { background: var(--color-cream); color: var(--color-charcoal); }
 .offer-scheme-white { background: var(--color-white); color: var(--color-charcoal); border: 1px solid #eee; }
+
+/* NASLOV - MANJŠI */
 .flipzy-offer-heading { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
+
 .flipzy-offer-sub { font-size: 1.1rem; opacity: 0.8; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
 .flipzy-price-box { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 1.5rem; }
 .flipzy-price-compare { text-decoration: line-through; opacity: 0.5; font-size: 1.5rem; font-weight: 500; }
@@ -217,10 +219,10 @@
 
 @media (max-width: 750px) {
     .flipzy-offer-container { padding: 30px 20px; }
+    .flipzy-offer-heading { font-size: 1.8rem; }
     .flipzy-price-current { font-size: 2.5rem; }
     .flipzy-offer-btn { font-size: 1.2rem; padding: 16px 20px; }
 }
-
 /* =========================================
    5. FLIPZY FEATURED PRODUCT (Conversion Focused)
    ========================================= */
