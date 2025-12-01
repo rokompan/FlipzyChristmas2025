@@ -13,8 +13,7 @@
         <input type="hidden" name="form_type" value="contact">
 
         {%- comment -%}
-          Hidden shop email to ensure the form is always valid for Shopify,
-          even if the user doesn't input their own email immediately.
+          Hidden shop email to ensure the form is always valid for Shopify
         {%- endcomment -%}
         <input type="hidden" name="contact[email]" value="{{ shop.email | default: shop.customer_email }}">
 
@@ -38,7 +37,8 @@
   .flipzy-help-button{
     position:fixed;
     right:20px;
-    bottom:30px; /* Adjusted slightly so it's not too high up */
+    /* DVIGNJENO ZA DESKTOP: */
+    bottom:100px; 
     z-index:9999;
     padding:10px 16px;
     border-radius:999px;
@@ -144,7 +144,8 @@
 
   @media (max-width:768px){
     .flipzy-help-button{
-      bottom:20px;
+      /* DVIGNJENO ZA MOBILE (še višje, zaradi sticky bara): */
+      bottom:120px;
       right:16px;
     }
     .flipzy-help-modal{
@@ -179,12 +180,10 @@
       if(e.target === overlay) closePopup();
     });
 
-    // Append the user's reply email to the message body before sending
     if (form && replyInput && messageTextarea) {
       form.addEventListener('submit', function () {
         var replyEmail = replyInput.value.trim();
         if (replyEmail) {
-          // Prepend the email to the message so you see it in the notification
           var originalMessage = messageTextarea.value;
           messageTextarea.value = 'REPLY TO: ' + replyEmail + '\n\n----------------------\n' + originalMessage;
         }
