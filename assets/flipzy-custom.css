@@ -316,8 +316,6 @@
 }
 
 .flipzy-box-title {
-    font-size: 2.2rem; /* STANDARDIZIRANO (prej 2.8rem) - enako kot Super Product */
-    font-weight: 700;
     color: var(--color-charcoal);
     margin-bottom: 10px; 
     line-height: 1.2;
