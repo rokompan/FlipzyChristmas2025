@@ -37,8 +37,8 @@
   .flipzy-help-button{
     position:fixed;
     right:20px;
-    /* DVIGNJENO ZA DESKTOP: */
-    bottom:100px; 
+    /* ENAKA VIŠINA ZA VSE NAPRAVE: */
+    bottom:80px; 
     z-index:9999;
     padding:10px 16px;
     border-radius:999px;
@@ -144,8 +144,8 @@
 
   @media (max-width:768px){
     .flipzy-help-button{
-      /* DVIGNJENO ZA MOBILE (še višje, zaradi sticky bara): */
-      bottom:120px;
+      /* Fiksno 80px tudi na mobilnem, samo malo odmika od desnega roba */
+      bottom: 80px;
       right:16px;
     }
     .flipzy-help-modal{
