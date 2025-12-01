@@ -322,7 +322,6 @@
 }
 
 .flipzy-box-subtitle {
-    font-size: 1.25rem; /* Malo manjše za boljši kontrast */
     line-height: 1.5;
     color: #4B5563;
 }
@@ -392,7 +391,6 @@
 }
 
 .flipzy-box-subtitle {
-    font-size: 1.25rem; 
     line-height: 1.5;
     color: #4B5563;
 }
@@ -535,7 +533,6 @@
 
 /* Description & Button */
 .flipzy-box-desc {
-    font-size: 1.25rem; 
     line-height: 1.5;
     margin-bottom: 25px; 
     color: #4B5563;
