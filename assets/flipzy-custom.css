@@ -410,47 +410,192 @@
 
 .flipzy-badge-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; color: var(--color-charcoal); line-height: 1.1; }
 .flipzy-badge-text { font-size: 1.4rem; line-height: 1.4; color: #4B5563; margin: 0; max-width: 100%; }
-
 /* =========================================
    8. FLIPZY "WHAT'S IN THE BOX" SECTION
    ========================================= */
-.flipzy-box-section { padding: 40px 20px; background-color: #F6DACE; }
-.flipzy-box-header { text-align: center; max-width: 900px; margin: 0 auto 20px auto; }
+.flipzy-box-section {
+    padding: 60px 20px; 
+    background-color: #F6DACE; 
+}
 
-.flipzy-box-title { color: var(--color-charcoal); margin-bottom: 10px; }
-.flipzy-box-subtitle { font-size: 1.25rem; line-height: 1.5; color: #4B5563; }
+.flipzy-box-header {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 35px auto; 
+}
 
-.flipzy-box-grid { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; align-items: start; }
-@media screen and (min-width: 990px) { .flipzy-box-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+/* GLAVNI NASLOV (H2) */
+.flipzy-box-title {
+    color: var(--color-charcoal);
+    margin-bottom: 15px; 
+}
 
-.flipzy-box-media-col { display: flex; flex-direction: column; gap: 20px; }
-.flipzy-box-img-card { border-radius: 24px; overflow: hidden; box-shadow: none; background: #fff; }
-.flipzy-box-img-card img { width: 100%; height: auto; display: block; object-fit: cover; border-radius: 24px; }
-.flipzy-box-img-card.dimensions-card { background-color: #EADBC8; padding: 15px; }
+/* PODNASLOV - POVEČAN */
+.flipzy-box-subtitle {
+    font-size: 1.5rem; /* POVEČANO (prej 1.25rem) */
+    line-height: 1.5;
+    color: #4B5563;
+}
 
-.flipzy-box-content-card { background: #FFFFFF; border-radius: 24px; padding: 25px 30px 40px 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
-.flipzy-box-content-title { margin-bottom: 20px; color: var(--color-charcoal); margin-top: 0; }
+/* Grid Layout */
+.flipzy-box-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
+    align-items: start;
+}
 
-.flipzy-box-list { list-style: none; padding: 0; margin: 0 0 25px 0; display: flex; flex-direction: column; gap: 12px; }
-.flipzy-box-item { display: flex; align-items: center; gap: 12px; font-size: 1.3rem; color: #374151; line-height: 1.4; font-weight: 500; }
-.flipzy-box-icon { width: 24px; height: 24px; flex-shrink: 0; color: #10B981; margin-top: 0; display: flex; align-items: center; justify-content: center; }
-.flipzy-box-icon svg { width: 100%; height: 100%; }
+@media screen and (min-width: 990px) {
+    .flipzy-box-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px; 
+    }
+}
 
-.flipzy-box-price { font-size: 2.2rem; font-weight: 700; margin-bottom: 20px; color: var(--color-charcoal); display: flex; align-items: center; gap: 15px; }
-.flipzy-box-price s { font-size: 1.5rem; color: #9CA3AF; font-weight: 500; }
+/* --- LEVA STRAN (Slike) --- */
+.flipzy-box-media-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
 
-.flipzy-box-trust { background-color: #ECFDF5; border-radius: 12px; padding: 15px 20px; margin-bottom: 25px; }
-.flipzy-box-trust-row { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 8px; }
+.flipzy-box-img-card {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: none; 
+    background: #fff; 
+}
+
+.flipzy-box-img-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 24px; 
+}
+
+.flipzy-box-img-card.dimensions-card {
+    background-color: #EADBC8; 
+    padding: 15px; 
+}
+
+/* --- DESNA STRAN (Content) --- */
+.flipzy-box-content-card {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 40px 30px; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+}
+
+/* NASLOV KARTICE (H3) */
+.flipzy-box-content-title {
+    margin-bottom: 25px; 
+    color: var(--color-charcoal);
+    margin-top: 0; 
+}
+
+/* Checklist */
+.flipzy-box-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0; 
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+}
+
+/* CHECKLIST ITEM - POVEČAN */
+.flipzy-box-item {
+    display: flex;
+    align-items: flex-start; /* Ikona poravnana zgoraj za večvrstični tekst */
+    gap: 15px;
+    font-size: 1.5rem; /* POVEČANO (prej 1.3rem) */
+    color: #374151;
+    line-height: 1.4;
+    font-weight: 400; /* Malo tanjše za lepši izgled pri tej velikosti */
+}
+
+.flipzy-box-icon {
+    width: 28px; /* Malo večja ikona */
+    height: 28px;
+    flex-shrink: 0;
+    color: #10B981; 
+    margin-top: 3px; /* Optična poravnava s prvo vrstico */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
+.flipzy-box-icon svg { width: 100%; height: 100%; stroke-width: 2.5px; } /* Debelejša črta */
+
+/* Price Row */
+.flipzy-box-price {
+    font-size: 2.2rem; 
+    font-weight: 700;
+    margin-bottom: 20px; 
+    color: var(--color-charcoal);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.flipzy-box-price s {
+    font-size: 1.5rem;
+    color: #9CA3AF;
+    font-weight: 500;
+}
+
+/* Green Trust Box */
+.flipzy-box-trust {
+    background-color: #ECFDF5;
+    border-radius: 12px;
+    padding: 15px 20px; 
+    margin-bottom: 25px; 
+}
+
+.flipzy-box-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 8px;
+}
 .flipzy-box-trust-row:last-child { margin-bottom: 0; }
-.flipzy-trust-mini { display: flex; align-items: center; gap: 6px; font-size: 1rem; font-weight: 600; color: #065F46; }
+
+.flipzy-trust-mini {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem; 
+    font-weight: 600;
+    color: #065F46;
+}
 .flipzy-trust-mini svg { width: 20px; height: 20px; }
 
-.flipzy-box-desc { font-size: 1.25rem; line-height: 1.5; margin-bottom: 25px; color: #4B5563; }
-.flipzy-box-content-card .flipzy-btn { width: 100%; text-align: center; margin-bottom: 0; font-size: 1.4rem; padding: 18px 30px; }
+/* OPIS - POVEČAN */
+.flipzy-box-desc {
+    font-size: 1.5rem; /* POVEČANO (prej 1.25rem) */
+    line-height: 1.6;
+    margin-bottom: 30px; 
+    color: #4B5563;
+}
+
+/* Button override */
+.flipzy-box-content-card .flipzy-btn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    font-size: 1.5rem; 
+    padding: 18px 30px;
+}
 
 @media (max-width: 750px) {
-    .flipzy-box-content-card { padding: 25px 20px 30px 20px; }
+    .flipzy-box-content-card { padding: 30px 20px; }
     .flipzy-box-price { font-size: 2rem; }
+    
+    /* Na mobilcu malo zmanjšaj, če je preveliko, sicer pusti */
+    .flipzy-box-item, .flipzy-box-desc, .flipzy-box-subtitle {
+        font-size: 1.3rem;
+    }
 }
 /* =========================================
    9. FLIPZY STICKY BAR (3-Column Layout)
