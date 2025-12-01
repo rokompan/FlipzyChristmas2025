@@ -453,21 +453,19 @@
     .flipzy-box-price { font-size: 2rem; }
 }
 /* =========================================
-   9. FLIPZY STICKY BAR (Final & Colored)
+   9. FLIPZY STICKY BAR (Big Fonts & No Borders)
    ========================================= */
 .flipzy-sticky {
     position: fixed;
     left: 0; right: 0; bottom: 0;
     z-index: 999;
-    /* OZADJE - da se loči od strani */
-    background-color: #F9F7F2; /* Cream */
+    background: #FFFFFF;
     border-top: 1px solid #E5E7EB;
-    box-shadow: 0 -5px 30px rgba(0,0,0,0.08);
-    
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.1); /* Malo močnejša senca */
     transform: translateY(101%);
     opacity: 0;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-    padding: 15px 20px;
+    padding: 15px 30px; /* Večji padding */
 }
 
 .flipzy-sticky.is-visible {
@@ -476,15 +474,15 @@
 }
 
 .flipzy-sticky-inner {
-    max-width: 1200px;
+    max-width: 1300px; /* Širši container */
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 30px;
 }
 
-/* LEVO: Info (Samo Desktop) */
+/* Info (Levo) */
 .flipzy-sticky-info {
     display: flex;
     flex-direction: column;
@@ -492,52 +490,57 @@
 }
 
 .flipzy-sticky-title {
-    font-size: 1.1rem; font-weight: 700; color: var(--color-charcoal); margin: 0; line-height: 1.2;
+    font-size: 1.25rem; /* POVEČANO */
+    font-weight: 700;
+    color: var(--color-charcoal);
+    margin: 0;
+    line-height: 1.2;
 }
 
 .flipzy-sticky-sub {
-    font-size: 0.9rem; color: #4B5563; margin-top: 2px;
-}
-
-/* DESNO: Cena + Gumb */
-.flipzy-sticky-right {
+    font-size: 1rem; /* POVEČANO */
+    color: #4B5563;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+    margin-top: 4px;
 }
 
-/* CENA */
-.flipzy-sticky-price-box { 
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
-}
+/* Cena - Desktop in Mobile */
+.flipzy-sticky-price-mobile { display: none; flex-direction: column; justify-content: center; }
 
+/* CENA: OGROMNA */
 .flipzy-sticky-new { 
     font-weight: 800; 
     color: var(--color-charcoal); 
-    font-size: 1.8rem; /* Zelo velika */
+    font-size: 2.2rem; /* POVEČANO (prej 1.8) */
     line-height: 1;
 }
 .flipzy-sticky-old { 
     text-decoration: line-through; 
     color: #9CA3AF; 
-    font-size: 1.1rem; /* POVEČANO (prej 0.9rem) */
+    font-size: 1.3rem; /* POVEČANO */
+    margin-left: 8px;
     font-weight: 500;
 }
 
-/* GUMB - Brez obrobe */
+/* GUMB - CLEANUP & BIGGER */
 .flipzy-sticky-action { flex-shrink: 0; }
+
+.flipzy-sticky-action product-form, 
+.flipzy-sticky-action .form {
+    margin: 0 !important; padding: 0 !important;
+}
 
 .flipzy-sticky-action .product-form__submit {
     background-color: #F4D35E !important; 
     color: #111827 !important;
     border-radius: 50px !important;
-    font-weight: 700 !important;
-    font-size: 1.1rem !important;
-    padding: 14px 35px !important;
+    font-weight: 800 !important; /* Extra Bold */
+    font-size: 1.5rem !important; /* POVEČANO (prej 1.1) */
+    padding: 18px 45px !important; /* Večji gumb */
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
+    box-shadow: 0 6px 20px rgba(244, 211, 94, 0.5) !important;
     
     /* KILL BORDERS */
     border: none !important;
@@ -546,13 +549,19 @@
     --border-opacity: 0 !important;
     
     margin: 0 !important;
-    min-width: 160px;
+    min-width: 220px; /* Širši gumb */
     transition: transform 0.2s ease;
 }
-.flipzy-sticky-action .product-form__submit:hover { transform: scale(1.05); }
-.flipzy-sticky-action .product-form__submit::after { content: none !important; display: none !important; }
 
-/* Pulse */
+.flipzy-sticky-action .product-form__submit:hover { 
+    transform: scale(1.05); 
+    box-shadow: 0 8px 25px rgba(244, 211, 94, 0.7) !important;
+}
+
+.flipzy-sticky-action .product-form__submit::after {
+    content: none !important; display: none !important;
+}
+
 .flipzy-sticky-action .product-form__submit::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
     border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
@@ -560,39 +569,32 @@
     z-index: 1;
 }
 
+.flipzy-sticky-action .loading-overlay__spinner {
+    width: 24px; height: 24px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+}
+
 /* MOBILE LAYOUT */
 @media (max-width: 750px) {
     .flipzy-sticky { padding: 12px 15px; bottom: 0; }
     
-    .flipzy-sticky-inner { 
-        gap: 10px; 
-    }
-
-    /* Skrij tekst */
     .flipzy-sticky-info { display: none; }
     
-    /* Cena in gumb v vrsto */
-    .flipzy-sticky-right {
-        width: 100%;
-        justify-content: space-between;
-        gap: 10px;
-    }
-    
-    .flipzy-sticky-price-box {
-        flex-direction: column; /* Cena pod ceno, če je tesno */
+    /* Cena levo, Gumb desno */
+    .flipzy-sticky-price-mobile { 
+        display: flex; 
+        flex-direction: column; /* Cena nad staro ceno za prihranek prostora */
         align-items: flex-start;
-        gap: 2px;
+        justify-content: center;
     }
     
-    .flipzy-sticky-new { font-size: 1.5rem; }
-    .flipzy-sticky-old { font-size: 1rem; }
+    .flipzy-sticky-new { font-size: 1.6rem; margin-right: 0; }
+    .flipzy-sticky-old { font-size: 1rem; margin-left: 0; }
     
-    .flipzy-sticky-action { flex-grow: 1; } /* Gumb zasede preostanek prostora */
+    /* Gumb na mobilcu */
     .flipzy-sticky-action .product-form__submit { 
-        width: 100%; 
-        padding: 12px 20px !important; 
-        font-size: 1rem !important;
-        min-width: auto;
+        padding: 14px 25px !important; 
+        font-size: 1.2rem !important; /* Še vedno velik font na mobilcu */
+        min-width: auto; 
     }
 }
 /* =========================================
