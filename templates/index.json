@@ -135,7 +135,7 @@
         "feature_point_gNReqR": {
           "type": "feature_point",
           "settings": {
-            "icon_type": "puzzle_1",
+            "icon_type": "puzzle_jigsaw",
             "text": "<p>Choose from our pre-designed task tiles or create your own with included stickers to match your family's unique routine.</p>"
           }
         }
