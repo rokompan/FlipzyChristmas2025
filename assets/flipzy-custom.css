@@ -459,34 +459,7 @@
     position: fixed;
     left: 0; right: 0; bottom: 0;
     z-index: 999;
-To spremembo urediš v datoteki assets/flipzy-custom.css.
-
-Poišči sekcijo 9. FLIPZY STICKY BAR in v razredu .flipzy-sticky zamenjaj background (ki je zdaj bel) z var(--color-sage).
-
-Tukaj je koda, ki jo moraš zamenjati:
-
-Datoteka: assets/flipzy-custom.css
-Poišči:
-
-CSS
-
-.flipzy-sticky {
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    z-index: 999;
-    background: #FFFFFF; /* <--- TOLE SPREMENI */
-    border-top: 1px solid #E5E7EB;
-    /* ... ostalo ... */
-}
-Zamenjaj z:
-
-CSS
-
-.flipzy-sticky {
-    position: fixed;
-    left: 0; right: 0; bottom: 0;
-    z-index: 999;
-    background-color: var(--color-sage); /* <--- SPREMENJENO NA SAGE */
+    background-color: var(--color-cream); /* <--- SPREMENJENO NA SAGE */
     border-top: 1px solid #E5E7EB;
     box-shadow: 0 -5px 30px rgba(0,0,0,0.1);
     transform: translateY(101%);
