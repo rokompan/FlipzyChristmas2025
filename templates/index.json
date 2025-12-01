@@ -482,6 +482,11 @@
         "subline_text": "Special offer available while supplies last",
         "button_label": "Add to Cart"
       }
+    },
+    "flipzy_help_popup_4f6eJB": {
+      "type": "flipzy-help-popup",
+      "name": "Help Popup (Flipzy)",
+      "settings": {}
     }
   },
   "order": [
@@ -499,6 +504,7 @@
     "flipzy_whats_in_the_box_tDc44V",
     "flipzy_feature_video_t3an46",
     "flipzy_feature_video_B9Xncj",
-    "flipzy_sticky_bar_Tdg6tz"
+    "flipzy_sticky_bar_Tdg6tz",
+    "flipzy_help_popup_4f6eJB"
   ]
 }
