@@ -84,7 +84,7 @@
       "settings": {
         "color_scheme": "scheme-cream",
         "desktop_layout": "media_right",
-        "mobile_layout": "text_first",
+        "mobile_layout": "media_first",
         "heading": "What is Flipzy?",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/efa91ddb30bb4e00bc1b3a1456b8a2d0.mp4",
         "fallback_image": "shopify://shop_images/palca.jpg"
