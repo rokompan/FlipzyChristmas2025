@@ -16,27 +16,22 @@
 .flipzy-section, .flipzy-section * {
     font-family: 'Poppins', sans-serif !important;
 }
-
 /* =========================================
    2. HERO SLIDER
    ========================================= */
 .flipzy-hero-container {
     position: relative; 
     width: 100%; 
-    
-    /* MOBILE: Malo višji (80%), da slika zadiha */
-    height: 80dvh; 
-    
+    height: 80dvh; /* Mobile višina ostane */
     max-height: 850px; 
     min-height: 450px;
     background-color: var(--color-charcoal); 
     overflow: hidden;
 }
 
-/* DESKTOP: Malo nižji (70%), da se vidi spodnja sekcija */
 @media screen and (min-width: 750px) { 
     .flipzy-hero-container { 
-        height: 70vh; 
+        height: 70vh; /* Desktop višina ostane */
     } 
 }
 
@@ -52,19 +47,23 @@
 .flipzy-media-wrapper::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); z-index: 2; pointer-events: none; }
 .flipzy-media-wrapper video, .flipzy-media-wrapper img, .flipzy-media-wrapper svg { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+/* CONTENT WRAPPER - Stisnjeno na dno */
 .flipzy-content-wrapper {
     position: absolute; z-index: 3; bottom: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);
     display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-    text-align: center; padding: 0 20px 30px 20px;
+    text-align: center; 
+    /* Zmanjšan padding spodaj, da gre "See how it works" čisto dol */
+    padding: 0 20px 15px 20px; 
 }
-.flipzy-text-box { max-width: 1000px; color: var(--color-white); }
 
-/* NASLOV */
+.flipzy-text-box { max-width: 900px; color: var(--color-white); }
+
+/* NASLOV - MANJŠI */
 .flipzy-heading { 
-    font-size: 2.5rem; /* Mobile */
+    font-size: 2rem; /* Mobile: Manjši font */
     line-height: 1.1; 
-    margin-bottom: 1.5rem; 
+    margin-bottom: 1rem; /* Manjši odmik do gumba */
     color: var(--color-white); 
     text-shadow: 0 2px 10px rgba(0,0,0,0.3); 
 }
@@ -73,35 +72,46 @@
 
 @media screen and (min-width: 750px) { 
     .flipzy-heading { 
-        font-size: 4.5rem; /* Desktop */
-        max-width: 900px; 
-        margin-bottom: 2rem; 
+        font-size: 3.5rem; /* Desktop: Manjši (prej 4.5rem) */
+        max-width: 800px; 
+        margin-bottom: 1.5rem; 
     } 
 }
 
-/* GUMB */
+/* GUMB - OŽJI */
 .flipzy-btn {
     display: inline-block; background-color: var(--color-mustard); color: var(--color-charcoal);
-    padding: 18px 54px; border-radius: 50px; font-weight: 700; text-decoration: none;
-    font-size: 1.5rem; /* Desktop */
-    margin-bottom: 15px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Ožji in nižji padding */
+    padding: 14px 40px; 
+    border-radius: 50px; font-weight: 700; text-decoration: none;
+    font-size: 1.1rem; /* Malo manjši font */
+    margin-bottom: 5px; /* Minimalen odmik do scroll cue */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 4px 6px rgba(0,0,0,0.2); border: 2px solid var(--color-mustard);
 }
 .flipzy-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(244, 211, 94, 0.7); }
 
-/* Mobile Button Adjustment */
-@media (max-width: 750px) {
+@media (min-width: 750px) {
     .flipzy-btn {
-        font-size: 1.2rem;
-        padding: 14px 40px;
+        font-size: 1.3rem;
+        padding: 16px 48px;
     }
 }
 
+/* SCROLL CUE - TIK NAD ROBOM */
 .flipzy-scroll-cue {
-    font-size: 1.1rem; font-weight: 500; color: rgba(255,255,255,0.9); margin-top: 5px; cursor: default;
+    font-size: 0.9rem; 
+    font-weight: 500; 
+    color: rgba(255,255,255,0.85); 
+    margin-top: 5px; 
+    cursor: default;
+    padding-bottom: 5px; /* Varnostni odmik od roba */
     animation: continuous-bounce 1.5s infinite ease-in-out;
 }
-@keyframes continuous-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes continuous-bounce { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-5px); } /* Manjši bounce, da ne skače iz ekrana */
+}
 
 .flipzy-nav-btn {
     position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
