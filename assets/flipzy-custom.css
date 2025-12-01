@@ -479,7 +479,7 @@
 }
 
 /* =========================================
-   9. FLIPZY STICKY BAR (Mobile Optimized + No Border)
+   9. FLIPZY STICKY BAR (Mobile Optimized + No Border Fix)
    ========================================= */
 .flipzy-sticky {
     position: fixed;
@@ -516,43 +516,41 @@
 }
 
 .flipzy-sticky-title {
-    font-size: 1.1rem; /* Večji naslov */
-    font-weight: 700;
-    color: var(--color-charcoal);
-    margin: 0;
-    line-height: 1.2;
+    font-size: 1rem; font-weight: 700; color: var(--color-charcoal); margin: 0; line-height: 1.2;
 }
 
 .flipzy-sticky-sub {
-    font-size: 0.9rem; /* Večji podnaslov */
-    color: #4B5563;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 0.85rem; color: #4B5563; display: flex; align-items: center; gap: 8px;
 }
 
-/* Cena */
+/* Cena - Desktop in Mobile */
 .flipzy-sticky-price-mobile { display: none; flex-direction: column; justify-content: center; }
 
-.flipzy-sticky-new { font-weight: 700; color: var(--color-charcoal); font-size: 1.2rem; } /* Velika cena */
+/* CENA: Zelo velika */
+.flipzy-sticky-new { 
+    font-weight: 700; 
+    color: var(--color-charcoal); 
+    font-size: 1.5rem; /* Povečano iz 1.2rem */
+    line-height: 1;
+}
 .flipzy-sticky-old { text-decoration: line-through; color: #9CA3AF; font-size: 0.9rem; }
 
-/* GUMB - KILL THE BORDER */
+/* GUMB - KILL ALL BORDERS */
 .flipzy-sticky-action { flex-shrink: 0; }
 
 .flipzy-sticky-action .product-form__submit {
-    background-color: #F4D35E !important; /* Mustard */
+    background-color: #F4D35E !important; 
     color: #111827 !important;
     border-radius: 50px !important;
     font-weight: 700 !important;
-    font-size: 1.1rem !important; /* Večji font v gumbu */
+    font-size: 1.1rem !important;
     padding: 14px 35px !important;
     cursor: pointer;
     
-    /* GLOW */
+    /* Glow Senca */
     box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
     
-    /* UNIČI DAWN OBROBO */
+    /* Ubijemo vse Dawn obrobe */
     border: none !important;
     outline: none !important;
     --border-offset: 0 !important;
@@ -564,9 +562,16 @@
     transition: transform 0.2s ease;
 }
 
-.flipzy-sticky-action .product-form__submit:hover { transform: scale(1.05); }
+/* Prepreči, da bi Dawn dodal obrobo na hover/focus */
+.flipzy-sticky-action .product-form__submit:hover,
+.flipzy-sticky-action .product-form__submit:focus,
+.flipzy-sticky-action .product-form__submit::after {
+    transform: scale(1.05);
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0 4px 20px rgba(244, 211, 94, 0.6) !important; /* Samo povečan glow, brez obrobe */
+}
 
-/* Spinner */
 .flipzy-sticky-action .loading-overlay__spinner {
     width: 20px; height: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
@@ -579,9 +584,12 @@
     .flipzy-sticky-info { display: none; }
     .flipzy-sticky-price-mobile { display: flex; }
     
+    /* Cena na mobilcu tudi velika */
+    .flipzy-sticky-new { font-size: 1.4rem; }
+    
     /* Gumb */
     .flipzy-sticky-action .product-form__submit { 
-        padding: 12px 20px !important; 
+        padding: 12px 25px !important; 
         font-size: 1rem !important; 
         min-width: auto; 
     }
