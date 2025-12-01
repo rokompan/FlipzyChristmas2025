@@ -1,6 +1,7 @@
 {% schema %}
 {
   "name": "Flipzy Sticky Bar",
+  "class": "flipzy-sticky-section",
   "settings": [
     {
       "type": "product",
@@ -9,21 +10,9 @@
     },
     {
       "type": "text",
-      "id": "text",
-      "label": "Headline Text",
-      "default": "Kids Routine Board That Works"
-    },
-    {
-      "type": "text",
-      "id": "subline_text",
-      "label": "Subline Text",
-      "default": "Special offer available while supplies last"
-    },
-    {
-      "type": "text",
-      "id": "button_label",
-      "label": "Button Label",
-      "default": "Add to Cart"
+      "id": "custom_title",
+      "label": "Custom Title",
+      "info": "Overrides product title if set."
     }
   ],
   "presets": [
@@ -34,141 +23,84 @@
 }
 {% endschema %}
 
-{%- liquid
-  assign product = section.settings.product
-  assign variant = product.selected_or_first_available_variant
-  assign compare_price = variant.compare_at_price
-  assign price = variant.price
--%}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
-<div id="flipzy-sticky-bar" class="flipzy-sticky">
-  <div class="flipzy-sticky__inner">
-    
-    <div class="flipzy-sticky__info">
-      <p class="flipzy-sticky__title">
-        {% if section.settings.text != blank %}
-          {{ section.settings.text }}
-        {% else %}
-          {{ product.title }}
-        {% endif %}
-      </p>
+{%- assign product = section.settings.product -%}
+{%- assign variant = product.selected_or_first_available_variant -%}
+{%- assign product_form_id = 'product-form-sticky-' | append: section.id -%}
+
+{% if product != blank %}
+  <div id="FlipzyStickyBar" class="flipzy-sticky-bar">
+    <div class="flipzy-sticky-inner">
       
-      <div class="flipzy-sticky__sub">
-        <div class="flipzy-sticky__price-box">
-          {% if compare_price > price %}
-            <span class="flipzy-sticky-old">{{ compare_price | money }}</span>
+      <div class="flipzy-sticky-info">
+        <p class="flipzy-sticky-title">
+          {% if section.settings.custom_title != blank %}
+            {{ section.settings.custom_title }}
+          {% else %}
+            {{ product.title }}
           {% endif %}
-          <span class="flipzy-sticky-new">{{ price | money }}</span>
+        </p>
+        <div class="flipzy-sticky-price">
+          {% if variant.compare_at_price > variant.price %}
+            <span class="sticky-price-old">{{ variant.compare_at_price | money }}</span>
+          {% endif %}
+          <span class="sticky-price-new">{{ variant.price | money }}</span>
         </div>
-        <span style="opacity: 0.5;">|</span>
-        <span>{{ section.settings.subline_text }}</span>
       </div>
-    </div>
 
-    <div class="flipzy-sticky__cta">
-      {% if product != blank %}
-        <button 
-          type="button" 
-          class="flipzy-sticky__btn"
-          onclick="addStickyToCart(this, '{{ variant.id }}')"
-          {% unless variant.available %}disabled style="opacity: 0.6;"{% endunless %}
-        >
-          <span class="btn-text">
-            {% if variant.available %}
-              {{ section.settings.button_label }}
-            {% else %}
-              Sold Out
-            {% endif %}
-          </span>
-          <div class="loading-overlay__spinner hidden" style="width:20px; height:20px;">
-            <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30" stroke="currentColor"></circle></svg>
+      <div class="flipzy-sticky-action">
+        <product-form class="product-form">
+          <div class="product-form__error-message-wrapper" role="alert" hidden>
+            <svg aria-hidden="true" focusable="false" class="icon icon-error" viewBox="0 0 13 13"><circle cx="6.5" cy="6.50049" r="5.5" stroke="white" stroke-width="2"/><circle cx="6.5" cy="6.5" r="5.5" fill="#EB001B" stroke="#EB001B" stroke-width="0.7"/><path d="M5.87413 3.52832L5.97439 7.57216H7.02713L7.12739 3.52832H5.87413ZM6.50076 9.66091C6.88091 9.66091 7.18169 9.37267 7.18169 9.00504C7.18169 8.63742 6.88091 8.34917 6.50076 8.34917C6.12061 8.34917 5.81982 8.63742 5.81982 9.00504C5.81982 9.37267 6.12061 9.66091 6.50076 9.66091Z" fill="white"/></svg>
+            <span class="product-form__error-message"></span>
           </div>
-        </button>
-      {% else %}
-        <button class="flipzy-sticky__btn" disabled>Select Product</button>
-      {% endif %}
-    </div>
 
+          {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            <input type="hidden" name="id" value="{{ variant.id }}">
+            
+            <button
+              type="submit"
+              name="add"
+              class="product-form__submit button button--full-width"
+              {% if variant.available == false %}disabled{% endif %}
+            >
+              <span>
+                {%- if variant.available -%}
+                  Add to Cart
+                {%- else -%}
+                  Sold Out
+                {%- endif -%}
+              </span>
+              
+              <div class="loading-overlay__spinner hidden">
+                <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                  <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+                </svg>
+              </div>
+            </button>
+          {%- endform -%}
+        </product-form>
+      </div>
+
+    </div>
   </div>
-</div>
+{% endif %}
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const bar = document.getElementById('flipzy-sticky-bar');
-  // Iščemo Hero sekcijo, da vemo kdaj pokazati bar
-  const hero = document.querySelector('.flipzy-hero-container'); 
+document.addEventListener('DOMContentLoaded', function() {
+  const bar = document.getElementById('FlipzyStickyBar');
+  if(!bar) return;
 
-  function checkScroll() {
-    if (!hero) {
-       // Če heroja ni, pokaži takoj po 200px
-       if(window.scrollY > 200) bar.classList.add('is-visible');
-       else bar.classList.remove('is-visible');
-       return;
-    }
-    
-    const heroBottom = hero.getBoundingClientRect().bottom;
-    
-    // Ko gre dno heroja izven ekrana (negativna vrednost), pokaži bar
-    if (heroBottom < 0) {
+  function handleScroll() {
+    // Pokaži bar šele ko uporabnik skrola 600px navzdol (mimo prve sekcije)
+    if (window.scrollY > 600) {
       bar.classList.add('is-visible');
     } else {
       bar.classList.remove('is-visible');
     }
   }
 
-  window.addEventListener('scroll', checkScroll, { passive: true });
-  checkScroll(); // Check on load
+  window.addEventListener('scroll', handleScroll, { passive: true });
 });
-
-// --- ADD TO CART LOGIC (Ista kot pri Super Product) ---
-function addStickyToCart(btn, variantId) {
-    if(!variantId) return;
-    
-    const spinner = btn.querySelector('.loading-overlay__spinner');
-    const text = btn.querySelector('.btn-text');
-    if(spinner) spinner.classList.remove('hidden');
-    if(text) text.style.display = 'none';
-    
-    let rootUrl = window.Shopify.routes.root;
-    if (rootUrl.endsWith('/')) rootUrl = rootUrl.slice(0, -1);
-    
-    const addUrl = rootUrl + '/cart/add.js';
-    const sectionUrl = rootUrl + '/?sections=cart-drawer,cart-icon-bubble';
-
-    fetch(addUrl, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ items: [{ id: variantId, quantity: 1 }] })
-    })
-    .then(r => r.json())
-    .then(d => {
-      // Fetch Drawer HTML
-      const cartDrawer = document.querySelector('cart-drawer');
-      fetch(sectionUrl)
-        .then(res => res.json())
-        .then(sections => {
-           // Update Bubble
-           const bubble = document.getElementById('cart-icon-bubble');
-           if(bubble && sections['cart-icon-bubble']) bubble.innerHTML = sections['cart-icon-bubble'];
-
-           // Open Drawer
-           if (cartDrawer && sections['cart-drawer']) {
-               cartDrawer.renderContents(sections['cart-drawer']);
-               setTimeout(() => cartDrawer.open(), 100);
-           } else {
-               window.location.href = rootUrl + '/cart';
-           }
-        });
-    })
-    .catch(e => {
-       console.error(e);
-       window.location.href = rootUrl + '/cart';
-    })
-    .finally(() => {
-       setTimeout(() => {
-         if(spinner) spinner.classList.add('hidden');
-         if(text) text.style.display = 'block';
-       }, 1000);
-    });
-}
 </script>

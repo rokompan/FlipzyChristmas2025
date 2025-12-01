@@ -547,45 +547,55 @@
     /* Odstranil sem font-size override za mobilce, naj naslovi dihajo */
     .flipzy-box-price { font-size: 2rem; }
 }
-
 /* =========================================
-   9. FLIPZY STICKY BAR
+   9. FLIPZY STICKY BAR (Native Logic)
    ========================================= */
-.flipzy-sticky {
+.flipzy-sticky-section {
+    /* To je wrapper za sekcijo, ki je nevidna v toku dokumenta */
+    height: 0; 
+    width: 0;
+    overflow: visible;
+}
+
+.flipzy-sticky-bar {
     position: fixed;
-    left: 0; right: 0; bottom: 0;
-    z-index: 999; /* Vedno na vrhu */
-    background: #FFFFFF; /* Čisto belo ozadje */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #F9F7F2; /* Cream */
     border-top: 1px solid #E5E7EB;
-    box-shadow: 0 -10px 40px rgba(0,0,0,0.08);
-    transform: translateY(101%); /* Skrito spodaj */
-    opacity: 0;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
     padding: 15px 20px;
+    z-index: 999;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
+    
+    /* Animacija */
+    transform: translateY(100%);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
 }
 
-.flipzy-sticky.is-visible {
+.flipzy-sticky-bar.is-visible {
     transform: translateY(0);
-    opacity: 1;
 }
 
-.flipzy-sticky__inner {
+.flipzy-sticky-inner {
     max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
 }
 
-/* Levi del: Info */
-.flipzy-sticky__info {
+/* LEVO: Info */
+.flipzy-sticky-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    justify-content: center;
 }
 
-.flipzy-sticky__title {
+.flipzy-sticky-title {
     font-size: 1rem;
     font-weight: 700;
     color: var(--color-charcoal);
@@ -593,52 +603,45 @@
     line-height: 1.2;
 }
 
-.flipzy-sticky__sub {
-    font-size: 0.85rem;
+.flipzy-sticky-price {
+    font-size: 0.9rem;
     color: #4B5563;
+    margin-top: 2px;
     display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* Cena */
-.flipzy-sticky__price-box {
-    display: flex;
-    align-items: center;
     gap: 8px;
+    align-items: center;
 }
-.flipzy-sticky-new { font-weight: 700; color: var(--color-charcoal); font-size: 1rem; }
-.flipzy-sticky-old { text-decoration: line-through; color: #9CA3AF; font-size: 0.9rem; }
-.flipzy-sticky-save { color: #EF4444; font-size: 0.85rem; font-weight: 700; }
 
-/* Desni del: Gumb */
-.flipzy-sticky__cta {
+.sticky-price-new { font-weight: 700; color: var(--color-charcoal); }
+.sticky-price-old { text-decoration: line-through; opacity: 0.6; }
+
+/* DESNO: Gumb (Kopija stila iz featured product) */
+.flipzy-sticky-action {
     flex-shrink: 0;
 }
 
-.flipzy-sticky__btn {
-    background-color: var(--color-mustard);
-    color: var(--color-charcoal);
-    border: none;
+.flipzy-sticky-bar .product-form__submit {
+    background-color: #F4D35E; /* Mustard */
+    color: #111827;
     border-radius: 50px;
-    padding: 12px 30px;
     font-weight: 700;
     font-size: 1rem;
+    padding: 12px 30px;
+    border: none;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.3);
+    box-shadow: 0 4px 10px rgba(244, 211, 94, 0.3);
     transition: transform 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    min-width: 180px;
+    margin: 0; /* Reset default margins */
 }
 
-.flipzy-sticky__btn:hover {
+.flipzy-sticky-bar .product-form__submit:hover {
     transform: scale(1.05);
 }
 
+/* Mobile Tweaks */
 @media (max-width: 750px) {
-    .flipzy-sticky { padding: 12px 15px; bottom: 0; } /* Na iPhone včasih rabi padding-bottom */
-    .flipzy-sticky__sub { display: none; } /* Skrij opis na mobitelu */
-    .flipzy-sticky__title { font-size: 0.9rem; max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .flipzy-sticky__btn { padding: 10px 20px; font-size: 0.9rem; }
+    .flipzy-sticky-bar { padding: 10px 15px; }
+    .flipzy-sticky-title { font-size: 0.9rem; max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .flipzy-sticky-bar .product-form__submit { padding: 10px 20px; font-size: 0.9rem; min-width: auto; }
 }
