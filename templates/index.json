@@ -304,21 +304,13 @@
             "icon": "check",
             "text": "Mounting tape + Instructions"
           }
-        },
-        "list_item_9FkCYy": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "Easy Setup Guide"
-          }
         }
       },
       "block_order": [
         "list_item_YGhDY8",
         "list_item_dNcpJi",
         "list_item_4Ymr9k",
-        "list_item_rzGMPj",
-        "list_item_9FkCYy"
+        "list_item_rzGMPj"
       ],
       "name": "Flipzy 8. Box Content",
       "settings": {
