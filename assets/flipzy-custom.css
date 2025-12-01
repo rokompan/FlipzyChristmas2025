@@ -316,8 +316,6 @@
 }
 
 .flipzy-box-title {
-    font-size: 2.8rem; 
-    font-weight: 700;
     color: var(--color-charcoal);
     margin-bottom: 10px; 
     line-height: 1.1;
@@ -482,6 +480,5 @@
 
 @media (max-width: 750px) {
     .flipzy-box-content-card { padding: 30px 20px; }
-    .flipzy-box-title { font-size: 2.2rem; }
     .flipzy-box-price { font-size: 2rem; }
 }
