@@ -321,11 +321,6 @@
     line-height: 1.2;
 }
 
-.flipzy-box-subtitle {
-    line-height: 1.5;
-    color: #4B5563;
-}
-
 /* Grid Layout */
 .flipzy-box-grid {
     display: grid;
