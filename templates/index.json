@@ -288,7 +288,7 @@
           "type": "list_item",
           "settings": {
             "icon": "check",
-            "text": "7x Task Pieces"
+            "text": "7x Task Pieces + sun and moon for morning and evening routines"
           }
         },
         "list_item_4Ymr9k": {
@@ -296,13 +296,6 @@
           "settings": {
             "icon": "check",
             "text": "30 Customization Stickers"
-          }
-        },
-        "list_item_zBzaaw": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "Sun and moon for morning and evening routines"
           }
         },
         "list_item_rzGMPj": {
@@ -324,7 +317,6 @@
         "list_item_YGhDY8",
         "list_item_dNcpJi",
         "list_item_4Ymr9k",
-        "list_item_zBzaaw",
         "list_item_rzGMPj",
         "list_item_9FkCYy"
       ],
