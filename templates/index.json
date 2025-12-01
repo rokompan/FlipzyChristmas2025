@@ -282,55 +282,6 @@
         "padding_bottom": 24
       }
     },
-    "flipzy_badges_YjLTAp": {
-      "type": "flipzy-badges",
-      "blocks": {
-        "badge_UbVzga": {
-          "type": "badge",
-          "settings": {
-            "icon": "no_phone",
-            "title": "100% Screen-Free",
-            "text": "No apps, no charging, no distractions - just tactile fun"
-          }
-        },
-        "badge_Npn6Lh": {
-          "type": "badge",
-          "settings": {
-            "icon": "leaf",
-            "title": "Eco-Friendly",
-            "text": "sustainable wood from responsible sources and minimal packaging"
-          }
-        },
-        "badge_4xbG9n": {
-          "type": "badge",
-          "settings": {
-            "icon": "shield",
-            "title": "Durable",
-            "text": "built for daily child enthusiasm to last for years"
-          }
-        },
-        "badge_9KLC7x": {
-          "type": "badge",
-          "settings": {
-            "icon": "tools",
-            "title": "Easy to Mount",
-            "text": "stick damage-free or secure with screws, your choice"
-          }
-        }
-      },
-      "block_order": [
-        "badge_UbVzga",
-        "badge_Npn6Lh",
-        "badge_4xbG9n",
-        "badge_9KLC7x"
-      ],
-      "name": "Flipzy Badges (4-up)",
-      "settings": {
-        "bg_color": "#e1dbdb",
-        "heading": "Trusted by thousands of families",
-        "show_checkmark": true
-      }
-    },
     "flipzy_whats_in_the_box_tDc44V": {
       "type": "flipzy-whats-in-the-box",
       "blocks": {
@@ -405,6 +356,55 @@
         "btn_link": "#buy"
       }
     },
+    "flipzy_badges_YjLTAp": {
+      "type": "flipzy-badges",
+      "blocks": {
+        "badge_UbVzga": {
+          "type": "badge",
+          "settings": {
+            "icon": "no_phone",
+            "title": "100% Screen-Free",
+            "text": "No apps, no charging, no distractions - just tactile fun"
+          }
+        },
+        "badge_Npn6Lh": {
+          "type": "badge",
+          "settings": {
+            "icon": "leaf",
+            "title": "Eco-Friendly",
+            "text": "sustainable wood from responsible sources and minimal packaging"
+          }
+        },
+        "badge_4xbG9n": {
+          "type": "badge",
+          "settings": {
+            "icon": "shield",
+            "title": "Durable",
+            "text": "built for daily child enthusiasm to last for years"
+          }
+        },
+        "badge_9KLC7x": {
+          "type": "badge",
+          "settings": {
+            "icon": "tools",
+            "title": "Easy to Mount",
+            "text": "stick damage-free or secure with screws, your choice"
+          }
+        }
+      },
+      "block_order": [
+        "badge_UbVzga",
+        "badge_Npn6Lh",
+        "badge_4xbG9n",
+        "badge_9KLC7x"
+      ],
+      "name": "Flipzy Badges (4-up)",
+      "settings": {
+        "bg_color": "#e1dbdb",
+        "heading": "Trusted by thousands of families",
+        "show_checkmark": true
+      }
+    },
     "flipzy_feature_video_3VptYe": {
       "type": "flipzy-feature-video",
       "blocks": {
@@ -439,8 +439,8 @@
     "flipzy_feature_video_FNy9TP",
     "flipzy_anchor_94NFEW",
     "featured_product_x9hCHm",
-    "flipzy_badges_YjLTAp",
     "flipzy_whats_in_the_box_tDc44V",
-    "flipzy_feature_video_3VptYe"
+    "flipzy_feature_video_3VptYe",
+    "flipzy_badges_YjLTAp"
   ]
 }
