@@ -98,54 +98,6 @@
         "fallback_image": "shopify://shop_images/palca.jpg"
       }
     },
-    "flipzy_feature_video_Qt6iBy": {
-      "type": "flipzy-feature-video",
-      "blocks": {
-        "feature_point_gNReqR": {
-          "type": "feature_point",
-          "settings": {
-            "icon_type": "bulb",
-            "text": "<p>A wooden board that helps kids follow daily routines.</p>"
-          }
-        },
-        "feature_point_KBhX6r": {
-          "type": "feature_point",
-          "settings": {
-            "icon_type": "puzzle_2",
-            "text": "<p>7 customizable wooden pieces</p>"
-          }
-        },
-        "feature_point_na9m4j": {
-          "type": "feature_point",
-          "settings": {
-            "icon_type": "cycle",
-            "text": "<p>Simple flip action to mark tasks as complete</p>"
-          }
-        },
-        "feature_point_NTn4tM": {
-          "type": "feature_point",
-          "settings": {
-            "icon_type": "ruler",
-            "text": "<p>Easy to mount anywhere</p>"
-          }
-        }
-      },
-      "block_order": [
-        "feature_point_gNReqR",
-        "feature_point_KBhX6r",
-        "feature_point_na9m4j",
-        "feature_point_NTn4tM"
-      ],
-      "name": "Flipzy Feature Video",
-      "settings": {
-        "color_scheme": "scheme-cream",
-        "desktop_layout": "media_right",
-        "mobile_layout": "text_first",
-        "heading": "What is Flipzy?",
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/efa91ddb30bb4e00bc1b3a1456b8a2d0.mp4",
-        "fallback_image": "shopify://shop_images/palca.jpg"
-      }
-    },
     "rich_text_Pc3YzR": {
       "type": "rich-text",
       "blocks": {
@@ -175,6 +127,78 @@
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
+      }
+    },
+    "flipzy_feature_video_Qt6iBy": {
+      "type": "flipzy-feature-video",
+      "blocks": {
+        "feature_point_gNReqR": {
+          "type": "feature_point",
+          "settings": {
+            "icon_type": "puzzle_3",
+            "text": "<p>Choose from our pre-designed task tiles or create your own with included stickers to match your family's unique routine.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_point_gNReqR"
+      ],
+      "name": "Flipzy Feature Video",
+      "settings": {
+        "color_scheme": "scheme-cream",
+        "desktop_layout": "media_right",
+        "mobile_layout": "text_first",
+        "heading": "Customize your tasks",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/b79a29aed8e645aea74714d776f4436d.mp4",
+        "fallback_image": "shopify://shop_images/palca.jpg"
+      }
+    },
+    "flipzy_feature_video_DaFB3E": {
+      "type": "flipzy-feature-video",
+      "blocks": {
+        "feature_point_7KMG4q": {
+          "type": "feature_point",
+          "settings": {
+            "icon_type": "settings",
+            "text": "<p>Mount your Flipzy easily and securely using our damage-free adhesive strips. Peel it and stick it to the wall.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_point_7KMG4q"
+      ],
+      "name": "Flipzy Feature Video",
+      "settings": {
+        "color_scheme": "scheme-white",
+        "desktop_layout": "media_left",
+        "mobile_layout": "text_first",
+        "heading": "Quick Installation",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/80744550833342e085ff72d957535bc0.mp4",
+        "fallback_image": "shopify://shop_images/palca.jpg"
+      }
+    },
+    "flipzy_feature_video_FNy9TP": {
+      "type": "flipzy-feature-video",
+      "blocks": {
+        "feature_point_VGtUmc": {
+          "type": "feature_point",
+          "settings": {
+            "icon_type": "ruler",
+            "text": "<p>Mount your Flipzy easily and securely using our damage-free adhesive strips. Peel it and stick it to the wall.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_point_VGtUmc"
+      ],
+      "name": "Flipzy Feature Video",
+      "settings": {
+        "color_scheme": "scheme-cream",
+        "desktop_layout": "media_right",
+        "mobile_layout": "text_first",
+        "heading": "Create your routine",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/dc8a8217db654445a9862fb3f49f18a8.mp4",
+        "fallback_image": "shopify://shop_images/palca.jpg"
       }
     },
     "flipzy_anchor_94NFEW": {
@@ -411,6 +435,8 @@
     "flipzy_feature_video_Wf8y33",
     "rich_text_Pc3YzR",
     "flipzy_feature_video_Qt6iBy",
+    "flipzy_feature_video_DaFB3E",
+    "flipzy_feature_video_FNy9TP",
     "flipzy_anchor_94NFEW",
     "featured_product_x9hCHm",
     "flipzy_badges_YjLTAp",
