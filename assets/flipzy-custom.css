@@ -777,3 +777,56 @@
   background: transparent; /* Invisible */
   z-index: 1001;
 }
+/* =========================================
+   COLOR SCHEMES (Barvne Sheme)
+   ========================================= */
+
+/* 1. White (Privzeto) */
+.scheme-white { 
+    background-color: var(--color-white); 
+    color: var(--color-charcoal); 
+}
+
+/* 2. Cream (Bež) */
+.scheme-cream { 
+    background-color: var(--color-cream); 
+    color: var(--color-charcoal); 
+}
+
+/* 3. Sage (Zelena) */
+.scheme-sage { 
+    background-color: var(--color-sage); 
+    color: #FFFFFF; /* Bel tekst na zeleni */
+}
+
+/* 4. Mint (Svetlo zelena) */
+.scheme-mint { 
+    background-color: var(--color-mint); 
+    color: var(--color-charcoal); 
+}
+
+/* 5. Night (Temna) */
+.scheme-night { 
+    background-color: var(--color-charcoal); 
+    color: #FFFFFF; /* Bel tekst na temni */
+}
+
+/* --- PRILAGODITEV ELEMENTOV GLEDE NA SHEMO --- */
+
+/* Če je temna ali sage shema, naj bodo naslovi in teksti beli */
+.scheme-night .flipzy-feature-heading,
+.scheme-night .flipzy-feature-point-text,
+.scheme-sage .flipzy-feature-heading,
+.scheme-sage .flipzy-feature-point-text {
+    color: #FFFFFF !important;
+}
+
+/* Ikone v Night mode naj bodo Mint ali Rumene za kontrast */
+.scheme-night .flipzy-feature-icon-box {
+    color: var(--color-mustard) !important;
+}
+
+/* Ikone v Sage mode naj bodo bele */
+.scheme-sage .flipzy-feature-icon-box {
+    color: #FFFFFF !important;
+}

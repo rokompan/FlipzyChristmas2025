@@ -3,7 +3,19 @@
   "name": "Flipzy Feature Video",
   "class": "flipzy-section",
   "settings": [
-    { "type": "select", "id": "color_scheme", "label": "Color Scheme", "options": [ { "value": "scheme-white", "label": "White" }, { "value": "scheme-cream", "label": "Cream" } ], "default": "scheme-white" },
+    { 
+      "type": "select", 
+      "id": "color_scheme", 
+      "label": "Color Scheme", 
+      "options": [ 
+        { "value": "scheme-white", "label": "White (Clean)" }, 
+        { "value": "scheme-cream", "label": "Cream (Warm)" },
+        { "value": "scheme-sage", "label": "Sage (Green)" },
+        { "value": "scheme-mint", "label": "Mint (Fresh)" },
+        { "value": "scheme-night", "label": "Night (Dark Mode)" }
+      ], 
+      "default": "scheme-white" 
+    },
     { "type": "select", "id": "desktop_layout", "label": "Desktop Layout", "default": "media_right", "options": [ { "value": "media_left", "label": "Video Left" }, { "value": "media_right", "label": "Video Right" } ] },
     { "type": "select", "id": "mobile_layout", "label": "Mobile Layout", "default": "text_first", "options": [ { "value": "text_first", "label": "Text First" }, { "value": "media_first", "label": "Video First" } ] },
     { "type": "text", "id": "heading", "label": "Title", "default": "What is Flipzy?" },
@@ -28,10 +40,7 @@
           "options": [ 
             { "value": "check", "label": "Checkmark" },
             
-            { "value": "puzzle_phosphor", "label": "Puzzle (Phosphor)" },
-            { "value": "puzzle_hero", "label": "Puzzle (Heroicons - CLEAN)" },
-            { "value": "puzzle_google", "label": "Puzzle (Google)" },
-            
+            { "value": "puzzle_classic", "label": "Puzzle: Jigsaw Piece (Classic)" },
             { "value": "puzzle_pair", "label": "Puzzle: Two Pieces" },
             { "value": "puzzle_4", "label": "Puzzle: 4 Pieces" },
             
@@ -97,7 +106,7 @@
     {
       "name": "Flipzy Feature Video",
       "blocks": [
-        { "type": "feature_point", "settings": { "icon_type": "puzzle_hero", "text": "<p>8 customizable wooden pieces</p>" } },
+        { "type": "feature_point", "settings": { "icon_type": "puzzle_classic", "text": "<p>8 customizable wooden pieces</p>" } },
         { "type": "feature_point", "settings": { "icon_type": "cycle", "text": "<p>Simple flip action</p>" } },
         { "type": "feature_point", "settings": { "icon_type": "ruler", "text": "<p>Compact design</p>" } }
       ]
@@ -106,7 +115,7 @@
 }
 {% endschema %}
 
-<div class="flipzy-feature-section {{ section.settings.color_scheme }} layout-desktop-{% if section.settings.desktop_layout == 'media_left' %}left{% else %}right{% endif %} layout-mobile-{{ section.settings.mobile_layout }}">
+<div id="Flipzy-Video-{{ section.id }}" class="flipzy-feature-section {{ section.settings.color_scheme }} layout-desktop-{% if section.settings.desktop_layout == 'media_left' %}left{% else %}right{% endif %} layout-mobile-{{ section.settings.mobile_layout }}">
   <div class="flipzy-feature-inner">
     
     <div class="flipzy-feature-media">
@@ -137,35 +146,13 @@
                 <img src="{{ block.settings.custom_icon | image_url: width: 64 }}" alt="icon" loading="lazy">
               {% else %}
                 {% case block.settings.icon_type %}
-                  
-                  {% when 'puzzle_phosphor' %}
-                    <svg style="stroke-width: 16px !important;" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M232,112H206.86a24,24,0,0,0-45.72,0H144V94.86a24,24,0,0,0,0-45.72V24a8,8,0,0,0-8-8H48a8,8,0,0,0-8-8V128a8,8,0,0,0,8,8H70.86a24,24,0,0,0,45.72,0H128v17.14a24,24,0,0,0,0,45.72V224a8,8,0,0,0,8,8h88a8,8,0,0,0,8-8V120A8,8,0,0,0,232,112Z"></path>
-                    </svg>
-
-                  {% when 'puzzle_hero' %}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M10 3.5a2.5 2.5 0 0 0 5 0V4h1a2 2 0 0 1 2 2v1h.5a2.5 2.5 0 0 0 0 5h-.5v4a2 2 0 0 1-2 2h-1v.5a2.5 2.5 0 0 0-5 0v-.5h-4a2 2 0 0 1-2-2v-4h-.5a2.5 2.5 0 0 0 0-5h.5V6a2 2 0 0 1 2-2h4v-.5z"></path>
-                    </svg>
-
-                  {% when 'puzzle_google' %}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 6c-2.61.7-2.61 3.3 0 4c1.93.5 1.68 3-1.21 3.5a8 8 0 1 0-9.29 9.29c.5-2.89 3-2.64 3.5-1.21.7 2.61 3.3 2.61 4 0 1.78-.66 1.78-3.34 0-4-2.61-.7-2.61-3.3 0-4 1.78-.66 1.78-3.34 0-4-.7-2.61-3.3-2.61-4 0z"/><path d="M14.5 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg>
-                  
-                  {% when 'puzzle_pair' %}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-
-                  {% when 'puzzle_4' %}
-                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-
-                  {% when 'sticker' %}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg>
-                  {% when 'wrench' %}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                  {% when 'hammer' %}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12l-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"/><path d="M17.64 6.36l-3.64 3.64a2 2 0 0 0 0 2.83L14 12.83a2 2 0 0 0 2.83 0l3.64-3.64a2 2 0 0 0 0-2.83l-.83-.83a2 2 0 0 0-2.83 0z"/></svg>
-                  {% when 'screwdriver' %}
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l-3 3 3 3 3-3-3-3z"/><path d="M9 12l8.5-8.5a2.12 2.12 0 0 1 3 3L12 15"/></svg>
-
+                  {% when 'puzzle_classic' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 6c-2.61.7-2.61 3.3 0 4c1.93.5 1.68 3-1.21 3.5a8 8 0 1 0-9.29 9.29c.5-2.89 3-2.64 3.5-1.21.7 2.61 3.3 2.61 4 0 1.78-.66 1.78-3.34 0-4-2.61-.7-2.61-3.3 0-4 1.78-.66 1.78-3.34 0-4-.7-2.61-3.3-2.61-4 0z"></path></svg>
+                  {% when 'puzzle_pair' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                  {% when 'puzzle_4' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                  {% when 'sticker' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 3H5a2 2 0 0 0-2 2v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg>
+                  {% when 'wrench' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                  {% when 'hammer' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12l-8.5 8.5c-.83.83-2.17.83-3 0 0 0 0 0 0 0a2.12 2.12 0 0 1 0-3L12 9"/><path d="M17.64 6.36l-3.64 3.64a2 2 0 0 0 0 2.83L14 12.83a2 2 0 0 0 2.83 0l3.64-3.64a2 2 0 0 0 0-2.83l-.83-.83a2 2 0 0 0-2.83 0z"/></svg>
+                  {% when 'screwdriver' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l-3 3 3 3 3-3-3-3z"/><path d="M9 12l8.5-8.5a2.12 2.12 0 0 1 3 3L12 15"/></svg>
                   {% when 'cycle' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                   {% when 'ruler' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12.5a.5.5 0 0 1 .5-.5h21a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-21a.5.5 0 0 1-.5-.5v-9Z"/><path d="M6 12v4"/><path d="M10 12v6"/><path d="M14 12v4"/><path d="M18 12v6"/></svg>
                   {% when 'bulb' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.26C17.81 13.47 19 11.38 19 9a7 7 0 0 0-7-7z"></path><path d="M9 21h6"></path></svg>
@@ -180,9 +167,38 @@
                   {% when 'clock' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                   {% when 'box' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                   {% when 'settings' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                  
                   {% when 'chat' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                   {% when 'phone' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                   {% when 'mail' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                   {% when 'calendar' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  {% when 'pin' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor
+                  {% when 'pin' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                  {% when 'card' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                  {% when 'cart' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                  {% when 'tag' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+                  {% when 'percent' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"></line><circle cx="6.5" cy="6.5" r="2.5"></circle><circle cx="17.5" cy="17.5" r="2.5"></circle></svg>
+                  {% when 'thumb' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+                  {% when 'trophy' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+                  {% when 'smile' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+                  {% when 'sun' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                  {% when 'moon' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                  {% when 'drop' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.74 5.88a6 6 0 0 1-8.48 8.48A6 6 0 0 1 5.56 9.35L12 2.69h0z"></path></svg>
+                  {% when 'fire' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.56 2.9A7 7 0 0 1 19 9a7 7 0 0 1-13.91 1.73"></path><path d="M12 9a2.3 2.3 0 0 0-2.3 2.3A2.3 2.3 0 0 0 12 13.6a2.3 2.3 0 0 0 2.3-2.3A2.3 2.3 0 0 0 12 9z"></path><path d="M12 18a6 6 0 0 0 6-6"></path></svg>
+                  {% when 'eye' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                  {% when 'lock' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  {% when 'home' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                  {% when 'globe' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                  {% when 'search' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  {% when 'play' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  {% when 'download' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+
+                {% endcase %}
+              {% endif %}
+            </div>
+            <div class="flipzy-feature-point-text">{{ block.settings.text }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<script>document.addEventListener('DOMContentLoaded',function(){const c=document.getElementById('Flipzy-Video-{{ section.id }}');if(!c)return;const v=c.querySelector('.flipzy-feature-video');const i=c.querySelector('.flipzy-feature-image');if(!v)return;const s="{{ section.settings.video_url }}";if(!s)return;function isSlow(){const n=navigator.connection;return n&&(n.saveData||n.effectiveType.includes('2g'))}const l=()=>{if(v.dataset.loaded)return;const src=v.querySelector('source');if(src){src.src=s;v.load();v.dataset.loaded='true'}};if(!isSlow())l();v.addEventListener('loadeddata',()=>{v.style.display='block';if(i)i.classList.add('is-hidden')});});</script>
