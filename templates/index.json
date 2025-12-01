@@ -275,24 +275,6 @@
         "padding_bottom": 24
       }
     },
-    "flipzy_offer_strip_jVGpMw": {
-      "type": "flipzy-offer-strip",
-      "name": "Flipzy Offer Strip",
-      "settings": {
-        "product": "flipzy-wooden-routine-board",
-        "badge_text": "SPECIAL OFFER – WHILE SUPPLIES LAST",
-        "custom_title": "Kids Routine Board That Finally Works",
-        "text": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>",
-        "guarantee_text": "✓ 30-day money-back guarantee • 24 months warranty",
-        "show_dynamic_checkout": true,
-        "color_scheme": "offer-scheme-cream",
-        "secondary_background": false,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "media_size": "medium",
-        "media_position": "left"
-      }
-    },
     "flipzy_whats_in_the_box_tDc44V": {
       "type": "flipzy-whats-in-the-box",
       "blocks": {
@@ -424,6 +406,25 @@
         "show_checkmark": true
       }
     },
+    "flipzy_offer_strip_jVGpMw": {
+      "type": "flipzy-offer-strip",
+      "name": "Flipzy Offer Strip",
+      "settings": {
+        "product": "flipzy-wooden-routine-board",
+        "badge_text": "SPECIAL OFFER – WHILE SUPPLIES LAST",
+        "custom_title": "Kids Routine Board That Finally Works",
+        "text": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>",
+        "guarantee_text": "✓ 30-day money-back guarantee • 24 months warranty",
+        "show_dynamic_checkout": true,
+        "color_scheme": "offer-scheme-cream",
+        "secondary_background": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "media_size": "medium",
+        "media_position": "left",
+        "heading_size": "h1"
+      }
+    },
     "flipzy_feature_video_t3an46": {
       "type": "flipzy-feature-video",
       "blocks": {
@@ -454,7 +455,8 @@
       "settings": {
         "product": "flipzy-wooden-routine-board",
         "text": "Kids Routine Board That Finally Works",
-        "subline_text": "Special offer available while supplies last"
+        "subline_text": "Special offer available while supplies last",
+        "button_label": "Add to Cart"
       }
     }
   },
@@ -467,10 +469,10 @@
     "flipzy_feature_video_FNy9TP",
     "flipzy_anchor_94NFEW",
     "featured_product_x9hCHm",
-    "flipzy_offer_strip_jVGpMw",
     "flipzy_whats_in_the_box_tDc44V",
     "flipzy_feature_video_3VptYe",
     "flipzy_badges_YjLTAp",
+    "flipzy_offer_strip_jVGpMw",
     "flipzy_feature_video_t3an46",
     "flipzy_sticky_bar_Tdg6tz"
   ]
