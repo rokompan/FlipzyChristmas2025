@@ -457,6 +457,7 @@
     margin-bottom: 20px; 
     color: var(--color-charcoal);
     margin-top: 0; 
+    padding-top: 0;
 }
 
 /* Checklist */
