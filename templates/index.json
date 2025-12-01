@@ -98,14 +98,45 @@
         "fallback_image": "shopify://shop_images/palca.jpg"
       }
     },
+    "rich_text_Pc3YzR": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_cGMebh": {
+          "type": "heading",
+          "settings": {
+            "heading": "How Flipzy Works?",
+            "heading_size": "h2"
+          }
+        },
+        "text_dc9Bxy": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Flipzy transforms daily routines into an engaging journey of independence. Each flip of a tile builds confidence and creates lasting habits that make every day smoother for the whole family.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_cGMebh",
+        "text_dc9Bxy"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
     "flipzy_feature_video_Qt6iBy": {
       "type": "flipzy-feature-video",
       "blocks": {
         "feature_point_gNReqR": {
           "type": "feature_point",
           "settings": {
-            "icon_type": "bulb",
-            "text": "<p>A wooden board that helps kids follow daily routines.</p>"
+            "icon_type": "puzzle_3",
+            "text": "<p>Choose from our pre-designed task tiles or create your own with included stickers to match your family's unique routine.</p>"
           }
         },
         "feature_point_KBhX6r": {
@@ -141,40 +172,9 @@
         "color_scheme": "scheme-cream",
         "desktop_layout": "media_right",
         "mobile_layout": "text_first",
-        "heading": "What is Flipzy?",
+        "heading": "Customize your tasks",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/efa91ddb30bb4e00bc1b3a1456b8a2d0.mp4",
         "fallback_image": "shopify://shop_images/palca.jpg"
-      }
-    },
-    "rich_text_Pc3YzR": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_cGMebh": {
-          "type": "heading",
-          "settings": {
-            "heading": "How Flipzy Works?",
-            "heading_size": "h2"
-          }
-        },
-        "text_dc9Bxy": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Flipzy transforms daily routines into an engaging journey of independence. Each flip of a tile builds confidence and creates lasting habits that make every day smoother for the whole family.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "heading_cGMebh",
-        "text_dc9Bxy"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "",
-        "full_width": true,
-        "padding_top": 40,
-        "padding_bottom": 52
       }
     },
     "flipzy_anchor_94NFEW": {
