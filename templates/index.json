@@ -82,7 +82,7 @@
       ],
       "name": "Flipzy Feature Video",
       "settings": {
-        "color_scheme": "scheme-cream",
+        "color_scheme": "scheme-white",
         "desktop_layout": "media_right",
         "mobile_layout": "text_first",
         "heading": "What is Flipzy?",
@@ -115,7 +115,7 @@
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "color_scheme": "",
+        "color_scheme": "scheme-c359c2bf-0c0e-4470-9782-7d25559e01fc",
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 52
