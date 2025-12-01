@@ -202,7 +202,16 @@
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.05);
     line-height: 0;
-}
+    width: 100%;
+  }
+  
+  /* Samo za Desktop (ekrani širši od 750px) */
+  @media screen and (min-width: 750px) {
+      .flipzy-static-media {
+          max-width: 350px; /* Tukaj nastavi velikost */
+          margin: 0 auto;
+      }
+  }
 .flipzy-static-media img {
     width: 100%;
     height: auto;
