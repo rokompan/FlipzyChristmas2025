@@ -595,16 +595,25 @@
     }
 }
 /* =========================================
-   10. FLIPZY FEATURED PRODUCT (Native Hybrid)
+   10. FLIPZY FEATURED PRODUCT (Offer Strip)
    ========================================= */
 
-/* 1. FLIPZY GUMB (Preoblečemo native gumb) */
+/* NASLOV - POPRAVLJEN (Navaden H2) */
+.section-featured-product .product__title,
+.section-featured-product h2.product__title {
+    font-size: 2rem !important; /* Manjši, standardni H2 */
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+/* 1. FLIPZY GUMB */
 .section-featured-product .product-form__submit {
-    background-color: #F4D35E !important; /* Mustard */
+    background-color: #F4D35E !important; 
     color: #111827 !important;
     border-radius: 50px !important;
     font-weight: 700 !important;
-    text-transform: none !important; /* Brez velikih tiskanih */
+    text-transform: none !important; 
     padding: 15px 30px !important;
     box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4);
     transition: transform 0.2s ease;
@@ -613,10 +622,10 @@
     transform: scale(1.02);
 }
 
-/* 2. POPUST ZNAČKA (Poleg cene) */
+/* 2. POPUST ZNAČKA */
 .flipzy-save-badge {
     display: inline-block;
-    background-color: #000; /* Črna ali rdeča */
+    background-color: #000; 
     color: #fff;
     font-size: 0.8rem;
     font-weight: 700;
@@ -627,8 +636,8 @@
     transform: translateY(-2px);
 }
 
-/* 3. TRUST PILL (Garancija) */
-.flipzy-trust-pill {
+/* 3. TRUST PILL */
+.flipzy-guarantee-pill {
     margin-top: 1.5rem;
     background: #ECFDF5;
     border: 1px solid #6EE7B7;
@@ -643,16 +652,21 @@
     gap: 8px;
     text-align: center;
     line-height: 1.3;
+    width: 100%;
 }
-.flipzy-trust-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+.flipzy-guarantee-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-/* 4. TRUST ICONS (Spodaj) */
+/* 4. TRUST ICONS */
 .flipzy-trust-row {
     display: flex;
     gap: 20px;
     margin-top: 20px;
     opacity: 0.7;
     flex-wrap: wrap;
+    justify-content: center; 
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    width: 100%;
 }
 .flipzy-trust-item {
     display: flex;
@@ -663,23 +677,23 @@
     font-weight: 500;
     color: #374151;
 }
-.flipzy-trust-item svg { width: 20px; height: 20px; }
+.flipzy-trust-item svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-/* Mobile prilagoditve */
-@media (max-width: 750px) {
-    .flipzy-trust-row { justify-content: center; }
-}
-
-/* 5. STATIC MEDIA (Statična slika) */
+/* 5. STATIC MEDIA */
 .flipzy-static-media {
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.05);
     line-height: 0;
+    width: 100%;
 }
 .flipzy-static-media img {
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
+}
+
+@media (max-width: 750px) {
+    .flipzy-trust-row { justify-content: center; }
 }
