@@ -169,8 +169,8 @@
       ],
       "name": "Flipzy Feature Video",
       "settings": {
-        "color_scheme": "scheme-cream",
-        "desktop_layout": "media_right",
+        "color_scheme": "scheme-white",
+        "desktop_layout": "media_left",
         "mobile_layout": "text_first",
         "heading": "Quick Installation",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/80744550833342e085ff72d957535bc0.mp4",
