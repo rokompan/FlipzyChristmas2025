@@ -13,6 +13,11 @@
 {%- endstyle -%}
 
 {% if product != blank %}
+  {%- assign variant = product.selected_or_first_available_variant -%}
+  {%- assign compare_price = variant.compare_at_price -%}
+  {%- assign price = variant.price -%}
+  {%- assign product_form_id = 'product-form-sticky-' | append: section.id -%}
+
   <div id="flipzy-sticky-bar-{{ section.id }}" class="flipzy-sticky">
     <div class="flipzy-sticky-inner">
       
@@ -20,43 +25,38 @@
         <p class="flipzy-sticky-title">
           {% if section.settings.text != blank %}{{ section.settings.text }}{% else %}{{ product.title }}{% endif %}
         </p>
-        <div class="flipzy-sticky-sub">
-          {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
-            <span class="flipzy-sticky-old">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+        {% if section.settings.subline_text != blank %}
+          <div class="flipzy-sticky-sub">{{ section.settings.subline_text }}</div>
+        {% endif %}
+      </div>
+
+      <div class="flipzy-sticky-right">
+        
+        <div class="flipzy-sticky-price-box">
+          {% if compare_price > price %}
+            <span class="flipzy-sticky-old">{{ compare_price | money }}</span>
           {% endif %}
-          <span class="flipzy-sticky-new">{{ product.selected_or_first_available_variant.price | money }}</span>
-          
-          {% if section.settings.subline_text != blank %}
-            <span style="opacity: 0.4; margin: 0 5px;">|</span> {{ section.settings.subline_text }}
-          {% endif %}
+          <span class="flipzy-sticky-new">{{ price | money }}</span>
         </div>
-      </div>
 
-      <div class="flipzy-sticky-price-mobile">
-         {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
-            <span class="flipzy-sticky-old" style="font-size: 0.8rem;">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
-         {% endif %}
-         <span class="flipzy-sticky-new">{{ product.selected_or_first_available_variant.price | money }}</span>
-      </div>
-
-      <div class="flipzy-sticky-action">
-        <product-info
-          id="ProductInfo-{{ section.id }}"
-          data-section="{{ section.id }}"
-          data-product-id="{{ product.id }}"
-          data-update-url="false"
-          data-url="{{ product.url }}"
-        >
-          {%- assign product_form_id = 'product-form-' | append: section.id -%}
-
-          {%- render 'buy-buttons',
-            block: section, 
-            product: product,
-            product_form_id: product_form_id,
-            section_id: section.id,
-            show_dynamic_checkout: false
-          -%}
-        </product-info>
+        <div class="flipzy-sticky-action">
+          <product-info
+            id="ProductInfo-{{ section.id }}"
+            data-section="{{ section.id }}"
+            data-product-id="{{ product.id }}"
+            data-update-url="false"
+            data-url="{{ product.url }}"
+          >
+            {%- render 'buy-buttons',
+              block: section, 
+              product: product,
+              product_form_id: product_form_id,
+              section_id: section.id,
+              show_dynamic_checkout: false
+            -%}
+          </product-info>
+        </div>
+        
       </div>
 
     </div>
@@ -66,6 +66,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const bar = document.getElementById('flipzy-sticky-bar-{{ section.id }}');
+  // Poišči katerokoli "visoko" sekcijo za trigger
   const triggerSection = document.querySelector('.flipzy-hero-container') || document.querySelector('.section-featured-product');
 
   function checkScroll() {
@@ -93,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
     { "type": "product", "id": "product", "label": "Product" },
     { "type": "text", "id": "text", "label": "Headline", "default": "Kids Routine Board" },
     { "type": "text", "id": "subline_text", "label": "Subline", "default": "Special Offer" },
-    { "type": "text", "id": "button_label", "label": "Button Label", "default": "Add to Cart" }
+    { "type": "text", "id": "button_label", "label": "Button Label (Not used by native button)", "info": "Button text comes from theme settings." }
   ],
   "presets": [ { "name": "Flipzy Sticky Bar" } ]
 }
