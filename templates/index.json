@@ -258,6 +258,7 @@
         "buy_buttons_RFHj8z",
         "share_n79q7e"
       ],
+      "disabled": true,
       "name": "t:sections.featured-product.presets.name",
       "settings": {
         "product": "flipzy-wooden-routine-board",
