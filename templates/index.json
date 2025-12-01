@@ -84,7 +84,7 @@
       "settings": {
         "color_scheme": "scheme-cream",
         "desktop_layout": "media_right",
-        "mobile_layout": "media_first",
+        "mobile_layout": "text_first",
         "heading": "What is Flipzy?",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/efa91ddb30bb4e00bc1b3a1456b8a2d0.mp4",
         "fallback_image": "shopify://shop_images/palca.jpg"
@@ -282,6 +282,7 @@
         "product": "flipzy-wooden-routine-board",
         "badge_text": "SPECIAL OFFER – WHILE SUPPLIES LAST",
         "custom_title": "Kids Routine Board That Finally Works",
+        "text": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>",
         "guarantee_text": "✓ 30-day money-back guarantee • 24 months warranty",
         "show_dynamic_checkout": true,
         "color_scheme": "offer-scheme-cream",
