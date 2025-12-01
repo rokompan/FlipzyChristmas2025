@@ -123,30 +123,27 @@
     .layout-desktop-right .flipzy-feature-content { order: 1; } .layout-desktop-right .flipzy-feature-media { order: 2; }
 }
 
-
 /* =========================================
-   10. FLIPZY FEATURED PRODUCT (Native Hybrid)
+   10. FLIPZY FEATURED PRODUCT (Refined)
    ========================================= */
 
-/* 1. FLIPZY GUMB (Preoblečemo native gumb) */
+/* Gumb */
 .section-featured-product .product-form__submit {
-    background-color: #F4D35E !important; /* Mustard */
+    background-color: #F4D35E !important; 
     color: #111827 !important;
     border-radius: 50px !important;
     font-weight: 700 !important;
-    text-transform: none !important; /* Brez velikih tiskanih */
+    text-transform: none !important; 
     padding: 15px 30px !important;
     box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4);
     transition: transform 0.2s ease;
 }
-.section-featured-product .product-form__submit:hover {
-    transform: scale(1.02);
-}
+.section-featured-product .product-form__submit:hover { transform: scale(1.02); }
 
-/* 2. POPUST ZNAČKA (Poleg cene) */
+/* Save Badge (Custom) */
 .flipzy-save-badge {
     display: inline-block;
-    background-color: #000; /* Črna ali rdeča */
+    background-color: #000; 
     color: #fff;
     font-size: 0.8rem;
     font-weight: 700;
@@ -154,11 +151,11 @@
     border-radius: 4px;
     margin-left: 10px;
     vertical-align: middle;
-    transform: translateY(-2px);
+    transform: translateY(-3px); /* Poravnava s ceno */
 }
 
-/* 3. TRUST PILL (Garancija) */
-.flipzy-trust-pill {
+/* Trust Pill */
+.flipzy-guarantee-pill {
     margin-top: 1.5rem;
     background: #ECFDF5;
     border: 1px solid #6EE7B7;
@@ -174,15 +171,19 @@
     text-align: center;
     line-height: 1.3;
 }
-.flipzy-trust-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+.flipzy-guarantee-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-/* 4. TRUST ICONS (Spodaj) */
+/* TRUST ICONS - CENTRIRANO */
 .flipzy-trust-row {
     display: flex;
-    gap: 20px;
-    margin-top: 20px;
+    gap: 25px;
+    margin-top: 25px;
     opacity: 0.7;
     flex-wrap: wrap;
+    justify-content: center; /* CENTRIRANO */
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    width: 100%;
 }
 .flipzy-trust-item {
     display: flex;
@@ -193,13 +194,26 @@
     font-weight: 500;
     color: #374151;
 }
-.flipzy-trust-item svg { width: 20px; height: 20px; }
+.flipzy-trust-item svg { width: 24px; height: 24px; }
 
-/* Mobile prilagoditve */
+/* STATIC IMAGE (Non-clickable) */
+.flipzy-static-media {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    line-height: 0;
+}
+.flipzy-static-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Mobile */
 @media (max-width: 750px) {
     .flipzy-trust-row { justify-content: center; }
 }
-
 /* =========================================
    WEGLOT FIXES
    ========================================= */
