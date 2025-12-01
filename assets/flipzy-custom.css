@@ -414,25 +414,24 @@
    8. FLIPZY "WHAT'S IN THE BOX" SECTION
    ========================================= */
 .flipzy-box-section {
-    padding: 60px 20px; 
+    padding: 40px 20px; 
     background-color: #F6DACE; 
 }
 
 .flipzy-box-header {
     text-align: center;
     max-width: 900px;
-    margin: 0 auto 35px auto; 
+    margin: 0 auto 20px auto; 
 }
 
 /* GLAVNI NASLOV (H2) */
 .flipzy-box-title {
     color: var(--color-charcoal);
-    margin-bottom: 15px; 
+    margin-bottom: 10px; 
 }
 
-/* PODNASLOV - POVEČAN */
 .flipzy-box-subtitle {
-    font-size: 1.5rem; /* POVEČANO (prej 1.25rem) */
+    font-size: 1.25rem; 
     line-height: 1.5;
     color: #4B5563;
 }
@@ -450,7 +449,7 @@
 @media screen and (min-width: 990px) {
     .flipzy-box-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 50px; 
+        gap: 40px; 
     }
 }
 
@@ -485,97 +484,99 @@
 .flipzy-box-content-card {
     background: #FFFFFF;
     border-radius: 24px;
-    padding: 40px 30px; 
+    padding: 25px 30px 30px 30px; /* Zmanjšan spodnji padding */
     box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
-/* NASLOV KARTICE (H3) */
+/* NASLOV KARTICE - NAVADEN TEKST */
 .flipzy-box-content-title {
-    margin-bottom: 25px; 
+    font-size: 1.1rem; /* Velikost navadnega teksta */
+    font-weight: 700;  /* Krepko, da se loči */
+    margin-bottom: 15px; 
     color: var(--color-charcoal);
     margin-top: 0; 
+    line-height: 1.4;
 }
 
-/* Checklist */
+/* Checklist - ZBITA */
 .flipzy-box-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 30px 0; 
+    margin: 0 0 15px 0; /* ZMANJŠAN MARGIN (prej 25px) */
     display: flex;
     flex-direction: column;
-    gap: 15px; 
+    gap: 6px; /* ZMANJŠAN GAP (prej 12px) */
 }
 
-/* CHECKLIST ITEM - POVEČAN */
 .flipzy-box-item {
     display: flex;
-    align-items: flex-start; /* Ikona poravnana zgoraj za večvrstični tekst */
-    gap: 15px;
-    font-size: 1.5rem; /* POVEČANO (prej 1.3rem) */
+    align-items: center; 
+    gap: 10px;
+    font-size: 1rem; /* Malo manjše za kompaktnost */
     color: #374151;
     line-height: 1.4;
-    font-weight: 400; /* Malo tanjše za lepši izgled pri tej velikosti */
+    font-weight: 500;
 }
 
 .flipzy-box-icon {
-    width: 28px; /* Malo večja ikona */
-    height: 28px;
+    width: 20px; /* Manjša ikona */
+    height: 20px;
     flex-shrink: 0;
     color: #10B981; 
-    margin-top: 3px; /* Optična poravnava s prvo vrstico */
+    margin-top: 0; 
     display: flex; 
     align-items: center; 
     justify-content: center;
 }
-.flipzy-box-icon svg { width: 100%; height: 100%; stroke-width: 2.5px; } /* Debelejša črta */
+.flipzy-box-icon svg { width: 100%; height: 100%; }
 
 /* Price Row */
 .flipzy-box-price {
-    font-size: 2.2rem; 
+    font-size: 2rem; 
     font-weight: 700;
-    margin-bottom: 20px; 
+    margin-bottom: 15px; /* Manjši odmik */
     color: var(--color-charcoal);
     display: flex;
     align-items: center;
     gap: 15px;
 }
 .flipzy-box-price s {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #9CA3AF;
     font-weight: 500;
 }
 
-/* Green Trust Box */
+/* Green Trust Box - MINI */
 .flipzy-box-trust {
     background-color: #ECFDF5;
-    border-radius: 12px;
-    padding: 15px 20px; 
-    margin-bottom: 25px; 
+    border-radius: 8px;
+    padding: 8px 15px; /* ZELO MAJHEN PADDING */
+    margin-bottom: 15px; /* ZELO MAJHEN MARGIN */
 }
 
 .flipzy-box-trust-row {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 .flipzy-box-trust-row:last-child { margin-bottom: 0; }
 
 .flipzy-trust-mini {
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 1rem; 
+    gap: 5px;
+    font-size: 0.9rem; 
     font-weight: 600;
     color: #065F46;
 }
-.flipzy-trust-mini svg { width: 20px; height: 20px; }
+.flipzy-trust-mini svg { width: 16px; height: 16px; }
 
-/* OPIS - POVEČAN */
+/* Description & Button */
 .flipzy-box-desc {
-    font-size: 1.5rem; /* POVEČANO (prej 1.25rem) */
-    line-height: 1.6;
-    margin-bottom: 30px; 
+    font-size: 1.1rem; 
+    line-height: 1.5;
+    margin-bottom: 20px; 
     color: #4B5563;
 }
 
@@ -584,18 +585,12 @@
     width: 100%;
     text-align: center;
     margin-bottom: 0;
-    font-size: 1.5rem; 
-    padding: 18px 30px;
+    font-size: 1.3rem; 
+    padding: 15px 30px;
 }
 
 @media (max-width: 750px) {
-    .flipzy-box-content-card { padding: 30px 20px; }
-    .flipzy-box-price { font-size: 2rem; }
-    
-    /* Na mobilcu malo zmanjšaj, če je preveliko, sicer pusti */
-    .flipzy-box-item, .flipzy-box-desc, .flipzy-box-subtitle {
-        font-size: 1.3rem;
-    }
+    .flipzy-box-content-card { padding: 20px; }
 }
 /* =========================================
    9. FLIPZY STICKY BAR (3-Column Layout)
