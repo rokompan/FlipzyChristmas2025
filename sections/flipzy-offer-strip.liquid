@@ -1,292 +1,111 @@
-{%- liquid
-  assign product = section.settings.product
-  if product == null
-    assign placeholder = true
-  endif
--%}
-
-{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-{{ 'section-featured-product.css' | asset_url | stylesheet_tag }}
-{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-rating.css' | asset_url | stylesheet_tag }}
-{{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
-
-{% unless section.settings.product.has_only_default_variant %}
-  {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
-  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
-  {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
-{% endunless %}
-
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-
-  /* --- STATIC MEDIA (Slika) --- */
-  .flipzy-static-media {
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-    line-height: 0;
-    width: 100%;
-  }
-  .flipzy-static-media img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-  }
-
-  /* --- LAYOUT LOGIC (50/50 Desktop) --- */
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding .featured-product .grid__item {
-        width: 50% !important;
-        max-width: 50% !important;
-        flex: 0 0 50% !important;
-    }
-    .section-{{ section.id }}-padding .product__info-wrapper {
-        padding-left: 40px !important;
-    }
-  }
-
-  /* --- FLIPZY CUSTOM STYLES --- */
-  
-  /* NASLOV FIX - Prepiše globalne nastavitve */
-  .section-{{ section.id }}-padding .product__title h1,
-  .section-{{ section.id }}-padding .product__title h2 {
-      font-size: 2rem !important; /* Normal H2 size */
-      line-height: 1.3;
-      margin-bottom: 10px;
-      font-weight: 700;
-  }
-
-  /* Gumb */
-  .section-{{ section.id }}-padding .product-form__submit {
-      background-color: #F4D35E !important; 
-      color: #111827 !important;
-      border-radius: 50px !important;
-      font-weight: 700 !important;
-      text-transform: none !important; 
-      padding: 15px 30px !important;
-      box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4);
-      transition: transform 0.2s ease;
-  }
-  .section-{{ section.id }}-padding .product-form__submit:hover { transform: scale(1.02); }
-
-  /* Pulse */
-  .section-{{ section.id }}-padding .product-form__submit::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
-      animation: flipzy-pulse 2s infinite;
-  }
-  @keyframes flipzy-pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(244, 211, 94, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0); }
-  }
-
-  /* Badges & Trust */
-  .flipzy-offer-badge {
-      display: inline-block; background: #FEF3C7; color: #D97706;      
-      font-weight: 700; padding: 6px 12px; border-radius: 6px;
-      font-size: 0.8rem; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;
-  }
-  
-  .flipzy-save-badge {
-      display: inline-block; background-color: #000; color: #fff;
-      font-size: 0.8rem; font-weight: 700; padding: 4px 8px;
-      border-radius: 4px; margin-left: 10px; vertical-align: middle; transform: translateY(-2px);
-  }
-
-  .flipzy-guarantee-pill {
-      margin-top: 1.5rem; background: #ECFDF5; border: 1px solid #6EE7B7; color: #065F46;
-      padding: 10px 15px; border-radius: 8px; font-size: 0.9rem; font-weight: 600;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      text-align: center; line-height: 1.3; width: 100%;
-  }
-  .flipzy-guarantee-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
-
-  .flipzy-trust-footer {
-      display: flex; justify-content: center; gap: 25px; opacity: 0.7;
-      flex-wrap: wrap; padding-top: 15px; border-top: 1px solid #e5e7eb; margin-top: 20px;
-  }
-  .flipzy-trust-item { display: flex; flex-direction: column; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 500; color: #374151; }
-  .flipzy-trust-item svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-  @media (max-width: 750px) {
-      .section-{{ section.id }}-padding .product__info-wrapper { padding-top: 20px; }
-      .section-{{ section.id }}-padding .product__info-container { text-align: center; align-items: center; }
-      .flipzy-offer-badge { display: table; margin: 0 auto 15px auto; }
-      .price { justify-content: center; }
-      .flipzy-trust-footer { justify-content: center; }
-  }
-{%- endstyle -%}
-
-<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-
-{% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-
-<section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %}background-secondary{% else %}gradient{% endif %}">
-  <div class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}">
-    <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background == false %} isolate{% endif %} grid--2-col-tablet">
-      
-      <div class="grid__item product__media-wrapper">
-        <div class="flipzy-static-media">
-          {%- unless placeholder -%}
-             <img 
-              src="{{ product.featured_image | image_url: width: 1200 }}" 
-              alt="{{ product.title | escape }}"
-              loading="lazy"
-              width="{{ product.featured_image.width }}"
-              height="{{ product.featured_image.height }}"
-            >
-          {%- else -%}
-             {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-          {%- endunless -%}
-        </div>
-      </div>
-
-      <div class="product__info-wrapper grid__item">
-        <product-info id="ProductInfo-{{ section.id }}" class="product__info-container" data-section="{{ section.id }}" data-url="{{ product.url }}">
-          {%- assign product_form_id = 'product-form-' | append: section.id -%}
-
-          {%- for block in section.blocks -%}
-            {%- case block.type -%}
-              {%- when '@app' -%}
-                {% render block %}
-              
-              {%- when 'text' -%}
-                <p class="product__text inline-richtext {{ block.settings.text_style }}" {{ block.shopify_attributes }}>
-                  {{- block.settings.text -}}
-                </p>
-
-              {%- when 'title' -%}
-                <h2 class="product__title {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
-                  {%- unless placeholder -%}
-                    {% if section.settings.custom_title != blank %}
-                        {{ section.settings.custom_title }}
-                    {% else %}
-                        {{ product.title | escape }}
-                    {% endif %}
-                  {%- else -%}
-                    {{ 'onboarding.product_title' | t }}
-                  {%- endunless -%}
-                </h2>
-
-              {%- when 'price' -%}
-                <div id="price-{{ section.id }}" role="status" style="display:flex; align-items:center; gap:5px; margin-bottom: 1rem; justify-content: inherit;">
-                  {%- render 'price', product: product, use_variant: true, show_badges: false, price_class: 'price--large' -%}
-                  
-                  {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
-                    {% assign saved = product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price %}
-                    {% assign pct = saved | times: 100.0 | divided_by: product.selected_or_first_available_variant.compare_at_price %}
-                    {% assign pct_rounded = pct | divided_by: 5 | round | times: 5 %}
-                    <span class="flipzy-save-badge">Save {{ pct_rounded }}%</span>
-                  {% endif %}
-                </div>
-                
-                {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                  <div class="product__tax caption rte">
-                    {%- if cart.taxes_included -%}{{ 'products.product.taxes_included' | t }}{%- endif -%}
-                    {%- if shop.shipping_policy.body != blank -%} {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}{%- endif -%}
-                  </div>
-                {%- endif -%}
-
-                {%- unless placeholder -%}
-                  <div {{ block.shopify_attributes }}>
-                    {%- form 'product', product -%}
-                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                      {{ form | payment_terms }}
-                    {%- endform -%}
-                  </div>
-                {%- endunless -%}
-
-              {%- when 'variant_picker' -%}
-                {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
-              
-              {%- when 'quantity_selector' -%}
-                 <div id="Quantity-Form-{{ section.id }}" class="product-form__input product-form__quantity" {{ block.shopify_attributes }}>
-                  {%- assign cart_qty = cart | item_count_for_variant: product.selected_or_first_available_variant.id -%}
-                  <label class="quantity__label form__label" for="Quantity-{{ section.id }}">{{ 'products.product.quantity.label' | t }}</label>
-                  <div class="price-per-item__container">
-                    <quantity-input class="quantity">
-                      <button class="quantity__button" name="minus" type="button">{% render 'icon-minus' %}</button>
-                      <input class="quantity__input" type="number" name="quantity" id="Quantity-{{ section.id }}" min="1" value="1" form="{{ product_form_id }}">
-                      <button class="quantity__button" name="plus" type="button">{% render 'icon-plus' %}</button>
-                    </quantity-input>
-                  </div>
-                </div>
-
-              {%- when 'buy_buttons' -%}
-                {%- render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_dynamic_checkout: block.settings.show_dynamic_checkout -%}
-
-                {% unless placeholder %}
-                  <div class="flipzy-guarantee-pill">
-                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                     {{ section.settings.guarantee_text }}
-                  </div>
-                  <div class="flipzy-trust-footer">
-                    <div class="flipzy-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span>SSL Secure</span></div>
-                    <div class="flipzy-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg><span>Secure Payment</span></div>
-                    <div class="flipzy-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span>GDPR Compliant</span></div>
-                  </div>
-                {% endunless %}
-
-            {%- endcase -%}
-          {%- endfor -%}
-        </product-info>
-      </div>
-    </div>
-  </div>
-</section>
-
 {% schema %}
 {
   "name": "Flipzy Offer Strip",
-  "tag": "section",
-  "class": "section section-featured-product",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
+  "class": "flipzy-section",
   "settings": [
-    { "type": "product", "id": "product", "label": "Product" },
-    { "type": "text", "id": "badge_text", "label": "Top Badge Text", "default": "SPECIAL OFFER – WHILE SUPPLIES LAST" },
-    { "type": "text", "id": "custom_title", "label": "Custom Title Override", "info": "Optional. Replaces product title." },
-    { "type": "text", "id": "guarantee_text", "label": "Guarantee Text", "default": "30-day money-back guarantee • 24 months warranty" },
+    { "type": "product", "id": "product", "label": "Select Product" },
+    { "type": "select", "id": "color_scheme", "label": "Color", "options": [ { "value": "offer-scheme-cream", "label": "Cream" }, { "value": "offer-scheme-white", "label": "White" } ], "default": "offer-scheme-cream" },
+    
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Special Offer – While Supplies Last" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Don't miss this exclusive opportunity to transform your family's daily routines." },
+    { "type": "text", "id": "shipping_text", "label": "Shipping Text", "default": "Delivery 1–2 days from London" },
+    
+    { "type": "text", "id": "guarantee_text", "label": "Guarantee Text", "default": "✓ 30-day money-back guarantee • 24 months warranty" },
+    
     { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show Dynamic Checkout (PayPal/GPay)", "default": true },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Color Scheme", "default": "scheme-1" },
-    { "type": "checkbox", "id": "secondary_background", "default": false, "label": "Secondary Background" },
-    { "type": "header", "content": "Padding" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top", "default": 36 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom", "default": 36 },
-    { "type": "select", "id": "media_size", "options": [ { "value": "small", "label": "Small" }, { "value": "medium", "label": "Medium" }, { "value": "large", "label": "Large" } ], "default": "medium", "label": "Media Size" },
-    { "type": "select", "id": "media_position", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left", "label": "Media Position" }
+    { "type": "checkbox", "id": "show_gift_card_recipient", "default": false, "label": "Show gift card recipient form" }
   ],
-  "presets": [
-    {
-      "name": "Flipzy Offer Strip",
-      "blocks": [
-        { "type": "text", "settings": { "text": "SPECIAL OFFER – WHILE SUPPLIES LAST", "text_style": "uppercase" } },
-        { "type": "title", "settings": { "heading_size": "h2" } },
-        { "type": "price" },
-        { "type": "text", "settings": { "text": "Don't miss this exclusive opportunity to transform your family's daily routines.", "text_style": "body" } },
-        { "type": "variant_picker" },
-        { "type": "quantity_selector" },
-        { "type": "buy_buttons" }
-      ]
-    }
-  ]
+  "presets": [ { "name": "Flipzy Offer Strip" } ]
 }
 {% endschema %}
+
+<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign product = section.settings.product
+  assign variant = product.selected_or_first_available_variant
+  assign compare_price = variant.compare_at_price
+  assign price = variant.price
+  assign product_form_id = 'product-form-offer-' | append: section.id
+-%}
+
+<div id="buy" class="flipzy-offer-section">
+  <div class="flipzy-offer-container {{ section.settings.color_scheme }}">
+    
+    <div class="flipzy-offer-grid">
+      
+      <div class="flipzy-offer-media">
+         {% if product.featured_image != blank %}
+           <img 
+             src="{{ product.featured_image | image_url: width: 1000 }}" 
+             alt="{{ product.title | escape }}"
+             loading="lazy"
+           >
+         {% else %}
+           {{ 'product-1' | placeholder_svg_tag: 'flipzy-static-media' }}
+         {% endif %}
+      </div>
+
+      <div class="flipzy-offer-content">
+        
+        <h2 class="flipzy-offer-heading">{{ section.settings.heading }}</h2>
+        
+        <div class="flipzy-price-box">
+          {% if product != blank %}
+            {% if compare_price > price %}<span class="flipzy-price-compare">{{ compare_price | money }}</span>{% endif %}
+            <span class="flipzy-price-current">{{ price | money }}</span>
+            {% if compare_price > price %}
+              {% assign saved = compare_price | minus: price %}
+              {% assign pct = saved | times: 100.0 | divided_by: compare_price %}
+              {% assign pct_rounded = pct | divided_by: 5 | round | times: 5 %}
+              <span class="flipzy-price-save-badge">Save {{ pct_rounded }}%</span>
+            {% endif %}
+          {% else %}
+            <span class="flipzy-price-compare">€49,00</span><span class="flipzy-price-current">€29,00</span><span class="flipzy-price-save-badge">Save 40%</span>
+          {% endif %}
+        </div>
+
+        <div class="flipzy-offer-sub">{{ section.settings.subtitle }}</div>
+        
+        <div class="flipzy-shipping-text">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          {{ section.settings.shipping_text }}
+        </div>
+
+        {% if product != blank %}
+          <product-info
+            id="ProductInfo-{{ section.id }}"
+            data-section="{{ section.id }}"
+            data-product-id="{{ product.id }}"
+            data-update-url="false"
+            data-url="{{ product.url }}"
+          >
+            {%- render 'buy-buttons',
+              block: section,
+              product: product,
+              product_form_id: product_form_id,
+              section_id: section.id,
+              show_dynamic_checkout: section.settings.show_dynamic_checkout,
+              show_gift_card_recipient: section.settings.show_gift_card_recipient
+            -%}
+          </product-info>
+        {% else %}
+          <button class="product-form__submit" disabled>Select Product</button>
+        {% endif %}
+
+        <div class="flipzy-guarantee-pill">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          {{ section.settings.guarantee_text }}
+        </div>
+
+        <div class="flipzy-trust-footer">
+          <div class="flipzy-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span>SSL Secure</span></div>
+          <div class="flipzy-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg><span>Secure Payment</span></div>
+          <div class="flipzy-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span>GDPR Compliant</span></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

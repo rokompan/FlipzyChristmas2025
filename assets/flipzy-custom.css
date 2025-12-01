@@ -167,10 +167,195 @@
 }
 
 /* =========================================
-   4. FLIPZY OFFER STRIP (Stari stil, se verjetno ne uporablja, ampak pustimo)
+   4. FLIPZY OFFER STRIP (Native Logic Wrapper)
    ========================================= */
-.flipzy-offer-section { padding: 80px 20px; width: 100%; text-align: center; }
-.flipzy-offer-container { max-width: 850px; margin: 0 auto; padding: 50px; border-radius: 32px; box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.12); }
+.flipzy-offer-section { 
+    padding: 80px 20px; 
+    width: 100%; 
+    text-align: center; 
+}
+
+.flipzy-offer-container {
+    max-width: 1100px; /* Malo širše za 50/50 layout */
+    margin: 0 auto; 
+    padding: 50px; 
+    border-radius: 32px;
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.12);
+}
+
+.offer-scheme-cream { background: var(--color-cream); color: var(--color-charcoal); }
+.offer-scheme-white { background: var(--color-white); color: var(--color-charcoal); border: 1px solid #eee; }
+
+/* LAYOUT: 2 Stolpca na Desktopu */
+.flipzy-offer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+@media screen and (min-width: 900px) {
+    .flipzy-offer-grid {
+        grid-template-columns: 1fr 1fr; /* 50/50 */
+        text-align: left; /* Leva poravnava na desktopu */
+    }
+    .flipzy-offer-section { text-align: left; }
+    .flipzy-offer-container { padding: 60px; }
+}
+
+/* LEVA STRAN: Slika */
+.flipzy-offer-media {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    line-height: 0;
+    width: 100%;
+}
+.flipzy-offer-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* DESNA STRAN: Vsebina */
+.flipzy-offer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Naslov */
+.flipzy-offer-heading { 
+    font-size: 2.2rem; 
+    font-weight: 700; 
+    line-height: 1.2; 
+    margin-bottom: 0.5rem; 
+}
+
+/* Podnaslov */
+.flipzy-offer-sub { 
+    font-size: 1.1rem; 
+    opacity: 0.8; 
+    margin-bottom: 2rem; 
+    line-height: 1.5;
+}
+
+/* Cena */
+.flipzy-price-box { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+    margin-bottom: 1.5rem; 
+}
+/* Centriranje cene na mobilcu, levo na desktopu */
+@media (max-width: 899px) {
+    .flipzy-price-box { justify-content: center; }
+}
+
+.flipzy-price-compare { text-decoration: line-through; opacity: 0.5; font-size: 1.5rem; font-weight: 500; }
+.flipzy-price-current { font-size: 3rem; font-weight: 700; color: var(--color-charcoal); }
+.flipzy-price-save-badge { background: #000; color: #fff; padding: 4px 12px; border-radius: 6px; font-size: 1rem; font-weight: 700; }
+
+/* Shipping Info */
+.flipzy-shipping-text {
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+    color: #16A34A; 
+    font-weight: 600; 
+    margin-bottom: 2rem; 
+    font-size: 1.1rem;
+}
+@media (max-width: 899px) {
+    .flipzy-shipping-text { justify-content: center; }
+}
+
+/* --- PREOBLEKA NATIVE GUMBA (DAWN OVERRIDE) --- */
+/* Ciljamo gumb, ki ga ustvari {% render 'buy-buttons' %} */
+.flipzy-offer-section .product-form__submit {
+    background-color: #F4D35E !important; 
+    color: #111827 !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    font-size: 1.3rem !important;
+    text-transform: none !important;
+    padding: 16px 30px !important;
+    
+    /* Odstrani Dawn obrobo */
+    border: none !important;
+    outline: none !important;
+    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
+    
+    width: 100%;
+    transition: transform 0.2s ease;
+}
+
+.flipzy-offer-section .product-form__submit:hover {
+    transform: scale(1.02);
+}
+
+/* Odstrani Dawn hover ring */
+.flipzy-offer-section .product-form__submit::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Dodaj Flipzy Pulse */
+.flipzy-offer-section .product-form__submit::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
+    animation: flipzy-pulse 2s infinite;
+    z-index: 1;
+}
+
+/* TRUST ELEMENTS */
+.flipzy-guarantee-pill {
+    margin-top: 1.5rem;
+    background: #ECFDF5;
+    border: 1px solid #6EE7B7;
+    color: #065F46;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+    line-height: 1.3;
+    width: 100%;
+}
+.flipzy-guarantee-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.flipzy-trust-footer {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    opacity: 0.7;
+    flex-wrap: wrap;
+    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 20px;
+    width: 100%;
+}
+.flipzy-trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #374151;
+}
+.flipzy-trust-item svg { width: 24px; height: 24px; }
+
+@media (max-width: 899px) {
+    .flipzy-offer-section { text-align: center; }
+    .flipzy-offer-container { padding: 40px 20px; }
+}
 
 /* =========================================
    5. FLIPZY FEATURED PRODUCT
