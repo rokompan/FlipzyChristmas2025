@@ -279,11 +279,16 @@
       "name": "Flipzy Offer Strip",
       "settings": {
         "product": "flipzy-wooden-routine-board",
+        "badge_text": "SPECIAL OFFER – WHILE SUPPLIES LAST",
+        "custom_title": "Kids Routine Board That Finally Works",
+        "guarantee_text": "✓ 30-day money-back guarantee • 24 months warranty",
+        "show_dynamic_checkout": true,
         "color_scheme": "offer-scheme-cream",
-        "heading": "Special Offer – While Supplies Last",
-        "subtitle": "Don't miss this exclusive opportunity to transform your family's daily routines.",
-        "shipping_text": "Ships in 24h",
-        "guarantee_text": "✓ 30-day money-back guarantee • 24 months warranty"
+        "secondary_background": false,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "media_size": "medium",
+        "media_position": "left"
       }
     },
     "flipzy_whats_in_the_box_tDc44V": {
