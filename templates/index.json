@@ -428,6 +428,16 @@
         "video_url": "https://cdn.shopify.com/videos/c/o/v/24fc25f35a1b47f68bc94240716c3586.mp4",
         "fallback_image": "shopify://shop_images/554906481_17857504956518806_6440177419475468993_n.jpg"
       }
+    },
+    "flipzy_sticky_bar_Tdg6tz": {
+      "type": "flipzy-sticky-bar",
+      "name": "Flipzy Sticky Bar",
+      "settings": {
+        "product": "flipzy-wooden-routine-board",
+        "text": "Kids Routine Board That Finally Works",
+        "subline_text": "Special offer available while supplies last",
+        "button_label": "Add to Cart"
+      }
     }
   },
   "order": [
@@ -442,6 +452,7 @@
     "flipzy_whats_in_the_box_tDc44V",
     "flipzy_feature_video_3VptYe",
     "flipzy_badges_YjLTAp",
-    "flipzy_feature_video_t3an46"
+    "flipzy_feature_video_t3an46",
+    "flipzy_sticky_bar_Tdg6tz"
   ]
 }
