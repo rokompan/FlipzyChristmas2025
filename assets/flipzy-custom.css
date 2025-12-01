@@ -547,3 +547,98 @@
     /* Odstranil sem font-size override za mobilce, naj naslovi dihajo */
     .flipzy-box-price { font-size: 2rem; }
 }
+
+/* =========================================
+   9. FLIPZY STICKY BAR
+   ========================================= */
+.flipzy-sticky {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 999; /* Vedno na vrhu */
+    background: #FFFFFF; /* Čisto belo ozadje */
+    border-top: 1px solid #E5E7EB;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.08);
+    transform: translateY(101%); /* Skrito spodaj */
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    padding: 15px 20px;
+}
+
+.flipzy-sticky.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.flipzy-sticky__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Levi del: Info */
+.flipzy-sticky__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.flipzy-sticky__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.flipzy-sticky__sub {
+    font-size: 0.85rem;
+    color: #4B5563;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Cena */
+.flipzy-sticky__price-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.flipzy-sticky-new { font-weight: 700; color: var(--color-charcoal); font-size: 1rem; }
+.flipzy-sticky-old { text-decoration: line-through; color: #9CA3AF; font-size: 0.9rem; }
+.flipzy-sticky-save { color: #EF4444; font-size: 0.85rem; font-weight: 700; }
+
+/* Desni del: Gumb */
+.flipzy-sticky__cta {
+    flex-shrink: 0;
+}
+
+.flipzy-sticky__btn {
+    background-color: var(--color-mustard);
+    color: var(--color-charcoal);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 30px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.3);
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.flipzy-sticky__btn:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 750px) {
+    .flipzy-sticky { padding: 12px 15px; bottom: 0; } /* Na iPhone včasih rabi padding-bottom */
+    .flipzy-sticky__sub { display: none; } /* Skrij opis na mobitelu */
+    .flipzy-sticky__title { font-size: 0.9rem; max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .flipzy-sticky__btn { padding: 10px 20px; font-size: 0.9rem; }
+}
