@@ -269,8 +269,15 @@
    8. FLIPZY "WHAT'S IN THE BOX" SECTION
    ========================================= */
 .flipzy-box-section {
-    padding: 40px 20px; 
+    padding: 40px 20px; /* Mobile ostane kompakten */
     background-color: #F6DACE; 
+}
+
+@media screen and (min-width: 990px) {
+    .flipzy-box-section {
+        padding-top: 70px;    /* Desktop: Malo nižje */
+        padding-bottom: 70px; /* Simetrija */
+    }
 }
 
 .flipzy-box-header {
