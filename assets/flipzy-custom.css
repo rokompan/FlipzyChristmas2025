@@ -115,7 +115,7 @@
 .flipzy-next { right: 20px; }
 
 /* =========================================
-   3. FLIPZY FEATURE VIDEO (Layout Fix)
+   3. FLIPZY FEATURE VIDEO
    ========================================= */
 .flipzy-feature-section { padding-top: 6rem; padding-bottom: 6rem; width: 100%; background: #ffffff; }
 .flipzy-feature-inner {
@@ -151,7 +151,7 @@
     .flipzy-feature-section { padding-top: 4rem; padding-bottom: 4rem; }
     .flipzy-feature-inner { flex-direction: column; gap: 3rem; padding-left: 5%; padding-right: 5%; }
     
-    /* POPRAVLJENI SELEKTORJI (UNDERSCORE namesto DASH) */
+    /* POPRAVLJENI SELEKTORJI */
     .layout-mobile-media_first .flipzy-feature-media { order: 1; } 
     .layout-mobile-media_first .flipzy-feature-content { order: 2; }
     
@@ -165,93 +165,17 @@
     .layout-desktop-left .flipzy-feature-media { order: 1; } .layout-desktop-left .flipzy-feature-content { order: 2; }
     .layout-desktop-right .flipzy-feature-content { order: 1; } .layout-desktop-right .flipzy-feature-media { order: 2; }
 }
+
 /* =========================================
-   4. FLIPZY OFFER STRIP
+   4. FLIPZY OFFER STRIP (Stari stil, se verjetno ne uporablja, ampak pustimo)
    ========================================= */
 .flipzy-offer-section { padding: 80px 20px; width: 100%; text-align: center; }
-.flipzy-offer-container {
-    max-width: 850px; margin: 0 auto; padding: 50px; border-radius: 32px;
-    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.12);
-}
-.offer-scheme-cream { background: var(--color-cream); color: var(--color-charcoal); }
-.offer-scheme-white { background: var(--color-white); color: var(--color-charcoal); border: 1px solid #eee; }
+.flipzy-offer-container { max-width: 850px; margin: 0 auto; padding: 50px; border-radius: 32px; box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.12); }
 
-/* NASLOV - MANJŠI */
-.flipzy-offer-heading { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
-
-.flipzy-offer-sub { font-size: 1.1rem; opacity: 0.8; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
-.flipzy-price-box { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 1.5rem; }
-.flipzy-price-compare { text-decoration: line-through; opacity: 0.5; font-size: 1.5rem; font-weight: 500; }
-.flipzy-price-current { font-size: 3rem; font-weight: 700; color: var(--color-charcoal); }
-.flipzy-price-save-badge { background: #000; color: #fff; padding: 4px 12px; border-radius: 6px; font-size: 1rem; font-weight: 700; }
-.flipzy-shipping-text {
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-    color: #16A34A; font-weight: 600; margin-bottom: 2rem; font-size: 1.1rem;
-}
-.flipzy-offer-btn {
-    width: 100%; max-width: 450px; background: var(--color-mustard); color: var(--color-charcoal);
-    font-size: 1.5rem; font-weight: 700; padding: 20px 30px; border-radius: 50px;
-    border: none; cursor: pointer; transition: transform 0.2s ease;
-    box-shadow: 0 10px 25px rgba(244, 211, 94, 0.4); position: relative; overflow: hidden;
-}
-.flipzy-offer-btn:hover { transform: scale(1.02); }
-.flipzy-offer-btn::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
-    animation: pulse-yellow 2s infinite;
-}
-@keyframes pulse-yellow { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(244, 211, 94, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0); } }
-.flipzy-guarantee-pill {
-    display: inline-block; background: #EAF9F0; border: 1px solid #B2F0C8;
-    color: #065F46; padding: 8px 24px; border-radius: 50px;
-    font-size: 0.95rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 2.5rem;
-}
-.flipzy-trust-footer { display: flex; justify-content: center; gap: 40px; opacity: 0.7; flex-wrap: wrap; }
-.flipzy-trust-item { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 500; }
-.flipzy-trust-icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
-.flipzy-offer-btn .loading-overlay__spinner {
-    width: 24px; height: 24px; display: inline-block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-}
-.flipzy-offer-btn .spinner { animation: rotator 1.4s linear infinite; }
-.flipzy-offer-btn .path { stroke-dasharray: 280; stroke-dashoffset: 0; transform-origin: center; stroke: currentColor; animation: dash 1.4s ease-in-out infinite; }
-@keyframes rotator { 0% { transform: rotate(0deg); } 100% { transform: rotate(270deg); } }
-@keyframes dash { 0% { stroke-dashoffset: 280; } 50% { stroke-dashoffset: 75; transform: rotate(135deg); } 100% { stroke-dashoffset: 280; transform: rotate(450deg); } }
-
-@media (max-width: 750px) {
-    .flipzy-offer-container { padding: 30px 20px; }
-    .flipzy-offer-heading { font-size: 1.8rem; }
-    .flipzy-price-current { font-size: 2.5rem; }
-    .flipzy-offer-btn { font-size: 1.2rem; padding: 16px 20px; }
-}
 /* =========================================
-   5. FLIPZY FEATURED PRODUCT (Conversion Focused)
+   5. FLIPZY FEATURED PRODUCT
    ========================================= */
-.flipzy-featured-section { padding: 60px 20px; width: 100%; }
-.flipzy-featured-wrapper {
-    max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center;
-}
-@media screen and (min-width: 900px) {
-    .flipzy-featured-wrapper { grid-template-columns: 1fr 1fr; gap: 60px; }
-}
-.flipzy-featured-media {
-    position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.08); background: #f5f5f5; line-height: 0;
-}
-.flipzy-featured-img { width: 100%; height: auto; object-fit: cover; display: block; }
-.flipzy-featured-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
-.flipzy-featured-badge { text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; font-weight: 700; color: var(--color-mustard); margin-bottom: 10px; }
-.flipzy-featured-title { font-size: 2.5rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; color: var(--color-charcoal); }
-.flipzy-featured-desc { font-size: 1.1rem; line-height: 1.6; color: #4B5563; margin-bottom: 2rem; }
-.flipzy-featured-content .flipzy-price-box { justify-content: flex-start; margin-bottom: 2rem; }
-.flipzy-featured-content .flipzy-offer-btn { max-width: 100%; }
-.flipzy-featured-content .flipzy-guarantee-pill { margin-top: 2rem; margin-bottom: 2rem; text-align: center; align-self: flex-start; }
-.flipzy-featured-content .flipzy-trust-footer { justify-content: flex-start; gap: 30px; }
-@media (max-width: 750px) {
-    .flipzy-featured-title { font-size: 2rem; }
-    .flipzy-featured-content { align-items: center; text-align: center; }
-    .flipzy-featured-content .flipzy-price-box { justify-content: center; }
-    .flipzy-featured-content .flipzy-trust-footer { justify-content: center; }
-    .flipzy-featured-content .flipzy-guarantee-pill { align-self: center; }
-}
+/* (Lahko pustimo, če se kje uporablja, sicer ga povozi sekcija 10) */
 
 /* =========================================
    6. FLIPZY BADGES SECTION
@@ -275,7 +199,6 @@
 @media screen and (min-width: 600px) { .flipzy-badges-grid { grid-template-columns: repeat(2, 1fr); } }
 @media screen and (min-width: 1100px) { .flipzy-badges-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; } }
 
-/* Badge Card */
 .flipzy-badge-card {
     background: #FFFFFF; border-radius: 24px; padding: 35px 20px; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.06);
@@ -290,188 +213,45 @@
 }
 .flipzy-badge-icon svg, .flipzy-badge-icon img { width: 100%; height: 100%; object-fit: contain; stroke-width: 1.5px; stroke: currentColor; fill: none; }
 
-.flipzy-badge-title {
-    font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; color: var(--color-charcoal); line-height: 1.1;
-}
-.flipzy-badge-text {
-    font-size: 1.4rem; line-height: 1.4; color: #4B5563; margin: 0; max-width: 100%;
-}
+.flipzy-badge-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; color: var(--color-charcoal); line-height: 1.1; }
+.flipzy-badge-text { font-size: 1.4rem; line-height: 1.4; color: #4B5563; margin: 0; max-width: 100%; }
 
 /* =========================================
    8. FLIPZY "WHAT'S IN THE BOX" SECTION
    ========================================= */
-.flipzy-box-section {
-    padding: 40px 20px; 
-    background-color: #F6DACE; 
-}
+.flipzy-box-section { padding: 40px 20px; background-color: #F6DACE; }
+.flipzy-box-header { text-align: center; max-width: 900px; margin: 0 auto 20px auto; }
 
-.flipzy-box-header {
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto 20px auto; 
-}
+.flipzy-box-title { color: var(--color-charcoal); margin-bottom: 10px; }
+.flipzy-box-subtitle { font-size: 1.25rem; line-height: 1.5; color: #4B5563; }
 
-/* GLAVNI NASLOV (H2) */
-.flipzy-box-title {
-    color: var(--color-charcoal);
-    margin-bottom: 10px; 
-}
+.flipzy-box-grid { display: grid; grid-template-columns: 1fr; gap: 30px; max-width: 1300px; margin: 0 auto; align-items: start; }
+@media screen and (min-width: 990px) { .flipzy-box-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
 
-.flipzy-box-subtitle {
-    font-size: 1.25rem; 
-    line-height: 1.5;
-    color: #4B5563;
-}
+.flipzy-box-media-col { display: flex; flex-direction: column; gap: 20px; }
+.flipzy-box-img-card { border-radius: 24px; overflow: hidden; box-shadow: none; background: #fff; }
+.flipzy-box-img-card img { width: 100%; height: auto; display: block; object-fit: cover; border-radius: 24px; }
+.flipzy-box-img-card.dimensions-card { background-color: #EADBC8; padding: 15px; }
 
-/* Grid Layout */
-.flipzy-box-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 30px;
-    max-width: 1300px;
-    margin: 0 auto;
-    align-items: start;
-}
+.flipzy-box-content-card { background: #FFFFFF; border-radius: 24px; padding: 25px 30px 40px 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+.flipzy-box-content-title { margin-bottom: 20px; color: var(--color-charcoal); margin-top: 0; }
 
-@media screen and (min-width: 990px) {
-    .flipzy-box-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px; 
-    }
-}
-
-/* --- LEVA STRAN (Slike) --- */
-.flipzy-box-media-col {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; 
-}
-
-.flipzy-box-img-card {
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: none; 
-    background: #fff; 
-}
-
-.flipzy-box-img-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: cover;
-    border-radius: 24px; 
-}
-
-.flipzy-box-img-card.dimensions-card {
-    background-color: #EADBC8; 
-    padding: 15px; 
-}
-
-/* --- DESNA STRAN (Content) --- */
-.flipzy-box-content-card {
-    background: #FFFFFF;
-    border-radius: 24px;
-    padding: 25px 30px 40px 30px; 
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-}
-
-/* NASLOV KARTICE (H3) */
-.flipzy-box-content-title {
-    margin-bottom: 20px; 
-    color: var(--color-charcoal);
-    margin-top: 0; 
-}
-
-/* Checklist */
-.flipzy-box-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 25px 0; 
-    display: flex;
-    flex-direction: column;
-    gap: 12px; 
-}
-
-.flipzy-box-item {
-    display: flex;
-    align-items: center; 
-    gap: 12px;
-    font-size: 1.3rem; 
-    color: #374151;
-    line-height: 1.4;
-    font-weight: 500;
-}
-
-.flipzy-box-icon {
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
-    color: #10B981; 
-    margin-top: 0; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-}
+.flipzy-box-list { list-style: none; padding: 0; margin: 0 0 25px 0; display: flex; flex-direction: column; gap: 12px; }
+.flipzy-box-item { display: flex; align-items: center; gap: 12px; font-size: 1.3rem; color: #374151; line-height: 1.4; font-weight: 500; }
+.flipzy-box-icon { width: 24px; height: 24px; flex-shrink: 0; color: #10B981; margin-top: 0; display: flex; align-items: center; justify-content: center; }
 .flipzy-box-icon svg { width: 100%; height: 100%; }
 
-/* Price Row */
-.flipzy-box-price {
-    font-size: 2.2rem; 
-    font-weight: 700;
-    margin-bottom: 20px; 
-    color: var(--color-charcoal);
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.flipzy-box-price s {
-    font-size: 1.5rem;
-    color: #9CA3AF;
-    font-weight: 500;
-}
+.flipzy-box-price { font-size: 2.2rem; font-weight: 700; margin-bottom: 20px; color: var(--color-charcoal); display: flex; align-items: center; gap: 15px; }
+.flipzy-box-price s { font-size: 1.5rem; color: #9CA3AF; font-weight: 500; }
 
-/* Green Trust Box */
-.flipzy-box-trust {
-    background-color: #ECFDF5;
-    border-radius: 12px;
-    padding: 15px 20px; 
-    margin-bottom: 25px; 
-}
-
-.flipzy-box-trust-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 8px;
-}
+.flipzy-box-trust { background-color: #ECFDF5; border-radius: 12px; padding: 15px 20px; margin-bottom: 25px; }
+.flipzy-box-trust-row { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 8px; }
 .flipzy-box-trust-row:last-child { margin-bottom: 0; }
-
-.flipzy-trust-mini {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 1rem; 
-    font-weight: 600;
-    color: #065F46;
-}
+.flipzy-trust-mini { display: flex; align-items: center; gap: 6px; font-size: 1rem; font-weight: 600; color: #065F46; }
 .flipzy-trust-mini svg { width: 20px; height: 20px; }
 
-/* Description & Button */
-.flipzy-box-desc {
-    font-size: 1.25rem; 
-    line-height: 1.5;
-    margin-bottom: 25px; 
-    color: #4B5563;
-}
-
-/* Button override */
-.flipzy-box-content-card .flipzy-btn {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 0;
-    font-size: 1.4rem; 
-    padding: 18px 30px;
-}
+.flipzy-box-desc { font-size: 1.25rem; line-height: 1.5; margin-bottom: 25px; color: #4B5563; }
+.flipzy-box-content-card .flipzy-btn { width: 100%; text-align: center; margin-bottom: 0; font-size: 1.4rem; padding: 18px 30px; }
 
 @media (max-width: 750px) {
     .flipzy-box-content-card { padding: 25px 20px 30px 20px; }
@@ -479,7 +259,7 @@
 }
 
 /* =========================================
-   9. FLIPZY STICKY BAR (Final Polish)
+   9. FLIPZY STICKY BAR (Heavy Duty Polish)
    ========================================= */
 .flipzy-sticky {
     position: fixed;
@@ -508,41 +288,35 @@
     gap: 20px;
 }
 
-/* Info (Levo) */
+/* SKRIJ TEKST (Naslov), POKAŽI SAMO CENO IN GUMB */
 .flipzy-sticky-info {
+    display: none; /* Skrij naslove, kot si želel */
+}
+
+/* CENA (Vedno vidna, Desktop in Mobile) */
+.flipzy-sticky-price-mobile {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 10px;
 }
-
-.flipzy-sticky-title {
-    font-size: 1rem; font-weight: 700; color: var(--color-charcoal); margin: 0; line-height: 1.2;
-}
-
-.flipzy-sticky-sub {
-    font-size: 0.85rem; color: #4B5563; display: flex; align-items: center; gap: 8px;
-}
-
-/* CENA - RES VELIKA */
-.flipzy-sticky-price-mobile { display: none; flex-direction: column; justify-content: center; }
 
 .flipzy-sticky-new { 
     font-weight: 800; 
     color: var(--color-charcoal); 
-    font-size: 1.8rem; /* Zelo velika cena */
+    font-size: 2rem; /* OGROMNA CENA */
     line-height: 1;
 }
 .flipzy-sticky-old { 
     text-decoration: line-through; 
     color: #9CA3AF; 
-    font-size: 0.9rem; 
-    margin-left: 5px;
+    font-size: 1.2rem; 
 }
 
-/* GUMB - CLEANUP */
+/* GUMB - NO BORDER & GLOW */
 .flipzy-sticky-action { flex-shrink: 0; }
 
-/* Reset za wrapperje okoli gumba */
+/* Reset wrapperjev */
 .flipzy-sticky-action product-form, 
 .flipzy-sticky-action .form {
     margin: 0 !important; padding: 0 !important;
@@ -553,12 +327,14 @@
     color: #111827 !important;
     border-radius: 50px !important;
     font-weight: 700 !important;
-    font-size: 1.1rem !important;
-    padding: 14px 35px !important;
+    font-size: 1.2rem !important; /* Večji font */
+    padding: 16px 40px !important;
     cursor: pointer;
+    
+    /* GLOW brez obrobe */
     box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
     
-    /* KILL BORDERS */
+    /* UBIJ OBROBE */
     border: none !important;
     outline: none !important;
     --border-offset: 0 !important;
@@ -574,16 +350,13 @@
     box-shadow: 0 6px 20px rgba(244, 211, 94, 0.6) !important;
 }
 
-/* NUCLEAR OPTION ZA HOVER BORDER (::after) */
+/* Nuclear opcija za hover ring */
 .flipzy-sticky-action .product-form__submit::after {
     content: none !important;
     display: none !important;
-    box-shadow: none !important;
-    border: none !important;
 }
 
 .flipzy-sticky-action .product-form__submit::before {
-    /* Samo Pulse animacija, brez obrobe */
     content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
     border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
     animation: flipzy-pulse 2s infinite;
@@ -591,61 +364,72 @@
 }
 
 .flipzy-sticky-action .loading-overlay__spinner {
-    width: 20px; height: 20px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 24px; height: 24px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 }
 
 /* MOBILE LAYOUT */
 @media (max-width: 750px) {
     .flipzy-sticky { padding: 12px 15px; bottom: 0; }
     
-    /* Skrij tekst, pokaži ceno levo */
-    .flipzy-sticky-info { display: none; }
-    
-    /* Cena + Stara cena */
-    .flipzy-sticky-price-mobile { 
-        display: flex; 
-        flex-direction: row; /* Cena in stara cena v vrsto */
-        align-items: baseline;
-    }
-    .flipzy-sticky-new { font-size: 1.6rem; margin-right: 5px; }
+    /* Cena malo manjša na mobilcu, a še vedno velika */
+    .flipzy-sticky-new { font-size: 1.6rem; }
+    .flipzy-sticky-old { font-size: 1rem; }
     
     /* Gumb */
     .flipzy-sticky-action .product-form__submit { 
-        padding: 12px 24px !important; 
+        padding: 12px 25px !important; 
         font-size: 1rem !important; 
         min-width: auto; 
     }
 }
 
 /* =========================================
-   10. FLIPZY FEATURED PRODUCT (Offer Strip)
+   10. FLIPZY FEATURED PRODUCT (OFFER STRIP)
    ========================================= */
 
-/* NASLOV - POPRAVLJEN (Navaden H2) */
+/* NASLOV (H2) */
 .section-featured-product .product__title,
 .section-featured-product h2.product__title {
-    font-size: 2rem !important; /* Manjši, standardni H2 */
-    font-weight: 700;
+    font-size: 2rem !important;
     line-height: 1.3;
     margin-bottom: 10px;
+    font-weight: 700;
 }
 
-/* 1. FLIPZY GUMB */
+/* GUMB - NO BORDER (Kopija logike iz sticky) */
 .section-featured-product .product-form__submit {
     background-color: #F4D35E !important; 
     color: #111827 !important;
     border-radius: 50px !important;
     font-weight: 700 !important;
     text-transform: none !important; 
-    padding: 15px 30px !important;
-    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4);
+    font-size: 1.3rem !important;
+    padding: 18px 35px !important;
+    cursor: pointer;
+    
+    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
+    border: none !important;
+    outline: none !important;
+    --border-offset: 0 !important;
+    --border-opacity: 0 !important;
+    
     transition: transform 0.2s ease;
 }
 .section-featured-product .product-form__submit:hover {
     transform: scale(1.02);
 }
+/* Kill hover ring */
+.section-featured-product .product-form__submit::after {
+    content: none !important; display: none !important;
+}
+/* Pulse */
+.section-featured-product .product-form__submit::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
+    animation: flipzy-pulse 2s infinite;
+}
 
-/* 2. POPUST ZNAČKA */
+/* POPUST ZNAČKA */
 .flipzy-save-badge {
     display: inline-block;
     background-color: #000; 
@@ -659,7 +443,7 @@
     transform: translateY(-2px);
 }
 
-/* 3. TRUST PILL */
+/* TRUST PILL */
 .flipzy-guarantee-pill {
     margin-top: 1.5rem;
     background: #ECFDF5;
@@ -679,7 +463,7 @@
 }
 .flipzy-guarantee-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-/* 4. TRUST ICONS */
+/* TRUST ICONS */
 .flipzy-trust-row {
     display: flex;
     gap: 20px;
@@ -702,7 +486,7 @@
 }
 .flipzy-trust-item svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
 
-/* 5. STATIC MEDIA */
+/* STATIC MEDIA */
 .flipzy-static-media {
     border-radius: 20px;
     overflow: hidden;
@@ -722,7 +506,7 @@
 }
 
 /* =========================================
-   WEGLOT & HEADER FIXES (The "Invisible Bridge")
+   11. WEGLOT & HEADER FIXES (The "Invisible Bridge")
    ========================================= */
 
 /* 1. Stack Order: Ensure Header sits on top of Hero */
