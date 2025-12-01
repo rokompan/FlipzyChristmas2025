@@ -547,6 +547,7 @@
     /* Odstranil sem font-size override za mobilce, naj naslovi dihajo */
     .flipzy-box-price { font-size: 2rem; }
 }
+
 /* =========================================
    9. FLIPZY STICKY BAR (Native Logic)
    ========================================= */
