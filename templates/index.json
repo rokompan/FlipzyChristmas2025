@@ -310,7 +310,7 @@
       ],
       "name": "Flipzy Feature Video",
       "settings": {
-        "color_scheme": "scheme-white",
+        "color_scheme": "scheme-cream",
         "desktop_layout": "media_right",
         "mobile_layout": "text_first",
         "heading": "30 Customizable Tasks",
@@ -362,7 +362,7 @@
       ],
       "name": "Flipzy Badges (4-up)",
       "settings": {
-        "bg_color": "#e1dbdb",
+        "bg_color": "#ffffff",
         "heading": "Trusted by thousands of families",
         "show_checkmark": true
       }
@@ -465,7 +465,7 @@
       ],
       "name": "Flipzy Feature Video",
       "settings": {
-        "color_scheme": "scheme-cream",
+        "color_scheme": "scheme-night",
         "desktop_layout": "media_left",
         "mobile_layout": "text_first",
         "heading": "Our Happiness Guarantee",
