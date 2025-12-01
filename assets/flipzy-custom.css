@@ -301,12 +301,11 @@
 .flipzy-badge-text {
     font-size: 1.4rem; line-height: 1.4; color: #4B5563; margin: 0; max-width: 100%;
 }
-
 /* =========================================
    8. FLIPZY "WHAT'S IN THE BOX" SECTION
    ========================================= */
 .flipzy-box-section {
-    padding: 20px 20px 60px 20px; /* ZMANJŠAN ODMIK ZGORAJ */
+    padding: 60px 20px; 
     background-color: #F6DACE; 
 }
 
@@ -347,58 +346,138 @@
     }
 }
 
-/* --- LEVA STRAN --- */
-.flipzy-box-media-col { display: flex; flex-direction: column; gap: 20px; }
-.flipzy-box-img-card { border-radius: 24px; overflow: hidden; box-shadow: none; background: #fff; }
-.flipzy-box-img-card img { width: 100%; height: auto; display: block; object-fit: cover; }
-.flipzy-box-img-card.dimensions-card { background-color: #EADBC8; padding: 15px; }
+/* --- LEVA STRAN (Slike) --- */
+.flipzy-box-media-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
 
-/* --- DESNA STRAN --- */
+.flipzy-box-img-card {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: none; /* BREZ SENCE */
+    background: transparent; 
+}
+
+.flipzy-box-img-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 24px; /* Zaobljenost slike */
+}
+
+.flipzy-box-img-card.dimensions-card {
+    background-color: #EADBC8; /* Bež ozadje za dimenzije */
+    padding: 15px; 
+}
+
+/* --- DESNA STRAN (Content) --- */
 .flipzy-box-content-card {
-    background: #FFFFFF; border-radius: 24px; padding: 40px 30px;
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 40px 30px; 
     box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
+
 .flipzy-box-content-title {
-    font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; color: var(--color-charcoal); line-height: 1.2;
+    font-size: 1.8rem; 
+    font-weight: 700;
+    margin-bottom: 20px; 
+    color: var(--color-charcoal);
+    line-height: 1.2;
 }
 
 /* Checklist */
 .flipzy-box-list {
-    list-style: none; padding: 0; margin: 0 0 25px 0; display: flex; flex-direction: column; gap: 12px; 
+    list-style: none;
+    padding: 0;
+    margin: 0 0 25px 0; 
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
 }
+
 .flipzy-box-item {
-    display: flex; align-items: center; gap: 12px;
-    font-size: 1.3rem; color: #374151; line-height: 1.4; font-weight: 500;
+    display: flex;
+    align-items: center; 
+    gap: 12px;
+    font-size: 1.3rem; 
+    color: #374151;
+    line-height: 1.4;
+    font-weight: 500;
 }
+
 .flipzy-box-icon {
-    width: 24px; height: 24px; flex-shrink: 0; color: #10B981; 
-    display: flex; align-items: center; justify-content: center; margin: 0;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    color: #10B981; 
+    margin-top: 0; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
 }
 .flipzy-box-icon svg { width: 100%; height: 100%; }
 
 /* Price Row */
 .flipzy-box-price {
-    font-size: 2.2rem; font-weight: 700; margin-bottom: 20px; color: var(--color-charcoal);
-    display: flex; align-items: center; gap: 15px;
+    font-size: 2.2rem; 
+    font-weight: 700;
+    margin-bottom: 20px; 
+    color: var(--color-charcoal);
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
-.flipzy-box-price s { font-size: 1.5rem; color: #9CA3AF; font-weight: 500; }
+.flipzy-box-price s {
+    font-size: 1.5rem;
+    color: #9CA3AF;
+    font-weight: 500;
+}
 
-/* Trust Box */
+/* Green Trust Box */
 .flipzy-box-trust {
-    background-color: #ECFDF5; border-radius: 12px; padding: 15px 20px; margin-bottom: 25px; 
+    background-color: #ECFDF5;
+    border-radius: 12px;
+    padding: 15px 20px; 
+    margin-bottom: 25px; 
 }
-.flipzy-box-trust-row { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 8px; }
+
+.flipzy-box-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 8px;
+}
 .flipzy-box-trust-row:last-child { margin-bottom: 0; }
+
 .flipzy-trust-mini {
-    display: flex; align-items: center; gap: 6px; font-size: 1rem; font-weight: 600; color: #065F46;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1rem; 
+    font-weight: 600;
+    color: #065F46;
 }
 .flipzy-trust-mini svg { width: 20px; height: 20px; }
 
-.flipzy-box-desc { font-size: 1.25rem; line-height: 1.5; margin-bottom: 25px; color: #4B5563; }
+/* Description & Button */
+.flipzy-box-desc {
+    font-size: 1.25rem; 
+    line-height: 1.5;
+    margin-bottom: 25px; 
+    color: #4B5563;
+}
 
 /* Button override */
 .flipzy-box-content-card .flipzy-btn {
-    width: 100%; text-align: center; margin-bottom: 0; font-size: 1.4rem; padding: 18px 30px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+    font-size: 1.4rem; 
+    padding: 18px 30px;
 }
 
 @media (max-width: 750px) {
