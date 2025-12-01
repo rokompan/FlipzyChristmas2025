@@ -1,87 +1,137 @@
-{% schema %}
-{
-  "name": "Flipzy Sticky Bar",
-  "settings": [
-    { "type": "product", "id": "product", "label": "Product" },
-    { "type": "text", "id": "text", "label": "Headline Text", "default": "Kids Routine Board" },
-    { "type": "text", "id": "subline_text", "label": "Subline Text", "default": "Special offer available while supplies last" },
-    { "type": "text", "id": "button_label", "label": "Button Label", "default": "Add to Cart" }
-  ],
-  "presets": [ { "name": "Flipzy Sticky Bar" } ]
-}
-{% endschema %}
-
 {%- liquid
   assign product = section.settings.product
-  assign variant = product.selected_or_first_available_variant
-  assign compare_price = variant.compare_at_price
-  assign price = variant.price
+  if product == null
+    assign placeholder = true
+  endif
 -%}
 
-<div id="flipzy-sticky-bar" class="flipzy-sticky">
-  <div class="flipzy-sticky__inner">
-    
-    <div class="flipzy-sticky__info">
-      <p class="flipzy-sticky__title">
-        {% if section.settings.text != blank %}
-          {{ section.settings.text }}
-        {% else %}
-          {{ product.title }}
-        {% endif %}
-      </p>
-      <div class="flipzy-sticky__sub">
-        {% if compare_price > price %}
-          <span class="flipzy-sticky-old">{{ compare_price | money }}</span>
-        {% endif %}
-        <span class="flipzy-sticky-new">{{ price | money }}</span>
-        {% if section.settings.subline_text != blank %}
-          <span style="opacity: 0.5; margin: 0 5px;">|</span>
-          <span>{{ section.settings.subline_text }}</span>
-        {% endif %}
+<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- style -%}
+  /* Sticky Bar Wrapper */
+  #flipzy-sticky-bar-{{ section.id }} {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 999;
+      background: #FFFFFF;
+      border-top: 1px solid #E5E7EB;
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.08);
+      transform: translateY(101%); /* Skrito */
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+  }
+
+  #flipzy-sticky-bar-{{ section.id }}.is-visible {
+      transform: translateY(0);
+      opacity: 1;
+  }
+
+  .flipzy-sticky-inner {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+  }
+
+  /* Info (Levo) */
+  .flipzy-sticky-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+  .flipzy-sticky-title { font-size: 1rem; font-weight: 700; margin: 0; line-height: 1.2; }
+  .flipzy-sticky-sub { font-size: 0.85rem; color: #4B5563; display: flex; align-items: center; gap: 8px; }
+
+  /* Cena (Desno, zraven gumba) */
+  .flipzy-sticky-price-wrap { display: flex; align-items: center; gap: 8px; }
+  .flipzy-sticky-new { font-weight: 700; color: var(--color-charcoal); }
+  .flipzy-sticky-old { text-decoration: line-through; color: #9CA3AF; font-size: 0.9rem; }
+
+  /* Gumb - Preoblečen Dawn Gumb */
+  .flipzy-sticky-action .product-form__submit {
+      background-color: #F4D35E !important; /* Mustard */
+      color: #111827 !important;
+      border-radius: 50px !important;
+      font-weight: 700 !important;
+      padding: 12px 30px !important;
+      border: none !important;
+      box-shadow: 0 4px 15px rgba(244, 211, 94, 0.3) !important;
+      margin: 0 !important;
+      min-width: 160px;
+  }
+  .flipzy-sticky-action .product-form__submit:hover { transform: scale(1.05); }
+
+  /* Skrij odvečne elemente v mobilnem pogledu */
+  @media (max-width: 750px) {
+      .flipzy-sticky-sub { display: none; }
+      .flipzy-sticky-title { font-size: 0.9rem; max-width: 140px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  }
+{%- endstyle -%}
+
+{% if product != blank %}
+  <div id="flipzy-sticky-bar-{{ section.id }}" class="flipzy-sticky-bar">
+    <div class="flipzy-sticky-inner">
+      
+      <div class="flipzy-sticky-info">
+        <p class="flipzy-sticky-title">
+          {% if section.settings.text != blank %}{{ section.settings.text }}{% else %}{{ product.title }}{% endif %}
+        </p>
+        <div class="flipzy-sticky-sub">
+          {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
+            <span class="flipzy-sticky-old">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+          {% endif %}
+          <span class="flipzy-sticky-new">{{ product.selected_or_first_available_variant.price | money }}</span>
+          {% if section.settings.subline_text != blank %}
+            <span style="opacity: 0.4; margin: 0 5px;">|</span> {{ section.settings.subline_text }}
+          {% endif %}
+        </div>
       </div>
-    </div>
 
-    <div class="flipzy-sticky__cta">
-      {% if product != blank %}
-        <button 
-          type="button" 
-          class="product-form__submit button flipzy-sticky__btn"
-          onclick="addStickyToCart(this, '{{ variant.id }}')"
-          {% unless variant.available %}disabled style="opacity: 0.6;"{% endunless %}
+      <div class="flipzy-sticky-action">
+        <product-info
+          id="ProductInfo-{{ section.id }}"
+          data-section="{{ section.id }}"
+          data-product-id="{{ product.id }}"
+          data-update-url="false"
+          data-url="{{ product.url }}"
         >
-          <span class="btn-text">
-            {% if variant.available %}
-              {{ section.settings.button_label }}
-            {% else %}
-              Sold Out
-            {% endif %}
-          </span>
-          <div class="loading-overlay__spinner hidden" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:24px; height:24px;">
-            <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30" stroke="currentColor"></circle></svg>
-          </div>
-        </button>
-      {% else %}
-        <button class="product-form__submit button flipzy-sticky__btn" disabled>Select Product</button>
-      {% endif %}
-    </div>
+          {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
+          {%- render 'buy-buttons',
+            block: section, 
+            product: product,
+            product_form_id: product_form_id,
+            section_id: section.id,
+            show_dynamic_checkout: false
+          -%}
+        </product-info>
+      </div>
+
+    </div>
   </div>
-</div>
+{% endif %}
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  const bar = document.getElementById('flipzy-sticky-bar');
-  // Poišči katerokoli "visoko" sekcijo, da vemo kdaj pokazati bar
-  const triggerSection = document.querySelector('.flipzy-hero-container') || document.querySelector('.section-featured-product') || document.querySelector('.product-section');
+  const bar = document.getElementById('flipzy-sticky-bar-{{ section.id }}');
+  // Poišči katerokoli "visoko" sekcijo za trigger
+  const triggerSection = document.querySelector('.flipzy-hero-container') || document.querySelector('.section-featured-product');
 
   function checkScroll() {
     if (!triggerSection) {
+       // Fallback
        if(window.scrollY > 400) bar.classList.add('is-visible');
        else bar.classList.remove('is-visible');
        return;
     }
     const triggerBottom = triggerSection.getBoundingClientRect().bottom;
-    if (triggerBottom < 0) {
+    if (triggerBottom < 0) { // Ko je hero izven ekrana
       bar.classList.add('is-visible');
     } else {
       bar.classList.remove('is-visible');
@@ -90,60 +140,34 @@ document.addEventListener('DOMContentLoaded', function () {
   window.addEventListener('scroll', checkScroll, { passive: true });
   checkScroll(); 
 });
-
-// --- SAFE AJAX ADD TO CART (Same logic as Conversion Product) ---
-function addStickyToCart(btn, variantId) {
-    if(!variantId) return;
-    
-    const spinner = btn.querySelector('.loading-overlay__spinner');
-    const text = btn.querySelector('.btn-text');
-    if(spinner) spinner.classList.remove('hidden');
-    if(text) text.style.opacity = '0';
-    btn.setAttribute('disabled', true);
-    
-    // URL Logic
-    let rootUrl = window.Shopify.routes.root;
-    if (rootUrl.endsWith('/')) rootUrl = rootUrl.slice(0, -1);
-    
-    const addUrl = rootUrl + '/cart/add.js';
-    const sectionUrl = rootUrl + '/?sections=cart-drawer,cart-icon-bubble';
-
-    const formData = { items: [{ id: variantId, quantity: 1 }] };
-
-    fetch(addUrl, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(formData)
-    })
-    .then(r => r.json())
-    .then(d => {
-      const cartDrawer = document.querySelector('cart-drawer');
-      const cartBubble = document.getElementById('cart-icon-bubble');
-
-      fetch(sectionUrl)
-        .then(res => res.json())
-        .then(sections => {
-           if(cartBubble && sections['cart-icon-bubble']) cartBubble.innerHTML = sections['cart-icon-bubble'];
-
-           if (cartDrawer && sections['cart-drawer']) {
-               cartDrawer.renderContents(sections['cart-drawer']);
-               setTimeout(() => cartDrawer.open(), 100);
-           } else {
-               window.location.href = rootUrl + '/cart';
-           }
-        })
-        .catch(() => { window.location.href = rootUrl + '/cart'; });
-    })
-    .catch(e => {
-       console.error(e);
-       window.location.href = rootUrl + '/cart';
-    })
-    .finally(() => {
-       setTimeout(() => {
-         if(spinner) spinner.classList.add('hidden');
-         if(text) text.style.opacity = '1';
-         btn.removeAttribute('disabled');
-       }, 1000);
-    });
-}
 </script>
+
+{% schema %}
+{
+  "name": "Flipzy Sticky Bar",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Headline",
+      "default": "Kids Routine Board"
+    },
+    {
+      "type": "text",
+      "id": "subline_text",
+      "label": "Subline",
+      "default": "Special Offer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flipzy Sticky Bar"
+    }
+  ]
+}
+{% endschema %}
