@@ -63,7 +63,7 @@
         "feature_point_k7FK4C": {
           "type": "feature_point",
           "settings": {
-            "icon_type": "puzzle_2",
+            "icon_type": "puzzle_classic",
             "text": "<p>7 customizable wooden pieces</p>"
           }
         },
@@ -135,7 +135,7 @@
         "feature_point_gNReqR": {
           "type": "feature_point",
           "settings": {
-            "icon_type": "puzzle_jigsaw",
+            "icon_type": "sticker",
             "text": "<p>Choose from our pre-designed task tiles or create your own with included stickers to match your family's unique routine.</p>"
           }
         }
