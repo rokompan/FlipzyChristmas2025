@@ -305,24 +305,26 @@
    8. FLIPZY "WHAT'S IN THE BOX" SECTION
    ========================================= */
 .flipzy-box-section {
-    padding: 60px 20px; 
+    padding: 40px 20px; /* ZMANJŠANO (prej 60px) */
     background-color: #F6DACE; 
 }
 
 .flipzy-box-header {
     text-align: center;
     max-width: 900px;
-    margin: 0 auto 35px auto; 
+    margin: 0 auto 20px auto; /* ZMANJŠANO (prej 35px) */
 }
 
 .flipzy-box-title {
+    font-size: 2.2rem; /* STANDARDIZIRANO (prej 2.8rem) - enako kot Super Product */
+    font-weight: 700;
     color: var(--color-charcoal);
     margin-bottom: 10px; 
-    line-height: 1.1;
+    line-height: 1.2;
 }
 
 .flipzy-box-subtitle {
-    font-size: 1.35rem; 
+    font-size: 1.25rem; /* Malo manjše za boljši kontrast */
     line-height: 1.5;
     color: #4B5563;
 }
@@ -354,8 +356,8 @@
 .flipzy-box-img-card {
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: none; /* BREZ SENCE */
-    background: transparent; 
+    box-shadow: none; 
+    background: #fff; 
 }
 
 .flipzy-box-img-card img {
@@ -363,11 +365,81 @@
     height: auto;
     display: block;
     object-fit: cover;
-    border-radius: 24px; /* Zaobljenost slike */
+    border-radius: 24px; 
 }
 
 .flipzy-box-img-card.dimensions-card {
-    background-color: #EADBC8; /* Bež ozadje za dimenzije */
+    background-color: #EADBC8; 
+    padding: 15px; 
+}
+/* =========================================
+   8. FLIPZY "WHAT'S IN THE BOX" SECTION
+   ========================================= */
+.flipzy-box-section {
+    padding: 40px 20px; 
+    background-color: #F6DACE; 
+}
+
+.flipzy-box-header {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 20px auto; 
+}
+
+/* GLAVNI NASLOV (H2) - POBERE GLOBALNE STILE */
+.flipzy-box-title {
+    /* font-size in font-weight odstranjena -> uporabi h2 default */
+    color: var(--color-charcoal);
+    margin-bottom: 10px; 
+}
+
+.flipzy-box-subtitle {
+    font-size: 1.25rem; 
+    line-height: 1.5;
+    color: #4B5563;
+}
+
+/* Grid Layout */
+.flipzy-box-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    max-width: 1300px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+@media screen and (min-width: 990px) {
+    .flipzy-box-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px; 
+    }
+}
+
+/* --- LEVA STRAN (Slike) --- */
+.flipzy-box-media-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+.flipzy-box-img-card {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: none; 
+    background: #fff; 
+}
+
+.flipzy-box-img-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 24px; 
+}
+
+.flipzy-box-img-card.dimensions-card {
+    background-color: #EADBC8; 
     padding: 15px; 
 }
 
@@ -375,16 +447,16 @@
 .flipzy-box-content-card {
     background: #FFFFFF;
     border-radius: 24px;
-    padding: 40px 30px; 
+    padding: 25px 30px 40px 30px; 
     box-shadow: 0 15px 40px rgba(0,0,0,0.08);
 }
 
+/* NASLOV KARTICE (H3) - POBERE GLOBALNE STILE */
 .flipzy-box-content-title {
-    font-size: 1.8rem; 
-    font-weight: 700;
+    /* font-size in font-weight odstranjena -> uporabi h3 default */
     margin-bottom: 20px; 
     color: var(--color-charcoal);
-    line-height: 1.2;
+    margin-top: 0; 
 }
 
 /* Checklist */
@@ -479,6 +551,7 @@
 }
 
 @media (max-width: 750px) {
-    .flipzy-box-content-card { padding: 30px 20px; }
+    .flipzy-box-content-card { padding: 25px 20px 30px 20px; }
+    /* Odstranil sem font-size override za mobilce, naj naslovi dihajo */
     .flipzy-box-price { font-size: 2rem; }
 }
