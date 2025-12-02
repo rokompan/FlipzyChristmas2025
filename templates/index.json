@@ -205,7 +205,7 @@
       "name": "Flipzy Feature Video",
       "settings": {
         "color_scheme": "scheme-white",
-        "desktop_layout": "media_right",
+        "desktop_layout": "media_left",
         "mobile_layout": "text_first",
         "heading": "Create your routine",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/dc8a8217db654445a9862fb3f49f18a8.mp4",
@@ -229,7 +229,7 @@
       "name": "Flipzy Feature Video",
       "settings": {
         "color_scheme": "scheme-white",
-        "desktop_layout": "media_left",
+        "desktop_layout": "media_right",
         "mobile_layout": "text_first",
         "heading": "Watch them grow",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/dc8a8217db654445a9862fb3f49f18a8.mp4",
