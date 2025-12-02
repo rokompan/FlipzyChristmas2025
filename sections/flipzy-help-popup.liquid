@@ -11,10 +11,6 @@
 
       {% form 'contact', id: 'flipzy-help-form' %}
         <input type="hidden" name="form_type" value="contact">
-
-        {%- comment -%}
-          Hidden shop email to ensure the form is always valid for Shopify
-        {%- endcomment -%}
         <input type="hidden" name="contact[email]" value="{{ shop.email | default: shop.customer_email }}">
 
         <label class="flipzy-help-label">
@@ -37,8 +33,7 @@
   .flipzy-help-button{
     position:fixed;
     right:20px;
-    /* ENAKA VIŠINA ZA VSE NAPRAVE: */
-    bottom:80px; 
+    bottom:90px; /* Malo višje, da je nad Sticky Barom */
     z-index:9999;
     padding:10px 16px;
     border-radius:999px;
@@ -49,11 +44,25 @@
     cursor:pointer;
     box-shadow:0 8px 20px rgba(0,0,0,.2);
     font-weight: 600;
-    transition: transform 0.2s ease;
+    
+    /* SKRITO PRIVZETO (Scroll Logic) */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
   }
-  .flipzy-help-button:hover {
+
+  /* Ko dodamo ta class z JS, se prikaže */
+  .flipzy-help-button.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .flipzy-help-button.is-visible:hover {
     transform: scale(1.05);
   }
+
   .flipzy-help-overlay{
     position:fixed;
     inset:0;
@@ -65,6 +74,7 @@
     backdrop-filter: blur(2px);
   }
   .flipzy-help-overlay.is-open{display:flex;}
+  
   .flipzy-help-modal{
     width:100%;
     max-width:420px;
@@ -79,6 +89,7 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  
   .flipzy-help-close{
     position:absolute;
     top:8px;
@@ -90,67 +101,23 @@
     cursor:pointer;
     color: #6b7280;
   }
-  .flipzy-help-title{
-    margin:0 0 4px;
-    font-size:18px;
-    font-weight:600;
-    color: #111827;
+  .flipzy-help-title{ margin:0 0 4px; font-size:18px; font-weight:600; color: #111827; }
+  .flipzy-help-text{ margin:0 0 16px; font-size:14px; color:#4b5563; line-height: 1.4; }
+  
+  .flipzy-help-label{ display:block; font-size:13px; font-weight: 500; color: #374151; margin-bottom:12px; }
+  .flipzy-help-label input, .flipzy-help-label textarea{
+    width:100%; margin-top:6px; padding:10px 12px; border-radius:8px; border:1px solid #d1d5db; font-size:14px; resize:vertical; font-family: inherit;
   }
-  .flipzy-help-text{
-    margin:0 0 16px;
-    font-size:14px;
-    color:#4b5563;
-    line-height: 1.4;
-  }
-  .flipzy-help-label{
-    display:block;
-    font-size:13px;
-    font-weight: 500;
-    color: #374151;
-    margin-bottom:12px;
-  }
-  .flipzy-help-label input,
-  .flipzy-help-label textarea{
-    width:100%;
-    margin-top:6px;
-    padding:10px 12px;
-    border-radius:8px;
-    border:1px solid #d1d5db;
-    font-size:14px;
-    resize:vertical;
-    font-family: inherit;
-  }
-  .flipzy-help-label input:focus,
-  .flipzy-help-label textarea:focus{
-    outline: 2px solid #22c55e;
-    border-color: transparent;
-  }
+  .flipzy-help-label input:focus, .flipzy-help-label textarea:focus{ outline: 2px solid #22c55e; border-color: transparent; }
+  
   .flipzy-help-submit{
-    margin-top:8px;
-    width:100%;
-    padding:12px 14px;
-    border-radius:999px;
-    border:none;
-    background:#22c55e;
-    color:#fff;
-    font-weight:600;
-    cursor:pointer;
-    font-size: 15px;
-    transition: background 0.2s;
+    margin-top:8px; width:100%; padding:12px 14px; border-radius:999px; border:none; background:#22c55e; color:#fff; font-weight:600; cursor:pointer; font-size: 15px; transition: background 0.2s;
   }
-  .flipzy-help-submit:hover{
-    background:#16a34a;
-  }
+  .flipzy-help-submit:hover{ background:#16a34a; }
 
   @media (max-width:768px){
-    .flipzy-help-button{
-      /* Fiksno 80px tudi na mobilnem, samo malo odmika od desnega roba */
-      bottom: 80px;
-      right:16px;
-    }
-    .flipzy-help-modal{
-      margin:0 16px;
-    }
+    .flipzy-help-button{ bottom: 85px; right:16px; } /* Malo nad sticky barom na mobitelu */
+    .flipzy-help-modal{ margin:0 16px; }
   }
 </style>
 
@@ -165,6 +132,30 @@
 
     if(!openBtn || !overlay || !closeBtn) return;
 
+    // --- SCROLL LOGIC (Isto kot Sticky Bar) ---
+    var triggerSection = document.querySelector('.flipzy-hero-container') || document.querySelector('.section-featured-product');
+
+    function checkScroll() {
+      if (!triggerSection) {
+         // Fallback
+         if(window.scrollY > 400) openBtn.classList.add('is-visible');
+         else openBtn.classList.remove('is-visible');
+         return;
+      }
+      
+      var triggerBottom = triggerSection.getBoundingClientRect().bottom;
+      
+      // Ko gre Hero izven ekrana, pokaži gumb
+      if (triggerBottom < 0) {
+        openBtn.classList.add('is-visible');
+      } else {
+        openBtn.classList.remove('is-visible');
+      }
+    }
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    checkScroll(); // Preveri takoj
+
+    // --- POPUP LOGIC ---
     function openPopup(){
       overlay.classList.add('is-open');
       overlay.setAttribute('aria-hidden','false');
