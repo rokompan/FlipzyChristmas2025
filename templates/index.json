@@ -22,30 +22,39 @@
             "button_link": "#buy"
           }
         },
+        "slide_wiHe7j": {
+          "type": "slide",
+          "settings": {
+            "image_fallback": "shopify://shop_images/Gemini_Generated_Image_rkslyrkslyrkslyr.jpg",
+            "heading": "<p>30 <strong>stickers</strong> to customize your <strong>routine</strong></p>",
+            "button_text": "Go to Shop",
+            "button_link": ""
+          }
+        },
         "slide_pde3JQ": {
           "type": "slide",
           "settings": {
-            "image_fallback": "shopify://shop_images/mom_boy-wide.jpg",
-            "heading": "<p>Start your day <strong>screen-free</strong> and <strong>fight-free</strong>.</p>",
+            "image_fallback": "shopify://shop_images/Gemini_Generated_Image_vpr32bvpr32bvpr3_1.jpg",
+            "heading": "<p><strong>Rearange</strong> tiles to fit any scenairo.</p>",
             "button_text": "Go to Shop",
             "button_link": "#buy"
           }
         },
-        "slide_wiHe7j": {
+        "slide_C3LWGL": {
           "type": "slide",
           "settings": {
-            "video_file": "shopify://files/videos/flat06.mp4",
-            "image_fallback": "shopify://shop_images/kvaje3.jpg",
-            "heading": "<p>Bedtime routine that <strong>finally</strong> works</p>",
+            "image_fallback": "shopify://shop_images/mom_boy-wide3.jpg",
+            "heading": "<p>Start your day <strong>screen-free</strong> and <strong>fight-free</strong>.</p>",
             "button_text": "Go to Shop",
-            "button_link": ""
+            "button_link": "#buy"
           }
         }
       },
       "block_order": [
         "slide_M6LaR3",
+        "slide_wiHe7j",
         "slide_pde3JQ",
-        "slide_wiHe7j"
+        "slide_C3LWGL"
       ],
       "name": "Flipzy Hero Slider",
       "settings": {}
@@ -64,7 +73,7 @@
           "type": "feature_point",
           "settings": {
             "icon_type": "puzzle_pair",
-            "text": "<p>customizable wooden pieces to create your unique daily routines</p>"
+            "text": "<p>Customizable wooden pieces to create your unique daily routines</p>"
           }
         },
         "feature_point_G7aqUK": {
