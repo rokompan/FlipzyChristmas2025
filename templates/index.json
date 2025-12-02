@@ -26,12 +26,21 @@
           "type": "slide",
           "settings": {
             "image_fallback": "shopify://shop_images/sticker-wide2.jpg",
-            "heading": "<p>Swap <strong>tiles</strong>. Replace <strong>stickers</strong>. Customize <strong>everything</strong>.</p>",
+            "heading": "<p>30 <strong>stickers</strong> to customize your <strong>routine</strong></p>",
             "button_text": "Go to Shop",
             "button_link": ""
           }
         },
         "slide_pde3JQ": {
+          "type": "slide",
+          "settings": {
+            "image_fallback": "shopify://shop_images/Gemini_Generated_Image_vpr32bvpr32bvpr3_1.jpg",
+            "heading": "<p><strong>Rearange</strong> tiles to fit any scenairo.</p>",
+            "button_text": "Go to Shop",
+            "button_link": "#buy"
+          }
+        },
+        "slide_C3LWGL": {
           "type": "slide",
           "settings": {
             "image_fallback": "shopify://shop_images/mom_boy-wide3.jpg",
@@ -44,7 +53,8 @@
       "block_order": [
         "slide_M6LaR3",
         "slide_wiHe7j",
-        "slide_pde3JQ"
+        "slide_pde3JQ",
+        "slide_C3LWGL"
       ],
       "name": "Flipzy Hero Slider",
       "settings": {}
