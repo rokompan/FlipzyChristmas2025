@@ -140,30 +140,6 @@
         "padding_bottom": 52
       }
     },
-    "flipzy_feature_video_Qt6iBy": {
-      "type": "flipzy-feature-video",
-      "blocks": {
-        "feature_point_gNReqR": {
-          "type": "feature_point",
-          "settings": {
-            "icon_type": "sticker",
-            "text": "<p>Choose from our pre-designed task tiles or create your own with included stickers to match your family's unique routine.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "feature_point_gNReqR"
-      ],
-      "name": "Flipzy Feature Video",
-      "settings": {
-        "color_scheme": "scheme-white",
-        "desktop_layout": "media_right",
-        "mobile_layout": "text_first",
-        "heading": "Customize your tasks",
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/b79a29aed8e645aea74714d776f4436d.mp4",
-        "fallback_image": "shopify://shop_images/palca.jpg"
-      }
-    },
     "flipzy_feature_video_DaFB3E": {
       "type": "flipzy-feature-video",
       "blocks": {
@@ -171,7 +147,7 @@
           "type": "feature_point",
           "settings": {
             "icon_type": "wrench",
-            "text": "<p>Mount your Flipzy easily and securely using our damage-free adhesive strips. Peel it and stick it to the wall.</p>"
+            "text": "<p>Mount your Flipzy <strong>easily and securely</strong> in <strong>seconds</strong> with the included <strong>damage-free adhesive</strong> strips. Just peel, press, and you’re done.</p>"
           }
         }
       },
@@ -188,6 +164,30 @@
         "fallback_image": "shopify://shop_images/palca.jpg"
       }
     },
+    "flipzy_feature_video_Qt6iBy": {
+      "type": "flipzy-feature-video",
+      "blocks": {
+        "feature_point_gNReqR": {
+          "type": "feature_point",
+          "settings": {
+            "icon_type": "sticker",
+            "text": "<p>Pick from <strong>30 included stickers</strong> to build a <strong>routine</strong> that fits <strong>your</strong> <strong>family</strong>. Mornings, evenings, weekends, and everything in between.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "feature_point_gNReqR"
+      ],
+      "name": "Flipzy Feature Video",
+      "settings": {
+        "color_scheme": "scheme-white",
+        "desktop_layout": "media_right",
+        "mobile_layout": "text_first",
+        "heading": "Customize your tasks",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/b79a29aed8e645aea74714d776f4436d.mp4",
+        "fallback_image": "shopify://shop_images/palca.jpg"
+      }
+    },
     "flipzy_feature_video_FNy9TP": {
       "type": "flipzy-feature-video",
       "blocks": {
@@ -195,7 +195,7 @@
           "type": "feature_point",
           "settings": {
             "icon_type": "ruler",
-            "text": "<p>Mount your Flipzy easily and securely in seconds with the included damage-free adhesive strips. Just peel, press, and you’re done.</p>"
+            "text": "<p><strong>Arrange</strong> the tiles in any order to build the ideal morning, afternoon, or bedtime <strong>flow</strong> for your child.</p>"
           }
         }
       },
@@ -219,7 +219,7 @@
           "type": "feature_point",
           "settings": {
             "icon_type": "ruler",
-            "text": "<p>Mount your Flipzy easily and securely using our damage-free adhesive strips. Peel it and stick it to the wall.</p>"
+            "text": "<p>Kids love flipping tiles when they finish a task. Every flip builds <strong>confidence</strong>, <strong>independence</strong>, and <strong>proud</strong> little smiles.</p>"
           }
         }
       },
@@ -229,7 +229,7 @@
       "name": "Flipzy Feature Video",
       "settings": {
         "color_scheme": "scheme-white",
-        "desktop_layout": "media_right",
+        "desktop_layout": "media_left",
         "mobile_layout": "text_first",
         "heading": "Watch them grow",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/dc8a8217db654445a9862fb3f49f18a8.mp4",
@@ -536,8 +536,8 @@
     "flipzy_hero_yHQ9UX",
     "flipzy_feature_video_Wf8y33",
     "rich_text_Pc3YzR",
-    "flipzy_feature_video_Qt6iBy",
     "flipzy_feature_video_DaFB3E",
+    "flipzy_feature_video_Qt6iBy",
     "flipzy_feature_video_FNy9TP",
     "flipzy_feature_video_z6mmFe",
     "flipzy_anchor_94NFEW",
