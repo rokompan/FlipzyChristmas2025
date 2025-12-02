@@ -62,19 +62,22 @@
 }
 .flipzy-text-box { max-width: 1000px; color: var(--color-white); }
 
+/* NASLOV */
 .flipzy-heading { 
-    font-size: 2.5rem; 
+    font-size: 2.5rem; /* Mobile */
     line-height: 1.1; 
     margin-bottom: 1.5rem; 
     color: var(--color-white); 
-    text-shadow: 0 2px 15px rgba(0,0,0,0.2); /* Malo močnejša senca na tekstu za berljivost */
+    /* SPREMENJENO: Močnejša senca za boljšo berljivost */
+    text-shadow: 0 2px 15px rgba(0,0,0,0.6); 
 }
 .flipzy-heading p { margin: 0; padding: 0; }
 .flipzy-heading strong { color: var(--color-mustard); font-weight: 700; }
 
 @media screen and (min-width: 750px) { 
     .flipzy-heading { 
-        font-size: 4.5rem; 
+        /* SPREMENJENO: Zmanjšano iz 4.5rem na 3.5rem */
+        font-size: 3.5rem; 
         max-width: 900px; 
         margin-bottom: 2rem; 
     } 
