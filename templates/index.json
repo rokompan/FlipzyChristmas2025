@@ -26,7 +26,7 @@
           "type": "slide",
           "settings": {
             "image_fallback": "shopify://shop_images/Gemini_Generated_Image_d0vrsrd0vrsrd0vr.jpg",
-            "heading": "<p>Swap tiles. Replace stickers. Customize everything.</p>",
+            "heading": "<p>Swap <strong>tiles</strong>. Replace <strong>stickers</strong>. Customize <strong>everything</strong>.</p>",
             "button_text": "Go to Shop",
             "button_link": ""
           }
