@@ -56,7 +56,7 @@
 .flipzy-content-wrapper {
     position: absolute; z-index: 3; bottom: 0; left: 0; width: 100%; height: 100%;
     /* SPREMEMBA: Zmanjšan gradient iz 0.8 na 0.4 */
-    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 40%);
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
     display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
     text-align: center; padding: 0 20px 30px 20px;
 }
