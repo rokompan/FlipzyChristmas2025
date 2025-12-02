@@ -40,6 +40,15 @@
             "button_link": "#buy"
           }
         },
+        "slide_XfNBGf": {
+          "type": "slide",
+          "settings": {
+            "image_fallback": "shopify://shop_images/Gemini_Generated_Image_fh8lhgfh8lhgfh8l.jpg",
+            "heading": "<p>Get as <strong>many</strong> Flipzys as your <strong>family</strong> needs.</p>",
+            "button_text": "Go to Shop",
+            "button_link": "#buy"
+          }
+        },
         "slide_C3LWGL": {
           "type": "slide",
           "settings": {
@@ -54,6 +63,7 @@
         "slide_M6LaR3",
         "slide_wiHe7j",
         "slide_pde3JQ",
+        "slide_XfNBGf",
         "slide_C3LWGL"
       ],
       "name": "Flipzy Hero Slider",
