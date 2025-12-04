@@ -1,291 +1,151 @@
-{%- liquid
-  assign product = section.settings.product
-  if product == null
-    assign placeholder = true
-  endif
--%}
+{% comment %}
+  Flipzy Testimonials Section
+  Uses styles defined in flipzy-custom.css
+{% endcomment %}
 
-{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-{{ 'section-featured-product.css' | asset_url | stylesheet_tag }}
-{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
-{{ 'component-rating.css' | asset_url | stylesheet_tag }}
-{{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
+<div class="flipzy-section flipzy-testimonials-section scheme-{{ section.settings.color_scheme }}">
+  <div class="flipzy-testimonials-container">
+    
+    <div class="flipzy-testimonials-header">
+      <h2 class="flipzy-testimonials-title">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.subheading != blank %}
+        <p class="flipzy-testimonials-sub">{{ section.settings.subheading | escape }}</p>
+      {% endif %}
+    </div>
 
-{% unless section.settings.product.has_only_default_variant %}
-  {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
-  {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
-  {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
-{% endunless %}
+    <div class="flipzy-testimonials-grid">
+      {%- for block in section.blocks -%}
+        <div class="flipzy-testimonial-card" {{ block.shopify_attributes }}>
+          
+          <div class="flipzy-stars">
+            {%- for i in (1..5) -%}
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+            {%- endfor -%}
+          </div>
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
+          <div class="flipzy-review-text">
+            {{ block.settings.text }}
+          </div>
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-
-  /* --- FLIPZY CUSTOM STYLES --- */
-  
-  /* Gumb */
-  .section-{{ section.id }}-padding .product-form__submit {
-      background-color: #F4D35E !important;
-      color: #111827 !important;
-      border: none !important;
-      border-radius: 50px !important;
-      font-weight: 700 !important;
-      font-size: 1.3rem !important;
-      text-transform: none !important;
-      padding: 18px 30px !important;
-      box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s ease;
-  }
-  
-  .section-{{ section.id }}-padding .product-form__submit:hover { transform: scale(1.02);
-  }
-  
-  /* Kill hover ring */
-  .section-{{ section.id }}-padding .product-form__submit::after {
-      content: none !important;
-      display: none !important;
-  }
-  
-  /* Pulse */
-  .section-{{ section.id }}-padding .product-form__submit::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 50px;
-      box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
-      animation: flipzy-pulse 2s infinite;
-      z-index: 1;
-  }
-  @keyframes flipzy-pulse {
-      0% { transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7); }
-      70% { transform: scale(1);
-      box-shadow: 0 0 0 15px rgba(244, 211, 94, 0); }
-      100% { transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(244, 211, 94, 0); }
-  }
-
-  /* Trust Elements */
-  .flipzy-trust-wrapper { margin-top: 1.5rem;
-  width: 100%; }
-  .flipzy-guarantee-pill {
-      margin-top: 1.5rem; background: #ECFDF5; border: 1px solid #6EE7B7;
-      color: #065F46;
-      padding: 10px 15px; border-radius: 8px; font-size: 0.9rem; font-weight: 600;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      text-align: center; line-height: 1.3; width: 100%;
-  }
-  .flipzy-trust-pill svg { width: 18px; height: 18px; flex-shrink: 0;
-  }
-
-  .flipzy-trust-footer {
-      display: flex; justify-content: center; gap: 25px; opacity: 0.7;
-      flex-wrap: wrap;
-      padding-top: 15px; border-top: 1px solid #e5e7eb; margin-top: 20px;
-  }
-  .flipzy-trust-item { display: flex; flex-direction: column; align-items: center; gap: 5px;
-  font-size: 0.75rem; font-weight: 500; color: #374151; }
-  .flipzy-trust-item svg { width: 20px; height: 20px; stroke: currentColor; fill: none;
-  stroke-width: 2; }
-
-  /* Badges */
-  .flipzy-offer-badge {
-      display: inline-block; background: #FEF3C7;
-      color: #D97706; font-weight: 700;
-      padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;
-  }
-  .flipzy-save-badge {
-      display: inline-block; background-color: #000; color: #fff; font-size: 0.8rem; font-weight: 700;
-      padding: 4px 8px; border-radius: 4px; margin-left: 10px; vertical-align: middle; transform: translateY(-2px);
-  }
-  
-  /* Static Media */
-  .flipzy-static-media {
-    border-radius: 20px; overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05); line-height: 0; width: 100%;
-  }
-  .flipzy-static-media img { width: 100%; height: auto; display: block;
-  object-fit: cover; }
-
-  @media (max-width: 750px) {
-      .section-{{ section.id }}-padding .product__info-container { text-align: center;
-      align-items: center; }
-      .flipzy-offer-badge { display: table; margin: 0 auto 15px auto;
-      }
-      .price { justify-content: center; }
-      .flipzy-trust-footer { justify-content: center;
-      }
-  }
-{%- endstyle -%}
-
-<script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'show-more.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
-<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-
-{% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-
-<section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %}background-secondary{% else %}gradient{% endif %}">
-  <div class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}">
-    <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background == false %} isolate{% endif %} grid--2-col-tablet">
-      
-      <div class="grid__item product__media-wrapper">
-        <div class="flipzy-static-media">
-          {%- unless placeholder -%}
-             <img 
-              src="{{ product.featured_image | image_url: width: 1200 }}" 
-              alt="{{ product.title | escape }}"
-              loading="lazy"
-              width="{{ product.featured_image.width }}"
-              height="{{ product.featured_image.height }}"
-             >
-          {%- else -%}
-             {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
-          {%- endunless -%}
-        </div>
-      </div>
-
-      <div class="product__info-wrapper grid__item">
-        
-        <product-info 
-            id="ProductInfo-{{ section.id }}" 
-            class="product__info-container" 
-            data-section="{{ section.id }}" 
-            data-product-id="{{ product.id }}"
-            data-update-url="false"
-            data-url="{{ product.url }}"
-        >
-          {%- assign product_form_id = 'product-form-' | append: section.id -%}
-
-          {% if section.settings.badge_text != blank %}
-            <div class="flipzy-offer-badge">{{ section.settings.badge_text }}</div>
-          {% endif %}
-
-          <h2 class="product__title {{ section.settings.heading_size }}">
-            {%- unless placeholder -%}
-              {% if section.settings.custom_title != blank %}
-                  {{ section.settings.custom_title }}
-              {% else %}
-                  {{ product.title | escape }}
-              {% endif %}
-            {%- else -%}
-              {{ 'onboarding.product_title' | t }}
-            {%- endunless -%}
-          </h2>
-
-          <div id="price-{{ section.id }}" role="status" style="display:flex; align-items:center; gap:5px; margin-bottom: 1rem; justify-content: inherit;">
-            {%- render 'price', product: product, use_variant: true, show_badges: false, price_class: 'price--large' -%}
-            
-            {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}
-              {% assign saved = product.selected_or_first_available_variant.compare_at_price | minus: product.selected_or_first_available_variant.price %}
-              {% assign pct = saved | times: 100.0 | divided_by: product.selected_or_first_available_variant.compare_at_price %}
-              {% assign pct_rounded = pct | divided_by: 5 | round | times: 5 %}
-              <span class="flipzy-save-badge">Save {{ pct_rounded }}%</span>
+          <div class="flipzy-review-footer">
+            <span class="flipzy-author-name">{{ block.settings.author }}</span>
+            {% if block.settings.show_badge %}
+              <span class="flipzy-verified-badge">Verified Buyer</span>
             {% endif %}
           </div>
 
-          <div class="product__description rte" style="margin-bottom: 1.5rem;">
-            {{ section.settings.text }}
-          </div>
-
-          {%- unless placeholder -%}
-            {% render 'product-variant-picker', product: product, block: section, product_form_id: product_form_id %}
-          {%- endunless -%}
-
-          {%- unless placeholder -%}
-            {%- render 'buy-buttons', block: section, product: product, product_form_id: product_form_id, section_id: section.id, show_dynamic_checkout: section.settings.show_dynamic_checkout -%}
-
-            {% comment %} 
-              FLIPZY: 3-Day Business Day Delivery (Saturday included, Sunday excluded)
-              0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
-              
-              Thu (4) + 3 = Sun (Skip) -> Mon (Total +4)
-              Fri (5) + 3 days: Sat(1), Sun(Skip), Mon(2), Tue(3) -> Tue (Total +4)
-              Sat (6) + 3 days: Sun(Skip), Mon(1), Tue(2), Wed(3) -> Wed (Total +4)
-              Others: +3 days
-            {% endcomment %}
-            {%- liquid
-              assign current_day_index = 'now' | date: "%w" | plus: 0
-              if current_day_index >= 4 and current_day_index <= 6
-                 assign days_to_add = 4
-              else
-                 assign days_to_add = 3
-              endif
-              assign seconds_to_add = days_to_add | times: 86400
-              assign delivery_date = 'now' | date: "%s" | plus: seconds_to_add | date: "%b %d"
-            -%}
-            
-            <div class="flipzy-delivery-banner">
-              <svg class="flipzy-delivery-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                 <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-1 0-2 1-2 2v9c0 .6.4 1 1 1h2"></path>
-                 <path d="M16 8h2.3a2 2 0 0 1 1.8 1.1l1.6 3.2"></path>
-                 <circle cx="9" cy="17" r="2"></circle>
-                 <circle cx="17" cy="17" r="2"></circle>
-                 <path d="M5 9h5" stroke-linecap="round"></path>
-                 <path d="M5 12h3" stroke-linecap="round"></path>
-              </svg>
-              <span>Estimated delivery: <strong>{{ delivery_date }}</strong></span>
-            </div>
-
-            <div class="flipzy-trust-wrapper">
-                <div class="flipzy-guarantee-pill">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                  {{ section.settings.guarantee_text }}
-                </div>
-                <div class="flipzy-trust-footer">
-                  <div class="flipzy-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span>SSL Secure</span></div>
-                  <div class="flipzy-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg><span>Secure Payment</span></div>
-                  <div class="flipzy-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span>GDPR Compliant</span></div>
-                </div>
-            </div>
-          {%- endunless -%}
-
-        </product-info>
-      </div>
+        </div>
+      {%- endfor -%}
     </div>
+
   </div>
-</section>
+</div>
 
 {% schema %}
 {
-  "name": "Flipzy Offer Strip",
+  "name": "Flipzy Testimonials",
   "tag": "section",
-  "class": "section section-featured-product",
-  "disabled_on": {
-    "groups": ["header", "footer"]
-  },
+  "class": "section",
   "settings": [
-    { "type": "product", "id": "product", "label": "Product" },
-    { "type": "text", "id": "badge_text", "label": "Top Badge Text", "default": "SPECIAL OFFER – WHILE SUPPLIES LAST" },
-    { "type": "text", "id": "custom_title", "label": "Custom Title Override", "info": "Optional. Replaces product title." },
-    { "type": "richtext", "id": "text", "label": "Description Text", "default": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>" },
-    { "type": "text", "id": "guarantee_text", "label": "Guarantee Text", "default": "30-day money-back guarantee • 24 months warranty" },
-    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show Dynamic Checkout (PayPal/GPay)", "default": true },
-    { "type": "color_scheme", "id": "color_scheme", "label": "Color Scheme", "default": "scheme-1" },
-    { "type": "checkbox", "id": "secondary_background", "default": false, "label": "Secondary Background" },
-    { "type": "header", "content": "Padding" },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Top", "default": 36 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "Bottom", "default": 36 },
-    { "type": "select", "id": "media_size", "options": [ { "value": "small", "label": "Small" }, { "value": "medium", "label": "Medium" }, { "value": "large", "label": "Large" } ], "default": "medium", "label": "Media Size" },
-    { "type": "select", "id": "media_position", "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ], "default": "left", "label": "Media Position" },
-    { "type": "select", "id": "heading_size", "options": [ { "value": "h2", "label": "Small" }, { "value": "h1", "label": "Medium" }, { "value": "h0", "label": "Large" } ], "default": "h1", "label": "Title Size" }
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "cream", "label": "Cream" },
+        { "value": "sage", "label": "Sage" },
+        { "value": "mint", "label": "Mint" },
+        { "value": "night", "label": "Night" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Join Thousands of Happy Families",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Real stories from parents using Flipzy",
+      "label": "Subheading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "default": "Review text here...",
+          "label": "Review Text"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "default": "Author Name",
+          "label": "Author Name"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_badge",
+          "default": true,
+          "label": "Show 'Verified Buyer' Badge"
+        }
+      ]
+    }
   ],
   "presets": [
     {
-      "name": "Flipzy Offer Strip"
+      "name": "Flipzy Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Emma P.",
+            "text": "No more morning battles! My 6-year-old races to flip his tiles now. He even reminds ME when I forget something. Game changer for working parents."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Agnes L.",
+            "text": "Finally, screen-free solution that actually works! My twin boys (age 4) compete to finish their routines first. Mornings went from chaos to calm immediately."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Sofia R.",
+            "text": "Our mornings are finally smooth! The kids know exactly what to do — no more yelling."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Sarah M.",
+            "text": "My autistic son thrives with visual structure. Flipzy gives him the independence he craves while keeping routines predictable. Worth every penny!"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Ana K.",
+            "text": "Flipzy made routines fun. Flip makes it a perfect motivation to finish the routine."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Emilia M.",
+            "text": "My 6-year-old daughter takes charge of her routine now. She flips her tiles proudly and tells me, ‘All done, Mom!’ Totally worth it!"
+          }
+        }
+      ]
     }
   ]
 }

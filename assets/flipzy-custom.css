@@ -986,3 +986,156 @@
 .scheme-sage .flipzy-feature-icon-box {
     color: #FFFFFF !important;
 }
+
+/* =========================================
+   12. FLIPZY TESTIMONIALS SECTION
+   ========================================= */
+
+.flipzy-testimonials-section {
+    padding: 60px 20px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.flipzy-testimonials-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* --- HEADER AREA --- */
+.flipzy-testimonials-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    gap: 10px;
+}
+
+/* Desktop: Split layout (Left Title, Right Subtitle) */
+@media screen and (min-width: 750px) {
+    .flipzy-testimonials-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end; /* Align to bottom text baseline */
+        margin-bottom: 50px;
+    }
+}
+
+.flipzy-testimonials-title {
+    font-size: 2rem;
+    font-weight: 600; 
+    color: var(--color-charcoal);
+    margin: 0;
+    line-height: 1.2;
+    max-width: 600px;
+}
+
+@media screen and (min-width: 750px) {
+    .flipzy-testimonials-title { font-size: 2.5rem; }
+}
+
+.flipzy-testimonials-sub {
+    font-size: 1.1rem;
+    color: #6B7280; /* Gray-500 */
+    margin: 0;
+    font-weight: 400;
+}
+
+@media screen and (min-width: 750px) {
+    .flipzy-testimonials-sub { 
+        text-align: right; 
+        max-width: 400px;
+        margin-bottom: 5px; 
+    }
+}
+
+/* --- GRID LAYOUT --- */
+.flipzy-testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Tablet (2 cols) */
+@media screen and (min-width: 600px) {
+    .flipzy-testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop (3 cols) */
+@media screen and (min-width: 1000px) {
+    .flipzy-testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+}
+
+/* --- CARD DESIGN --- */
+.flipzy-testimonial-card {
+    background: #FFFFFF;
+    border-radius: 24px; 
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.flipzy-testimonial-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Stars */
+.flipzy-stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 15px;
+    color: var(--color-charcoal); /* Black stars per screenshot */
+}
+.flipzy-stars svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* Text */
+.flipzy-review-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #374151; /* Gray-700 */
+    margin-bottom: 20px;
+    flex-grow: 1; /* Pushes author to bottom */
+}
+
+/* Footer: Author & Badge */
+.flipzy-review-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.flipzy-author-name {
+    font-weight: 700; 
+    font-size: 1.1rem;
+    color: var(--color-charcoal);
+}
+
+.flipzy-verified-badge {
+    background-color: #ECFDF5; /* Very light mint */
+    color: #065F46; /* Dark Green text */
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+/* Dark Mode Overrides (if Night scheme is selected) */
+.scheme-night .flipzy-testimonials-title { color: #fff; }
+.scheme-night .flipzy-testimonials-sub { color: #9CA3AF; }
+.scheme-night .flipzy-testimonial-card { background: #1F2937; box-shadow: none; }
+.scheme-night .flipzy-stars { color: var(--color-mustard); }
+.scheme-night .flipzy-review-text { color: #D1D5DB; }
+.scheme-night .flipzy-author-name { color: #fff; }
