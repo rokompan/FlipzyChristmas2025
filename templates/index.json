@@ -477,25 +477,6 @@
         "subheading": "Real stories from parents using Flipzy"
       }
     },
-    "flipzy_offer_strip_cHVJYb": {
-      "type": "flipzy-offer-strip",
-      "name": "Flipzy Testimonials",
-      "settings": {
-        "product": "",
-        "badge_text": "SPECIAL OFFER – WHILE SUPPLIES LAST",
-        "custom_title": "",
-        "text": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>",
-        "guarantee_text": "30-day money-back guarantee • 24 months warranty",
-        "show_dynamic_checkout": true,
-        "color_scheme": "cream",
-        "secondary_background": false,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "media_size": "medium",
-        "media_position": "left",
-        "heading_size": "h1"
-      }
-    },
     "flipzy_whats_in_the_box_tDc44V": {
       "type": "flipzy-whats-in-the-box",
       "blocks": {
@@ -632,7 +613,6 @@
     "flipzy_feature_video_3VptYe",
     "flipzy_badges_YjLTAp",
     "flipzy_testimonials_J7dGUa",
-    "flipzy_offer_strip_cHVJYb",
     "flipzy_whats_in_the_box_tDc44V",
     "flipzy_feature_video_t3an46",
     "flipzy_feature_video_B9Xncj",
