@@ -821,6 +821,31 @@
 }
 .flipzy-guarantee-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
 
+/* Delivery Banner */
+.flipzy-delivery-banner {
+    margin-top: 15px;
+    background-color: #74B579; /* Green from screenshot */
+    color: #ffffff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.flipzy-delivery-icon {
+    width: 24px;
+    height: 24px;
+    stroke: #ffffff;
+    stroke-width: 2;
+    fill: none;
+    flex-shrink: 0;
+}
+
 /* TRUST ICONS */
 .flipzy-trust-row {
     display: flex;
