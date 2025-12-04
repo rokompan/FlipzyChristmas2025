@@ -17,8 +17,9 @@
     font-family: 'Poppins', sans-serif !important;
 }
 
+
 /* =========================================
-   2. HERO SLIDER (UPDATED WITH HIGH VISIBILITY DOTS)
+   2. HERO SLIDER (FIXED DOTS)
    ========================================= */
 .flipzy-hero-container {
     position: relative; 
@@ -74,7 +75,6 @@
     background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
     display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
     text-align: center; 
-    /* Increased padding to make room for dots + text */
     padding: 0 20px 80px 20px; 
 }
 .flipzy-text-box { max-width: 1000px; color: var(--color-white); }
@@ -110,14 +110,13 @@
     .flipzy-btn { font-size: 1.4rem; padding: 14px 40px; }
 }
 
-/* SCROLL CUE (Positions at very bottom) */
+/* SCROLL CUE (Sticky Bottom) */
 .flipzy-scroll-cue {
     position: absolute;
     bottom: 20px;
-    left: 0; 
-    right: 0;
+    left: 0; right: 0;
     text-align: center;
-    font-size: 1.1rem; font-weight: 500; color: rgba(255,255,255,0.8); cursor: default;
+    font-size: 1.1rem; font-weight: 500; color: rgba(255,255,255,0.9); cursor: default;
     animation: continuous-bounce 1.5s infinite ease-in-out;
     text-shadow: 0 1px 3px rgba(0,0,0,0.5);
     z-index: 4;
@@ -136,38 +135,42 @@
 .flipzy-prev { left: 20px; }
 .flipzy-next { right: 20px; }
 
-/* DOTS INDICATOR - FIXED VISIBILITY */
+/* DOTS INDICATOR - HIGH CONTRAST FIX */
 .flipzy-dots-container {
     position: absolute;
-    bottom: 50px; /* Positioned ABOVE the scroll text */
+    bottom: 55px; /* Above the scroll text */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
+    flex-direction: row; /* Force row layout */
     align-items: center;
     justify-content: center;
     gap: 12px;
-    z-index: 100 !important;
+    z-index: 999 !important; /* Force on top */
     
-    /* THE FIX: Dark background pill so white dots pop */
-    background-color: rgba(0, 0, 0, 0.5);
+    /* Dark Pill Background */
+    background-color: rgba(0, 0, 0, 0.6);
     padding: 8px 16px;
     border-radius: 30px;
     backdrop-filter: blur(4px);
     pointer-events: auto;
+    min-width: 60px; /* Ensure container has width */
 }
 
 .flipzy-dot {
     width: 12px;
     height: 12px;
-    background-color: rgba(255, 255, 255, 0.6); /* Visible white */
+    background-color: #FFFFFF; /* SOLID WHITE (No transparency) */
     border-radius: 50%;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
+    flex-shrink: 0; /* Prevents dots from disappearing if crowded */
+    opacity: 0.5; /* Slight dim for inactive */
 }
 
 .flipzy-dot.active {
     background-color: var(--color-mustard); /* Yellow Active */
-    opacity: 1;
+    opacity: 1; /* Full visibility */
     transform: scale(1.3);
 }
 

@@ -115,14 +115,19 @@
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  function initFlipzyHero() {
     const track = document.getElementById('FlipzyHeroTrack');
-    const slides = track.querySelectorAll('.flipzy-slide');
     const dotsContainer = document.getElementById('FlipzyDots');
     
-    if (!slides.length) return;
+    // Clear existing dots to prevent duplicates
+    dotsContainer.innerHTML = '';
+    
+    // Select all direct children (Robust way to find slides)
+    const slides = Array.from(track.children).filter(child => child.classList.contains('flipzy-slide'));
+    
+    if (slides.length === 0) return;
 
-    // 1. Generate Dots (One for every slide)
+    // 1. Generate Dots
     slides.forEach((slide, index) => {
       const dot = document.createElement('div');
       dot.classList.add('flipzy-dot');
@@ -138,7 +143,7 @@
 
     const dots = document.querySelectorAll('.flipzy-dot');
 
-    // 2. Intersection Observer (Updates active dot)
+    // 2. Intersection Observer
     const observerOptions = {
       root: track,
       threshold: 0.5 
@@ -157,10 +162,12 @@
     slides.forEach(slide => observer.observe(slide));
 
     // 3. Teaser Animation
+    // Wait 1s, add animation class
     setTimeout(() => {
         track.classList.add('flipzy-track-tease');
     }, 1000);
 
+    // Stop animation on user interaction
     const killTeaser = () => {
       track.classList.remove('flipzy-track-tease');
     };
@@ -170,9 +177,15 @@
     track.addEventListener('scroll', () => {
         if(Math.abs(track.scrollLeft) > 10) killTeaser();
     });
-  });
+  }
 
-  // 4. Button Logic
+  // Run on Load
+  document.addEventListener('DOMContentLoaded', initFlipzyHero);
+
+  // Run when Shopify Editor updates (Fixes "1 dot" issue in editor)
+  document.addEventListener('shopify:section:load', initFlipzyHero);
+
+  // 4. Button Logic (Global Function)
   function scrollHero(direction) {
     const track = document.getElementById('FlipzyHeroTrack');
     const slideWidth = track.offsetWidth;
