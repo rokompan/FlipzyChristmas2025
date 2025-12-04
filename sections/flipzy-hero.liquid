@@ -107,30 +107,37 @@
 
       </div>
     {% endfor %}
-  </div>
-
-  <div class="flipzy-dots-container" id="FlipzyDots-{{ section.id }}"></div>
+  </div> <div class="flipzy-dots-container" id="FlipzyDots-{{ section.id }}"></div>
 
   <div class="flipzy-scroll-cue">See how it works ↓</div>
 </div>
 
 <script>
   (function() {
-    // Wrap in closure to avoid global variable conflicts
     const sectionId = "{{ section.id }}";
+    const heroId = "FlipzyHero-" + sectionId;
     const trackId = "FlipzyHeroTrack-" + sectionId;
     const dotsId = "FlipzyDots-" + sectionId;
 
     function initSlider() {
+      const hero = document.getElementById(heroId);
       const track = document.getElementById(trackId);
       const dotsContainer = document.getElementById(dotsId);
       
-      if (!track || !dotsContainer) return;
+      if (!track || !dotsContainer || !hero) return;
+
+      // --- SELF-CORRECTION FIX ---
+      // If the dots ended up inside the track (common copy/paste error), move them out!
+      if (dotsContainer.parentElement === track) {
+        console.log("Flipzy: Moving trapped dots container out of slider track.");
+        hero.appendChild(dotsContainer);
+      }
+      // ---------------------------
 
       // Clear existing dots
       dotsContainer.innerHTML = '';
       
-      // Select slides securely
+      // Select slides
       const slides = track.querySelectorAll('.flipzy-slide');
       
       if (slides.length === 0) return;
@@ -141,7 +148,8 @@
         dot.classList.add('flipzy-dot');
         if (index === 0) dot.classList.add('active');
         
-        dot.addEventListener('click', () => {
+        dot.addEventListener('click', (e) => {
+          e.stopPropagation(); // Prevent clicks from bubbling
           const slideWidth = track.offsetWidth;
           track.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
         });
@@ -182,10 +190,10 @@
       if (event.detail.sectionId === sectionId) initSlider();
     });
     
-    // Immediate run in case DOM is ready
+    // Immediate run
     initSlider();
     
-    // Global Scroll Function (Unique per section)
+    // Global Scroll Function
     window['scrollHero' + sectionId.replace(/-/g, '')] = function(direction) {
       const track = document.getElementById(trackId);
       if(!track) return;
