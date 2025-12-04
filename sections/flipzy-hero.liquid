@@ -107,9 +107,15 @@
 
       </div>
     {% endfor %}
-  </div> 
+  </div>
 
-  <div class="flipzy-dots-container"></div>
+  <div class="flipzy-dots-container">
+    <div class="flipzy-dot active" data-slide="0"></div>
+    <div class="flipzy-dot" data-slide="1"></div>
+    <div class="flipzy-dot" data-slide="2"></div>
+    <div class="flipzy-dot" data-slide="3"></div>
+    <div class="flipzy-dot" data-slide="4"></div>
+  </div>
 
   <div class="flipzy-scroll-cue">See how it works ↓</div>
 </div>
@@ -119,60 +125,42 @@
     function initFlipzyHero(heroElement) {
       if (!heroElement) return;
 
-      // Select internal elements using classes (Scoped to this hero instance)
       const track = heroElement.querySelector('.flipzy-slider-track');
-      const dotsContainer = heroElement.querySelector('.flipzy-dots-container');
+      const dots = heroElement.querySelectorAll('.flipzy-dot');
       const prevBtn = heroElement.querySelector('.flipzy-prev');
       const nextBtn = heroElement.querySelector('.flipzy-next');
       
-      if (!track || !dotsContainer) return;
+      if (!track) return;
 
-      // --- CRITICAL FIX: Ensure dots are NOT inside the track ---
-      if (dotsContainer.parentElement === track) {
-        // Move it out to be a direct child of the hero container
-        heroElement.appendChild(dotsContainer);
-      }
+      // 1. Logic to Update Active Dot based on Scroll
+      const updateActiveDot = () => {
+        const slideWidth = track.offsetWidth;
+        const scrollPos = track.scrollLeft;
+        // Simple Math: Current Scroll / Slide Width = Current Index
+        const activeIndex = Math.round(scrollPos / slideWidth);
 
-      // Clear existing dots
-      dotsContainer.innerHTML = '';
-      
-      // Select slides
-      const slides = track.querySelectorAll('.flipzy-slide');
-      
-      if (slides.length === 0) return;
+        dots.forEach((dot, index) => {
+          if (index === activeIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      };
 
-      // 1. Generate Dots
-      slides.forEach((slide, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('flipzy-dot');
-        if (index === 0) dot.classList.add('active');
-        
+      // 2. Click Logic for Dots
+      dots.forEach((dot, index) => {
         dot.addEventListener('click', (e) => {
           e.stopPropagation();
           const slideWidth = track.offsetWidth;
           track.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
         });
-        
-        dotsContainer.appendChild(dot);
       });
 
-      const dots = dotsContainer.querySelectorAll('.flipzy-dot');
+      // 3. Scroll Listener
+      track.addEventListener('scroll', updateActiveDot);
 
-      // 2. Observer for Active Dot
-      const observerOptions = { root: track, threshold: 0.5 };
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const index = entry.target.getAttribute('data-index');
-            dots.forEach(d => d.classList.remove('active'));
-            if(dots[index]) dots[index].classList.add('active');
-          }
-        });
-      }, observerOptions);
-
-      slides.forEach(slide => observer.observe(slide));
-
-      // 3. Teaser Animation
+      // 4. Teaser Animation Logic
       setTimeout(() => { track.classList.add('flipzy-track-tease'); }, 1000);
 
       const killTeaser = () => { track.classList.remove('flipzy-track-tease'); };
@@ -181,8 +169,8 @@
       track.addEventListener('scroll', () => {
           if(Math.abs(track.scrollLeft) > 10) killTeaser();
       });
-      
-      // 4. Button Logic
+
+      // 5. Button Logic
       const scrollHero = (direction) => {
         track.classList.remove('flipzy-track-tease');
         const slideWidth = track.offsetWidth;
@@ -204,12 +192,12 @@
       if(nextBtn) nextBtn.onclick = () => scrollHero(1);
     }
 
-    // Initialize all sliders on page load
+    // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('[data-flipzy-hero]').forEach(initFlipzyHero);
     });
 
-    // Re-initialize specifically for Shopify Theme Editor
+    // Re-init for Shopify Editor
     document.addEventListener('shopify:section:load', (e) => {
       const newSection = e.target.querySelector('[data-flipzy-hero]');
       if (newSection) initFlipzyHero(newSection);

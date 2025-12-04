@@ -114,7 +114,7 @@
     .flipzy-btn { font-size: 1.4rem; padding: 14px 40px; }
 }
 
-/* SCROLL CUE (Sticky Bottom) */
+/* SCROLL CUE */
 .flipzy-scroll-cue {
     position: absolute;
     bottom: 20px;
@@ -151,20 +151,14 @@
     align-items: center;
     justify-content: center;
     gap: 12px;
-    z-index: 999;
+    z-index: 20;
     
     background-color: rgba(0, 0, 0, 0.6);
     padding: 8px 16px;
     border-radius: 30px;
     backdrop-filter: blur(4px);
     
-    /* Crucial: Hide if empty so we don't see a "wide dot" */
-    min-width: 0; 
-    width: auto;
     pointer-events: auto;
-}
-.flipzy-dots-container:empty {
-    display: none;
 }
 
 .flipzy-dot {
