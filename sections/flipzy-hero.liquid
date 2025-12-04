@@ -107,9 +107,7 @@
 
       </div>
     {% endfor %}
-  </div>
-
-  <div class="flipzy-dots-container">
+  </div> <div class="flipzy-dots-container">
     <div class="flipzy-dot active" data-slide="0"></div>
     <div class="flipzy-dot" data-slide="1"></div>
     <div class="flipzy-dot" data-slide="2"></div>
@@ -126,17 +124,26 @@
       if (!heroElement) return;
 
       const track = heroElement.querySelector('.flipzy-slider-track');
+      const dotsContainer = heroElement.querySelector('.flipzy-dots-container');
       const dots = heroElement.querySelectorAll('.flipzy-dot');
       const prevBtn = heroElement.querySelector('.flipzy-prev');
       const nextBtn = heroElement.querySelector('.flipzy-next');
       
-      if (!track) return;
+      if (!track || !dotsContainer) return;
+
+      // --- SELF-CORRECTION FIX ---
+      // This detects if the dots are trapped inside the slider (as seen in your screenshot)
+      // and moves them out to the correct place automatically.
+      if (dotsContainer.parentElement === track) {
+        console.log("Flipzy Debug: Rescuing trapped dots container!");
+        heroElement.appendChild(dotsContainer);
+      }
+      // ---------------------------
 
       // 1. Logic to Update Active Dot based on Scroll
       const updateActiveDot = () => {
         const slideWidth = track.offsetWidth;
         const scrollPos = track.scrollLeft;
-        // Simple Math: Current Scroll / Slide Width = Current Index
         const activeIndex = Math.round(scrollPos / slideWidth);
 
         dots.forEach((dot, index) => {
