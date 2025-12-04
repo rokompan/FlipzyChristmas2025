@@ -1,0 +1,288 @@
+{% comment %}
+  Flipzy Testimonials Section
+  Matches the visual style of the provided screenshot using Flipzy design tokens.
+{% endcomment %}
+
+<style>
+  /* =========================================
+     LOCAL STYLES FOR TESTIMONIALS
+     (Inherits variables from flipzy-custom.css)
+     ========================================= */
+
+  .flipzy-testimonials-section {
+    padding: 60px 20px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .flipzy-testimonials-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* --- HEADER AREA --- */
+  .flipzy-testimonials-header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    gap: 10px;
+  }
+
+  /* Desktop: Split layout (Left Title, Right Subtitle) */
+  @media screen and (min-width: 750px) {
+    .flipzy-testimonials-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end; /* Align to bottom text baseline */
+      margin-bottom: 50px;
+    }
+  }
+
+  .flipzy-testimonials-title {
+    font-size: 2rem;
+    font-weight: 600; /* Poppins SemiBold */
+    color: var(--color-charcoal);
+    margin: 0;
+    line-height: 1.2;
+    max-width: 600px;
+  }
+  
+  @media screen and (min-width: 750px) {
+     .flipzy-testimonials-title { font-size: 2.5rem; }
+  }
+
+  .flipzy-testimonials-sub {
+    font-size: 1.1rem;
+    color: #6B7280; /* Gray-500 equivalent */
+    margin: 0;
+    font-weight: 400;
+  }
+  
+  @media screen and (min-width: 750px) {
+     .flipzy-testimonials-sub { 
+       text-align: right; 
+       max-width: 400px;
+       margin-bottom: 5px; /* Visual alignment fix */
+     }
+  }
+
+  /* --- GRID LAYOUT --- */
+  .flipzy-testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 600px) {
+    .flipzy-testimonials-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Desktop */
+  @media screen and (min-width: 1000px) {
+    .flipzy-testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+  }
+
+  /* --- CARD DESIGN --- */
+  .flipzy-testimonial-card {
+    background: #FFFFFF;
+    border-radius: 24px; /* Matches badge cards */
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .flipzy-testimonial-card:hover {
+    transform: translateY(-5px);
+  }
+
+  /* Stars */
+  .flipzy-stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 15px;
+    color: var(--color-charcoal); /* Black stars per screenshot */
+  }
+  .flipzy-stars svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  /* Text */
+  .flipzy-review-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #374151; /* Gray-700 */
+    margin-bottom: 20px;
+    flex-grow: 1; /* Pushes author to bottom */
+  }
+
+  /* Footer: Author & Badge */
+  .flipzy-review-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .flipzy-author-name {
+    font-weight: 700; /* Bold */
+    font-size: 1.1rem;
+    color: var(--color-charcoal);
+  }
+
+  .flipzy-verified-badge {
+    background-color: #ECFDF5; /* Very light mint */
+    color: #065F46; /* Dark Green text */
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    display: inline-block;
+  }
+  
+  /* Dark Mode Overrides (if Night scheme is selected) */
+  .scheme-night .flipzy-testimonials-title { color: #fff; }
+  .scheme-night .flipzy-testimonials-sub { color: #9CA3AF; }
+  .scheme-night .flipzy-testimonial-card { background: #1F2937; box-shadow: none; }
+  .scheme-night .flipzy-stars { color: var(--color-mustard); }
+  .scheme-night .flipzy-review-text { color: #D1D5DB; }
+  .scheme-night .flipzy-author-name { color: #fff; }
+  
+</style>
+
+<div class="flipzy-section flipzy-testimonials-section scheme-{{ section.settings.color_scheme }}">
+  <div class="flipzy-testimonials-container">
+    
+    <div class="flipzy-testimonials-header">
+      <h2 class="flipzy-testimonials-title">{{ section.settings.heading | escape }}</h2>
+      {% if section.settings.subheading != blank %}
+        <p class="flipzy-testimonials-sub">{{ section.settings.subheading | escape }}</p>
+      {% endif %}
+    </div>
+
+    <div class="flipzy-testimonials-grid">
+      {%- for block in section.blocks -%}
+        <div class="flipzy-testimonial-card" {{ block.shopify_attributes }}>
+          
+          <div class="flipzy-stars">
+            {%- for i in (1..5) -%}
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+            {%- endfor -%}
+          </div>
+
+          <div class="flipzy-review-text">
+            {{ block.settings.text }}
+          </div>
+
+          <div class="flipzy-review-footer">
+            <span class="flipzy-author-name">{{ block.settings.author }}</span>
+            {% if block.settings.show_badge %}
+              <span class="flipzy-verified-badge">Verified Buyer</span>
+            {% endif %}
+          </div>
+
+        </div>
+      {%- endfor -%}
+    </div>
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flipzy Testimonials",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "cream", "label": "Cream" },
+        { "value": "sage", "label": "Sage" },
+        { "value": "mint", "label": "Mint" },
+        { "value": "night", "label": "Night" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Join Thousands of Happy Families",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "default": "Real stories from parents using Flipzy",
+      "label": "Subheading (Right/Bottom)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "default": "No more morning battles! My 6-year-old races to flip his tiles now. Game changer for working parents.",
+          "label": "Review Text"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "default": "Emma P.",
+          "label": "Author Name"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_badge",
+          "default": true,
+          "label": "Show 'Verified Buyer' Badge"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flipzy Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Emma P.",
+            "text": "No more morning battles! My 6-year-old races to flip his tiles now. He even reminds ME when I forget something. Game changer."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Agnes L.",
+            "text": "Finally, a screen-free solution that actually works! My twin boys compete to finish their routines first. Mornings went from chaos to calm."
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "author": "Sofia R.",
+            "text": "Our mornings are finally smooth! The kids know exactly what to do — no more yelling."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
