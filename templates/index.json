@@ -248,19 +248,9 @@
       "type": "flipzy-offer-strip",
       "name": "Flipzy Offer Strip",
       "settings": {
-        "product": "flipzy-wooden-routine-board",
-        "badge_text": "SPECIAL OFFER – WHILE SUPPLIES LAST",
-        "custom_title": "Kids Routine Board That Finally Works",
-        "text": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>",
-        "guarantee_text": "✓ 30-day money-back guarantee • 24 months warranty",
-        "show_dynamic_checkout": true,
         "color_scheme": "offer-scheme-cream",
-        "secondary_background": false,
-        "padding_top": 36,
-        "padding_bottom": 36,
-        "media_size": "medium",
-        "media_position": "left",
-        "heading_size": "h1"
+        "heading": "Join Thousands of Happy Families",
+        "subheading": "Real stories from parents using Flipzy"
       }
     },
     "featured_product_x9hCHm": {
@@ -410,6 +400,73 @@
         "show_checkmark": true
       }
     },
+    "flipzy_offer_strip_cHVJYb": {
+      "type": "flipzy-offer-strip",
+      "blocks": {
+        "testimonial_qUPzWy": {
+          "type": "testimonial",
+          "settings": {
+            "text": "No more morning battles! My 6-year-old races to flip his tiles now. He even reminds ME when I forget something. Game changer for working parents.",
+            "author": "Emma P.",
+            "show_badge": true
+          }
+        },
+        "testimonial_FNhnx6": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Finally, screen-free solution that actually works! My twin boys (age 4) compete to finish their routines first. Mornings went from chaos to calm immediately.",
+            "author": "Agnes L.",
+            "show_badge": true
+          }
+        },
+        "testimonial_9ELPKm": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Our mornings are finally smooth! The kids know exactly what to do, no more yelling.",
+            "author": "Sofia R.",
+            "show_badge": true
+          }
+        },
+        "testimonial_nxbXpx": {
+          "type": "testimonial",
+          "settings": {
+            "text": "My autistic son thrives with visual structure. Flipzy gives him the independence he craves while keeping routines predictable. Worth every penny!",
+            "author": "Sarah M.",
+            "show_badge": true
+          }
+        },
+        "testimonial_YKKJ4f": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Flipzy made routines fun. Flip makes it a perfect motivation to finish the routine.",
+            "author": "Ana K.",
+            "show_badge": true
+          }
+        },
+        "testimonial_NH9f4f": {
+          "type": "testimonial",
+          "settings": {
+            "text": "My 6-year-old daughter takes charge of her routine now. She flips her tiles proudly and tells me, ‘All done, Mom!’ Totally worth it!",
+            "author": "Emilia M.",
+            "show_badge": true
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_qUPzWy",
+        "testimonial_FNhnx6",
+        "testimonial_9ELPKm",
+        "testimonial_nxbXpx",
+        "testimonial_YKKJ4f",
+        "testimonial_NH9f4f"
+      ],
+      "name": "Flipzy Testimonials",
+      "settings": {
+        "color_scheme": "cream",
+        "heading": "Join Thousands of Happy Families",
+        "subheading": "Real stories from parents using Flipzy"
+      }
+    },
     "flipzy_whats_in_the_box_tDc44V": {
       "type": "flipzy-whats-in-the-box",
       "blocks": {
@@ -545,6 +602,7 @@
     "featured_product_x9hCHm",
     "flipzy_feature_video_3VptYe",
     "flipzy_badges_YjLTAp",
+    "flipzy_offer_strip_cHVJYb",
     "flipzy_whats_in_the_box_tDc44V",
     "flipzy_feature_video_t3an46",
     "flipzy_feature_video_B9Xncj",
