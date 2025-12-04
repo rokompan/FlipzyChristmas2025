@@ -209,19 +209,20 @@
             {%- render 'buy-buttons', block: section, product: product, product_form_id: product_form_id, section_id: section.id, show_dynamic_checkout: section.settings.show_dynamic_checkout -%}
 
             {% comment %} 
-              FLIPZY: 3-Day Business Day Delivery Calculation 
-              Logic: Mon/Tue +3 days. Wed/Thu/Fri +5 days (weekend). Sat +5 days. Sun +4 days.
+              FLIPZY: 3-Day Business Day Delivery (Saturday included, Sunday excluded)
+              0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
+              
+              Thu (4) + 3 = Sun (Skip) -> Mon (Total +4)
+              Fri (5) + 3 days: Sat(1), Sun(Skip), Mon(2), Tue(3) -> Tue (Total +4)
+              Sat (6) + 3 days: Sun(Skip), Mon(1), Tue(2), Wed(3) -> Wed (Total +4)
+              Others: +3 days
             {% endcomment %}
             {%- liquid
               assign current_day_index = 'now' | date: "%w" | plus: 0
-              if current_day_index == 0
+              if current_day_index >= 4 and current_day_index <= 6
                  assign days_to_add = 4
-              elsif current_day_index == 1 or current_day_index == 2
-                 assign days_to_add = 3
-              elsif current_day_index == 6
-                 assign days_to_add = 5
               else
-                 assign days_to_add = 5
+                 assign days_to_add = 3
               endif
               assign seconds_to_add = days_to_add | times: 86400
               assign delivery_date = 'now' | date: "%s" | plus: seconds_to_add | date: "%b %d"

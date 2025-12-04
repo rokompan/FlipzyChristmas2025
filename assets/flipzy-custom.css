@@ -833,13 +833,14 @@
     justify-content: center;
     gap: 12px;
     width: 100%;
-    font-size: 1.1rem;
+    font-size: 1.5rem; /* Bigger font as requested */
+    font-weight: 600;
     line-height: 1.2;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 .flipzy-delivery-icon {
-    width: 24px;
-    height: 24px;
+    width: 32px; /* Bigger icon */
+    height: 32px;
     stroke: #ffffff;
     stroke-width: 2;
     fill: none;
