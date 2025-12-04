@@ -102,8 +102,6 @@
                 {{ block.settings.button_text }}
               </a>
             {% endif %}
-            
-            <div class="flipzy-scroll-cue">See how it works ↓</div>
           </div>
         </div>
 
@@ -112,25 +110,24 @@
   </div>
 
   <div class="flipzy-dots-container" id="FlipzyDots"></div>
+
+  <div class="flipzy-scroll-cue">See how it works ↓</div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initial Setup
     const track = document.getElementById('FlipzyHeroTrack');
     const slides = track.querySelectorAll('.flipzy-slide');
     const dotsContainer = document.getElementById('FlipzyDots');
     
-    // Safety check: if no slides, stop.
     if (!slides.length) return;
 
-    // 2. Generate Dots
+    // 1. Generate Dots (One for every slide)
     slides.forEach((slide, index) => {
       const dot = document.createElement('div');
       dot.classList.add('flipzy-dot');
       if (index === 0) dot.classList.add('active');
       
-      // Click dot to scroll
       dot.addEventListener('click', () => {
         const slideWidth = track.offsetWidth;
         track.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
@@ -141,7 +138,7 @@
 
     const dots = document.querySelectorAll('.flipzy-dot');
 
-    // 3. Intersection Observer (Updates active dot on scroll)
+    // 2. Intersection Observer (Updates active dot)
     const observerOptions = {
       root: track,
       threshold: 0.5 
@@ -151,7 +148,6 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const index = entry.target.getAttribute('data-index');
-          // Update Dots
           dots.forEach(d => d.classList.remove('active'));
           if(dots[index]) dots[index].classList.add('active');
         }
@@ -160,12 +156,11 @@
 
     slides.forEach(slide => observer.observe(slide));
 
-    // 4. TEASER ANIMATION LOGIC (Looping)
+    // 3. Teaser Animation
     setTimeout(() => {
         track.classList.add('flipzy-track-tease');
     }, 1000);
 
-    // Stop animation forever if user interacts
     const killTeaser = () => {
       track.classList.remove('flipzy-track-tease');
     };
@@ -173,19 +168,17 @@
     track.addEventListener('touchstart', killTeaser, {passive: true});
     track.addEventListener('mousedown', killTeaser);
     track.addEventListener('scroll', () => {
-        // Only kill if scroll is user-initiated (greater than 10px shift)
         if(Math.abs(track.scrollLeft) > 10) killTeaser();
     });
   });
 
-  // 5. Button Navigation Logic
+  // 4. Button Logic
   function scrollHero(direction) {
     const track = document.getElementById('FlipzyHeroTrack');
     const slideWidth = track.offsetWidth;
     const currentScroll = track.scrollLeft;
     const maxScroll = track.scrollWidth - slideWidth;
     
-    // Kill teaser on button click too
     track.classList.remove('flipzy-track-tease');
 
     const isAtEnd = currentScroll >= maxScroll - 10;
