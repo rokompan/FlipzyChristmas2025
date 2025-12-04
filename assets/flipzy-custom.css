@@ -16,9 +16,8 @@
 .flipzy-section, .flipzy-section * {
     font-family: 'Poppins', sans-serif !important;
 }
-
 /* =========================================
-   2. HERO SLIDER (UPDATED)
+   2. HERO SLIDER (UPDATED WITH VISIBLE DOTS)
    ========================================= */
 .flipzy-hero-container {
     position: relative; 
@@ -73,7 +72,8 @@
     position: absolute; z-index: 3; bottom: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
     display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-    text-align: center; padding: 0 20px 60px 20px; /* Increased bottom padding to make room for dots */
+    text-align: center; 
+    padding: 0 20px 70px 20px; /* Increased bottom padding to make space for dots */
 }
 .flipzy-text-box { max-width: 1000px; color: var(--color-white); }
 
@@ -108,7 +108,7 @@
     .flipzy-btn { font-size: 1.4rem; padding: 14px 40px; }
 }
 
-/* SCROLL CUE (Restored) */
+/* SCROLL CUE */
 .flipzy-scroll-cue {
     font-size: 1.1rem; font-weight: 500; color: rgba(255,255,255,0.95); margin-top: 5px; cursor: default;
     animation: continuous-bounce 1.5s infinite ease-in-out;
@@ -128,37 +128,41 @@
 .flipzy-prev { left: 20px; }
 .flipzy-next { right: 20px; }
 
-/* DOTS INDICATOR */
+/* DOTS INDICATOR - HIGH VISIBILITY VERSION */
 .flipzy-dots-container {
     position: absolute;
-    bottom: 25px; /* Moved up slightly */
+    bottom: 20px; /* Positioned safely at bottom */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 12px;
-    z-index: 20; /* High z-index to ensure visibility */
-    padding: 5px 10px;
-    border-radius: 20px;
-    pointer-events: auto; /* Ensures clickable */
+    z-index: 99 !important; /* Force on top */
+    
+    /* Dark Pill Background for maximum contrast */
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 8px 16px;
+    border-radius: 30px;
+    backdrop-filter: blur(4px);
+    pointer-events: auto;
 }
 
 .flipzy-dot {
-    width: 14px; /* Slightly larger */
-    height: 14px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Shadow for contrast */
+    border: none; /* No border, just solid color */
 }
 
 .flipzy-dot.active {
-    background-color: var(--color-mustard);
-    border-color: var(--color-mustard);
-    transform: scale(1.2);
+    background-color: var(--color-mustard); /* Bright yellow active state */
+    transform: scale(1.3);
+    opacity: 1;
 }
-
 /* =========================================
    3. FLIPZY FEATURE VIDEO
    ========================================= */

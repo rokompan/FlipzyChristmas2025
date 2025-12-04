@@ -102,7 +102,7 @@
                 {{ block.settings.button_text }}
               </a>
             {% endif %}
-
+            
             <div class="flipzy-scroll-cue">See how it works ↓</div>
           </div>
         </div>
@@ -116,11 +116,15 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // 1. Initial Setup
     const track = document.getElementById('FlipzyHeroTrack');
     const slides = track.querySelectorAll('.flipzy-slide');
     const dotsContainer = document.getElementById('FlipzyDots');
     
-    // 1. Generate Dots
+    // Safety check: if no slides, stop.
+    if (!slides.length) return;
+
+    // 2. Generate Dots
     slides.forEach((slide, index) => {
       const dot = document.createElement('div');
       dot.classList.add('flipzy-dot');
@@ -137,7 +141,7 @@
 
     const dots = document.querySelectorAll('.flipzy-dot');
 
-    // 2. Intersection Observer (Updates active dot on scroll)
+    // 3. Intersection Observer (Updates active dot on scroll)
     const observerOptions = {
       root: track,
       threshold: 0.5 
@@ -156,9 +160,7 @@
 
     slides.forEach(slide => observer.observe(slide));
 
-    // 3. TEASER ANIMATION LOGIC
-    // We add the class immediately on load.
-    // It loops forever via CSS until interaction.
+    // 4. TEASER ANIMATION LOGIC (Looping)
     setTimeout(() => {
         track.classList.add('flipzy-track-tease');
     }, 1000);
@@ -171,11 +173,12 @@
     track.addEventListener('touchstart', killTeaser, {passive: true});
     track.addEventListener('mousedown', killTeaser);
     track.addEventListener('scroll', () => {
-        if(track.scrollLeft > 10) killTeaser();
+        // Only kill if scroll is user-initiated (greater than 10px shift)
+        if(Math.abs(track.scrollLeft) > 10) killTeaser();
     });
   });
 
-  // 4. Existing Button Logic
+  // 5. Button Navigation Logic
   function scrollHero(direction) {
     const track = document.getElementById('FlipzyHeroTrack');
     const slideWidth = track.offsetWidth;
