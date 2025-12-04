@@ -102,8 +102,9 @@
                 {{ block.settings.button_text }}
               </a>
             {% endif %}
-            
-            </div>
+
+            <div class="flipzy-scroll-cue">See how it works ↓</div>
+          </div>
         </div>
 
       </div>
@@ -139,7 +140,7 @@
     // 2. Intersection Observer (Updates active dot on scroll)
     const observerOptions = {
       root: track,
-      threshold: 0.5 // Trigger when 50% of slide is visible
+      threshold: 0.5 
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -156,25 +157,20 @@
     slides.forEach(slide => observer.observe(slide));
 
     // 3. TEASER ANIMATION LOGIC
-    let teaserTimeout;
+    // We add the class immediately on load.
+    // It loops forever via CSS until interaction.
+    setTimeout(() => {
+        track.classList.add('flipzy-track-tease');
+    }, 1000);
 
-    // A. Start the timer immediately
-    teaserTimeout = setTimeout(() => {
-      // Add the animation class
-      track.classList.add('flipzy-track-tease');
-    }, 2500); // Waits 2.5 seconds
-
-    // B. Cancel animation if user interacts properly before then
+    // Stop animation forever if user interacts
     const killTeaser = () => {
-      clearTimeout(teaserTimeout);
       track.classList.remove('flipzy-track-tease');
     };
 
     track.addEventListener('touchstart', killTeaser, {passive: true});
     track.addEventListener('mousedown', killTeaser);
     track.addEventListener('scroll', () => {
-        // Only kill if the scroll is significant (user initiated)
-        // We let the animation happen if scroll is 0
         if(track.scrollLeft > 10) killTeaser();
     });
   });
