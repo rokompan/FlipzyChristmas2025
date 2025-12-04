@@ -59,16 +59,16 @@
 }
 {% endschema %}
 
-<div class="flipzy-hero-container">
+<div class="flipzy-hero-container" id="FlipzyHero-{{ section.id }}">
   
-  <button class="flipzy-nav-btn flipzy-prev" onclick="scrollHero(-1)" aria-label="Previous Slide">
+  <button class="flipzy-nav-btn flipzy-prev" onclick="scrollHero{{ section.id | replace: '-', '' }}(-1)" aria-label="Previous Slide">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
   </button>
-  <button class="flipzy-nav-btn flipzy-next" onclick="scrollHero(1)" aria-label="Next Slide">
+  <button class="flipzy-nav-btn flipzy-next" onclick="scrollHero{{ section.id | replace: '-', '' }}(1)" aria-label="Next Slide">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
   </button>
 
-  <div class="flipzy-slider-track" id="FlipzyHeroTrack">
+  <div class="flipzy-slider-track" id="FlipzyHeroTrack-{{ section.id }}">
     {% for block in section.blocks %}
       <div class="flipzy-slide" data-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
         
@@ -109,103 +109,102 @@
     {% endfor %}
   </div>
 
-  <div class="flipzy-dots-container" id="FlipzyDots"></div>
+  <div class="flipzy-dots-container" id="FlipzyDots-{{ section.id }}"></div>
 
   <div class="flipzy-scroll-cue">See how it works ↓</div>
 </div>
 
 <script>
-  function initFlipzyHero() {
-    const track = document.getElementById('FlipzyHeroTrack');
-    const dotsContainer = document.getElementById('FlipzyDots');
-    
-    // Clear existing dots to prevent duplicates
-    dotsContainer.innerHTML = '';
-    
-    // Select all direct children (Robust way to find slides)
-    const slides = Array.from(track.children).filter(child => child.classList.contains('flipzy-slide'));
-    
-    if (slides.length === 0) return;
+  (function() {
+    // Wrap in closure to avoid global variable conflicts
+    const sectionId = "{{ section.id }}";
+    const trackId = "FlipzyHeroTrack-" + sectionId;
+    const dotsId = "FlipzyDots-" + sectionId;
 
-    // 1. Generate Dots
-    slides.forEach((slide, index) => {
-      const dot = document.createElement('div');
-      dot.classList.add('flipzy-dot');
-      if (index === 0) dot.classList.add('active');
+    function initSlider() {
+      const track = document.getElementById(trackId);
+      const dotsContainer = document.getElementById(dotsId);
       
-      dot.addEventListener('click', () => {
-        const slideWidth = track.offsetWidth;
-        track.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
-      });
+      if (!track || !dotsContainer) return;
+
+      // Clear existing dots
+      dotsContainer.innerHTML = '';
       
-      dotsContainer.appendChild(dot);
-    });
+      // Select slides securely
+      const slides = track.querySelectorAll('.flipzy-slide');
+      
+      if (slides.length === 0) return;
 
-    const dots = document.querySelectorAll('.flipzy-dot');
-
-    // 2. Intersection Observer
-    const observerOptions = {
-      root: track,
-      threshold: 0.5 
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const index = entry.target.getAttribute('data-index');
-          dots.forEach(d => d.classList.remove('active'));
-          if(dots[index]) dots[index].classList.add('active');
-        }
+      // 1. Generate Dots
+      slides.forEach((slide, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('flipzy-dot');
+        if (index === 0) dot.classList.add('active');
+        
+        dot.addEventListener('click', () => {
+          const slideWidth = track.offsetWidth;
+          track.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
+        });
+        
+        dotsContainer.appendChild(dot);
       });
-    }, observerOptions);
 
-    slides.forEach(slide => observer.observe(slide));
+      const dots = dotsContainer.querySelectorAll('.flipzy-dot');
 
-    // 3. Teaser Animation
-    // Wait 1s, add animation class
-    setTimeout(() => {
-        track.classList.add('flipzy-track-tease');
-    }, 1000);
+      // 2. Observer
+      const observerOptions = { root: track, threshold: 0.5 };
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = entry.target.getAttribute('data-index');
+            dots.forEach(d => d.classList.remove('active'));
+            if(dots[index]) dots[index].classList.add('active');
+          }
+        });
+      }, observerOptions);
 
-    // Stop animation on user interaction
-    const killTeaser = () => {
-      track.classList.remove('flipzy-track-tease');
-    };
+      slides.forEach(slide => observer.observe(slide));
 
-    track.addEventListener('touchstart', killTeaser, {passive: true});
-    track.addEventListener('mousedown', killTeaser);
-    track.addEventListener('scroll', () => {
-        if(Math.abs(track.scrollLeft) > 10) killTeaser();
-    });
-  }
+      // 3. Teaser Animation
+      setTimeout(() => { track.classList.add('flipzy-track-tease'); }, 1000);
 
-  // Run on Load
-  document.addEventListener('DOMContentLoaded', initFlipzyHero);
-
-  // Run when Shopify Editor updates (Fixes "1 dot" issue in editor)
-  document.addEventListener('shopify:section:load', initFlipzyHero);
-
-  // 4. Button Logic (Global Function)
-  function scrollHero(direction) {
-    const track = document.getElementById('FlipzyHeroTrack');
-    const slideWidth = track.offsetWidth;
-    const currentScroll = track.scrollLeft;
-    const maxScroll = track.scrollWidth - slideWidth;
-    
-    track.classList.remove('flipzy-track-tease');
-
-    const isAtEnd = currentScroll >= maxScroll - 10;
-    const isAtStart = currentScroll <= 10;
-
-    if (direction === 1 && isAtEnd) {
-      track.scrollTo({ left: 0, behavior: 'smooth' });
-    } else if (direction === -1 && isAtStart) {
-      track.scrollTo({ left: maxScroll, behavior: 'smooth' });
-    } else {
-      track.scrollBy({
-        left: direction * slideWidth,
-        behavior: 'smooth'
+      const killTeaser = () => { track.classList.remove('flipzy-track-tease'); };
+      track.addEventListener('touchstart', killTeaser, {passive: true});
+      track.addEventListener('mousedown', killTeaser);
+      track.addEventListener('scroll', () => {
+          if(Math.abs(track.scrollLeft) > 10) killTeaser();
       });
     }
-  }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', initSlider);
+    document.addEventListener('shopify:section:load', function(event) {
+      if (event.detail.sectionId === sectionId) initSlider();
+    });
+    
+    // Immediate run in case DOM is ready
+    initSlider();
+    
+    // Global Scroll Function (Unique per section)
+    window['scrollHero' + sectionId.replace(/-/g, '')] = function(direction) {
+      const track = document.getElementById(trackId);
+      if(!track) return;
+      
+      track.classList.remove('flipzy-track-tease');
+      
+      const slideWidth = track.offsetWidth;
+      const currentScroll = track.scrollLeft;
+      const maxScroll = track.scrollWidth - slideWidth;
+      const isAtEnd = currentScroll >= maxScroll - 10;
+      const isAtStart = currentScroll <= 10;
+
+      if (direction === 1 && isAtEnd) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else if (direction === -1 && isAtStart) {
+        track.scrollTo({ left: maxScroll, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: direction * slideWidth, behavior: 'smooth' });
+      }
+    };
+  })();
 </script>
