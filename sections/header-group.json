@@ -35,9 +35,8 @@
       "blocks": {
         "announcement_NbCKVB": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
-            "text": "🎁 Christmas Sale -40% 🎅🏼",
+            "text": "🎁 Santa’s Holiday Deal: -40% on Flipzy 🎅🏼",
             "link": ""
           }
         }
