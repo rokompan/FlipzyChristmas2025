@@ -35,6 +35,7 @@
       "blocks": {
         "announcement_NbCKVB": {
           "type": "announcement",
+          "disabled": true,
           "settings": {
             "text": "🎁 Christmas Sale -40% 🎅🏼",
             "link": ""
