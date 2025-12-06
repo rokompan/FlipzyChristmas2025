@@ -162,12 +162,26 @@
 }
 
 .flipzy-dot {
+    display: block;
     width: 12px;
     height: 12px;
-    background-color: #FFFFFF; /* Make sure this isn't transparent */
+    min-width: 12px; /* Prevents squashing */
+    min-height: 12px;
+    background-color: #FFFFFF;
     border-radius: 50%;
-    display: block; /* Important */
-    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0; /* Critical: Stops dots from being crushed */
+    opacity: 0.5;
+    border: none; /* Removes button borders if any */
+    padding: 0;
+    margin: 0;
+}
+
+.flipzy-dot.active {
+    background-color: var(--color-mustard);
+    opacity: 1;
+    transform: scale(1.3);
 }
 
 .flipzy-dot.active {

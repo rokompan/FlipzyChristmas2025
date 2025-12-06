@@ -108,10 +108,14 @@
       </div>
     {% endfor %}
       <div class="flipzy-dots-container">
-        {% for block in section.blocks %}
-          <div class="flipzy-dot {% if forloop.first %}active{% endif %}" data-slide="{{ forloop.index0 }}"></div>
-        {% endfor %}
-      </div>
+          {%- for block in section.blocks -%}
+            <button 
+              class="flipzy-dot {% if forloop.first %}active{% endif %}" 
+              data-slide="{{ forloop.index0 }}" 
+              aria-label="Go to slide {{ forloop.index | plus: 1 }}">
+            </button>
+          {%- endfor -%}
+        </div>
 
   <div class="flipzy-scroll-cue">See how it works ↓</div>
 </div>
