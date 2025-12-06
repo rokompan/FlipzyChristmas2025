@@ -74,14 +74,7 @@
         
         <div class="flipzy-media-wrapper">
           {% if block.settings.video_file != blank %}
-            {{ block.settings.video_file | video_tag: 
-              autoplay: true, 
-              loop: true, 
-              muted: true, 
-              playsinline: true, 
-              controls: false, 
-              class: 'hero-video' 
-            }}
+            {{ block.settings.video_file | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'hero-video' }}
           {% elsif block.settings.image_fallback != blank %}
             {{ block.settings.image_fallback | image_url: width: 1800 | image_tag: loading: 'eager' }}
           {% else %}
@@ -107,20 +100,19 @@
 
       </div>
     {% endfor %}
-      <div class="flipzy-dots-container">
-          {%- for block in section.blocks -%}
-            <button 
-              class="flipzy-dot {% if forloop.first %}active{% endif %}" 
-              data-slide="{{ forloop.index0 }}" 
-              aria-label="Go to slide {{ forloop.index | plus: 1 }}">
-            </button>
-          {%- endfor -%}
-        </div>
+  </div> <div class="flipzy-dots-container">
+    {%- for block in section.blocks -%}
+      <button 
+        class="flipzy-dot {% if forloop.first %}active{% endif %}" 
+        data-slide="{{ forloop.index0 }}" 
+        aria-label="Go to slide {{ forloop.index | plus: 1 }}">
+      </button>
+    {%- endfor -%}
+  </div>
 
   <a href="#" class="flipzy-scroll-cue" style="text-decoration: none; cursor: pointer;">See how it works ↓</a>
-</div>
 
-<script>
+</div> <script>
   (function() {
     function initFlipzyHero(heroElement) {
       if (!heroElement) return;
@@ -132,15 +124,6 @@
       const nextBtn = heroElement.querySelector('.flipzy-next');
       
       if (!track || !dotsContainer) return;
-
-      // --- SELF-CORRECTION FIX ---
-      // This detects if the dots are trapped inside the slider (as seen in your screenshot)
-      // and moves them out to the correct place automatically.
-      if (dotsContainer.parentElement === track) {
-        console.log("Flipzy Debug: Rescuing trapped dots container!");
-        heroElement.appendChild(dotsContainer);
-      }
-      // ---------------------------
 
       // 1. Logic to Update Active Dot based on Scroll
       const updateActiveDot = () => {
@@ -171,7 +154,6 @@
 
       // 4. Teaser Animation Logic
       setTimeout(() => { track.classList.add('flipzy-track-tease'); }, 1000);
-
       const killTeaser = () => { track.classList.remove('flipzy-track-tease'); };
       track.addEventListener('touchstart', killTeaser, {passive: true});
       track.addEventListener('mousedown', killTeaser);
@@ -185,6 +167,7 @@
         const slideWidth = track.offsetWidth;
         const currentScroll = track.scrollLeft;
         const maxScroll = track.scrollWidth - slideWidth;
+        
         const isAtEnd = currentScroll >= maxScroll - 10;
         const isAtStart = currentScroll <= 10;
 
@@ -196,22 +179,21 @@
           track.scrollBy({ left: direction * slideWidth, behavior: 'smooth' });
         }
       };
+
       // 6. Scroll Cue Logic (Klik na "See how it works")
       const scrollCue = heroElement.querySelector('.flipzy-scroll-cue');
       if (scrollCue) {
         scrollCue.addEventListener('click', (e) => {
           e.preventDefault();
-          // 1. Poišči glavni Shopify section wrapper (starša)
           const currentSection = heroElement.closest('.shopify-section');
-          // 2. Če obstaja naslednja sekcija, skrolaj nanjo
           if (currentSection && currentSection.nextElementSibling) {
             currentSection.nextElementSibling.scrollIntoView({ behavior: 'smooth' });
           } else {
-            // Fallback: Če ne najde sekcije, skrolaj dol za 80% višine ekrana
             window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
           }
         });
       }
+
       if(prevBtn) prevBtn.onclick = () => scrollHero(-1);
       if(nextBtn) nextBtn.onclick = () => scrollHero(1);
     }
