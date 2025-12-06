@@ -107,13 +107,11 @@
 
       </div>
     {% endfor %}
-  </div> <div class="flipzy-dots-container">
-    <div class="flipzy-dot active" data-slide="0"></div>
-    <div class="flipzy-dot" data-slide="1"></div>
-    <div class="flipzy-dot" data-slide="2"></div>
-    <div class="flipzy-dot" data-slide="3"></div>
-    <div class="flipzy-dot" data-slide="4"></div>
-  </div>
+      <div class="flipzy-dots-container">
+        {% for block in section.blocks %}
+          <div class="flipzy-dot {% if forloop.first %}active{% endif %}" data-slide="{{ forloop.index0 }}"></div>
+        {% endfor %}
+      </div>
 
   <div class="flipzy-scroll-cue">See how it works ↓</div>
 </div>

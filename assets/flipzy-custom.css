@@ -164,13 +164,10 @@
 .flipzy-dot {
     width: 12px;
     height: 12px;
-    background-color: #FFFFFF;
+    background-color: #FFFFFF; /* Make sure this isn't transparent */
     border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    flex-shrink: 0; 
-    opacity: 0.5;
-    display: block;
+    display: block; /* Important */
+    flex-shrink: 0;
 }
 
 .flipzy-dot.active {
