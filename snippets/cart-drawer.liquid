@@ -478,141 +478,132 @@
 
 
 
+            {% comment %} --- FLIPZY UPSELL START (UPDATED TEXT) --- {% endcomment %}
+            <script>
+              if (!window.addFlipzyUpsell) {
+                window.addFlipzyUpsell = function(btn, variantId) {
+                  var originalText = btn.innerHTML;
+                  btn.innerHTML = 'Adding...'; 
+                  btn.style.opacity = '0.7';
+                  btn.style.pointerEvents = 'none';
 
-
-              {% comment %} --- FLIPZY UPSELL START (FIXED: ONCLICK VERSION) --- {% endcomment %}
-              <script>
-                // Define the function globally so it persists even when the drawer refreshes
-                if (!window.addFlipzyUpsell) {
-                  window.addFlipzyUpsell = function(btn, variantId) {
-                    // 1. Visual Feedback (Loading state)
-                    var originalText = btn.innerHTML;
-                    btn.innerHTML = 'Adding...';
-                    btn.style.opacity = '0.7';
-                    btn.style.pointerEvents = 'none';
-
-                    // 2. Prepare Data
-                    // We explicitly ask for the 'cart-drawer' section to get the updated HTML
-                    var formData = {
-                      'items': [{
-                        'id': variantId,
-                        'quantity': 1
-                      }],
-                      'sections': 'cart-drawer,cart-icon-bubble'
-                    };
-
-                    // 3. Send Request to Shopify
-                    fetch(window.Shopify.routes.root + 'cart/add.js', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json'
-                      },
-                      body: JSON.stringify(formData)
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                      // 4. Update the Drawer Content
-                      // We find the <cart-drawer> element and use its built-in render function
-                      var cartDrawer = document.querySelector('cart-drawer');
-                      if (cartDrawer && cartDrawer.renderContents) {
-                        cartDrawer.renderContents(data);
-                      } else {
-                        // Fallback: If the theme's JS is different, refresh the page
-                        window.location.reload();
-                      }
-                    })
-                    .catch((error) => {
-                      console.error('Error adding to cart:', error);
-                      btn.innerHTML = 'Try Again';
-                      btn.style.pointerEvents = 'auto';
-                      btn.style.opacity = '1';
-                    });
+                  var formData = {
+                    'items': [{'id': variantId, 'quantity': 1}],
+                    'sections': 'cart-drawer,cart-icon-bubble'
                   };
+
+                  fetch(window.Shopify.routes.root + 'cart/add.js', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(formData)
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                    var cartDrawer = document.querySelector('cart-drawer');
+                    if (cartDrawer && cartDrawer.renderContents) {
+                      cartDrawer.renderContents(data);
+                    } else {
+                      window.location.reload();
+                    }
+                  })
+                  .catch((error) => {
+                    console.error('Error adding to cart:', error);
+                    btn.innerHTML = 'Try Again';
+                    btn.style.pointerEvents = 'auto';
+                    btn.style.opacity = '1';
+                  });
+                };
+              }
+            </script>
+
+            {%- if cart.item_count > 0 -%}
+              {%- assign upsell_variant_id = cart.items.first.variant_id -%}
+              
+              <style>
+                .flipzy-upsell-container {
+                  background-color: #f9f9f9;
+                  border: 1px solid #e5e5e5;
+                  border-radius: 8px;
+                  margin: 1.5rem 1.5rem 0;
+                  padding: 15px;
+                  display: flex;
+                  align-items: center;
+                  gap: 15px;
                 }
-              </script>
+                .flipzy-upsell-image {
+                  width: 70px;
+                  height: 70px;
+                  flex-shrink: 0;
+                  border-radius: 4px;
+                  overflow: hidden;
+                  background-color: #fff;
+                }
+                .flipzy-upsell-image img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                }
+                .flipzy-upsell-content {
+                  flex-grow: 1;
+                }
+                .flipzy-upsell-content h4 {
+                  margin: 0 0 4px 0;
+                  font-size: 1.4rem;
+                  font-weight: 600;
+                  line-height: 1.2;
+                }
+                .flipzy-upsell-content p {
+                  margin: 0 0 8px 0;
+                  font-size: 1.2rem;
+                  color: #555;
+                  line-height: 1.3;
+                }
+                .flipzy-upsell-btn {
+                  background: #000;
+                  color: #fff;
+                  border: none;
+                  padding: 6px 12px;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      width: auto;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: opacity 0.2s;
+    }
+    .flipzy-upsell-btn:hover {
+      opacity: 0.8;
+    }
+  </style>
 
-              {%- if cart.item_count > 0 -%}
-                {%- assign upsell_variant_id = cart.items.first.variant_id -%}
-                
-                <style>
-                  .flipzy-upsell-container {
-                    background-color: #f9f9f9;
-                    border: 1px solid #e5e5e5;
-                    border-radius: 8px;
-                    margin: 1.5rem 1.5rem 0;
-                    padding: 15px;
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-                  }
-                  .flipzy-upsell-image {
-                    width: 70px;
-                    height: 70px;
-                    flex-shrink: 0;
-                    border-radius: 4px;
-                    overflow: hidden;
-                    background-color: #fff;
-                  }
-                  .flipzy-upsell-image img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                  }
-                  .flipzy-upsell-content {
-                    flex-grow: 1;
-                  }
-                  .flipzy-upsell-content h4 {
-                    margin: 0 0 4px 0;
-                    font-size: 1.4rem;
-                    font-weight: 600;
-                    line-height: 1.2;
-                  }
-                  .flipzy-upsell-content p {
-                    margin: 0 0 8px 0;
-                    font-size: 1.2rem;
-                    color: #555;
-                    line-height: 1.3;
-                  }
-                  .flipzy-upsell-btn {
-                    background: #000;
-                    color: #fff;
-                    border: none;
-                    padding: 6px 12px;
-                    font-size: 1.2rem;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    width: auto;
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    transition: opacity 0.2s;
-                  }
-                  .flipzy-upsell-btn:hover {
-                    opacity: 0.8;
-                  }
-                </style>
+  <div class="flipzy-upsell-container">
+    <div class="flipzy-upsell-image">
+      <img src="https://flipzy.toys/cdn/shop/files/Gemini_Generated_Image_fh8lhgfh8lhgfh8l.jpg" alt="Morning and Evening Routine" loading="lazy" width="70" height="70">
+    </div>
+    
+    <div class="flipzy-upsell-content">
+      
+      {% comment %} --- DYNAMIC TEXT LOGIC START --- {% endcomment %}
+      {%- if cart.item_count == 1 -%}
+        <h4>Unlock Free Shipping! 🚚</h4>
+        <p>Get the Morning & Evening pair + Free Shipping.</p>
+      {%- else -%}
+        <h4>The perfect gift?</h4>
+        <p>Add an extra one for a friend or cousin.</p>
+      {%- endif -%}
+      {% comment %} --- DYNAMIC TEXT LOGIC END --- {% endcomment %}
 
-                <div class="flipzy-upsell-container">
-                  <div class="flipzy-upsell-image">
-                    <img src="https://flipzy.toys/cdn/shop/files/Gemini_Generated_Image_fh8lhgfh8lhgfh8l.jpg" alt="Morning and Evening Routine" loading="lazy" width="70" height="70">
-                  </div>
-                  
-                  <div class="flipzy-upsell-content">
-                    <h4>Complete the Routine!</h4>
-                    <p>One for morning, one for evening?</p>
-                    
-                    <button 
-                      type="button" 
-                      class="flipzy-upsell-btn" 
-                      onclick="window.addFlipzyUpsell(this, '{{ upsell_variant_id }}')"
-                    >
-                      Add Another (+1)
-                    </button>
-                  </div>
-                </div>
-              {%- endif -%}
-              {% comment %} --- FLIPZY UPSELL END --- {% endcomment %}
-
-
+      <button 
+        type="button" 
+        class="flipzy-upsell-btn" 
+        onclick="window.addFlipzyUpsell(this, '{{ upsell_variant_id }}')"
+      >
+        Add Another (+1)
+      </button>
+    </div>
+  </div>
+{%- endif -%}
+{% comment %} --- FLIPZY UPSELL END --- {% endcomment %}
 
 
 
