@@ -17,7 +17,7 @@
           "settings": {
             "video_file": "shopify://files/videos/hero04.mp4",
             "image_fallback": "shopify://shop_images/palca.jpg",
-            "heading": "<p><strong>Flipzy</strong> - Wooden Planner That Makes Tasks <strong>Fun</strong></p>",
+            "heading": "<p>Flipzy Makes Tasks <strong>Fun</strong></p>",
             "button_text": "Go to Shop",
             "button_link": "#buy"
           }
