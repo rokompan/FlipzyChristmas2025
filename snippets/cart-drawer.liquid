@@ -474,6 +474,100 @@
           <div id="CartDrawer-CartErrors" role="alert"></div>
         </form>
       </cart-drawer-items>
+      
+
+
+
+
+      {% comment %} --- FLIPZY UPSELL START --- {% endcomment %}
+      {%- if cart.item_count > 0 -%}
+        <style>
+          .flipzy-upsell-container {
+            background-color: #f9f9f9; /* Light grey background */
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            margin: 1.5rem 1.5rem 0; /* Align with drawer padding */
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+          }
+          .flipzy-upsell-image {
+            width: 70px;
+            height: 70px;
+            flex-shrink: 0;
+            border-radius: 4px;
+            overflow: hidden;
+            background-color: #fff;
+          }
+          .flipzy-upsell-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+          .flipzy-upsell-content {
+            flex-grow: 1;
+          }
+          .flipzy-upsell-content h4 {
+            margin: 0 0 4px 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.2;
+          }
+          .flipzy-upsell-content p {
+            margin: 0 0 8px 0;
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.3;
+          }
+          .flipzy-upsell-btn {
+            background: #000; /* Black button */
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: auto;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s;
+          }
+          .flipzy-upsell-btn:hover {
+            opacity: 0.8;
+          }
+        </style>
+
+        <div class="flipzy-upsell-container">
+          <div class="flipzy-upsell-image">
+            <img src="https://flipzy.toys/cdn/shop/files/Gemini_Generated_Image_fh8lhgfh8lhgfh8l.jpg" alt="Morning and Evening Routine" loading="lazy" width="70" height="70">
+          </div>
+          
+          <div class="flipzy-upsell-content">
+            <h4>Complete the Routine!</h4>
+            <p>One for morning, one for evening?</p>
+            
+            {%- comment -%}
+              Logic: Takes the Variant ID of the first item in the cart to duplicate it.
+            {%- endcomment -%}
+            {%- assign upsell_variant_id = cart.items.first.variant_id -%}
+
+            <form method="post" action="/cart/add" accept-charset="UTF-8" enctype="multipart/form-data">
+              <input type="hidden" name="form_type" value="product">
+              <input type="hidden" name="utf8" value="✓">
+              <input type="hidden" name="id" value="{{ upsell_variant_id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button type="submit" class="flipzy-upsell-btn">
+                Add Another (+1)
+              </button>
+            </form>
+          </div>
+        </div>
+      {%- endif -%}
+      {% comment %} --- FLIPZY UPSELL END --- {% endcomment %}
+
+
+
       <div class="drawer__footer">
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">
