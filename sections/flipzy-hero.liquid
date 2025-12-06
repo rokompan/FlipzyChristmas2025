@@ -117,7 +117,7 @@
           {%- endfor -%}
         </div>
 
-  <div class="flipzy-scroll-cue">See how it works ↓</div>
+  <a href="#" class="flipzy-scroll-cue" style="text-decoration: none; cursor: pointer;">See how it works ↓</a>
 </div>
 
 <script>
@@ -196,7 +196,22 @@
           track.scrollBy({ left: direction * slideWidth, behavior: 'smooth' });
         }
       };
-
+      // 6. Scroll Cue Logic (Klik na "See how it works")
+      const scrollCue = heroElement.querySelector('.flipzy-scroll-cue');
+      if (scrollCue) {
+        scrollCue.addEventListener('click', (e) => {
+          e.preventDefault();
+          // 1. Poišči glavni Shopify section wrapper (starša)
+          const currentSection = heroElement.closest('.shopify-section');
+          // 2. Če obstaja naslednja sekcija, skrolaj nanjo
+          if (currentSection && currentSection.nextElementSibling) {
+            currentSection.nextElementSibling.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            // Fallback: Če ne najde sekcije, skrolaj dol za 80% višine ekrana
+            window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+          }
+        });
+      }
       if(prevBtn) prevBtn.onclick = () => scrollHero(-1);
       if(nextBtn) nextBtn.onclick = () => scrollHero(1);
     }
