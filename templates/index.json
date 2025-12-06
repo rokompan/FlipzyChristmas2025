@@ -15,7 +15,7 @@
         "slide_M6LaR3": {
           "type": "slide",
           "settings": {
-            "video_file": "shopify://files/videos/hero03.mp4",
+            "video_file": "shopify://files/videos/hero04.mp4",
             "image_fallback": "shopify://shop_images/palca.jpg",
             "heading": "<p><strong>Flipzy</strong> - Wooden Planner That Makes Tasks <strong>Fun</strong></p>",
             "button_text": "Go to Shop",
@@ -330,6 +330,64 @@
         "subheading": "Real stories from parents using Flipzy"
       }
     },
+    "flipzy_whats_in_the_box_tDc44V": {
+      "type": "flipzy-whats-in-the-box",
+      "blocks": {
+        "list_item_YGhDY8": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "1x Wooden Wall Board"
+          }
+        },
+        "list_item_dNcpJi": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "7x Task Pieces + sun and moon for morning and evening routines"
+          }
+        },
+        "list_item_4Ymr9k": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "30 Customization Stickers"
+          }
+        },
+        "list_item_rzGMPj": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "Mounting tape + Instructions"
+          }
+        }
+      },
+      "block_order": [
+        "list_item_YGhDY8",
+        "list_item_dNcpJi",
+        "list_item_4Ymr9k",
+        "list_item_rzGMPj"
+      ],
+      "name": "Flipzy 8. Box Content",
+      "settings": {
+        "bg_color": "#efe7da",
+        "main_heading": "What's in the Box?",
+        "subheading": "The box contains everything you need for smooth routines from day one. Premium materials ensure Flipzy lasts throughout childhood.",
+        "image_1": "shopify://shop_images/whatsinthebox7.jpg",
+        "image_2_bg": "#eadbc8",
+        "card_title": "Everything you need to start your journey to smoother routines",
+        "price_old": "€49,00",
+        "price_new": "€29,00",
+        "trust_1": "Free shipping over 50€",
+        "trust_2": "Taxes included",
+        "trust_3": "Ships in 24h",
+        "trust_4": "30-day money-back guarantee",
+        "trust_5": "24 months warranty",
+        "description": "Take advantage of the special price and give your family calmer days at a great value. Get the complete Flipzy system at the lowest price of the season.",
+        "btn_text": "Go to Shop",
+        "btn_link": "#buy"
+      }
+    },
     "featured_product_x9hCHm": {
       "type": "featured-product",
       "blocks": {
@@ -475,64 +533,6 @@
         "bg_color": "#ffffff",
         "heading": "Trusted by thousands of families",
         "show_checkmark": true
-      }
-    },
-    "flipzy_whats_in_the_box_tDc44V": {
-      "type": "flipzy-whats-in-the-box",
-      "blocks": {
-        "list_item_YGhDY8": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "1x Wooden Wall Board"
-          }
-        },
-        "list_item_dNcpJi": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "7x Task Pieces + sun and moon for morning and evening routines"
-          }
-        },
-        "list_item_4Ymr9k": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "30 Customization Stickers"
-          }
-        },
-        "list_item_rzGMPj": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "Mounting tape + Instructions"
-          }
-        }
-      },
-      "block_order": [
-        "list_item_YGhDY8",
-        "list_item_dNcpJi",
-        "list_item_4Ymr9k",
-        "list_item_rzGMPj"
-      ],
-      "name": "Flipzy 8. Box Content",
-      "settings": {
-        "bg_color": "#efe7da",
-        "main_heading": "What's in the Box?",
-        "subheading": "The box contains everything you need for smooth routines from day one. Premium materials ensure Flipzy lasts throughout childhood.",
-        "image_1": "shopify://shop_images/whatsinthebox7.jpg",
-        "image_2_bg": "#eadbc8",
-        "card_title": "Everything you need to start your journey to smoother routines",
-        "price_old": "€49,00",
-        "price_new": "€29,00",
-        "trust_1": "Free shipping over 50€",
-        "trust_2": "Taxes included",
-        "trust_3": "Ships in 24h",
-        "trust_4": "30-day money-back guarantee",
-        "trust_5": "24 months warranty",
-        "description": "Take advantage of the special price and give your family calmer days at a great value. Get the complete Flipzy system at the lowest price of the season.",
-        "btn_text": "Go to Shop",
-        "btn_link": "#buy"
       }
     },
     "flipzy_feature_video_t3an46": {
