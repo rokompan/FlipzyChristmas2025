@@ -24,8 +24,13 @@
       "content": "Right Side (Content)"
     },
     { "type": "text", "id": "card_title", "label": "Card Title", "default": "Everything you need to start your journey to smoother routines" },
-    { "type": "text", "id": "price_old", "label": "Old Price", "default": "€49,00" },
-    { "type": "text", "id": "price_new", "label": "New Price", "default": "€29,00" },
+    
+    { 
+      "type": "product", 
+      "id": "featured_product", 
+      "label": "Product for Pricing",
+      "info": "Select the product to pull the current price and market data."
+    },
     
     {
       "type": "header",
@@ -129,8 +134,16 @@
       </ul>
 
       <div class="flipzy-box-price">
-        <s>{{ section.settings.price_old }}</s>
-        <span>{{ section.settings.price_new }}</span>
+        {%- assign sel_product = section.settings.featured_product -%}
+        {%- if sel_product != blank -%}
+          {%- if sel_product.compare_at_price > sel_product.price -%}
+            <s>{{ sel_product.compare_at_price | money }}</s>
+          {%- endif -%}
+          <span>{{ sel_product.price | money }}</span>
+        {%- else -%}
+          <s>€49,00</s>
+          <span>€29,00</span>
+        {%- endif -%}
       </div>
 
       <div class="flipzy-box-trust">
