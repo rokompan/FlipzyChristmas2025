@@ -159,6 +159,16 @@
         "type": "shopify://apps/omega-tiktok-pixels/blocks/app-embed-block/0500769c-ab04-46c4-8ebe-26a3fb9f10cb",
         "disabled": false,
         "settings": {}
+      },
+      "14818028230436078177": {
+        "type": "shopify://apps/langify/blocks/langify/b50c2edb-8c63-4e36-9e7c-a7fdd62ddb8f",
+        "disabled": false,
+        "settings": {
+          "theme_id": "",
+          "block_flags_css": false,
+          "block_lib_css": false,
+          "rtl_css": "body {\n  direction: rtl;\n}"
+        }
       }
     },
     "color_schemes": {
