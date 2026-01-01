@@ -535,5 +535,17 @@
       "expanded": "Formular für den Empfänger des Gutscheins erweitert",
       "collapsed": "Formular für den Empfänger des Gutscheins minimiert"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "thank_you": {
+        "checkout_again": "Erneut zur Kasse gehen"
+      },
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "Für den Abschluss der Kaufabwicklung ist die Interaktion mit einer Nebenstelle erforderlich."
+        }
+      }
+    }
   }
 }
