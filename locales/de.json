@@ -547,5 +547,24 @@
         }
       }
     }
+  },
+  "customer_accounts": {
+    "payment_methods": {
+      "update_payment_method": {
+        "resources_card_show_more": "Mehr anzeigen",
+        "resources_card_show_less": "Weniger anzeigen",
+        "pre_orders_list_accessibility_label": "Liste der Produkte für ausstehende Bestellungen",
+        "subscriptions_list_accessibility_label": "Liste der Abonnementprodukte",
+        "pre_orders_title": "Demnächst",
+        "resources_list_accessibility_label": "Produkte im Abonnement und Produkte in der Schwebe, die diese Zahlungsmethode verwenden",
+        "resources_card_scroll": "Scrollen für weitere Artikel",
+        "loading_resources": "Laden von Abonnements und anstehenden Bestellungen",
+        "subscriptions_title": "Abonnements"
+      },
+      "add_success": {
+        "title": "Zahlungsmethode hinzugefügt",
+        "done_button": "Weiter einkaufen"
+      }
+    }
   }
 }
