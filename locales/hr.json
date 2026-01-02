@@ -555,6 +555,14 @@
       },
       "thank_you": {
         "checkout_again": "Ponovna naplata"
+      },
+      "payment": {
+        "choose_new_payment_method": "Odaberite novi način plaćanja"
+      },
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "Za dovršetak naplate potrebna je interakcija s ekstenzijom."
+        }
       }
     }
   }
