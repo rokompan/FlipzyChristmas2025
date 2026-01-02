@@ -560,6 +560,9 @@
         "errors": {
           "interaction_required": "Este necesară o interacțiune cu extensia pentru a finaliza finalizarea comenzii."
         }
+      },
+      "shipping": {
+        "choose_new_address": "Alegeți o adresă nouă"
       }
     }
   }
