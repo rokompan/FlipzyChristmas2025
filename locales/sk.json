@@ -559,5 +559,14 @@
       "expanded": "Rozbalený formulár pre príjemcu darčekového poukazu",
       "collapsed": "Zbalený formulár pre príjemcu darčekového poukazu"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "Na dokončenie odhlásenia je potrebná interakcia s predĺžením."
+        }
+      }
+    }
   }
 }
