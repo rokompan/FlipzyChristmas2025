@@ -569,6 +569,9 @@
       },
       "shipping": {
         "choose_new_address": "Izberite nov naslov"
+      },
+      "payment": {
+        "choose_new_payment_method": "Izberite nov način plačila"
       }
     }
   }
