@@ -535,5 +535,12 @@
       "expanded": "Ajándékkártya címzettjének űrlapja kibontva",
       "collapsed": "Ajándékkártya címzettjének űrlapja összecsukva"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "thank_you": {
+        "checkout_again": "Újra kijelentkezni"
+      }
+    }
   }
 }
