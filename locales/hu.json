@@ -546,6 +546,11 @@
       },
       "shipping": {
         "choose_new_address": "Új cím kiválasztása"
+      },
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "A fizetés befejezéséhez egy kiterjesztés interakcióra van szükség."
+        }
       }
     }
   }
