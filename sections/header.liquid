@@ -21,7 +21,13 @@
     justify-self: start;
     margin-left: -1.2rem;
   }
-
+  /* Make the Langify placeholder behave like a header icon */
+  .ly-custom-1000{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: .6rem; /* space before the icons group */
+  }
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
@@ -222,8 +228,8 @@
         </h1>
       {%- endif -%}
     {%- endif -%}
-    <span class="ly-custom-1000"></span>
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
+      <span class="ly-custom-1000"></span>
       <div class="desktop-localization-wrapper">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
           <localization-form class="small-hide medium-hide" data-prevent-hide>
