@@ -552,6 +552,9 @@
     "checkout": {
       "thank_you": {
         "checkout_again": "Finalizați din nou"
+      },
+      "payment": {
+        "choose_new_payment_method": "Alegeți o nouă metodă de plată"
       }
     }
   }
