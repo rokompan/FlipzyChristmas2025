@@ -540,6 +540,12 @@
     "checkout": {
       "thank_you": {
         "checkout_again": "Újra kijelentkezni"
+      },
+      "payment": {
+        "choose_new_payment_method": "Válasszon új fizetési módot"
+      },
+      "shipping": {
+        "choose_new_address": "Új cím kiválasztása"
       }
     }
   }
