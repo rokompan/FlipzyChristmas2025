@@ -547,5 +547,17 @@
       "expanded": "Formulario del destinatario de la tarjeta de regalo expandido",
       "collapsed": "Formulario del destinatario de tarjeta de regalo contraído"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "shipping": {
+        "choose_new_address": "Elija una nueva dirección"
+      },
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "Se requiere una interacción de extensión para completar el pago."
+        }
+      }
+    }
   }
 }
