@@ -557,6 +557,9 @@
         "errors": {
           "interaction_required": "Se requiere una interacción de extensión para completar el pago."
         }
+      },
+      "payment": {
+        "choose_new_payment_method": "Elija un nuevo método de pago"
       }
     }
   }
