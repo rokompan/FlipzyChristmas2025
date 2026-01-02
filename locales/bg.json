@@ -540,6 +540,9 @@
     "checkout": {
       "shipping": {
         "choose_new_address": "Избор на нов адрес"
+      },
+      "payment": {
+        "choose_new_payment_method": "Изберете нов метод на плащане"
       }
     }
   }
