@@ -552,6 +552,9 @@
     "checkout": {
       "shipping": {
         "choose_new_address": "Odaberite novu adresu"
+      },
+      "thank_you": {
+        "checkout_again": "Ponovna naplata"
       }
     }
   }
