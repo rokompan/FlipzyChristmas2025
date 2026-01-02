@@ -966,50 +966,6 @@
 }
 
 /* =========================================
-   11. WEGLOT & HEADER FIXES (The "Invisible Bridge")
-   ========================================= */
-
-/* 1. Stack Order: Ensure Header sits on top of Hero */
-.section-header, 
-.header-wrapper {
-  position: relative;
-  z-index: 1000 !important; 
-}
-
-/* 2. Target the Weglot Dropdown List */
-.weglot-container .wg-drop, 
-.weglot-container ul {
-  display: block !important; /* Prevent JS from hiding it too fast */
-  opacity: 0;               /* Hide it visually by default */
-  visibility: hidden;
-  transition: opacity 0.2s, visibility 0.2s; /* Smooth fade */
-  
-  /* Reset positioning to prevent conflicts */
-  margin-top: 10px !important; 
-}
-
-/* 3. Show it on Hover (Parent Container) */
-.weglot-container:hover .wg-drop,
-.weglot-container:hover ul {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* 4. THE BRIDGE: Create an invisible "Safety Block" above the list */
-/* This fills the gap between the flag and the list so the mouse never "leaves" */
-.weglot-container .wg-drop::before,
-.weglot-container ul::before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: -20px; /* Extends 20px UPWARD towards the flag */
-  left: 0;
-  width: 100%;
-  height: 20px; /* The height of the safety gap */
-  background: transparent; /* Invisible */
-  z-index: 1001;
-}
-/* =========================================
    COLOR SCHEMES (Barvne Sheme)
    ========================================= */
 
