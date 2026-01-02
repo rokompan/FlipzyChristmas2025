@@ -555,6 +555,11 @@
       },
       "payment": {
         "choose_new_payment_method": "Alegeți o nouă metodă de plată"
+      },
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "Este necesară o interacțiune cu extensia pentru a finaliza finalizarea comenzii."
+        }
       }
     }
   }
