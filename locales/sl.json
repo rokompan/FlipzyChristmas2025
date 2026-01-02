@@ -559,5 +559,17 @@
       "expanded": "Razširjen obrazec prejemnika darilnega bona",
       "collapsed": "Strnjen obrazec prejemnika darilnega bona"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "Za dokončanje prijave je potrebna interakcija s podaljškom."
+        }
+      },
+      "shipping": {
+        "choose_new_address": "Izberite nov naslov"
+      }
+    }
   }
 }
