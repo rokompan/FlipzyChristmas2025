@@ -22,35 +22,12 @@
     margin-left: -1.2rem;
   }
   /* Make the Langify placeholder behave like a header icon */
-
-    /* Langify switcher (header) */
-    .header .ly-switcher-wrapper {
-      display: inline-flex;
-      align-items: center;
-      margin-right: 12px;
-    }
-
-    /* The dropdown itself */
-    .header select.ly-languages-switcher {
-      appearance: none;
-      -webkit-appearance: none;
-      padding: 6px 28px 6px 10px !important;
-      border-radius: 999px !important;
-      border: 1px solid rgba(0,0,0,0.18) !important;
-      background: #fff !important;
-      font-size: 13px !important;
-      line-height: 1 !important;
-      cursor: pointer;
-    }
-
-    /* Optional: tighter on mobile */
-    @media (max-width: 749px) {
-      .header select.ly-languages-switcher {
-        padding: 5px 24px 5px 9px !important;
-        font-size: 12px !important;
-      }
-    }
-
+  .ly-custom-1000{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: .6rem; /* space before the icons group */
+  }
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
       width: 75%;
