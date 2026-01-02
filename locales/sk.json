@@ -566,6 +566,9 @@
         "errors": {
           "interaction_required": "Na dokončenie odhlásenia je potrebná interakcia s predĺžením."
         }
+      },
+      "shipping": {
+        "choose_new_address": "Výber novej adresy"
       }
     }
   }
