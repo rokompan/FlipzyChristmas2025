@@ -552,6 +552,9 @@
     "checkout": {
       "thank_you": {
         "checkout_again": "Di nuovo alla cassa"
+      },
+      "shipping": {
+        "choose_new_address": "Scegliere un nuovo indirizzo"
       }
     }
   }
