@@ -322,6 +322,16 @@
       "login": {
         "title": "Have an account?",
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Log in</a> to check out faster."
+      },
+      "upsell": {
+        "adding": "Adding...",
+        "try_again": "Try Again",
+        "image_alt": "Morning and Evening Routine",
+        "unlock_shipping_title": "Unlock Free Shipping! 🚚",
+        "unlock_shipping_text": "Get the Morning & Evening pair + Free Shipping.",
+        "perfect_gift_title": "The perfect gift?",
+        "perfect_gift_text": "Add an extra one for a friend or cousin.",
+        "button_text": "Add Another (+1)"
       }
     },
     "footer": {
