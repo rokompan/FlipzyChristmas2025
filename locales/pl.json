@@ -559,5 +559,14 @@
       "expanded": "Rozwinięty formularz odbiorcy karty prezentowej",
       "collapsed": "Zwinięty formularz odbiorcy karty prezentowej"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "Do ukończenia transakcji wymagana jest interakcja z rozszerzeniem."
+        }
+      }
+    }
   }
 }
