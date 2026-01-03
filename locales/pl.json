@@ -569,6 +569,9 @@
       },
       "thank_you": {
         "checkout_again": "Sprawdź ponownie"
+      },
+      "payment": {
+        "choose_new_payment_method": "Wybierz nową metodę płatności"
       }
     }
   }
