@@ -334,7 +334,17 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Z wliczonymi cłami. Obliczenie podatków, rabatów i <a href=\"{{ link }}\">wysyłki</a> przy realizacji zakupu.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Z wliczonymi cłami. Obliczenie podatków, rabatów i wysyłki przy realizacji zakupu.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Obliczenie podatków, rabatów i <a href=\"{{ link }}\">wysyłki</a> przy realizacji zakupu.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Obliczenie podatków, rabatów i wysyłki przy realizacji zakupu."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Obliczenie podatków, rabatów i wysyłki przy realizacji zakupu.",
+      "upsell": {
+        "adding": "Dodawanie...",
+        "try_again": "Spróbuj ponownie",
+        "image_alt": "Rutyna poranna i wieczorna",
+        "unlock_shipping_title": "Odblokuj darmową wysyłkę! 🚚",
+        "unlock_shipping_text": "Zdobądź parę Morning & Evening + Darmowa wysyłka.",
+        "perfect_gift_title": "Idealny prezent?",
+        "perfect_gift_text": "Dodaj dodatkowy dla przyjaciela lub kuzyna.",
+        "button_text": "Dodaj kolejny (+1)"
+      }
     },
     "footer": {
       "payment": "Metody płatności"
