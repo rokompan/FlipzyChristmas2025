@@ -566,6 +566,9 @@
         "errors": {
           "interaction_required": "Do ukończenia transakcji wymagana jest interakcja z rozszerzeniem."
         }
+      },
+      "thank_you": {
+        "checkout_again": "Sprawdź ponownie"
       }
     }
   }
