@@ -314,7 +314,17 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Tartalmazza a vámokat. Az adókat, a kedvezményeket és a <a href=\"{{ link }}\">szállítási költséget</a> a megrendeléskor számítjuk ki.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Tartalmazza a vámokat. Az adókat, a kedvezményeket és a szállítási költséget a megrendeléskor számítjuk ki",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Az adókat, a kedvezményeket és a <a href=\"{{ link }}\">szállítási költséget</a> a megrendeléskor számítjuk ki.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Az adókat, a kedvezményeket és a szállítási költséget a megrendeléskor számítjuk ki"
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Az adókat, a kedvezményeket és a szállítási költséget a megrendeléskor számítjuk ki",
+      "upsell": {
+        "adding": "Hozzáadva...",
+        "try_again": "Próbáld újra",
+        "image_alt": "Reggeli és esti rutin",
+        "unlock_shipping_title": "Ingyenes szállítás feloldása! 🚚",
+        "unlock_shipping_text": "Szerezd meg a Morning & Evening párost + Ingyenes szállítás.",
+        "perfect_gift_title": "A tökéletes ajándék?",
+        "perfect_gift_text": "Adj hozzá még egyet egy barátodnak vagy unokatestvérednek.",
+        "button_text": "Hozzáadás (+1)"
+      }
     },
     "footer": {
       "payment": "Fizetési módok"
