@@ -557,6 +557,9 @@
         "errors": {
           "interaction_required": "Une interaction avec l'extension est nécessaire pour terminer le paiement."
         }
+      },
+      "payment": {
+        "choose_new_payment_method": "Choisir un nouveau mode de paiement"
       }
     }
   }
