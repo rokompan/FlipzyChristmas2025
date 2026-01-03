@@ -334,7 +334,17 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Dajatve vključene. Davki, popusti in <a href=\"{{ link }}\">strošek dostave</a> se obračunajo ob zaključku nakupa.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Dajatve vključene. Davki, popusti in strošek dostave se obračunajo ob zaključku nakupa.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Davki, popusti in <a href=\"{{ link }}\">strošek dostave</a> se obračunajo ob zaključku nakupa.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Davki, popusti in strošek dostave se obračunajo ob zaključku nakupa."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Davki, popusti in strošek dostave se obračunajo ob zaključku nakupa.",
+      "upsell": {
+        "adding": "Dodajanje...",
+        "try_again": "Poskusite znova",
+        "image_alt": "Jutranja in večerna rutina",
+        "unlock_shipping_title": "Odklepanje brezplačne dostave! 🚚",
+        "unlock_shipping_text": "Pridobite par Jutro in večer + brezplačna dostava.",
+        "perfect_gift_title": "Popolno darilo?",
+        "perfect_gift_text": "Dodajte še eno za prijatelja ali bratranca.",
+        "button_text": "Dodaj še eno (+1)"
+      }
     },
     "footer": {
       "payment": "Načini plačila"
