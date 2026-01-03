@@ -314,7 +314,17 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Inkl. Zollgebühren. Steuern, Rabatte und <a href=\"{{ link }}\">Versand</a> werden beim Checkout berechnet.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Inkl. Zollgebühren. Steuern, Rabatte und Versand werden beim Checkout berechnet.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Steuern, Rabatte und <a href=\"{{ link }}\">Versand</a> werden beim Checkout berechnet.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Steuern, Rabatte und Versand werden beim Checkout berechnet."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Steuern, Rabatte und Versand werden beim Checkout berechnet.",
+      "upsell": {
+        "adding": "Hinzufügen...",
+        "try_again": "Erneut versuchen",
+        "image_alt": "Morgen- und Abendroutine",
+        "unlock_shipping_title": "Versandkostenfrei freischalten! 🚚",
+        "unlock_shipping_text": "Holen Sie sich das Morgen- und Abendpaar + Kostenloser Versand.",
+        "perfect_gift_title": "Das perfekte Geschenk?",
+        "perfect_gift_text": "Legen Sie ein weiteres für einen Freund oder Cousin dazu.",
+        "button_text": "Einen weiteren hinzufügen (+1)"
+      }
     },
     "footer": {
       "payment": "Zahlungsmethoden"
