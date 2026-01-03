@@ -547,5 +547,17 @@
       "expanded": "Formulaire de destinataire de carte-cadeau agrandi",
       "collapsed": "Formulaire de destinataire de carte-cadeau réduit"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "shipping": {
+        "choose_new_address": "Choisir une nouvelle adresse"
+      },
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "Une interaction avec l'extension est nécessaire pour terminer le paiement."
+        }
+      }
+    }
   }
 }
