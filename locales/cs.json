@@ -334,7 +334,17 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Včetně cla. Daně, slevy a <a href=\"{{ link }}\">poštovné</a> se vypočítají na pokladně.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Včetně cla. Daně, slevy a poštovné se vypočítají na pokladně.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Daně, slevy a <a href=\"{{ link }}\">poštovné</a> se vypočítají na pokladně.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Daně, slevy a poštovné se vypočítají na pokladně."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Daně, slevy a poštovné se vypočítají na pokladně.",
+      "upsell": {
+        "adding": "Přidání...",
+        "try_again": "Zkuste to znovu",
+        "image_alt": "Ranní a večerní rutina",
+        "unlock_shipping_title": "Odemkněte dopravu zdarma! 🚚",
+        "unlock_shipping_text": "Získejte pár Ranní a večerní + doprava zdarma.",
+        "perfect_gift_title": "Perfektní dárek?",
+        "perfect_gift_text": "Přidejte další pro kamaráda nebo bratrance.",
+        "button_text": "Přidat další (+1)"
+      }
     },
     "footer": {
       "payment": "Platební metody"
