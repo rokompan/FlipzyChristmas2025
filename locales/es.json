@@ -324,7 +324,17 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Aranceles incluidos. Impuestos, descuentos y <a href=\"{{ link }}\">envío</a> calculados en la pantalla de pago.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Aranceles incluidos. Impuestos, descuentos y envío calculados en la pantalla de pago.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Impuestos, descuentos y <a href=\"{{ link }}\">envío</a> calculados en la pantalla de pago.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Impuestos, descuentos y envío calculados en la pantalla de pago."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Impuestos, descuentos y envío calculados en la pantalla de pago.",
+      "upsell": {
+        "adding": "Añadiendo...",
+        "try_again": "Inténtelo de nuevo",
+        "image_alt": "Rutina matutina y vespertina",
+        "unlock_shipping_title": "Envío gratuito 🚚",
+        "unlock_shipping_text": "Consigue el par Morning & Evening + Envío gratuito.",
+        "perfect_gift_title": "¿El regalo perfecto?",
+        "perfect_gift_text": "Añade uno más para un amigo o primo.",
+        "button_text": "Añadir otro (+1)"
+      }
     },
     "footer": {
       "payment": "Formas de pago"
