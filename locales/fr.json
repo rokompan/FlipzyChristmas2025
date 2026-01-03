@@ -324,7 +324,17 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Frais de douane inclus. Taxes, réductions et <a href=\"{{ link }}\">frais d’expédition</a> calculés à l’étape du paiement.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Frais de douane inclus. Taxes, réductions et frais d’expédition calculés à l’étape du paiement.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Taxes, réductions et <a href=\"{{ link }}\">frais d’expédition</a> calculés à l’étape du paiement.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Taxes, réductions et frais d’expédition calculés à l’étape du paiement."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Taxes, réductions et frais d’expédition calculés à l’étape du paiement.",
+      "upsell": {
+        "adding": "Ajouter...",
+        "try_again": "Réessayer",
+        "image_alt": "Routine du matin et du soir",
+        "unlock_shipping_title": "Débloquez la livraison gratuite ! 🚚",
+        "unlock_shipping_text": "Obtenez la paire Matin & Soir + Livraison gratuite.",
+        "perfect_gift_title": "Le cadeau idéal ?",
+        "perfect_gift_text": "Ajoutez-en un autre pour un ami ou un cousin.",
+        "button_text": "Ajouter un autre (+1)"
+      }
     },
     "footer": {
       "payment": "Moyens de paiement"
