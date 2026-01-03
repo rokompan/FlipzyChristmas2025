@@ -324,7 +324,17 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Dazi inclusi. Imposte, sconti e <a href=\"{{ link }}\">spedizione</a> calcolati al check-out.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Dazi inclusi. Imposte, sconti e spedizione calcolati al check-out.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Imposte, sconti e <a href=\"{{ link }}\">spedizione</a> calcolati al check-out.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Imposte, sconti e spedizione calcolati al check-out."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Imposte, sconti e spedizione calcolati al check-out.",
+      "upsell": {
+        "adding": "Aggiungere...",
+        "try_again": "Riprova",
+        "image_alt": "Routine mattutina e serale",
+        "unlock_shipping_title": "Sblocca la spedizione gratuita! 🚚",
+        "unlock_shipping_text": "Ottenete la coppia Mattina e Sera + Spedizione gratuita.",
+        "perfect_gift_title": "Il regalo perfetto?",
+        "perfect_gift_text": "Aggiungetene uno in più per un amico o un cugino.",
+        "button_text": "Aggiungi un altro (+1)"
+      }
     },
     "footer": {
       "payment": "Metodi di pagamento"
