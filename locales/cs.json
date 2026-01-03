@@ -559,5 +559,12 @@
       "expanded": "Formulář pro příjemce dárkové karty se rozbalil.",
       "collapsed": "Formulář pro příjemce dárkové karty se sbalil."
     }
+  },
+  "shopify": {
+    "checkout": {
+      "shipping": {
+        "choose_new_address": "Výběr nové adresy"
+      }
+    }
   }
 }
