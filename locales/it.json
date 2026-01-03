@@ -560,6 +560,9 @@
         "errors": {
           "interaction_required": "Per completare il checkout è necessaria un'interazione con l'estensione."
         }
+      },
+      "payment": {
+        "choose_new_payment_method": "Scegliere un nuovo metodo di pagamento"
       }
     }
   }
