@@ -334,7 +334,17 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Vrátane ciel. Dane, zľavy a <a href=\"{{ link }}\">doprava</a> sa vypočítajú pri platbe.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Vrátane ciel. Dane, zľavy a doprava sa vypočítajú pri platbe.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Dane, zľavy a <a href=\"{{ link }}\">doprava</a> sa vypočítajú pri platbe.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Dane, zľavy a doprava sa vypočítajú pri platbe."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Dane, zľavy a doprava sa vypočítajú pri platbe.",
+      "upsell": {
+        "adding": "Pridanie...",
+        "try_again": "Skúste to znova",
+        "image_alt": "Ranná a večerná rutina",
+        "unlock_shipping_title": "Odomknite dopravu zadarmo! 🚚",
+        "unlock_shipping_text": "Získajte pár Ráno a večer + doprava zadarmo.",
+        "perfect_gift_title": "Dokonalý darček?",
+        "perfect_gift_text": "Pridajte ďalší pre priateľa alebo bratranca.",
+        "button_text": "Pridať ďalšie (+1)"
+      }
     },
     "footer": {
       "payment": "Spôsoby platby"
@@ -569,6 +579,9 @@
       },
       "shipping": {
         "choose_new_address": "Výber novej adresy"
+      },
+      "payment": {
+        "choose_new_payment_method": "Výber nového spôsobu platby"
       }
     }
   }
