@@ -564,6 +564,14 @@
     "checkout": {
       "shipping": {
         "choose_new_address": "Výběr nové adresy"
+      },
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "K dokončení odhlášení je nutná interakce s rozšířením."
+        }
+      },
+      "payment": {
+        "choose_new_payment_method": "Výběr nového způsobu platby"
       }
     }
   }
