@@ -324,7 +324,17 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Carina je uključena. Porezi, popusti i <a href=\"{{ link }}\">poštarina</a> obračunavaju se prilikom plaćanja.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Carina je uključena. Porezi, popusti i poštarina obračunavaju se prilikom plaćanja.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Porezi, popusti i <a href=\"{{ link }}\">poštarina</a> obračunavaju se prilikom plaćanja.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Porezi, popusti i poštarina obračunavaju se prilikom plaćanja."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Porezi, popusti i poštarina obračunavaju se prilikom plaćanja.",
+      "upsell": {
+        "adding": "Dodavanje...",
+        "try_again": "Pokušaj ponovno",
+        "image_alt": "Jutarnja i večernja rutina",
+        "unlock_shipping_title": "Otključaj besplatnu dostavu! 🚚",
+        "unlock_shipping_text": "Nabavite jutarnji i večernji par + besplatna dostava.",
+        "perfect_gift_title": "Savršen poklon?",
+        "perfect_gift_text": "Dodajte još jedan za prijatelja ili rođaka.",
+        "button_text": "Dodaj još (+1)"
+      }
     },
     "footer": {
       "payment": "Načini plaćanja"
