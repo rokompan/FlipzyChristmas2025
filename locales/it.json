@@ -555,6 +555,11 @@
       },
       "shipping": {
         "choose_new_address": "Scegliere un nuovo indirizzo"
+      },
+      "required_extensions": {
+        "errors": {
+          "interaction_required": "Per completare il checkout è necessaria un'interazione con l'estensione."
+        }
       }
     }
   }
