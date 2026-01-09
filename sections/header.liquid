@@ -22,7 +22,21 @@
     margin-left: -1.2rem;
   }
 
-  /* RESET: Kill clunky Langify inline styles */
+  /* ==========================================================================
+     LANGIFY SWITCHER (ly-*) — CLEAN, STABLE, SCROLLABLE DROPDOWN (OPENS DOWN)
+     ========================================================================== */
+
+  /* 1) Keep dropdown from being clipped by sticky header wrappers */
+  .header-wrapper,
+  .section-header,
+  .header,
+  .header__icons,
+  .header-localization,
+  .desktop-localization-wrapper {
+    overflow: visible !important;
+  }
+
+  /* 2) Reset Langify inline positioning quirks */
   .ly-switcher-wrapper.ly-custom {
     font-size: 14px !important;
     visibility: visible !important;
@@ -34,13 +48,16 @@
     bottom: auto !important;
     left: auto !important;
     margin: 0 !important;
+    z-index: 1000 !important;
   }
 
-  /* CLEAN: The main button look */
+  /* 3) Switcher button styling */
   .header .ly-languages-switcher {
+    position: relative !important; /* anchor for absolute dropdown */
+    z-index: 1001 !important;
     margin: 0 10px !important;
     border: 1px solid rgba(0,0,0,0.15) !important;
-    border-radius: 2px !important; /* Square professional look */
+    border-radius: 6px !important;
     min-height: 34px !important;
     display: flex !important;
     align-items: center !important;
@@ -48,6 +65,7 @@
     box-shadow: none !important;
   }
 
+  /* The clickable current item */
   .ly-custom-dropdown-current {
     padding: 0 10px !important;
     display: flex !important;
@@ -55,9 +73,10 @@
     gap: 8px !important;
     border: none !important;
     width: auto !important;
+    cursor: pointer !important;
   }
 
-  /* FIX: Flag and Text alignment */
+  /* Flag */
   .ly-icon.ly-flag-icon {
     width: 20px !important;
     height: 14px !important;
@@ -65,26 +84,49 @@
     background-size: contain !important;
     background-repeat: no-repeat !important;
     display: inline-block !important;
-    flex-shrink: 0;
+    flex-shrink: 0 !important;
   }
 
+  /* Current language text */
   .ly-custom-dropdown-current-inner-text {
     font-weight: 500 !important;
     font-size: 13px !important;
     color: #000 !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
   }
 
-  /* FIX: The Dropdown List (The Scrollbar & Aesthetic Fix) */
+  /* Arrow */
+  .ly-arrow {
+    margin-left: 6px !important;
+    position: static !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* 4) Dropdown list — open DOWN, scrollable, always visible */
   .ly-custom-dropdown-list {
-    border-radius: 2px !important;
+    position: absolute !important;
+    top: calc(100% + 8px) !important;   /* OPEN DOWN */
+    bottom: auto !important;
+    right: 0 !important;               /* align to right edge of switcher */
+    left: auto !important;
+
+    z-index: 99999 !important;
+
+    border-radius: 8px !important;
     border: 1px solid rgba(0,0,0,0.15) !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-    max-height: 350px !important; 
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12) !important;
+
+    padding: 6px 0 !important;
+    margin: 0 !important;
+
+    min-width: 170px !important;
+    width: max-content !important;
+
+    /* Key usability fix */
+    max-height: min(60vh, 320px) !important;
     overflow-y: auto !important;
-    padding: 4px 0 !important;
-    margin-top: 4px !important;
-    width: 100% !important;
-    min-width: 140px !important;
+    -webkit-overflow-scrolling: touch;
   }
 
   .ly-custom-dropdown-list li {
@@ -94,55 +136,53 @@
   }
 
   .ly-custom-dropdown-list-element {
-    padding: 8px 12px !important;
+    padding: 9px 12px !important;
     display: flex !important;
     align-items: center !important;
     gap: 10px !important;
-    transition: background 0.2s;
+
+    transition: background 0.15s ease;
     text-decoration: none !important;
+
     color: #000 !important;
     font-size: 13px !important;
+    line-height: 1.2 !important;
+
+    white-space: nowrap !important;
+    cursor: pointer !important;
   }
 
   .ly-custom-dropdown-list-element:hover {
     background: #f5f5f5 !important;
   }
 
-  .ly-arrow {
-    margin-left: 4px !important;
-    position: static !important;
+  /* Optional: a subtle "active/current" feel */
+  .ly-custom-dropdown-list-element[aria-current="true"],
+  .ly-custom-dropdown-list-element.current {
+    font-weight: 600 !important;
   }
 
-/* --- Langify dropdown: open UP instead of down --- */
-.header .ly-languages-switcher { 
-  position: relative !important;
-  z-index: 1000 !important;
-}
-
-/* make sure nothing clips the dropdown */
-.header, .header__icons, .header-localization {
-  overflow: visible !important;
-}
-
-.ly-custom-dropdown-list {
-  position: absolute !important;
-  top: auto !important;
-  bottom: calc(100% + 6px) !important; /* opens upward */
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  z-index: 9999 !important;
-}
-
-  /* Mobile Refinement */
+  /* 5) Mobile refinement */
   @media (max-width: 749px) {
     .header .ly-languages-switcher {
-      margin: 0 5px !important;
+      margin: 0 6px !important;
       min-height: 30px !important;
+      border-radius: 8px !important;
     }
+
     .ly-custom-dropdown-current {
-      padding: 0 6px !important;
+      padding: 0 8px !important;
+    }
+
+    .ly-custom-dropdown-list {
+      min-width: 160px !important;
+      max-height: min(55vh, 280px) !important;
     }
   }
+
+  /* ==========================================================================
+     EXISTING THEME CSS (unchanged)
+     ========================================================================== */
 
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
     .scrolled-past-header .header__heading-logo-wrapper {
@@ -204,7 +244,7 @@
   }
 
   .section-header {
-    position: sticky; 
+    position: sticky;
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
   }
 
@@ -346,7 +386,7 @@
     {%- endif -%}
 
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
-      
+
       {% comment %} Langify Switcher Placeholder {% endcomment %}
       <span class="ly-custom-1000"></span>
 
@@ -373,6 +413,7 @@
           </localization-form>
         {%- endif -%}
       </div>
+
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
       {%- if shop.customer_accounts_enabled -%}
@@ -598,22 +639,10 @@
       "type": "select",
       "id": "logo_position",
       "options": [
-        {
-          "value": "top-left",
-          "label": "t:sections.header.settings.logo_position.options__2.label"
-        },
-        {
-          "value": "top-center",
-          "label": "t:sections.header.settings.logo_position.options__3.label"
-        },
-        {
-          "value": "middle-left",
-          "label": "t:sections.header.settings.logo_position.options__1.label"
-        },
-        {
-          "value": "middle-center",
-          "label": "t:sections.header.settings.logo_position.options__4.label"
-        }
+        { "value": "top-left", "label": "t:sections.header.settings.logo_position.options__2.label" },
+        { "value": "top-center", "label": "t:sections.header.settings.logo_position.options__3.label" },
+        { "value": "middle-left", "label": "t:sections.header.settings.logo_position.options__1.label" },
+        { "value": "middle-center", "label": "t:sections.header.settings.logo_position.options__4.label" }
       ],
       "default": "middle-left",
       "label": "t:sections.header.settings.logo_position.label",
@@ -623,40 +652,20 @@
       "type": "select",
       "id": "mobile_logo_position",
       "options": [
-        {
-          "value": "center",
-          "label": "t:sections.header.settings.mobile_logo_position.options__1.label"
-        },
-        {
-          "value": "left",
-          "label": "t:sections.header.settings.mobile_logo_position.options__2.label"
-        }
+        { "value": "center", "label": "t:sections.header.settings.mobile_logo_position.options__1.label" },
+        { "value": "left", "label": "t:sections.header.settings.mobile_logo_position.options__2.label" }
       ],
       "default": "center",
       "label": "t:sections.header.settings.mobile_logo_position.label"
     },
-    {
-      "type": "link_list",
-      "id": "menu",
-      "default": "main-menu",
-      "label": "t:sections.header.settings.menu.label"
-    },
+    { "type": "link_list", "id": "menu", "default": "main-menu", "label": "t:sections.header.settings.menu.label" },
     {
       "type": "select",
       "id": "menu_type_desktop",
       "options": [
-        {
-          "value": "dropdown",
-          "label": "t:sections.header.settings.menu_type_desktop.options__1.label"
-        },
-        {
-          "value": "mega",
-          "label": "t:sections.header.settings.menu_type_desktop.options__2.label"
-        },
-        {
-          "value": "drawer",
-          "label": "t:sections.header.settings.menu_type_desktop.options__3.label"
-        }
+        { "value": "dropdown", "label": "t:sections.header.settings.menu_type_desktop.options__1.label" },
+        { "value": "mega", "label": "t:sections.header.settings.menu_type_desktop.options__2.label" },
+        { "value": "drawer", "label": "t:sections.header.settings.menu_type_desktop.options__3.label" }
       ],
       "default": "dropdown",
       "label": "t:sections.header.settings.menu_type_desktop.label"
@@ -665,116 +674,30 @@
       "type": "select",
       "id": "sticky_header_type",
       "options": [
-        {
-          "value": "none",
-          "label": "t:sections.header.settings.sticky_header_type.options__1.label"
-        },
-        {
-          "value": "on-scroll-up",
-          "label": "t:sections.header.settings.sticky_header_type.options__2.label"
-        },
-        {
-          "value": "always",
-          "label": "t:sections.header.settings.sticky_header_type.options__3.label"
-        },
-        {
-          "value": "reduce-logo-size",
-          "label": "t:sections.header.settings.sticky_header_type.options__4.label"
-        }
+        { "value": "none", "label": "t:sections.header.settings.sticky_header_type.options__1.label" },
+        { "value": "on-scroll-up", "label": "t:sections.header.settings.sticky_header_type.options__2.label" },
+        { "value": "always", "label": "t:sections.header.settings.sticky_header_type.options__3.label" },
+        { "value": "reduce-logo-size", "label": "t:sections.header.settings.sticky_header_type.options__4.label" }
       ],
       "default": "on-scroll-up",
       "label": "t:sections.header.settings.sticky_header_type.label"
     },
-    {
-      "type": "checkbox",
-      "id": "show_line_separator",
-      "default": true,
-      "label": "t:sections.header.settings.show_line_separator.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__1.content"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "color_scheme",
-      "id": "menu_color_scheme",
-      "label": "t:sections.header.settings.menu_color_scheme.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.header.settings.header__utilities.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_country_selector",
-      "default": true,
-      "label": "t:sections.header.settings.enable_country_selector.label",
-      "info": "t:sections.header.settings.enable_country_selector.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_language_selector",
-      "default": true,
-      "label": "t:sections.header.settings.enable_language_selector.label",
-      "info": "t:sections.header.settings.enable_language_selector.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_customer_avatar",
-      "default": true,
-      "label": "t:sections.header.settings.enable_customer_avatar.label",
-      "info": "t:sections.header.settings.enable_customer_avatar.info"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.spacing"
-    },
-    {
-      "type": "range",
-      "id": "margin_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.header.settings.margin_bottom.label",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 36,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 20
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 36,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 20
-    }
+    { "type": "checkbox", "id": "show_line_separator", "default": true, "label": "t:sections.header.settings.show_line_separator.label" },
+    { "type": "header", "content": "t:sections.header.settings.header__1.content" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.colors.label", "default": "scheme-1" },
+    { "type": "color_scheme", "id": "menu_color_scheme", "label": "t:sections.header.settings.menu_color_scheme.label", "default": "scheme-1" },
+    { "type": "header", "content": "t:sections.header.settings.header__utilities.content" },
+    { "type": "checkbox", "id": "enable_country_selector", "default": true, "label": "t:sections.header.settings.enable_country_selector.label", "info": "t:sections.header.settings.enable_country_selector.info" },
+    { "type": "checkbox", "id": "enable_language_selector", "default": true, "label": "t:sections.header.settings.enable_language_selector.label", "info": "t:sections.header.settings.enable_language_selector.info" },
+    { "type": "checkbox", "id": "enable_customer_avatar", "default": true, "label": "t:sections.header.settings.enable_customer_avatar.label", "info": "t:sections.header.settings.enable_customer_avatar.info" },
+    { "type": "header", "content": "t:sections.all.spacing" },
+    { "type": "range", "id": "margin_bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "label": "t:sections.header.settings.margin_bottom.label", "default": 0 },
+    { "type": "header", "content": "t:sections.all.padding.section_padding_heading" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 36, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_top", "default": 20 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 36, "step": 4, "unit": "px", "label": "t:sections.all.padding.padding_bottom", "default": 20 }
   ],
   "blocks": [
-    {
-      "type": "@app"
-    }
+    { "type": "@app" }
   ]
 }
 {% endschema %}
