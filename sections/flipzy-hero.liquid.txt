@@ -91,7 +91,7 @@
             {% endif %}
 
             {% if block.settings.button_text != blank %}
-              <a href="#buy" class="flipzy-btn" data-anchor="buy">
+              <a href="{{ block.settings.button_link }}" class="flipzy-btn">
                 {{ block.settings.button_text }}
               </a>
             {% endif %}
