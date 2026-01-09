@@ -113,6 +113,26 @@
     position: static !important;
   }
 
+/* --- Langify dropdown: open UP instead of down --- */
+.header .ly-languages-switcher { 
+  position: relative !important;
+  z-index: 1000 !important;
+}
+
+/* make sure nothing clips the dropdown */
+.header, .header__icons, .header-localization {
+  overflow: visible !important;
+}
+
+.ly-custom-dropdown-list {
+  position: absolute !important;
+  top: auto !important;
+  bottom: calc(100% + 6px) !important; /* opens upward */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  z-index: 9999 !important;
+}
+
   /* Mobile Refinement */
   @media (max-width: 749px) {
     .header .ly-languages-switcher {
