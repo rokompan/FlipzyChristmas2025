@@ -1330,31 +1330,3 @@ class CartPerformance {
     );
   }
 }
-/* Anchor scroll fix (multi-language like /hu#buy) */
-(function () {
-  function scrollToHash() {
-    const hash = window.location.hash;
-    if (!hash) return;
-
-    const target = document.querySelector(hash);
-    if (!target) return;
-
-    // Use your “Header Offset” value from the section (you had 100px)
-    const headerOffset = 100;
-
-    const y =
-      target.getBoundingClientRect().top +
-      window.pageYOffset -
-      headerOffset;
-
-    window.scrollTo({ top: y, behavior: 'smooth' });
-  }
-
-  // Important for localized routes (/hu) where DOM finishes later
-  window.addEventListener('load', () => {
-    setTimeout(scrollToHash, 400);
-  });
-
-  // Clicking a button that changes #hash
-  window.addEventListener('hashchange', scrollToHash);
-})();
