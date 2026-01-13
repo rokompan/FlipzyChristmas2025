@@ -38,11 +38,6 @@
           "id": "button_text",
           "label": "Button Text",
           "default": "Go to Shop"
-        },
-        {
-          "type": "url",
-          "id": "button_link",
-          "label": "Button Link"
         }
       ]
     }
@@ -91,7 +86,7 @@
             {% endif %}
 
             {% if block.settings.button_text != blank %}
-              <a href="{{ block.settings.button_link }}" class="flipzy-btn">
+              <a href="#buy" class="flipzy-btn" data-anchor="buy">
                 {{ block.settings.button_text }}
               </a>
             {% endif %}
