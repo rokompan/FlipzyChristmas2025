@@ -18,8 +18,7 @@
             "video_file": "shopify://files/videos/hero04.mp4",
             "image_fallback": "shopify://shop_images/palca.jpg",
             "heading": "<p>Wooden<strong> planner </strong>that Makes Tasks <strong>Fun</strong></p>",
-            "button_text": "Go to Shop",
-            "button_link": "#buy"
+            "button_text": "Go to Shop"
           }
         },
         "slide_wiHe7j": {
@@ -27,8 +26,7 @@
           "settings": {
             "image_fallback": "shopify://shop_images/Gemini_Generated_Image_pcumu6pcumu6pcum.jpg",
             "heading": "<p>30 <strong>stickers</strong> to customize your <strong>routine</strong></p>",
-            "button_text": "Go to Shop",
-            "button_link": ""
+            "button_text": "Go to Shop"
           }
         },
         "slide_pde3JQ": {
@@ -36,8 +34,7 @@
           "settings": {
             "image_fallback": "shopify://shop_images/Gemini_Generated_Image_vpr32bvpr32bvpr3_1.jpg",
             "heading": "<p><strong>Rearange</strong> tiles to fit any scenairo.</p>",
-            "button_text": "Go to Shop",
-            "button_link": "#buy"
+            "button_text": "Go to Shop"
           }
         },
         "slide_XfNBGf": {
@@ -45,8 +42,7 @@
           "settings": {
             "image_fallback": "shopify://shop_images/Gemini_Generated_Image_fh8lhgfh8lhgfh8l.jpg",
             "heading": "<p>Get as <strong>many</strong> Flipzys as your <strong>family</strong> needs.</p>",
-            "button_text": "Go to Shop",
-            "button_link": "#buy"
+            "button_text": "Go to Shop"
           }
         },
         "slide_C3LWGL": {
@@ -54,8 +50,7 @@
           "settings": {
             "image_fallback": "shopify://shop_images/mom_boy-wide3.jpg",
             "heading": "<p>Start your day <strong>screen-free</strong> and <strong>fight-free</strong>.</p>",
-            "button_text": "Go to Shop",
-            "button_link": "#buy"
+            "button_text": "Go to Shop"
           }
         }
       },
@@ -67,7 +62,9 @@
         "slide_C3LWGL"
       ],
       "name": "Flipzy Hero Slider",
-      "settings": {}
+      "settings": {
+        "scroll_cue_text": "See how it works. ↓"
+      }
     },
     "flipzy_feature_video_Wf8y33": {
       "type": "flipzy-feature-video",
