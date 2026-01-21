@@ -249,9 +249,9 @@
           "settings": {
             "product": "flipzy-wooden-routine-board",
             "highlight_tile": false,
-            "badge_text": "MAKE YOUR ROUTINE",
-            "custom_title": "Your first try!",
-            "description": "Just try!",
+            "badge_text": "MAKE YOUR FIRST ROUTINE",
+            "custom_title": "Your first Flipzy",
+            "description": "Start with one daily routine. Perfect for trying Flipzy with one child or one habit.",
             "button_text": "Add to Cart"
           }
         },
