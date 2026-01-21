@@ -258,9 +258,9 @@
         "tile_iFN78V": {
           "type": "tile",
           "settings": {
-            "product": "",
+            "product": "flipzy-2-pack-morning-evening",
             "highlight_tile": true,
-            "badge_text": "BEST VALUE",
+            "badge_text": "MOST POPULAR",
             "custom_title": "",
             "description": "Perfect for small families.",
             "button_text": "Add to Cart"
@@ -269,9 +269,20 @@
         "tile_Epxb4g": {
           "type": "tile",
           "settings": {
-            "product": "",
+            "product": "flipzy-3-pack-full-day-siblings",
             "highlight_tile": false,
-            "badge_text": "MOST POPULAR",
+            "badge_text": "3 FOR 2",
+            "custom_title": "",
+            "description": "Perfect for small families.",
+            "button_text": "Add to Cart"
+          }
+        },
+        "tile_8Uypti": {
+          "type": "tile",
+          "settings": {
+            "product": "flipzy-4-pack-best-value",
+            "highlight_tile": false,
+            "badge_text": "BEST VALUE",
             "custom_title": "",
             "description": "Perfect for small families.",
             "button_text": "Add to Cart"
@@ -281,7 +292,8 @@
       "block_order": [
         "tile_cMGatH",
         "tile_iFN78V",
-        "tile_Epxb4g"
+        "tile_Epxb4g",
+        "tile_8Uypti"
       ],
       "name": "Flipzy Offer Tiles",
       "settings": {
