@@ -252,6 +252,7 @@
             "badge_text": "MAKE YOUR FIRST ROUTINE",
             "custom_title": "Your first Flipzy",
             "description": "<b>Start with one daily routine.  </b><br>Perfect for trying Flipzy with one child or one habit.",
+            "show_shipping_badge": false,
             "button_text": "Add to Cart"
           }
         },
@@ -263,6 +264,7 @@
             "badge_text": "MOST POPULAR",
             "custom_title": "Morning & Evening Routine",
             "description": "<b>Two routines. Less reminding. </b><br>\nIdeal for mornings and evenings — or two kids sharing the day.",
+            "show_shipping_badge": true,
             "button_text": "Add to Cart"
           }
         },
@@ -274,6 +276,7 @@
             "badge_text": "3 FOR 2",
             "custom_title": "Pay 2, Get 1 for Free!",
             "description": "<b>One routine on us.</b><br> Best for full-day routines or growing families.",
+            "show_shipping_badge": true,
             "button_text": "Add to Cart"
           }
         },
@@ -285,6 +288,7 @@
             "badge_text": "BEST VALUE",
             "custom_title": "Family pack",
             "description": "<b>One system for the whole family.</b>Perfect for siblings, shared routines, or full household use.",
+            "show_shipping_badge": true,
             "button_text": "Add to Cart"
           }
         }
