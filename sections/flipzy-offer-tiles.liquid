@@ -1,0 +1,413 @@
+{% comment %}
+  Flipzy Offer Tiles
+  - Add multiple "Offer tile" blocks in Theme Editor.
+  - Each block selects a product (e.g., 2-Pack / 3-Pack / 4-Pack) and shows:
+    image, title, subtitle, price, compare-at, % saved, CTA
+  - Uses existing Flipzy design tokens from flipzy-custom.css (:root variables).
+{% endcomment %}
+
+<section class="flipzy-section flipzy-tiles-section scheme-{{ section.settings.color_scheme }}">
+  <div class="flipzy-tiles-container">
+    {% if section.settings.heading != blank %}
+      <div class="flipzy-tiles-header">
+        <h2 class="flipzy-tiles-title">{{ section.settings.heading | escape }}</h2>
+        {% if section.settings.subheading != blank %}
+          <p class="flipzy-tiles-sub">{{ section.settings.subheading | escape }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="flipzy-tiles-grid">
+      {% for block in section.blocks %}
+        {% assign p = block.settings.product %}
+        {% if p != blank %}
+          {% assign v = p.selected_or_first_available_variant %}
+          {% assign price = v.price %}
+          {% assign compare_at = v.compare_at_price %}
+          {% assign has_compare = compare_at and compare_at > price %}
+
+          {% assign save_pct = 0 %}
+          {% if has_compare %}
+            {% assign diff = compare_at | minus: price %}
+            {% assign save_pct = diff | times: 100 | divided_by: compare_at %}
+          {% endif %}
+
+          <article class="flipzy-tile{% if block.settings.emphasis %} is-emphasis{% endif %}" {{ block.shopify_attributes }}>
+            <a class="flipzy-tile-media" href="{{ p.url }}">
+              {% if block.settings.custom_image != blank %}
+                {{ block.settings.custom_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: block.settings.custom_title | default: p.title }}
+              {% elsif p.featured_image %}
+                {{ p.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: p.title }}
+              {% else %}
+                <div class="flipzy-tile-media-placeholder"></div>
+              {% endif %}
+
+              {% if block.settings.badge_text != blank %}
+                <span class="flipzy-tile-badge">{{ block.settings.badge_text | escape }}</span>
+              {% elsif has_compare and section.settings.auto_badge %}
+                <span class="flipzy-tile-badge">Save {{ save_pct }}%</span>
+              {% endif %}
+            </a>
+
+            <div class="flipzy-tile-body">
+              <div class="flipzy-tile-top">
+                <h3 class="flipzy-tile-heading">
+                  {% if block.settings.custom_title != blank %}
+                    {{ block.settings.custom_title | escape }}
+                  {% else %}
+                    {{ p.title | escape }}
+                  {% endif %}
+                </h3>
+
+                {% if block.settings.subtitle != blank %}
+                  <p class="flipzy-tile-subtitle">{{ block.settings.subtitle | escape }}</p>
+                {% endif %}
+              </div>
+
+              <div class="flipzy-tile-price">
+                {% if has_compare %}
+                  <span class="flipzy-tile-compare">
+                    {{ compare_at | money }}
+                  </span>
+                {% endif %}
+
+                <span class="flipzy-tile-current">
+                  {{ price | money }}
+                </span>
+
+                {% if has_compare and section.settings.show_save_pill %}
+                  <span class="flipzy-tile-savepill">
+                    Save {{ save_pct }}%
+                  </span>
+                {% endif %}
+              </div>
+
+              <div class="flipzy-tile-cta">
+                <a class="flipzy-tiles-btn" href="{{ p.url }}">
+                  {% if block.settings.cta_text != blank %}
+                    {{ block.settings.cta_text | escape }}
+                  {% else %}
+                    Shop now
+                  {% endif %}
+                </a>
+
+                {% if block.settings.note != blank %}
+                  <p class="flipzy-tile-note">{{ block.settings.note | escape }}</p>
+                {% endif %}
+              </div>
+            </div>
+          </article>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <style>
+    /* SECTION WRAPPER */
+    .flipzy-tiles-section{
+      padding: 56px 20px;
+      width: 100%;
+    }
+    .flipzy-tiles-container{
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Color scheme hook (reuses your tokens) */
+    .flipzy-tiles-section.scheme-white{ background: var(--color-white); color: var(--color-charcoal); }
+    .flipzy-tiles-section.scheme-cream{ background: var(--color-cream); color: var(--color-charcoal); }
+    .flipzy-tiles-section.scheme-night{ background: var(--color-charcoal); color: var(--color-white); }
+
+    .flipzy-tiles-header{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 22px;
+      text-align: left;
+    }
+    .flipzy-tiles-title{
+      margin: 0;
+      font-size: 2.1rem;
+      line-height: 1.15;
+      font-weight: 700;
+      color: inherit;
+    }
+    .flipzy-tiles-sub{
+      margin: 0;
+      opacity: 0.75;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      max-width: 60ch;
+    }
+
+    /* GRID: Mobile-first, then 2 cols, then 4 cols */
+    .flipzy-tiles-grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    @media (min-width: 640px){
+      .flipzy-tiles-grid{ grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    }
+    @media (min-width: 1100px){
+      .flipzy-tiles-grid{ grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr); gap: 20px; }
+    }
+
+    /* TILE CARD */
+    .flipzy-tile{
+      background: rgba(255,255,255,0.92);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .scheme-night .flipzy-tile{
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: none;
+    }
+    .flipzy-tile:hover{
+      transform: translateY(-3px);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.10);
+    }
+    .flipzy-tile.is-emphasis{
+      border: 2px solid var(--color-mustard);
+      box-shadow: 0 18px 46px rgba(244, 211, 94, 0.25);
+    }
+
+    /* MEDIA */
+    .flipzy-tile-media{
+      position: relative;
+      display: block;
+      line-height: 0;
+      background: rgba(0,0,0,0.03);
+      aspect-ratio: 4 / 3;
+    }
+    .flipzy-tile-media img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .flipzy-tile-media-placeholder{
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.06);
+    }
+
+    /* BADGE */
+    .flipzy-tile-badge{
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    /* BODY */
+    .flipzy-tile-body{
+      padding: 14px 14px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      color: inherit;
+    }
+    .flipzy-tile-heading{
+      margin: 0 0 6px 0;
+      font-size: 1.2rem;
+      line-height: 1.2;
+      font-weight: 800;
+      color: inherit;
+    }
+    .flipzy-tile-subtitle{
+      margin: 0;
+      opacity: 0.78;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /* PRICE ROW */
+    .flipzy-tile-price{
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 2px;
+    }
+    .flipzy-tile-compare{
+      text-decoration: line-through;
+      opacity: 0.55;
+      font-weight: 600;
+    }
+    .flipzy-tile-current{
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+    }
+    .flipzy-tile-savepill{
+      background: #000;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    /* CTA */
+    .flipzy-tile-cta{
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .flipzy-tiles-btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-decoration: none;
+      background: var(--color-mustard);
+      color: var(--color-charcoal);
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      border: 2px solid var(--color-mustard);
+      transition: transform 0.18s ease;
+    }
+    .flipzy-tiles-btn:hover{ transform: scale(1.01); }
+
+    .flipzy-tile-note{
+      margin: 0;
+      font-size: 0.85rem;
+      opacity: 0.75;
+      line-height: 1.35;
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "Flipzy – Offer Tiles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Choose your bundle"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Save more when you get a pack — perfect for families and routines."
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "cream",
+      "options": [
+        { "value": "white", "label": "White" },
+        { "value": "cream", "label": "Cream" },
+        { "value": "night", "label": "Night" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_save_pill",
+      "label": "Show Save % pill",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_badge",
+      "label": "Auto badge with Save % if no custom badge text is set",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Offer tile",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text (optional)",
+          "default": ""
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom title (optional)"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle (optional)"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "Button text",
+          "default": "Shop now"
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "label": "Small note under button (optional)",
+          "default": ""
+        },
+        {
+          "type": "checkbox",
+          "id": "emphasis",
+          "label": "Emphasize this tile",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Flipzy – Offer Tiles",
+      "blocks": [
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" }
+      ]
+    }
+  ]
+}
+{% endschema %}
