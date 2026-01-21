@@ -3,8 +3,8 @@
   - Add up to 8 tiles via Theme Editor blocks.
   - Each tile selects a product and shows image, title, subtitle, price, compare-at, % saved, CTA.
   - Uses Flipzy design tokens defined in flipzy-custom.css (:root variables).
-  - NOTE: Shopify schema requires non-blank defaults for text settings.
-          We use "_" as a sentinel default and suppress rendering when value == "_".
+  - Shopify schema requires non-blank defaults for text settings.
+    We use "_" as a sentinel default and suppress rendering when value == "_".
 {% endcomment %}
 
 <section class="flipzy-section flipzy-tiles-section scheme-{{ section.settings.color_scheme }}">
@@ -43,12 +43,17 @@
           {%- assign note_txt = block.settings.note | strip -%}
           {%- assign cta_txt = block.settings.cta_text | strip -%}
 
+          {%- assign alt_txt = p.title -%}
+          {%- if custom_title != blank and custom_title != "_" -%}
+            {%- assign alt_txt = custom_title -%}
+          {%- endif -%}
+
           <article class="flipzy-tile{% if block.settings.emphasis %} is-emphasis{% endif %}" {{ block.shopify_attributes }}>
             <a class="flipzy-tile-media" href="{{ p.url }}">
               {% if block.settings.custom_image != blank %}
-                {{ block.settings.custom_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: (custom_title != "_" and custom_title != "" ) | default: false }}
+                {{ block.settings.custom_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: alt_txt }}
               {% elsif p.featured_image %}
-                {{ p.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: p.title }}
+                {{ p.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: alt_txt }}
               {% else %}
                 <div class="flipzy-tile-media-placeholder"></div>
               {% endif %}
