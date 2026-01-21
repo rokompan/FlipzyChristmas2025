@@ -250,7 +250,7 @@
             "product": "flipzy-wooden-routine-board",
             "highlight_tile": false,
             "badge_text": "MAKE YOUR ROUTINE",
-            "custom_title": "",
+            "custom_title": "Your first try!",
             "description": "Just try!",
             "button_text": "Add to Cart"
           }
@@ -261,7 +261,7 @@
             "product": "flipzy-2-pack-morning-evening",
             "highlight_tile": true,
             "badge_text": "MOST POPULAR",
-            "custom_title": "",
+            "custom_title": "Your morning & evening routine",
             "description": "Perfect for small families.",
             "button_text": "Add to Cart"
           }
@@ -272,8 +272,8 @@
             "product": "flipzy-3-pack-full-day-siblings",
             "highlight_tile": false,
             "badge_text": "3 FOR 2",
-            "custom_title": "",
-            "description": "Perfect for small families.",
+            "custom_title": "Pay 2, Get 1 for Free!",
+            "description": "Pefrect for full day operations!",
             "button_text": "Add to Cart"
           }
         },
@@ -283,8 +283,8 @@
             "product": "flipzy-4-pack-best-value",
             "highlight_tile": false,
             "badge_text": "BEST VALUE",
-            "custom_title": "",
-            "description": "Perfect for small families.",
+            "custom_title": "Family pack",
+            "description": "Have your family enjoy the full Flipzy experience.",
             "button_text": "Add to Cart"
           }
         }
