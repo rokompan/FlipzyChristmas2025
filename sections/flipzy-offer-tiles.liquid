@@ -22,17 +22,17 @@
   .flipzy-tiles-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 12px; /* Reduced gap for Mobile */
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
   }
 
   @media screen and (min-width: 990px) {
     .flipzy-tiles-grid {
-      /* Dynamic columns based on block count, max 3 */
-      grid-template-columns: repeat({{ section.blocks.size | at_most: 3 }}, 1fr);
-      gap: 30px;
-      align-items: stretch; /* Make cards same height */
+      /* Changed to support up to 4 columns */
+      grid-template-columns: repeat({{ section.blocks.size | at_most: 4 }}, 1fr);
+      gap: 20px; /* Tighter gap to fit 4 items nicely */
+      align-items: stretch; 
     }
   }
 
@@ -41,13 +41,20 @@
     position: relative;
     background: rgb(var(--color-background));
     border: 1px solid rgba(var(--color-foreground), 0.1);
-    border-radius: 20px;
-    padding: 20px;
+    border-radius: 16px; /* Slightly smaller radius for tighter feel */
+    padding: 15px; /* Reduced padding for Mobile */
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     height: 100%;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+
+  @media screen and (min-width: 990px) {
+    .flipzy-tile {
+        padding: 20px; /* Restore comfortable padding on Desktop */
+        border-radius: 20px; 
+    }
   }
 
   .flipzy-tile:hover {
@@ -58,20 +65,20 @@
   /* Highlighted Tile (Best Value) */
   .flipzy-tile.is-highlighted {
     border: 2px solid #F4D35E;
-    background: #FFFBEB; /* Light yellow tint */
+    background: #FFFBEB; 
   }
 
   /* --- TILE HEADER --- */
   .flipzy-tile-badge {
     position: absolute;
-    top: -12px;
+    top: -10px;
     left: 50%;
     transform: translateX(-50%);
     background: #000;
     color: #fff;
-    padding: 5px 15px;
+    padding: 4px 12px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -80,15 +87,15 @@
   }
   
   .flipzy-tile.is-highlighted .flipzy-tile-badge {
-    background: #D97706; /* Darker yellow/orange for contrast */
+    background: #D97706; 
   }
 
   /* --- IMAGE --- */
   .flipzy-tile-media {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     aspect-ratio: 1 / 1;
     position: relative;
   }
@@ -113,39 +120,39 @@
   }
 
   .flipzy-tile-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin: 0 0 10px 0;
+    margin: 0 0 8px 0;
     line-height: 1.3;
     color: rgb(var(--color-foreground));
   }
 
   .flipzy-tile-desc {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     opacity: 0.8;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     line-height: 1.4;
   }
 
   /* --- PRICING --- */
   .flipzy-tile-price-wrapper {
-    margin-top: auto; /* Pushes to bottom of content area */
+    margin-top: auto; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    margin-bottom: 15px;
+    gap: 4px;
+    margin-bottom: 12px;
   }
 
   .flipzy-price-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
   }
 
   .flipzy-price-current {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 800;
     color: rgb(var(--color-foreground));
   }
@@ -153,41 +160,41 @@
   .flipzy-price-compare {
     text-decoration: line-through;
     opacity: 0.6;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   .flipzy-save-pill {
-    background-color: #EF4444; /* Red for savings */
+    background-color: #EF4444; 
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
     padding: 3px 8px;
     border-radius: 4px;
     display: inline-block;
   }
 
-  /* --- BUTTON (Stolen from your strip section) --- */
+  /* --- BUTTON --- */
   .flipzy-tile-submit {
       background-color: #F4D35E !important;
       color: #111827 !important;
       border: none !important;
       border-radius: 50px !important;
       font-weight: 700 !important;
-      font-size: 1.1rem !important;
+      font-size: 1rem !important;
       text-transform: none !important;
-      padding: 12px 20px !important;
+      padding: 10px 15px !important;
       box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
       width: 100%;
       position: relative;
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.2s ease;
-      margin-top: 10px;
+      margin-top: 5px;
   }
   
   .flipzy-tile-submit:hover { transform: scale(1.02); }
   
-  /* Pulse Animation Logic  */
+  /* Pulse Animation Logic */
   .flipzy-pulse-anim::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; bottom: 0;
