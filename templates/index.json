@@ -241,6 +241,58 @@
         "offset": 100
       }
     },
+    "flipzy_offer_tiles_ndRRqR": {
+      "type": "flipzy-offer-tiles",
+      "blocks": {
+        "tile_cMGatH": {
+          "type": "tile",
+          "settings": {
+            "product": "flipzy-wooden-routine-board",
+            "highlight_tile": false,
+            "badge_text": "MAKE YOUR ROUTINE",
+            "custom_title": "",
+            "description": "Just try!",
+            "button_text": "Add to Cart"
+          }
+        },
+        "tile_iFN78V": {
+          "type": "tile",
+          "settings": {
+            "product": "",
+            "highlight_tile": true,
+            "badge_text": "BEST VALUE",
+            "custom_title": "",
+            "description": "Perfect for small families.",
+            "button_text": "Add to Cart"
+          }
+        },
+        "tile_Epxb4g": {
+          "type": "tile",
+          "settings": {
+            "product": "",
+            "highlight_tile": false,
+            "badge_text": "MOST POPULAR",
+            "custom_title": "",
+            "description": "Perfect for small families.",
+            "button_text": "Add to Cart"
+          }
+        }
+      },
+      "block_order": [
+        "tile_cMGatH",
+        "tile_iFN78V",
+        "tile_Epxb4g"
+      ],
+      "name": "Flipzy Offer Tiles",
+      "settings": {
+        "title": "Choose Your Bundle",
+        "heading_size": "h1",
+        "text": "<p>Select the package that fits your family best.</p>",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "flipzy_offer_strip_jVGpMw": {
       "type": "flipzy-offer-strip",
       "name": "Flipzy Offer Strip",
@@ -604,6 +656,7 @@
     "flipzy_feature_video_FNy9TP",
     "flipzy_feature_video_z6mmFe",
     "flipzy_anchor_94NFEW",
+    "flipzy_offer_tiles_ndRRqR",
     "flipzy_offer_strip_jVGpMw",
     "flipzy_testimonials_J7dGUa",
     "flipzy_whats_in_the_box_tDc44V",
