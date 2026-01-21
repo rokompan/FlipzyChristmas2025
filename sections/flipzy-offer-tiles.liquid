@@ -22,16 +22,15 @@
   .flipzy-tiles-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 12px; /* Reduced gap for Mobile */
+    gap: 12px;
     width: 100%;
     margin-top: 1.5rem;
   }
 
   @media screen and (min-width: 990px) {
     .flipzy-tiles-grid {
-      /* Changed to support up to 4 columns */
       grid-template-columns: repeat({{ section.blocks.size | at_most: 4 }}, 1fr);
-      gap: 20px; /* Tighter gap to fit 4 items nicely */
+      gap: 20px;
       align-items: stretch; 
     }
   }
@@ -41,8 +40,8 @@
     position: relative;
     background: rgb(var(--color-background));
     border: 1px solid rgba(var(--color-foreground), 0.1);
-    border-radius: 16px; /* Slightly smaller radius for tighter feel */
-    padding: 15px; /* Reduced padding for Mobile */
+    border-radius: 16px; 
+    padding: 15px; 
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -52,7 +51,7 @@
 
   @media screen and (min-width: 990px) {
     .flipzy-tile {
-        padding: 20px; /* Restore comfortable padding on Desktop */
+        padding: 20px; 
         border-radius: 20px; 
     }
   }
@@ -173,6 +172,19 @@
     display: inline-block;
   }
 
+  .flipzy-shipping-badge {
+    color: #059669; /* Green text */
+    background: #ECFDF5; /* Light green bg */
+    border: 1px solid #6EE7B7;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
   /* --- BUTTON --- */
   .flipzy-tile-submit {
       background-color: #F4D35E !important;
@@ -283,6 +295,11 @@
                   Save {{ pct_rounded }}%
                 </div>
               {%- endif -%}
+
+              {%- if block.settings.show_shipping_badge -%}
+                 <div class="flipzy-shipping-badge">FREE SHIPPING</div>
+              {%- endif -%}
+
             </div>
 
             <product-form class="product-form">
@@ -410,6 +427,12 @@
           "default": "Perfect for small families."
         },
         {
+          "type": "checkbox",
+          "id": "show_shipping_badge",
+          "label": "Show 'Free Shipping' Badge",
+          "default": false
+        },
+        {
           "type": "text",
           "id": "button_text",
           "label": "Button Text",
@@ -429,7 +452,8 @@
           "type": "tile",
           "settings": {
             "highlight_tile": true,
-            "badge_text": "BEST VALUE"
+            "badge_text": "BEST VALUE",
+            "show_shipping_badge": true
           }
         },
         {
