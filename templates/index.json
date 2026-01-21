@@ -241,8 +241,73 @@
         "offset": 100
       }
     },
+    "flipzy_offer_tiles_ndRRqR": {
+      "type": "flipzy-offer-tiles",
+      "blocks": {
+        "tile_cMGatH": {
+          "type": "tile",
+          "settings": {
+            "product": "flipzy-wooden-routine-board",
+            "highlight_tile": false,
+            "badge_text": "MAKE YOUR ROUTINE",
+            "custom_title": "Your first try!",
+            "description": "Just try!",
+            "button_text": "Add to Cart"
+          }
+        },
+        "tile_iFN78V": {
+          "type": "tile",
+          "settings": {
+            "product": "flipzy-2-pack-morning-evening",
+            "highlight_tile": true,
+            "badge_text": "MOST POPULAR",
+            "custom_title": "Your morning & evening routine",
+            "description": "Perfect for small families.",
+            "button_text": "Add to Cart"
+          }
+        },
+        "tile_Epxb4g": {
+          "type": "tile",
+          "settings": {
+            "product": "flipzy-3-pack-full-day-siblings",
+            "highlight_tile": false,
+            "badge_text": "3 FOR 2",
+            "custom_title": "Pay 2, Get 1 for Free!",
+            "description": "Pefrect for full day operations!",
+            "button_text": "Add to Cart"
+          }
+        },
+        "tile_8Uypti": {
+          "type": "tile",
+          "settings": {
+            "product": "flipzy-4-pack-best-value",
+            "highlight_tile": false,
+            "badge_text": "BEST VALUE",
+            "custom_title": "Family pack",
+            "description": "Have your family enjoy the full Flipzy experience.",
+            "button_text": "Add to Cart"
+          }
+        }
+      },
+      "block_order": [
+        "tile_cMGatH",
+        "tile_iFN78V",
+        "tile_Epxb4g",
+        "tile_8Uypti"
+      ],
+      "name": "Flipzy Offer Tiles",
+      "settings": {
+        "title": "Choose Your Bundle",
+        "heading_size": "h1",
+        "text": "<p>Select the package that fits your family best.</p>",
+        "color_scheme": "",
+        "padding_top": 16,
+        "padding_bottom": 16
+      }
+    },
     "flipzy_offer_strip_jVGpMw": {
       "type": "flipzy-offer-strip",
+      "disabled": true,
       "name": "Flipzy Offer Strip",
       "settings": {
         "product": "flipzy-wooden-routine-board",
@@ -604,6 +669,7 @@
     "flipzy_feature_video_FNy9TP",
     "flipzy_feature_video_z6mmFe",
     "flipzy_anchor_94NFEW",
+    "flipzy_offer_tiles_ndRRqR",
     "flipzy_offer_strip_jVGpMw",
     "flipzy_testimonials_J7dGUa",
     "flipzy_whats_in_the_box_tDc44V",
