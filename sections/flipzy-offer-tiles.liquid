@@ -21,7 +21,6 @@
       {% for block in section.blocks %}
         {% assign p = block.settings.product %}
         {% if p != blank %}
-        
           {% assign v = p.selected_or_first_available_variant %}
           {% assign price = v.price %}
           {% assign compare_at = v.compare_at_price %}
@@ -71,19 +70,13 @@
 
               <div class="flipzy-tile-price">
                 {% if has_compare %}
-                  <span class="flipzy-tile-compare">
-                    {{ compare_at | money }}
-                  </span>
+                  <span class="flipzy-tile-compare">{{ compare_at | money }}</span>
                 {% endif %}
 
-                <span class="flipzy-tile-current">
-                  {{ price | money }}
-                </span>
+                <span class="flipzy-tile-current">{{ price | money }}</span>
 
                 {% if has_compare and section.settings.show_save_pill %}
-                  <span class="flipzy-tile-savepill">
-                    Save {{ save_pct }}%
-                  </span>
+                  <span class="flipzy-tile-savepill">Save {{ save_pct }}%</span>
                 {% endif %}
               </div>
 
@@ -108,7 +101,6 @@
   </div>
 
   <style>
-    /* SECTION WRAPPER */
     .flipzy-tiles-section{
       padding: 56px 20px;
       width: 100%;
@@ -118,7 +110,6 @@
       margin: 0 auto;
     }
 
-    /* Color scheme hook (reuses your tokens) */
     .flipzy-tiles-section.scheme-white{ background: var(--color-white); color: var(--color-charcoal); }
     .flipzy-tiles-section.scheme-cream{ background: var(--color-cream); color: var(--color-charcoal); }
     .flipzy-tiles-section.scheme-night{ background: var(--color-charcoal); color: var(--color-white); }
@@ -145,7 +136,6 @@
       max-width: 60ch;
     }
 
-    /* GRID: Mobile-first, then 2 cols, then 4 cols */
     .flipzy-tiles-grid{
       display: grid;
       grid-template-columns: 1fr;
@@ -158,7 +148,6 @@
       .flipzy-tiles-grid{ grid-template-columns: repeat({{ section.settings.columns_desktop }}, 1fr); gap: 20px; }
     }
 
-    /* TILE CARD */
     .flipzy-tile{
       background: rgba(255,255,255,0.92);
       border-radius: 22px;
@@ -184,7 +173,6 @@
       box-shadow: 0 18px 46px rgba(244, 211, 94, 0.25);
     }
 
-    /* MEDIA */
     .flipzy-tile-media{
       position: relative;
       display: block;
@@ -204,7 +192,6 @@
       background: rgba(0,0,0,0.06);
     }
 
-    /* BADGE */
     .flipzy-tile-badge{
       position: absolute;
       top: 12px;
@@ -218,7 +205,6 @@
       letter-spacing: 0.2px;
     }
 
-    /* BODY */
     .flipzy-tile-body{
       padding: 14px 14px 16px 14px;
       display: flex;
@@ -241,7 +227,6 @@
       line-height: 1.4;
     }
 
-    /* PRICE ROW */
     .flipzy-tile-price{
       display: flex;
       align-items: baseline;
@@ -268,7 +253,6 @@
       font-weight: 800;
     }
 
-    /* CTA */
     .flipzy-tile-cta{
       margin-top: auto;
       display: flex;
@@ -355,50 +339,19 @@
       "type": "tile",
       "name": "Offer tile",
       "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Product"
-        },
-        {
-          "type": "image_picker",
-          "id": "custom_image",
-          "label": "Custom image (optional)"
-        },
-        {
-          "type": "text",
-          "id": "badge_text",
-          "label": "Badge text (optional)",
-          "default": " "
-        }
-        {
-          "type": "text",
-          "id": "custom_title",
-          "label": "Custom title (optional)"
-        },
-        {
-          "type": "text",
-          "id": "subtitle",
-          "label": "Subtitle (optional)"
-        },
-        {
-          "type": "text",
-          "id": "cta_text",
-          "label": "Button text",
-          "default": "Shop now"
-        },
-        {
-          "type": "text",
-          "id": "note",
-          "label": "Small note under button (optional)",
-          "default": " "
-        },
-        {
-          "type": "checkbox",
-          "id": "emphasis",
-          "label": "Emphasize this tile",
-          "default": false
-        }
+        { "type": "product", "id": "product", "label": "Product" },
+        { "type": "image_picker", "id": "custom_image", "label": "Custom image (optional)" },
+
+        { "type": "text", "id": "badge_text", "label": "Badge text (optional)", "default": " " },
+
+        { "type": "text", "id": "custom_title", "label": "Custom title (optional)", "default": " " },
+        { "type": "text", "id": "subtitle", "label": "Subtitle (optional)", "default": " " },
+
+        { "type": "text", "id": "cta_text", "label": "Button text", "default": "Shop now" },
+
+        { "type": "text", "id": "note", "label": "Small note under button (optional)", "default": " " },
+
+        { "type": "checkbox", "id": "emphasis", "label": "Emphasize this tile", "default": false }
       ]
     }
   ],
