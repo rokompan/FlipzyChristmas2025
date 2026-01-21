@@ -307,6 +307,7 @@
     },
     "flipzy_offer_strip_jVGpMw": {
       "type": "flipzy-offer-strip",
+      "disabled": true,
       "name": "Flipzy Offer Strip",
       "settings": {
         "product": "flipzy-wooden-routine-board",
