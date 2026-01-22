@@ -19,10 +19,10 @@
     border-top: 1px solid #e5e7eb;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
     z-index: 999;
-    padding: 12px 0;
+    padding: 10px 0;
     transform: translateY(110%);
     transition: transform 0.3s ease-in-out;
-    display: block !important; /* Ensure it overrides any hidden states if JS enables it */
+    display: block !important;
   }
 
   .flipzy-sticky.is-visible {
@@ -39,7 +39,7 @@
     padding: 0 20px;
   }
 
-  /* Left Side: Text (Hidden on small mobile) */
+  /* Left Side: Text */
   .flipzy-sticky-info {
     display: flex;
     flex-direction: column;
@@ -60,33 +60,57 @@
   /* Center: Bundle Selector (Pills) */
   .flipzy-bundle-selector {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     background: #f3f4f6;
     padding: 4px;
     border-radius: 50px;
+    overflow-x: auto; /* Safety scroll for tiny screens */
+    scrollbar-width: none; /* Hide scrollbar Firefox */
   }
+  .flipzy-bundle-selector::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome */
 
   .flipzy-bundle-pill {
     cursor: pointer;
-    padding: 6px 14px;
+    padding: 8px 16px;
     border-radius: 40px;
-    font-size: 0.9rem;
-    font-weight: 600;
     display: flex;
+    flex-direction: column; /* Stack name and badge */
     align-items: center;
-    gap: 6px;
+    justify-content: center;
+    line-height: 1;
     transition: all 0.2s ease;
     border: 1px solid transparent;
     color: #6b7280;
+    min-width: 50px;
+    position: relative;
+    text-align: center;
   }
 
+  /* Top line: 1x, 2x... */
+  .flipzy-bundle-pill .pill-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  /* Middle line: Badge Text (Best Value) */
+  .flipzy-bundle-pill .pill-badge-text {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 2px;
+    color: #D97706; /* Default orange-ish */
+    white-space: nowrap;
+  }
+
+  /* Bottom/Corner: Save % */
   .flipzy-bundle-pill .pill-save {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     background: #EF4444;
     color: white;
-    padding: 1px 5px;
+    padding: 2px 5px;
     border-radius: 4px;
     font-weight: 700;
+    margin-top: 3px;
   }
 
   /* Active State */
@@ -94,17 +118,18 @@
     background: #fff;
     color: #000;
     border-color: #e5e7eb;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   }
   .flipzy-bundle-pill.is-active .pill-name {
     font-weight: 800;
+    font-size: 1rem;
   }
 
   /* Right Side: Price + Button */
   .flipzy-sticky-action {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
   }
 
   .flipzy-sticky-price-box {
@@ -118,11 +143,11 @@
   .flipzy-sticky-old {
     text-decoration: line-through;
     color: #9ca3af;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
   .flipzy-sticky-new {
     font-weight: 800;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #111;
   }
 
@@ -132,8 +157,8 @@
     border: none;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 1rem;
-    padding: 12px 24px;
+    font-size: 0.95rem;
+    padding: 10px 20px;
     cursor: pointer;
     white-space: nowrap;
     transition: transform 0.2s;
@@ -146,36 +171,34 @@
   /* Mobile Adjustments */
   @media (max-width: 768px) {
     .flipzy-sticky-inner {
-      padding: 0 15px;
-      flex-direction: row; /* Keep row, squeeze items */
-      gap: 10px;
+      padding: 0 10px;
+      gap: 8px;
     }
     
-    /* Hide Text on Mobile to save space */
+    /* Hide Text on Mobile */
     .flipzy-sticky-info { display: none; }
-    
-    /* Make selector smaller */
-    .flipzy-bundle-pill {
-      padding: 6px 10px;
-      font-size: 0.85rem;
-    }
-    .flipzy-bundle-pill .pill-save {
-       display: none; /* Hide 'Save %' text inside pill on super small screens if needed, or keep it */
-    }
-    /* Only show save badge on active pill on mobile to save space? Optional. Keeping it for now. */
 
+    /* Compact Pills */
+    .flipzy-bundle-pill {
+      padding: 6px 12px;
+      min-width: 44px;
+    }
+    
+    /* On Mobile: Hide badge text ('Best Value') on UNSELECTED items to save width */
+    .flipzy-bundle-pill:not(.is-active) .pill-badge-text {
+      display: none;
+    }
+    .flipzy-bundle-pill:not(.is-active) .pill-save {
+      display: none; /* Optional: hide save % on unselected to be super clean */
+    }
+
+    .flipzy-sticky-action { gap: 8px; }
     .flipzy-sticky-btn {
-      padding: 10px 16px;
+      padding: 10px 14px;
       font-size: 0.9rem;
     }
-    
     .flipzy-sticky-new { font-size: 1rem; }
     .flipzy-sticky-old { font-size: 0.75rem; }
-  }
-  
-  /* Super small screens: Hide unselected pill text labels? */
-  @media (max-width: 380px) {
-     .flipzy-bundle-pill .pill-save { display: none; }
   }
 {%- endstyle -%}
 
@@ -213,6 +236,11 @@
               onclick="selectStickyBundle(this)"
             >
               <span class="pill-name">{{ block.settings.short_name }}</span>
+              
+              {% if block.settings.badge_text != blank %}
+                <span class="pill-badge-text">{{ block.settings.badge_text }}</span>
+              {% endif %}
+
               {% if discount_badge != blank %}
                 <span class="pill-save">{{ discount_badge }}</span>
               {% endif %}
@@ -256,7 +284,6 @@
 <script>
   let currentStickyIndex = {{ section.settings.default_selected | default: 1 }};
 
-  // Function to switch bundle visual state
   function selectStickyBundle(pill) {
     // 1. Update UI classes
     document.querySelectorAll('.flipzy-bundle-pill').forEach(el => el.classList.remove('is-active'));
@@ -279,13 +306,11 @@
     }
   }
 
-  // Function to submit the correct hidden form
   function submitStickyBundle() {
     const btn = document.getElementById('btn-sticky-submit-' + currentStickyIndex);
     if(btn) btn.click();
   }
 
-  // Init Logic
   document.addEventListener('DOMContentLoaded', function () {
     // Initialize prices based on default selection
     const defaultPill = document.querySelector('.flipzy-bundle-pill[data-index="{{ section.settings.default_selected }}"]');
@@ -293,19 +318,16 @@
 
     // Scroll Logic
     const bar = document.getElementById('flipzy-sticky-bar-{{ section.id }}');
-    // We try to find the OFFER TILES section to act as the trigger
     const triggerSection = document.querySelector('.flipzy-tiles-grid') || document.querySelector('.product-form');
 
     function checkScroll() {
       if (!triggerSection) {
-         // Fallback: Show after 500px if no trigger section found
          if(window.scrollY > 500) bar.classList.add('is-visible');
          else bar.classList.remove('is-visible');
          return;
       }
       
       const triggerBottom = triggerSection.getBoundingClientRect().bottom;
-      // Show bar only after user has scrolled PAST the main offer area
       if (triggerBottom < 0) { 
         bar.classList.add('is-visible');
       } else {
@@ -358,7 +380,8 @@
       "limit": 4,
       "settings": [
         { "type": "product", "id": "product", "label": "Product Bundle" },
-        { "type": "text", "id": "short_name", "label": "Short Label", "default": "1x", "info": "e.g. '1x' or '2 Pack'" }
+        { "type": "text", "id": "short_name", "label": "Short Label", "default": "1x", "info": "e.g. '1x' or '2 Pack'" },
+        { "type": "text", "id": "badge_text", "label": "Badge Label", "default": "Best Value", "info": "e.g. '3 for 2' or 'Most Popular'. Short text works best." }
       ]
     }
   ],
@@ -366,9 +389,9 @@
     { 
       "name": "Flipzy Sticky Bar",
       "blocks": [
-        { "type": "bundle", "settings": { "short_name": "1x" } },
-        { "type": "bundle", "settings": { "short_name": "2x" } },
-        { "type": "bundle", "settings": { "short_name": "3x" } }
+        { "type": "bundle", "settings": { "short_name": "1x", "badge_text": "Single" } },
+        { "type": "bundle", "settings": { "short_name": "2x", "badge_text": "Most Popular" } },
+        { "type": "bundle", "settings": { "short_name": "3x", "badge_text": "3 for 2" } }
       ]
     } 
   ]
