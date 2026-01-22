@@ -306,10 +306,10 @@
           "settings": {
             "product": "flipzy-wooden-routine-board",
             "highlight_tile": false,
-            "badge_text": "MAKE YOUR FIRST ROUTINE",
+            "badge_text": "YOUR FIRST FLIPZY",
             "manual_bundle_size": "",
-            "custom_title": "Your first Flipzy",
-            "description": "<b>Start with one daily routine.  </b><br>Perfect for trying Flipzy with one child or one habit.",
+            "custom_title": "Single Routine Setup",
+            "description": "<b>Start with one daily routine.  </b><br>A simple starting point if you want to try Flipzy with one routine before expanding.<br>Most families upgrade later",
             "show_shipping_badge": false,
             "button_text": "Add to Cart"
           }
@@ -321,8 +321,8 @@
             "highlight_tile": true,
             "badge_text": "MOST POPULAR",
             "manual_bundle_size": "",
-            "custom_title": "Morning & Evening Routine",
-            "description": "<b>Two routines. Less reminding. </b><br>\nIdeal for mornings and evenings — or two kids sharing the day.",
+            "custom_title": "Morning & Evening Routines",
+            "description": "<b>Two routines. Far less reminding. </b><br>\nIdeal for mornings and evenings, or two kids sharing the day with less friction.",
             "show_shipping_badge": true,
             "button_text": "Add to Cart"
           }
@@ -335,7 +335,7 @@
             "badge_text": "3 FOR 2",
             "manual_bundle_size": "",
             "custom_title": "Pay 2, Get 1 for Free!",
-            "description": "<b>One routine on us.</b><br> Best for full-day routines or growing families.",
+            "description": "<b>Extra flexibility included.</b><br> Great for full-day routines, shared spaces, or growing families.",
             "show_shipping_badge": true,
             "button_text": "Add to Cart"
           }
@@ -344,11 +344,11 @@
           "type": "tile",
           "settings": {
             "product": "flipzy-4-pack-best-value",
-            "highlight_tile": false,
+            "highlight_tile": true,
             "badge_text": "BEST VALUE",
             "manual_bundle_size": "",
             "custom_title": "Family pack",
-            "description": "<b>One system for the whole family.<br></b>Perfect for siblings, shared routines, or full household use.",
+            "description": "<b>One clear system for the whole family.<br></b>Designed for siblings, shared routines, and a calmer daily flow at home.",
             "show_shipping_badge": true,
             "button_text": "Add to Cart"
           }
@@ -364,8 +364,7 @@
       "settings": {
         "title": "Choose Your Bundle",
         "heading_size": "h1",
-        "text": "<p>One routine or a full family setup. Choose what works for you:</p>",
-        "color_scheme": "",
+        "text": "<p>From one routine to a full family setup. Choose what fits your needs today.</p>",
         "padding_top": 16,
         "padding_bottom": 16
       }
