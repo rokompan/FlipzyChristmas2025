@@ -10,6 +10,56 @@
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
 
+{% comment %} 
+  ---------------------------------------------------------
+  FLIPZY UPSELL SCRIPT (MOVED TO TOP TO FIX BUG)
+  ---------------------------------------------------------
+{% endcomment %}
+<script>
+  // Ensure function is defined globally on page load
+  window.upgradeFlipzyBundle = function(btn, oldId, newId) {
+    // UI Feedback
+    btn.innerHTML = 'Updating...';
+    btn.style.opacity = '0.7';
+    btn.style.pointerEvents = 'none'; // Prevent double clicks
+    
+    // Construct payload: Set old item to 0, New item to 1
+    var updates = {};
+    updates[oldId] = 0;
+    updates[newId] = 1;
+
+    var formData = {
+      'updates': updates,
+      'sections': 'cart-drawer,cart-icon-bubble'
+    };
+
+    fetch(window.Shopify.routes.root + 'cart/update.js', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      // Find the drawer element
+      var cartDrawer = document.querySelector('cart-drawer');
+      
+      // If the drawer element exists and has the render method, use it
+      if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
+        cartDrawer.renderContents(data);
+      } else {
+        // Fallback: Reload page if drawer logic fails
+        window.location.reload();
+      }
+    })
+    .catch((error) => {
+      console.error('Error upgrading cart:', error);
+      btn.innerHTML = 'Try Again';
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+    });
+  };
+</script>
+
 <style>
   .drawer {
     visibility: hidden;
@@ -603,44 +653,6 @@
           .flipzy-upsell-btn:hover { transform: scale(1.02); background: #333; }
         </style>
 
-        <script>
-          function upgradeFlipzyBundle(btn, oldId, newId) {
-            btn.innerHTML = 'Updating...';
-            btn.style.opacity = '0.7';
-            
-            // Construct payload to set old item to 0 and new item to 1
-            var updates = {};
-            updates[oldId] = 0;
-            updates[newId] = 1;
-
-            var formData = {
-              'updates': updates,
-              'sections': 'cart-drawer,cart-icon-bubble'
-            };
-
-            fetch(window.Shopify.routes.root + 'cart/update.js', {
-              method: 'POST',
-              headers: {'Content-Type': 'application/json'},
-              body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-              // Refresh logic
-              var cartDrawer = document.querySelector('cart-drawer');
-              if (cartDrawer && cartDrawer.renderContents) {
-                cartDrawer.renderContents(data);
-              } else {
-                window.location.reload();
-              }
-            })
-            .catch((error) => {
-              console.error('Error upgrading cart:', error);
-              btn.innerHTML = 'Try Again';
-              btn.style.opacity = '1';
-            });
-          }
-        </script>
-
         <div class="flipzy-upsell-container">
           <div class="flipzy-upsell-image">
             <img 
@@ -659,7 +671,7 @@
             <button 
               type="button" 
               class="flipzy-upsell-btn" 
-              onclick="upgradeFlipzyBundle(this, '{{ old_variant_id }}', '{{ upgrade_product.selected_or_first_available_variant.id }}')"
+              onclick="window.upgradeFlipzyBundle(this, '{{ old_variant_id }}', '{{ upgrade_product.selected_or_first_available_variant.id }}')"
             >
               {{ btn_text }} - {{ upgrade_product.price | money }}
             </button>
