@@ -233,14 +233,6 @@
         "fallback_image": "shopify://shop_images/palca.jpg"
       }
     },
-    "flipzy_anchor_94NFEW": {
-      "type": "flipzy-anchor",
-      "name": "Flipzy Scroll Anchor",
-      "settings": {
-        "anchor_id": "buy",
-        "offset": 100
-      }
-    },
     "flipzy_whats_in_the_box_tDc44V": {
       "type": "flipzy-whats-in-the-box",
       "blocks": {
@@ -298,6 +290,14 @@
         "btn_link": "#buy"
       }
     },
+    "flipzy_anchor_94NFEW": {
+      "type": "flipzy-anchor",
+      "name": "Flipzy Scroll Anchor",
+      "settings": {
+        "anchor_id": "buy",
+        "offset": 100
+      }
+    },
     "flipzy_offer_tiles_ndRRqR": {
       "type": "flipzy-offer-tiles",
       "blocks": {
@@ -346,7 +346,7 @@
             "product": "flipzy-4-pack-best-value",
             "highlight_tile": false,
             "badge_text": "BEST VALUE",
-            "manual_bundle_size": "4x Flipzy",
+            "manual_bundle_size": "",
             "custom_title": "Family pack",
             "description": "<b>One system for the whole family.<br></b>Perfect for siblings, shared routines, or full household use.",
             "show_shipping_badge": true,
@@ -676,8 +676,8 @@
     "flipzy_feature_video_Qt6iBy",
     "flipzy_feature_video_FNy9TP",
     "flipzy_feature_video_z6mmFe",
-    "flipzy_anchor_94NFEW",
     "flipzy_whats_in_the_box_tDc44V",
+    "flipzy_anchor_94NFEW",
     "flipzy_offer_tiles_ndRRqR",
     "flipzy_offer_strip_jVGpMw",
     "flipzy_testimonials_J7dGUa",
