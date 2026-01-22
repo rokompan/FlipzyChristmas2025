@@ -19,7 +19,7 @@
     border-top: 1px solid #e5e7eb;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
     z-index: 999;
-    padding: 10px 0;
+    padding: 12px 0;
     transform: translateY(110%);
     transition: transform 0.3s ease-in-out;
     display: block !important;
@@ -64,24 +64,25 @@
     background: #f3f4f6;
     padding: 4px;
     border-radius: 50px;
-    overflow-x: auto; /* Safety scroll for tiny screens */
-    scrollbar-width: none; /* Hide scrollbar Firefox */
+    overflow-x: auto;
+    scrollbar-width: none;
+    align-items: stretch; /* Ensure equal height */
   }
-  .flipzy-bundle-selector::-webkit-scrollbar { display: none; } /* Hide scrollbar Chrome */
+  .flipzy-bundle-selector::-webkit-scrollbar { display: none; }
 
   .flipzy-bundle-pill {
     cursor: pointer;
-    padding: 8px 16px;
+    padding: 6px 14px;
     border-radius: 40px;
     display: flex;
-    flex-direction: column; /* Stack name and badge */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     line-height: 1;
     transition: all 0.2s ease;
     border: 1px solid transparent;
     color: #6b7280;
-    min-width: 50px;
+    min-width: 55px;
     position: relative;
     text-align: center;
   }
@@ -90,27 +91,45 @@
   .flipzy-bundle-pill .pill-name {
     font-size: 0.95rem;
     font-weight: 700;
+    margin-bottom: 2px;
   }
 
-  /* Middle line: Badge Text (Best Value) */
+  /* Badges Wrapper */
+  .flipzy-pill-badges {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+
+  /* Badge Text (Best Value) */
   .flipzy-bundle-pill .pill-badge-text {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 700;
     text-transform: uppercase;
-    margin-top: 2px;
-    color: #D97706; /* Default orange-ish */
+    color: #D97706; 
     white-space: nowrap;
   }
 
-  /* Bottom/Corner: Save % */
+  /* Save % Badge */
   .flipzy-bundle-pill .pill-save {
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     background: #EF4444;
     color: white;
     padding: 2px 5px;
     border-radius: 4px;
     font-weight: 700;
-    margin-top: 3px;
+  }
+
+  /* Free Shipping Badge */
+  .flipzy-bundle-pill .pill-shipping {
+    font-size: 0.55rem;
+    background: #059669;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
   }
 
   /* Active State */
@@ -175,21 +194,18 @@
       gap: 8px;
     }
     
-    /* Hide Text on Mobile */
     .flipzy-sticky-info { display: none; }
 
-    /* Compact Pills */
     .flipzy-bundle-pill {
-      padding: 6px 12px;
-      min-width: 44px;
+      padding: 6px 10px;
+      min-width: 48px;
     }
     
-    /* On Mobile: Hide badge text ('Best Value') on UNSELECTED items to save width */
-    .flipzy-bundle-pill:not(.is-active) .pill-badge-text {
+    /* On Mobile: Hide extra badges on UNSELECTED items */
+    .flipzy-bundle-pill:not(.is-active) .pill-badge-text,
+    .flipzy-bundle-pill:not(.is-active) .pill-save,
+    .flipzy-bundle-pill:not(.is-active) .pill-shipping {
       display: none;
-    }
-    .flipzy-bundle-pill:not(.is-active) .pill-save {
-      display: none; /* Optional: hide save % on unselected to be super clean */
     }
 
     .flipzy-sticky-action { gap: 8px; }
@@ -237,13 +253,19 @@
             >
               <span class="pill-name">{{ block.settings.short_name }}</span>
               
-              {% if block.settings.badge_text != blank %}
-                <span class="pill-badge-text">{{ block.settings.badge_text }}</span>
-              {% endif %}
+              <div class="flipzy-pill-badges">
+                {% if block.settings.badge_text != blank %}
+                  <span class="pill-badge-text">{{ block.settings.badge_text }}</span>
+                {% endif %}
 
-              {% if discount_badge != blank %}
-                <span class="pill-save">{{ discount_badge }}</span>
-              {% endif %}
+                {% if discount_badge != blank %}
+                  <span class="pill-save">{{ discount_badge }}</span>
+                {% endif %}
+
+                {% if block.settings.show_free_shipping %}
+                  <span class="pill-shipping">Free Shipping</span>
+                {% endif %}
+              </div>
             </div>
           {% endif %}
         {% endfor %}
@@ -268,13 +290,27 @@
     {% for block in section.blocks %}
       {% assign prod = block.settings.product %}
       {% if prod != blank %}
-        {% assign product_form_id = 'product-form-sticky-' | append: block.id %}
-        <product-form class="product-form" data-sticky-index="{{ forloop.index }}">
-          {%- form 'product', prod, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-            <input type="hidden" name="id" value="{{ prod.selected_or_first_available_variant.id }}">
-            <button type="submit" id="btn-sticky-submit-{{ forloop.index }}">Add</button>
-          {%- endform -%}
-        </product-form>
+        {% assign unique_id = 'sticky-product-info-' | append: block.id %}
+        {% assign product_form_id = 'product-form-' | append: unique_id %}
+        
+        <product-info
+          id="{{ unique_id }}"
+          data-section="{{ section.id }}"
+          data-product-id="{{ prod.id }}"
+          data-update-url="false"
+          data-url="{{ prod.url }}"
+        >
+          {%- render 'buy-buttons', 
+              block: block, 
+              product: prod, 
+              product_form_id: product_form_id, 
+              section_id: section.id, 
+              show_dynamic_checkout: false 
+          -%}
+          
+          <button id="real-submit-{{ forloop.index }}" type="submit" form="{{ product_form_id }}">Submit</button>
+        </product-info>
+
       {% endif %}
     {% endfor %}
   </div>
@@ -307,8 +343,13 @@
   }
 
   function submitStickyBundle() {
-    const btn = document.getElementById('btn-sticky-submit-' + currentStickyIndex);
-    if(btn) btn.click();
+    // Find the hidden native button corresponding to the selected bundle and click it
+    const btn = document.getElementById('real-submit-' + currentStickyIndex);
+    if(btn) {
+      btn.click();
+    } else {
+      console.error("Flipzy Sticky: Could not find hidden submit button for index " + currentStickyIndex);
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -318,17 +359,23 @@
 
     // Scroll Logic
     const bar = document.getElementById('flipzy-sticky-bar-{{ section.id }}');
-    const triggerSection = document.querySelector('.flipzy-tiles-grid') || document.querySelector('.product-form');
+    
+    // Attempt to find hero section
+    const heroSection = document.querySelector('.section-hero') || document.querySelector('.flipzy-hero-container') || document.querySelector('.banner');
 
     function checkScroll() {
-      if (!triggerSection) {
-         if(window.scrollY > 500) bar.classList.add('is-visible');
-         else bar.classList.remove('is-visible');
-         return;
-      }
+      let triggerPoint = 0;
       
-      const triggerBottom = triggerSection.getBoundingClientRect().bottom;
-      if (triggerBottom < 0) { 
+      if (heroSection) {
+        // If hero exists, show when bottom of hero passes top of viewport
+        triggerPoint = heroSection.getBoundingClientRect().bottom;
+      } else {
+        // Fallback: Show after scrolling 100% of viewport height
+        triggerPoint = window.innerHeight - window.scrollY;
+      }
+
+      // If trigger point is negative (meaning we scrolled past it)
+      if (triggerPoint < 0) { 
         bar.classList.add('is-visible');
       } else {
         bar.classList.remove('is-visible');
@@ -381,7 +428,8 @@
       "settings": [
         { "type": "product", "id": "product", "label": "Product Bundle" },
         { "type": "text", "id": "short_name", "label": "Short Label", "default": "1x", "info": "e.g. '1x' or '2 Pack'" },
-        { "type": "text", "id": "badge_text", "label": "Badge Label", "default": "Best Value", "info": "e.g. '3 for 2' or 'Most Popular'. Short text works best." }
+        { "type": "text", "id": "badge_text", "label": "Badge Label", "default": "Best Value", "info": "e.g. '3 for 2' or 'Most Popular'. Short text works best." },
+        { "type": "checkbox", "id": "show_free_shipping", "label": "Show Free Shipping Badge", "default": false }
       ]
     }
   ],
@@ -390,8 +438,8 @@
       "name": "Flipzy Sticky Bar",
       "blocks": [
         { "type": "bundle", "settings": { "short_name": "1x", "badge_text": "Single" } },
-        { "type": "bundle", "settings": { "short_name": "2x", "badge_text": "Most Popular" } },
-        { "type": "bundle", "settings": { "short_name": "3x", "badge_text": "3 for 2" } }
+        { "type": "bundle", "settings": { "short_name": "2x", "badge_text": "Most Popular", "show_free_shipping": true } },
+        { "type": "bundle", "settings": { "short_name": "3x", "badge_text": "3 for 2", "show_free_shipping": true } }
       ]
     } 
   ]
