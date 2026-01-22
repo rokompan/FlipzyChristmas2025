@@ -1451,5 +1451,30 @@
         "default": "scheme-1"
       }
     ]
+  },
+  {
+    "name": "Cart Drawer Bundles",
+    "settings": [
+      {
+        "type": "product",
+        "id": "bundle_product_1",
+        "label": "1x Bundle Product"
+      },
+      {
+        "type": "product",
+        "id": "bundle_product_2",
+        "label": "2x Bundle Product"
+      },
+      {
+        "type": "product",
+        "id": "bundle_product_3",
+        "label": "3x Bundle Product"
+      },
+      {
+        "type": "product",
+        "id": "bundle_product_4",
+        "label": "4x Bundle Product"
+      }
+    ]
   }
 ]
