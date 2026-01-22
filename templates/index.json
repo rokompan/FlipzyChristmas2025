@@ -661,10 +661,18 @@
             "product": "flipzy-wooden-routine-board",
             "short_name": "1x"
           }
+        },
+        "bundle_CV4PJ6": {
+          "type": "bundle",
+          "settings": {
+            "product": "flipzy-2-pack-morning-evening",
+            "short_name": "2x"
+          }
         }
       },
       "block_order": [
-        "bundle_qbhHTt"
+        "bundle_qbhHTt",
+        "bundle_CV4PJ6"
       ],
       "name": "Flipzy Sticky Bar",
       "settings": {
