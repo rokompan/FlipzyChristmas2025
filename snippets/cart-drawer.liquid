@@ -529,7 +529,7 @@
 
       {% comment %} 
         ---------------------------------------------------------
-        FLIPZY BUNDLE UPSELL LOGIC (Handles + Dynamic Percent)
+        FLIPZY BUNDLE UPSELL LOGIC (Handles + Dynamic Badge + Diff Price)
         ---------------------------------------------------------
       {% endcomment %}
       
@@ -548,20 +548,24 @@
         assign current_level = 0
         assign upgrade_product = null
         assign old_variant_id = 0
+        assign current_cart_price = 0
         
-        # Check what is currently in the cart
+        # Check what is currently in the cart AND capture price
         for item in cart.items
           if item.product.handle == handle_1x
             assign current_level = 1
             assign old_variant_id = item.variant.id
+            assign current_cart_price = item.final_price
             break
           elsif item.product.handle == handle_2x
             assign current_level = 2
             assign old_variant_id = item.variant.id
+            assign current_cart_price = item.final_price
             break
           elsif item.product.handle == handle_3x
             assign current_level = 3
             assign old_variant_id = item.variant.id
+            assign current_cart_price = item.final_price
             break
           elsif item.product.handle == handle_4x
             assign current_level = 4
@@ -572,31 +576,38 @@
         # Determine Upgrade Path
         assign headline = ""
         assign subline = ""
+        assign saved_badge_text = ""
+        assign btn_text = "Upgrade"
         
         if current_level == 1 and bundle_2x != empty
           assign upgrade_product = bundle_2x
           assign subline = "Upgrade to the Morning & Evening pair."
+          assign btn_text = "Upgrade to 2-Pack"
         elsif current_level == 2 and bundle_3x != empty
           assign upgrade_product = bundle_3x
           assign subline = "Upgrade to Pay 2, Get 1 Free (3-Pack)."
+          assign btn_text = "Upgrade to 3-Pack"
         elsif current_level == 3 and bundle_4x != empty
           assign upgrade_product = bundle_4x
           assign subline = "Upgrade to the Family Pack (4x)."
+          assign btn_text = "Upgrade to 4-Pack"
         endif
 
-        # Dynamic Calculation of % Saved
+        # Dynamic Calculation of % Saved & Price Difference
         if upgrade_product != blank
-          assign var_price = upgrade_product.selected_or_first_available_variant.price
-          assign var_compare = upgrade_product.selected_or_first_available_variant.compare_at_price
+          assign new_price = upgrade_product.selected_or_first_available_variant.price
+          assign new_compare = upgrade_product.selected_or_first_available_variant.compare_at_price
           
-          if var_compare > var_price
-            assign saved_amount = var_compare | minus: var_price
-            assign saved_pct = saved_amount | times: 100.0 | divided_by: var_compare | round
-            
-            # Dynamic Headline
-            assign headline = "✨ Save " | append: saved_pct | append: "% & Free Shipping!"
+          # Calculate Difference to Pay
+          assign price_difference = new_price | minus: current_cart_price
+          
+          # Calculate % Saved on the new bundle
+          if new_compare > new_price
+            assign saved_amount = new_compare | minus: new_price
+            assign saved_pct = saved_amount | times: 100.0 | divided_by: new_compare | round
+            assign saved_badge_text = "SAVE " | append: saved_pct | append: "%"
+            assign headline = "✨ Unlock Free Shipping & "
           else
-            # Fallback if no compare price
             assign headline = "✨ Unlock Free Shipping!"
           endif
         endif
@@ -605,7 +616,7 @@
       {%- if upgrade_product != blank -%}
         <style>
           .flipzy-upsell-container {
-            background-color: #FFFBEB; /* Light Yellow Background */
+            background-color: #FFFBEB; 
             border: 1px solid #FCD34D;
             border-radius: 12px;
             margin: 1.5rem 1.5rem 0;
@@ -626,13 +637,35 @@
           }
           .flipzy-upsell-image img { width: 100%; height: 100%; object-fit: cover; }
           .flipzy-upsell-content { flex-grow: 1; }
-          .flipzy-upsell-content h4 {
-            margin: 0 0 4px 0;
-            font-size: 1.3rem;
+          
+          .flipzy-upsell-header {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 4px;
+          }
+          .flipzy-upsell-header h4 {
+            margin: 0;
+            font-size: 1.25rem;
             font-weight: 800;
             line-height: 1.2;
             color: #111;
           }
+          /* RED BADGE STYLE */
+          .flipzy-upsell-badge {
+            background-color: #DC2626; /* Strong Red */
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            display: inline-block;
+            line-height: 1;
+            box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+          }
+
           .flipzy-upsell-content p {
             margin: 0 0 10px 0;
             font-size: 1.1rem;
@@ -668,7 +701,13 @@
           </div>
           
           <div class="flipzy-upsell-content">
-            <h4>{{ headline }}</h4>
+            <div class="flipzy-upsell-header">
+              <h4>{{ headline }}</h4>
+              {% if saved_badge_text != blank %}
+                <span class="flipzy-upsell-badge">{{ saved_badge_text }}</span>
+              {% endif %}
+            </div>
+            
             <p>{{ subline }}</p>
 
             <button 
@@ -676,7 +715,7 @@
               class="flipzy-upsell-btn" 
               onclick="window.upgradeFlipzyBundle(this, '{{ old_variant_id }}', '{{ upgrade_product.selected_or_first_available_variant.id }}')"
             >
-              Upgrade - {{ upgrade_product.price | money }}
+              {{ btn_text }} (+{{ price_difference | money }})
             </button>
           </div>
         </div>
