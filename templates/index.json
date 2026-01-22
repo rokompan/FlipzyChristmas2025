@@ -688,7 +688,7 @@
             "product": "flipzy-4-pack-best-value",
             "short_name": "4x Flipzy",
             "badge_text": "Best Value",
-            "show_free_shipping": false
+            "show_free_shipping": true
           }
         }
       },
