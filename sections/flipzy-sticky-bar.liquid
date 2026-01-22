@@ -18,7 +18,7 @@
     background: #ffffff;
     border-top: 1px solid #e5e7eb;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-    /* MAX Z-INDEX to cover language selectors & chat widgets */
+    /* MAX Z-INDEX to sit on top of language selectors/chat */
     z-index: 2147483647 !important; 
     padding: 10px 0;
     transform: translateY(110%);
@@ -83,7 +83,7 @@
     transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border: 2px solid transparent;
     color: #6b7280;
-    min-width: 60px; /* Ensure enough width for text */
+    min-width: 60px;
     position: relative;
     text-align: center;
     flex-shrink: 0; /* Prevent shrinking */
@@ -206,7 +206,6 @@
     .flipzy-bundle-selector {
       flex: 1;
       margin-right: 5px;
-      /* Ensure it doesn't get crushed */
       min-width: 0; 
     }
 
@@ -215,7 +214,7 @@
       min-width: 50px;
     }
     
-    /* Ensure badges are VISIBLE on all items on mobile, scrolling handled by container */
+    /* ALWAYS SHOW BADGES (Scroll horizontal if needed) */
     .flipzy-bundle-pill .pill-badge-text,
     .flipzy-bundle-pill .pill-save,
     .flipzy-bundle-pill .pill-shipping {
@@ -246,7 +245,7 @@
       width: 100%;
       padding: 8px 12px;
       font-size: 0.9rem;
-      border-radius: 6px; /* slightly less round to save space visually */
+      border-radius: 6px;
       height: 36px;
       display: flex;
       align-items: center;
@@ -355,6 +354,7 @@
 {% endunless %}
 
 <script>
+  // Ensure default index is respected from Liquid settings
   let currentStickyIndex = {{ section.settings.default_selected | default: 1 }};
 
   function selectStickyBundle(pill) {
