@@ -660,7 +660,8 @@
           "settings": {
             "product": "flipzy-wooden-routine-board",
             "short_name": "1x Flipzy",
-            "badge_text": "One routine"
+            "badge_text": "One routine",
+            "show_free_shipping": false
           }
         },
         "bundle_CV4PJ6": {
@@ -668,7 +669,8 @@
           "settings": {
             "product": "flipzy-2-pack-morning-evening",
             "short_name": "2x Flipzy",
-            "badge_text": "most popular"
+            "badge_text": "most popular",
+            "show_free_shipping": true
           }
         },
         "bundle_mDLfdD": {
@@ -676,7 +678,8 @@
           "settings": {
             "product": "flipzy-3-pack-full-day-siblings",
             "short_name": "3x Flipzy",
-            "badge_text": "3 for 2"
+            "badge_text": "3 for 2",
+            "show_free_shipping": true
           }
         },
         "bundle_4qLdDi": {
@@ -684,7 +687,8 @@
           "settings": {
             "product": "flipzy-4-pack-best-value",
             "short_name": "4x Flipzy",
-            "badge_text": "Best Value"
+            "badge_text": "Best Value",
+            "show_free_shipping": false
           }
         }
       },
