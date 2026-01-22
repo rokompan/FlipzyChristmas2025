@@ -9,6 +9,8 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ padding_bottom | times: 0.75 | round: 0 }}px;
+    /* Darker background to make tiles pop */
+    background-color: #f4f4f5; 
   }
 
   @media screen and (min-width: 750px) {
@@ -22,7 +24,7 @@
   .flipzy-tiles-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px; /* Slightly more breathing room for mobile shadows */
+    gap: 16px; 
     width: 100%;
     margin-top: 1.5rem;
   }
@@ -38,27 +40,20 @@
   /* --- INDIVIDUAL TILE CARD --- */
   .flipzy-tile {
     position: relative;
-    background: rgb(var(--color-background));
-    border: 1px solid rgba(var(--color-foreground), 0.1);
-    border-radius: 16px; 
-    padding: 20px; /* Increased padding for mobile touch targets */
+    background: #ffffff; /* Ensure tile is pure white */
+    border: 1px solid rgba(0,0,0, 0.05);
+    border-radius: 20px; 
+    padding: 24px 18px 18px 18px; /* Extra top padding for badges */
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     height: 100%;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  }
-
-  @media screen and (min-width: 990px) {
-    .flipzy-tile {
-        padding: 20px; 
-        border-radius: 20px; 
-    }
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
   }
 
   .flipzy-tile:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
   }
 
   /* Highlighted Tile (Best Value) */
@@ -67,7 +62,7 @@
     background: #FFFBEB; 
   }
 
-  /* --- TILE HEADER --- */
+  /* --- TOP CENTER BADGE (Best Value) --- */
   .flipzy-tile-badge {
     position: absolute;
     top: -12px;
@@ -77,12 +72,12 @@
     color: #fff;
     padding: 6px 14px;
     border-radius: 20px;
-    font-size: 1.1rem; /* Larger font for mobile */
+    font-size: 1.1rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: nowrap;
-    z-index: 2;
+    z-index: 3;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
   
@@ -98,6 +93,7 @@
     margin-bottom: 15px;
     aspect-ratio: 1 / 1;
     position: relative;
+    z-index: 1; /* Behind sticker */
   }
   
   .flipzy-tile-media img {
@@ -111,30 +107,40 @@
     scale: 1.05;
   }
 
-  /* --- PACK COUNT CORNER TAG (PILL SHAPE) --- */
-  .flipzy-pack-count {
+  /* --- STICKER TAG (Pack Count) --- */
+  .flipzy-pack-sticker {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.85);
+    top: 12px;
+    right: 12px;
+    background: #111;
     color: #fff;
-    padding: 5px 12px;
-    border-radius: 30px;
+    padding: 6px 12px;
+    border-radius: 12px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
-    font-weight: 700;
-    z-index: 2;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.2);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-  .flipzy-pack-count span {
-    margin-top: 1px; 
-    white-space: nowrap;
+    line-height: 1;
+    z-index: 5; /* Above image */
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.25);
+    transform: rotate(3deg); /* Sticker look */
+    border: 2px solid #fff;
   }
 
+  .flipzy-pack-sticker .sticker-big {
+    font-size: 1.6rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 2px;
+  }
+  
+  .flipzy-pack-sticker .sticker-small {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+  }
 
   /* --- CONTENT --- */
   .flipzy-tile-content {
@@ -145,7 +151,7 @@
   }
 
   .flipzy-tile-title {
-    font-size: 1.6rem; /* Increased for Mobile */
+    font-size: 1.6rem; 
     font-weight: 700;
     margin: 0 0 10px 0;
     line-height: 1.3;
@@ -153,7 +159,7 @@
   }
 
   .flipzy-tile-desc {
-    font-size: 1.4rem; /* Increased for Mobile */
+    font-size: 1.4rem;
     opacity: 0.8;
     margin-bottom: 15px;
     line-height: 1.5;
@@ -177,7 +183,7 @@
   }
 
   .flipzy-price-current {
-    font-size: 1.8rem; /* Increased for Mobile */
+    font-size: 1.8rem;
     font-weight: 800;
     color: rgb(var(--color-foreground));
   }
@@ -185,13 +191,13 @@
   .flipzy-price-compare {
     text-decoration: line-through;
     opacity: 0.6;
-    font-size: 1.3rem; /* Increased for Mobile */
+    font-size: 1.3rem; 
   }
 
   .flipzy-save-pill {
     background-color: #EF4444; 
     color: #fff;
-    font-size: 1.1rem; /* Increased for Mobile */
+    font-size: 1.1rem; 
     font-weight: 700;
     padding: 4px 10px;
     border-radius: 6px;
@@ -199,10 +205,10 @@
   }
 
   .flipzy-shipping-badge {
-    color: #059669; /* Green text */
-    background: #ECFDF5; /* Light green bg */
+    color: #059669; 
+    background: #ECFDF5; 
     border: 1px solid #6EE7B7;
-    font-size: 1rem; /* Increased for Mobile */
+    font-size: 1rem; 
     font-weight: 700;
     padding: 3px 10px;
     border-radius: 6px;
@@ -218,7 +224,7 @@
       border: none !important;
       border-radius: 50px !important;
       font-weight: 700 !important;
-      font-size: 1.5rem !important; /* Increased for Mobile */
+      font-size: 1.5rem !important; 
       text-transform: none !important;
       padding: 14px 20px !important;
       box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
@@ -241,7 +247,6 @@
     .flipzy-tile-badge { font-size: 0.8rem; padding: 5px 15px; }
     .flipzy-save-pill { font-size: 0.85rem; }
     .flipzy-shipping-badge { font-size: 0.8rem; }
-    .flipzy-pack-count { font-size: 0.8rem; }
   }
   
   /* Pulse Animation Logic */
@@ -265,7 +270,7 @@
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
-<div class="color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+<div class="section-{{ section.id }}-padding">
   <div class="page-width">
     
     {%- if section.settings.title != blank -%}
@@ -288,6 +293,27 @@
             <div class="flipzy-tile-badge">{{ block.settings.badge_text }}</div>
           {%- endif -%}
 
+          {% comment %} 
+            --- BUNDLE COUNT LOGIC ---
+          {% endcomment %}
+          {%- liquid
+            assign bundle_count = 1
+            if block.settings.manual_bundle_size != blank
+               assign bundle_count = block.settings.manual_bundle_size
+            elsif product.title contains '4-Pack'
+               assign bundle_count = 4
+            elsif product.title contains '3-Pack'
+               assign bundle_count = 3
+            elsif product.title contains '2-Pack'
+               assign bundle_count = 2
+            endif
+          -%}
+          
+          <div class="flipzy-pack-sticker">
+            <span class="sticker-big">{{ bundle_count }}x</span>
+            <span class="sticker-small">Flipzy</span>
+          </div>
+
           <div class="flipzy-tile-media">
             {%- if product.featured_image != blank -%}
               <img
@@ -300,27 +326,6 @@
             {%- else -%}
               {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
-
-            {% comment %} 
-              --- BUNDLE COUNT LOGIC ---
-            {% endcomment %}
-            {%- liquid
-              assign bundle_count = 1
-              if block.settings.manual_bundle_size != blank
-                 assign bundle_count = block.settings.manual_bundle_size
-              elsif product.title contains '4-Pack'
-                 assign bundle_count = 4
-              elsif product.title contains '3-Pack'
-                 assign bundle_count = 3
-              elsif product.title contains '2-Pack'
-                 assign bundle_count = 2
-              endif
-            -%}
-            
-            <div class="flipzy-pack-count">
-              <span>{{ bundle_count }}x Flipzy</span>
-            </div>
-
           </div>
 
           <div class="flipzy-tile-content">
@@ -421,12 +426,6 @@
       "id": "text",
       "label": "Description",
       "default": "<p>Select the package that fits your family best.</p>"
-    },
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "scheme-1"
     },
     {
       "type": "range",
