@@ -655,40 +655,40 @@
     "flipzy_sticky_bar_Tdg6tz": {
       "type": "flipzy-sticky-bar",
       "blocks": {
-        "bundle_4qLdDi": {
-          "type": "bundle",
-          "settings": {
-            "product": "flipzy-4-pack-best-value",
-            "short_name": "4x"
-          }
-        },
         "bundle_qbhHTt": {
           "type": "bundle",
           "settings": {
             "product": "flipzy-wooden-routine-board",
-            "short_name": "1x"
+            "short_name": "1x Flipzy"
           }
         },
         "bundle_CV4PJ6": {
           "type": "bundle",
           "settings": {
             "product": "flipzy-2-pack-morning-evening",
-            "short_name": "2x"
+            "short_name": "2x Flipzy"
           }
         },
         "bundle_mDLfdD": {
           "type": "bundle",
           "settings": {
             "product": "flipzy-3-pack-full-day-siblings",
-            "short_name": "3x"
+            "short_name": "3x Flipzy"
+          }
+        },
+        "bundle_4qLdDi": {
+          "type": "bundle",
+          "settings": {
+            "product": "flipzy-4-pack-best-value",
+            "short_name": "4x Flipzy"
           }
         }
       },
       "block_order": [
-        "bundle_4qLdDi",
         "bundle_qbhHTt",
         "bundle_CV4PJ6",
-        "bundle_mDLfdD"
+        "bundle_mDLfdD",
+        "bundle_4qLdDi"
       ],
       "name": "Flipzy Sticky Bar",
       "settings": {
