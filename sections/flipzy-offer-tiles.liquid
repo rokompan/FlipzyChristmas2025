@@ -239,6 +239,20 @@
   
   .flipzy-tile-submit:hover { transform: scale(1.02); }
 
+  /* --- FOOTER TEXT --- */
+  .flipzy-offer-footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    opacity: 0.85;
+    font-weight: 500;
+    font-style: italic;
+    color: rgb(var(--color-foreground));
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   /* Desktop Adjustments */
   @media screen and (min-width: 990px) {
     /* Restore Square Image on Desktop */
@@ -251,6 +265,8 @@
     .flipzy-tile-badge { font-size: 0.8rem; padding: 5px 15px; }
     .flipzy-save-pill { font-size: 0.85rem; }
     .flipzy-shipping-badge { font-size: 0.8rem; }
+    
+    .flipzy-offer-footer { font-size: 1.1rem; margin-top: 2.5rem; }
   }
   
   /* Pulse Animation Logic */
@@ -399,6 +415,13 @@
         </div>
       {%- endfor -%}
     </div>
+
+    {%- if section.settings.footer_text != blank -%}
+      <div class="flipzy-offer-footer">
+        {{ section.settings.footer_text }}
+      </div>
+    {%- endif -%}
+
   </div>
 </div>
 
@@ -430,6 +453,12 @@
       "id": "text",
       "label": "Description",
       "default": "<p>Select the package that fits your family best.</p>"
+    },
+    {
+      "type": "text",
+      "id": "footer_text",
+      "label": "Footer Text (Social Proof)",
+      "default": "Most families choose 2 or more Flipzys for smoother daily routines."
     },
     {
       "type": "range",
