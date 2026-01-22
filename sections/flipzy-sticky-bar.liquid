@@ -1,6 +1,6 @@
 {%- liquid
-  assign product = section.settings.product
-  if product == null
+  assign placeholder = false
+  if section.blocks.size == 0
     assign placeholder = true
   endif
 -%}
@@ -9,88 +9,368 @@
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 {%- style -%}
-  /* CSS je v flipzy-custom.css */
+  /* --- STICKY BAR CSS --- */
+  .flipzy-sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    z-index: 999;
+    padding: 12px 0;
+    transform: translateY(110%);
+    transition: transform 0.3s ease-in-out;
+    display: block !important; /* Ensure it overrides any hidden states if JS enables it */
+  }
+
+  .flipzy-sticky.is-visible {
+    transform: translateY(0);
+  }
+
+  .flipzy-sticky-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Left Side: Text (Hidden on small mobile) */
+  .flipzy-sticky-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .flipzy-sticky-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+    color: #111;
+  }
+  .flipzy-sticky-sub {
+    font-size: 0.8rem;
+    color: #059669; /* Green */
+    font-weight: 600;
+  }
+
+  /* Center: Bundle Selector (Pills) */
+  .flipzy-bundle-selector {
+    display: flex;
+    gap: 8px;
+    background: #f3f4f6;
+    padding: 4px;
+    border-radius: 50px;
+  }
+
+  .flipzy-bundle-pill {
+    cursor: pointer;
+    padding: 6px 14px;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    color: #6b7280;
+  }
+
+  .flipzy-bundle-pill .pill-save {
+    font-size: 0.75rem;
+    background: #EF4444;
+    color: white;
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  /* Active State */
+  .flipzy-bundle-pill.is-active {
+    background: #fff;
+    color: #000;
+    border-color: #e5e7eb;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  .flipzy-bundle-pill.is-active .pill-name {
+    font-weight: 800;
+  }
+
+  /* Right Side: Price + Button */
+  .flipzy-sticky-action {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .flipzy-sticky-price-box {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.1;
+  }
+  
+  .flipzy-sticky-old {
+    text-decoration: line-through;
+    color: #9ca3af;
+    font-size: 0.85rem;
+  }
+  .flipzy-sticky-new {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #111;
+  }
+
+  .flipzy-sticky-btn {
+    background-color: #F4D35E;
+    color: #111827;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 12px 24px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 10px rgba(244, 211, 94, 0.3);
+  }
+  .flipzy-sticky-btn:hover {
+    transform: scale(1.02);
+  }
+
+  /* Mobile Adjustments */
+  @media (max-width: 768px) {
+    .flipzy-sticky-inner {
+      padding: 0 15px;
+      flex-direction: row; /* Keep row, squeeze items */
+      gap: 10px;
+    }
+    
+    /* Hide Text on Mobile to save space */
+    .flipzy-sticky-info { display: none; }
+    
+    /* Make selector smaller */
+    .flipzy-bundle-pill {
+      padding: 6px 10px;
+      font-size: 0.85rem;
+    }
+    .flipzy-bundle-pill .pill-save {
+       display: none; /* Hide 'Save %' text inside pill on super small screens if needed, or keep it */
+    }
+    /* Only show save badge on active pill on mobile to save space? Optional. Keeping it for now. */
+
+    .flipzy-sticky-btn {
+      padding: 10px 16px;
+      font-size: 0.9rem;
+    }
+    
+    .flipzy-sticky-new { font-size: 1rem; }
+    .flipzy-sticky-old { font-size: 0.75rem; }
+  }
+  
+  /* Super small screens: Hide unselected pill text labels? */
+  @media (max-width: 380px) {
+     .flipzy-bundle-pill .pill-save { display: none; }
+  }
 {%- endstyle -%}
 
-{% if product != blank %}
-  {%- assign variant = product.selected_or_first_available_variant -%}
-  {%- assign compare_price = variant.compare_at_price -%}
-  {%- assign price = variant.price -%}
-  {%- assign product_form_id = 'product-form-sticky-' | append: section.id -%}
-
+{% unless placeholder %}
   <div id="flipzy-sticky-bar-{{ section.id }}" class="flipzy-sticky">
     <div class="flipzy-sticky-inner">
       
       <div class="flipzy-sticky-info">
-        <p class="flipzy-sticky-title">
-          {% if section.settings.text != blank %}{{ section.settings.text }}{% else %}{{ product.title }}{% endif %}
-        </p>
+        <p class="flipzy-sticky-title">{{ section.settings.text }}</p>
         {% if section.settings.subline_text != blank %}
           <div class="flipzy-sticky-sub">{{ section.settings.subline_text }}</div>
         {% endif %}
       </div>
 
-      <div class="flipzy-sticky-price-box">
-        {% if compare_price > price %}
-          <span class="flipzy-sticky-old">{{ compare_price | money }}</span>
-        {% endif %}
-        <span class="flipzy-sticky-new">{{ price | money }}</span>
+      <div class="flipzy-bundle-selector">
+        {% for block in section.blocks %}
+          {% assign prod = block.settings.product %}
+          {% if prod != blank %}
+            {% assign variant = prod.selected_or_first_available_variant %}
+            
+            {% comment %} Calculate Discount {% endcomment %}
+            {% assign discount_badge = "" %}
+            {% if variant.compare_at_price > variant.price %}
+               {% assign saved = variant.compare_at_price | minus: variant.price %}
+               {% assign pct = saved | times: 100.0 | divided_by: variant.compare_at_price | round %}
+               {% capture discount_badge %}-{{ pct }}%{% endcapture %}
+            {% endif %}
+
+            <div 
+              class="flipzy-bundle-pill {% if forloop.index == section.settings.default_selected %}is-active{% endif %}"
+              data-index="{{ forloop.index }}"
+              data-price="{{ variant.price | money }}"
+              data-compare="{{ variant.compare_at_price | money }}"
+              data-has-compare="{% if variant.compare_at_price > variant.price %}true{% else %}false{% endif %}"
+              onclick="selectStickyBundle(this)"
+            >
+              <span class="pill-name">{{ block.settings.short_name }}</span>
+              {% if discount_badge != blank %}
+                <span class="pill-save">{{ discount_badge }}</span>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
 
       <div class="flipzy-sticky-action">
-        <product-info
-          id="ProductInfo-{{ section.id }}"
-          data-section="{{ section.id }}"
-          data-product-id="{{ product.id }}"
-          data-update-url="false"
-          data-url="{{ product.url }}"
-        >
-          {%- render 'buy-buttons',
-            block: section, 
-            product: product,
-            product_form_id: product_form_id,
-            section_id: section.id,
-            show_dynamic_checkout: false
-          -%}
-        </product-info>
+        
+        <div class="flipzy-sticky-price-box">
+          <span class="flipzy-sticky-old" id="sticky-price-old"></span>
+          <span class="flipzy-sticky-new" id="sticky-price-new"></span>
+        </div>
+
+        <button type="button" class="flipzy-sticky-btn" onclick="submitStickyBundle()">
+          {{ section.settings.button_label }}
+        </button>
       </div>
 
     </div>
   </div>
-{% endif %}
+
+  <div style="display:none;">
+    {% for block in section.blocks %}
+      {% assign prod = block.settings.product %}
+      {% if prod != blank %}
+        {% assign product_form_id = 'product-form-sticky-' | append: block.id %}
+        <product-form class="product-form" data-sticky-index="{{ forloop.index }}">
+          {%- form 'product', prod, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            <input type="hidden" name="id" value="{{ prod.selected_or_first_available_variant.id }}">
+            <button type="submit" id="btn-sticky-submit-{{ forloop.index }}">Add</button>
+          {%- endform -%}
+        </product-form>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+{% endunless %}
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const bar = document.getElementById('flipzy-sticky-bar-{{ section.id }}');
-  const triggerSection = document.querySelector('.flipzy-hero-container') || document.querySelector('.section-featured-product');
+  let currentStickyIndex = {{ section.settings.default_selected | default: 1 }};
 
-  function checkScroll() {
-    if (!triggerSection) {
-       if(window.scrollY > 400) bar.classList.add('is-visible');
-       else bar.classList.remove('is-visible');
-       return;
-    }
-    const triggerBottom = triggerSection.getBoundingClientRect().bottom;
-    if (triggerBottom < 0) { 
-      bar.classList.add('is-visible');
+  // Function to switch bundle visual state
+  function selectStickyBundle(pill) {
+    // 1. Update UI classes
+    document.querySelectorAll('.flipzy-bundle-pill').forEach(el => el.classList.remove('is-active'));
+    pill.classList.add('is-active');
+
+    // 2. Update Data
+    currentStickyIndex = pill.getAttribute('data-index');
+    const price = pill.getAttribute('data-price');
+    const compare = pill.getAttribute('data-compare');
+    const hasCompare = pill.getAttribute('data-has-compare') === 'true';
+
+    // 3. Update Price Display
+    document.getElementById('sticky-price-new').innerText = price;
+    const oldPriceEl = document.getElementById('sticky-price-old');
+    if(hasCompare) {
+      oldPriceEl.innerText = compare;
+      oldPriceEl.style.display = 'block';
     } else {
-      bar.classList.remove('is-visible');
+      oldPriceEl.style.display = 'none';
     }
   }
-  window.addEventListener('scroll', checkScroll, { passive: true });
-  checkScroll(); 
-});
+
+  // Function to submit the correct hidden form
+  function submitStickyBundle() {
+    const btn = document.getElementById('btn-sticky-submit-' + currentStickyIndex);
+    if(btn) btn.click();
+  }
+
+  // Init Logic
+  document.addEventListener('DOMContentLoaded', function () {
+    // Initialize prices based on default selection
+    const defaultPill = document.querySelector('.flipzy-bundle-pill[data-index="{{ section.settings.default_selected }}"]');
+    if(defaultPill) selectStickyBundle(defaultPill);
+
+    // Scroll Logic
+    const bar = document.getElementById('flipzy-sticky-bar-{{ section.id }}');
+    // We try to find the OFFER TILES section to act as the trigger
+    const triggerSection = document.querySelector('.flipzy-tiles-grid') || document.querySelector('.product-form');
+
+    function checkScroll() {
+      if (!triggerSection) {
+         // Fallback: Show after 500px if no trigger section found
+         if(window.scrollY > 500) bar.classList.add('is-visible');
+         else bar.classList.remove('is-visible');
+         return;
+      }
+      
+      const triggerBottom = triggerSection.getBoundingClientRect().bottom;
+      // Show bar only after user has scrolled PAST the main offer area
+      if (triggerBottom < 0) { 
+        bar.classList.add('is-visible');
+      } else {
+        bar.classList.remove('is-visible');
+      }
+    }
+    
+    window.addEventListener('scroll', checkScroll, { passive: true });
+    checkScroll();
+  });
 </script>
 
 {% schema %}
 {
   "name": "Flipzy Sticky Bar",
   "settings": [
-    { "type": "product", "id": "product", "label": "Product" },
-    { "type": "text", "id": "text", "label": "Headline", "default": "Kids Routine Board" },
-    { "type": "text", "id": "subline_text", "label": "Subline", "default": "Special Offer" },
-    { "type": "text", "id": "button_label", "label": "Button Label", "default": "Add to Cart" }
+    { 
+      "type": "text", 
+      "id": "text", 
+      "label": "Headline (Desktop Only)", 
+      "default": "Kids Routine Board" 
+    },
+    { 
+      "type": "text", 
+      "id": "subline_text", 
+      "label": "Subline (Desktop Only)", 
+      "default": "Special Offer Ends Soon" 
+    },
+    { 
+      "type": "text", 
+      "id": "button_label", 
+      "label": "Button Label", 
+      "default": "Add to Cart" 
+    },
+    {
+      "type": "range",
+      "id": "default_selected",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Default Selected Option",
+      "default": 2,
+      "info": "Which block index is selected by default? Set to 2 or 3 to boost AOV."
+    }
   ],
-  "presets": [ { "name": "Flipzy Sticky Bar" } ]
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle Option",
+      "limit": 4,
+      "settings": [
+        { "type": "product", "id": "product", "label": "Product Bundle" },
+        { "type": "text", "id": "short_name", "label": "Short Label", "default": "1x", "info": "e.g. '1x' or '2 Pack'" }
+      ]
+    }
+  ],
+  "presets": [ 
+    { 
+      "name": "Flipzy Sticky Bar",
+      "blocks": [
+        { "type": "bundle", "settings": { "short_name": "1x" } },
+        { "type": "bundle", "settings": { "short_name": "2x" } },
+        { "type": "bundle", "settings": { "short_name": "3x" } }
+      ]
+    } 
+  ]
 }
 {% endschema %}
