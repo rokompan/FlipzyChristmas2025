@@ -241,6 +241,63 @@
         "offset": 100
       }
     },
+    "flipzy_whats_in_the_box_tDc44V": {
+      "type": "flipzy-whats-in-the-box",
+      "blocks": {
+        "list_item_YGhDY8": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "1x Wooden Wall Board"
+          }
+        },
+        "list_item_dNcpJi": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "7x Task Pieces + sun and moon for morning and evening routines"
+          }
+        },
+        "list_item_4Ymr9k": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "30 Customization Stickers"
+          }
+        },
+        "list_item_rzGMPj": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "Mounting tape + Instructions"
+          }
+        }
+      },
+      "block_order": [
+        "list_item_YGhDY8",
+        "list_item_dNcpJi",
+        "list_item_4Ymr9k",
+        "list_item_rzGMPj"
+      ],
+      "name": "Flipzy 8. Box Content",
+      "settings": {
+        "bg_color": "#efe7da",
+        "main_heading": "What's in the Box?",
+        "subheading": "One Flipzy contains what you need for smooth routine. Premium materials ensure Flipzy lasts throughout childhood.",
+        "image_1": "shopify://shop_images/whatsinthebox7.jpg",
+        "image_2_bg": "#eadbc8",
+        "card_title": "Everything you need to start your journey to smoother routines",
+        "featured_product": "flipzy-wooden-routine-board",
+        "trust_1": "Free shipping over 50€",
+        "trust_2": "Taxes included",
+        "trust_3": "Ships in 24h",
+        "trust_4": "30-day money-back guarantee",
+        "trust_5": "24 months warranty",
+        "description": "Take advantage of the special price and give your family calmer days at a great value. Get the complete Flipzy system at the lowest price of the season.",
+        "btn_text": "Go to Shop",
+        "btn_link": "#buy"
+      }
+    },
     "flipzy_offer_tiles_ndRRqR": {
       "type": "flipzy-offer-tiles",
       "blocks": {
@@ -250,6 +307,7 @@
             "product": "flipzy-wooden-routine-board",
             "highlight_tile": false,
             "badge_text": "MAKE YOUR FIRST ROUTINE",
+            "manual_bundle_size": "",
             "custom_title": "Your first Flipzy",
             "description": "<b>Start with one daily routine.  </b><br>Perfect for trying Flipzy with one child or one habit.",
             "show_shipping_badge": false,
@@ -262,6 +320,7 @@
             "product": "flipzy-2-pack-morning-evening",
             "highlight_tile": true,
             "badge_text": "MOST POPULAR",
+            "manual_bundle_size": "",
             "custom_title": "Morning & Evening Routine",
             "description": "<b>Two routines. Less reminding. </b><br>\nIdeal for mornings and evenings — or two kids sharing the day.",
             "show_shipping_badge": true,
@@ -274,6 +333,7 @@
             "product": "flipzy-3-pack-full-day-siblings",
             "highlight_tile": false,
             "badge_text": "3 FOR 2",
+            "manual_bundle_size": "",
             "custom_title": "Pay 2, Get 1 for Free!",
             "description": "<b>One routine on us.</b><br> Best for full-day routines or growing families.",
             "show_shipping_badge": true,
@@ -286,8 +346,9 @@
             "product": "flipzy-4-pack-best-value",
             "highlight_tile": false,
             "badge_text": "BEST VALUE",
+            "manual_bundle_size": "4x Flipzy",
             "custom_title": "Family pack",
-            "description": "<b>One system for the whole family.</b>Perfect for siblings, shared routines, or full household use.",
+            "description": "<b>One system for the whole family.<br></b>Perfect for siblings, shared routines, or full household use.",
             "show_shipping_badge": true,
             "button_text": "Add to Cart"
           }
@@ -394,63 +455,6 @@
         "color_scheme": "cream",
         "heading": "Join Thousands of Happy Families",
         "subheading": "Real stories from parents using Flipzy"
-      }
-    },
-    "flipzy_whats_in_the_box_tDc44V": {
-      "type": "flipzy-whats-in-the-box",
-      "blocks": {
-        "list_item_YGhDY8": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "1x Wooden Wall Board"
-          }
-        },
-        "list_item_dNcpJi": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "7x Task Pieces + sun and moon for morning and evening routines"
-          }
-        },
-        "list_item_4Ymr9k": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "30 Customization Stickers"
-          }
-        },
-        "list_item_rzGMPj": {
-          "type": "list_item",
-          "settings": {
-            "icon": "check",
-            "text": "Mounting tape + Instructions"
-          }
-        }
-      },
-      "block_order": [
-        "list_item_YGhDY8",
-        "list_item_dNcpJi",
-        "list_item_4Ymr9k",
-        "list_item_rzGMPj"
-      ],
-      "name": "Flipzy 8. Box Content",
-      "settings": {
-        "bg_color": "#efe7da",
-        "main_heading": "What's in the Box?",
-        "subheading": "The box contains everything you need for smooth routines from day one. Premium materials ensure Flipzy lasts throughout childhood.",
-        "image_1": "shopify://shop_images/whatsinthebox7.jpg",
-        "image_2_bg": "#eadbc8",
-        "card_title": "Everything you need to start your journey to smoother routines",
-        "featured_product": "flipzy-wooden-routine-board",
-        "trust_1": "Free shipping over 50€",
-        "trust_2": "Taxes included",
-        "trust_3": "Ships in 24h",
-        "trust_4": "30-day money-back guarantee",
-        "trust_5": "24 months warranty",
-        "description": "Take advantage of the special price and give your family calmer days at a great value. Get the complete Flipzy system at the lowest price of the season.",
-        "btn_text": "Go to Shop",
-        "btn_link": "#buy"
       }
     },
     "featured_product_x9hCHm": {
@@ -673,10 +677,10 @@
     "flipzy_feature_video_FNy9TP",
     "flipzy_feature_video_z6mmFe",
     "flipzy_anchor_94NFEW",
+    "flipzy_whats_in_the_box_tDc44V",
     "flipzy_offer_tiles_ndRRqR",
     "flipzy_offer_strip_jVGpMw",
     "flipzy_testimonials_J7dGUa",
-    "flipzy_whats_in_the_box_tDc44V",
     "featured_product_x9hCHm",
     "flipzy_feature_video_3VptYe",
     "flipzy_badges_YjLTAp",
