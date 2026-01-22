@@ -22,7 +22,7 @@
   .flipzy-tiles-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 16px; /* Slightly more breathing room for mobile shadows */
     width: 100%;
     margin-top: 1.5rem;
   }
@@ -41,12 +41,12 @@
     background: rgb(var(--color-background));
     border: 1px solid rgba(var(--color-foreground), 0.1);
     border-radius: 16px; 
-    padding: 15px; 
+    padding: 20px; /* Increased padding for mobile touch targets */
     display: flex;
     flex-direction: column;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     height: 100%;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   }
 
   @media screen and (min-width: 990px) {
@@ -70,19 +70,20 @@
   /* --- TILE HEADER --- */
   .flipzy-tile-badge {
     position: absolute;
-    top: -10px;
+    top: -12px;
     left: 50%;
     transform: translateX(-50%);
     background: #000;
     color: #fff;
-    padding: 4px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
-    font-size: 0.75rem;
+    font-size: 1.1rem; /* Larger font for mobile */
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     white-space: nowrap;
     z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
   
   .flipzy-tile.is-highlighted .flipzy-tile-badge {
@@ -92,9 +93,9 @@
   /* --- IMAGE --- */
   .flipzy-tile-media {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     aspect-ratio: 1 / 1;
     position: relative;
   }
@@ -110,6 +111,31 @@
     scale: 1.05;
   }
 
+  /* --- PACK COUNT CORNER TAG --- */
+  .flipzy-pack-count {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    z-index: 2;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .flipzy-pack-count span {
+    margin-top: 1px; /* Visual optical adjustment */
+  }
+
+
   /* --- CONTENT --- */
   .flipzy-tile-content {
     flex-grow: 1;
@@ -119,18 +145,18 @@
   }
 
   .flipzy-tile-title {
-    font-size: 1.2rem;
+    font-size: 1.6rem; /* Increased for Mobile */
     font-weight: 700;
-    margin: 0 0 8px 0;
+    margin: 0 0 10px 0;
     line-height: 1.3;
     color: rgb(var(--color-foreground));
   }
 
   .flipzy-tile-desc {
-    font-size: 0.9rem;
+    font-size: 1.4rem; /* Increased for Mobile (was 0.9rem) */
     opacity: 0.8;
-    margin-bottom: 12px;
-    line-height: 1.4;
+    margin-bottom: 15px;
+    line-height: 1.5;
   }
 
   /* --- PRICING --- */
@@ -139,19 +165,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    margin-bottom: 12px;
+    gap: 6px;
+    margin-bottom: 15px;
   }
 
   .flipzy-price-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
   }
 
   .flipzy-price-current {
-    font-size: 1.4rem;
+    font-size: 1.8rem; /* Increased for Mobile */
     font-weight: 800;
     color: rgb(var(--color-foreground));
   }
@@ -159,16 +185,16 @@
   .flipzy-price-compare {
     text-decoration: line-through;
     opacity: 0.6;
-    font-size: 0.9rem;
+    font-size: 1.3rem; /* Increased for Mobile */
   }
 
   .flipzy-save-pill {
     background-color: #EF4444; 
     color: #fff;
-    font-size: 0.75rem;
+    font-size: 1.1rem; /* Increased for Mobile */
     font-weight: 700;
-    padding: 3px 8px;
-    border-radius: 4px;
+    padding: 4px 10px;
+    border-radius: 6px;
     display: inline-block;
   }
 
@@ -176,13 +202,13 @@
     color: #059669; /* Green text */
     background: #ECFDF5; /* Light green bg */
     border: 1px solid #6EE7B7;
-    font-size: 0.7rem;
+    font-size: 1rem; /* Increased for Mobile */
     font-weight: 700;
-    padding: 2px 8px;
-    border-radius: 4px;
+    padding: 3px 10px;
+    border-radius: 6px;
     display: inline-block;
     text-transform: uppercase;
-    margin-top: 2px;
+    margin-top: 4px;
   }
 
   /* --- BUTTON --- */
@@ -192,9 +218,9 @@
       border: none !important;
       border-radius: 50px !important;
       font-weight: 700 !important;
-      font-size: 1rem !important;
+      font-size: 1.5rem !important; /* Increased for Mobile */
       text-transform: none !important;
-      padding: 10px 15px !important;
+      padding: 14px 20px !important;
       box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
       width: 100%;
       position: relative;
@@ -205,6 +231,17 @@
   }
   
   .flipzy-tile-submit:hover { transform: scale(1.02); }
+
+  /* Desktop Font Adjustments (Refining sizes for larger screens) */
+  @media screen and (min-width: 990px) {
+    .flipzy-tile-title { font-size: 1.4rem; }
+    .flipzy-tile-desc { font-size: 1rem; }
+    .flipzy-price-current { font-size: 1.6rem; }
+    .flipzy-tile-submit { font-size: 1.2rem !important; padding: 12px 15px !important; }
+    .flipzy-tile-badge { font-size: 0.8rem; padding: 5px 15px; }
+    .flipzy-save-pill { font-size: 0.85rem; }
+    .flipzy-shipping-badge { font-size: 0.8rem; }
+  }
   
   /* Pulse Animation Logic */
   .flipzy-pulse-anim::before {
@@ -234,7 +271,7 @@
       <div class="title-wrapper title-wrapper--no-top-margin center">
         <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
         {%- if section.settings.text != blank -%}
-            <div class="rte">{{ section.settings.text }}</div>
+            <div class="rte" style="font-size: 1.5rem;">{{ section.settings.text }}</div>
         {%- endif -%}
       </div>
     {%- endif -%}
@@ -262,6 +299,30 @@
             {%- else -%}
               {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
+
+            {% comment %} 
+              --- BUNDLE COUNT LOGIC ---
+              1. Check Block Setting "manual_bundle_size"
+              2. Check Product Title for "X-Pack"
+              3. Default to 1
+            {% endcomment %}
+            {%- liquid
+              assign bundle_count = 1
+              if block.settings.manual_bundle_size != blank
+                 assign bundle_count = block.settings.manual_bundle_size
+              elsif product.title contains '4-Pack'
+                 assign bundle_count = 4
+              elsif product.title contains '3-Pack'
+                 assign bundle_count = 3
+              elsif product.title contains '2-Pack'
+                 assign bundle_count = 2
+              endif
+            -%}
+            
+            <div class="flipzy-pack-count">
+              <span>{{ bundle_count }}x</span>
+            </div>
+
           </div>
 
           <div class="flipzy-tile-content">
@@ -413,6 +474,12 @@
           "label": "Top Badge Text",
           "default": "MOST POPULAR",
           "info": "Leave empty to hide."
+        },
+        {
+          "type": "text",
+          "id": "manual_bundle_size",
+          "label": "Bundle Size (Override)",
+          "info": "Enter number of items (e.g., 4). Leave blank to auto-detect from title (looks for '4-Pack')."
         },
         {
           "type": "text",
