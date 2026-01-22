@@ -12,18 +12,15 @@
 
 {% comment %} 
   ---------------------------------------------------------
-  FLIPZY UPSELL SCRIPT (MOVED TO TOP TO FIX BUG)
+  FLIPZY UPSELL SCRIPT (GLOBAL)
   ---------------------------------------------------------
 {% endcomment %}
 <script>
-  // Ensure function is defined globally on page load
   window.upgradeFlipzyBundle = function(btn, oldId, newId) {
-    // UI Feedback
     btn.innerHTML = 'Updating...';
     btn.style.opacity = '0.7';
-    btn.style.pointerEvents = 'none'; // Prevent double clicks
+    btn.style.pointerEvents = 'none'; 
     
-    // Construct payload: Set old item to 0, New item to 1
     var updates = {};
     updates[oldId] = 0;
     updates[newId] = 1;
@@ -40,14 +37,10 @@
     })
     .then(response => response.json())
     .then(data => {
-      // Find the drawer element
       var cartDrawer = document.querySelector('cart-drawer');
-      
-      // If the drawer element exists and has the render method, use it
       if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
         cartDrawer.renderContents(data);
       } else {
-        // Fallback: Reload page if drawer logic fails
         window.location.reload();
       }
     })
@@ -536,12 +529,12 @@
 
       {% comment %} 
         ---------------------------------------------------------
-        FLIPZY BUNDLE UPSELL LOGIC (Hardcoded Handles)
+        FLIPZY BUNDLE UPSELL LOGIC (Handles + Dynamic Percent)
         ---------------------------------------------------------
       {% endcomment %}
       
       {%- liquid
-        # --- CONFIGURATION: EXACT HANDLES FROM YOUR LINKS ---
+        # --- CONFIGURATION: EXACT HANDLES ---
         assign handle_1x = 'flipzy-wooden-routine-board'
         assign handle_2x = 'flipzy-2-pack-morning-evening' 
         assign handle_3x = 'flipzy-3-pack-full-day-siblings'
@@ -579,23 +572,33 @@
         # Determine Upgrade Path
         assign headline = ""
         assign subline = ""
-        assign btn_text = "Upgrade & Save"
         
         if current_level == 1 and bundle_2x != empty
           assign upgrade_product = bundle_2x
-          assign headline = "✨ Unlock Free Shipping + Save 12%"
-          assign subline = "Upgrade to the Morning & Evening pair. Most popular choice!"
-          assign btn_text = "Upgrade to 2-Pack"
+          assign subline = "Upgrade to the Morning & Evening pair."
         elsif current_level == 2 and bundle_3x != empty
           assign upgrade_product = bundle_3x
-          assign headline = "🔥 Best Value: Pay 2, Get 1 Free!"
-          assign subline = "Get the 3rd Flipzy for free. Perfect for gifts."
-          assign btn_text = "Upgrade to 3-Pack"
+          assign subline = "Upgrade to Pay 2, Get 1 Free (3-Pack)."
         elsif current_level == 3 and bundle_4x != empty
           assign upgrade_product = bundle_4x
-          assign headline = "👨‍👩‍👧‍👦 Family Pack Savings"
-          assign subline = "Equip the whole house. Maximum savings."
-          assign btn_text = "Upgrade to 4-Pack"
+          assign subline = "Upgrade to the Family Pack (4x)."
+        endif
+
+        # Dynamic Calculation of % Saved
+        if upgrade_product != blank
+          assign var_price = upgrade_product.selected_or_first_available_variant.price
+          assign var_compare = upgrade_product.selected_or_first_available_variant.compare_at_price
+          
+          if var_compare > var_price
+            assign saved_amount = var_compare | minus: var_price
+            assign saved_pct = saved_amount | times: 100.0 | divided_by: var_compare | round
+            
+            # Dynamic Headline
+            assign headline = "✨ Save " | append: saved_pct | append: "% & Free Shipping!"
+          else
+            # Fallback if no compare price
+            assign headline = "✨ Unlock Free Shipping!"
+          endif
         endif
       -%}
 
@@ -673,7 +676,7 @@
               class="flipzy-upsell-btn" 
               onclick="window.upgradeFlipzyBundle(this, '{{ old_variant_id }}', '{{ upgrade_product.selected_or_first_available_variant.id }}')"
             >
-              {{ btn_text }} - {{ upgrade_product.price | money }}
+              Upgrade - {{ upgrade_product.price | money }}
             </button>
           </div>
         </div>
