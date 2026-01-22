@@ -365,6 +365,7 @@
         "title": "Choose Your Bundle",
         "heading_size": "h1",
         "text": "<p>From one routine to a full family setup. Choose what fits your needs today.</p>",
+        "footer_text": "Most families choose 2 or more Flipzys for smoother daily routines.",
         "padding_top": 16,
         "padding_bottom": 16
       }
@@ -653,12 +654,24 @@
     },
     "flipzy_sticky_bar_Tdg6tz": {
       "type": "flipzy-sticky-bar",
+      "blocks": {
+        "bundle_qbhHTt": {
+          "type": "bundle",
+          "settings": {
+            "product": "flipzy-wooden-routine-board",
+            "short_name": "1x"
+          }
+        }
+      },
+      "block_order": [
+        "bundle_qbhHTt"
+      ],
       "name": "Flipzy Sticky Bar",
       "settings": {
-        "product": "flipzy-wooden-routine-board",
         "text": "Kids Routine Board That Finally Works",
         "subline_text": "Special offer available while supplies last",
-        "button_label": "Add to Cart"
+        "button_label": "Add to Cart",
+        "default_selected": 2
       }
     },
     "flipzy_help_popup_4f6eJB": {
