@@ -111,20 +111,19 @@
     scale: 1.05;
   }
 
-  /* --- PACK COUNT CORNER TAG --- */
+  /* --- PACK COUNT CORNER TAG (PILL SHAPE) --- */
   .flipzy-pack-count {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 10px;
+    right: 10px;
     background: rgba(0, 0, 0, 0.85);
     color: #fff;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    padding: 5px 12px;
+    border-radius: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 700;
     z-index: 2;
     backdrop-filter: blur(4px);
@@ -132,7 +131,8 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
   .flipzy-pack-count span {
-    margin-top: 1px; /* Visual optical adjustment */
+    margin-top: 1px; 
+    white-space: nowrap;
   }
 
 
@@ -153,7 +153,7 @@
   }
 
   .flipzy-tile-desc {
-    font-size: 1.4rem; /* Increased for Mobile (was 0.9rem) */
+    font-size: 1.4rem; /* Increased for Mobile */
     opacity: 0.8;
     margin-bottom: 15px;
     line-height: 1.5;
@@ -232,7 +232,7 @@
   
   .flipzy-tile-submit:hover { transform: scale(1.02); }
 
-  /* Desktop Font Adjustments (Refining sizes for larger screens) */
+  /* Desktop Font Adjustments */
   @media screen and (min-width: 990px) {
     .flipzy-tile-title { font-size: 1.4rem; }
     .flipzy-tile-desc { font-size: 1rem; }
@@ -241,6 +241,7 @@
     .flipzy-tile-badge { font-size: 0.8rem; padding: 5px 15px; }
     .flipzy-save-pill { font-size: 0.85rem; }
     .flipzy-shipping-badge { font-size: 0.8rem; }
+    .flipzy-pack-count { font-size: 0.8rem; }
   }
   
   /* Pulse Animation Logic */
@@ -302,9 +303,6 @@
 
             {% comment %} 
               --- BUNDLE COUNT LOGIC ---
-              1. Check Block Setting "manual_bundle_size"
-              2. Check Product Title for "X-Pack"
-              3. Default to 1
             {% endcomment %}
             {%- liquid
               assign bundle_count = 1
@@ -320,7 +318,7 @@
             -%}
             
             <div class="flipzy-pack-count">
-              <span>{{ bundle_count }}x</span>
+              <span>{{ bundle_count }}x Flipzy</span>
             </div>
 
           </div>
