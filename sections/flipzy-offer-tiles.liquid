@@ -88,10 +88,11 @@
   /* --- IMAGE --- */
   .flipzy-tile-media {
     width: 100%;
+    /* Mobile: Landscape (3:2) to make it shorter */
+    aspect-ratio: 3 / 2; 
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 15px;
-    aspect-ratio: 1 / 1;
     position: relative;
     z-index: 1; /* Behind sticker */
   }
@@ -99,7 +100,7 @@
   .flipzy-tile-media img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Ensures image covers area without stretch */
     transition: scale 0.3s ease;
   }
 
@@ -238,8 +239,11 @@
   
   .flipzy-tile-submit:hover { transform: scale(1.02); }
 
-  /* Desktop Font Adjustments */
+  /* Desktop Adjustments */
   @media screen and (min-width: 990px) {
+    /* Restore Square Image on Desktop */
+    .flipzy-tile-media { aspect-ratio: 1 / 1; }
+    
     .flipzy-tile-title { font-size: 1.4rem; }
     .flipzy-tile-desc { font-size: 1rem; }
     .flipzy-price-current { font-size: 1.6rem; }
