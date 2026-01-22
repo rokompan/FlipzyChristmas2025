@@ -60,7 +60,7 @@
   /* Center: Bundle Selector (Pills) */
   .flipzy-bundle-selector {
     display: flex;
-    gap: 8px; /* More space for the pop effect */
+    gap: 8px;
     background: #f3f4f6;
     padding: 5px;
     border-radius: 50px;
@@ -79,22 +79,20 @@
     align-items: center;
     justify-content: center;
     line-height: 1;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
-    border: 2px solid transparent; /* Reserve space for border */
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid transparent;
     color: #6b7280;
     min-width: 55px;
     position: relative;
     text-align: center;
   }
 
-  /* Top line: 1x, 2x... */
   .flipzy-bundle-pill .pill-name {
     font-size: 0.95rem;
     font-weight: 700;
     margin-bottom: 2px;
   }
 
-  /* Badges Wrapper */
   .flipzy-pill-badges {
     display: flex;
     flex-direction: column;
@@ -102,7 +100,6 @@
     gap: 2px;
   }
 
-  /* Badge Text (Best Value) */
   .flipzy-bundle-pill .pill-badge-text {
     font-size: 0.6rem;
     font-weight: 700;
@@ -111,7 +108,6 @@
     white-space: nowrap;
   }
 
-  /* Save % Badge */
   .flipzy-bundle-pill .pill-save {
     font-size: 0.6rem;
     background: #EF4444;
@@ -121,7 +117,6 @@
     font-weight: 700;
   }
 
-  /* Free Shipping Badge */
   .flipzy-bundle-pill .pill-shipping {
     font-size: 0.55rem;
     background: #059669;
@@ -132,21 +127,21 @@
     text-transform: uppercase;
   }
 
-  /* --- ACTIVE STATE (Selection Obviousness) --- */
+  /* Active State */
   .flipzy-bundle-pill.is-active {
-    background: #FFFBEB; /* Light Yellow */
+    background: #FFFBEB;
     color: #000;
-    border-color: #111; /* Strong Black Border */
+    border-color: #111;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transform: scale(1.08); /* Pop out */
+    transform: scale(1.08);
     z-index: 2;
   }
   .flipzy-bundle-pill.is-active .pill-name {
     font-weight: 800;
-    font-size: 1.1rem; /* Slightly larger name */
+    font-size: 1.1rem;
   }
 
-  /* Right Side: Price + Button */
+  /* Right Side: Price + Button (Desktop Layout) */
   .flipzy-sticky-action {
     display: flex;
     align-items: center;
@@ -168,10 +163,9 @@
     margin-bottom: 2px;
   }
   
-  /* BIGGER PRICE */
   .flipzy-sticky-new {
     font-weight: 800;
-    font-size: 1.6rem; /* Increased size */
+    font-size: 1.6rem;
     color: #111;
   }
 
@@ -192,36 +186,70 @@
     transform: scale(1.02);
   }
 
-  /* Mobile Adjustments */
+  /* --- MOBILE LAYOUT FIXES --- */
   @media (max-width: 768px) {
+    .flipzy-sticky {
+      padding: 8px 0; /* Slightly tighter outer padding */
+    }
+
     .flipzy-sticky-inner {
-      padding: 0 10px;
-      gap: 8px;
+      padding: 0 12px;
+      gap: 10px;
+      align-items: center; /* Center vertically */
     }
     
     .flipzy-sticky-info { display: none; }
+
+    /* 1. Pill Selector takes available space on left */
+    .flipzy-bundle-selector {
+      flex: 1;
+      margin-right: 5px;
+      /* Ensure it doesn't get crushed */
+      min-width: 0; 
+    }
 
     .flipzy-bundle-pill {
       padding: 6px 10px;
       min-width: 48px;
     }
     
-    /* On Mobile: Hide extra badges on UNSELECTED items */
+    /* Hide badges on unselected items on mobile */
     .flipzy-bundle-pill:not(.is-active) .pill-badge-text,
     .flipzy-bundle-pill:not(.is-active) .pill-save,
     .flipzy-bundle-pill:not(.is-active) .pill-shipping {
       display: none;
     }
 
-    .flipzy-sticky-action { gap: 10px; }
-    .flipzy-sticky-btn {
-      padding: 10px 16px;
-      font-size: 1rem;
+    /* 2. Action Area: Stacked Vertically */
+    .flipzy-sticky-action { 
+      flex-direction: column; 
+      align-items: flex-end; /* Align to right */
+      gap: 4px;
+      min-width: 110px; /* Ensure button area has space */
     }
-    
-    /* Mobile Fonts */
-    .flipzy-sticky-new { font-size: 1.35rem; } /* Bigger on mobile too */
+
+    /* Price Row: Side by side to save height */
+    .flipzy-sticky-price-box {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+
+    .flipzy-sticky-new { font-size: 1.1rem; }
     .flipzy-sticky-old { font-size: 0.8rem; }
+
+    /* Button: Full width of the action container */
+    .flipzy-sticky-btn {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      border-radius: 6px; /* slightly less round to save space visually */
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 {%- endstyle -%}
 
