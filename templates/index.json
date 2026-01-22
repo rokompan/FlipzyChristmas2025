@@ -306,9 +306,9 @@
           "settings": {
             "product": "flipzy-wooden-routine-board",
             "highlight_tile": false,
-            "badge_text": "YOUR FIRST FLIPZY",
+            "badge_text": "START SMALL",
             "manual_bundle_size": "",
-            "custom_title": "Single Routine Setup",
+            "custom_title": "Trial Routine Setup",
             "description": "<b>Start with one daily routine.  </b><br>A simple starting point if you want to try Flipzy with one routine before expanding.<br>Most families add more Flipzys later",
             "show_shipping_badge": false,
             "button_text": "Add to Cart"
