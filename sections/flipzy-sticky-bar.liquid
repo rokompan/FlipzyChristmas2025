@@ -279,8 +279,7 @@
       </div>
 
       <div class="flipzy-bundle-selector">
-        {% 
-        for block in section.blocks %}
+        {% for block in section.blocks %}
           {% assign prod = block.settings.product %}
           {% if prod != blank %}
             {% assign variant = prod.selected_or_first_available_variant %}
@@ -289,17 +288,14 @@
             {% assign discount_badge = "" %}
  
             {% if variant.compare_at_price > variant.price %}
-               {% assign saved = variant.compare_at_price |
-               minus: variant.price %}
-               {% assign pct = saved |
-               times: 100.0 | divided_by: variant.compare_at_price | round %}
+               {% assign saved = variant.compare_at_price | minus: variant.price %}
+               {% assign pct = saved | times: 100.0 | divided_by: variant.compare_at_price | round %}
                {% capture discount_badge %}-{{ pct }}%{% endcapture %}
             {% endif %}
 
             <div 
               class="flipzy-bundle-pill {% if forloop.index == section.settings.default_selected %}is-active{% endif %}"
               data-index="{{ forloop.index }}"
-      
               data-price="{{ variant.price | money }}"
               data-compare="{{ variant.compare_at_price | money }}"
               data-has-compare="{% if variant.compare_at_price > variant.price %}true{% else %}false{% endif %}"
@@ -307,20 +303,17 @@
             >
               <span class="pill-name">{{ block.settings.short_name }}</span>
     
-           
               <div class="flipzy-pill-badges">
                 {% if block.settings.badge_text != blank %}
                   <span class="pill-badge-text">{{ block.settings.badge_text }}</span>
                 {% endif %}
 
-               
                 {% if discount_badge != blank %}
                   <span class="pill-save">{{ discount_badge }}</span>
                 {% endif %}
 
                 {% if block.settings.show_free_shipping %}
                   <span class="pill-shipping">Free Shipping</span>
-                
                 {% endif %}
               </div>
             </div>
@@ -329,10 +322,8 @@
       </div>
 
       <div class="flipzy-sticky-action">
-        
         <div class="flipzy-sticky-price-box">
           <span class="flipzy-sticky-old" id="sticky-price-old"></span>
-        
           <span class="flipzy-sticky-new" id="sticky-price-new"></span>
         </div>
 
@@ -348,10 +339,8 @@
     {% for block in section.blocks %}
       {% assign prod = block.settings.product %}
       {% if prod != blank %}
-        {% assign unique_id 
-        = 'sticky-product-info-' | append: block.id %}
-        {% assign product_form_id = 'product-form-' |
-        append: unique_id %}
+        {% assign unique_id = 'sticky-product-info-' | append: block.id %}
+        {% assign product_form_id = 'product-form-' | append: unique_id %}
         
         <product-info
           id="{{ unique_id }}"
@@ -361,7 +350,6 @@
           data-url="{{ prod.url }}"
         >
           {%- render 'buy-buttons', 
-   
               block: block, 
               product: prod, 
               product_form_id: product_form_id, 
@@ -369,7 +357,6 @@
               show_dynamic_checkout: false 
           -%}
           
-   
         <button id="real-submit-{{ forloop.index }}" type="submit" form="{{ product_form_id }}">Submit</button>
         </product-info>
 
@@ -381,8 +368,7 @@
 
 <script>
   // Ensure default index is respected from Liquid settings
-  let currentStickyIndex = {{ section.settings.default_selected |
-  default: 1 }};
+  let currentStickyIndex = {{ section.settings.default_selected | default: 1 }};
 
   function selectStickyBundle(pill) {
     // 1. Update UI classes
@@ -431,7 +417,6 @@
       let triggerPoint = 0;
       
       if (heroSection) {
- 
         // If hero exists, show when bottom of hero passes top of viewport
         triggerPoint = heroSection.getBoundingClientRect().bottom;
       } else {
@@ -441,7 +426,6 @@
 
       // If trigger point is negative (meaning we scrolled past it)
       if (triggerPoint < 0) { 
-  
         bar.classList.add('is-visible');
       } else {
         bar.classList.remove('is-visible');
@@ -468,7 +452,6 @@
       "id": "subline_text", 
       "label": "Subline (Desktop Only)", 
       "default": "Special Offer Ends Soon" 
-   
     },
     { 
       "type": "text", 
@@ -483,8 +466,7 @@
       "max": 4,
       "step": 1,
       "label": "Default Selected Option",
-      "default": 
-      1,
+      "default": 1,
       "info": "Which block index is selected by default? 1 = Lowest price entry."
     }
   ],
@@ -496,8 +478,7 @@
       "settings": [
         { "type": "product", "id": "product", "label": "Product Bundle" },
         { "type": "text", "id": "short_name", "label": "Short Label", "default": "1x", "info": "e.g. '1x' or '2 Pack'" },
-        { "type": "text", "id": "badge_text", "label": "Badge Label", "default": "Best Value", "info": "e.g. '3 
-        for 2' or 'Most Popular'. Short text works best." },
+        { "type": "text", "id": "badge_text", "label": "Badge Label", "default": "Best Value", "info": "e.g. '3 for 2' or 'Most Popular'. Short text works best." },
         { "type": "checkbox", "id": "show_free_shipping", "label": "Show Free Shipping Badge", "default": false }
       ]
     }
@@ -507,8 +488,7 @@
       "name": "Flipzy Sticky Bar",
       "blocks": [
         { "type": "bundle", "settings": { "short_name": "1x", "badge_text": "Single" } },
-        { "type": "bundle", "settings": { "short_name": "2x", "badge_text": 
-        "Most Popular", "show_free_shipping": true } },
+        { "type": "bundle", "settings": { "short_name": "2x", "badge_text": "Most Popular", "show_free_shipping": true } },
         { "type": "bundle", "settings": { "short_name": "3x", "badge_text": "3 for 2", "show_free_shipping": true } }
       ]
     } 
