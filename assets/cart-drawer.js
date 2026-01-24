@@ -41,6 +41,13 @@ class CartDrawer extends HTMLElement {
     }
     // ---------------------------------------------------------------------
 
+    // --- FLIPZY EXTRA: HIDE STICKY BAR WHEN DRAWER IS OPEN ---
+    const stickyBar = document.querySelector('.flipzy-sticky');
+    if (stickyBar) {
+      stickyBar.classList.add('is-hidden-by-drawer');
+    }
+    // ---------------------------------------------------------
+
     setTimeout(() => {
       this.classList.add('animate', 'active');
     });
@@ -70,6 +77,13 @@ class CartDrawer extends HTMLElement {
         removeTrapFocus(this.activeElement);
     }
     document.body.classList.remove('overflow-hidden');
+
+    // --- FLIPZY EXTRA: SHOW STICKY BAR WHEN DRAWER IS CLOSED ---
+    const stickyBar = document.querySelector('.flipzy-sticky');
+    if (stickyBar) {
+      stickyBar.classList.remove('is-hidden-by-drawer');
+    }
+    // -----------------------------------------------------------
   }
 
   setSummaryAccessibility(cartDrawerNote) {
