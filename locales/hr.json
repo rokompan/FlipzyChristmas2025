@@ -632,9 +632,26 @@
       "draft_order_details": {
         "payment_status": {
           "due_date": "Dospjelo {{date}}",
-          "total_balance": "Ukupni saldo"
+          "total_balance": "Ukupni saldo",
+          "pending": {
+            "banner_due_today_for_multiple_fulfillments": "Plaćanje dospijeva danas za  {{count}} ispunjenja",
+            "banner_overdue_for_single_fulfillment": {
+              "one": "{{amount}} plaćanje kasni  {{count}}  dan.  {{link}}",
+              "other": "{{amount}} plaćanje kasni  {{count}}  dana.  {{link}}"
+            },
+            "banner_overdue_for_multiple_fulfillments": "Dospjelo plaćanje za  {{count}} ispunjenja",
+            "description_due_on_fulfillment_partially_paid_next": "Ova je narudžba djelomično plaćena. Imate preostali iznos.",
+            "banner_due_today_for_single_fulfillment": "{{amount}} Plaćanje dospijeva danas. {{link}}"
+          }
         }
       }
+    },
+    "errors": {
+      "already_upgraded": "Računi korisnika su već nadograđeni.",
+      "failed_to_upgrade": "Nadogradnja postavki korisničkog računa nije uspjela.",
+      "not_upgraded": "Računi korisnika se ne nadograđuju.",
+      "failed_to_revert": "Vraćanje postavki korisničkog računa nije uspjelo.",
+      "revert_window_expired": "Rok za vraćanje je istekao."
     }
   }
 }
