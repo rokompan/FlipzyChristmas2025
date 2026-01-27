@@ -593,6 +593,19 @@
       },
       "payment": {
         "choose_new_payment_method": "Výběr nového způsobu platby"
+      },
+      "shop_policies": {
+        "terms_and_policies": "Podmínky a zásady"
+      }
+    }
+  },
+  "customer_accounts": {
+    "B2B": {
+      "draft_order_details": {
+        "payment_status": {
+          "due_date": "Due {{date}}",
+          "total_balance": "Celkový zůstatek"
+        }
       }
     }
   }
