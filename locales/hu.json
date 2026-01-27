@@ -323,7 +323,16 @@
         "unlock_shipping_text": "Szerezd meg a Morning & Evening párost + Ingyenes szállítás.",
         "perfect_gift_title": "A tökéletes ajándék?",
         "perfect_gift_text": "Adj hozzá még egyet egy barátodnak vagy unokatestvérednek.",
-        "button_text": "Hozzáadás (+1)"
+        "button_text": "Hozzáadás (+1)",
+        "headline_4pack": "🏆 Legjobb érték - maximális megtakarítás",
+        "subline_4pack": "Upgrade a családi csomagra (4x).",
+        "button_2pack": "Upgrade 2-Packre",
+        "subline_3pack": "Upgrade a Pay 2, Get 1 Free (3-Pack).",
+        "button_3pack": "Upgrade 3-Packre",
+        "button_4pack": "Upgrade 4-es csomagra",
+        "save_badge": "SAVE {{ percent }}%",
+        "subline_2pack": "Upgrade a Morning & Evening párosra.",
+        "headline_3pack": "🔥 Legnépszerűbb választás"
       }
     },
     "footer": {
