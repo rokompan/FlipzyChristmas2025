@@ -18,8 +18,10 @@
     background: #ffffff;
     border-top: 1px solid #e5e7eb;
     box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
-    /* MAX Z-INDEX to sit on top of language selectors/chat */
-    z-index: 2147483647 !important; 
+    /* FIXED Z-INDEX: Lowered from max (2147483647) to 1999999 
+       to sit below Shopify's cookie banner (z-index 2000000) 
+    */
+    z-index: 1999999 !important; 
     padding: 10px 0;
     transform: translateY(110%);
     transition: transform 0.3s ease-in-out;
