@@ -17,7 +17,8 @@
 {% endcomment %}
 <script>
   window.upgradeFlipzyBundle = function(btn, oldId, newId) {
-    btn.innerHTML = 'Updating...';
+    // Localized string for 'Updating...'
+    btn.innerHTML = '{{ 'sections.cart.upsell.updating' | t | default: "Updating..." }}';
     btn.style.opacity = '0.7';
     btn.style.pointerEvents = 'none'; 
     
@@ -44,7 +45,8 @@
     })
     .catch((error) => {
       console.error('Error upgrading cart:', error);
-      btn.innerHTML = 'Try Again';
+      // Localized string for 'Try Again'
+      btn.innerHTML = '{{ 'sections.cart.upsell.try_again' | t | default: "Try Again" }}';
       btn.style.opacity = '1';
       btn.style.pointerEvents = 'auto';
     });
@@ -579,19 +581,19 @@
         
         if current_level == 1 and bundle_2x != empty
           assign upgrade_product = bundle_2x
-          assign subline = "Upgrade to the Morning & Evening pair."
-          assign btn_text = "Upgrade to 2-Pack"
-          assign headline = "✨ Unlock Free Shipping!"
+          assign subline = 'sections.cart.upsell.subline_2pack' | t | default: "Upgrade to the Morning & Evening pair."
+          assign btn_text = 'sections.cart.upsell.button_2pack' | t | default: "Upgrade to 2-Pack"
+          assign headline = 'sections.cart.upsell.headline_2pack' | t | default: "✨ Unlock Free Shipping!"
         elsif current_level == 2 and bundle_3x != empty
           assign upgrade_product = bundle_3x
-          assign subline = "Upgrade to Pay 2, Get 1 Free (3-Pack)."
-          assign btn_text = "Upgrade to 3-Pack"
-          assign headline = "🔥 Most Popular Choice"
+          assign subline = 'sections.cart.upsell.subline_3pack' | t | default: "Upgrade to Pay 2, Get 1 Free (3-Pack)."
+          assign btn_text = 'sections.cart.upsell.button_3pack' | t | default: "Upgrade to 3-Pack"
+          assign headline = 'sections.cart.upsell.headline_3pack' | t | default: "🔥 Most Popular Choice"
         elsif current_level == 3 and bundle_4x != empty
           assign upgrade_product = bundle_4x
-          assign subline = "Upgrade to the Family Pack (4x)."
-          assign btn_text = "Upgrade to 4-Pack"
-          assign headline = "🏆 Best Value - Max Savings"
+          assign subline = 'sections.cart.upsell.subline_4pack' | t | default: "Upgrade to the Family Pack (4x)."
+          assign btn_text = 'sections.cart.upsell.button_4pack' | t | default: "Upgrade to 4-Pack"
+          assign headline = 'sections.cart.upsell.headline_4pack' | t | default: "🏆 Best Value - Max Savings"
         endif
 
         # Dynamic Calculation of % Saved & Price Difference
@@ -606,7 +608,8 @@
           if new_compare > new_price
             assign saved_amount = new_compare | minus: new_price
             assign saved_pct = saved_amount | times: 100.0 | divided_by: new_compare | round
-            assign saved_badge_text = "SAVE " | append: saved_pct | append: "%"
+            assign default_badge = "SAVE " | append: saved_pct | append: "%"
+            assign saved_badge_text = 'sections.cart.upsell.save_badge' | t: percent: saved_pct | default: default_badge
           endif
         endif
       -%}
