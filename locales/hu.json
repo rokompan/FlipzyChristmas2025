@@ -332,7 +332,9 @@
         "button_4pack": "Upgrade 4-es csomagra",
         "save_badge": "SAVE {{ percent }}%",
         "subline_2pack": "Upgrade a Morning & Evening párosra.",
-        "headline_3pack": "🔥 Legnépszerűbb választás"
+        "headline_3pack": "🔥 Legnépszerűbb választás",
+        "updating": "Frissítés...",
+        "headline_2pack": "✨ Ingyenes szállítás feloldása!"
       }
     },
     "footer": {
