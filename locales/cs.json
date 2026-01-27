@@ -604,7 +604,17 @@
       "draft_order_details": {
         "payment_status": {
           "due_date": "Due {{date}}",
-          "total_balance": "Celkový zůstatek"
+          "total_balance": "Celkový zůstatek",
+          "pending": {
+            "banner_due_today_for_multiple_fulfillments": "Dnes je splatná platba za plnění na {{count}} ",
+            "banner_overdue_for_single_fulfillment": {
+              "one": "{{amount}} platba je {{count}} den po splatnosti. {{link}}",
+              "other": "{{amount}} platba je {{count}} dní po splatnosti. {{link}}"
+            },
+            "banner_overdue_for_multiple_fulfillments": "Platba za plnění na {{count}} ",
+            "description_due_on_fulfillment_partially_paid_next": "Tato objednávka byla částečně uhrazena. Zbývá vám doplatek.",
+            "banner_due_today_for_single_fulfillment": "{{amount}} platba je splatná dnes. {{link}}"
+          }
         }
       }
     },
@@ -613,6 +623,21 @@
         "full_payment_received": "Děkujeme! Vaše platba na {{amount}} byla přijata a tato objednávka je nyní plně uhrazena.",
         "dismiss_label": "Odmítnutí potvrzení o platbě",
         "payment_received": "Děkujeme! Vaše platba na {{amount}} byla přijata."
+      }
+    },
+    "payment_methods": {
+      "add_payment_method": {
+        "contracts_updated": {
+          "other": "Úspěšná aktualizace smluv o předplatném {{count}} ",
+          "one": "Úspěšně aktualizovaná smlouva o předplatném {{count}} "
+        },
+        "contracts_update_failed": "Nepodařilo se aktualizovat některé smlouvy o předplatném",
+        "subscription_contracts_updated": "Aktualizované {{succeeded}} předplatného {{total}} ",
+        "invalid_wallet_type_error": "Nesprávný typ peněženky.",
+        "updating_contracts": {
+          "one": "Aktualizace smlouvy o předplatném {{count}} ...",
+          "other": "Aktualizace smluv o předplatném {{count}} ..."
+        }
       }
     }
   }
