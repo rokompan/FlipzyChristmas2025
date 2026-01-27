@@ -333,7 +333,9 @@
         "unlock_shipping_text": "Nabavite jutarnji i večernji par + besplatna dostava.",
         "perfect_gift_title": "Savršen poklon?",
         "perfect_gift_text": "Dodajte još jedan za prijatelja ili rođaka.",
-        "button_text": "Dodaj još (+1)"
+        "button_text": "Dodaj još (+1)",
+        "updating": "Ažuriranje...",
+        "headline_2pack": "✨ Otključaj besplatnu dostavu!"
       }
     },
     "footer": {
@@ -573,6 +575,37 @@
         "errors": {
           "interaction_required": "Za dovršetak naplate potrebna je interakcija s ekstenzijom."
         }
+      }
+    }
+  },
+  "customer_accounts": {
+    "payment_methods": {
+      "add_payment_method": {
+        "subscription_contracts": {
+          "load_more": "Učitaj više",
+          "title": "Koristite način plaćanja za ponavljajuće narudžbe",
+          "more_items": {
+            "one": "{{count}} više proizvoda",
+            "other": "{{count}} više proizvoda"
+          },
+          "product_count": {
+            "one": "{{count}} proizvod",
+            "other": "{{count}} proizvodi"
+          },
+          "product_details": "Detalji o proizvodu"
+        },
+        "missing_customer_error": "Nešto je pošlo po zlu. Pokušajte ponovno ili se obratite podršci."
+      }
+    },
+    "account_menu": {
+      "aria_labels": {
+        "sign_in_with_email": "Prijavite se putem e-pošte",
+        "sign_in": "Prijava",
+        "close_menu": "Zatvori izbornik",
+        "back_to_main_menu": "Natrag na glavni izbornik iz  {{title}}",
+        "open_submenu": "{{title}}, otvara podmeni",
+        "loading_menu": "Učitavanje izbornika",
+        "account": "Račun"
       }
     }
   }
