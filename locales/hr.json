@@ -335,7 +335,16 @@
         "perfect_gift_text": "Dodajte još jedan za prijatelja ili rođaka.",
         "button_text": "Dodaj još (+1)",
         "updating": "Ažuriranje...",
-        "headline_2pack": "✨ Otključaj besplatnu dostavu!"
+        "headline_2pack": "✨ Otključaj besplatnu dostavu!",
+        "subline_3pack": "Nadogradite na Plati 2, Dobij 1 Gratis (Paket od 3 komada).",
+        "button_3pack": "Nadogradite na paket od 3 komada",
+        "headline_4pack": "🏆 Najbolja vrijednost - maksimalna ušteda",
+        "button_4pack": "Nadogradite na paket od 4 komada",
+        "save_badge": "UŠTEDITE {{ percent }}%",
+        "subline_2pack": "Nadogradite na par Jutarnji i Večernji.",
+        "headline_3pack": "🔥 Najpopularniji izbor",
+        "button_2pack": "Nadogradite na paket od 2 komada",
+        "subline_4pack": "Nadogradite na Obiteljski paket (4x)."
       }
     },
     "footer": {
@@ -594,7 +603,18 @@
           },
           "product_details": "Detalji o proizvodu"
         },
-        "missing_customer_error": "Nešto je pošlo po zlu. Pokušajte ponovno ili se obratite podršci."
+        "missing_customer_error": "Nešto je pošlo po zlu. Pokušajte ponovno ili se obratite podršci.",
+        "updating_contracts": {
+          "other": "Ažuriranje  {{count}} ugovora o pretplati...",
+          "one": "Ažuriranje pretplatničkog ugovora  {{count}} ..."
+        },
+        "contracts_updated": {
+          "one": "Uspješno ažuriran {{count}} ugovor o pretplati",
+          "other": "Uspješno ažurirani  {{count}} pretplatnički ugovori"
+        },
+        "contracts_update_failed": "Nije uspjelo ažuriranje nekih ugovora o pretplati",
+        "subscription_contracts_updated": "Ažurirano {{succeeded}} od {{total}} pretplata",
+        "invalid_wallet_type_error": "Nevažeća vrsta novčanika."
       }
     },
     "account_menu": {
@@ -606,6 +626,14 @@
         "open_submenu": "{{title}}, otvara podmeni",
         "loading_menu": "Učitavanje izbornika",
         "account": "Račun"
+      }
+    },
+    "B2B": {
+      "draft_order_details": {
+        "payment_status": {
+          "due_date": "Dospjelo {{date}}",
+          "total_balance": "Ukupni saldo"
+        }
       }
     }
   }
