@@ -551,23 +551,24 @@
         assign current_cart_price = 0
         
         # Check what is currently in the cart AND capture price
+        # FIX: We now compare IDs instead of Handles to support Translated URLs
         for item in cart.items
-          if item.product.handle == handle_1x
+          if item.product.id == bundle_1x.id
             assign current_level = 1
             assign old_variant_id = item.variant.id
             assign current_cart_price = item.final_price
             break
-          elsif item.product.handle == handle_2x
+          elsif item.product.id == bundle_2x.id
             assign current_level = 2
             assign old_variant_id = item.variant.id
             assign current_cart_price = item.final_price
             break
-          elsif item.product.handle == handle_3x
+          elsif item.product.id == bundle_3x.id
             assign current_level = 3
             assign old_variant_id = item.variant.id
             assign current_cart_price = item.final_price
             break
-          elsif item.product.handle == handle_4x
+          elsif item.product.id == bundle_4x.id
             assign current_level = 4
             break
           endif
