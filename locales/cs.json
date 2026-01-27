@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "general": {
     "password_page": {
@@ -336,7 +345,7 @@
         "perfect_gift_title": "Perfektní dárek?",
         "perfect_gift_text": "Přidejte další pro kamaráda nebo bratrance.",
         "button_text": "Přidat další (+1)",
-        "headline_2pack": "✨ Odemknout dopravu zdarma!",
+        "headline_2pack": "Odemknout dopravu zdarma!",
         "subline_2pack": "Přejít na Ranní & Večerní sadu.",
         "button_2pack": "Přejít na sadu 2 ks",
         "headline_3pack": "🔥 Nejoblíbenější volba",
