@@ -593,6 +593,76 @@
       },
       "payment": {
         "choose_new_payment_method": "Výběr nového způsobu platby"
+      },
+      "shop_policies": {
+        "terms_and_policies": "Podmínky a zásady"
+      }
+    }
+  },
+  "customer_accounts": {
+    "B2B": {
+      "draft_order_details": {
+        "payment_status": {
+          "due_date": "Due {{date}}",
+          "total_balance": "Celkový zůstatek",
+          "pending": {
+            "banner_due_today_for_multiple_fulfillments": "Dnes je splatná platba za plnění na {{count}} ",
+            "banner_overdue_for_single_fulfillment": {
+              "one": "{{amount}} platba je {{count}} den po splatnosti. {{link}}",
+              "other": "{{amount}} platba je {{count}} dní po splatnosti. {{link}}"
+            },
+            "banner_overdue_for_multiple_fulfillments": "Platba za plnění na {{count}} ",
+            "description_due_on_fulfillment_partially_paid_next": "Tato objednávka byla částečně uhrazena. Zbývá vám doplatek.",
+            "banner_due_today_for_single_fulfillment": "{{amount}} platba je splatná dnes. {{link}}"
+          }
+        }
+      }
+    },
+    "order_details": {
+      "payment_confirmation": {
+        "full_payment_received": "Děkujeme! Vaše platba na {{amount}} byla přijata a tato objednávka je nyní plně uhrazena.",
+        "dismiss_label": "Odmítnutí potvrzení o platbě",
+        "payment_received": "Děkujeme! Vaše platba na {{amount}} byla přijata."
+      }
+    },
+    "payment_methods": {
+      "add_payment_method": {
+        "contracts_updated": {
+          "other": "Úspěšná aktualizace smluv o předplatném {{count}} ",
+          "one": "Úspěšně aktualizovaná smlouva o předplatném {{count}} "
+        },
+        "contracts_update_failed": "Nepodařilo se aktualizovat některé smlouvy o předplatném",
+        "subscription_contracts_updated": "Aktualizované {{succeeded}} předplatného {{total}} ",
+        "invalid_wallet_type_error": "Nesprávný typ peněženky.",
+        "updating_contracts": {
+          "one": "Aktualizace smlouvy o předplatném {{count}} ...",
+          "other": "Aktualizace smluv o předplatném {{count}} ..."
+        },
+        "subscription_contracts": {
+          "more_items": {
+            "one": "{{count}} další produkt",
+            "other": "{{count}} další produkty"
+          },
+          "product_count": {
+            "one": "{{count}} produkt",
+            "other": "{{count}} produkty"
+          },
+          "product_details": "Podrobnosti o produktu",
+          "load_more": "Načíst více",
+          "title": "Použití způsobu platby pro opakované objednávky"
+        },
+        "missing_customer_error": "Něco se pokazilo. Zkuste to prosím znovu nebo kontaktujte podporu."
+      }
+    },
+    "account_menu": {
+      "aria_labels": {
+        "sign_in_with_email": "Přihlaste se pomocí e-mailu",
+        "sign_in": "Přihlásit se",
+        "close_menu": "Zavřít nabídku",
+        "back_to_main_menu": "Zpět do hlavní nabídky z {{title}}",
+        "open_submenu": "{{title}}, otevře podnabídku",
+        "loading_menu": "Načítání nabídky",
+        "account": "Účet"
       }
     }
   }

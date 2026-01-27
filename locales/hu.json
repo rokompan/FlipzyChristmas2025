@@ -323,7 +323,16 @@
         "unlock_shipping_text": "Szerezd meg a Morning & Evening párost + Ingyenes szállítás.",
         "perfect_gift_title": "A tökéletes ajándék?",
         "perfect_gift_text": "Adj hozzá még egyet egy barátodnak vagy unokatestvérednek.",
-        "button_text": "Hozzáadás (+1)"
+        "button_text": "Hozzáadás (+1)",
+        "headline_4pack": "🏆 Legjobb érték - maximális megtakarítás",
+        "subline_4pack": "Upgrade a családi csomagra (4x).",
+        "button_2pack": "Upgrade 2-Packre",
+        "subline_3pack": "Upgrade a Pay 2, Get 1 Free (3-Pack).",
+        "button_3pack": "Upgrade 3-Packre",
+        "button_4pack": "Upgrade 4-es csomagra",
+        "save_badge": "SAVE {{ percent }}%",
+        "subline_2pack": "Upgrade a Morning & Evening párosra.",
+        "headline_3pack": "🔥 Legnépszerűbb választás"
       }
     },
     "footer": {
@@ -561,6 +570,35 @@
         "errors": {
           "interaction_required": "A fizetés befejezéséhez egy kiterjesztés interakcióra van szükség."
         }
+      }
+    }
+  },
+  "customer_accounts": {
+    "order_details": {
+      "payment_confirmation": {
+        "full_payment_received": "Köszönöm! Az Ön {{amount}} fizetése megérkezett, és ez a megrendelés mostantól teljes mértékben kifizetett.",
+        "dismiss_label": "Fizetési visszaigazolás elutasítása",
+        "payment_received": "Köszönöm! Az Ön {{amount}} fizetése megérkezett."
+      }
+    },
+    "B2B": {
+      "draft_order_details": {
+        "payment_status": {
+          "pending": {
+            "banner_due_today_for_single_fulfillment": "{{amount}} a fizetés ma esedékes. {{link}}",
+            "banner_due_today_for_multiple_fulfillments": "Ma esedékes fizetés a {{count}} teljesítésekért",
+            "banner_overdue_for_single_fulfillment": {
+              "one": "{{amount}} a fizetés a {{count}} oldalon késedelmes. {{link}}",
+              "other": "{{amount}} a fizetés a {{count}} oldalon késedelmes. {{link}}"
+            },
+            "banner_overdue_for_multiple_fulfillments": "A {{count}} teljesítésekért esedékes fizetés"
+          }
+        }
+      }
+    },
+    "payment_methods": {
+      "add_payment_method": {
+        "missing_customer_error": "Valami rosszul sült el. Kérjük, próbálja meg újra, vagy lépjen kapcsolatba az ügyfélszolgálattal."
       }
     }
   }
