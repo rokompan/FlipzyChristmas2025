@@ -607,6 +607,13 @@
           "total_balance": "Celkový zůstatek"
         }
       }
+    },
+    "order_details": {
+      "payment_confirmation": {
+        "full_payment_received": "Děkujeme! Vaše platba na {{amount}} byla přijata a tato objednávka je nyní plně uhrazena.",
+        "dismiss_label": "Odmítnutí potvrzení o platbě",
+        "payment_received": "Děkujeme! Vaše platba na {{amount}} byla přijata."
+      }
     }
   }
 }
