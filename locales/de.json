@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "general": {
     "password_page": {
@@ -323,7 +314,17 @@
         "unlock_shipping_text": "Holen Sie sich das Morgen- und Abendpaar + Kostenloser Versand.",
         "perfect_gift_title": "Das perfekte Geschenk?",
         "perfect_gift_text": "Legen Sie ein weiteres für einen Freund oder Cousin dazu.",
-        "button_text": "Einen weiteren hinzufügen (+1)"
+        "button_text": "Einen weiteren hinzufügen (+1)",
+        "headline_2pack": "✨ Kostenlosen Versand freischalten!",
+        "subline_2pack": "Upgrade auf das Morgen- & Abend-Set.",
+        "button_2pack": "Upgrade auf 2er-Pack",
+        "headline_3pack": "🔥 Beliebteste Wahl",
+        "subline_3pack": "Zahle 2, erhalte 1 gratis (3er-Pack).",
+        "button_3pack": "Upgrade auf 3er-Pack",
+        "headline_4pack": "🏆 Bester Wert - Max. Ersparnis",
+        "subline_4pack": "Upgrade auf das Familienpaket (4 Stk.).",
+        "button_4pack": "Upgrade auf 4er-Pack",
+        "save_badge": "SPARE {{ percent }}%"
       }
     },
     "footer": {
