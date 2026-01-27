@@ -595,6 +595,11 @@
           }
         }
       }
+    },
+    "payment_methods": {
+      "add_payment_method": {
+        "missing_customer_error": "Valami rosszul sült el. Kérjük, próbálja meg újra, vagy lépjen kapcsolatba az ügyfélszolgálattal."
+      }
     }
   }
 }
