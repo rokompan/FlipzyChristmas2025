@@ -24,12 +24,10 @@
     var updates = {};
     updates[oldId] = 0;
     updates[newId] = 1;
-
     var formData = {
       'updates': updates,
       'sections': 'cart-drawer,cart-icon-bubble'
     };
-
     fetch(window.Shopify.routes.root + 'cart/update.js', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
@@ -583,14 +581,17 @@
           assign upgrade_product = bundle_2x
           assign subline = "Upgrade to the Morning & Evening pair."
           assign btn_text = "Upgrade to 2-Pack"
+          assign headline = "✨ Unlock Free Shipping!"
         elsif current_level == 2 and bundle_3x != empty
           assign upgrade_product = bundle_3x
           assign subline = "Upgrade to Pay 2, Get 1 Free (3-Pack)."
           assign btn_text = "Upgrade to 3-Pack"
+          assign headline = "🔥 Most Popular Choice"
         elsif current_level == 3 and bundle_4x != empty
           assign upgrade_product = bundle_4x
           assign subline = "Upgrade to the Family Pack (4x)."
           assign btn_text = "Upgrade to 4-Pack"
+          assign headline = "🏆 Best Value - Max Savings"
         endif
 
         # Dynamic Calculation of % Saved & Price Difference
@@ -606,9 +607,6 @@
             assign saved_amount = new_compare | minus: new_price
             assign saved_pct = saved_amount | times: 100.0 | divided_by: new_compare | round
             assign saved_badge_text = "SAVE " | append: saved_pct | append: "%"
-            assign headline = "✨ Unlock Free Shipping & "
-          else
-            assign headline = "✨ Unlock Free Shipping!"
           endif
         endif
       -%}
@@ -616,7 +614,7 @@
       {%- if upgrade_product != blank -%}
         <style>
           .flipzy-upsell-container {
-            background-color: #FFFBEB; 
+            background-color: #FFFBEB;
             border: 1px solid #FCD34D;
             border-radius: 12px;
             margin: 1.5rem 1.5rem 0;
@@ -635,8 +633,10 @@
             background-color: #fff;
             border: 1px solid rgba(0,0,0,0.05);
           }
-          .flipzy-upsell-image img { width: 100%; height: 100%; object-fit: cover; }
-          .flipzy-upsell-content { flex-grow: 1; }
+          .flipzy-upsell-image img { width: 100%; height: 100%; object-fit: cover;
+          }
+          .flipzy-upsell-content { flex-grow: 1;
+          }
           
           .flipzy-upsell-header {
             display: flex;
@@ -654,7 +654,8 @@
           }
           /* RED BADGE STYLE */
           .flipzy-upsell-badge {
-            background-color: #DC2626; /* Strong Red */
+            background-color: #DC2626;
+            /* Strong Red */
             color: white;
             font-size: 0.8rem;
             font-weight: 800;
@@ -686,7 +687,8 @@
             transition: transform 0.2s;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
           }
-          .flipzy-upsell-btn:hover { transform: scale(1.02); background: #333; }
+          .flipzy-upsell-btn:hover { transform: scale(1.02);
+            background: #333; }
         </style>
 
         <div class="flipzy-upsell-container">
@@ -710,7 +712,7 @@
             
             <p>{{ subline }}</p>
 
-            <button 
+             <button 
               type="button" 
               class="flipzy-upsell-btn" 
               onclick="window.upgradeFlipzyBundle(this, '{{ old_variant_id }}', '{{ upgrade_product.selected_or_first_available_variant.id }}')"
