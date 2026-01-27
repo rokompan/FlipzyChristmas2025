@@ -571,5 +571,12 @@
         }
       }
     }
+  },
+  "customer_accounts": {
+    "payment_methods": {
+      "add_payment_method": {
+        "missing_customer_error": "Нещо се е объркало. Моля, опитайте отново или се свържете с поддръжката."
+      }
+    }
   }
 }
