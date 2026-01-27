@@ -637,7 +637,32 @@
         "updating_contracts": {
           "one": "Aktualizace smlouvy o předplatném {{count}} ...",
           "other": "Aktualizace smluv o předplatném {{count}} ..."
-        }
+        },
+        "subscription_contracts": {
+          "more_items": {
+            "one": "{{count}} další produkt",
+            "other": "{{count}} další produkty"
+          },
+          "product_count": {
+            "one": "{{count}} produkt",
+            "other": "{{count}} produkty"
+          },
+          "product_details": "Podrobnosti o produktu",
+          "load_more": "Načíst více",
+          "title": "Použití způsobu platby pro opakované objednávky"
+        },
+        "missing_customer_error": "Něco se pokazilo. Zkuste to prosím znovu nebo kontaktujte podporu."
+      }
+    },
+    "account_menu": {
+      "aria_labels": {
+        "sign_in_with_email": "Přihlaste se pomocí e-mailu",
+        "sign_in": "Přihlásit se",
+        "close_menu": "Zavřít nabídku",
+        "back_to_main_menu": "Zpět do hlavní nabídky z {{title}}",
+        "open_submenu": "{{title}}, otevře podnabídku",
+        "loading_menu": "Načítání nabídky",
+        "account": "Účet"
       }
     }
   }
