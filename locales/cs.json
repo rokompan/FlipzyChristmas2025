@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "general": {
     "password_page": {
@@ -337,13 +328,24 @@
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Daně, slevy a poštovné se vypočítají na pokladně.",
       "upsell": {
         "adding": "Přidání...",
+        "updating": "Aktualizace...",
         "try_again": "Zkuste to znovu",
         "image_alt": "Ranní a večerní rutina",
         "unlock_shipping_title": "Odemkněte dopravu zdarma! 🚚",
         "unlock_shipping_text": "Získejte pár Ranní a večerní + doprava zdarma.",
         "perfect_gift_title": "Perfektní dárek?",
         "perfect_gift_text": "Přidejte další pro kamaráda nebo bratrance.",
-        "button_text": "Přidat další (+1)"
+        "button_text": "Přidat další (+1)",
+        "headline_2pack": "✨ Odemknout dopravu zdarma!",
+        "subline_2pack": "Přejít na Ranní & Večerní sadu.",
+        "button_2pack": "Přejít na sadu 2 ks",
+        "headline_3pack": "🔥 Nejoblíbenější volba",
+        "subline_3pack": "Zaplaťte 2, získejte 1 zdarma (3 ks).",
+        "button_3pack": "Přejít na sadu 3 ks",
+        "headline_4pack": "🏆 Nejlepší hodnota - Max. úspora",
+        "subline_4pack": "Přejít na Rodinné balení (4 ks).",
+        "button_4pack": "Přejít na sadu 4 ks",
+        "save_badge": "UŠETŘÍTE {{ percent }} %"
       }
     },
     "footer": {
