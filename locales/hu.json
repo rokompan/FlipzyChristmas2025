@@ -572,5 +572,29 @@
         }
       }
     }
+  },
+  "customer_accounts": {
+    "order_details": {
+      "payment_confirmation": {
+        "full_payment_received": "Köszönöm! Az Ön {{amount}} fizetése megérkezett, és ez a megrendelés mostantól teljes mértékben kifizetett.",
+        "dismiss_label": "Fizetési visszaigazolás elutasítása",
+        "payment_received": "Köszönöm! Az Ön {{amount}} fizetése megérkezett."
+      }
+    },
+    "B2B": {
+      "draft_order_details": {
+        "payment_status": {
+          "pending": {
+            "banner_due_today_for_single_fulfillment": "{{amount}} a fizetés ma esedékes. {{link}}",
+            "banner_due_today_for_multiple_fulfillments": "Ma esedékes fizetés a {{count}} teljesítésekért",
+            "banner_overdue_for_single_fulfillment": {
+              "one": "{{amount}} a fizetés a {{count}} oldalon késedelmes. {{link}}",
+              "other": "{{amount}} a fizetés a {{count}} oldalon késedelmes. {{link}}"
+            },
+            "banner_overdue_for_multiple_fulfillments": "A {{count}} teljesítésekért esedékes fizetés"
+          }
+        }
+      }
+    }
   }
 }
