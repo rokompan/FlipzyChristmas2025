@@ -82,40 +82,50 @@
 </div>
 
 <style>
-/* Section Padding and Typography synchronized with Feature Video */
+/* Section Sizing */
 .flipzy-faq-section { padding: 60px 20px; }
-.flipzy-faq-inner { max-width: 800px; margin: 0 auto; }
+.flipzy-faq-inner { max-width: 850px; margin: 0 auto; }
 
+/* Heading Stylings */
 .flipzy-faq-heading { 
     text-align: center; 
-    margin-bottom: 40px; 
-    font-size: 2.5rem; /* Matches flipzy-feature-heading [cite: 4] */
+    margin-bottom: 50px; 
+    font-family: 'Poppins', sans-serif;
+    font-size: 42px; 
     font-weight: 700;
     line-height: 1.2;
 }
 
 .flipzy-faq-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
 
+/* Question Stylings */
 .flipzy-faq-trigger { 
     width: 100%; display: flex; justify-content: space-between; align-items: center; 
     padding: 24px 0; background: none; border: none; cursor: pointer; text-align: left;
-    font-size: 1.25rem; /* Large enough to command attention like the features [cite: 16] */
-    font-weight: 600; color: inherit; gap: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px; 
+    font-weight: 400; 
+    font-style: normal;
+    color: inherit; gap: 20px;
 }
 
 .flipzy-faq-icon { transition: transform 0.3s ease; flex-shrink: 0; opacity: 0.5; }
 .flipzy-faq-trigger[aria-expanded="true"] .flipzy-faq-icon { transform: rotate(180deg); }
 
+/* Answer Stylings */
 .flipzy-faq-answer { 
     padding-bottom: 24px; 
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px; 
+    font-weight: 400;
+    font-style: normal;
     line-height: 1.6; 
-    font-size: 1.125rem; /* Matches flipzy-feature-point-text size [cite: 48] */
 }
 .flipzy-faq-answer p { margin: 0 0 1em 0; }
 .flipzy-faq-answer p:last-child { margin-bottom: 0; }
 .flipzy-faq-answer ul { margin: 10px 0; padding-left: 20px; }
 
-/* Color Schemes from Feature Video [cite: 1, 2] */
+/* Color Schemes from flipzy-feature-video.liquid  */
 .scheme-night { background: #1a1a1a; color: #ffffff; }
 .scheme-night .flipzy-faq-item { border-color: rgba(255,255,255,0.1); }
 .scheme-cream { background: #fdfaf5; color: #333333; }
@@ -124,9 +134,8 @@
 .scheme-white { background: #ffffff; color: #1a1a1a; }
 
 @media (max-width: 768px) {
-    .flipzy-faq-heading { font-size: 2rem; }
-    .flipzy-faq-trigger { font-size: 1.1rem; }
-    .flipzy-faq-answer { font-size: 1rem; }
+    .flipzy-faq-heading { font-size: 32px; }
+    .flipzy-faq-trigger { font-size: 18px; }
 }
 </style>
 
