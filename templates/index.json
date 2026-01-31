@@ -628,6 +628,170 @@
         "fallback_image": "shopify://shop_images/554906481_17857504956518806_6440177419475468993_n.jpg"
       }
     },
+    "flipzy_faq_txdnRa": {
+      "type": "flipzy-faq",
+      "blocks": {
+        "faq_item_GPDJVk": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is Flipzy?",
+            "answer": "<p>Flipzy is a hands-on routine board designed to help children complete daily tasks independently—without constant reminders, pressure, or conflict. Kids flip wooden tiles as they finish tasks, turning routines into something visual, tactile, and satisfying.</p>"
+          }
+        },
+        "faq_item_yNfrHx": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What age is Flipzy for?",
+            "answer": "<p>Flipzy works best for children aged 3 to 8 years. Younger kids enjoy the physical flipping and clear structure, while older kids benefit from independence and predictability. Many families continue using it beyond 8, especially for morning and evening routines.</p>"
+          }
+        },
+        "faq_item_AHPRqe": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is Flipzy suitable for children with special needs?",
+            "answer": "<p>Yes. Many parents successfully use Flipzy with children who are Autistic, ADHD, Highly sensitive, or easily overwhelmed by verbal instructions. Flipzy is non-verbal, visual, and pressure-free. Note: it is a supportive tool, not a medical device.</p>"
+          }
+        },
+        "faq_item_cbWwBA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What routines can Flipzy be used for?",
+            "answer": "<p>Flipzy is very flexible. Most families use it for Morning/Evening routines, after-school tasks, chores, or calm transitions. You decide the tasks—Flipzy simply makes them visible.</p>"
+          }
+        },
+        "faq_item_rpDHxN": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Does Flipzy really work?",
+            "answer": "<p>Flipzy doesn’t rely on rewards or punishment. Instead, parents stop repeating instructions and kids clearly see what comes next. Consistency matters, but Flipzy removes much of the daily friction.</p>"
+          }
+        },
+        "faq_item_Bfz7Tj": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need to explain Flipzy to my child?",
+            "answer": "<p>Yes—but only once. We recommend introducing it calmly, explaining that flipping a tile means 'this task is done,' and letting them try it. Most kids understand intuitively after that.</p>"
+          }
+        },
+        "faq_item_YNGFBQ": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is Flipzy a reward system?",
+            "answer": "<p>No. The motivation comes from visual progress, physical flipping, and a sense of completion and control. This makes it more sustainable and less stressful than points or prizes.</p>"
+          }
+        },
+        "faq_item_hP9Gy6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is Flipzy made of?",
+            "answer": "<p>Flipzy is made from solid natural wood, smooth child-safe finishes, and durable hinges designed for daily use.</p>"
+          }
+        },
+        "faq_item_4NyFKC": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is Flipzy safe?",
+            "answer": "<p>Yes. It features no sharp edges, child-safe coatings, and sturdy construction. Adult supervision is recommended for younger children.</p>"
+          }
+        },
+        "faq_item_7PTDmT": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are the stickers removable?",
+            "answer": "<p>Yes. You can change routines anytime or update tasks as your child grows. Extra stickers are available separately.</p>"
+          }
+        },
+        "faq_item_bBkjrh": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I buy additional Flipzy boards?",
+            "answer": "<p>Yes. Many families use one board per child or separate boards for morning and evening routines. They are available in our shop.</p>"
+          }
+        },
+        "faq_item_cTizKG": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I order individual parts?",
+            "answer": "<p>At the moment, Flipzy is sold as a complete set. We are exploring individual parts for future versions.</p>"
+          }
+        },
+        "faq_item_PGcGEp": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Shipping times depend on your location and are shown during checkout. You will receive a confirmation email with tracking once it ships.</p>"
+          }
+        },
+        "faq_item_K7LPGk": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will I receive an invoice?",
+            "answer": "<p>Yes. Invoices are automatically sent to the email address used during checkout. Check your spam or promotions folder if you can't find it.</p>"
+          }
+        },
+        "faq_item_ceHnpG": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if something is wrong with my order?",
+            "answer": "<p>If anything is damaged or missing, please contact us as soon as possible so we can fix it quickly.</p>"
+          }
+        },
+        "faq_item_KtT69z": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I return Flipzy?",
+            "answer": "<p>Yes, according to our return policy. The product must be unused and in original condition. Return shipping costs may apply.</p>"
+          }
+        },
+        "faq_item_k9fNFe": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is Flipzy a toy?",
+            "answer": "<p>Flipzy is a routine and learning tool, not a toy. Its purpose is to support structure, independence, and calmer transitions.</p>"
+          }
+        },
+        "faq_item_rYyPLn": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will Flipzy replace parenting?",
+            "answer": "<p>No. Flipzy reduces friction, but parents still set expectations and provide guidance. It just takes the pressure off.</p>"
+          }
+        },
+        "faq_item_L6JU7U": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I contact you?",
+            "answer": "<p>Reach us at info@flipzy.toys. We usually respond within 1–2 business days.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_GPDJVk",
+        "faq_item_yNfrHx",
+        "faq_item_AHPRqe",
+        "faq_item_cbWwBA",
+        "faq_item_rpDHxN",
+        "faq_item_Bfz7Tj",
+        "faq_item_YNGFBQ",
+        "faq_item_hP9Gy6",
+        "faq_item_4NyFKC",
+        "faq_item_7PTDmT",
+        "faq_item_bBkjrh",
+        "faq_item_cTizKG",
+        "faq_item_PGcGEp",
+        "faq_item_K7LPGk",
+        "faq_item_ceHnpG",
+        "faq_item_KtT69z",
+        "faq_item_k9fNFe",
+        "faq_item_rYyPLn",
+        "faq_item_L6JU7U"
+      ],
+      "name": "Flipzy FAQ Full",
+      "settings": {
+        "color_scheme": "scheme-white",
+        "heading": "Frequently Asked Questions (FAQ)"
+      }
+    },
     "flipzy_feature_video_B9Xncj": {
       "type": "flipzy-feature-video",
       "blocks": {
@@ -729,6 +893,7 @@
     "flipzy_feature_video_3VptYe",
     "flipzy_badges_YjLTAp",
     "flipzy_feature_video_t3an46",
+    "flipzy_faq_txdnRa",
     "flipzy_feature_video_B9Xncj",
     "flipzy_sticky_bar_Tdg6tz",
     "flipzy_help_popup_4f6eJB"
