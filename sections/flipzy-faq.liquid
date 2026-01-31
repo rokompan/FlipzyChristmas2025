@@ -1,0 +1,132 @@
+{% schema %}
+{
+  "name": "Flipzy FAQ",
+  "class": "flipzy-section",
+  "settings": [
+    { 
+      "type": "select", 
+      "id": "color_scheme", 
+      "label": "Color Scheme", 
+      "options": [ 
+        { "value": "scheme-white", "label": "White (Clean)" }, 
+        { "value": "scheme-cream", "label": "Cream (Warm)" },
+        { "value": "scheme-sage", "label": "Sage (Green)" },
+        { "value": "scheme-mint", "label": "Mint (Fresh)" },
+        { "value": "scheme-night", "label": "Night (Dark Mode)" }
+      ], 
+      "default": "scheme-white" 
+    },
+    { "type": "text", "id": "heading", "label": "Section Title", "default": "Frequently Asked Questions (FAQ)" }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "Question & Answer",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question text" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer text</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flipzy FAQ Full",
+      "blocks": [
+        { "type": "faq_item", "settings": { "question": "What is Flipzy?", "answer": "<p>Flipzy is a hands-on routine board designed to help children complete daily tasks independently—without constant reminders, pressure, or conflict. Kids flip wooden tiles as they finish tasks, turning routines into something visual, tactile, and satisfying.</p>" } },
+        { "type": "faq_item", "settings": { "question": "What age is Flipzy for?", "answer": "<p>Flipzy works best for children aged 3 to 8 years. Younger kids enjoy the physical flipping and clear structure, while older kids benefit from independence and predictability. Many families continue using it beyond 8, especially for morning and evening routines.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Is Flipzy suitable for children with special needs?", "answer": "<p>Yes. Many parents successfully use Flipzy with children who are Autistic, ADHD, Highly sensitive, or easily overwhelmed by verbal instructions. Flipzy is non-verbal, visual, and pressure-free. Note: it is a supportive tool, not a medical device.</p>" } },
+        { "type": "faq_item", "settings": { "question": "What routines can Flipzy be used for?", "answer": "<p>Flipzy is very flexible. Most families use it for Morning/Evening routines, after-school tasks, chores, or calm transitions. You decide the tasks—Flipzy simply makes them visible.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Does Flipzy really work?", "answer": "<p>Flipzy doesn’t rely on rewards or punishment. Instead, parents stop repeating instructions and kids clearly see what comes next. Consistency matters, but Flipzy removes much of the daily friction.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Do I need to explain Flipzy to my child?", "answer": "<p>Yes—but only once. We recommend introducing it calmly, explaining that flipping a tile means 'this task is done,' and letting them try it. Most kids understand intuitively after that.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Is Flipzy a reward system?", "answer": "<p>No. The motivation comes from visual progress, physical flipping, and a sense of completion and control. This makes it more sustainable and less stressful than points or prizes.</p>" } },
+        { "type": "faq_item", "settings": { "question": "What is Flipzy made of?", "answer": "<p>Flipzy is made from solid natural wood, smooth child-safe finishes, and durable hinges designed for daily use.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Is Flipzy safe?", "answer": "<p>Yes. It features no sharp edges, child-safe coatings, and sturdy construction. Adult supervision is recommended for younger children.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Are the stickers removable?", "answer": "<p>Yes. You can change routines anytime or update tasks as your child grows. Extra stickers are available separately.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Can I buy additional Flipzy boards?", "answer": "<p>Yes. Many families use one board per child or separate boards for morning and evening routines. They are available in our shop.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Can I order individual parts?", "answer": "<p>At the moment, Flipzy is sold as a complete set. We are exploring individual parts for future versions.</p>" } },
+        { "type": "faq_item", "settings": { "question": "How long does shipping take?", "answer": "<p>Shipping times depend on your location and are shown during checkout. You will receive a confirmation email with tracking once it ships.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Will I receive an invoice?", "answer": "<p>Yes. Invoices are automatically sent to the email address used during checkout. Check your spam or promotions folder if you can't find it.</p>" } },
+        { "type": "faq_item", "settings": { "question": "What if something is wrong with my order?", "answer": "<p>If anything is damaged or missing, please contact us as soon as possible so we can fix it quickly.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Can I return Flipzy?", "answer": "<p>Yes, according to our return policy. The product must be unused and in original condition. Return shipping costs may apply.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Is Flipzy a toy?", "answer": "<p>Flipzy is a routine and learning tool, not a toy. Its purpose is to support structure, independence, and calmer transitions.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Will Flipzy replace parenting?", "answer": "<p>No. Flipzy reduces friction, but parents still set expectations and provide guidance. It just takes the pressure off.</p>" } },
+        { "type": "faq_item", "settings": { "question": "How do I contact you?", "answer": "<p>Reach us at info@flipzy.toys. We usually respond within 1–2 business days.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+<div id="Flipzy-FAQ-{{ section.id }}" class="flipzy-faq-section {{ section.settings.color_scheme }}">
+  <div class="flipzy-faq-inner">
+    {% if section.settings.heading != blank %}
+      <h2 class="flipzy-faq-heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    <div class="flipzy-faq-list">
+      {% for block in section.blocks %}
+        <div class="flipzy-faq-item" {{ block.shopify_attributes }}>
+          <button class="flipzy-faq-trigger" aria-expanded="false">
+            <span class="flipzy-faq-question">{{ block.settings.question }}</span>
+            <span class="flipzy-faq-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </span>
+          </button>
+          <div class="flipzy-faq-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+            <div class="flipzy-faq-answer" style="padding: 0 0 20px 0;">{{ block.settings.answer }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.flipzy-faq-section { padding: 80px 20px; font-family: inherit; }
+.flipzy-faq-inner { max-width: 700px; margin: 0 auto; }
+.flipzy-faq-heading { text-align: center; margin-bottom: 50px; font-size: 2.2rem; font-weight: 700; }
+.flipzy-faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
+.flipzy-faq-trigger { 
+    width: 100%; display: flex; justify-content: space-between; align-items: center; 
+    padding: 24px 0; background: none; border: none; cursor: pointer; text-align: left;
+    font-size: 1.15rem; font-weight: 600; color: inherit; gap: 20px;
+}
+.flipzy-faq-icon { transition: transform 0.3s ease; flex-shrink: 0; opacity: 0.6; }
+.flipzy-faq-trigger[aria-expanded="true"] .flipzy-faq-icon { transform: rotate(180deg); }
+.flipzy-faq-answer { line-height: 1.6; font-size: 1.05rem; }
+.flipzy-faq-answer p { margin: 0 0 1em 0; }
+.flipzy-faq-answer p:last-child { margin-bottom: 0; }
+
+.scheme-night { background: #1a1a1a; color: #ffffff; }
+.scheme-night .flipzy-faq-item { border-color: rgba(255,255,255,0.1); }
+.scheme-cream { background: #fdfaf5; color: #333333; }
+.scheme-sage { background: #e1e8e1; color: #2d3b2d; }
+.scheme-mint { background: #f0f7f4; color: #2d3b2d; }
+.scheme-white { background: #ffffff; color: #1a1a1a; }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const faqItems = document.querySelectorAll('.flipzy-faq-item');
+  
+  faqItems.forEach(item => {
+    const trigger = item.querySelector('.flipzy-faq-trigger');
+    const content = item.querySelector('.flipzy-faq-content');
+    
+    trigger.addEventListener('click', () => {
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+      
+      // Close other items (optional - remove if you want multiple open)
+      document.querySelectorAll('.flipzy-faq-trigger').forEach(t => {
+        if (t !== trigger) {
+          t.setAttribute('aria-expanded', 'false');
+          t.nextElementSibling.style.maxHeight = '0';
+        }
+      });
+
+      trigger.setAttribute('aria-expanded', !isExpanded);
+      content.style.maxHeight = isExpanded ? '0' : content.scrollHeight + 'px';
+    });
+  });
+});
+</script>
