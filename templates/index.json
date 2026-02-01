@@ -594,8 +594,8 @@
           "type": "badge",
           "settings": {
             "icon": "ce",
-            "title": "Certified",
-            "text": "Certified quality"
+            "title": "EU Safety Certified",
+            "text": "Tested to strictly meet European health and safety standards for children."
           }
         }
       },
