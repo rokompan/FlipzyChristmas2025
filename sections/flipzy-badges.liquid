@@ -1,6 +1,6 @@
 {% schema %}
 {
-  "name": "Flipzy Badges (4-up)",
+  "name": "Flipzy Badges (5-up)",
   "class": "flipzy-section",
   "settings": [
     {
@@ -101,7 +101,7 @@
   ],
   "presets": [
     {
-      "name": "Flipzy Badges (4-up)",
+      "name": "Flipzy Badges (5-up)",
       "blocks": [
         {
           "type": "badge",
@@ -140,6 +140,26 @@
   ]
 }
 {% endschema %}
+
+<style>
+  /* Fix layout to fit 5 items on one line for Desktop */
+  @media (min-width: 990px) {
+    .flipzy-badges-grid {
+      grid-template-columns: repeat(5, 1fr) !important;
+    }
+    
+    /* Slightly reduce padding to make them look better smaller */
+    .flipzy-badge-card {
+      padding: 1.5rem 1rem !important; 
+    }
+    
+    /* Optional: Scale down icon slightly if it feels too crowded */
+    .flipzy-badge-icon svg {
+      width: 40px; 
+      height: 40px;
+    }
+  }
+</style>
 
 <div class="flipzy-badges-section" style="background-color: {{ section.settings.bg_color }};">
   <div class="flipzy-badges-container">
