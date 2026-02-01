@@ -589,13 +589,22 @@
             "title": "Easy to Mount",
             "text": "stick damage-free or secure with screws, your choice"
           }
+        },
+        "badge_FBFExU": {
+          "type": "badge",
+          "settings": {
+            "icon": "ce",
+            "title": "Certified",
+            "text": "Certified quality"
+          }
         }
       },
       "block_order": [
         "badge_UbVzga",
         "badge_Npn6Lh",
         "badge_4xbG9n",
-        "badge_9KLC7x"
+        "badge_9KLC7x",
+        "badge_FBFExU"
       ],
       "name": "Flipzy Badges (4-up)",
       "settings": {
