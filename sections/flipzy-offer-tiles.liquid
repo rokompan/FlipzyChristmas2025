@@ -300,28 +300,40 @@
              </div>
           </div>
 
-          <!-- HIDDEN PRODUCT FORM -->
-          <product-form class="product-form">
-            {%- form 'product', product, id: 'main-offer-form', class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-              <input type="hidden" name="id" value="{{ variant.id }}">
-              <input type="hidden" name="quantity" id="main-offer-quantity" value="1">
-              
-              <button
-                type="submit"
-                name="add"
-                class="flipzy-add-btn"
-                {% unless variant.available %}disabled{% endunless %}
-              >
-                <span>
-                  {% if variant.available %}
-                    Add to Cart
-                  {% else %}
-                    Sold Out
-                  {% endif %}
-                </span>
-              </button>
-            {%- endform -%}
-          </product-form>
+          <!-- VISIBLE BUTTON (Triggers hidden form) -->
+          <button
+            type="button"
+            class="flipzy-add-btn"
+            onclick="submitOfferForm()"
+            {% unless variant.available %}disabled{% endunless %}
+          >
+            <span>
+              {% if variant.available %}
+                Add to Cart
+              {% else %}
+                Sold Out
+              {% endif %}
+            </span>
+          </button>
+          
+          <!-- HIDDEN STANDARD FORM -->
+          <div style="display:none;">
+             {% assign product_form_id = 'product-form-offer-' | append: section.id %}
+             <product-info
+                id="product-info-{{ section.id }}"
+                data-section="{{ section.id }}"
+                data-product-id="{{ product.id }}"
+                data-update-url="false"
+                data-url="{{ product.url }}"
+             >
+                {%- render 'buy-buttons',
+                    product: product,
+                    product_form_id: product_form_id,
+                    section_id: section.id,
+                    show_dynamic_checkout: false
+                -%}
+             </product-info>
+          </div>
 
         </div>
       </div>
@@ -335,10 +347,28 @@
 
 <script>
   let currentOfferQty = 1;
-  const moneyFormat = "{{ shop.money_format }}"; // e.g. €{{amount}}
+  // Get raw format. Liquid replaces the curly braces with the shop setting, creating a JS string.
+  // Warning: If shop format has double quotes, it might break. Should ideally be json encoded.
+  const moneyFormat = '{{ shop.money_format | replace: "'", "\'" }}'; 
 
   function formatMoney(cents) {
-    return moneyFormat.replace('\{\{amount\}\}', (cents / 100).toFixed(2)).replace('\{\{amount_no_decimals\}\}', (cents / 100).toFixed(0)); 
+    // Helper to replace common Shopify money variable patterns with regex to handle spaces
+    let formatted = moneyFormat;
+    let value = (cents / 100).toFixed(2);
+    
+    // Check for comma separator preference (usually implies comma decimal)
+    if (formatted.match(/\{\{\s*amount_with_comma_separator\s*\}\}/)) {
+        value = value.replace('.', ',');
+        formatted = formatted.replace(/\{\{\s*amount_with_comma_separator\s*\}\}/, value);
+    } 
+    else if (formatted.match(/\{\{\s*amount\s*\}\}/)) {
+        formatted = formatted.replace(/\{\{\s*amount\s*\}\}/, value);
+    }
+    // Fallback if no placeholder match found (unlikely but safe)
+    if (formatted === moneyFormat) {
+       formatted = value + ' €'; // Absolute fallback
+    }
+    return formatted;
   }
 
   function selectOfferQty(qty, btn) {
@@ -348,15 +378,8 @@
 
     // 2. Update State
     currentOfferQty = qty;
-    document.getElementById('main-offer-quantity').value = qty;
-
+    
     // 3. Price Calculation Logic
-    // Based on user request/sticky bar logic:
-    // 1x: Base
-    // 2x: 2 * Base (Free Shipping)
-    // 3x: 2 * Base (3 for 2)
-    // 4x: 4 * Base * 0.70 (30% off)
-
     const priceEl = document.getElementById('offer-total-price');
     const basePrice = parseFloat(priceEl.getAttribute('data-base'));
     
@@ -371,13 +394,7 @@
     }
 
     // Update Price Text
-    let formatted = moneyFormat;
-    if (formatted.includes('{{amount_with_comma_separator}}')) {
-        formatted = formatted.replace('{{amount_with_comma_separator}}', (finalPrice / 100).toFixed(2).replace('.', ','));
-    } else {
-        formatted = formatted.replace('{{amount}}', (finalPrice / 100).toFixed(2));
-    }
-    priceEl.innerText = formatted; 
+    priceEl.innerText = formatMoney(finalPrice); 
 
     // 4. Shipping Text
     const shipEl = document.getElementById('offer-shipping-text');
@@ -386,6 +403,31 @@
     } else {
         shipEl.style.display = 'none';
     }
+  }
+
+  function submitOfferForm() {
+      // Find the hidden form rendered by buy-buttons
+      // The ID is constructed as 'product-form-offer-' + section.id
+      const formId = 'product-form-offer-{{ section.id }}';
+      const form = document.getElementById(formId);
+      
+      if (form) {
+          // Check for quantity input
+          let qtyInput = form.querySelector('input[name="quantity"]');
+          if (!qtyInput) {
+              qtyInput = document.createElement('input');
+              qtyInput.type = 'hidden';
+              qtyInput.name = 'quantity';
+              form.appendChild(qtyInput);
+          }
+          // Set value from global state
+          qtyInput.value = currentOfferQty;
+          
+          // Submit
+          form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+      } else {
+          console.error('Flipzy Offer: Hidden, rendered form not found:', formId);
+      }
   }
 </script>
 
@@ -400,7 +442,7 @@
     },
     {
       "type": "text",
-      "id": "title",
+      "id": "heading",
       "default": "Choose Quantity",
       "label": "Heading"
     },
