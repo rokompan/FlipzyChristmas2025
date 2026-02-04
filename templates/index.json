@@ -302,7 +302,7 @@
       "type": "flipzy-offer-tiles",
       "name": "Flipzy Offer Tiles",
       "settings": {
-        "main_product": "",
+        "main_product": "flipzy-wooden-routine-board",
         "qty_1_label": "1x Flipzy",
         "qty_2_label": "Free Shipping",
         "qty_2_discount": 0,
