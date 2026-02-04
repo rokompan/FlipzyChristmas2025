@@ -371,31 +371,51 @@
     return formatted;
   }
 
-  function selectOfferQty(qty, btn) {
-    // 1. Visual Selection
-    document.querySelectorAll('.flipzy-qty-btn').forEach(el => el.classList.remove('is-selected'));
-    btn.classList.add('is-selected');
-
-    // 2. Update State
+  function selectOfferQty(qty, element) {
+    // 1. Update UI Selection
     currentOfferQty = qty;
-    
-    // 3. Price Calculation Logic
-    const priceEl = document.getElementById('offer-total-price');
-    const basePrice = parseFloat(priceEl.getAttribute('data-base'));
-    
-    let finalPrice = basePrice * qty; // Default
+    document.querySelectorAll('.flipzy-qty-btn').forEach(btn => btn.classList.remove('is-selected'));
+    element.classList.add('is-selected');
 
-    if (qty == 3) {
-       // 3 for 2 deal: Pay for 2
-       finalPrice = basePrice * 2;
-    } else if (qty == 4) {
-       // 30% off total
-       finalPrice = (basePrice * 4) * 0.70;
+    // 2. Calculate Dynamic Price using Config
+    let finalPrice = 0;
+    const basePrice = window.offerConfig.basePrice;
+    
+    // Check for Shopify Native Volume Pricing first
+    const volRules = window.offerConfig.quantityPriceBreaks || [];
+    // Find the highest rule that satisfies the quantity
+    // (Rules are typically sorted by min qty ascending)
+    let matchedRule = null;
+    volRules.forEach(rule => {
+       if (qty >= rule.minimum_quantity) {
+           matchedRule = rule;
+       }
+    });
+
+    if (matchedRule) {
+        // Use the volume price (unit price) * quantity
+        // Note: quantity_price_breaks returns unit price in cents if accessed via liquid JSON
+        finalPrice = parseInt(matchedRule.price) * qty; 
+    } else {
+        // Fallback to Schema Settings (Percent Discount)
+        const tier = window.offerConfig.tiers[qty] || { discount: 0 };
+        const discountPct = tier.discount;
+        const baseTotal = basePrice * qty;
+        finalPrice = baseTotal * (1 - (discountPct / 100));
     }
 
-    // Update Price Text
-    priceEl.innerText = formatMoney(finalPrice); 
-
+    // 3. Format Money
+    const priceEl = document.getElementById('offer-total-price');
+    let moneyFormat = window.offerConfig.moneyFormat || "${{amount}}"; 
+    
+    let formatted = moneyFormat;
+    if (formatted.includes('{{amount_with_comma_separator}}')) {
+        formatted = formatted.replace('{{amount_with_comma_separator}}', (finalPrice / 100).toFixed(2).replace('.', ','));
+    } else {
+        formatted = formatted.replace('{{amount}}', (finalPrice / 100).toFixed(2));
+    }
+    priceEl.innerText = formatted;
+    
     // 4. Shipping Text
     const shipEl = document.getElementById('offer-shipping-text');
     if (qty >= 2) {
@@ -431,26 +451,101 @@
   }
 </script>
 
+<script>
+  window.offerConfig = {
+    basePrice: {{ current_variant.price | json }},
+    moneyFormat: {{ shop.money_with_currency_format | json }},
+    tiers: {
+      1: { discount: 0, label: {{ section.settings.qty_1_label | json }} },
+      2: { discount: {{ section.settings.qty_2_discount | default: 0 }}, label: {{ section.settings.qty_2_label | json }} },
+      3: { discount: {{ section.settings.qty_3_discount | default: 33 }}, label: {{ section.settings.qty_3_label | json }} },
+      4: { discount: {{ section.settings.qty_4_discount | default: 30 }}, label: {{ section.settings.qty_4_label | json }} }
+    }
+  };
+</script>
+
 {% schema %}
 {
-  "name": "Flipzy Offer Redesign",
+  "name": "Flipzy Offer Tiles",
   "settings": [
     {
       "type": "product",
-      "id": "product",
-      "label": "Main Product"
+      "id": "main_product",
+      "label": "Main Product for Offer"
+    },
+    {
+      "type": "header",
+      "content": "Quantity 1 Settings"
     },
     {
       "type": "text",
-      "id": "heading",
-      "default": "Choose Quantity",
-      "label": "Heading"
+      "id": "qty_1_label",
+      "label": "Badge Text",
+      "default": "1x Flipzy"
     },
     {
-      "type": "richtext",
-      "id": "text",
-      "label": "Description",
-      "default": "<p>Sproščanje za vaša stopala.</p>"
+      "type": "header",
+      "content": "Quantity 2 Settings"
+    },
+    {
+      "type": "text",
+      "id": "qty_2_label",
+      "label": "Badge Text",
+      "default": "Free Shipping"
+    },
+    {
+      "type": "range",
+      "id": "qty_2_discount",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Discount Percentage",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Quantity 3 Settings"
+    },
+    {
+      "type": "text",
+      "id": "qty_3_label",
+      "label": "Badge Text",
+      "default": "3 for 2"
+    },
+    {
+      "type": "range",
+      "id": "qty_3_discount",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Discount Percentage",
+      "default": 33
+    },
+    {
+      "type": "header",
+      "content": "Quantity 4 Settings"
+    },
+    {
+      "type": "text",
+      "id": "qty_4_label",
+      "label": "Badge Text",
+      "default": "-30% OFF"
+    },
+    {
+      "type": "range",
+      "id": "qty_4_discount",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Discount Percentage",
+      "default": 30
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
     },
     {
       "type": "range",
