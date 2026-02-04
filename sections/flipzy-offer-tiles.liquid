@@ -355,8 +355,9 @@
   let currentOfferQty = 1;
   // Hardcoded Currency Formatter as requested to fix display glitch
   // Helper to format number with separators
+// Helper to format number with separators
 function formatWithSeparators(number, precision, thousands, decimal) {
-  if (precision === 0 && number % 1 === 0) precision = 0; // Force integer if whole
+  if (precision === 0 && number % 1 === 0) precision = 0; 
   
   var parts = number.toFixed(precision).split('.');
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
@@ -369,31 +370,28 @@ function formatMoney(cents) {
 
   if (!moneyFormat) return (cents / 100).toFixed(0) + ' ' + currencyCode;
 
-  // Determine if we should show decimals (user preference: strict integers for whole numbers)
-  let precision = 2;
-  if (cents % 100 === 0) precision = 0; // Strict: No decimals for whole numbers
-
+  // STRICT RULE: User wants NO decimals for any currency (EUR, HUF, etc)
+  let precision = 0; 
   let val = cents / 100;
   let formatted = moneyFormat;
 
   // Detect format type and apply correct separators
-  // 1. European/Dot-Thousands (amount_with_comma_separator)
-  if (formatted.includes('{' + '{amount_with_comma_separator}' + '}') || formatted.includes('amount_with_comma_separator')) {
+  // European/Dot-Thousands: matches 'amount_with_comma_separator' or 'amount_no_decimals_with_comma_separator'
+  if (formatted.indexOf('comma_separator') !== -1) {
       let str = formatWithSeparators(val, precision, '.', ',');
-      formatted = formatted.replace(new RegExp('\\{\\{\\s*amount_with_comma_separator\\s*\\}\\}', 'g'), str);
+      formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
   } 
-  // 2. Default/Comma-Thousands (amount)
+  // Default/Comma-Thousands: matches 'amount', 'amount_no_decimals', etc.
   else {
       let str = formatWithSeparators(val, precision, ',', '.');
-      formatted = formatted.replace(new RegExp('\\{\\{\\s*amount\\s*\\}\\}', 'g'), str);
+      formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
   }
 
-  // Check for "{" + "{" to avoid Liquid parser trying to parse this string
-  if (formatted.indexOf('{' + '{') !== -1) {
-       return formatWithSeparators(val, precision, ',', '.') + ' ' + currencyCode; // Fallback
+  // Fallback: If replacement failed or stripped
+  if (formatted.indexOf('{{') !== -1 || formatted.indexOf('}}') !== -1) {
+       return formatWithSeparators(val, precision, ',', '.') + ' ' + currencyCode; 
   }
 
-  return formatted;
   return formatted;
 }
 

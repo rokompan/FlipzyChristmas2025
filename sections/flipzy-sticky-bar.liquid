@@ -292,24 +292,23 @@
     
     if (!moneyFormat) return (cents / 100).toFixed(0) + ' ' + currencyCode;
 
-    // Determine if we should show decimals (strict integers for whole numbers)
-    let precision = 2;
-    if (cents % 100 === 0) precision = 0; 
+    // STRICT RULE: User wants NO decimals for any currency (EUR, HUF, etc)
+    let precision = 0; 
 
     let val = cents / 100;
     let formatted = moneyFormat;
 
     // Detect format type and apply correct separators
-    if (formatted.includes('{' + '{amount_with_comma_separator}'+'}') || formatted.includes('amount_with_comma_separator')) {
+    if (formatted.indexOf('comma_separator') !== -1) {
         let str = formatWithSeparators(val, precision, '.', ',');
-        formatted = formatted.replace(new RegExp('\\{\\{\\s*amount_with_comma_separator\\s*\\}\\}', 'g'), str);
+        formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
     } 
     else {
         let str = formatWithSeparators(val, precision, ',', '.');
-        formatted = formatted.replace(new RegExp('\\{\\{\\s*amount\\s*\\}\\}', 'g'), str);
+        formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
     }
     
-    if (formatted.indexOf('{' + '{') !== -1) {
+    if (formatted.indexOf('{{') !== -1 || formatted.indexOf('}}') !== -1) {
          return formatWithSeparators(val, precision, ',', '.') + ' ' + currencyCode;
     }
 
