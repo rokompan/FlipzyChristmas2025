@@ -1,8 +1,7 @@
-{%- liquid
   assign padding_top = section.settings.padding_top
   assign padding_bottom = section.settings.padding_bottom
   assign product = section.settings.main_product
-  assign variant = product.selected_or_first_available_variant
+  assign variant = product.selected_or_first_available_variant | default: product.variants.first
 -%}
 
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
@@ -461,13 +460,14 @@
 </script>
 
 <script>
-  // DEBUGGING FLIPZY OFFER
-  console.log("Flipzy Debug - Script Loaded");
-  console.log("Flipzy Debug - Variant ID:", {{ variant.id | json }});
-  console.log("Flipzy Debug - Variant Price (Liquid):", {{ variant.price | json }});
+  // DEBUGGING FLIPZY OFFER - ERROR LOGS
+  console.error("Flipzy Debug - Script Loaded");
+  console.error("Flipzy Debug - Variant ID:", {{ variant.id | json }});
+  console.error("Flipzy Debug - Variant Price:", {{ variant.price | json }});
+  console.error("Flipzy Debug - Product Price (Fallback):", {{ product.price | json }});
   
   window.offerConfig = {
-    basePrice: {{ variant.price | json }},
+    basePrice: {{ variant.price | default: product.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
     tiers: {
       1: { discount: 0, label: {{ section.settings.qty_1_label | default: "—" | json }} },
