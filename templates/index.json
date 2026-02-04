@@ -302,9 +302,14 @@
       "type": "flipzy-offer-tiles",
       "name": "Flipzy Offer Tiles",
       "settings": {
-        "product": "flipzy-wooden-routine-board",
-        "title": "Choose Your Bundle",
-        "text": "<p>From one routine to a full family setup. Choose what fits your needs today.</p>",
+        "main_product": "flipzy-wooden-routine-board",
+        "qty_1_label": "1x Flipzy",
+        "qty_2_label": "Free Shipping",
+        "qty_2_discount": 0,
+        "qty_3_label": "3 for 2",
+        "qty_3_discount": 33,
+        "qty_4_label": "-30% OFF",
+        "qty_4_discount": 30,
         "padding_top": 16,
         "padding_bottom": 16
       }
