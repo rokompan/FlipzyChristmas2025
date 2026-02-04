@@ -215,20 +215,18 @@
         <div class="flipzy-quantity-selector">
             <span style="font-weight: 600; font-size: 0.9rem; color: #374151;">Quantity:</span>
             <select id="stick-quantity-selector" class="flipzy-quantity-select" onchange="updateStickyPrice(this)">
-                <option value="1" data-price="{{ variant.price | money }}">1 Pair - {{ variant.price | money }}</option>
-                <option value="2" data-price="{{ variant.price | times: 2 | money }}">2 Pairs - {{ variant.price | times: 2 | money }} + Free Shipping</option>
-                {% comment %} Note: "3 for 2" implies paying for 2. We show the raw price calculation as requested "price - 3 for 2" unless discount is manual. {% endcomment %}
-                <option value="3" data-price="{{ variant.price | times: 3 | money }}">3 Pairs - {{ variant.price | times: 3 | money }} (3 for 2 Deal)</option>
-                <option value="4" data-price="{{ variant.price | times: 4 | money }}">4 Pairs - {{ variant.price | times: 4 | money }} (Save 30%)</option>
+                <!-- Options populated by JS for dynamic price, but we keep hardcoded fallbacks for SEO/No-JS -->
+                <option value="1">1x Flipzy</option>
+                <option value="2">2x Flipzys (⭐ Popular + Free Shipping)</option>
+                <option value="3">3x Flipzys (3 for 2 Deal)</option>
+                <option value="4">4x Flipzys (🔥 Best Value)</option>
             </select>
         </div>
   
         <div class="flipzy-sticky-action">
           <div class="flipzy-sticky-price-box">
-            <span class="flipzy-sticky-old" id="sticky-price-old" style="{% unless variant.compare_at_price > variant.price %}display:none;{% endunless %}">
-                {{ variant.compare_at_price | money }}
-            </span>
-            <span class="flipzy-sticky-new" id="sticky-price-new" data-base-price="{{ variant.price }}">{{ variant.price | money }}</span>
+             <!-- Price updated by JS -->
+            <span class="flipzy-sticky-new" id="sticky-price-new">{{ variant.price | money }}</span>
           </div>
   
           <button type="button" class="flipzy-sticky-btn" onclick="submitStickyForm()">
@@ -258,10 +256,6 @@
                 show_dynamic_checkout: false 
             -%}
             
-            {% comment %} 
-                We need to inject a quantity input into the form so it respects our selection.
-                Typically 'buy-buttons' renders the form. We will manipulate it via JS before submit.
-            {% endcomment %}
             <button id="real-submit-sticky" type="submit" form="{{ product_form_id }}">Submit</button>
           </product-info>
     </div>
@@ -270,12 +264,61 @@
 {% endunless %}
 
 <script>
-  function updateStickyPrice(select) {
-    const selectedOption = select.options[select.selectedIndex];
-    const newPrice = selectedOption.getAttribute('data-price');
-    if(newPrice) {
-        document.getElementById('sticky-price-new').innerText = newPrice;
+  // Hardcoded Config to Match Main Offer
+  window.stickyConfig = {
+    basePrice: {{ variant.price | default: prod.price | default: 0 | json }},
+    moneyFormat: {{ shop.money_format | json }},
+    tiers: {
+      1: { discount: 0, label: "1x Flipzy" },
+      2: { discount: 7.4, label: "2x Flipzys (⭐ Popular + Free Shipping)" },
+      3: { discount: 20, label: "3x Flipzys (3 for 2 Deal - 20% OFF)" },
+      4: { discount: 25, label: "4x Flipzys (🔥 Best Value - 25% OFF)" }
     }
+  };
+
+  // Mirrored Format Money Logic
+  function formatStickyMoney(cents) {
+    const currencyCode = {{ cart.currency.iso_code | json }};
+    const moneyFormat = window.stickyConfig.moneyFormat;
+    
+    if (!moneyFormat) return (cents / 100).toFixed(2) + ' ' + currencyCode;
+
+    let value = (cents / 100).toFixed(2);
+    let valueWithComma = value.replace('.', ',');
+    let formatted = moneyFormat;
+
+    if (formatted.includes('{' + '{amount_with_comma_separator}'+'}')) {
+        formatted = formatted.replace('{' + '{amount_with_comma_separator}'+'}', valueWithComma);
+    } else if (formatted.includes('{' + '{amount}'+'}')) {
+        formatted = formatted.replace('{' + '{amount}'+'}', value);
+    } else {
+        formatted = formatted.replace(/\{\{\s*amount_with_comma_separator\s*\}\}/g, valueWithComma)
+                             .replace(/\{\{\s*amount\s*\}\}/g, value);
+    }
+    
+    if (formatted.indexOf('{' + '{') !== -1) {
+         return value + ' ' + currencyCode;
+    }
+
+    return formatted;
+  }
+
+  function updateStickyPrice(select) {
+    const qty = parseInt(select.value);
+    
+    // 1. Calculate Price
+    const basePrice = window.stickyConfig.basePrice;
+    const tier = window.stickyConfig.tiers[qty] || { discount: 0 };
+    const discountPct = tier.discount;
+    
+    const baseTotal = basePrice * qty;
+    const rawPrice = baseTotal * (1 - (discountPct / 100));
+    
+    // 2. Rounding Logic (Math.ceil)
+    const finalPrice = Math.ceil(rawPrice / 100) * 100;
+    
+    // 3. Update Text
+    document.getElementById('sticky-price-new').innerText = formatStickyMoney(finalPrice);
   }
 
   function submitStickyForm() {
@@ -287,7 +330,6 @@
         const form = document.getElementById(formId);
         
         if(form) {
-            // Check if input[name="quantity"] exists
             let qtyInput = form.querySelector('input[name="quantity"]');
             if(!qtyInput) {
                 qtyInput = document.createElement('input');
@@ -296,76 +338,54 @@
                 form.appendChild(qtyInput);
             }
             qtyInput.value = qty;
-            
-            // Trigger submit
             btn.click();
-        } else {
-            console.error("Flipzy Sticky: Form not found");
         }
-    } else {
-      console.error("Flipzy Sticky: Could not find hidden submit button");
     }
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     const bar = document.getElementById('flipzy-sticky-bar-{{ section.id }}');
     if(!bar) return;
-
-    // SCROLL LOGIC: "Lost User" Detection
-    // Sticky appears only after user has scrolled up and down a bit (indecisive/browsing).
     
+    // Initialize correct price for default selection (1)
+    const selector = document.getElementById('stick-quantity-selector');
+    if(selector) updateStickyPrice(selector);
+
+    // SCROLL LOGIC
     let lastScrollY = window.scrollY;
     let direction = 'down'; 
     let reversals = 0;
     
-    // Constants
-    const REVERSAL_THRESHOLD = 3; // Number of direction changes before showing
-    const MIN_SCROLL_DEPTH = 800; // Must scroll at least this deep to qualify
+    const REVERSAL_THRESHOLD = 3; 
     
     function checkScroll() {
       const currentScrollY = window.scrollY;
       const scrollDiff = currentScrollY - lastScrollY;
       
-      // 1. Determine Direction
-      // Ignore tiny scrolls (jitter)
       if (Math.abs(scrollDiff) > 10) {
           const newDirection = scrollDiff > 0 ? 'down' : 'up';
-          
           if (newDirection !== direction) {
               reversals++;
               direction = newDirection;
-              // console.log("Direction change:", direction, "Reversals:", reversals);
           }
       }
 
-      // 2. Visibility Logic
-      // - Must be past the Trigger Point (e.g. Hero Section)
-      // - AND must have exhibited "lost" behavior (reversals)
-      // OR standard fallback: significantly deep in the page?
-      
       const heroSection = document.querySelector('.section-hero') || document.querySelector('.flipzy-hero-container');
-      let triggerPoint = window.innerHeight; // Default 1 screen
+      let triggerPoint = window.innerHeight; 
       if (heroSection) {
           triggerPoint = heroSection.getBoundingClientRect().height + 100;
       }
 
       const isDeepEnough = currentScrollY > triggerPoint;
       const isLost = reversals >= REVERSAL_THRESHOLD;
-
-      // Logic: Show if Deep Enough AND (Lost OR (Deep & Scrolling Up))
-      // Simplified as requested: "appears after user seems to be a bit lost and went up and down"
       
       if (isDeepEnough && isLost) {
           bar.classList.add('is-visible');
       } else {
-         // Keep visible if already visible? usually sticky bars stay once triggered?
-         // User said "Sticky comes in too soon...".
-         // Let's allow it to hide if they go back to the very top.
          if(currentScrollY < 100) {
             bar.classList.remove('is-visible');
-            reversals = 0; // Reset logic if they return to top
+            reversals = 0; 
          }
-         // Otherwise, wait for trigger.
       }
       
       lastScrollY = currentScrollY;

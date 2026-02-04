@@ -272,7 +272,7 @@
 
             <!-- 2x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(2, this)" data-badge="true">
-              <span class="flipzy-btn-badge" style="background:#F4D35E; color:#111;">⭐ Most popular</span>
+              <span class="flipzy-btn-badge" style="background:#F4D35E; color:#111;">⭐ Popular</span>
               <span class="mt-qty-big">2x</span>
               <span class="mt-qty-small">Flipzys</span>
             </div>
@@ -473,7 +473,7 @@
     moneyFormat: {{ shop.money_format | json }},
     tiers: {
       1: { discount: 0, label: {{ section.settings.qty_1_label | default: "—" | json }} },
-      2: { discount: 7.4, label: {{ section.settings.qty_2_label | default: "⭐ Most popular" | json }} }, /* 7.4% -> €62.9x -> Rounds to €63 */
+      2: { discount: 7.4, label: {{ section.settings.qty_2_label | default: "⭐ Popular" | json }} }, /* 7.4% -> €62.9x -> Rounds to €63 */
       3: { discount: 20, label: {{ section.settings.qty_3_label | default: "3 for 2" | json }} },
       4: { discount: 25, label: {{ section.settings.qty_4_label | default: "🔥 Best value" | json }} }
     }
@@ -527,7 +527,7 @@
       "type": "text",
       "id": "qty_3_label",
       "label": "Badge Text",
-      "default": "3 for 2"
+      "default": "⭐ Popular"
     },
     {
       "type": "range",
