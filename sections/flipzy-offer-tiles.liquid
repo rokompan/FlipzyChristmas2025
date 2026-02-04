@@ -353,13 +353,6 @@
 
 <script>
   let currentOfferQty = 1;
-  // Get raw format. Liquid replaces the curly braces with the shop setting, creating a JS string.
-  // Warning: If shop format has double quotes, it might break. Should ideally be json encoded.
-  // Get shop currency format. 
-  // We use specific liquid filters to get raw patterns if possible, or fallback to the standard one.
-  // Get shop currency format. 
-  // We use specific liquid filters to get raw patterns if possible, or fallback to the standard one.
-  // Hardcoded Currency Formatter as requested to fix display glitch
   // Hardcoded Currency Formatter as requested to fix display glitch
   // Helper to format number with separators
 function formatWithSeparators(number, precision, thousands, decimal) {
@@ -401,7 +394,8 @@ function formatMoney(cents) {
   }
 
   return formatted;
-}  }
+  return formatted;
+}
 
   function selectOfferQty(qty, element) {
     // 1. Update UI Selection
