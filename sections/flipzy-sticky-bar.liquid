@@ -276,28 +276,41 @@
     }
   };
 
+  // Helper to format number with separators
+  function formatWithSeparators(number, precision, thousands, decimal) {
+      if (precision === 0 && number % 1 === 0) precision = 0; // Force integer if whole
+      
+      var parts = number.toFixed(precision).split('.');
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+      return parts.join(decimal);
+  }
+
   // Mirrored Format Money Logic
   function formatStickyMoney(cents) {
     const currencyCode = {{ cart.currency.iso_code | json }};
     const moneyFormat = window.stickyConfig.moneyFormat;
     
-    if (!moneyFormat) return (cents / 100).toFixed(2) + ' ' + currencyCode;
+    if (!moneyFormat) return (cents / 100).toFixed(0) + ' ' + currencyCode;
 
-    let value = (cents / 100).toFixed(2);
-    let valueWithComma = value.replace('.', ',');
+    // Determine if we should show decimals (strict integers for whole numbers)
+    let precision = 2;
+    if (cents % 100 === 0) precision = 0; 
+
+    let val = cents / 100;
     let formatted = moneyFormat;
 
-    if (formatted.includes('{' + '{amount_with_comma_separator}'+'}')) {
-        formatted = formatted.replace('{' + '{amount_with_comma_separator}'+'}', valueWithComma);
-    } else if (formatted.includes('{' + '{amount}'+'}')) {
-        formatted = formatted.replace('{' + '{amount}'+'}', value);
-    } else {
-        formatted = formatted.replace(/\{\{\s*amount_with_comma_separator\s*\}\}/g, valueWithComma)
-                             .replace(/\{\{\s*amount\s*\}\}/g, value);
+    // Detect format type and apply correct separators
+    if (formatted.includes('{' + '{amount_with_comma_separator}'+'}') || formatted.includes('amount_with_comma_separator')) {
+        let str = formatWithSeparators(val, precision, '.', ',');
+        formatted = formatted.replace(new RegExp('\\{\\{\\s*amount_with_comma_separator\\s*\\}\\}', 'g'), str);
+    } 
+    else {
+        let str = formatWithSeparators(val, precision, ',', '.');
+        formatted = formatted.replace(new RegExp('\\{\\{\\s*amount\\s*\\}\\}', 'g'), str);
     }
     
     if (formatted.indexOf('{' + '{') !== -1) {
-         return value + ' ' + currencyCode;
+         return formatWithSeparators(val, precision, ',', '.') + ' ' + currencyCode;
     }
 
     return formatted;

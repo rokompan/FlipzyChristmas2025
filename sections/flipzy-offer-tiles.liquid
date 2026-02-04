@@ -361,34 +361,47 @@
   // We use specific liquid filters to get raw patterns if possible, or fallback to the standard one.
   // Hardcoded Currency Formatter as requested to fix display glitch
   // Hardcoded Currency Formatter as requested to fix display glitch
-  function formatMoney(cents) {
-    const currencyCode = {{ cart.currency.iso_code | json }};
-    const moneyFormat = window.offerConfig ? window.offerConfig.moneyFormat : null;
-    
-    if (!moneyFormat) return (cents / 100).toFixed(2) + ' ' + currencyCode;
+  // Helper to format number with separators
+function formatWithSeparators(number, precision, thousands, decimal) {
+  if (precision === 0 && number % 1 === 0) precision = 0; // Force integer if whole
+  
+  var parts = number.toFixed(precision).split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+  return parts.join(decimal);
+}
 
-    let value = (cents / 100).toFixed(2);
-    let valueWithComma = value.replace('.', ',');
-    let formatted = moneyFormat;
+function formatMoney(cents) {
+  const currencyCode = {{ cart.currency.iso_code | json }};
+  const moneyFormat = window.offerConfig ? window.offerConfig.moneyFormat : null;
 
-    // Robust replacement:
-    if (formatted.includes('{' + '{amount_with_comma_separator}'+'}')) {
-        formatted = formatted.replace('{' + '{amount_with_comma_separator}'+'}', valueWithComma);
-    } else if (formatted.includes('{' + '{amount}'+'}')) {
-        formatted = formatted.replace('{' + '{amount}'+'}', value);
-    } else {
-        // Regex with escaped braces
-        formatted = formatted.replace(/\{\{\s*amount_with_comma_separator\s*\}\}/g, valueWithComma)
-                             .replace(/\{\{\s*amount\s*\}\}/g, value);
-    }
-    
-    // Check for "{" + "{" to avoid Liquid parser trying to parse this string
-    if (formatted.indexOf('{' + '{') !== -1) {
-         return value + ' ' + currencyCode; // Fallback
-    }
+  if (!moneyFormat) return (cents / 100).toFixed(0) + ' ' + currencyCode;
 
-    return formatted;
+  // Determine if we should show decimals (user preference: strict integers for whole numbers)
+  let precision = 2;
+  if (cents % 100 === 0) precision = 0; // Strict: No decimals for whole numbers
+
+  let val = cents / 100;
+  let formatted = moneyFormat;
+
+  // Detect format type and apply correct separators
+  // 1. European/Dot-Thousands (amount_with_comma_separator)
+  if (formatted.includes('{' + '{amount_with_comma_separator}' + '}') || formatted.includes('amount_with_comma_separator')) {
+      let str = formatWithSeparators(val, precision, '.', ',');
+      formatted = formatted.replace(new RegExp('\\{\\{\\s*amount_with_comma_separator\\s*\\}\\}', 'g'), str);
+  } 
+  // 2. Default/Comma-Thousands (amount)
+  else {
+      let str = formatWithSeparators(val, precision, ',', '.');
+      formatted = formatted.replace(new RegExp('\\{\\{\\s*amount\\s*\\}\\}', 'g'), str);
   }
+
+  // Check for "{" + "{" to avoid Liquid parser trying to parse this string
+  if (formatted.indexOf('{' + '{') !== -1) {
+       return formatWithSeparators(val, precision, ',', '.') + ' ' + currencyCode; // Fallback
+  }
+
+  return formatted;
+}  }
 
   function selectOfferQty(qty, element) {
     // 1. Update UI Selection
