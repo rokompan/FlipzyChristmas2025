@@ -300,72 +300,11 @@
     },
     "flipzy_offer_tiles_ndRRqR": {
       "type": "flipzy-offer-tiles",
-      "blocks": {
-        "tile_cMGatH": {
-          "type": "tile",
-          "settings": {
-            "product": "flipzy-wooden-routine-board",
-            "highlight_tile": false,
-            "badge_text": "START SMALL",
-            "manual_bundle_size": "",
-            "custom_title": "One Daily Routine",
-            "description": "<b>The easiest way to get started.  </b><br>A simple starting point if you want to try Flipzy with one routine before expanding.<br>Most families add more Flipzys later",
-            "show_shipping_badge": false,
-            "button_text": "Add to Cart"
-          }
-        },
-        "tile_iFN78V": {
-          "type": "tile",
-          "settings": {
-            "product": "flipzy-2-pack-morning-evening",
-            "highlight_tile": true,
-            "badge_text": "MOST POPULAR",
-            "manual_bundle_size": "",
-            "custom_title": "Morning & Evening Routines",
-            "description": "<b>Two routines. Far less reminding. </b><br>\nIdeal for mornings and evenings, or two kids sharing the day with less friction.",
-            "show_shipping_badge": true,
-            "button_text": "Add to Cart"
-          }
-        },
-        "tile_Epxb4g": {
-          "type": "tile",
-          "settings": {
-            "product": "flipzy-3-pack-full-day-siblings",
-            "highlight_tile": false,
-            "badge_text": "3 FOR 2",
-            "manual_bundle_size": "",
-            "custom_title": "Pay 2, Get 1 for Free!",
-            "description": "<b>Extra flexibility included.</b><br> Great for full-day routines, shared spaces, or growing families.",
-            "show_shipping_badge": true,
-            "button_text": "Add to Cart"
-          }
-        },
-        "tile_8Uypti": {
-          "type": "tile",
-          "settings": {
-            "product": "flipzy-4-pack-best-value",
-            "highlight_tile": true,
-            "badge_text": "BEST VALUE",
-            "manual_bundle_size": "",
-            "custom_title": "Family pack",
-            "description": "<b>One clear system for the whole family.<br></b>Designed for siblings, shared routines, and a calmer daily flow at home.",
-            "show_shipping_badge": true,
-            "button_text": "Add to Cart"
-          }
-        }
-      },
-      "block_order": [
-        "tile_cMGatH",
-        "tile_iFN78V",
-        "tile_Epxb4g",
-        "tile_8Uypti"
-      ],
       "name": "Flipzy Offer Tiles",
       "settings": {
+        "product": "flipzy-wooden-routine-board",
         "title": "Choose Your Bundle",
-        "heading_size": "h1",
         "text": "<p>From one routine to a full family setup. Choose what fits your needs today.</p>",
-        "footer_text": "Most families choose 2 or more Flipzys for smoother daily routines.",
         "padding_top": 16,
         "padding_bottom": 16
       }
