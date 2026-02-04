@@ -100,7 +100,7 @@
 
   .flipzy-qty-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 1x, 2x, 3x on first row? Or all 4? */
+    grid-template-columns: repeat(4, 1fr); /* All 4 in one line as requested */
     /* Let's do 2x2 on mobile, 4x1 on desktop or just 4x1 flex wrap? */
     gap: 10px;
     margin-bottom: 25px;
@@ -133,7 +133,7 @@
   }
 
   .mt-qty-big {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 800;
     color: #111;
     line-height: 1;
@@ -141,7 +141,7 @@
   }
 
   .mt-qty-small {
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 600;
     color: #6b7280;
     text-transform: uppercase;
@@ -224,8 +224,8 @@
     .flipzy-qty-grid {
        grid-template-columns: repeat(4, 1fr); /* 4 across on mobile for small buttons */
     }
-    .mt-qty-big { font-size: 1.2rem; }
-    .mt-qty-small { font-size: 0.7rem; }
+    .mt-qty-big { font-size: 1.5rem; }
+    .mt-qty-small { font-size: 0.85rem; }
     .flipzy-qty-btn { min-height: 70px; padding: 10px 2px; }
   }
 {%- endstyle -%}

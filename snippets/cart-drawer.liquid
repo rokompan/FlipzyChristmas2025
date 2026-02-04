@@ -16,20 +16,21 @@
   ---------------------------------------------------------
 {% endcomment %}
 <script>
-  window.upgradeFlipzyBundle = function(btn, oldId, newId) {
-    // Localized string for 'Updating...'
-    btn.innerHTML = '{{ 'sections.cart.upsell.updating' | t | default: "Updating..." }}';
+  window.addFlipzyUpsell = function(btn, variantId) {
+    // Localized string for 'Adding...'
+    btn.innerHTML = 'Adding...';
     btn.style.opacity = '0.7';
     btn.style.pointerEvents = 'none'; 
     
-    var updates = {};
-    updates[oldId] = 0;
-    updates[newId] = 1;
     var formData = {
-      'updates': updates,
+      'items': [{
+        'id': variantId,
+        'quantity': 1
+      }],
       'sections': 'cart-drawer,cart-icon-bubble'
     };
-    fetch(window.Shopify.routes.root + 'cart/update.js', {
+    
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(formData)
@@ -38,15 +39,16 @@
     .then(data => {
       var cartDrawer = document.querySelector('cart-drawer');
       if (cartDrawer && typeof cartDrawer.renderContents === 'function') {
+        // Map the added item response to the expected structure if needed, 
+        // but cart-drawer.js usually handles the full 'sections' object.
         cartDrawer.renderContents(data);
       } else {
         window.location.reload();
       }
     })
     .catch((error) => {
-      console.error('Error upgrading cart:', error);
-      // Localized string for 'Try Again'
-      btn.innerHTML = '{{ 'sections.cart.upsell.try_again' | t | default: "Try Again" }}';
+      console.error('Error adding upsell:', error);
+      btn.innerHTML = 'Try Again';
       btn.style.opacity = '1';
       btn.style.pointerEvents = 'auto';
     });
@@ -112,7 +114,7 @@
           aria-label="{{ 'accessibility.close' | t }}"
         >
           <span class="svg-wrapper">
-            {{- 'icon-close.svg' | inline_asset_content -}}
+             {{- 'icon-close.svg' | inline_asset_content -}}
           </span>
         </button>
       </div>
@@ -529,93 +531,60 @@
 
       {% comment %} 
         ---------------------------------------------------------
-        FLIPZY BUNDLE UPSELL LOGIC (Handles + Dynamic Badge + Diff Price)
+        FLIPZY QUANTITY UPSELL LOGIC (Redesigned)
         ---------------------------------------------------------
       {% endcomment %}
       
       {%- liquid
-        # --- CONFIGURATION: EXACT HANDLES ---
-        assign handle_1x = 'flipzy-wooden-routine-board'
-        assign handle_2x = 'flipzy-2-pack-morning-evening' 
-        assign handle_3x = 'flipzy-3-pack-full-day-siblings'
-        assign handle_4x = 'flipzy-4-pack-best-value'
+        assign target_handle = 'flipzy-wooden-routine-board'
+        assign target_product = all_products[target_handle]
         
-        assign bundle_1x = all_products[handle_1x]
-        assign bundle_2x = all_products[handle_2x]
-        assign bundle_3x = all_products[handle_3x]
-        assign bundle_4x = all_products[handle_4x]
+        assign current_qty = 0
+        assign update_variant_id = 0
+        assign display_price = 0
         
-        assign current_level = 0
-        assign upgrade_product = null
-        assign old_variant_id = 0
-        assign current_cart_price = 0
-        
-        # Check what is currently in the cart AND capture price
-        # FIX: We now compare IDs instead of Handles to support Translated URLs
-        for item in cart.items
-          if item.product.id == bundle_1x.id
-            assign current_level = 1
-            assign old_variant_id = item.variant.id
-            assign current_cart_price = item.final_price
-            break
-          elsif item.product.id == bundle_2x.id
-            assign current_level = 2
-            assign old_variant_id = item.variant.id
-            assign current_cart_price = item.final_price
-            break
-          elsif item.product.id == bundle_3x.id
-            assign current_level = 3
-            assign old_variant_id = item.variant.id
-            assign current_cart_price = item.final_price
-            break
-          elsif item.product.id == bundle_4x.id
-            assign current_level = 4
-            break
-          endif
-        endfor
+        # Check if the product is in the cart
+        if target_product != blank
+           for item in cart.items
+             if item.product.id == target_product.id
+               assign current_qty = item.quantity
+               assign update_variant_id = item.variant.id
+               assign display_price = item.price
+               break
+             endif
+           endfor
+        endif
 
-        # Determine Upgrade Path
+        # Determine Upgrade Path based on Quantity
         assign headline = ""
         assign subline = ""
         assign saved_badge_text = ""
-        assign btn_text = "Upgrade"
+        assign btn_text = "Add 1 More"
+        assign show_upsell = false
         
-        if current_level == 1 and bundle_2x != empty
-          assign upgrade_product = bundle_2x
-          assign subline = 'sections.cart.upsell.subline_2pack' | t | default: "Upgrade to the Morning & Evening pair."
-          assign btn_text = 'sections.cart.upsell.button_2pack' | t | default: "Upgrade to 2-Pack"
-          assign headline = 'sections.cart.upsell.headline_2pack' | t | default: "✨ Unlock Free Shipping!"
-        elsif current_level == 2 and bundle_3x != empty
-          assign upgrade_product = bundle_3x
-          assign subline = 'sections.cart.upsell.subline_3pack' | t | default: "Upgrade to Pay 2, Get 1 Free (3-Pack)."
-          assign btn_text = 'sections.cart.upsell.button_3pack' | t | default: "Upgrade to 3-Pack"
-          assign headline = 'sections.cart.upsell.headline_3pack' | t | default: "🔥 Most Popular Choice"
-        elsif current_level == 3 and bundle_4x != empty
-          assign upgrade_product = bundle_4x
-          assign subline = 'sections.cart.upsell.subline_4pack' | t | default: "Upgrade to the Family Pack (4x)."
-          assign btn_text = 'sections.cart.upsell.button_4pack' | t | default: "Upgrade to 4-Pack"
-          assign headline = 'sections.cart.upsell.headline_4pack' | t | default: "🏆 Best Value - Max Savings"
-        endif
-
-        # Dynamic Calculation of % Saved & Price Difference
-        if upgrade_product != blank
-          assign new_price = upgrade_product.selected_or_first_available_variant.price
-          assign new_compare = upgrade_product.selected_or_first_available_variant.compare_at_price
-          
-          # Calculate Difference to Pay
-          assign price_difference = new_price | minus: current_cart_price
-          
-          # Calculate % Saved on the new bundle
-          if new_compare > new_price
-            assign saved_amount = new_compare | minus: new_price
-            assign saved_pct = saved_amount | times: 100.0 | divided_by: new_compare | round
-            assign default_badge = "SAVE " | append: saved_pct | append: "%"
-            assign saved_badge_text = 'sections.cart.upsell.save_badge' | t: percent: saved_pct | default: default_badge
-          endif
+        if current_qty > 0 
+           if current_qty == 1
+              assign show_upsell = true
+              assign subline = "Add 1 more to unlock Free Shipping!"
+              assign btn_text = "Add +1"
+              assign headline = "✨ Unlock Free Shipping!"
+           elsif current_qty == 2
+              assign show_upsell = true
+              assign subline = "Add 1 more to unlock 3 for 2 Deal!"
+              assign btn_text = "Add +1"
+              assign headline = "🔥 Get 3 for 2!"
+              assign saved_badge_text = "FREE ITEM"
+           elsif current_qty == 3
+              assign show_upsell = true
+              assign subline = "Add 1 more for huge 30% savings!"
+              assign btn_text = "Add +1"
+              assign headline = "🏆 Best Value - 30% OFF"
+              assign saved_badge_text = "-30% OFF"
+           endif
         endif
       -%}
 
-      {%- if upgrade_product != blank -%}
+      {%- if show_upsell -%}
         <style>
           .flipzy-upsell-container {
             background-color: #FFFBEB;
@@ -659,7 +628,6 @@
           /* RED BADGE STYLE */
           .flipzy-upsell-badge {
             background-color: #DC2626;
-            /* Strong Red */
             color: white;
             font-size: 0.8rem;
             font-weight: 800;
@@ -698,8 +666,8 @@
         <div class="flipzy-upsell-container">
           <div class="flipzy-upsell-image">
             <img 
-              src="{{ upgrade_product.featured_image | image_url: width: 140 }}" 
-              alt="{{ upgrade_product.title }}" 
+              src="{{ target_product.featured_image | image_url: width: 140 }}" 
+              alt="{{ target_product.title }}" 
               loading="lazy" 
               width="70" 
               height="70"
@@ -719,9 +687,9 @@
              <button 
               type="button" 
               class="flipzy-upsell-btn" 
-              onclick="window.upgradeFlipzyBundle(this, '{{ old_variant_id }}', '{{ upgrade_product.selected_or_first_available_variant.id }}')"
+              onclick="window.addFlipzyUpsell(this, '{{ update_variant_id }}')"
             >
-              {{ btn_text }} (+{{ price_difference | money }})
+              {{ btn_text }} (+{{ display_price | money }})
             </button>
           </div>
         </div>
