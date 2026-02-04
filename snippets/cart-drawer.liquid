@@ -541,7 +541,8 @@
         
         assign current_qty = 0
         assign update_variant_id = 0
-        assign display_price = 0
+        assign current_line_price = 0
+        assign base_variant_price = 0
         
         # Check if the product is in the cart
         if target_product != blank
@@ -549,7 +550,8 @@
              if item.product.id == target_product.id
                assign current_qty = item.quantity
                assign update_variant_id = item.variant.id
-               assign display_price = item.price
+               assign current_line_price = item.final_line_price
+               assign base_variant_price = item.variant.price
                break
              endif
            endfor
@@ -559,27 +561,43 @@
         assign headline = ""
         assign subline = ""
         assign saved_badge_text = ""
-        assign btn_text = "Add 1 More"
+        assign btn_text = "Add +1"
         assign show_upsell = false
+        assign upgrade_cost = 0
         
         if current_qty > 0 
            if current_qty == 1
+              # Upgrade 1 -> 2 (7.4% Discount, Round Up)
+              assign target_qty = 2
+              assign target_total_price = base_variant_price | times: target_qty | times: 0.926 | divided_by: 100.0 | ceil | times: 100
+              assign upgrade_cost = target_total_price | minus: current_line_price
+              
               assign show_upsell = true
               assign subline = "Add 1 more to unlock Free Shipping!"
-              assign btn_text = "Add +1"
-              assign headline = "✨ Unlock Free Shipping!"
+              assign headline = "⭐ Popular & Free Shipping"
+              assign saved_badge_text = "Popular"
+
            elsif current_qty == 2
+              # Upgrade 2 -> 3 (20% Discount, Round Up)
+              assign target_qty = 3
+              assign target_total_price = base_variant_price | times: target_qty | times: 0.80 | divided_by: 100.0 | ceil | times: 100
+              assign upgrade_cost = target_total_price | minus: current_line_price
+
               assign show_upsell = true
               assign subline = "Add 1 more to unlock 3 for 2 Deal!"
-              assign btn_text = "Add +1"
-              assign headline = "🔥 Get 3 for 2!"
-              assign saved_badge_text = "FREE ITEM"
+              assign headline = "🔥 Get 3 for 2 Deal!"
+              assign saved_badge_text = "3 FOR 2"
+
            elsif current_qty == 3
+              # Upgrade 3 -> 4 (25% Discount, Round Up)
+              assign target_qty = 4
+              assign target_total_price = base_variant_price | times: target_qty | times: 0.75 | divided_by: 100.0 | ceil | times: 100
+              assign upgrade_cost = target_total_price | minus: current_line_price
+
               assign show_upsell = true
-              assign subline = "Add 1 more for huge 30% savings!"
-              assign btn_text = "Add +1"
-              assign headline = "🏆 Best Value - 30% OFF"
-              assign saved_badge_text = "-30% OFF"
+              assign subline = "Add 1 more for huge 25% savings!"
+              assign headline = "🏆 Best Value - 25% OFF"
+              assign saved_badge_text = "BEST VALUE"
            endif
         endif
       -%}
@@ -689,7 +707,7 @@
               class="flipzy-upsell-btn" 
               onclick="window.addFlipzyUpsell(this, '{{ update_variant_id }}')"
             >
-              {{ btn_text }} (+{{ display_price | money }})
+              {{ btn_text }} (+{{ upgrade_cost | money }})
             </button>
           </div>
         </div>
