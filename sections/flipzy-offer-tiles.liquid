@@ -270,33 +270,37 @@
 
             <!-- 2x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(2, this)" data-badge="true">
-              <span class="flipzy-btn-badge">FREE SHIP</span>
+              <span class="flipzy-btn-badge" style="background:#F4D35E; color:#111;">⭐ Most popular</span>
               <span class="mt-qty-big">2x</span>
               <span class="mt-qty-small">Flipzys</span>
             </div>
 
             <!-- 3x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(3, this)" data-badge="true">
-              <span class="flipzy-btn-badge">3 FOR 2</span>
+              <span class="flipzy-btn-badge">3 for 2</span>
               <span class="mt-qty-big">3x</span>
               <span class="mt-qty-small">Flipzys</span>
             </div>
 
             <!-- 4x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(4, this)" data-badge="true">
-               <span class="flipzy-btn-badge">-30% OFF</span>
+               <span class="flipzy-btn-badge">🔥 Best value</span>
                <span class="mt-qty-big">4x</span>
                <span class="mt-qty-small">Flipzys</span>
             </div>
           </div>
 
-          <div class="flipzy-summary-box">
-             <div>
+          <div class="flipzy-summary-box" style="display:block;">
+             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
                 <div class="flipzy-summary-text">Total Price:</div>
-             </div>
-             <div>
                 <div class="flipzy-summary-price" id="offer-total-price" data-base="{{ variant.price }}">{{ variant.price | money }}</div>
-                <div class="flipzy-shipping-text" id="offer-shipping-text" style="display:none;">+ Free Shipping</div>
+             </div>
+             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                <div style="font-size:0.9rem; color:#6b7280;">Price Per Item:</div>
+                <div id="offer-per-item" style="font-weight:600; color:#374151;">{{ variant.price | money }}</div>
+             </div>
+             <div style="text-align:right;">
+                <div class="flipzy-shipping-text" id="offer-shipping-text" style="display:none; color:#16a34a;"></div>
              </div>
           </div>
 
@@ -383,10 +387,24 @@
     // 3. Format Money
     const priceEl = document.getElementById('offer-total-price');
     priceEl.innerText = formatMoney(finalPrice);
+
+    // 4. Per Item Price
+    const perItemEl = document.getElementById('offer-per-item');
+    if (perItemEl) {
+        const perItem = finalPrice / qty;
+        perItemEl.innerText = formatMoney(perItem);
+    }
     
-    // 4. Shipping Text
+    // 5. Offer Text (Hardcoded from Screenshot)
     const shipEl = document.getElementById('offer-shipping-text');
-    if (qty >= 2) {
+    let offerText = "";
+    
+    if (qty === 2) offerText = "10% off + Free shipping";
+    else if (qty === 3) offerText = "20% off + Free shipping";
+    else if (qty === 4) offerText = "25% off + Free shipping";
+    
+    if (offerText) {
+        shipEl.innerText = offerText;
         shipEl.style.display = 'block';
     } else {
         shipEl.style.display = 'none';
@@ -422,12 +440,12 @@
 <script>
   window.offerConfig = {
     basePrice: {{ current_variant.price | json }},
-    moneyFormat: {{ shop.money_with_currency_format | json }},
+    moneyFormat: {{ shop.money_format | json }},
     tiers: {
-      1: { overridePrice: 3400, discount: 0, label: {{ section.settings.qty_1_label | default: "—" | json }} },
-      2: { overridePrice: 6300, discount: {{ section.settings.qty_2_discount | default: 7 }}, label: {{ section.settings.qty_2_label | default: "⭐ Most popular" | json }} },
-      3: { overridePrice: 8200, discount: {{ section.settings.qty_3_discount | default: 20 }}, label: {{ section.settings.qty_3_label | default: "3 for 2" | json }} },
-      4: { overridePrice: 10200, discount: {{ section.settings.qty_4_discount | default: 25 }}, label: {{ section.settings.qty_4_label | default: "🔥 Best value" | json }} }
+      1: { discount: 0, label: {{ section.settings.qty_1_label | default: "—" | json }} },
+      2: { discount: {{ section.settings.qty_2_discount | default: 7 }}, label: {{ section.settings.qty_2_label | default: "⭐ Most popular" | json }} },
+      3: { discount: {{ section.settings.qty_3_discount | default: 20 }}, label: {{ section.settings.qty_3_label | default: "3 for 2" | json }} },
+      4: { discount: {{ section.settings.qty_4_discount | default: 25 }}, label: {{ section.settings.qty_4_label | default: "🔥 Best value" | json }} }
     }
   };
 </script>
