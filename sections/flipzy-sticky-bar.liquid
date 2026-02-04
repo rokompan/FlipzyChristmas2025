@@ -265,14 +265,26 @@
 
 <script>
   // Hardcoded Config to Match Main Offer
+  // HUF Overrides for Consistency
+  var currency = {{ cart.currency.iso_code | json }};
+  var qty2_disc = 7.4;
+  var qty3_disc = 20;
+  var qty4_disc = 25;
+
+  if (currency === 'HUF') {
+      qty2_disc = 7.337; 
+      qty3_disc = 19.56;
+      qty4_disc = 24.94;
+  }
+
   window.stickyConfig = {
     basePrice: {{ variant.price | default: prod.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
     tiers: {
       1: { discount: 0, label: "1x Flipzy" },
-      2: { discount: 7.4, label: "2x Flipzys (⭐ Popular + Free Shipping)" },
-      3: { discount: 20, label: "3x Flipzys (3 for 2 Deal - 20% OFF)" },
-      4: { discount: 25, label: "4x Flipzys (🔥 Best Value - 25% OFF)" }
+      2: { discount: qty2_disc, label: "2x Flipzys (⭐ Popular + Free Shipping)" },
+      3: { discount: qty3_disc, label: "3x Flipzys (3 for 2 Deal - 20% OFF)" },
+      4: { discount: qty4_disc, label: "4x Flipzys (🔥 Best Value - 25% OFF)" }
     }
   };
 

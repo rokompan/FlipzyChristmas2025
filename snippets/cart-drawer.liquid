@@ -566,10 +566,21 @@
         assign upgrade_cost = 0
         
         if current_qty > 0 
+           # Define Multipliers (Default EUR)
+           assign m2 = 0.926
+           assign m3 = 0.80
+           assign m4 = 0.75
+           
+           if cart.currency.iso_code == 'HUF'
+              assign m2 = 0.92663
+              assign m3 = 0.8044
+              assign m4 = 0.7506
+           endif
+
            if current_qty == 1
-              # Upgrade 1 -> 2 (7.4% Discount, Round Up)
+              # Upgrade 1 -> 2
               assign target_qty = 2
-              assign target_total_price = base_variant_price | times: target_qty | times: 0.926 | divided_by: 100.0 | ceil | times: 100
+              assign target_total_price = base_variant_price | times: target_qty | times: m2 | divided_by: 100.0 | ceil | times: 100
               assign upgrade_cost = target_total_price | minus: current_line_price
               
               assign show_upsell = true
@@ -578,9 +589,9 @@
               assign saved_badge_text = "Popular"
 
            elsif current_qty == 2
-              # Upgrade 2 -> 3 (20% Discount, Round Up)
+              # Upgrade 2 -> 3
               assign target_qty = 3
-              assign target_total_price = base_variant_price | times: target_qty | times: 0.80 | divided_by: 100.0 | ceil | times: 100
+              assign target_total_price = base_variant_price | times: target_qty | times: m3 | divided_by: 100.0 | ceil | times: 100
               assign upgrade_cost = target_total_price | minus: current_line_price
 
               assign show_upsell = true
@@ -589,9 +600,9 @@
               assign saved_badge_text = "3 FOR 2"
 
            elsif current_qty == 3
-              # Upgrade 3 -> 4 (25% Discount, Round Up)
+              # Upgrade 3 -> 4
               assign target_qty = 4
-              assign target_total_price = base_variant_price | times: target_qty | times: 0.75 | divided_by: 100.0 | ceil | times: 100
+              assign target_total_price = base_variant_price | times: target_qty | times: m4 | divided_by: 100.0 | ceil | times: 100
               assign upgrade_cost = target_total_price | minus: current_line_price
 
               assign show_upsell = true

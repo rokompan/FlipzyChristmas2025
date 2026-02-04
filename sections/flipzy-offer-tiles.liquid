@@ -473,14 +473,27 @@ function formatMoney(cents) {
 </script>
 
 <script>
+  // Hardcoded Discounts: Default is EUR (7.4%, 20%, 25%)
+  // For HUF, we override these to match the checkout's specific tax/conversion logic to ensure consistency.
+  var currency = {{ cart.currency.iso_code | json }};
+  var qty2_disc = 7.4;
+  var qty3_disc = 20;
+  var qty4_disc = 25;
+
+  if (currency === 'HUF') {
+      qty2_disc = 7.337; 
+      qty3_disc = 19.56;
+      qty4_disc = 24.94;
+  }
+
   window.offerConfig = {
     basePrice: {{ variant.price | default: product.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
     tiers: {
       1: { discount: 0, label: {{ section.settings.qty_1_label | default: "—" | json }} },
-      2: { discount: 7.4, label: {{ section.settings.qty_2_label | default: "⭐ Popular" | json }} }, /* 7.4% -> €62.9x -> Rounds to €63 */
-      3: { discount: 20, label: {{ section.settings.qty_3_label | default: "3 for 2" | json }} },
-      4: { discount: 25, label: {{ section.settings.qty_4_label | default: "🔥 Best value" | json }} }
+      2: { discount: qty2_disc, label: {{ section.settings.qty_2_label | default: "⭐ Popular" | json }} },
+      3: { discount: qty3_disc, label: {{ section.settings.qty_3_label | default: "3 for 2" | json }} },
+      4: { discount: qty4_disc, label: {{ section.settings.qty_4_label | default: "🔥 Best value" | json }} }
     }
   };
 </script>
