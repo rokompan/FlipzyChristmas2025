@@ -213,10 +213,15 @@
         </div>
   
         <div class="flipzy-quantity-selector">
-            <span style="font-weight: 600; font-size: 0.9rem; color: #374151;">Qty:</span>
+            <span style="font-weight: 600; font-size: 0.9rem; color: #374151;">Quantity:</span>
             <select id="stick-quantity-selector" class="flipzy-quantity-select" onchange="updateStickyPrice(this)">
-                {% for i in (1..10) %}
-                    <option value="{{ i }}">{{ i }}</option>
+                <option value="1">1 Pair - {{ variant.price | money }}</option>
+                <option value="2">2 Pairs - {{ variant.price | times: 2 | money }} + Free Shipping</option>
+                {% comment %} Note: "3 for 2" implies paying for 2. We show the raw price calculation as requested "price - 3 for 2" unless discount is manual. {% endcomment %}
+                <option value="3">3 Pairs - {{ variant.price | times: 3 | money }} (3 for 2 Deal)</option>
+                <option value="4">4 Pairs - {{ variant.price | times: 4 | money }} (Save 30%)</option>
+                {% for i in (5..10) %}
+                    <option value="{{ i }}">{{ i }} Pairs - {{ variant.price | times: i | money }}</option>
                 {% endfor %}
             </select>
         </div>
@@ -269,20 +274,7 @@
 
 <script>
   function updateStickyPrice(select) {
-    // Optional: Dynamic price update if you want to show Total Price instead of Unit Price
-    // For now, we keep unit price static or user preference? 
-    // Request asked: "automatically ad +n to cart". usually sticky bar shows Unit Price.
-    // If we want Total Price:
-    /*
-    const qty = parseInt(select.value);
-    const priceEl = document.getElementById('sticky-price-new');
-    const basePrice = parseFloat(priceEl.getAttribute('data-base-price')); // This is in cents usually? Liquid money filter outputs formatted string.
-    
-    // Changing price display requires raw price data which is hard to parse back from money filter without proper JS formatting utils.
-    // Best practice for simpler sticky bars: Show Unit Price, or ignore visual update if not strictly requested.
-    // User request: "dropdown option to preselect more then 1 which would automatically ad +n to cart"
-    // So visual update isn't explicitly requested, but functional update is.
-    */
+    // Logic for updating price display if needed in future
   }
 
   function submitStickyForm() {
@@ -315,27 +307,67 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Scroll Logic
     const bar = document.getElementById('flipzy-sticky-bar-{{ section.id }}');
     if(!bar) return;
 
-    // Attempt to find hero section
-    const heroSection = document.querySelector('.section-hero') || document.querySelector('.flipzy-hero-container') || document.querySelector('.banner');
-
+    // SCROLL LOGIC: "Lost User" Detection
+    // Sticky appears only after user has scrolled up and down a bit (indecisive/browsing).
+    
+    let lastScrollY = window.scrollY;
+    let direction = 'down'; 
+    let reversals = 0;
+    
+    // Constants
+    const REVERSAL_THRESHOLD = 3; // Number of direction changes before showing
+    const MIN_SCROLL_DEPTH = 800; // Must scroll at least this deep to qualify
+    
     function checkScroll() {
-      let triggerPoint = 0;
+      const currentScrollY = window.scrollY;
+      const scrollDiff = currentScrollY - lastScrollY;
       
-      if (heroSection) {
-        triggerPoint = heroSection.getBoundingClientRect().bottom;
-      } else {
-        triggerPoint = window.innerHeight - window.scrollY;
+      // 1. Determine Direction
+      // Ignore tiny scrolls (jitter)
+      if (Math.abs(scrollDiff) > 10) {
+          const newDirection = scrollDiff > 0 ? 'down' : 'up';
+          
+          if (newDirection !== direction) {
+              reversals++;
+              direction = newDirection;
+              // console.log("Direction change:", direction, "Reversals:", reversals);
+          }
       }
 
-      if (triggerPoint < 0) { 
-        bar.classList.add('is-visible');
-      } else {
-        bar.classList.remove('is-visible');
+      // 2. Visibility Logic
+      // - Must be past the Trigger Point (e.g. Hero Section)
+      // - AND must have exhibited "lost" behavior (reversals)
+      // OR standard fallback: significantly deep in the page?
+      
+      const heroSection = document.querySelector('.section-hero') || document.querySelector('.flipzy-hero-container');
+      let triggerPoint = window.innerHeight; // Default 1 screen
+      if (heroSection) {
+          triggerPoint = heroSection.getBoundingClientRect().height + 100;
       }
+
+      const isDeepEnough = currentScrollY > triggerPoint;
+      const isLost = reversals >= REVERSAL_THRESHOLD;
+
+      // Logic: Show if Deep Enough AND (Lost OR (Deep & Scrolling Up))
+      // Simplified as requested: "appears after user seems to be a bit lost and went up and down"
+      
+      if (isDeepEnough && isLost) {
+          bar.classList.add('is-visible');
+      } else {
+         // Keep visible if already visible? usually sticky bars stay once triggered?
+         // User said "Sticky comes in too soon...".
+         // Let's allow it to hide if they go back to the very top.
+         if(currentScrollY < 100) {
+            bar.classList.remove('is-visible');
+            reversals = 0; // Reset logic if they return to top
+         }
+         // Otherwise, wait for trigger.
+      }
+      
+      lastScrollY = currentScrollY;
     }
     
     window.addEventListener('scroll', checkScroll, { passive: true });
