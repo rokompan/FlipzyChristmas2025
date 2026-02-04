@@ -362,6 +362,8 @@
   // Hardcoded Currency Formatter as requested to fix display glitch
   function formatMoney(cents) {
     const currencyCode = {{ cart.currency.iso_code | json }};
+    const moneyFormat = window.offerConfig ? window.offerConfig.moneyFormat : null;
+    
     if (!moneyFormat) return (cents / 100).toFixed(2) + ' ' + currencyCode;
 
     let value = (cents / 100).toFixed(2);
@@ -465,12 +467,6 @@
 </script>
 
 <script>
-  // DEBUGGING FLIPZY OFFER - ERROR LOGS
-  console.error("Flipzy Debug - Script Loaded");
-  console.error("Flipzy Debug - Variant ID:", {{ variant.id | json }});
-  console.error("Flipzy Debug - Variant Price:", {{ variant.price | json }});
-  console.error("Flipzy Debug - Product Price (Fallback):", {{ product.price | json }});
-  
   window.offerConfig = {
     basePrice: {{ variant.price | default: product.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
