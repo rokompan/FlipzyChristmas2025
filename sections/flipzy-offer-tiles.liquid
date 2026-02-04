@@ -349,25 +349,34 @@
   let currentOfferQty = 1;
   // Get raw format. Liquid replaces the curly braces with the shop setting, creating a JS string.
   // Warning: If shop format has double quotes, it might break. Should ideally be json encoded.
-  const moneyFormat = '{{ shop.money_format | replace: "'", "\'" }}'; 
+  // Get shop currency format. 
+  // We use specific liquid filters to get raw patterns if possible, or fallback to the standard one.
+  const moneyFormat = {{ shop.money_with_currency_format | json }}; 
 
   function formatMoney(cents) {
-    // Helper to replace common Shopify money variable patterns with regex to handle spaces
-    let formatted = moneyFormat;
+    if (!moneyFormat) return (cents / 100).toFixed(2) + ' €';
+
     let value = (cents / 100).toFixed(2);
+    let valueWithComma = value.replace('.', ',');
+    let formatted = moneyFormat;
+
+    // Robust replacement:
+    if (formatted.includes('{{amount_with_comma_separator}}')) {
+        formatted = formatted.replace('{{amount_with_comma_separator}}', valueWithComma);
+    } else if (formatted.includes('{{amount}}')) {
+        formatted = formatted.replace('{{amount}}', value);
+    } else {
+        // Fallback: simple replace if the braces are somehow stripped or different
+        // This regex tries to find the standard Shopify money placeholders
+        formatted = formatted.replace(/\{\{\s*amount_with_comma_separator\s*\}\}/g, valueWithComma)
+                             .replace(/\{\{\s*amount\s*\}\}/g, value);
+    }
     
-    // Check for comma separator preference (usually implies comma decimal)
-    if (formatted.match(/\{\{\s*amount_with_comma_separator\s*\}\}/)) {
-        value = value.replace('.', ',');
-        formatted = formatted.replace(/\{\{\s*amount_with_comma_separator\s*\}\}/, value);
-    } 
-    else if (formatted.match(/\{\{\s*amount\s*\}\}/)) {
-        formatted = formatted.replace(/\{\{\s*amount\s*\}\}/, value);
+    // Safety check: if replacement didn't happen (still contains curly braces), fallback
+    if (formatted.includes('{{')) {
+         return value + ' ' + '{{ cart.currency.iso_code }}';
     }
-    // Fallback if no placeholder match found (unlikely but safe)
-    if (formatted === moneyFormat) {
-       formatted = value + ' €'; // Absolute fallback
-    }
+
     return formatted;
   }
 
@@ -381,40 +390,16 @@
     let finalPrice = 0;
     const basePrice = window.offerConfig.basePrice;
     
-    // Check for Shopify Native Volume Pricing first
-    const volRules = window.offerConfig.quantityPriceBreaks || [];
-    // Find the highest rule that satisfies the quantity
-    // (Rules are typically sorted by min qty ascending)
-    let matchedRule = null;
-    volRules.forEach(rule => {
-       if (qty >= rule.minimum_quantity) {
-           matchedRule = rule;
-       }
-    });
-
-    if (matchedRule) {
-        // Use the volume price (unit price) * quantity
-        // Note: quantity_price_breaks returns unit price in cents if accessed via liquid JSON
-        finalPrice = parseInt(matchedRule.price) * qty; 
-    } else {
-        // Fallback to Schema Settings (Percent Discount)
-        const tier = window.offerConfig.tiers[qty] || { discount: 0 };
-        const discountPct = tier.discount;
-        const baseTotal = basePrice * qty;
-        finalPrice = baseTotal * (1 - (discountPct / 100));
-    }
+    // Use Schema Settings (Percent Discount)
+    const tier = window.offerConfig.tiers[qty] || { discount: 0 };
+    const discountPct = tier.discount;
+    
+    const baseTotal = basePrice * qty;
+    finalPrice = baseTotal * (1 - (discountPct / 100));
 
     // 3. Format Money
     const priceEl = document.getElementById('offer-total-price');
-    let moneyFormat = window.offerConfig.moneyFormat || "${{amount}}"; 
-    
-    let formatted = moneyFormat;
-    if (formatted.includes('{{amount_with_comma_separator}}')) {
-        formatted = formatted.replace('{{amount_with_comma_separator}}', (finalPrice / 100).toFixed(2).replace('.', ','));
-    } else {
-        formatted = formatted.replace('{{amount}}', (finalPrice / 100).toFixed(2));
-    }
-    priceEl.innerText = formatted;
+    priceEl.innerText = formatMoney(finalPrice);
     
     // 4. Shipping Text
     const shipEl = document.getElementById('offer-shipping-text');
@@ -457,9 +442,9 @@
     moneyFormat: {{ shop.money_with_currency_format | json }},
     tiers: {
       1: { discount: 0, label: {{ section.settings.qty_1_label | json }} },
-      2: { discount: {{ section.settings.qty_2_discount | default: 0 }}, label: {{ section.settings.qty_2_label | json }} },
-      3: { discount: {{ section.settings.qty_3_discount | default: 33 }}, label: {{ section.settings.qty_3_label | json }} },
-      4: { discount: {{ section.settings.qty_4_discount | default: 30 }}, label: {{ section.settings.qty_4_label | json }} }
+      2: { discount: {{ section.settings.qty_2_discount | default: 7 }}, label: {{ section.settings.qty_2_label | json }} },
+      3: { discount: {{ section.settings.qty_3_discount | default: 20 }}, label: {{ section.settings.qty_3_label | json }} },
+      4: { discount: {{ section.settings.qty_4_discount | default: 25 }}, label: {{ section.settings.qty_4_label | json }} }
     }
   };
 </script>
@@ -501,7 +486,7 @@
       "step": 1,
       "unit": "%",
       "label": "Discount Percentage",
-      "default": 0
+      "default": 7
     },
     {
       "type": "header",
@@ -521,7 +506,7 @@
       "step": 1,
       "unit": "%",
       "label": "Discount Percentage",
-      "default": 33
+      "default": 20
     },
     {
       "type": "header",
@@ -541,7 +526,7 @@
       "step": 1,
       "unit": "%",
       "label": "Discount Percentage",
-      "default": 30
+      "default": 25
     },
     {
       "type": "header",
