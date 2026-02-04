@@ -359,8 +359,27 @@
   // We use specific liquid filters to get raw patterns if possible, or fallback to the standard one.
   // Hardcoded Currency Formatter as requested to fix display glitch
   function formatMoney(cents) {
-    // Simple Euro format: 1.234,56 €
-    return (cents / 100).toFixed(2).replace('.', ',') + ' €';
+    if (!moneyFormat) return (cents / 100).toFixed(2) + ' €';
+
+    let value = (cents / 100).toFixed(2);
+    let valueWithComma = value.replace('.', ',');
+    let formatted = moneyFormat;
+
+    // Robust replacement:
+    if (formatted.includes('{{amount_with_comma_separator}}')) {
+        formatted = formatted.replace('{{amount_with_comma_separator}}', valueWithComma);
+    } else if (formatted.includes('{{amount}}')) {
+        formatted = formatted.replace('{{amount}}', value);
+    } else {
+        formatted = formatted.replace(/\{\{\s*amount_with_comma_separator\s*\}\}/g, valueWithComma)
+                             .replace(/\{\{\s*amount\s*\}\}/g, value);
+    }
+    
+    if (formatted.includes('{{')) {
+         return value + ' ' + '{{ cart.currency.iso_code }}'; // Fallback
+    }
+
+    return formatted;
   }
 
   function selectOfferQty(qty, element) {
@@ -373,16 +392,19 @@
     let finalPrice = 0;
     const basePrice = window.offerConfig.basePrice;
     
-    // Use Schema Settings (Percent Discount) OR Hardcoded Override
+    // Use Schema Settings (Percent Discount)
     const tier = window.offerConfig.tiers[qty] || { discount: 0 };
+    const discountPct = tier.discount;
     
-    if (tier.overridePrice) {
-        finalPrice = tier.overridePrice; // HARDCODE: Use exact price in cents
-    } else {
-        const discountPct = tier.discount;
-        const baseTotal = basePrice * qty;
-        finalPrice = baseTotal * (1 - (discountPct / 100));
-    }
+    // Calculate raw discounted price
+    const baseTotal = basePrice * qty;
+    let rawPrice = baseTotal * (1 - (discountPct / 100));
+
+    // DYNAMIC ROUNDING (Math.ceil)
+    // Example: €63.24 (6324 cents) -> 63.24 / 100 = 63.24 -> ceil(63.24) = 64 -> 64 * 100 = 6400 cents (€64.00)
+    // This ensures prices are always rounded UP to the nearest whole number currency unit.
+    // Note: This logic assumes the currency has 2 decimal places. 
+    finalPrice = Math.ceil(rawPrice / 100) * 100;
 
     // 3. Format Money
     const priceEl = document.getElementById('offer-total-price');
@@ -439,7 +461,7 @@
 
 <script>
   window.offerConfig = {
-    basePrice: {{ current_variant.price | json }},
+    basePrice: {{ variant.price | json }},
     moneyFormat: {{ shop.money_format | json }},
     tiers: {
       1: { discount: 0, label: {{ section.settings.qty_1_label | default: "—" | json }} },
