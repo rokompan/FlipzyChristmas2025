@@ -265,28 +265,28 @@
             <!-- 1x -->
             <div class="flipzy-qty-btn is-selected" onclick="selectOfferQty(1, this)">
               <span class="mt-qty-big">1x</span>
-              <span class="mt-qty-small">Pair</span>
+              <span class="mt-qty-small">Flipzy</span>
             </div>
 
             <!-- 2x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(2, this)" data-badge="true">
               <span class="flipzy-btn-badge">FREE SHIP</span>
               <span class="mt-qty-big">2x</span>
-              <span class="mt-qty-small">Pairs</span>
+              <span class="mt-qty-small">Flipzys</span>
             </div>
 
             <!-- 3x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(3, this)" data-badge="true">
               <span class="flipzy-btn-badge">3 FOR 2</span>
               <span class="mt-qty-big">3x</span>
-              <span class="mt-qty-small">Pairs</span>
+              <span class="mt-qty-small">Flipzys</span>
             </div>
 
             <!-- 4x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(4, this)" data-badge="true">
                <span class="flipzy-btn-badge">-30% OFF</span>
                <span class="mt-qty-big">4x</span>
-               <span class="mt-qty-small">Pairs</span>
+               <span class="mt-qty-small">Flipzys</span>
             </div>
           </div>
 
@@ -371,10 +371,13 @@
     }
 
     // Update Price Text
-    // Note: Simple JS formatter might not match Shopify's complex filters perfectly, but good enough for dynamic update
-    // If shop currency has weird formatting, might need refinement.
-    // For EUR/USD usually fine.
-    priceEl.innerText = formatMoney(finalPrice); 
+    let formatted = moneyFormat;
+    if (formatted.includes('{{amount_with_comma_separator}}')) {
+        formatted = formatted.replace('{{amount_with_comma_separator}}', (finalPrice / 100).toFixed(2).replace('.', ','));
+    } else {
+        formatted = formatted.replace('{{amount}}', (finalPrice / 100).toFixed(2));
+    }
+    priceEl.innerText = formatted; 
 
     // 4. Shipping Text
     const shipEl = document.getElementById('offer-shipping-text');
@@ -398,8 +401,8 @@
     {
       "type": "text",
       "id": "title",
-      "label": "Heading",
-      "default": "Mehki in Udobni Natikači"
+      "default": "Choose Quantity",
+      "label": "Heading"
     },
     {
       "type": "richtext",
