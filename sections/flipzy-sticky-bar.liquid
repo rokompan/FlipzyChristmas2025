@@ -68,90 +68,23 @@
     font-weight: 600;
   }
 
-  /* Center: Bundle Selector (Pills) */
-  .flipzy-bundle-selector {
+  /* Center: Quantity Selector */
+  .flipzy-quantity-selector {
     display: flex;
+    align-items: center;
     gap: 8px;
-    background: #f3f4f6;
-    padding: 5px;
-    border-radius: 50px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    align-items: stretch;
   }
-  .flipzy-bundle-selector::-webkit-scrollbar { display: none;
-  }
-
-  .flipzy-bundle-pill {
+  
+  .flipzy-quantity-select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111;
     cursor: pointer;
-    padding: 6px 14px;
-    border-radius: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 2px solid transparent;
-    color: #6b7280;
-    min-width: 60px;
-    position: relative;
-    text-align: center;
-    flex-shrink: 0; /* Prevent shrinking */
-  }
-
-  .flipzy-bundle-pill .pill-name {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 2px;
-  }
-
-  .flipzy-pill-badges {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-  }
-
-  .flipzy-bundle-pill .pill-badge-text {
-    font-size: 0.6rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #D97706; 
-    white-space: nowrap;
-  }
-
-  .flipzy-bundle-pill .pill-save {
-    font-size: 0.6rem;
-    background: #EF4444;
-    color: white;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-weight: 700;
-  }
-
-  .flipzy-bundle-pill .pill-shipping {
-    font-size: 0.55rem;
-    background: #059669;
-    color: white;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-
-  /* Active State */
-  .flipzy-bundle-pill.is-active {
-    background: #FFFBEB;
-    color: #000;
-    border-color: #111;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transform: scale(1.05);
-    z-index: 2;
-  }
-  .flipzy-bundle-pill.is-active .pill-name {
-    font-weight: 800;
-    font-size: 1.1rem;
+    min-width: 70px;
   }
 
   /* Right Side: Price + Button (Desktop Layout) */
@@ -203,44 +136,28 @@
   @media (max-width: 768px) {
     .flipzy-sticky {
       padding: 8px 0;
-      /* Slightly tighter outer padding */
     }
 
     .flipzy-sticky-inner {
       padding: 0 12px;
       gap: 10px;
-      align-items: center; /* Center vertically */
+      align-items: center; 
     }
     
-    .flipzy-sticky-info { display: none;
-    }
+    .flipzy-sticky-info { display: none; }
 
-    /* 1. Pill Selector takes available space on left */
-    .flipzy-bundle-selector {
+    /* Center: Quantity takes available space on left */
+    .flipzy-quantity-selector {
       flex: 1;
       margin-right: 5px;
-      min-width: 0; 
     }
 
-    .flipzy-bundle-pill {
-      padding: 6px 10px;
-      min-width: 50px;
-    }
-    
-    /* ALWAYS SHOW BADGES (Scroll horizontal if needed) */
-    .flipzy-bundle-pill .pill-badge-text,
-    .flipzy-bundle-pill .pill-save,
-    .flipzy-bundle-pill .pill-shipping {
-      display: block;
-    }
-
-    /* 2. Action Area: Stacked Vertically */
+    /* Action Area: Stacked Vertically */
     .flipzy-sticky-action { 
       flex-direction: column;
-      align-items: flex-end; /* Align to right */
+      align-items: flex-end; 
       gap: 4px;
       min-width: 110px;
-      /* Ensure button area has space */
     }
 
     /* Price Row: Side by side to save height */
@@ -251,8 +168,7 @@
       margin-bottom: 2px;
     }
 
-    .flipzy-sticky-new { font-size: 1.1rem;
-    }
+    .flipzy-sticky-new { font-size: 1.1rem; }
     .flipzy-sticky-old { font-size: 0.8rem; }
 
     /* Button: Full width of the action container */
@@ -266,152 +182,143 @@
       align-items: center;
       justify-content: center;
     }
+    
+    .flipzy-quantity-select {
+        height: 36px;
+        padding: 5px 10px;
+    }
   }
 {%- endstyle -%}
 
 {% unless placeholder %}
-  <div id="flipzy-sticky-bar-{{ section.id }}" class="flipzy-sticky">
-    <div class="flipzy-sticky-inner">
-      
-      <div class="flipzy-sticky-info">
-        <p class="flipzy-sticky-title">{{ section.settings.text }}</p>
-        {% if section.settings.subline_text != blank %}
-          <div class="flipzy-sticky-sub">{{ section.settings.subline_text }}</div>
-        {% endif %}
-      </div>
-
-      <div class="flipzy-bundle-selector">
-        {% for block in section.blocks %}
-          {% assign prod = block.settings.product %}
-          {% if prod != blank %}
-            {% assign variant = prod.selected_or_first_available_variant %}
-            
-            {% comment %} Calculate Discount {% endcomment %}
-            {% assign discount_badge = "" %}
- 
-            {% if variant.compare_at_price > variant.price %}
-               {% assign saved = variant.compare_at_price | minus: variant.price %}
-               {% assign pct = saved | times: 100.0 | divided_by: variant.compare_at_price | round %}
-               {% capture discount_badge %}-{{ pct }}%{% endcapture %}
-            {% endif %}
-
-            <div 
-              class="flipzy-bundle-pill {% if forloop.index == section.settings.default_selected %}is-active{% endif %}"
-              data-index="{{ forloop.index }}"
-              data-price="{{ variant.price | money }}"
-              data-compare="{{ variant.compare_at_price | money }}"
-              data-has-compare="{% if variant.compare_at_price > variant.price %}true{% else %}false{% endif %}"
-              onclick="selectStickyBundle(this)"
-            >
-              <span class="pill-name">{{ block.settings.short_name }}</span>
+  {% comment %} 
+    We only check the FIRST block for the product to display. 
+    The logic simplifies to 1 product -> Quantity Selector.
+  {% endcomment %}
+  
+  {% assign target_block = section.blocks.first %}
+  {% assign prod = target_block.settings.product %}
+  
+  {% if prod != blank %}
+    {% assign variant = prod.selected_or_first_available_variant %}
     
-              <div class="flipzy-pill-badges">
-                {% if block.settings.badge_text != blank %}
-                  <span class="pill-badge-text">{{ block.settings.badge_text }}</span>
-                {% endif %}
-
-                {% if discount_badge != blank %}
-                  <span class="pill-save">{{ discount_badge }}</span>
-                {% endif %}
-
-                {% if block.settings.show_free_shipping %}
-                  <span class="pill-shipping">Free Shipping</span>
-                {% endif %}
-              </div>
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-
-      <div class="flipzy-sticky-action">
-        <div class="flipzy-sticky-price-box">
-          <span class="flipzy-sticky-old" id="sticky-price-old"></span>
-          <span class="flipzy-sticky-new" id="sticky-price-new"></span>
-        </div>
-
-        <button type="button" class="flipzy-sticky-btn" onclick="submitStickyBundle()">
-          {{ section.settings.button_label }}
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <div style="display:none;">
-    {% for block in section.blocks %}
-      {% assign prod = block.settings.product %}
-      {% if prod != blank %}
-        {% assign unique_id = 'sticky-product-info-' | append: block.id %}
-        {% assign product_form_id = 'product-form-' | append: unique_id %}
+    <div id="flipzy-sticky-bar-{{ section.id }}" class="flipzy-sticky">
+      <div class="flipzy-sticky-inner">
         
-        <product-info
-          id="{{ unique_id }}"
-          data-section="{{ section.id }}"
-          data-product-id="{{ prod.id }}"
-          data-update-url="false"
-          data-url="{{ prod.url }}"
-        >
-          {%- render 'buy-buttons', 
-              block: block, 
-              product: prod, 
-              product_form_id: product_form_id, 
-              section_id: section.id, 
-              show_dynamic_checkout: false 
-          -%}
+        <div class="flipzy-sticky-info">
+          <p class="flipzy-sticky-title">{{ section.settings.text }}</p>
+          {% if section.settings.subline_text != blank %}
+            <div class="flipzy-sticky-sub">{{ section.settings.subline_text }}</div>
+          {% endif %}
+        </div>
+  
+        <div class="flipzy-quantity-selector">
+            <span style="font-weight: 600; font-size: 0.9rem; color: #374151;">Qty:</span>
+            <select id="stick-quantity-selector" class="flipzy-quantity-select" onchange="updateStickyPrice(this)">
+                {% for i in (1..10) %}
+                    <option value="{{ i }}">{{ i }}</option>
+                {% endfor %}
+            </select>
+        </div>
+  
+        <div class="flipzy-sticky-action">
+          <div class="flipzy-sticky-price-box">
+            <span class="flipzy-sticky-old" id="sticky-price-old" style="{% unless variant.compare_at_price > variant.price %}display:none;{% endunless %}">
+                {{ variant.compare_at_price | money }}
+            </span>
+            <span class="flipzy-sticky-new" id="sticky-price-new" data-base-price="{{ variant.price }}">{{ variant.price | money }}</span>
+          </div>
+  
+          <button type="button" class="flipzy-sticky-btn" onclick="submitStickyForm()">
+            {{ section.settings.button_label }}
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  
+    <div style="display:none;">
+          {% assign unique_id = 'sticky-product-info-' | append: target_block.id %}
+          {% assign product_form_id = 'product-form-' | append: unique_id %}
           
-        <button id="real-submit-{{ forloop.index }}" type="submit" form="{{ product_form_id }}">Submit</button>
-        </product-info>
-
-      {% endif %}
-    {% endfor %}
-  </div>
+          <product-info
+            id="{{ unique_id }}"
+            data-section="{{ section.id }}"
+            data-product-id="{{ prod.id }}"
+            data-update-url="false"
+            data-url="{{ prod.url }}"
+          >
+            {%- render 'buy-buttons', 
+                block: target_block, 
+                product: prod, 
+                product_form_id: product_form_id, 
+                section_id: section.id, 
+                show_dynamic_checkout: false 
+            -%}
+            
+            {% comment %} 
+                We need to inject a quantity input into the form so it respects our selection.
+                Typically 'buy-buttons' renders the form. We will manipulate it via JS before submit.
+            {% endcomment %}
+            <button id="real-submit-sticky" type="submit" form="{{ product_form_id }}">Submit</button>
+          </product-info>
+    </div>
+  {% endif %}
 
 {% endunless %}
 
 <script>
-  // Ensure default index is respected from Liquid settings
-  let currentStickyIndex = {{ section.settings.default_selected | default: 1 }};
-
-  function selectStickyBundle(pill) {
-    // 1. Update UI classes
-    document.querySelectorAll('.flipzy-bundle-pill').forEach(el => el.classList.remove('is-active'));
-    pill.classList.add('is-active');
-
-    // 2. Update Data
-    currentStickyIndex = pill.getAttribute('data-index');
-    const price = pill.getAttribute('data-price');
-    const compare = pill.getAttribute('data-compare');
-    const hasCompare = pill.getAttribute('data-has-compare') === 'true';
-
-    // 3. Update Price Display
-    document.getElementById('sticky-price-new').innerText = price;
-    const oldPriceEl = document.getElementById('sticky-price-old');
-    if(hasCompare) {
-      oldPriceEl.innerText = compare;
-      oldPriceEl.style.display = 'block';
-    } else {
-      oldPriceEl.style.display = 'none';
-    }
+  function updateStickyPrice(select) {
+    // Optional: Dynamic price update if you want to show Total Price instead of Unit Price
+    // For now, we keep unit price static or user preference? 
+    // Request asked: "automatically ad +n to cart". usually sticky bar shows Unit Price.
+    // If we want Total Price:
+    /*
+    const qty = parseInt(select.value);
+    const priceEl = document.getElementById('sticky-price-new');
+    const basePrice = parseFloat(priceEl.getAttribute('data-base-price')); // This is in cents usually? Liquid money filter outputs formatted string.
+    
+    // Changing price display requires raw price data which is hard to parse back from money filter without proper JS formatting utils.
+    // Best practice for simpler sticky bars: Show Unit Price, or ignore visual update if not strictly requested.
+    // User request: "dropdown option to preselect more then 1 which would automatically ad +n to cart"
+    // So visual update isn't explicitly requested, but functional update is.
+    */
   }
 
-  function submitStickyBundle() {
-    // Find the hidden native button corresponding to the selected bundle and click it
-    const btn = document.getElementById('real-submit-' + currentStickyIndex);
+  function submitStickyForm() {
+    const qty = document.getElementById('stick-quantity-selector').value;
+    const btn = document.getElementById('real-submit-sticky');
+    
     if(btn) {
-      btn.click();
+        const formId = btn.getAttribute('form');
+        const form = document.getElementById(formId);
+        
+        if(form) {
+            // Check if input[name="quantity"] exists
+            let qtyInput = form.querySelector('input[name="quantity"]');
+            if(!qtyInput) {
+                qtyInput = document.createElement('input');
+                qtyInput.type = 'hidden';
+                qtyInput.name = 'quantity';
+                form.appendChild(qtyInput);
+            }
+            qtyInput.value = qty;
+            
+            // Trigger submit
+            btn.click();
+        } else {
+            console.error("Flipzy Sticky: Form not found");
+        }
     } else {
-      console.error("Flipzy Sticky: Could not find hidden submit button for index " + currentStickyIndex);
+      console.error("Flipzy Sticky: Could not find hidden submit button");
     }
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Initialize prices based on default selection
-    const defaultPill = document.querySelector('.flipzy-bundle-pill[data-index="{{ section.settings.default_selected }}"]');
-    if(defaultPill) selectStickyBundle(defaultPill);
-
     // Scroll Logic
     const bar = document.getElementById('flipzy-sticky-bar-{{ section.id }}');
-    
+    if(!bar) return;
+
     // Attempt to find hero section
     const heroSection = document.querySelector('.section-hero') || document.querySelector('.flipzy-hero-container') || document.querySelector('.banner');
 
@@ -419,14 +326,11 @@
       let triggerPoint = 0;
       
       if (heroSection) {
-        // If hero exists, show when bottom of hero passes top of viewport
         triggerPoint = heroSection.getBoundingClientRect().bottom;
       } else {
-        // Fallback: Show after scrolling 100% of viewport height
         triggerPoint = window.innerHeight - window.scrollY;
       }
 
-      // If trigger point is negative (meaning we scrolled past it)
       if (triggerPoint < 0) { 
         bar.classList.add('is-visible');
       } else {
