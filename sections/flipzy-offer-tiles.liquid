@@ -358,25 +358,29 @@
   // Get shop currency format. 
   // We use specific liquid filters to get raw patterns if possible, or fallback to the standard one.
   // Hardcoded Currency Formatter as requested to fix display glitch
+  // Hardcoded Currency Formatter as requested to fix display glitch
   function formatMoney(cents) {
-    if (!moneyFormat) return (cents / 100).toFixed(2) + ' €';
+    const currencyCode = {{ cart.currency.iso_code | json }};
+    if (!moneyFormat) return (cents / 100).toFixed(2) + ' ' + currencyCode;
 
     let value = (cents / 100).toFixed(2);
     let valueWithComma = value.replace('.', ',');
     let formatted = moneyFormat;
 
     // Robust replacement:
-    if (formatted.includes('{{amount_with_comma_separator}}')) {
-        formatted = formatted.replace('{{amount_with_comma_separator}}', valueWithComma);
-    } else if (formatted.includes('{{amount}}')) {
-        formatted = formatted.replace('{{amount}}', value);
+    if (formatted.includes('{' + '{amount_with_comma_separator}'+'}')) {
+        formatted = formatted.replace('{' + '{amount_with_comma_separator}'+'}', valueWithComma);
+    } else if (formatted.includes('{' + '{amount}'+'}')) {
+        formatted = formatted.replace('{' + '{amount}'+'}', value);
     } else {
+        // Regex with escaped braces
         formatted = formatted.replace(/\{\{\s*amount_with_comma_separator\s*\}\}/g, valueWithComma)
                              .replace(/\{\{\s*amount\s*\}\}/g, value);
     }
     
-    if (formatted.includes('{{')) {
-         return value + ' ' + {{ cart.currency.iso_code | json }}; // Fallback
+    // Check for "{" + "{" to avoid Liquid parser trying to parse this string
+    if (formatted.indexOf('{' + '{') !== -1) {
+         return value + ' ' + currencyCode; // Fallback
     }
 
     return formatted;
