@@ -472,9 +472,9 @@
     moneyFormat: {{ shop.money_format | json }},
     tiers: {
       1: { discount: 0, label: {{ section.settings.qty_1_label | default: "—" | json }} },
-      2: { discount: {{ section.settings.qty_2_discount | default: 7 }}, label: {{ section.settings.qty_2_label | default: "⭐ Most popular" | json }} },
-      3: { discount: {{ section.settings.qty_3_discount | default: 20 }}, label: {{ section.settings.qty_3_label | default: "3 for 2" | json }} },
-      4: { discount: {{ section.settings.qty_4_discount | default: 25 }}, label: {{ section.settings.qty_4_label | default: "🔥 Best value" | json }} }
+      2: { discount: 7, label: {{ section.settings.qty_2_label | default: "⭐ Most popular" | json }} },
+      3: { discount: 20, label: {{ section.settings.qty_3_label | default: "3 for 2" | json }} },
+      4: { discount: 25, label: {{ section.settings.qty_4_label | default: "🔥 Best value" | json }} }
     }
   };
 </script>
