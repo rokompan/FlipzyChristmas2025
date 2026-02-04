@@ -302,9 +302,6 @@
       "type": "flipzy-offer-tiles",
       "name": "Flipzy Offer Tiles",
       "settings": {
-        "product": "flipzy-wooden-routine-board",
-        "title": "Choose Your Bundle",
-        "text": "<p>From one routine to a full family setup. Choose what fits your needs today.</p>",
         "padding_top": 16,
         "padding_bottom": 16
       }
