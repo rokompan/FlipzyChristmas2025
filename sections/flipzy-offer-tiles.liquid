@@ -353,33 +353,10 @@
   // We use specific liquid filters to get raw patterns if possible, or fallback to the standard one.
   // Get shop currency format. 
   // We use specific liquid filters to get raw patterns if possible, or fallback to the standard one.
-  const moneyFormat = {{ shop.money_format | json }}; 
-
+  // Hardcoded Currency Formatter as requested to fix display glitch
   function formatMoney(cents) {
-    if (!moneyFormat) return (cents / 100).toFixed(2) + ' €';
-
-    let value = (cents / 100).toFixed(2);
-    let valueWithComma = value.replace('.', ',');
-    let formatted = moneyFormat;
-
-    // Robust replacement:
-    if (formatted.includes('{{amount_with_comma_separator}}')) {
-        formatted = formatted.replace('{{amount_with_comma_separator}}', valueWithComma);
-    } else if (formatted.includes('{{amount}}')) {
-        formatted = formatted.replace('{{amount}}', value);
-    } else {
-        // Fallback: simple replace if the braces are somehow stripped or different
-        // This regex tries to find the standard Shopify money placeholders
-        formatted = formatted.replace(/\{\{\s*amount_with_comma_separator\s*\}\}/g, valueWithComma)
-                             .replace(/\{\{\s*amount\s*\}\}/g, value);
-    }
-    
-    // Safety check: if replacement didn't happen (still contains curly braces), fallback
-    if (formatted.includes('{{')) {
-         return value + ' ' + '{{ cart.currency.iso_code }}';
-    }
-
-    return formatted;
+    // Simple Euro format: 1.234,56 €
+    return (cents / 100).toFixed(2).replace('.', ',') + ' €';
   }
 
   function selectOfferQty(qty, element) {
