@@ -215,14 +215,11 @@
         <div class="flipzy-quantity-selector">
             <span style="font-weight: 600; font-size: 0.9rem; color: #374151;">Quantity:</span>
             <select id="stick-quantity-selector" class="flipzy-quantity-select" onchange="updateStickyPrice(this)">
-                <option value="1">1 Pair - {{ variant.price | money }}</option>
-                <option value="2">2 Pairs - {{ variant.price | times: 2 | money }} + Free Shipping</option>
+                <option value="1" data-price="{{ variant.price | money }}">1 Pair - {{ variant.price | money }}</option>
+                <option value="2" data-price="{{ variant.price | times: 2 | money }}">2 Pairs - {{ variant.price | times: 2 | money }} + Free Shipping</option>
                 {% comment %} Note: "3 for 2" implies paying for 2. We show the raw price calculation as requested "price - 3 for 2" unless discount is manual. {% endcomment %}
-                <option value="3">3 Pairs - {{ variant.price | times: 3 | money }} (3 for 2 Deal)</option>
-                <option value="4">4 Pairs - {{ variant.price | times: 4 | money }} (Save 30%)</option>
-                {% for i in (5..10) %}
-                    <option value="{{ i }}">{{ i }} Pairs - {{ variant.price | times: i | money }}</option>
-                {% endfor %}
+                <option value="3" data-price="{{ variant.price | times: 3 | money }}">3 Pairs - {{ variant.price | times: 3 | money }} (3 for 2 Deal)</option>
+                <option value="4" data-price="{{ variant.price | times: 4 | money }}">4 Pairs - {{ variant.price | times: 4 | money }} (Save 30%)</option>
             </select>
         </div>
   
@@ -274,7 +271,11 @@
 
 <script>
   function updateStickyPrice(select) {
-    // Logic for updating price display if needed in future
+    const selectedOption = select.options[select.selectedIndex];
+    const newPrice = selectedOption.getAttribute('data-price');
+    if(newPrice) {
+        document.getElementById('sticky-price-new').innerText = newPrice;
+    }
   }
 
   function submitStickyForm() {
