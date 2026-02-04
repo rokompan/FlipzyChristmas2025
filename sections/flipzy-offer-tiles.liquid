@@ -376,7 +376,7 @@
     }
     
     if (formatted.includes('{{')) {
-         return value + ' ' + '{{ cart.currency.iso_code }}'; // Fallback
+         return value + ' ' + {{ cart.currency.iso_code | json }}; // Fallback
     }
 
     return formatted;
