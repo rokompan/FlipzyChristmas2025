@@ -2,6 +2,7 @@
   assign padding_top = section.settings.padding_top
   assign padding_bottom = section.settings.padding_bottom
   assign product = section.settings.main_product
+  assign variant = product.selected_or_first_available_variant
 -%}
 
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
@@ -236,7 +237,7 @@
   <div class="page-width">
     
     {% if product != blank %}
-      {% assign variant = product.selected_or_first_available_variant %}
+      <!-- Variant assigned globally -->
       
       <div class="flipzy-offer-container">
         <!-- LEFT: MEDIA -->
@@ -460,6 +461,11 @@
 </script>
 
 <script>
+  // DEBUGGING FLIPZY OFFER
+  console.log("Flipzy Debug - Script Loaded");
+  console.log("Flipzy Debug - Variant ID:", {{ variant.id | json }});
+  console.log("Flipzy Debug - Variant Price (Liquid):", {{ variant.price | json }});
+  
   window.offerConfig = {
     basePrice: {{ variant.price | json }},
     moneyFormat: {{ shop.money_format | json }},
