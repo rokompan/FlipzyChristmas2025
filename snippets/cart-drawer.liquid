@@ -16,21 +16,21 @@
   ---------------------------------------------------------
 {% endcomment %}
 <script>
-  window.addFlipzyUpsell = function(btn, variantId) {
+  window.addFlipzyUpsell = function(btn, variantId, currentQty) {
     // Localized string for 'Adding...'
-    btn.innerHTML = 'Adding...';
+    btn.innerHTML = 'Updating...';
     btn.style.opacity = '0.7';
     btn.style.pointerEvents = 'none'; 
     
+    var newQty = parseInt(currentQty) + 1;
+
     var formData = {
-      'items': [{
-        'id': variantId,
-        'quantity': 1
-      }],
+      'id': variantId,
+      'quantity': newQty,
       'sections': 'cart-drawer,cart-icon-bubble'
     };
     
-    fetch(window.Shopify.routes.root + 'cart/add.js', {
+    fetch(window.Shopify.routes.root + 'cart/change.js', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(formData)
@@ -705,7 +705,7 @@
              <button 
               type="button" 
               class="flipzy-upsell-btn" 
-              onclick="window.addFlipzyUpsell(this, '{{ update_variant_id }}')"
+              onclick="window.addFlipzyUpsell(this, '{{ update_variant_id }}', {{ current_qty }})"
             >
               {{ btn_text }} (+{{ upgrade_cost | money }})
             </button>
