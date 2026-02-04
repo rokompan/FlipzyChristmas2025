@@ -390,12 +390,16 @@
     let finalPrice = 0;
     const basePrice = window.offerConfig.basePrice;
     
-    // Use Schema Settings (Percent Discount)
+    // Use Schema Settings (Percent Discount) OR Hardcoded Override
     const tier = window.offerConfig.tiers[qty] || { discount: 0 };
-    const discountPct = tier.discount;
     
-    const baseTotal = basePrice * qty;
-    finalPrice = baseTotal * (1 - (discountPct / 100));
+    if (tier.overridePrice) {
+        finalPrice = tier.overridePrice; // HARDCODE: Use exact price in cents
+    } else {
+        const discountPct = tier.discount;
+        const baseTotal = basePrice * qty;
+        finalPrice = baseTotal * (1 - (discountPct / 100));
+    }
 
     // 3. Format Money
     const priceEl = document.getElementById('offer-total-price');
@@ -441,10 +445,10 @@
     basePrice: {{ current_variant.price | json }},
     moneyFormat: {{ shop.money_with_currency_format | json }},
     tiers: {
-      1: { discount: 0, label: {{ section.settings.qty_1_label | json }} },
-      2: { discount: {{ section.settings.qty_2_discount | default: 7 }}, label: {{ section.settings.qty_2_label | json }} },
-      3: { discount: {{ section.settings.qty_3_discount | default: 20 }}, label: {{ section.settings.qty_3_label | json }} },
-      4: { discount: {{ section.settings.qty_4_discount | default: 25 }}, label: {{ section.settings.qty_4_label | json }} }
+      1: { overridePrice: 3400, discount: 0, label: {{ section.settings.qty_1_label | default: "—" | json }} },
+      2: { overridePrice: 6300, discount: {{ section.settings.qty_2_discount | default: 7 }}, label: {{ section.settings.qty_2_label | default: "⭐ Most popular" | json }} },
+      3: { overridePrice: 8200, discount: {{ section.settings.qty_3_discount | default: 20 }}, label: {{ section.settings.qty_3_label | default: "3 for 2" | json }} },
+      4: { overridePrice: 10200, discount: {{ section.settings.qty_4_discount | default: 25 }}, label: {{ section.settings.qty_4_label | default: "🔥 Best value" | json }} }
     }
   };
 </script>
