@@ -1,6 +1,7 @@
 {%- liquid
   assign padding_top = section.settings.padding_top
   assign padding_bottom = section.settings.padding_bottom
+  assign product = section.settings.product
 -%}
 
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
@@ -9,8 +10,7 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ padding_bottom | times: 0.75 | round: 0 }}px;
-    /* Darker background to make tiles pop */
-    background-color: #f4f4f5; 
+    background-color: #f8fafc;
   }
 
   @media screen and (min-width: 750px) {
@@ -20,445 +20,392 @@
     }
   }
 
-  /* --- FLIPZY TILE CONTAINER --- */
-  .flipzy-tiles-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px; 
-    width: 100%;
-    margin-top: 1.5rem;
+  .flipzy-offer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
 
+  /* --- DESKTOP LAYOUT --- */
   @media screen and (min-width: 990px) {
-    .flipzy-tiles-grid {
-      grid-template-columns: repeat({{ section.blocks.size | at_most: 4 }}, 1fr);
-      gap: 20px;
-      align-items: stretch; 
+    .flipzy-offer-container {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 50px;
+    }
+    
+    .flipzy-offer-media {
+      flex: 1;
+      width: 50%;
+    }
+
+    .flipzy-offer-content {
+      flex: 1;
+      width: 50%;
+      position: sticky;
+      top: 20px;
     }
   }
 
-  /* --- INDIVIDUAL TILE CARD --- */
-  .flipzy-tile {
-    position: relative;
-    background: #ffffff; /* Ensure tile is pure white */
-    border: 1px solid rgba(0,0,0, 0.05);
-    border-radius: 20px; 
-    padding: 24px 18px 18px 18px; /* Extra top padding for badges */
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    height: 100%;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  }
-
-  .flipzy-tile:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  }
-
-  /* Highlighted Tile (Best Value) */
-  .flipzy-tile.is-highlighted {
-    border: 2px solid #F4D35E;
-    background: #FFFBEB; 
-  }
-
-  /* --- TOP CENTER BADGE (Best Value) --- */
-  .flipzy-tile-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #000;
-    color: #fff;
-    padding: 6px 14px;
+  /* --- MEDIA SIDE --- */
+  .flipzy-offer-media {
     border-radius: 20px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    z-index: 3;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
-  
-  .flipzy-tile.is-highlighted .flipzy-tile-badge {
-    background: #D97706; 
-  }
-
-  /* --- IMAGE --- */
-  .flipzy-tile-media {
-    width: 100%;
-    /* Mobile: Landscape (3:2) to make it shorter */
-    aspect-ratio: 3 / 2; 
-    border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 15px;
-    position: relative;
-    z-index: 1; /* Behind sticker */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    background: #fff;
   }
   
-  .flipzy-tile-media img {
+  .flipzy-offer-media img {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures image covers area without stretch */
-    transition: scale 0.3s ease;
-  }
-
-  .flipzy-tile:hover .flipzy-tile-media img {
-    scale: 1.05;
-  }
-
-  /* --- STICKER TAG (Pack Count) --- */
-  .flipzy-pack-sticker {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: #111;
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    z-index: 5; /* Above image */
-    box-shadow: 2px 4px 10px rgba(0,0,0,0.25);
-    transform: rotate(3deg); /* Sticker look */
-    border: 2px solid #fff;
-  }
-
-  .flipzy-pack-sticker .sticker-big {
-    font-size: 1.6rem;
-    font-weight: 800;
+    height: auto;
     display: block;
-    margin-bottom: 2px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+  }
+
+  /* --- CONTENT SIDE --- */
+  .flipzy-offer-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .flipzy-offer-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+    color: #111;
   }
   
-  .flipzy-pack-sticker .sticker-small {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    opacity: 0.9;
-  }
-
-  /* --- CONTENT --- */
-  .flipzy-tile-content {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .flipzy-tile-title {
-    font-size: 1.6rem; 
-    font-weight: 700;
-    margin: 0 0 10px 0;
-    line-height: 1.3;
-    color: rgb(var(--color-foreground));
-  }
-
-  .flipzy-tile-desc {
-    font-size: 1.4rem;
-    opacity: 0.8;
-    margin-bottom: 15px;
+  .flipzy-offer-desc {
+    font-size: 1rem;
+    color: #4b5563;
+    margin-bottom: 20px;
     line-height: 1.5;
   }
 
-  /* --- PRICING --- */
-  .flipzy-tile-price-wrapper {
-    margin-top: auto; 
+  /* --- QUANTITY SELECTOR --- */
+  .flipzy-qty-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+    color: #111;
+  }
+
+  .flipzy-qty-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 1x, 2x, 3x on first row? Or all 4? */
+    /* Let's do 2x2 on mobile, 4x1 on desktop or just 4x1 flex wrap? */
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+
+  .flipzy-qty-btn {
+    border: 2px solid #e5e7eb;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 5px;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
-    margin-bottom: 15px;
-  }
-
-  .flipzy-price-container {
-    display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 10px;
+    transition: all 0.2s ease;
+    position: relative;
+    min-height: 80px;
   }
 
-  .flipzy-price-current {
-    font-size: 1.8rem;
+  .flipzy-qty-btn:hover {
+    border-color: #d1d5db;
+    background: #f9fafb;
+  }
+
+  .flipzy-qty-btn.is-selected {
+    border-color: #F4D35E;
+    background: #FFFBEB;
+    box-shadow: 0 4px 12px rgba(244, 211, 94, 0.2);
+  }
+
+  .mt-qty-big {
+    font-size: 1.4rem;
     font-weight: 800;
-    color: rgb(var(--color-foreground));
+    color: #111;
+    line-height: 1;
+    margin-bottom: 4px;
   }
 
-  .flipzy-price-compare {
-    text-decoration: line-through;
-    opacity: 0.6;
-    font-size: 1.3rem; 
-  }
-
-  .flipzy-save-pill {
-    background-color: #EF4444; 
-    color: #fff;
-    font-size: 1.1rem; 
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 6px;
-    display: inline-block;
-  }
-
-  .flipzy-shipping-badge {
-    color: #059669; 
-    background: #ECFDF5; 
-    border: 1px solid #6EE7B7;
-    font-size: 1rem; 
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 6px;
-    display: inline-block;
+  .mt-qty-small {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6b7280;
     text-transform: uppercase;
-    margin-top: 4px;
-  }
-
-  /* --- BUTTON --- */
-  .flipzy-tile-submit {
-      background-color: #F4D35E !important;
-      color: #111827 !important;
-      border: none !important;
-      border-radius: 50px !important;
-      font-weight: 700 !important;
-      font-size: 1.5rem !important; 
-      text-transform: none !important;
-      padding: 14px 20px !important;
-      box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      margin-top: 5px;
   }
   
-  .flipzy-tile-submit:hover { transform: scale(1.02); }
-
-  /* --- FOOTER TEXT --- */
-  .flipzy-offer-footer {
-    text-align: center;
-    margin-top: 2rem;
-    font-size: 1.3rem;
-    opacity: 0.85;
-    font-weight: 500;
-    font-style: italic;
-    color: rgb(var(--color-foreground));
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* Desktop Adjustments */
-  @media screen and (min-width: 990px) {
-    /* Restore Square Image on Desktop */
-    .flipzy-tile-media { aspect-ratio: 1 / 1; }
-    
-    .flipzy-tile-title { font-size: 1.4rem; }
-    .flipzy-tile-desc { font-size: 1rem; }
-    .flipzy-price-current { font-size: 1.6rem; }
-    .flipzy-tile-submit { font-size: 1.2rem !important; padding: 12px 15px !important; }
-    .flipzy-tile-badge { font-size: 0.8rem; padding: 5px 15px; }
-    .flipzy-save-pill { font-size: 0.85rem; }
-    .flipzy-shipping-badge { font-size: 0.8rem; }
-    
-    .flipzy-offer-footer { font-size: 1.1rem; margin-top: 2.5rem; }
+  /* Badges on Buttons */
+  .flipzy-btn-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #EF4444;
+    color: white;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0; 
+    transition: opacity 0.2s;
   }
   
-  /* Pulse Animation Logic */
-  .flipzy-pulse-anim::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 50px;
-      box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
-      animation: flipzy-pulse 2s infinite;
-      z-index: 1;
-      pointer-events: none;
+  .flipzy-qty-btn[data-badge="true"] .flipzy-btn-badge {
+    opacity: 1;
   }
 
-  @keyframes flipzy-pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(244, 211, 94, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(244, 211, 94, 0); }
+  /* --- PRICE SUMMARY --- */
+  .flipzy-summary-box {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
+  .flipzy-summary-text {
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .flipzy-summary-price {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #111;
+  }
+
+  .flipzy-shipping-text {
+     font-size: 0.8rem;
+     color: #059669;
+     font-weight: 700;
+     display: block;
+     text-align: right;
+  }
+
+  /* --- MAIN BUTTON --- */
+  .flipzy-add-btn {
+    width: 100%;
+    background-color: #F4D35E;
+    color: #111827;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4);
+    transition: transform 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .flipzy-add-btn:hover {
+    transform: scale(1.02);
+  }
+
+  /* --- MOBILE TWEAKS --- */
+  @media (max-width: 768px) {
+    .flipzy-qty-grid {
+       grid-template-columns: repeat(4, 1fr); /* 4 across on mobile for small buttons */
+    }
+    .mt-qty-big { font-size: 1.2rem; }
+    .mt-qty-small { font-size: 0.7rem; }
+    .flipzy-qty-btn { min-height: 70px; padding: 10px 2px; }
+  }
 {%- endstyle -%}
 
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
-<div class="section-{{ section.id }}-padding">
+<div class="section-{{ section.id }}-padding" id="flipzy-offer-section">
   <div class="page-width">
     
-    {%- if section.settings.title != blank -%}
-      <div class="title-wrapper title-wrapper--no-top-margin center">
-        <h2 class="title {{ section.settings.heading_size }}">{{ section.settings.title }}</h2>
-        {%- if section.settings.text != blank -%}
-            <div class="rte" style="font-size: 1.5rem;">{{ section.settings.text }}</div>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
+    {% if product != blank %}
+      {% assign variant = product.selected_or_first_available_variant %}
+      
+      <div class="flipzy-offer-container">
+        <!-- LEFT: MEDIA -->
+        <div class="flipzy-offer-media">
+          {% if product.featured_image %}
+            <img 
+              src="{{ product.featured_image | image_url: width: 800 }}" 
+              alt="{{ product.title }}"
+              loading="lazy"
+              width="{{ product.featured_image.width }}" 
+              height="{{ product.featured_image.height }}"
+            >
+          {% else %}
+             {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+        </div>
 
-    <div class="flipzy-tiles-grid">
-      {%- for block in section.blocks -%}
-        {%- assign product = block.settings.product -%}
-        {%- assign highlight = block.settings.highlight_tile -%}
-        
-        <div class="flipzy-tile {% if highlight %}is-highlighted{% endif %}" {{ block.shopify_attributes }}>
+        <!-- RIGHT: CONFIG -->
+        <div class="flipzy-offer-content">
+          <h2 class="flipzy-offer-title">{{ section.settings.title | default: product.title }}</h2>
+          <div class="flipzy-offer-desc">{{ section.settings.text }}</div>
+
+          <span class="flipzy-qty-label">Choose Quantity:</span>
           
-          {%- if block.settings.badge_text != blank -%}
-            <div class="flipzy-tile-badge">{{ block.settings.badge_text }}</div>
-          {%- endif -%}
-
-          {% comment %} 
-            --- BUNDLE COUNT LOGIC ---
-          {% endcomment %}
-          {%- liquid
-            assign bundle_count = 1
-            if block.settings.manual_bundle_size != blank
-               assign bundle_count = block.settings.manual_bundle_size
-            elsif product.title contains '4-Pack'
-               assign bundle_count = 4
-            elsif product.title contains '3-Pack'
-               assign bundle_count = 3
-            elsif product.title contains '2-Pack'
-               assign bundle_count = 2
-            endif
-          -%}
-          
-          <div class="flipzy-pack-sticker">
-            <span class="sticker-big">{{ bundle_count }}x</span>
-            <span class="sticker-small">Flipzy</span>
-          </div>
-
-          <div class="flipzy-tile-media">
-            {%- if product.featured_image != blank -%}
-              <img
-                src="{{ product.featured_image | image_url: width: 600 }}"
-                alt="{{ product.title | escape }}"
-                loading="lazy"
-                width="{{ product.featured_image.width }}"
-                height="{{ product.featured_image.height }}"
-              >
-            {%- else -%}
-              {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
-            {%- endif -%}
-          </div>
-
-          <div class="flipzy-tile-content">
-            <h3 class="flipzy-tile-title">
-              {%- if block.settings.custom_title != blank -%}
-                {{ block.settings.custom_title }}
-              {%- else -%}
-                {{ product.title }}
-              {%- endif -%}
-            </h3>
-
-            {%- if block.settings.description != blank -%}
-              <div class="flipzy-tile-desc">{{ block.settings.description }}</div>
-            {%- endif -%}
-
-            <div class="flipzy-tile-price-wrapper">
-              <div class="flipzy-price-container">
-                <span class="flipzy-price-current">
-                   {{ product.price | money }}
-                </span>
-                {%- if product.compare_at_price > product.price -%}
-                  <span class="flipzy-price-compare">{{ product.compare_at_price | money }}</span>
-                {%- endif -%}
-              </div>
-
-              {%- if product.compare_at_price > product.price -%}
-                {%- assign saved = product.compare_at_price | minus: product.price -%}
-                {%- assign pct = saved | times: 100.0 | divided_by: product.compare_at_price -%}
-                {%- assign pct_rounded = pct | round -%}
-                <div class="flipzy-save-pill">
-                  Save {{ pct_rounded }}%
-                </div>
-              {%- endif -%}
-
-              {%- if block.settings.show_shipping_badge -%}
-                 <div class="flipzy-shipping-badge">FREE SHIPPING</div>
-              {%- endif -%}
-
+          <div class="flipzy-qty-grid">
+            <!-- 1x -->
+            <div class="flipzy-qty-btn is-selected" onclick="selectOfferQty(1, this)">
+              <span class="mt-qty-big">1x</span>
+              <span class="mt-qty-small">Pair</span>
             </div>
 
-            <product-form class="product-form">
-              {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                <button
-                  type="submit"
-                  name="add"
-                  class="flipzy-tile-submit {% if highlight %}flipzy-pulse-anim{% endif %}"
-                  {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
-                >
-                  <span>
-                    {%- if product.selected_or_first_available_variant.available -%}
-                      {{ block.settings.button_text }}
-                    {%- else -%}
-                      Sold Out
-                    {%- endif -%}
-                  </span>
-                  <div class="loading__spinner hidden">
-                    <svg aria-hidden="true" focusable="false" class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                      <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                    </svg>
-                  </div>
-                </button>
-              {%- endform -%}
-            </product-form>
+            <!-- 2x -->
+            <div class="flipzy-qty-btn" onclick="selectOfferQty(2, this)" data-badge="true">
+              <span class="flipzy-btn-badge">FREE SHIP</span>
+              <span class="mt-qty-big">2x</span>
+              <span class="mt-qty-small">Pairs</span>
+            </div>
 
+            <!-- 3x -->
+            <div class="flipzy-qty-btn" onclick="selectOfferQty(3, this)" data-badge="true">
+              <span class="flipzy-btn-badge">3 FOR 2</span>
+              <span class="mt-qty-big">3x</span>
+              <span class="mt-qty-small">Pairs</span>
+            </div>
+
+            <!-- 4x -->
+            <div class="flipzy-qty-btn" onclick="selectOfferQty(4, this)" data-badge="true">
+               <span class="flipzy-btn-badge">-30% OFF</span>
+               <span class="mt-qty-big">4x</span>
+               <span class="mt-qty-small">Pairs</span>
+            </div>
           </div>
-        </div>
-      {%- endfor -%}
-    </div>
 
-    {%- if section.settings.footer_text != blank -%}
-      <div class="flipzy-offer-footer">
-        {{ section.settings.footer_text }}
+          <div class="flipzy-summary-box">
+             <div>
+                <div class="flipzy-summary-text">Total Price:</div>
+             </div>
+             <div>
+                <div class="flipzy-summary-price" id="offer-total-price" data-base="{{ variant.price }}">{{ variant.price | money }}</div>
+                <div class="flipzy-shipping-text" id="offer-shipping-text" style="display:none;">+ Free Shipping</div>
+             </div>
+          </div>
+
+          <!-- HIDDEN PRODUCT FORM -->
+          <product-form class="product-form">
+            {%- form 'product', product, id: 'main-offer-form', class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              <input type="hidden" name="id" value="{{ variant.id }}">
+              <input type="hidden" name="quantity" id="main-offer-quantity" value="1">
+              
+              <button
+                type="submit"
+                name="add"
+                class="flipzy-add-btn"
+                {% unless variant.available %}disabled{% endunless %}
+              >
+                <span>
+                  {% if variant.available %}
+                    Add to Cart
+                  {% else %}
+                    Sold Out
+                  {% endif %}
+                </span>
+              </button>
+            {%- endform -%}
+          </product-form>
+
+        </div>
       </div>
-    {%- endif -%}
+
+    {% else %}
+       <p style="text-align:center; padding: 50px;">Please select a product in the section settings.</p>
+    {% endif %}
 
   </div>
 </div>
 
+<script>
+  let currentOfferQty = 1;
+  const moneyFormat = "{{ shop.money_format }}"; // e.g. €{{amount}}
+
+  function formatMoney(cents) {
+    return moneyFormat.replace('\{\{amount\}\}', (cents / 100).toFixed(2)).replace('\{\{amount_no_decimals\}\}', (cents / 100).toFixed(0)); 
+  }
+
+  function selectOfferQty(qty, btn) {
+    // 1. Visual Selection
+    document.querySelectorAll('.flipzy-qty-btn').forEach(el => el.classList.remove('is-selected'));
+    btn.classList.add('is-selected');
+
+    // 2. Update State
+    currentOfferQty = qty;
+    document.getElementById('main-offer-quantity').value = qty;
+
+    // 3. Price Calculation Logic
+    // Based on user request/sticky bar logic:
+    // 1x: Base
+    // 2x: 2 * Base (Free Shipping)
+    // 3x: 2 * Base (3 for 2)
+    // 4x: 4 * Base * 0.70 (30% off)
+
+    const priceEl = document.getElementById('offer-total-price');
+    const basePrice = parseFloat(priceEl.getAttribute('data-base'));
+    
+    let finalPrice = basePrice * qty; // Default
+
+    if (qty == 3) {
+       // 3 for 2 deal: Pay for 2
+       finalPrice = basePrice * 2;
+    } else if (qty == 4) {
+       // 30% off total
+       finalPrice = (basePrice * 4) * 0.70;
+    }
+
+    // Update Price Text
+    // Note: Simple JS formatter might not match Shopify's complex filters perfectly, but good enough for dynamic update
+    // If shop currency has weird formatting, might need refinement.
+    // For EUR/USD usually fine.
+    priceEl.innerText = formatMoney(finalPrice); 
+
+    // 4. Shipping Text
+    const shipEl = document.getElementById('offer-shipping-text');
+    if (qty >= 2) {
+        shipEl.style.display = 'block';
+    } else {
+        shipEl.style.display = 'none';
+    }
+  }
+</script>
+
 {% schema %}
 {
-  "name": "Flipzy Offer Tiles",
-  "tag": "section",
-  "class": "section",
+  "name": "Flipzy Offer Redesign",
   "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Main Product"
+    },
     {
       "type": "text",
       "id": "title",
-      "default": "Choose Your Bundle",
-      "label": "Heading"
-    },
-    {
-      "type": "select",
-      "id": "heading_size",
-      "options": [
-        { "value": "h2", "label": "Small" },
-        { "value": "h1", "label": "Medium" },
-        { "value": "h0", "label": "Large" }
-      ],
-      "default": "h1",
-      "label": "Heading Size"
+      "label": "Heading",
+      "default": "Mehki in Udobni Natikači"
     },
     {
       "type": "richtext",
       "id": "text",
       "label": "Description",
-      "default": "<p>Select the package that fits your family best.</p>"
-    },
-    {
-      "type": "text",
-      "id": "footer_text",
-      "label": "Footer Text (Social Proof)",
-      "default": "Most families choose 2 or more Flipzys for smoother daily routines."
+      "default": "<p>Sproščanje za vaša stopala.</p>"
     },
     {
       "type": "range",
@@ -481,82 +428,9 @@
       "default": 36
     }
   ],
-  "blocks": [
-    {
-      "type": "tile",
-      "name": "Offer Tile",
-      "settings": [
-        {
-          "type": "product",
-          "id": "product",
-          "label": "Bundle Product"
-        },
-        {
-          "type": "checkbox",
-          "id": "highlight_tile",
-          "label": "Highlight this tile?",
-          "default": false,
-          "info": "Adds a border and pulse animation to the button."
-        },
-        {
-          "type": "text",
-          "id": "badge_text",
-          "label": "Top Badge Text",
-          "default": "MOST POPULAR",
-          "info": "Leave empty to hide."
-        },
-        {
-          "type": "text",
-          "id": "manual_bundle_size",
-          "label": "Bundle Size (Override)",
-          "info": "Enter number of items (e.g., 4). Leave blank to auto-detect from title (looks for '4-Pack')."
-        },
-        {
-          "type": "text",
-          "id": "custom_title",
-          "label": "Custom Title Override",
-          "info": "Optional. Replaces product title."
-        },
-        {
-          "type": "textarea",
-          "id": "description",
-          "label": "Short Description",
-          "default": "Perfect for small families."
-        },
-        {
-          "type": "checkbox",
-          "id": "show_shipping_badge",
-          "label": "Show 'Free Shipping' Badge",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "button_text",
-          "label": "Button Text",
-          "default": "Add to Cart"
-        }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "Flipzy Offer Tiles",
-      "blocks": [
-        {
-          "type": "tile"
-        },
-        {
-          "type": "tile",
-          "settings": {
-            "highlight_tile": true,
-            "badge_text": "BEST VALUE",
-            "show_shipping_badge": true
-          }
-        },
-        {
-          "type": "tile"
-        }
-      ]
+      "name": "Flipzy Offer Redesign"
     }
   ]
 }
