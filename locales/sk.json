@@ -343,7 +343,18 @@
         "unlock_shipping_text": "Získajte pár Ráno a večer + doprava zadarmo.",
         "perfect_gift_title": "Dokonalý darček?",
         "perfect_gift_text": "Pridajte ďalší pre priateľa alebo bratranca.",
-        "button_text": "Pridať ďalšie (+1)"
+        "button_text": "Pridať ďalšie (+1)",
+        "save_badge": "SAVE {{ percent }}%",
+        "updating": "Aktualizácia...",
+        "button_2pack": "Upgrade na balenie 2",
+        "headline_3pack": "🔥 Najobľúbenejšia voľba",
+        "subline_3pack": "Upgrade na Platíte 2, dostanete 1 zdarma (balenie 3).",
+        "button_3pack": "Upgrade na balenie 3-Pack",
+        "headline_4pack": "🏆 Najlepšia hodnota - maximálna úspora",
+        "subline_4pack": "Upgrade na rodinný balík (4x).",
+        "button_4pack": "Upgrade na balenie 4",
+        "headline_2pack": "✨ Odomknite dopravu zadarmo!",
+        "subline_2pack": "Upgrade na dvojicu Ranné a večerné."
       }
     },
     "footer": {
