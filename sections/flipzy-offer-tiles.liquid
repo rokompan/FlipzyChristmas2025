@@ -11,7 +11,7 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ padding_bottom | times: 0.75 | round: 0 }}px;
-    background-color: #f8fafc;
+    background-color: #ffffff;
   }
 
   @media screen and (min-width: 750px) {
@@ -54,8 +54,10 @@
   .flipzy-offer-media {
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    /* Removed card styling */
+    background: transparent;
   }
   
   .flipzy-offer-media img {
@@ -68,11 +70,9 @@
 
   /* --- CONTENT SIDE --- */
   .flipzy-offer-content {
-    background: #fff;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border: 1px solid rgba(0,0,0,0.05);
+    background: transparent;
+    padding: 0;
+    /* Removed card styling */
   }
 
   /* Magazine Style Rating */
