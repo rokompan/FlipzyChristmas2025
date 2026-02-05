@@ -23,15 +23,42 @@
             {%- endfor -%}
           </div>
 
-          {% if block.settings.image != blank %}
+          {% assign testimonial_img = block.settings.image %}
+          
+          {%- comment -%} Fallback for specific requested testimonials if image picker fails or is empty {%- endcomment -%}
+          {% if testimonial_img == blank %}
+              {% if block.settings.author contains 'Lukas' %}
+                  {% assign fallback_src = 'https://cdn.shopify.com/s/files/1/0961/4082/0821/files/happy-flipped.jpg?v=1770320653' %}
+              {% elsif block.settings.author contains 'Eva' %}
+                  {% assign fallback_src = 'https://cdn.shopify.com/s/files/1/0961/4082/0821/files/happy-stickers.jpg?v=1770320836' %}
+              {% elsif block.settings.author contains 'Jana' %}
+                  {% assign fallback_src = 'https://cdn.shopify.com/s/files/1/0961/4082/0821/files/happy-random.jpg?v=1770321344' %}
+              {% elsif block.settings.author contains 'Marko' %}
+                  {% assign fallback_src = 'https://cdn.shopify.com/s/files/1/0961/4082/0821/files/happy-family2.png?v=1770322109' %}
+              {% elsif block.settings.author contains 'Family' %}
+                  {% assign fallback_src = 'https://cdn.shopify.com/s/files/1/0961/4082/0821/files/hf_20260205_200746_1a2f31ab-24c2-41d2-8649-1970ae8d2f1f.png?v=1770322213' %}
+              {% endif %}
+          {% endif %}
+
+          {% if testimonial_img != blank or fallback_src != blank %}
             <div class="flipzy-testimonial-img">
-               <img src="{{ block.settings.image | image_url: width: 400 }}" 
-                    alt="Happy customer using Flipzy" 
-                    loading="lazy" 
-                    width="400" 
-                    height="300"
-                    style="width:100%; height:auto; border-radius:12px; margin-bottom:15px; display:block;"
-               >
+               {% if testimonial_img != blank %}
+                   <img src="{{ testimonial_img | image_url: width: 400 }}" 
+                        alt="Happy customer using Flipzy" 
+                        loading="lazy" 
+                        width="400" 
+                        height="300"
+                        style="width:100%; height:auto; border-radius:12px; margin-bottom:15px; display:block;"
+                   >
+               {% else %}
+                   <img src="{{ fallback_src }}" 
+                        alt="Happy customer using Flipzy" 
+                        loading="lazy" 
+                        width="400" 
+                        height="300"
+                        style="width:100%; height:auto; border-radius:12px; margin-bottom:15px; display:block;"
+                   >
+               {% endif %}
             </div>
           {% endif %}
 

@@ -337,25 +337,25 @@
     "flipzy_testimonials_J7dGUa": {
       "type": "flipzy-testimonials",
       "blocks": {
-        "testimonial_1": {
+        "testimonial_1_b": {
           "type": "testimonial",
           "settings": {
             "text": "He usually hates chores, but look at that smile! He actually raced to finish his tasks just to flip the tiles. Finally, mornings without tears.",
-            "author": "Lukas K.",
+            "author": "Lukas S.",
             "show_badge": true,
             "image": "shopify://shop_images/happy-flipped.jpg"
           }
         },
-        "testimonial_2": {
+        "testimonial_2_b": {
           "type": "testimonial",
           "settings": {
             "text": "Sticking the icons together was half the fun! We made a custom routine for the evening. It’s not just a tool, it’s a bonding activity.",
-            "author": "Eva & Matej",
+            "author": "Eva & Matej S.",
             "show_badge": true,
             "image": "shopify://shop_images/happy-stickers.jpg"
           }
         },
-        "testimonial_3": {
+        "testimonial_3_b": {
           "type": "testimonial",
           "settings": {
             "text": "Best addition to his room. He checks it every morning before I even wake up. 'Mom, look, I brushed my teeth!' – music to my ears.",
@@ -364,31 +364,31 @@
             "image": "shopify://shop_images/happy-random.jpg"
           }
         },
-        "testimonial_4": {
+        "testimonial_4_b": {
           "type": "testimonial",
           "settings": {
             "text": "They compete who flips first! My boys love the tactile feeling. It organizes their day and gives them a sense of control.",
-            "author": "Marko P.",
+            "author": "Marko S.",
             "show_badge": true,
             "image": "shopify://shop_images/happy-family2.png"
           }
         },
-        "testimonial_5": {
+        "testimonial_5_b": {
           "type": "testimonial",
           "settings": {
             "text": "A selfie to celebrate a fully flipped board! Our weekends are so much smoother now that everyone knows what needs to be done. 10/10.",
-            "author": "Family Horvat",
+            "author": "Family H.",
             "show_badge": true,
             "image": "shopify://shop_images/hf_20260205_200746_1a2f31ab-24c2-41d2-8649-1970ae8d2f1f.png"
           }
         }
       },
       "block_order": [
-        "testimonial_1",
-        "testimonial_2",
-        "testimonial_3",
-        "testimonial_4",
-        "testimonial_5"
+        "testimonial_1_b",
+        "testimonial_2_b",
+        "testimonial_3_b",
+        "testimonial_4_b",
+        "testimonial_5_b"
       ],
       "name": "Flipzy Testimonials",
       "settings": {
