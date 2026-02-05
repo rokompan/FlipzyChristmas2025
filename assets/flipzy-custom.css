@@ -7,13 +7,14 @@
     --font-poppins: 'Poppins', sans-serif;
     --color-cream: #fff8cd;
     --color-sage: #9AB8A2;
-    --color-mint: #96Debb; 
+    --color-mint: #96Debb;
     --color-mustard: #F4D35E;
-    --color-charcoal: #111827; 
+    --color-charcoal: #111827;
     --color-white: #FFFFFF;
 }
 
-.flipzy-section, .flipzy-section * {
+.flipzy-section,
+.flipzy-section * {
     font-family: 'Poppins', sans-serif !important;
 }
 
@@ -21,35 +22,43 @@
    2. HERO SLIDER (FINAL FIX)
    ========================================= */
 .flipzy-hero-container {
-    position: relative; 
-    width: 100%; 
-    height: 80dvh; /* Mobile */
-    max-height: 850px; 
+    position: relative;
+    width: 100%;
+    height: 80dvh;
+    /* Mobile */
+    max-height: 850px;
     min-height: 450px;
-    background-color: var(--color-charcoal); 
+    background-color: var(--color-charcoal);
     overflow: hidden;
 }
 
-@media screen and (min-width: 750px) { 
-    .flipzy-hero-container { 
-        height: 70vh; /* Desktop */
-    } 
+@media screen and (min-width: 750px) {
+    .flipzy-hero-container {
+        height: 70vh;
+        /* Desktop */
+    }
 }
 
 .flipzy-slider-track {
-    display: flex; 
-    width: 100%; 
+    display: flex;
+    width: 100%;
     height: 100%;
-    overflow-x: scroll; 
+    overflow-x: scroll;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory; 
+    scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; 
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     cursor: grab;
 }
-.flipzy-slider-track:active { cursor: grabbing; }
-.flipzy-slider-track::-webkit-scrollbar { display: none; }
+
+.flipzy-slider-track:active {
+    cursor: grabbing;
+}
+
+.flipzy-slider-track::-webkit-scrollbar {
+    display: none;
+}
 
 /* TEASER ANIMATION */
 .flipzy-track-tease {
@@ -57,107 +66,217 @@
 }
 
 @keyframes flipzy-peek {
-    0% { transform: translateX(0); }
-    10% { transform: translateX(-60px); } 
-    20% { transform: translateX(0); }     
-    100% { transform: translateX(0); }    
+    0% {
+        transform: translateX(0);
+    }
+
+    10% {
+        transform: translateX(-60px);
+    }
+
+    20% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 
-.flipzy-slide { flex: 0 0 100%; width: 100%; height: 100%; position: relative; scroll-snap-align: center; }
-.flipzy-media-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-
-.flipzy-media-wrapper::after { 
-    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-    background: rgba(0, 0, 0, 0.1); 
-    z-index: 2; pointer-events: none; 
+.flipzy-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    scroll-snap-align: center;
 }
 
-.flipzy-media-wrapper video, .flipzy-media-wrapper img, .flipzy-media-wrapper svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.flipzy-media-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.flipzy-media-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.flipzy-media-wrapper video,
+.flipzy-media-wrapper img,
+.flipzy-media-wrapper svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 
 .flipzy-content-wrapper {
-    position: absolute; z-index: 3; bottom: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%);
-    display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
-    text-align: center; 
-    padding: 0 20px 80px 20px; 
+    position: absolute;
+    z-index: 3;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 40%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px 80px 20px;
 }
-.flipzy-text-box { max-width: 1000px; color: var(--color-white); }
 
-.flipzy-heading { 
-    font-size: 2.5rem; 
-    line-height: 1.1; 
-    margin-bottom: 1.5rem; 
-    color: var(--color-white); 
-    text-shadow: 0 2px 15px rgba(0,0,0,0.6); 
+.flipzy-text-box {
+    max-width: 1000px;
+    color: var(--color-white);
 }
-.flipzy-heading p { margin: 0; padding: 0; }
-.flipzy-heading strong { color: var(--color-mustard); font-weight: 700; }
 
-@media screen and (min-width: 750px) { 
-    .flipzy-heading { 
-        font-size: 3.5rem; 
-        max-width: 900px; 
-        margin-bottom: 2rem; 
-    } 
+.flipzy-heading {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: var(--color-white);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+}
+
+.flipzy-heading p {
+    margin: 0;
+    padding: 0;
+}
+
+.flipzy-heading strong {
+    color: var(--color-mustard);
+    font-weight: 700;
+}
+
+@media screen and (min-width: 750px) {
+    .flipzy-heading {
+        font-size: 3.5rem;
+        max-width: 900px;
+        margin-bottom: 2rem;
+    }
 }
 
 .flipzy-btn {
-    display: inline-block; background-color: var(--color-mustard); color: var(--color-charcoal);
-    padding: 18px 54px; border-radius: 50px; font-weight: 700; text-decoration: none;
-    font-size: 1.5rem; 
-    margin-bottom: 15px; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2); border: 2px solid var(--color-mustard);
+    display: inline-block;
+    background-color: var(--color-mustard);
+    color: var(--color-charcoal);
+    padding: 18px 54px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--color-mustard);
 }
-.flipzy-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(244, 211, 94, 0.7); }
+
+.flipzy-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(244, 211, 94, 0.7);
+}
 
 @media (max-width: 750px) {
-    .flipzy-btn { font-size: 1.4rem; padding: 14px 40px; }
+    .flipzy-btn {
+        font-size: 1.4rem;
+        padding: 14px 40px;
+    }
 }
 
 /* SCROLL CUE */
 .flipzy-scroll-cue {
     position: absolute;
     bottom: 20px;
-    left: 0; right: 0;
+    left: 0;
+    right: 0;
     text-align: center;
-    font-size: 1.1rem; font-weight: 500; color: rgba(255,255,255,0.9); cursor: default;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: default;
     animation: continuous-bounce 1.5s infinite ease-in-out;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     z-index: 4;
 }
-@keyframes continuous-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+@keyframes continuous-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
 
 .flipzy-nav-btn {
-    position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
-    background: rgba(0, 0, 0, 0.3); 
-    border: 1px solid rgba(255,255,255,0.2);
-    color: white; width: 60px; height: 60px; border-radius: 50%; cursor: pointer;
-    backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.2s ease;
 }
-.flipzy-nav-btn:hover { background: rgba(0, 0, 0, 0.6); transform: translateY(-50%) scale(1.1); }
-.flipzy-prev { left: 20px; }
-.flipzy-next { right: 20px; }
+
+.flipzy-nav-btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.flipzy-prev {
+    left: 20px;
+}
+
+.flipzy-next {
+    right: 20px;
+}
+
 /* DOTS INDICATOR */
 .flipzy-dots-container {
     position: absolute;
     bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-    
+
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 12px;
-    z-index: 999; /* High Z-Index to stay on top */
-    
+    z-index: 999;
+    /* High Z-Index to stay on top */
+
     background-color: rgba(0, 0, 0, 0.6);
     padding: 8px 16px;
     border-radius: 30px;
     backdrop-filter: blur(4px);
-    
-    width: auto; /* Allow width to fit dots */
+
+    width: auto;
+    /* Allow width to fit dots */
     pointer-events: auto;
 }
 
@@ -165,15 +284,18 @@
     display: block;
     width: 12px;
     height: 12px;
-    min-width: 12px; /* Prevents squashing */
+    min-width: 12px;
+    /* Prevents squashing */
     min-height: 12px;
     background-color: #FFFFFF;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.2s ease;
-    flex-shrink: 0; /* Critical: Stops dots from being crushed */
+    flex-shrink: 0;
+    /* Critical: Stops dots from being crushed */
     opacity: 0.5;
-    border: none; /* Removes button borders if any */
+    border: none;
+    /* Removes button borders if any */
     padding: 0;
     margin: 0;
 }
@@ -193,74 +315,177 @@
 /* =========================================
    3. FLIPZY FEATURE VIDEO
    ========================================= */
-.flipzy-feature-section { padding-top: 6rem; padding-bottom: 6rem; width: 100%; background: #ffffff; }
+.flipzy-feature-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    width: 100%;
+    background: #ffffff;
+}
+
 .flipzy-feature-inner {
-    display: flex; gap: 6rem; align-items: center; max-width: 1400px; margin: 0 auto;
-    padding-left: 8%; padding-right: 8%;
+    display: flex;
+    gap: 6rem;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 8%;
+    padding-right: 8%;
 }
-.flipzy-feature-media, .flipzy-feature-content { flex: 1 1 50%; }
+
+.flipzy-feature-media,
+.flipzy-feature-content {
+    flex: 1 1 50%;
+}
+
 .flipzy-feature-media-inner {
-    border-radius: 32px; overflow: hidden; box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
-    background: #f5f5f5; position: relative; line-height: 0;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
+    background: #f5f5f5;
+    position: relative;
+    line-height: 0;
 }
-.flipzy-feature-image, .flipzy-feature-video { width: 100%; height: auto; display: block; object-fit: cover; }
+
+.flipzy-feature-image,
+.flipzy-feature-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
 
 .flipzy-feature-heading {
-    font-weight: 400; margin: 0 0 2rem;
-    color: var(--color-charcoal); line-height: 1.1;
+    font-weight: 400;
+    margin: 0 0 2rem;
+    color: var(--color-charcoal);
+    line-height: 1.1;
 }
-.flipzy-feature-points { display: flex; flex-direction: column; gap: 2rem; }
-.flipzy-feature-point { display: flex; align-items: center; gap: 1.5rem; }
+
+.flipzy-feature-points {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.flipzy-feature-point {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .flipzy-feature-icon-box {
-    width: 36px; height: 36px; flex-shrink: 0; color: var(--color-mint);
-    display: flex; align-items: center; justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    color: var(--color-mint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.flipzy-feature-icon-box svg, .flipzy-feature-icon-box img { 
-    width: 100%; height: 100%; object-fit: contain; stroke-width: 2px; stroke: currentColor; fill: none;
+
+.flipzy-feature-icon-box svg,
+.flipzy-feature-icon-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    stroke-width: 2px;
+    stroke: currentColor;
+    fill: none;
 }
+
 .flipzy-feature-point-text {
-    margin: 0; font-size: 1.5rem; line-height: 1.4; font-weight: 400; color: var(--color-charcoal);
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    font-weight: 400;
+    color: var(--color-charcoal);
 }
-.flipzy-feature-point-text p { margin: 0; }
+
+.flipzy-feature-point-text p {
+    margin: 0;
+}
 
 @media (max-width: 899px) {
-    .flipzy-feature-section { padding-top: 4rem; padding-bottom: 4rem; }
-    .flipzy-feature-inner { flex-direction: column; gap: 3rem; padding-left: 5%; padding-right: 5%; }
-    
+    .flipzy-feature-section {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    .flipzy-feature-inner {
+        flex-direction: column;
+        gap: 3rem;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
     /* POPRAVLJENI SELEKTORJI */
-    .layout-mobile-media_first .flipzy-feature-media { order: 1; } 
-    .layout-mobile-media_first .flipzy-feature-content { order: 2; }
-    
-    .layout-mobile-text_first .flipzy-feature-content { order: 1; } 
-    .layout-mobile-text_first .flipzy-feature-media { order: 2; }
-    
-    .flipzy-feature-heading { text-align: center; }
+    .layout-mobile-media_first .flipzy-feature-media {
+        order: 1;
+    }
+
+    .layout-mobile-media_first .flipzy-feature-content {
+        order: 2;
+    }
+
+    .layout-mobile-text_first .flipzy-feature-content {
+        order: 1;
+    }
+
+    .layout-mobile-text_first .flipzy-feature-media {
+        order: 2;
+    }
+
+    .flipzy-feature-heading {
+        text-align: center;
+    }
 }
 
 @media (min-width: 900px) {
-    .layout-desktop-left .flipzy-feature-media { order: 1; } .layout-desktop-left .flipzy-feature-content { order: 2; }
-    .layout-desktop-right .flipzy-feature-content { order: 1; } .layout-desktop-right .flipzy-feature-media { order: 2; }
+    .layout-desktop-left .flipzy-feature-media {
+        order: 1;
+    }
+
+    .layout-desktop-left .flipzy-feature-content {
+        order: 2;
+    }
+
+    .layout-desktop-right .flipzy-feature-content {
+        order: 1;
+    }
+
+    .layout-desktop-right .flipzy-feature-media {
+        order: 2;
+    }
 }
 
 /* =========================================
    4. FLIPZY OFFER STRIP (Native Logic Wrapper)
    ========================================= */
-.flipzy-offer-section { 
-    padding: 80px 20px; 
-    width: 100%; 
-    text-align: center; 
+.flipzy-offer-section {
+    padding: 80px 20px;
+    width: 100%;
+    text-align: center;
 }
 
 .flipzy-offer-container {
-    max-width: 1100px; /* Malo širše za 50/50 layout */
-    margin: 0 auto; 
-    padding: 50px; 
+    max-width: 1100px;
+    /* Malo širše za 50/50 layout */
+    margin: 0 auto;
+    padding: 50px;
     border-radius: 32px;
     box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.12);
 }
 
-.offer-scheme-cream { background: var(--color-cream); color: var(--color-charcoal); }
-.offer-scheme-white { background: var(--color-white); color: var(--color-charcoal); border: 1px solid #eee; }
+.offer-scheme-cream {
+    background: var(--color-cream);
+    color: var(--color-charcoal);
+}
+
+.offer-scheme-white {
+    background: var(--color-white);
+    color: var(--color-charcoal);
+    border: 1px solid #eee;
+}
 
 /* LAYOUT: 2 Stolpca na Desktopu */
 .flipzy-offer-grid {
@@ -272,11 +497,19 @@
 
 @media screen and (min-width: 900px) {
     .flipzy-offer-grid {
-        grid-template-columns: 1fr 1fr; /* 50/50 */
-        text-align: left; /* Leva poravnava na desktopu */
+        grid-template-columns: 1fr 1fr;
+        /* 50/50 */
+        text-align: left;
+        /* Leva poravnava na desktopu */
     }
-    .flipzy-offer-section { text-align: left; }
-    .flipzy-offer-container { padding: 60px; }
+
+    .flipzy-offer-section {
+        text-align: left;
+    }
+
+    .flipzy-offer-container {
+        padding: 60px;
+    }
 }
 
 /* LEVA STRAN: Slika */
@@ -284,10 +517,11 @@
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
     line-height: 0;
     width: 100%;
 }
+
 .flipzy-offer-media img {
     width: 100%;
     height: auto;
@@ -303,67 +537,91 @@
 }
 
 /* Naslov */
-.flipzy-offer-heading { 
-    font-size: 2.2rem; 
-    font-weight: 700; 
-    line-height: 1.2; 
-    margin-bottom: 0.5rem; 
+.flipzy-offer-heading {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
 }
 
 /* Podnaslov */
-.flipzy-offer-sub { 
-    font-size: 1.1rem; 
-    opacity: 0.8; 
-    margin-bottom: 2rem; 
+.flipzy-offer-sub {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
     line-height: 1.5;
 }
 
 /* Cena */
-.flipzy-price-box { 
-    display: flex; 
-    align-items: center; 
-    gap: 15px; 
-    margin-bottom: 1.5rem; 
-}
-/* Centriranje cene na mobilcu, levo na desktopu */
-@media (max-width: 899px) {
-    .flipzy-price-box { justify-content: center; }
+.flipzy-price-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 1.5rem;
 }
 
-.flipzy-price-compare { text-decoration: line-through; opacity: 0.5; font-size: 1.5rem; font-weight: 500; }
-.flipzy-price-current { font-size: 3rem; font-weight: 700; color: var(--color-charcoal); }
-.flipzy-price-save-badge { background: #000; color: #fff; padding: 4px 12px; border-radius: 6px; font-size: 1rem; font-weight: 700; }
+/* Centriranje cene na mobilcu, levo na desktopu */
+@media (max-width: 899px) {
+    .flipzy-price-box {
+        justify-content: center;
+    }
+}
+
+.flipzy-price-compare {
+    text-decoration: line-through;
+    opacity: 0.5;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.flipzy-price-current {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-charcoal);
+}
+
+.flipzy-price-save-badge {
+    background: #000;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+}
 
 /* Shipping Info */
 .flipzy-shipping-text {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     gap: 8px;
-    color: #16A34A; 
-    font-weight: 600; 
-    margin-bottom: 2rem; 
+    color: #16A34A;
+    font-weight: 600;
+    margin-bottom: 2rem;
     font-size: 1.1rem;
 }
+
 @media (max-width: 899px) {
-    .flipzy-shipping-text { justify-content: center; }
+    .flipzy-shipping-text {
+        justify-content: center;
+    }
 }
 
 /* --- PREOBLEKA NATIVE GUMBA (DAWN OVERRIDE) --- */
 /* Ciljamo gumb, ki ga ustvari {% render 'buy-buttons' %} */
 .flipzy-offer-section .product-form__submit {
-    background-color: #F4D35E !important; 
+    background-color: #F4D35E !important;
     color: #111827 !important;
     border-radius: 50px !important;
     font-weight: 700 !important;
     font-size: 1.3rem !important;
     text-transform: none !important;
     padding: 16px 30px !important;
-    
+
     /* Odstrani Dawn obrobo */
     border: none !important;
     outline: none !important;
     box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
-    
+
     width: 100%;
     transition: transform 0.2s ease;
 }
@@ -380,8 +638,14 @@
 
 /* Dodaj Flipzy Pulse */
 .flipzy-offer-section .product-form__submit::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
     animation: flipzy-pulse 2s infinite;
     z-index: 1;
 }
@@ -404,7 +668,12 @@
     line-height: 1.3;
     width: 100%;
 }
-.flipzy-guarantee-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.flipzy-guarantee-pill svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
 
 .flipzy-trust-footer {
     display: flex;
@@ -417,6 +686,7 @@
     margin-top: 20px;
     width: 100%;
 }
+
 .flipzy-trust-item {
     display: flex;
     flex-direction: column;
@@ -426,11 +696,20 @@
     font-weight: 500;
     color: #374151;
 }
-.flipzy-trust-item svg { width: 24px; height: 24px; }
+
+.flipzy-trust-item svg {
+    width: 24px;
+    height: 24px;
+}
 
 @media (max-width: 899px) {
-    .flipzy-offer-section { text-align: center; }
-    .flipzy-offer-container { padding: 40px 20px; }
+    .flipzy-offer-section {
+        text-align: center;
+    }
+
+    .flipzy-offer-container {
+        padding: 40px 20px;
+    }
 }
 
 /* =========================================
@@ -442,62 +721,121 @@
    6. FLIPZY BADGES SECTION
    ========================================= */
 .flipzy-badges-section {
-    padding: 60px 20px; 
+    padding: 60px 20px;
     width: 100%;
-    background-color: #F6DACE; 
+    background-color: #F6DACE;
 }
-.flipzy-badges-container { max-width: 1400px; margin: 0 auto; text-align: center; }
+
+.flipzy-badges-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
 
 .flipzy-badges-heading {
-    font-size: 2.2rem; 
-    font-weight: 600; 
-    margin-bottom: 3rem; 
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
     color: var(--color-charcoal);
-    display: inline-flex; align-items: center; gap: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.flipzy-badges-grid { display: grid; grid-template-columns: 1fr; gap: 15px; } 
-@media screen and (min-width: 600px) { .flipzy-badges-grid { grid-template-columns: repeat(2, 1fr); } }
-@media screen and (min-width: 1100px) { .flipzy-badges-grid { grid-template-columns: repeat(4, 1fr); gap: 25px; } }
+.flipzy-badges-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+@media screen and (min-width: 600px) {
+    .flipzy-badges-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .flipzy-badges-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+}
 
 .flipzy-badge-card {
-    background: #FFFFFF; border-radius: 24px; padding: 35px 20px; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    transition: transform 0.3s ease; height: 100%;
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 35px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    height: 100%;
 }
-.flipzy-badge-card:hover { transform: translateY(-5px); }
+
+.flipzy-badge-card:hover {
+    transform: translateY(-5px);
+}
 
 .flipzy-badge-icon {
-    width: 64px; height: 64px; margin-bottom: 15px; color: var(--color-mint);
-    display: flex; align-items: center; justify-content: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 15px;
+    color: var(--color-mint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.flipzy-badge-icon svg, .flipzy-badge-icon img { width: 100%; height: 100%; object-fit: contain; stroke-width: 1.5px; stroke: currentColor; fill: none; }
 
-.flipzy-badge-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 8px; color: var(--color-charcoal); line-height: 1.1; }
-.flipzy-badge-text { font-size: 1.4rem; line-height: 1.4; color: #4B5563; margin: 0; max-width: 100%; }
+.flipzy-badge-icon svg,
+.flipzy-badge-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    stroke-width: 1.5px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.flipzy-badge-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--color-charcoal);
+    line-height: 1.1;
+}
+
+.flipzy-badge-text {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    color: #4B5563;
+    margin: 0;
+    max-width: 100%;
+}
+
 /* =========================================
    8. FLIPZY "WHAT'S IN THE BOX" SECTION
    ========================================= */
 .flipzy-box-section {
-    padding: 40px 20px; 
-    background-color: #F6DACE; 
+    padding: 40px 20px;
+    background-color: #F6DACE;
 }
 
 .flipzy-box-header {
     text-align: center;
     max-width: 900px;
-    margin: 0 auto 20px auto; 
+    margin: 0 auto 20px auto;
 }
 
 /* GLAVNI NASLOV (H2) */
 .flipzy-box-title {
     color: var(--color-charcoal);
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .flipzy-box-subtitle {
-    font-size: 1.25rem; 
+    font-size: 1.25rem;
     line-height: 1.5;
     color: #4B5563;
 }
@@ -515,7 +853,7 @@
 @media screen and (min-width: 990px) {
     .flipzy-box-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 40px; 
+        gap: 40px;
     }
 }
 
@@ -523,14 +861,14 @@
 .flipzy-box-media-col {
     display: flex;
     flex-direction: column;
-    gap: 20px; 
+    gap: 20px;
 }
 
 .flipzy-box-img-card {
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: none; 
-    background: #fff; 
+    box-shadow: none;
+    background: #fff;
 }
 
 .flipzy-box-img-card img {
@@ -538,29 +876,29 @@
     height: auto;
     display: block;
     object-fit: cover;
-    border-radius: 24px; 
+    border-radius: 24px;
 }
 
 .flipzy-box-img-card.dimensions-card {
-    background-color: #EADBC8; 
-    padding: 15px; 
+    background-color: #EADBC8;
+    padding: 15px;
 }
 
 /* --- DESNA STRAN (Content) --- */
 .flipzy-box-content-card {
     background: #FFFFFF;
     border-radius: 24px;
-    padding: 25px 30px 30px 30px; 
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    padding: 25px 30px 30px 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
 }
 
 /* NASLOV KARTICE - NAVADEN TEKST */
 .flipzy-box-content-title {
-    font-size: 1.5rem; 
-    font-weight: 400; 
-    margin-bottom: 15px; 
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 15px;
     color: var(--color-charcoal);
-    margin-top: 0; 
+    margin-top: 0;
     line-height: 1.4;
 }
 
@@ -568,44 +906,49 @@
 .flipzy-box-list {
     list-style: none;
     padding: 0;
-    margin: 0 0 15px 0; 
+    margin: 0 0 15px 0;
     display: flex;
     flex-direction: column;
-    gap: 6px; 
+    gap: 6px;
 }
 
 .flipzy-box-item {
     display: flex;
-    align-items: center; 
+    align-items: center;
     gap: 10px;
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     color: #374151;
     line-height: 1.4;
     font-weight: 400;
 }
 
 .flipzy-box-icon {
-    width: 20px; 
+    width: 20px;
     height: 20px;
     flex-shrink: 0;
-    color: #10B981; 
-    margin-top: 0; 
-    display: flex; 
-    align-items: center; 
+    color: #10B981;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
-.flipzy-box-icon svg { width: 100%; height: 100%; }
+
+.flipzy-box-icon svg {
+    width: 100%;
+    height: 100%;
+}
 
 /* Price Row */
 .flipzy-box-price {
-    font-size: 2rem; 
+    font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
     color: var(--color-charcoal);
     display: flex;
     align-items: center;
     gap: 15px;
 }
+
 .flipzy-box-price s {
     font-size: 1.3rem;
     color: #9CA3AF;
@@ -616,8 +959,8 @@
 .flipzy-box-trust {
     background-color: #ECFDF5;
     border-radius: 8px;
-    padding: 8px 15px; 
-    margin-bottom: 15px; 
+    padding: 8px 15px;
+    margin-bottom: 15px;
 }
 
 .flipzy-box-trust-row {
@@ -626,23 +969,30 @@
     gap: 15px;
     margin-bottom: 5px;
 }
-.flipzy-box-trust-row:last-child { margin-bottom: 0; }
+
+.flipzy-box-trust-row:last-child {
+    margin-bottom: 0;
+}
 
 .flipzy-trust-mini {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
     font-weight: 600;
     color: #065F46;
 }
-.flipzy-trust-mini svg { width: 16px; height: 16px; }
+
+.flipzy-trust-mini svg {
+    width: 16px;
+    height: 16px;
+}
 
 /* Description & Button */
 .flipzy-box-desc {
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     line-height: 1.5;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     color: #4B5563;
 }
 
@@ -651,23 +1001,29 @@
     width: 100%;
     text-align: center;
     margin-bottom: 0;
-    font-size: 1.3rem; 
+    font-size: 1.3rem;
     padding: 15px 30px;
 }
 
 @media (max-width: 750px) {
-    .flipzy-box-content-card { padding: 20px; }
+    .flipzy-box-content-card {
+        padding: 20px;
+    }
 }
+
 /* =========================================
    9. FLIPZY STICKY BAR (3-Column Layout)
    ========================================= */
 .flipzy-sticky {
     position: fixed;
-    left: 0; right: 0; bottom: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 999;
-    background-color: var(--color-cream); /* <--- SPREMENJENO NA SAGE */
+    background-color: var(--color-cream);
+    /* <--- SPREMENJENO NA SAGE */
     border-top: 1px solid #E5E7EB;
-    box-shadow: 0 -5px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.1);
     transform: translateY(101%);
     opacity: 0;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
@@ -685,7 +1041,8 @@
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Razporedi: Levo - Sredina - Desno */
+    justify-content: space-between;
+    /* Razporedi: Levo - Sredina - Desno */
     gap: 15px;
 }
 
@@ -699,59 +1056,70 @@
 }
 
 .flipzy-sticky-title {
-    font-size: 1.1rem; 
-    font-weight: 700; 
-    color: var(--color-charcoal); 
-    margin: 0; 
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-charcoal);
+    margin: 0;
     line-height: 1.1;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 300px;
 }
+
 .flipzy-sticky-sub {
-    font-size: 0.9rem; color: #4B5563; margin-top: 2px;
+    font-size: 0.9rem;
+    color: #4B5563;
+    margin-top: 2px;
 }
 
 /* 2. STOLPEC: CENA (Sredina) */
-.flipzy-sticky-price-box { 
-    flex: 0 0 auto; /* Ne razteguje se */
-    display: flex; 
-    align-items: center; /* Poravnava v vrsto */
-    gap: 10px; 
+.flipzy-sticky-price-box {
+    flex: 0 0 auto;
+    /* Ne razteguje se */
+    display: flex;
+    align-items: center;
+    /* Poravnava v vrsto */
+    gap: 10px;
 }
 
-.flipzy-sticky-new { 
-    font-weight: 800; 
-    color: var(--color-charcoal); 
-    font-size: 1.8rem; /* Velika cena */
+.flipzy-sticky-new {
+    font-weight: 800;
+    color: var(--color-charcoal);
+    font-size: 1.8rem;
+    /* Velika cena */
     line-height: 1;
 }
-.flipzy-sticky-old { 
-    text-decoration: line-through; 
-    color: #9CA3AF; 
-    font-size: 1.1rem; 
+
+.flipzy-sticky-old {
+    text-decoration: line-through;
+    color: #9CA3AF;
+    font-size: 1.1rem;
     font-weight: 500;
 }
 
 /* 3. STOLPEC: GUMB (Desno) */
-.flipzy-sticky-action { 
+.flipzy-sticky-action {
     flex: 0 0 auto;
 }
 
 /* Reset wrapperjev */
-.flipzy-sticky-action product-form, 
+.flipzy-sticky-action product-form,
 .flipzy-sticky-action .form {
-    margin: 0 !important; padding: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .flipzy-sticky-action .product-form__submit {
-    background-color: #F4D35E !important; 
+    background-color: #F4D35E !important;
     color: #111827 !important;
     border-radius: 50px !important;
-    font-weight: 800 !important; /* Extra Bold */
-    font-size: 1.3rem !important; /* Velik font */
-    padding: 12px 30px !important; /* Kompakten padding */
+    font-weight: 800 !important;
+    /* Extra Bold */
+    font-size: 1.3rem !important;
+    /* Velik font */
+    padding: 12px 30px !important;
+    /* Kompakten padding */
     cursor: pointer;
     box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
     border: none !important;
@@ -761,62 +1129,94 @@
     transition: transform 0.2s ease;
 }
 
-.flipzy-sticky-action .product-form__submit:hover { 
-    transform: scale(1.05); 
+.flipzy-sticky-action .product-form__submit:hover {
+    transform: scale(1.05);
 }
 
 /* Odstrani Dawn hover ring */
 .flipzy-sticky-action .product-form__submit::after {
-    content: none !important; display: none !important;
+    content: none !important;
+    display: none !important;
 }
+
 /* Pulse */
 .flipzy-sticky-action .product-form__submit::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
     animation: flipzy-pulse 2s infinite;
     z-index: 1;
 }
 
 .flipzy-sticky-action .loading-overlay__spinner {
-    width: 24px; height: 24px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
 /* --- MOBILE LAYOUT --- */
 @media (max-width: 750px) {
-    .flipzy-sticky { padding: 10px 15px; bottom: 0; }
-    
+    .flipzy-sticky {
+        padding: 10px 15px;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom));
+        /* iOS Safe Area */
+        bottom: 0;
+        z-index: 2147483647 !important;
+        /* Force on top */
+    }
+
     /* Skrijemo tekst */
-    .flipzy-sticky-info { display: none !important; }
-    
+    .flipzy-sticky-info {
+        display: none !important;
+    }
+
     /* Cena in gumb v eni vrsti, razpotegnjena */
     .flipzy-sticky-inner {
-        justify-content: space-between; 
+        justify-content: space-between;
         gap: 10px;
     }
-    
+
     /* Cena na levi */
     .flipzy-sticky-price-box {
-        flex-direction: column; /* Stara cena pod novo za prihranek prostora */
+        flex-direction: column;
+        /* Stara cena pod novo za prihranek prostora */
         align-items: flex-start;
         gap: 0;
-        margin-right: auto; /* Potisne gumb desno */
+        margin-right: auto;
+        /* Potisne gumb desno */
     }
-    
-    .flipzy-sticky-new { font-size: 1.6rem; }
-    .flipzy-sticky-old { font-size: 0.9rem; margin-left: 0; }
-    
+
+    .flipzy-sticky-new {
+        font-size: 1.6rem;
+    }
+
+    .flipzy-sticky-old {
+        font-size: 0.9rem;
+        margin-left: 0;
+    }
+
     /* Gumb na desni */
-    .flipzy-sticky-action { 
-        flex: 0 0 auto; 
+    .flipzy-sticky-action {
+        flex: 0 0 auto;
         width: auto;
     }
-    .flipzy-sticky-action .product-form__submit { 
-        padding: 10px 25px !important; 
-        font-size: 1.1rem !important; 
-        min-width: auto; 
+
+    .flipzy-sticky-action .product-form__submit {
+        padding: 10px 25px !important;
+        font-size: 1.1rem !important;
+        min-width: auto;
     }
 }
+
 /* =========================================
    10. FLIPZY FEATURED PRODUCT (OFFER STRIP)
    ========================================= */
@@ -832,41 +1232,51 @@
 
 /* GUMB - NO BORDER (Kopija logike iz sticky) */
 .section-featured-product .product-form__submit {
-    background-color: #F4D35E !important; 
+    background-color: #F4D35E !important;
     color: #111827 !important;
     border-radius: 50px !important;
     font-weight: 700 !important;
-    text-transform: none !important; 
+    text-transform: none !important;
     font-size: 1.3rem !important;
     padding: 18px 35px !important;
     cursor: pointer;
-    
+
     box-shadow: 0 4px 15px rgba(244, 211, 94, 0.4) !important;
     border: none !important;
     outline: none !important;
     --border-offset: 0 !important;
     --border-opacity: 0 !important;
-    
+
     transition: transform 0.2s ease;
 }
+
 .section-featured-product .product-form__submit:hover {
     transform: scale(1.02);
 }
+
 /* Kill hover ring */
 .section-featured-product .product-form__submit::after {
-    content: none !important; display: none !important;
+    content: none !important;
+    display: none !important;
 }
+
 /* Pulse */
 .section-featured-product .product-form__submit::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-    border-radius: 50px; box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50px;
+    box-shadow: 0 0 0 0 rgba(244, 211, 94, 0.7);
     animation: flipzy-pulse 2s infinite;
 }
 
 /* POPUST ZNAČKA */
 .flipzy-save-badge {
     display: inline-block;
-    background-color: #000; 
+    background-color: #000;
     color: #fff;
     font-size: 0.8rem;
     font-weight: 700;
@@ -895,12 +1305,18 @@
     line-height: 1.3;
     width: 100%;
 }
-.flipzy-guarantee-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.flipzy-guarantee-pill svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
 
 /* Delivery Banner */
 .flipzy-delivery-banner {
     margin-top: 15px;
-    background-color: #74B579; /* Green from screenshot */
+    background-color: #74B579;
+    /* Green from screenshot */
     color: #ffffff;
     padding: 12px 20px;
     border-radius: 8px;
@@ -909,13 +1325,16 @@
     justify-content: center;
     gap: 12px;
     width: 100%;
-    font-size: 1.5rem; /* Bigger font as requested */
+    font-size: 1.5rem;
+    /* Bigger font as requested */
     font-weight: 600;
     line-height: 1.2;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
+
 .flipzy-delivery-icon {
-    width: 32px; /* Bigger icon */
+    width: 32px;
+    /* Bigger icon */
     height: 32px;
     stroke: #ffffff;
     stroke-width: 2;
@@ -930,11 +1349,12 @@
     margin-top: 20px;
     opacity: 0.7;
     flex-wrap: wrap;
-    justify-content: center; 
+    justify-content: center;
     border-top: 1px solid #eee;
     padding-top: 20px;
     width: 100%;
 }
+
 .flipzy-trust-item {
     display: flex;
     flex-direction: column;
@@ -944,16 +1364,24 @@
     font-weight: 500;
     color: #374151;
 }
-.flipzy-trust-item svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+.flipzy-trust-item svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+}
 
 /* STATIC MEDIA */
 .flipzy-static-media {
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
     line-height: 0;
     width: 100%;
 }
+
 .flipzy-static-media img {
     width: 100%;
     height: auto;
@@ -962,7 +1390,9 @@
 }
 
 @media (max-width: 750px) {
-    .flipzy-trust-row { justify-content: center; }
+    .flipzy-trust-row {
+        justify-content: center;
+    }
 }
 
 /* =========================================
@@ -970,33 +1400,35 @@
    ========================================= */
 
 /* 1. White (Privzeto) */
-.scheme-white { 
-    background-color: var(--color-white); 
-    color: var(--color-charcoal); 
+.scheme-white {
+    background-color: var(--color-white);
+    color: var(--color-charcoal);
 }
 
 /* 2. Cream (Bež) */
-.scheme-cream { 
-    background-color: var(--color-cream); 
-    color: var(--color-charcoal); 
+.scheme-cream {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
 }
 
 /* 3. Sage (Zelena) */
-.scheme-sage { 
-    background-color: var(--color-sage); 
-    color: #FFFFFF; /* Bel tekst na zeleni */
+.scheme-sage {
+    background-color: var(--color-sage);
+    color: #FFFFFF;
+    /* Bel tekst na zeleni */
 }
 
 /* 4. Mint (Svetlo zelena) */
-.scheme-mint { 
-    background-color: var(--color-mint); 
-    color: var(--color-charcoal); 
+.scheme-mint {
+    background-color: var(--color-mint);
+    color: var(--color-charcoal);
 }
 
 /* 5. Night (Temna) */
-.scheme-night { 
-    background-color: var(--color-charcoal); 
-    color: #FFFFFF; /* Bel tekst na temni */
+.scheme-night {
+    background-color: var(--color-charcoal);
+    color: #FFFFFF;
+    /* Bel tekst na temni */
 }
 
 /* --- PRILAGODITEV ELEMENTOV GLEDE NA SHEMO --- */
@@ -1018,6 +1450,7 @@
 .scheme-sage .flipzy-feature-icon-box {
     color: #FFFFFF !important;
 }
+
 /* =========================================
    12. FLIPZY TESTIMONIALS SECTION
    ========================================= */
@@ -1046,14 +1479,15 @@
     .flipzy-testimonials-header {
         flex-direction: row;
         justify-content: space-between;
-        align-items: flex-end; /* Align to bottom text baseline */
+        align-items: flex-end;
+        /* Align to bottom text baseline */
         margin-bottom: 50px;
     }
 }
 
 .flipzy-testimonials-title {
     font-size: 2rem;
-    font-weight: 600; 
+    font-weight: 600;
     color: var(--color-charcoal);
     margin: 0;
     line-height: 1.2;
@@ -1061,21 +1495,24 @@
 }
 
 @media screen and (min-width: 750px) {
-    .flipzy-testimonials-title { font-size: 2.5rem; }
+    .flipzy-testimonials-title {
+        font-size: 2.5rem;
+    }
 }
 
 .flipzy-testimonials-sub {
     font-size: 1.1rem;
-    color: #6B7280; /* Gray-500 */
+    color: #6B7280;
+    /* Gray-500 */
     margin: 0;
     font-weight: 400;
 }
 
 @media screen and (min-width: 750px) {
-    .flipzy-testimonials-sub { 
-        text-align: right; 
+    .flipzy-testimonials-sub {
+        text-align: right;
         max-width: 400px;
-        margin-bottom: 5px; 
+        margin-bottom: 5px;
     }
 }
 
@@ -1104,9 +1541,9 @@
 /* --- CARD DESIGN --- */
 .flipzy-testimonial-card {
     background: #FFFFFF;
-    border-radius: 24px; 
+    border-radius: 24px;
     padding: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -1122,8 +1559,10 @@
     display: flex;
     gap: 4px;
     margin-bottom: 15px;
-    color: var(--color-charcoal); /* Black stars per screenshot */
+    color: var(--color-charcoal);
+    /* Black stars per screenshot */
 }
+
 .flipzy-stars svg {
     width: 18px;
     height: 18px;
@@ -1134,9 +1573,11 @@
 .flipzy-review-text {
     font-size: 1rem;
     line-height: 1.6;
-    color: #374151; /* Gray-700 */
+    color: #374151;
+    /* Gray-700 */
     margin-bottom: 20px;
-    flex-grow: 1; /* Pushes author to bottom */
+    flex-grow: 1;
+    /* Pushes author to bottom */
 }
 
 /* Footer: Author & Badge */
@@ -1148,14 +1589,16 @@
 }
 
 .flipzy-author-name {
-    font-weight: 700; 
+    font-weight: 700;
     font-size: 1.1rem;
     color: var(--color-charcoal);
 }
 
 .flipzy-verified-badge {
-    background-color: #ECFDF5; /* Very light mint */
-    color: #065F46; /* Dark Green text */
+    background-color: #ECFDF5;
+    /* Very light mint */
+    color: #065F46;
+    /* Dark Green text */
     font-size: 0.75rem;
     font-weight: 600;
     padding: 4px 10px;
@@ -1164,14 +1607,32 @@
 }
 
 /* Dark Mode Overrides (if Night scheme is selected) */
-.scheme-night .flipzy-testimonials-title { color: #fff; }
-.scheme-night .flipzy-testimonials-sub { color: #9CA3AF; }
-.scheme-night .flipzy-testimonial-card { background: #1F2937; box-shadow: none; }
-.scheme-night .flipzy-stars { color: var(--color-mustard); }
-.scheme-night .flipzy-review-text { color: #D1D5DB; }
-.scheme-night .flipzy-author-name { color: #fff; }
+.scheme-night .flipzy-testimonials-title {
+    color: #fff;
+}
+
+.scheme-night .flipzy-testimonials-sub {
+    color: #9CA3AF;
+}
+
+.scheme-night .flipzy-testimonial-card {
+    background: #1F2937;
+    box-shadow: none;
+}
+
+.scheme-night .flipzy-stars {
+    color: var(--color-mustard);
+}
+
+.scheme-night .flipzy-review-text {
+    color: #D1D5DB;
+}
+
+.scheme-night .flipzy-author-name {
+    color: #fff;
+}
 
 /* Remove Langify Switcher (User Request) */
 .ly-switcher-wrapper {
-  display: none !important;
+    display: none !important;
 }
