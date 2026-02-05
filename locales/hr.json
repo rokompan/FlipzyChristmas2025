@@ -584,6 +584,12 @@
         "errors": {
           "interaction_required": "Za dovršetak naplate potrebna je interakcija s ekstenzijom."
         }
+      },
+      "contact": {
+        "suburb_label": "Predgrađe"
+      },
+      "wallets": {
+        "place_order": "Naruči"
       }
     }
   },
