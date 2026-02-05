@@ -283,7 +283,6 @@
       "announcement": "Announcement",
       "announcement_bar": "Announcement bar"
     },
-
     "header": {
       "announcement": "Announcement",
       "menu": "Menu",
@@ -404,6 +403,49 @@
       "min_error": "This item has a minimum of {{ min }}",
       "max_error": "This item has a maximum of {{ max }}",
       "step_error": "You can only add this item in increments of {{ step }}"
+    },
+    "flipzy_offer": {
+      "heading": "Join Hundreds of Happy Families",
+      "rating_text": "4.8 / 5 rated",
+      "bullet_1": "Flip motivates kids to finish",
+      "bullet_2": "Less reminding, less arguing",
+      "bullet_3": "Builds independence",
+      "bullet_4": "No screens, no apps",
+      "qty_label": "Choose Quantity:",
+      "badge_popular": "⭐ Popular",
+      "badge_3for2": "3 for 2",
+      "badge_best_value": "🔥 Best value",
+      "total_price": "Total Price:",
+      "price_per_item": "Price Per Item:",
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "delivered_by": "Delivered by",
+      "calculating": "Calculating...",
+      "offer_2": "10% off + Free shipping",
+      "offer_3": "20% off + Free shipping",
+      "offer_4": "25% off + Free shipping",
+      "unit_item": "Flipzy",
+      "unit_items": "Flipzys",
+      "badge_bestseller": "Bestseller",
+      "guarantee_1": "30-Day Money Back",
+      "guarantee_2": "2-Year Warranty"
+    },
+    "flipzy_sticky": {
+      "qty_label": "Quantity:",
+      "opt_1": "1x Flipzy",
+      "opt_2": "2x Flipzys (⭐ Popular + Free Shipping)",
+      "opt_3": "3x Flipzys (3 for 2 Deal)",
+      "opt_4": "4x Flipzys (🔥 Best Value)"
+    },
+    "cart_upsell": {
+      "upsell_1_head": "⭐ Popular & Free Shipping",
+      "upsell_1_sub": "Add 1 more to unlock Free Shipping!",
+      "upsell_1_badge": "Popular",
+      "upsell_2_head": "⚡ Best Value & Free Shipping",
+      "upsell_2_sub": "Add 1 more to get 25% OFF!",
+      "upsell_2_badge": "Best Value",
+      "upgrade_btn": "Upgrade only",
+      "add_plus_one": "Add +1"
     }
   },
   "localization": {

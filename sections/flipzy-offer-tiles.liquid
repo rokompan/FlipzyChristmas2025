@@ -86,6 +86,7 @@
     color: #4b5563;
   }
   .flipzy-mag-stars { color: #F4D35E; letter-spacing: 2px; }
+  .flipzy-mag-stars::after { content: '★★★★★'; }
 
   .flipzy-offer-title {
     font-size: 2.2rem;
@@ -346,56 +347,56 @@
                 <h2 class="flipzy-offer-title">{{ section.settings.title | default: product.title }}</h2>
                 <div class="flipzy-mag-rating">
                   <span class="flipzy-mag-stars" style="font-size:1.2rem;">★★★★★</span>
-                  <span style="font-size:0.85rem;">4.8 / 5 rated</span>
+                  <span style="font-size:0.85rem;">{{ 'sections.flipzy_offer.rating_text' | t }}</span>
                 </div>
              </div>
           </div>
           
           <ul class="flipzy-mag-list">
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">✅</span> {{ section.settings.bullet_1 }}</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">😌</span> {{ section.settings.bullet_2 }}</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">💪</span> {{ section.settings.bullet_3 }}</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">📵</span> {{ section.settings.bullet_4 }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">✅</span> {{ 'sections.flipzy_offer.bullet_1' | t }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">😌</span> {{ 'sections.flipzy_offer.bullet_2' | t }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">💪</span> {{ 'sections.flipzy_offer.bullet_3' | t }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">📵</span> {{ 'sections.flipzy_offer.bullet_4' | t }}</li>
           </ul>
 
-          <span class="flipzy-qty-label">{{ section.settings.txt_qty_label }}</span>
+          <span class="flipzy-qty-label">{{ 'sections.flipzy_offer.qty_label' | t }}</span>
           
           <div class="flipzy-qty-grid">
             <!-- 1x -->
             <div class="flipzy-qty-btn is-selected" onclick="selectOfferQty(1, this)">
               <span class="mt-qty-big">1x</span>
-              <span class="mt-qty-small">{{ section.settings.unit_item }}</span>
+              <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_item' | t }}</span>
             </div>
 
             <!-- 2x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(2, this)" data-badge="true">
-              <span class="flipzy-btn-badge" style="background:#F4D35E; color:#111;">{{ section.settings.txt_popular }}</span>
+              <span class="flipzy-btn-badge" style="background:#F4D35E; color:#111;">{{ 'sections.flipzy_offer.badge_popular' | t }}</span>
               <span class="mt-qty-big">2x</span>
-              <span class="mt-qty-small">{{ section.settings.unit_items }}</span>
+              <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_items' | t }}</span>
             </div>
 
             <!-- 3x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(3, this)" data-badge="true">
-              <span class="flipzy-btn-badge">{{ section.settings.txt_3for2 }}</span>
+              <span class="flipzy-btn-badge">{{ 'sections.flipzy_offer.badge_3for2' | t }}</span>
               <span class="mt-qty-big">3x</span>
-              <span class="mt-qty-small">{{ section.settings.unit_items }}</span>
+              <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_items' | t }}</span>
             </div>
 
             <!-- 4x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(4, this)" data-badge="true">
-               <span class="flipzy-btn-badge">{{ section.settings.txt_best_value }}</span>
+               <span class="flipzy-btn-badge">{{ 'sections.flipzy_offer.badge_best_value' | t }}</span>
                <span class="mt-qty-big">4x</span>
-               <span class="mt-qty-small">{{ section.settings.unit_items }}</span>
+               <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_items' | t }}</span>
             </div>
           </div>
 
           <div class="flipzy-summary-box" style="display:block;">
              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-                <div class="flipzy-summary-text">{{ section.settings.txt_total_price }}</div>
+                <div class="flipzy-summary-text">{{ 'sections.flipzy_offer.total_price' | t }}</div>
                 <div class="flipzy-summary-price" id="offer-total-price" data-base="{{ variant.price }}">{{ variant.price | money }}</div>
              </div>
              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-                <div style="font-size:0.9rem; color:#6b7280;">{{ section.settings.txt_price_per_item }}</div>
+                <div style="font-size:0.9rem; color:#6b7280;">{{ 'sections.flipzy_offer.price_per_item' | t }}</div>
                 <div id="offer-per-item" style="font-weight:600; color:#374151;">{{ variant.price | money }}</div>
              </div>
              <div style="text-align:right;">
@@ -412,9 +413,9 @@
           >
             <span>
               {% if variant.available %}
-                {{ section.settings.txt_add_to_cart }}
+                {{ 'sections.flipzy_offer.add_to_cart' | t }}
               {% else %}
-                {{ section.settings.txt_sold_out }}
+                {{ 'sections.flipzy_offer.sold_out' | t }}
               {% endif %}
             </span>
           </button>
@@ -426,7 +427,7 @@
                 <circle cx="5.5" cy="18.5" r="2.5"></circle>
                 <circle cx="18.5" cy="18.5" r="2.5"></circle>
              </svg>
-             {{ section.settings.txt_delivered_by }} <span id="flipzy-delivery-date">{{ section.settings.txt_calculating }}</span>
+             {{ 'sections.flipzy_offer.delivered_by' | t }} <span id="flipzy-delivery-date">{{ 'sections.flipzy_offer.calculating' | t }}</span>
           </div>
           
           <!-- HIDDEN STANDARD FORM -->
@@ -603,15 +604,15 @@ function formatMoney(cents) {
     basePrice: {{ variant.price | default: product.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
     strings: {
-       offer2: {{ section.settings.txt_offer_2 | json }},
-       offer3: {{ section.settings.txt_offer_3 | json }},
-       offer4: {{ section.settings.txt_offer_4 | json }}
+       offer2: {{ 'sections.flipzy_offer.offer_2' | t | json }},
+       offer3: {{ 'sections.flipzy_offer.offer_3' | t | json }},
+       offer4: {{ 'sections.flipzy_offer.offer_4' | t | json }}
     },
     tiers: {
-      1: { discount: 0, label: {{ section.settings.qty_1_label | default: "—" | json }} },
-      2: { discount: qty2_disc, label: {{ section.settings.qty_2_label | default: "⭐ Popular" | json }} },
-      3: { discount: qty3_disc, label: {{ section.settings.qty_3_label | default: "3 for 2" | json }} },
-      4: { discount: qty4_disc, label: {{ section.settings.qty_4_label | default: "🔥 Best value" | json }} }
+      1: { discount: 0, label: {{ 'sections.flipzy_offer.unit_item' | t | json }} },
+      2: { discount: qty2_disc, label: {{ 'sections.flipzy_offer.badge_popular' | t | json }} },
+      3: { discount: qty3_disc, label: {{ 'sections.flipzy_offer.badge_3for2' | t | json }} },
+      4: { discount: qty4_disc, label: {{ 'sections.flipzy_offer.badge_best_value' | t | json }} }
     }
   };
 
@@ -747,33 +748,7 @@ function formatMoney(cents) {
       "unit": "px",
       "label": "Bottom Padding",
       "default": 36
-    }
     },
-    {
-      "type": "header",
-      "content": "Translatable Text"
-    },
-    { "type": "text", "id": "heading", "label": "Main Heading", "default": "Join Hundreds of Happy Families" },
-    { "type": "text", "id": "rating_text", "label": "Rating Text", "default": "4.8 / 5 rated" },
-    { "type": "text", "id": "bullet_1", "label": "Bullet 1", "default": "Flip motivates kids to finish" },
-    { "type": "text", "id": "bullet_2", "label": "Bullet 2", "default": "Less reminding, less arguing" },
-    { "type": "text", "id": "bullet_3", "label": "Bullet 3", "default": "Builds independence" },
-    { "type": "text", "id": "bullet_4", "label": "Bullet 4", "default": "No screens, no apps" },
-    { "type": "text", "id": "txt_qty_label", "label": "Qty Label", "default": "Choose Quantity:" },
-    { "type": "text", "id": "txt_popular", "label": "Popular Badge", "default": "⭐ Popular" },
-    { "type": "text", "id": "txt_3for2", "label": "3 for 2 Badge", "default": "3 for 2" },
-    { "type": "text", "id": "txt_best_value", "label": "Best Value Badge", "default": "🔥 Best value" },
-    { "type": "text", "id": "txt_total_price", "label": "Total Price Label", "default": "Total Price:" },
-    { "type": "text", "id": "txt_price_per_item", "label": "Price Per Item Label", "default": "Price Per Item:" },
-    { "type": "text", "id": "txt_add_to_cart", "label": "Add to Cart Btn", "default": "Add to Cart" },
-    { "type": "text", "id": "txt_sold_out", "label": "Sold Out Btn", "default": "Sold Out" },
-    { "type": "text", "id": "txt_delivered_by", "label": "Delivered By", "default": "Delivered by" },
-    { "type": "text", "id": "txt_calculating", "label": "Calculating Text", "default": "Calculating..." },
-    { "type": "text", "id": "txt_offer_2", "label": "Offer Text 2x", "default": "10% off + Free shipping" },
-    { "type": "text", "id": "txt_offer_3", "label": "Offer Text 3x", "default": "20% off + Free shipping" },
-    { "type": "text", "id": "txt_offer_4", "label": "Offer Text 4x", "default": "25% off + Free shipping" },
-    { "type": "text", "id": "unit_item", "label": "Unit Item", "default": "Flipzy" },
-    { "type": "text", "id": "unit_items", "label": "Unit Items", "default": "Flipzys" },
     {
       "type": "header",
       "content": "Images & Details"

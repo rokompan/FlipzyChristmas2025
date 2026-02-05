@@ -561,7 +561,10 @@
         assign headline = ""
         assign subline = ""
         assign saved_badge_text = ""
-        assign btn_text = upsell_btn_base | default: "Add +1"
+        assign headline = ""
+        assign subline = ""
+        assign saved_badge_text = ""
+        assign btn_text = 'sections.cart_upsell.add_plus_one' | t
         assign show_upsell = false
         assign upgrade_cost = 0
         
@@ -590,9 +593,10 @@
               assign upgrade_cost = target_total_price | minus: current_line_price
               
               assign show_upsell = true
-              assign subline = upsell_1_sub | default: "Add 1 more to unlock Free Shipping!"
-              assign headline = upsell_1_head | default: "⭐ Popular & Free Shipping"
-              assign saved_badge_text = upsell_1_badge | default: "Popular"
+              assign show_upsell = true
+              assign subline = 'sections.cart_upsell.upsell_1_sub' | t
+              assign headline = 'sections.cart_upsell.upsell_1_head' | t
+              assign saved_badge_text = 'sections.cart_upsell.upsell_1_badge' | t
 
            elsif current_qty == 2
               # Upgrade 2 -> 3
@@ -612,9 +616,9 @@
               assign upgrade_cost = target_total_price | minus: current_line_price
 
               assign show_upsell = true
-              assign subline = upsell_2_sub | default: "Add 1 more to get 25% OFF!"
-              assign headline = upsell_2_head | default: "⚡ Best Value & Free Shipping"
-              assign saved_badge_text = upsell_2_badge | default: "Best Value"
+              assign subline = 'sections.cart_upsell.upsell_2_sub' | t
+              assign headline = 'sections.cart_upsell.upsell_2_head' | t
+              assign saved_badge_text = 'sections.cart_upsell.upsell_2_badge' | t
            endif
         endif
       -%}
@@ -724,7 +728,7 @@
               class="flipzy-upsell-btn" 
               onclick="window.addFlipzyUpsell(this, '{{ update_variant_id }}', {{ current_qty }})"
             >
-              {{ btn_text }} ({{ upsell_upgrade_txt | default: 'Upgrade only' }} +{{ upgrade_cost | money }})
+              {{ btn_text }} ({{ 'sections.cart_upsell.upgrade_btn' | t }} +{{ upgrade_cost | money }})
             </button>
           </div>
         </div>
