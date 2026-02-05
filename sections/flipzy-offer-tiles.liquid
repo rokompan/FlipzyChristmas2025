@@ -117,7 +117,7 @@
   
   /* Delivery Text */
   .flipzy-delivery-note {
-    margin-top: 15px;
+    margin-top: 8px; /* Reduced from 15px */
     font-size: 0.9rem;
     color: #16A34A; /* Green */
     font-weight: 600;
@@ -269,7 +269,7 @@
     .flipzy-mobile-hidden { display: none !important; }
     
     /* Reveal Mobile Header Flex */
-    .flipzy-mobile-img { display: block; flex: 0 0 100px; }
+    .flipzy-mobile-img { display: block; flex: 0 0 130px; } /* Increased from 100px */
     
     .flipzy-offer-header-wrapper {
         display: flex;
@@ -427,7 +427,7 @@
                 <circle cx="5.5" cy="18.5" r="2.5"></circle>
                 <circle cx="18.5" cy="18.5" r="2.5"></circle>
              </svg>
-             Delivered in 2–3 business days
+             Delivered by <span id="flipzy-delivery-date">Calculating...</span>
           </div>
           
           <!-- HIDDEN STANDARD FORM -->
@@ -610,6 +610,35 @@ function formatMoney(cents) {
       4: { discount: qty4_disc, label: {{ section.settings.qty_4_label | default: "🔥 Best value" | json }} }
     }
   };
+
+  // Dynamic Delivery Date: 3 Business Days
+  function calculateDeliveryDate() {
+      const today = new Date();
+      let addedDays = 0;
+      let checkDate = new Date(today);
+      
+      while (addedDays < 3) {
+          checkDate.setDate(checkDate.getDate() + 1);
+          // 0 is Sunday, 6 is Saturday
+          if (checkDate.getDay() !== 0 && checkDate.getDay() !== 6) {
+              addedDays++;
+          }
+      }
+      
+      // Format: "Mon, Jan 12"
+      const options = { weekday: 'short', month: 'short', day: 'numeric' };
+      const dateString = checkDate.toLocaleDateString('en-US', options);
+      
+      const el = document.getElementById('flipzy-delivery-date');
+      if (el) el.innerText = dateString;
+  }
+  
+  // Run on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', calculateDeliveryDate);
+  } else {
+    calculateDeliveryDate();
+  }
 </script>
 
 {% schema %}
