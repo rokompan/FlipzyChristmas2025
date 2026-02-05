@@ -133,18 +133,7 @@
         {% endfor %}
       </ul>
 
-      <div class="flipzy-box-price">
-        {%- assign sel_product = section.settings.featured_product -%}
-        {%- if sel_product != blank -%}
-          {%- if sel_product.compare_at_price > sel_product.price -%}
-            <s>{{ sel_product.compare_at_price | money }}</s>
-          {%- endif -%}
-          <span>{{ sel_product.price | money }}</span>
-        {%- else -%}
-          <s>€49,00</s>
-          <span>€29,00</span>
-        {%- endif -%}
-      </div>
+      <!-- Price removed by user request -->
 
       <div class="flipzy-box-trust">
         <div class="flipzy-box-trust-row">
