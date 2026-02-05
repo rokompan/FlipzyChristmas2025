@@ -1179,41 +1179,71 @@
         display: none !important;
     }
 
-    /* Cena in gumb v eni vrsti, razpotegnjena */
+    /* Center: Quantity takes available space on left */
     .flipzy-sticky-inner {
         justify-content: space-between;
         gap: 10px;
+        align-items: center;
     }
 
-    /* Cena na levi */
-    .flipzy-sticky-price-box {
-        flex-direction: column;
-        /* Stara cena pod novo za prihranek prostora */
-        align-items: flex-start;
-        gap: 0;
-        margin-right: auto;
-        /* Potisne gumb desno */
+    /* Force Quantity to shrink if needed */
+    .flipzy-quantity-selector {
+        flex: 1;
+        min-width: 0;
+        /* Allows shrinking below content size */
+        margin-right: 5px;
     }
 
-    .flipzy-sticky-new {
-        font-size: 1.6rem;
-    }
-
-    .flipzy-sticky-old {
+    .flipzy-quantity-select {
+        width: 100%;
+        max-width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding: 10px 30px 10px 10px;
+        /* Space for arrow */
         font-size: 0.9rem;
-        margin-left: 0;
     }
 
-    /* Gumb na desni */
+    /* Action Area (Price + Button): Do NOT Shrink */
     .flipzy-sticky-action {
         flex: 0 0 auto;
         width: auto;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
+    /* Cena na levi od gumba */
+    .flipzy-sticky-price-box {
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+        margin-right: 0;
+        /* Reset margins */
+        text-align: right;
+    }
+
+    .flipzy-sticky-new {
+        font-size: 1.1rem;
+        line-height: 1;
+        margin-bottom: 2px;
+    }
+
+    .flipzy-sticky-old {
+        font-size: 0.8rem;
+        margin: 0;
+        line-height: 1;
+        display: none;
+    }
+
+    /* Hide old price on mobile to save space if needed, or keep small */
+
     .flipzy-sticky-action .product-form__submit {
-        padding: 10px 25px !important;
-        font-size: 1.1rem !important;
+        padding: 10px 16px !important;
+        font-size: 1rem !important;
         min-width: auto;
+        white-space: nowrap;
     }
 }
 

@@ -327,46 +327,24 @@
     if(selector) updateStickyPrice(selector);
 
     // SCROLL LOGIC
-    let lastScrollY = window.scrollY;
-    let direction = 'down'; 
-    let reversals = 0;
-    
-    const REVERSAL_THRESHOLD = 3; 
+    // User Request: Show earlier, stick once shown (don't hide on scroll up)
     
     function checkScroll() {
       const currentScrollY = window.scrollY;
-      const scrollDiff = currentScrollY - lastScrollY;
       
-      if (Math.abs(scrollDiff) > 10) {
-          const newDirection = scrollDiff > 0 ? 'down' : 'up';
-          if (newDirection !== direction) {
-              reversals++;
-              direction = newDirection;
-          }
-      }
-
-      const heroSection = document.querySelector('.section-hero') || document.querySelector('.flipzy-hero-container');
-      let triggerPoint = window.innerHeight; 
-      if (heroSection) {
-          triggerPoint = heroSection.getBoundingClientRect().height + 100;
-      }
-
-      const isDeepEnough = currentScrollY > triggerPoint;
-      const isLost = reversals >= REVERSAL_THRESHOLD;
+      // Trigger earlier (e.g. 300px scroll)
+      const TRIGGER_POINT = 400; 
       
-      if (isDeepEnough && isLost) {
+      // LATCH LOGIC: Once visible, stay visible
+      // We only ADD the class, never remove it based on scroll
+      if (currentScrollY > TRIGGER_POINT) {
           bar.classList.add('is-visible');
-      } else {
-         if(currentScrollY < 100) {
-            bar.classList.remove('is-visible');
-            reversals = 0; 
-         }
       }
-      
-      lastScrollY = currentScrollY;
     }
     
     window.addEventListener('scroll', checkScroll, { passive: true });
+    
+    // Initial check in case we reload mid-page
     checkScroll();
   });
 </script>
