@@ -132,62 +132,7 @@
     transform: scale(1.02);
   }
 
-  /* --- MOBILE LAYOUT FIXES --- */
-  @media (max-width: 768px) {
-    .flipzy-sticky {
-      padding: 8px 0;
-    }
-
-    .flipzy-sticky-inner {
-      padding: 0 12px;
-      gap: 10px;
-      align-items: center; 
-    }
-    
-    .flipzy-sticky-info { display: none; }
-
-    /* Center: Quantity takes available space on left */
-    .flipzy-quantity-selector {
-      flex: 1;
-      margin-right: 5px;
-    }
-
-    /* Action Area: Stacked Vertically */
-    .flipzy-sticky-action { 
-      flex-direction: column;
-      align-items: flex-end; 
-      gap: 4px;
-      min-width: 110px;
-    }
-
-    /* Price Row: Side by side to save height */
-    .flipzy-sticky-price-box {
-      flex-direction: row;
-      align-items: baseline;
-      gap: 6px;
-      margin-bottom: 2px;
-    }
-
-    .flipzy-sticky-new { font-size: 1.1rem; }
-    .flipzy-sticky-old { font-size: 0.8rem; }
-
-    /* Button: Full width of the action container */
-    .flipzy-sticky-btn {
-      width: 100%;
-      padding: 8px 12px;
-      font-size: 0.9rem;
-      border-radius: 6px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .flipzy-quantity-select {
-        height: 36px;
-        padding: 5px 10px;
-    }
-  }
+  /* Mobile styles moved to flipzy-custom.css completely */
 {%- endstyle -%}
 
 {% unless placeholder %}
