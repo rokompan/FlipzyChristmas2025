@@ -23,6 +23,18 @@
             {%- endfor -%}
           </div>
 
+          {% if block.settings.image != blank %}
+            <div class="flipzy-testimonial-img">
+               <img src="{{ block.settings.image | image_url: width: 400 }}" 
+                    alt="Happy customer using Flipzy" 
+                    loading="lazy" 
+                    width="400" 
+                    height="300"
+                    style="width:100%; height:auto; border-radius:12px; margin-bottom:15px; display:block;"
+               >
+            </div>
+          {% endif %}
+
           <div class="flipzy-review-text">
             {{ block.settings.text }}
           </div>
@@ -73,11 +85,15 @@
       "label": "Subheading"
     }
   ],
-  "blocks": [
     {
       "type": "testimonial",
       "name": "Testimonial",
       "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Photo"
+        },
         {
           "type": "textarea",
           "id": "text",
@@ -106,43 +122,41 @@
         {
           "type": "testimonial",
           "settings": {
-            "author": "Emma P.",
-            "text": "No more morning battles! My 6-year-old races to flip his tiles now. He even reminds ME when I forget something. Game changer for working parents."
+            "author": "Lukas K.",
+            "text": "He usually hates chores, but look at that smile! He actually raced to finish his tasks just to flip the tiles. Finally, mornings without tears.",
+            "image": "shopify:\/\/shop_images\/happy-flipped.jpg"
           }
         },
         {
           "type": "testimonial",
           "settings": {
-            "author": "Agnes L.",
-            "text": "Finally, screen-free solution that actually works! My twin boys (age 4) compete to finish their routines first. Mornings went from chaos to calm immediately."
+            "author": "Eva & Matej",
+            "text": "Sticking the icons together was half the fun! We made a custom routine for the evening. It’s not just a tool, it’s a bonding activity.",
+            "image": "shopify:\/\/shop_images\/happy-stickers.jpg"
           }
         },
         {
           "type": "testimonial",
           "settings": {
-            "author": "Sofia R.",
-            "text": "Our mornings are finally smooth! The kids know exactly what to do — no more yelling."
+            "author": "Jana S.",
+            "text": "Best addition to his room. He checks it every morning before I even wake up. 'Mom, look, I brushed my teeth!' – music to my ears.",
+            "image": "shopify:\/\/shop_images\/happy-random.jpg"
           }
         },
         {
           "type": "testimonial",
           "settings": {
-            "author": "Sarah M.",
-            "text": "My autistic son thrives with visual structure. Flipzy gives him the independence he craves while keeping routines predictable. Worth every penny!"
+            "author": "Marko P.",
+            "text": "They compete who flips first! My boys love the tactile feeling. It organizes their day and gives them a sense of control.",
+            "image": "shopify:\/\/shop_images\/happy-family2.png"
           }
         },
         {
           "type": "testimonial",
           "settings": {
-            "author": "Ana K.",
-            "text": "Flipzy made routines fun. Flip makes it a perfect motivation to finish the routine."
-          }
-        },
-        {
-          "type": "testimonial",
-          "settings": {
-            "author": "Emilia M.",
-            "text": "My 6-year-old daughter takes charge of her routine now. She flips her tiles proudly and tells me, ‘All done, Mom!’ Totally worth it!"
+            "author": "Family Horvat",
+            "text": "A selfie to celebrate a fully flipped board! Our weekends are so much smoother now that everyone knows what needs to be done. 10/10.",
+            "image": "shopify:\/\/shop_images\/hf_20260205_200746_1a2f31ab-24c2-41d2-8649-1970ae8d2f1f.png"
           }
         }
       ]
