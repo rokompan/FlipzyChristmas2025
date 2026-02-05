@@ -596,6 +596,9 @@
       },
       "shop_policies": {
         "terms_and_policies": "Podmínky a zásady"
+      },
+      "contact": {
+        "suburb_label": "Předměstí"
       }
     }
   },
