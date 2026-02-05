@@ -427,6 +427,48 @@
       "min_error": "Ta artikel ima najmanj {{ min }}",
       "max_error": "Ta artikel ima največ {{ max }}",
       "step_error": "Ta artikel lahko dodate samo v korakih po {{ step }}."
+    },
+    "flipzy_offer": {
+      "badge_best_value": "🔥 Najboljša vrednost",
+      "sold_out": "Razprodano",
+      "offer_2": "10% off + Brezplačna dostava",
+      "guarantee_2": "2-letna garancija",
+      "bullet_4": "Brez zaslonov, brez aplikacij",
+      "qty_label": "Izberite količino:",
+      "offer_4": "25% off + Brezplačna dostava",
+      "heading": "Pridružite se stotinam srečnih družin",
+      "price_per_item": "Cena na kos:",
+      "bullet_1": "Flip motivira otroke za dokončanje",
+      "calculating": "Izračunavanje...",
+      "rating_text": "4,8 / 5 ocenjeno",
+      "bullet_3": "Krepi neodvisnost",
+      "unit_items": "Flipzys",
+      "bullet_2": "Manj opominjanja, manj prepirov",
+      "offer_3": "20% off + Brezplačna dostava",
+      "badge_bestseller": "Najbolje prodajana",
+      "badge_3for2": "3 za 2",
+      "total_price": "Skupna cena:",
+      "add_to_cart": "Dodaj v košarico",
+      "unit_item": "Flipzy",
+      "guarantee_1": "30-dnevni denar nazaj",
+      "badge_popular": "⭐ Priljubljeni",
+      "delivered_by": "dostavlja"
+    },
+    "flipzy_sticky": {
+      "opt_1": "1x Flipzy",
+      "opt_4": "4x Flipzys (🔥 Najboljša vrednost)",
+      "opt_2": "2x Flipzys (⭐ Priljubljeno + brezplačna dostava)",
+      "qty_label": "Količina:",
+      "opt_3": "3x Flipzys (ponudba 3 za 2)"
+    },
+    "cart_upsell": {
+      "upsell_1_head": "⭐ Priljubljena in brezplačna dostava",
+      "upsell_1_sub": "Dodajte še 1 za odklepanje brezplačne dostave!",
+      "upsell_2_head": "⚡ Najboljša vrednost in brezplačna dostava",
+      "upsell_1_badge": "Priljubljeni",
+      "upsell_2_sub": "Dodajte še 1 za 25% OFF!",
+      "upsell_2_badge": "Najboljša vrednost",
+      "upgrade_btn": "Samo nadgradnja"
     }
   },
   "localization": {
