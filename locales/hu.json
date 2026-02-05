@@ -403,6 +403,48 @@
       "min_error": "A termék minimális mennyisége {{ min }}",
       "max_error": "A termék maximális mennyisége {{ max }}",
       "step_error": "A termék mennyisége csak {{ step }} darabos lépésekben növelhető"
+    },
+    "flipzy_offer": {
+      "sold_out": "Elfogyott",
+      "badge_popular": "⭐ Népszerű",
+      "rating_text": "4.8 / 5 értékelt",
+      "total_price": "Teljes ár:",
+      "delivered_by": "Kézbesítette",
+      "offer_3": "20% le + Ingyenes szállítás",
+      "offer_4": "25% le + Ingyenes szállítás",
+      "heading": "Csatlakozzon több száz boldog családhoz",
+      "bullet_4": "Nincsenek képernyők, nincsenek alkalmazások",
+      "badge_3for2": "3 a 2-ből",
+      "calculating": "Számítás...",
+      "badge_bestseller": "Bestseller",
+      "bullet_1": "A Flip motiválja a gyerekeket a befejezésre",
+      "bullet_2": "Kevesebb emlékeztetés, kevesebb vita",
+      "qty_label": "Válasszon mennyiséget:",
+      "badge_best_value": "🔥 Legjobb érték",
+      "offer_2": "10% le + Ingyenes szállítás",
+      "guarantee_1": "30-napos pénzvisszafizetés",
+      "price_per_item": "Tételenkénti ár:",
+      "unit_item": "Flipzy",
+      "unit_items": "Flipzy",
+      "guarantee_2": "2 év garancia",
+      "bullet_3": "Függetlenséget épít",
+      "add_to_cart": "Hozzáadás a kosárhoz"
+    },
+    "flipzy_sticky": {
+      "opt_4": "4x Flipzy (🔥 Best Value)",
+      "opt_3": "3x Flipzy (3 for 2 Deal)",
+      "opt_1": "1x Flipzy",
+      "qty_label": "Mennyiség:",
+      "opt_2": "2x Flipzy (⭐ Népszerű + Ingyenes szállítás)"
+    },
+    "cart_upsell": {
+      "upsell_2_head": "⚡ Legjobb érték és ingyenes szállítás",
+      "upgrade_btn": "Csak frissítés",
+      "upsell_1_head": "⭐ Népszerű & Ingyenes szállítás",
+      "upsell_1_badge": "Népszerű",
+      "upsell_2_badge": "Legjobb érték",
+      "upsell_1_sub": "Adj hozzá még 1-et az ingyenes szállításhoz!",
+      "upsell_2_sub": "Hozzáadás 1 még kap 25% LE!"
     }
   },
   "localization": {
