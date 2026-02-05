@@ -69,25 +69,61 @@
   /* --- CONTENT SIDE --- */
   .flipzy-offer-content {
     background: #fff;
-    padding: 25px;
+    padding: 30px;
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border: 1px solid rgba(0,0,0,0.05);
   }
 
+  /* Magazine Style Rating */
+  .flipzy-mag-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4b5563;
+  }
+  .flipzy-mag-stars { color: #F4D35E; letter-spacing: 2px; }
+
   .flipzy-offer-title {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 800;
-    margin: 0 0 10px 0;
-    line-height: 1.2;
+    margin: 0 0 20px 0;
+    line-height: 1.1;
     color: #111;
   }
+
+  /* Magazine Bullets */
+  .flipzy-mag-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .flipzy-mag-item {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    color: #374151;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .flipzy-mag-icon { flex-shrink: 0; font-size: 1.2rem; }
   
-  .flipzy-offer-desc {
-    font-size: 1rem;
-    color: #4b5563;
-    margin-bottom: 20px;
-    line-height: 1.5;
+  /* Delivery Text */
+  .flipzy-delivery-note {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #16A34A; /* Green */
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
   }
 
   /* --- QUANTITY SELECTOR --- */
@@ -258,8 +294,20 @@
 
         <!-- RIGHT: CONFIG -->
         <div class="flipzy-offer-content">
+          <div class="flipzy-mag-rating">
+            <span class="flipzy-mag-stars">★★★★★</span>
+            <span>4.8 / 5 rated by hundreds of parents</span>
+          </div>
+
           <h2 class="flipzy-offer-title">{{ section.settings.title | default: product.title }}</h2>
-          <div class="flipzy-offer-desc">{{ section.settings.text }}</div>
+          
+          <ul class="flipzy-mag-list">
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">🧠</span> Kids see what comes next</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">😌</span> Less reminding, less arguing</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">💪</span> Builds independence</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">👶</span> Feels in control, not told what to do</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">📵</span> No screens, no apps, no charging</li>
+          </ul>
 
           <span class="flipzy-qty-label">Choose Quantity:</span>
           
@@ -321,6 +369,16 @@
               {% endif %}
             </span>
           </button>
+          
+          <div class="flipzy-delivery-note">
+             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+             </svg>
+             Delivered in 2–3 business days
+          </div>
           
           <!-- HIDDEN STANDARD FORM -->
           <div style="display:none;">
