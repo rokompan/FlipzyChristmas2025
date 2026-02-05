@@ -333,7 +333,8 @@
         "headline_4pack": "🏆 Bester Wert - Max. Ersparnis",
         "subline_4pack": "Upgrade auf das Familienpaket (4 Stk.).",
         "button_4pack": "Upgrade auf 4er-Pack",
-        "save_badge": "SPARE {{ percent }}%"
+        "save_badge": "SPARE {{ percent }}%",
+        "updating": "Aktualisieren..."
       }
     },
     "footer": {
