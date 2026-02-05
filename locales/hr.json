@@ -658,6 +658,11 @@
       "not_upgraded": "Računi korisnika se ne nadograđuju.",
       "failed_to_revert": "Vraćanje postavki korisničkog računa nije uspjelo.",
       "revert_window_expired": "Rok za vraćanje je istekao."
+    },
+    "order_details": {
+      "payment_confirmation": {
+        "payment_authorized": "Hvala! Stanje će biti ažurirano kada uplata bude primljena."
+      }
     }
   }
 }
