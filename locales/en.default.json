@@ -425,7 +425,7 @@
       "offer_3": "20% off + Free shipping",
       "offer_4": "25% off + Free shipping",
       "unit_item": "Flipzy",
-      "unit_items": "Flipzys",
+      "unit_items": "Flipzy",
       "badge_bestseller": "Bestseller",
       "guarantee_1": "30-Day Money Back",
       "guarantee_2": "2-Year Warranty"
@@ -433,9 +433,9 @@
     "flipzy_sticky": {
       "qty_label": "Quantity:",
       "opt_1": "1x Flipzy",
-      "opt_2": "2x Flipzys (⭐ Popular + Free Shipping)",
-      "opt_3": "3x Flipzys (3 for 2 Deal)",
-      "opt_4": "4x Flipzys (🔥 Best Value)"
+      "opt_2": "2x Flipzy (⭐ Popular + Free Shipping)",
+      "opt_3": "3x Flipzy (3 for 2 Deal)",
+      "opt_4": "4x Flipzy (🔥 Best Value)"
     },
     "cart_upsell": {
       "upsell_1_head": "⭐ Popular & Free Shipping",

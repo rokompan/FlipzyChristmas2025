@@ -630,9 +630,10 @@ function formatMoney(cents) {
           }
       }
       
-      // Format: "Mon, Jan 12"
+      // Format: Localized Date (e.g. "Tue, Feb 10" or "tor, 10. feb")
+      const userLocale = {{ request.locale.iso_code | json }};
       const options = { weekday: 'short', month: 'short', day: 'numeric' };
-      const dateString = checkDate.toLocaleDateString('en-US', options);
+      const dateString = checkDate.toLocaleDateString(userLocale, options);
       
       const el = document.getElementById('flipzy-delivery-date');
       if (el) el.innerText = dateString;
