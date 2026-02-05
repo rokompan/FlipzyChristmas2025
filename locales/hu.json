@@ -444,7 +444,8 @@
       "upsell_1_badge": "Népszerű",
       "upsell_2_badge": "Legjobb érték",
       "upsell_1_sub": "Adj hozzá még 1-et az ingyenes szállításhoz!",
-      "upsell_2_sub": "Hozzáadás 1 még kap 25% LE!"
+      "upsell_2_sub": "Hozzáadás 1 még kap 25% LE!",
+      "add_plus_one": "+1 hozzáadása"
     }
   },
   "localization": {
