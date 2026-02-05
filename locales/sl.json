@@ -343,7 +343,18 @@
         "unlock_shipping_text": "Pridobite par Jutro in večer + brezplačna dostava.",
         "perfect_gift_title": "Popolno darilo?",
         "perfect_gift_text": "Dodajte še eno za prijatelja ali bratranca.",
-        "button_text": "Dodaj še eno (+1)"
+        "button_text": "Dodaj še eno (+1)",
+        "headline_2pack": "✨ Odklepanje brezplačne dostave!",
+        "headline_3pack": "🔥 Najbolj priljubljena izbira",
+        "subline_3pack": "Nadgradite na možnost Plačajte 2, dobite 1 brezplačno (paket 3).",
+        "button_3pack": "Nadgradnja na paket 3",
+        "subline_4pack": "Nadgradite družinski paket (4x).",
+        "button_4pack": "Nadgradnja na paket 4",
+        "updating": "Posodabljanje...",
+        "subline_2pack": "Nadgradite na jutranji in večerni par.",
+        "button_2pack": "Nadgradnja na 2 paketa",
+        "headline_4pack": "🏆 Najboljša vrednost - največji prihranki",
+        "save_badge": "SAVE {{ percent }}%"
       }
     },
     "footer": {
