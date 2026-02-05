@@ -158,13 +158,13 @@
         </div>
   
         <div class="flipzy-quantity-selector">
-            <span style="font-weight: 600; font-size: 0.9rem; color: #374151;">Quantity:</span>
+            <span style="font-weight: 600; font-size: 0.9rem; color: #374151;">{{ section.settings.txt_qty_label }}</span>
             <select id="stick-quantity-selector" class="flipzy-quantity-select" onchange="updateStickyPrice(this)">
                 <!-- Options populated by JS for dynamic price, but we keep hardcoded fallbacks for SEO/No-JS -->
-                <option value="1">1x Flipzy</option>
-                <option value="2">2x Flipzys (⭐ Popular + Free Shipping)</option>
-                <option value="3">3x Flipzys (3 for 2 Deal)</option>
-                <option value="4">4x Flipzys (🔥 Best Value)</option>
+                <option value="1">{{ section.settings.opt_1 }}</option>
+                <option value="2">{{ section.settings.opt_2 }}</option>
+                <option value="3">{{ section.settings.opt_3 }}</option>
+                <option value="4">{{ section.settings.opt_4 }}</option>
             </select>
         </div>
   
@@ -380,7 +380,16 @@
       "label": "Default Selected Option",
       "default": 1,
       "info": "Which block index is selected by default? 1 = Lowest price entry."
-    }
+    },
+    {
+      "type": "header",
+      "content": "Translatable Text"
+    },
+    { "type": "text", "id": "txt_qty_label", "label": "Qty Label", "default": "Quantity:" },
+    { "type": "text", "id": "opt_1", "label": "Option 1 Text", "default": "1x Flipzy" },
+    { "type": "text", "id": "opt_2", "label": "Option 2 Text", "default": "2x Flipzys (⭐ Popular + Free Shipping)" },
+    { "type": "text", "id": "opt_3", "label": "Option 3 Text", "default": "3x Flipzys (3 for 2 Deal)" },
+    { "type": "text", "id": "opt_4", "label": "Option 4 Text", "default": "4x Flipzys (🔥 Best Value)" }
   ],
   "blocks": [
     {

@@ -561,7 +561,7 @@
         assign headline = ""
         assign subline = ""
         assign saved_badge_text = ""
-        assign btn_text = "Add +1"
+        assign btn_text = upsell_btn_base | default: "Add +1"
         assign show_upsell = false
         assign upgrade_cost = 0
         
@@ -590,9 +590,9 @@
               assign upgrade_cost = target_total_price | minus: current_line_price
               
               assign show_upsell = true
-              assign subline = "Add 1 more to unlock Free Shipping!"
-              assign headline = "⭐ Popular & Free Shipping"
-              assign saved_badge_text = "Popular"
+              assign subline = upsell_1_sub | default: "Add 1 more to unlock Free Shipping!"
+              assign headline = upsell_1_head | default: "⭐ Popular & Free Shipping"
+              assign saved_badge_text = upsell_1_badge | default: "Popular"
 
            elsif current_qty == 2
               # Upgrade 2 -> 3
@@ -612,9 +612,9 @@
               assign upgrade_cost = target_total_price | minus: current_line_price
 
               assign show_upsell = true
-              assign subline = "Add 1 more for huge 25% savings!"
-              assign headline = "🏆 Best Value - 25% OFF"
-              assign saved_badge_text = "BEST VALUE"
+              assign subline = upsell_2_sub | default: "Add 1 more to get 25% OFF!"
+              assign headline = upsell_2_head | default: "⚡ Best Value & Free Shipping"
+              assign saved_badge_text = upsell_2_badge | default: "Best Value"
            endif
         endif
       -%}
@@ -724,7 +724,7 @@
               class="flipzy-upsell-btn" 
               onclick="window.addFlipzyUpsell(this, '{{ update_variant_id }}', {{ current_qty }})"
             >
-              {{ btn_text }} (+{{ upgrade_cost | money }})
+              {{ btn_text }} ({{ upsell_upgrade_txt | default: 'Upgrade only' }} +{{ upgrade_cost | money }})
             </button>
           </div>
         </div>

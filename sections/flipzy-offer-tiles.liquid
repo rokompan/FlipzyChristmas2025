@@ -352,50 +352,50 @@
           </div>
           
           <ul class="flipzy-mag-list">
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">✅</span> Flip motivates kids to finish</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">😌</span> Less reminding, less arguing</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">💪</span> Builds independence</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">📵</span> No screens, no apps</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">✅</span> {{ section.settings.bullet_1 }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">😌</span> {{ section.settings.bullet_2 }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">💪</span> {{ section.settings.bullet_3 }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">📵</span> {{ section.settings.bullet_4 }}</li>
           </ul>
 
-          <span class="flipzy-qty-label">Choose Quantity:</span>
+          <span class="flipzy-qty-label">{{ section.settings.txt_qty_label }}</span>
           
           <div class="flipzy-qty-grid">
             <!-- 1x -->
             <div class="flipzy-qty-btn is-selected" onclick="selectOfferQty(1, this)">
               <span class="mt-qty-big">1x</span>
-              <span class="mt-qty-small">Flipzy</span>
+              <span class="mt-qty-small">{{ section.settings.unit_item }}</span>
             </div>
 
             <!-- 2x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(2, this)" data-badge="true">
-              <span class="flipzy-btn-badge" style="background:#F4D35E; color:#111;">⭐ Popular</span>
+              <span class="flipzy-btn-badge" style="background:#F4D35E; color:#111;">{{ section.settings.txt_popular }}</span>
               <span class="mt-qty-big">2x</span>
-              <span class="mt-qty-small">Flipzys</span>
+              <span class="mt-qty-small">{{ section.settings.unit_items }}</span>
             </div>
 
             <!-- 3x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(3, this)" data-badge="true">
-              <span class="flipzy-btn-badge">3 for 2</span>
+              <span class="flipzy-btn-badge">{{ section.settings.txt_3for2 }}</span>
               <span class="mt-qty-big">3x</span>
-              <span class="mt-qty-small">Flipzys</span>
+              <span class="mt-qty-small">{{ section.settings.unit_items }}</span>
             </div>
 
             <!-- 4x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(4, this)" data-badge="true">
-               <span class="flipzy-btn-badge">🔥 Best value</span>
+               <span class="flipzy-btn-badge">{{ section.settings.txt_best_value }}</span>
                <span class="mt-qty-big">4x</span>
-               <span class="mt-qty-small">Flipzys</span>
+               <span class="mt-qty-small">{{ section.settings.unit_items }}</span>
             </div>
           </div>
 
           <div class="flipzy-summary-box" style="display:block;">
              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-                <div class="flipzy-summary-text">Total Price:</div>
+                <div class="flipzy-summary-text">{{ section.settings.txt_total_price }}</div>
                 <div class="flipzy-summary-price" id="offer-total-price" data-base="{{ variant.price }}">{{ variant.price | money }}</div>
              </div>
              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-                <div style="font-size:0.9rem; color:#6b7280;">Price Per Item:</div>
+                <div style="font-size:0.9rem; color:#6b7280;">{{ section.settings.txt_price_per_item }}</div>
                 <div id="offer-per-item" style="font-weight:600; color:#374151;">{{ variant.price | money }}</div>
              </div>
              <div style="text-align:right;">
@@ -412,9 +412,9 @@
           >
             <span>
               {% if variant.available %}
-                Add to Cart
+                {{ section.settings.txt_add_to_cart }}
               {% else %}
-                Sold Out
+                {{ section.settings.txt_sold_out }}
               {% endif %}
             </span>
           </button>
@@ -426,7 +426,7 @@
                 <circle cx="5.5" cy="18.5" r="2.5"></circle>
                 <circle cx="18.5" cy="18.5" r="2.5"></circle>
              </svg>
-             Delivered by <span id="flipzy-delivery-date">Calculating...</span>
+             {{ section.settings.txt_delivered_by }} <span id="flipzy-delivery-date">{{ section.settings.txt_calculating }}</span>
           </div>
           
           <!-- HIDDEN STANDARD FORM -->
@@ -537,13 +537,13 @@ function formatMoney(cents) {
         perItemEl.innerText = formatMoney(perItem);
     }
     
-    // 5. Offer Text (Hardcoded from Screenshot)
+    // 5. Offer Text (Translatable)
     const shipEl = document.getElementById('offer-shipping-text');
     let offerText = "";
     
-    if (qty === 2) offerText = "10% off + Free shipping";
-    else if (qty === 3) offerText = "20% off + Free shipping";
-    else if (qty === 4) offerText = "25% off + Free shipping";
+    if (qty === 2) offerText = window.offerConfig.strings.offer2;
+    else if (qty === 3) offerText = window.offerConfig.strings.offer3;
+    else if (qty === 4) offerText = window.offerConfig.strings.offer4;
     
     if (offerText) {
         shipEl.innerText = offerText;
@@ -602,6 +602,11 @@ function formatMoney(cents) {
   window.offerConfig = {
     basePrice: {{ variant.price | default: product.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
+    strings: {
+       offer2: {{ section.settings.txt_offer_2 | json }},
+       offer3: {{ section.settings.txt_offer_3 | json }},
+       offer4: {{ section.settings.txt_offer_4 | json }}
+    },
     tiers: {
       1: { discount: 0, label: {{ section.settings.qty_1_label | default: "—" | json }} },
       2: { discount: qty2_disc, label: {{ section.settings.qty_2_label | default: "⭐ Popular" | json }} },
@@ -743,6 +748,43 @@ function formatMoney(cents) {
       "label": "Bottom Padding",
       "default": 36
     }
+    },
+    {
+      "type": "header",
+      "content": "Translatable Text"
+    },
+    { "type": "text", "id": "heading", "label": "Main Heading", "default": "Join Hundreds of Happy Families" },
+    { "type": "text", "id": "rating_text", "label": "Rating Text", "default": "4.8 / 5 rated" },
+    { "type": "text", "id": "bullet_1", "label": "Bullet 1", "default": "Flip motivates kids to finish" },
+    { "type": "text", "id": "bullet_2", "label": "Bullet 2", "default": "Less reminding, less arguing" },
+    { "type": "text", "id": "bullet_3", "label": "Bullet 3", "default": "Builds independence" },
+    { "type": "text", "id": "bullet_4", "label": "Bullet 4", "default": "No screens, no apps" },
+    { "type": "text", "id": "txt_qty_label", "label": "Qty Label", "default": "Choose Quantity:" },
+    { "type": "text", "id": "txt_popular", "label": "Popular Badge", "default": "⭐ Popular" },
+    { "type": "text", "id": "txt_3for2", "label": "3 for 2 Badge", "default": "3 for 2" },
+    { "type": "text", "id": "txt_best_value", "label": "Best Value Badge", "default": "🔥 Best value" },
+    { "type": "text", "id": "txt_total_price", "label": "Total Price Label", "default": "Total Price:" },
+    { "type": "text", "id": "txt_price_per_item", "label": "Price Per Item Label", "default": "Price Per Item:" },
+    { "type": "text", "id": "txt_add_to_cart", "label": "Add to Cart Btn", "default": "Add to Cart" },
+    { "type": "text", "id": "txt_sold_out", "label": "Sold Out Btn", "default": "Sold Out" },
+    { "type": "text", "id": "txt_delivered_by", "label": "Delivered By", "default": "Delivered by" },
+    { "type": "text", "id": "txt_calculating", "label": "Calculating Text", "default": "Calculating..." },
+    { "type": "text", "id": "txt_offer_2", "label": "Offer Text 2x", "default": "10% off + Free shipping" },
+    { "type": "text", "id": "txt_offer_3", "label": "Offer Text 3x", "default": "20% off + Free shipping" },
+    { "type": "text", "id": "txt_offer_4", "label": "Offer Text 4x", "default": "25% off + Free shipping" },
+    { "type": "text", "id": "unit_item", "label": "Unit Item", "default": "Flipzy" },
+    { "type": "text", "id": "unit_items", "label": "Unit Items", "default": "Flipzys" },
+    {
+      "type": "header",
+      "content": "Images & Details"
+    },
+    { "type": "image_picker", "id": "image_1", "label": "Main Image" },
+    { "type": "text", "id": "badge_text", "label": "Image Badge", "default": "Bestseller" },
+    { "type": "image_picker", "id": "image_2", "label": "Thumb 2" },
+    { "type": "image_picker", "id": "image_3", "label": "Thumb 3" },
+    { "type": "image_picker", "id": "image_4", "label": "Thumb 4" },
+    { "type": "text", "id": "guarantee_1", "label": "Guarantee 1", "default": "30-Day Money Back" },
+    { "type": "text", "id": "guarantee_2", "label": "Guarantee 2", "default": "2-Year Warranty" }
   ],
   "presets": [
     {
