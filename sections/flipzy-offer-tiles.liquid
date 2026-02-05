@@ -258,10 +258,41 @@
     transform: scale(1.02);
   }
 
-  /* --- MOBILE TWEAKS --- */
+  /* --- MOBILE LAYOUT TWEAKS --- */
+  
+  /* Desktop Defaults */
+  .flipzy-mobile-img { display: none; }
+  
+  /* Mobile Only */
   @media (max-width: 768px) {
+    /* Hide Main Image */
+    .flipzy-mobile-hidden { display: none !important; }
+    
+    /* Reveal Mobile Header Flex */
+    .flipzy-mobile-img { display: block; flex: 0 0 100px; }
+    
+    .flipzy-offer-header-wrapper {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #f3f4f6;
+        padding-bottom: 20px;
+    }
+    
+    .flipzy-offer-title {
+        font-size: 1.4rem; /* Smaller on mobile */
+        margin-bottom: 5px;
+        line-height: 1.2;
+    }
+    
+    .flipzy-mag-rating {
+        margin-bottom: 0;
+        flex-wrap: wrap; 
+    }
+
     .flipzy-qty-grid {
-       grid-template-columns: repeat(4, 1fr); /* 4 across on mobile for small buttons */
+       grid-template-columns: repeat(4, 1fr); 
     }
     .mt-qty-big { font-size: 1.5rem; }
     .mt-qty-small { font-size: 0.85rem; }
@@ -279,7 +310,8 @@
       
       <div class="flipzy-offer-container">
         <!-- LEFT: MEDIA -->
-        <div class="flipzy-offer-media">
+        <!-- LEFT: MEDIA (Hidden on mobile) -->
+        <div class="flipzy-offer-media flipzy-mobile-hidden">
           {% if product.featured_image %}
             <img 
               src="{{ product.featured_image | image_url: width: 800 }}" 
@@ -295,12 +327,29 @@
 
         <!-- RIGHT: CONFIG -->
         <div class="flipzy-offer-content">
-          <div class="flipzy-mag-rating">
-            <span class="flipzy-mag-stars">★★★★★</span>
-            <span>4.8 / 5 rated by hundreds of parents</span>
+          
+          <!-- MOBILE HEADER SPLIT -->
+          <div class="flipzy-offer-header-wrapper">
+             <!-- Mobile Image (Hidden on Desktop) -->
+             <div class="flipzy-mobile-img">
+                <img 
+                  src="{{ product.featured_image | image_url: width: 300 }}" 
+                  alt="{{ product.title }}"
+                  loading="lazy"
+                  width="120"
+                  height="120"
+                  style="border-radius:12px; object-fit:cover; width:100%; height:auto;"
+                >
+             </div>
+             
+             <div class="flipzy-header-text">
+                <h2 class="flipzy-offer-title">{{ section.settings.title | default: product.title }}</h2>
+                <div class="flipzy-mag-rating">
+                  <span class="flipzy-mag-stars" style="font-size:1.2rem;">★★★★★</span>
+                  <span style="font-size:0.85rem;">4.8 / 5 rated</span>
+                </div>
+             </div>
           </div>
-
-          <h2 class="flipzy-offer-title">{{ section.settings.title | default: product.title }}</h2>
           
           <ul class="flipzy-mag-list">
             <li class="flipzy-mag-item"><span class="flipzy-mag-icon">🧠</span> Kids see what comes next</li>
