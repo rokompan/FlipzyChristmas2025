@@ -566,6 +566,12 @@
         "errors": {
           "interaction_required": "Für den Abschluss der Kaufabwicklung ist die Interaktion mit einer Nebenstelle erforderlich."
         }
+      },
+      "contact": {
+        "suburb_label": "Vorort"
+      },
+      "wallets": {
+        "place_order": "Bestellung aufgeben"
       }
     }
   },
