@@ -415,6 +415,49 @@
       "min_error": "Minimum za ovaj artikl iznosi {{ min }}",
       "max_error": "Maksimum za ovaj artikl iznosi {{ max }}",
       "step_error": "Ovaj artikl možete dodavati samo u rasponima povećanja od {{ step }}"
+    },
+    "flipzy_offer": {
+      "total_price": "Ukupna cijena:",
+      "heading": "Pridružite se stotinama sretnih obitelji",
+      "offer_4": "25% popusta + besplatna dostava",
+      "unit_item": "Flipzy",
+      "qty_label": "Odaberite količinu:",
+      "badge_popular": "⭐ Popularno",
+      "offer_2": "10% popusta + besplatna dostava",
+      "rating_text": "Ocjena 4,8 / 5",
+      "bullet_1": "Flip motivira djecu da završe",
+      "badge_best_value": "🔥 Najbolja vrijednost",
+      "badge_3for2": "3 za 2",
+      "badge_bestseller": "Bestseler",
+      "guarantee_1": "Povrat novca u roku od 30 dana",
+      "bullet_2": "Manje podsjećanja, manje svađe",
+      "price_per_item": "Cijena po artiklu:",
+      "add_to_cart": "Dodaj u košaricu",
+      "bullet_4": "Nema ekrana, nema aplikacija",
+      "sold_out": "Rasprodan",
+      "delivered_by": "Dostavlja",
+      "bullet_3": "Izgrađuje neovisnost",
+      "calculating": "Izračunavanje...",
+      "offer_3": "20% popusta + besplatna dostava",
+      "unit_items": "Flipzy",
+      "guarantee_2": "2-godišnje jamstvo"
+    },
+    "flipzy_sticky": {
+      "qty_label": "Količina:",
+      "opt_1": "1x Flipzy",
+      "opt_2": "2x Flipzy (⭐ Popularno + Besplatna dostava)",
+      "opt_4": "4x Flipzy (🔥 Najbolja vrijednost)",
+      "opt_3": "3x Flipzy (ponuda 3 za 2)"
+    },
+    "cart_upsell": {
+      "upsell_1_badge": "Popularan",
+      "upsell_2_head": "⚡ Najbolja vrijednost i besplatna dostava",
+      "add_plus_one": "Dodaj +1",
+      "upsell_1_head": "⭐ Popularno i besplatna dostava",
+      "upsell_1_sub": "Dodajte još 1 da biste otključali besplatnu dostavu!",
+      "upsell_2_badge": "Najbolja vrijednost",
+      "upgrade_btn": "Samo nadogradnja",
+      "upsell_2_sub": "Dodajte još 1 i ostvarite 25% POPUSTA!"
     }
   },
   "localization": {
