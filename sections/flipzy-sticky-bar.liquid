@@ -276,6 +276,12 @@
       qty3_disc = 19.56;
       qty4_disc = 24.94;
   }
+  if (currency === 'CZK') {
+      // 19.6% matches the effective backend rate for 3x (approx 80.4% paid)
+      qty2_disc = 7.337;
+      qty3_disc = 19.6;
+      qty4_disc = 24.94;
+  }
 
   window.stickyConfig = {
     basePrice: {{ variant.price | default: prod.price | default: 0 | json }},

@@ -576,6 +576,12 @@
               assign m3 = 0.8044
               assign m4 = 0.7506
            endif
+           
+           if cart.currency.iso_code == 'CZK'
+              assign m2 = 0.92663
+              assign m3 = 0.804  # 19.6% Discount
+              assign m4 = 0.7506
+           endif
 
            if current_qty == 1
               # Upgrade 1 -> 2

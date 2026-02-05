@@ -485,6 +485,12 @@ function formatMoney(cents) {
       qty3_disc = 19.56;
       qty4_disc = 24.94;
   }
+  // CZK Overrides (Close to HUF but slightly adjusted for 3x to hit ~2041)
+  if (currency === 'CZK') {
+      qty2_disc = 7.337; 
+      qty3_disc = 19.6; 
+      qty4_disc = 24.94;
+  }
 
   window.offerConfig = {
     basePrice: {{ variant.price | default: product.price | default: 0 | json }},
