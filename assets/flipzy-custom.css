@@ -1170,3 +1170,8 @@
 .scheme-night .flipzy-stars { color: var(--color-mustard); }
 .scheme-night .flipzy-review-text { color: #D1D5DB; }
 .scheme-night .flipzy-author-name { color: #fff; }
+
+/* Remove Langify Switcher (User Request) */
+.ly-switcher-wrapper {
+  display: none !important;
+}
