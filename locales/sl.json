@@ -427,6 +427,9 @@
       "min_error": "Ta artikel ima najmanj {{ min }}",
       "max_error": "Ta artikel ima največ {{ max }}",
       "step_error": "Ta artikel lahko dodate samo v korakih po {{ step }}."
+    },
+    "cart_upsell": {
+      "add_plus_one": "Dodaj +1"
     }
   },
   "localization": {
