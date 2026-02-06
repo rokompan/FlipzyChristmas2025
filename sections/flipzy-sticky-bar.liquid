@@ -161,10 +161,10 @@
             <span style="font-weight: 600; font-size: 0.9rem; color: #374151;">{{ 'sections.flipzy_sticky.qty_label' | t }}</span>
             <select id="stick-quantity-selector" class="flipzy-quantity-select" onchange="updateStickyPrice(this)">
                 <!-- Options populated by JS for dynamic price, but we keep hardcoded fallbacks for SEO/No-JS -->
-                <option value="1">{{ 'sections.flipzy_sticky.opt_1' | t }}</option>
-                <option value="2">{{ 'sections.flipzy_sticky.opt_2' | t }}</option>
-                <option value="3">{{ 'sections.flipzy_sticky.opt_3' | t }}</option>
-                <option value="4">{{ 'sections.flipzy_sticky.opt_4' | t }}</option>
+                <option value="1">{{ 'sections.flipzy_sticky.qty_option_1' | t }}</option>
+                <option value="2">{{ 'sections.flipzy_sticky.qty_option_2' | t }}</option>
+                <option value="3">{{ 'sections.flipzy_sticky.qty_option_3' | t }}</option>
+                <option value="4">{{ 'sections.flipzy_sticky.qty_option_4' | t }}</option>
             </select>
         </div>
   
@@ -232,10 +232,10 @@
     basePrice: {{ variant.price | default: prod.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
     tiers: {
-      1: { discount: 0, label: {{ 'sections.flipzy_sticky.opt_1' | t | json }} },
-      2: { discount: qty2_disc, label: {{ 'sections.flipzy_sticky.opt_2' | t | json }} },
-      3: { discount: qty3_disc, label: {{ 'sections.flipzy_sticky.opt_3' | t | json }} },
-      4: { discount: qty4_disc, label: {{ 'sections.flipzy_sticky.opt_4' | t | json }} }
+      1: { discount: 0, label: {{ 'sections.flipzy_sticky.qty_option_1' | t | json }} },
+      2: { discount: qty2_disc, label: {{ 'sections.flipzy_sticky.qty_option_2' | t | json }} },
+      3: { discount: qty3_disc, label: {{ 'sections.flipzy_sticky.qty_option_3' | t | json }} },
+      4: { discount: qty4_disc, label: {{ 'sections.flipzy_sticky.qty_option_4' | t | json }} }
     }
   };
 

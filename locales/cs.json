@@ -469,7 +469,11 @@
       "qty_label": "Množství:",
       "opt_4": "4x Flipzy (🔥 Best Value)",
       "opt_3": "3x Flipzy (3 za 2)",
-      "opt_1": "1x Flipzy"
+      "opt_1": "1x Flipzy",
+      "qty_option_1": "1x Flipzy",
+      "qty_option_2": "2x Flipzy (⭐ Populární + doprava zdarma)",
+      "qty_option_3": "3x Flipzy (3 za 2)",
+      "qty_option_4": "4x Flipzy (🔥 Best Value)"
     }
   },
   "localization": {
