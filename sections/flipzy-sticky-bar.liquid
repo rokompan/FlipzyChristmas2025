@@ -159,12 +159,12 @@
   
         <div class="flipzy-quantity-selector">
             <span style="font-weight: 600; font-size: 0.9rem; color: #374151;">{{ 'sections.flipzy_sticky.qty_label' | t }}</span>
-            <select id="stick-quantity-selector" class="flipzy-quantity-select" onchange="updateStickyPrice(this)">
+            <select id="stick-quantity-selector-final" class="flipzy-quantity-select" onchange="updateStickyPrice(this)">
                 <!-- Options populated by JS for dynamic price, but we keep hardcoded fallbacks for SEO/No-JS -->
-                <option value="1">{{ 'sections.flipzy_sticky.sticky_v3_1' | t }}</option>
-                <option value="2">{{ 'sections.flipzy_sticky.sticky_v3_2' | t }}</option>
-                <option value="3">{{ 'sections.flipzy_sticky.sticky_v3_3' | t }}</option>
-                <option value="4">{{ 'sections.flipzy_sticky.sticky_v3_4' | t }}</option>
+                <option value="1">{{ 'sections.flipzy_sticky.qty_final_1' | t }}</option>
+                <option value="2">{{ 'sections.flipzy_sticky.qty_final_2' | t }}</option>
+                <option value="3">{{ 'sections.flipzy_sticky.qty_final_3' | t }}</option>
+                <option value="4">{{ 'sections.flipzy_sticky.qty_final_4' | t }}</option>
             </select>
         </div>
   
@@ -232,10 +232,10 @@
     basePrice: {{ variant.price | default: prod.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
     tiers: {
-      1: { discount: 0, label: {{ 'sections.flipzy_sticky.sticky_v3_1' | t | json }} },
-      2: { discount: qty2_disc, label: {{ 'sections.flipzy_sticky.sticky_v3_2' | t | json }} },
-      3: { discount: qty3_disc, label: {{ 'sections.flipzy_sticky.sticky_v3_3' | t | json }} },
-      4: { discount: qty4_disc, label: {{ 'sections.flipzy_sticky.sticky_v3_4' | t | json }} }
+      1: { discount: 0, label: {{ 'sections.flipzy_sticky.qty_final_1' | t | json }} },
+      2: { discount: qty2_disc, label: {{ 'sections.flipzy_sticky.qty_final_2' | t | json }} },
+      3: { discount: qty3_disc, label: {{ 'sections.flipzy_sticky.qty_final_3' | t | json }} },
+      4: { discount: qty4_disc, label: {{ 'sections.flipzy_sticky.qty_final_4' | t | json }} }
     }
   };
 
@@ -297,7 +297,7 @@
   }
 
   function submitStickyForm() {
-    const qty = document.getElementById('stick-quantity-selector').value;
+    const qty = document.getElementById('stick-quantity-selector-final').value;
     const btn = document.getElementById('real-submit-sticky');
     
     if(btn) {
@@ -323,7 +323,7 @@
     if(!bar) return;
     
     // Initialize correct price for default selection (1)
-    const selector = document.getElementById('stick-quantity-selector');
+    const selector = document.getElementById('stick-quantity-selector-final');
     if(selector) updateStickyPrice(selector);
 
     // SCROLL LOGIC

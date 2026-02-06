@@ -469,7 +469,11 @@
       "opt_1": "1x Flipzy",
       "opt_3": "3x Flipzy (ponudba 3 za 2)",
       "opt_4": "4x Flipzy (🔥 Najboljša vrednost)",
-      "qty_label": "Količina:"
+      "qty_label": "Količina:",
+      "qty_final_1": "1x Flipzy",
+      "qty_final_2": "2x Flipzy (⭐ Priljubljeno + brezplačna dostava)",
+      "qty_final_3": "3x Flipzy (ponudba 3 za 2)",
+      "qty_final_4": "4x Flipzy (🔥 Najboljša vrednost)"
     }
   },
   "localization": {
