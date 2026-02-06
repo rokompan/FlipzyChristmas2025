@@ -432,10 +432,10 @@
     },
     "flipzy_sticky": {
       "qty_label": "Quantity:",
-      "qty_option_1": "1x Flipzy",
-      "qty_option_2": "2x Flipzy (⭐ Popular + Free Shipping)",
-      "qty_option_3": "3x Flipzy (3 for 2 Deal)",
-      "qty_option_4": "4x Flipzy (🔥 Best Value)"
+      "sticky_v3_1": "1x Flipzy",
+      "sticky_v3_2": "2x Flipzy (⭐ Popular + Free Shipping)",
+      "sticky_v3_3": "3x Flipzy (3 for 2 Deal)",
+      "sticky_v3_4": "4x Flipzy (🔥 Best Value)"
     },
     "cart_upsell": {
       "upsell_1_head": "⭐ Popular & Free Shipping",
