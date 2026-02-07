@@ -446,6 +446,17 @@
       "upsell_2_badge": "Best Value",
       "upgrade_btn": "Upgrade only",
       "add_plus_one": "Add +1"
+    },
+    "flipzy_help": {
+      "ask_question": "💬 Ask a Question",
+      "title": "Have a question?",
+      "text": "Drop us a message and we'll get back to you via email.",
+      "email_label": "Email (optional)",
+      "email_placeholder": "Your email (if you want a reply)",
+      "message_label": "Your message",
+      "message_placeholder": "How can we help?",
+      "submit": "Send Message",
+      "reply_to": "REPLY TO:"
     }
   },
   "localization": {

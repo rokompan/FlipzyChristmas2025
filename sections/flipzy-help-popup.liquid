@@ -1,29 +1,29 @@
 <div id="flipzy-help-popup-root">
   <button type="button" class="flipzy-help-button" id="flipzy-help-open">
-    💬 Ask a Question
+    {{ 'sections.flipzy_help.ask_question' | t }}
   </button>
 
   <div class="flipzy-help-overlay" id="flipzy-help-overlay" aria-hidden="true">
     <div class="flipzy-help-modal">
       <button type="button" class="flipzy-help-close" id="flipzy-help-close">&times;</button>
-      <h2 class="flipzy-help-title">Have a question?</h2>
-      <p class="flipzy-help-text">Drop us a message and we'll get back to you via email.</p>
+      <h2 class="flipzy-help-title">{{ 'sections.flipzy_help.title' | t }}</h2>
+      <p class="flipzy-help-text">{{ 'sections.flipzy_help.text' | t }}</p>
 
       {% form 'contact', id: 'flipzy-help-form' %}
         <input type="hidden" name="form_type" value="contact">
         <input type="hidden" name="contact[email]" value="{{ shop.email | default: shop.customer_email }}">
 
         <label class="flipzy-help-label">
-          Email (optional)
-          <input type="text" name="contact[reply_email]" placeholder="Your email (if you want a reply)">
+          {{ 'sections.flipzy_help.email_label' | t }}
+          <input type="text" name="contact[reply_email]" placeholder="{{ 'sections.flipzy_help.email_placeholder' | t }}">
         </label>
 
         <label class="flipzy-help-label">
-          Your message
-          <textarea name="contact[body]" rows="4" required placeholder="How can we help?"></textarea>
+          {{ 'sections.flipzy_help.message_label' | t }}
+          <textarea name="contact[body]" rows="4" required placeholder="{{ 'sections.flipzy_help.message_placeholder' | t }}"></textarea>
         </label>
 
-        <button type="submit" class="flipzy-help-submit">Send Message</button>
+        <button type="submit" class="flipzy-help-submit">{{ 'sections.flipzy_help.submit' | t }}</button>
       {% endform %}
     </div>
   </div>
@@ -176,7 +176,7 @@
         var replyEmail = replyInput.value.trim();
         if (replyEmail) {
           var originalMessage = messageTextarea.value;
-          messageTextarea.value = 'REPLY TO: ' + replyEmail + '\n\n----------------------\n' + originalMessage;
+          messageTextarea.value = {{ 'sections.flipzy_help.reply_to' | t | json }} + " " + replyEmail + '\n\n----------------------\n' + originalMessage;
         }
       });
     }
