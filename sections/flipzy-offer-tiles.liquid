@@ -503,6 +503,39 @@ function formatMoney(cents) {
   return formatted;
 }
 
+function formatPerItemMoney(cents) {
+  const currencyCode = {{ cart.currency.iso_code | json }};
+  // Reuse the global config format or fallback
+  let moneyFormat = window.offerConfig ? window.offerConfig.moneyFormat : "{{ amount }} €";
+
+  let val = cents / 100;
+  
+  // Custom Precision Logic: 
+  // If value is whole (e.g. 25.00), use 0 decimals. 
+  // If value has decimals (e.g. 25.50), use 2 decimals.
+  let precision = (val % 1 === 0) ? 0 : 2;
+
+  let formatted = moneyFormat;
+
+  // Detect format type and apply correct separators
+  if (formatted.indexOf('comma_separator') !== -1) {
+      // European: 1.234,56
+      let str = formatWithSeparators(val, precision, '.', ',');
+      formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
+  } 
+  else {
+      // Standard: 1,234.56
+      let str = formatWithSeparators(val, precision, ',', '.');
+      formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
+  }
+
+  if (formatted.indexOf('{{') !== -1) {
+       return formatWithSeparators(val, precision, ',', '.') + ' ' + currencyCode; 
+  }
+
+  return formatted;
+}
+
   function selectOfferQty(qty, element) {
     // 1. Update UI Selection
     currentOfferQty = qty;
@@ -534,8 +567,14 @@ function formatMoney(cents) {
     // 4. Per Item Price
     const perItemEl = document.getElementById('offer-per-item');
     if (perItemEl) {
-        const perItem = finalPrice / qty;
-        perItemEl.innerText = formatMoney(perItem);
+        // Calculate per item from the rounded total
+        let perItemCents = finalPrice / qty;
+        
+        // Round to nearest 0.50 (50 cents)
+        // e.g. 2525 -> 2550, 2510 -> 2500
+        perItemCents = Math.round(perItemCents / 50) * 50;
+        
+        perItemEl.innerText = formatPerItemMoney(perItemCents);
     }
     
     // 5. Offer Text (Translatable)
