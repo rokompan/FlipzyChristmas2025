@@ -271,7 +271,7 @@
         formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
     }
     
-    if (formatted.indexOf('{{') !== -1 || formatted.indexOf('}}') !== -1) {
+    if (formatted.indexOf('{' + '{') !== -1 || formatted.indexOf('}' + '}') !== -1) {
          return formatWithSeparators(val, precision, ',', '.') + ' ' + currencyCode;
     }
 
