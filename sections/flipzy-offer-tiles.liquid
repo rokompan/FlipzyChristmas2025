@@ -207,6 +207,18 @@
   .flipzy-qty-btn[data-badge="true"] .flipzy-btn-badge {
     opacity: 1;
   }
+  
+  .flipzy-free-shipping-tag {
+    font-size: 0.7rem;
+    color: #16A34A;
+    font-weight: 800;
+    margin-top: 6px;
+    text-transform: uppercase;
+    background: #DCFCE7;
+    padding: 3px 6px;
+    border-radius: 4px;
+    line-height: 1;
+  }
 
   /* --- PRICE SUMMARY --- */
   .flipzy-summary-box {
@@ -373,6 +385,7 @@
               <span class="flipzy-btn-badge" style="background:#F4D35E; color:#111;">{{ 'sections.flipzy_offer.badge_popular' | t }}</span>
               <span class="mt-qty-big">2x</span>
               <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_items' | t }}</span>
+              <span class="flipzy-free-shipping-tag">{{ 'sections.flipzy_offer.free_shipping' | t | default: 'Free Shipping' }}</span>
             </div>
 
             <!-- 3x -->
@@ -380,6 +393,7 @@
               <span class="flipzy-btn-badge">{{ 'sections.flipzy_offer.badge_3for2' | t }}</span>
               <span class="mt-qty-big">3x</span>
               <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_items' | t }}</span>
+              <span class="flipzy-free-shipping-tag">{{ 'sections.flipzy_offer.free_shipping' | t | default: 'Free Shipping' }}</span>
             </div>
 
             <!-- 4x -->
@@ -387,6 +401,7 @@
                <span class="flipzy-btn-badge">{{ 'sections.flipzy_offer.badge_best_value' | t }}</span>
                <span class="mt-qty-big">4x</span>
                <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_items' | t }}</span>
+               <span class="flipzy-free-shipping-tag">{{ 'sections.flipzy_offer.free_shipping' | t | default: 'Free Shipping' }}</span>
             </div>
           </div>
 
