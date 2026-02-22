@@ -327,18 +327,25 @@
     if(selector) updateStickyPrice(selector);
 
     // SCROLL LOGIC
-    // User Request: Show earlier, stick once shown (don't hide on scroll up)
-    
+    // User Request: Show after scrolling past "Flipzy Offer Tiles", hide if scrolling back up.
+    const offerSection = document.getElementById('flipzy-offer-section');
+
     function checkScroll() {
-      const currentScrollY = window.scrollY;
+      let isPast = false;
       
-      // Trigger earlier (e.g. 300px scroll)
-      const TRIGGER_POINT = 400; 
+      if (offerSection) {
+          const rect = offerSection.getBoundingClientRect();
+          // "scrolled past" means the bottom of the section is above the top of the viewport
+          isPast = (rect.bottom <= 0);
+      } else {
+          // Fallback if section not found
+          isPast = (window.scrollY > 400);
+      }
       
-      // LATCH LOGIC: Once visible, stay visible
-      // We only ADD the class, never remove it based on scroll
-      if (currentScrollY > TRIGGER_POINT) {
+      if (isPast) {
           bar.classList.add('is-visible');
+      } else {
+          bar.classList.remove('is-visible');
       }
     }
     
