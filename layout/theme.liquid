@@ -311,6 +311,30 @@
       gtag('config', 'G-1K7EE2NTY1');
     </script>
 
+<!-- Fliptrack Pixel (OLD 2025) - add as secondary pixel without duplicating base code -->
+<script>
+(function initFliptrackPixel(){
+  var OLD_PIXEL_ID = '1263073335386700';
+
+  function tryInit() {
+    if (window.fbq && typeof window.fbq === 'function') {
+      try {
+        // Adds old pixel to the existing Meta Pixel instance
+        window.fbq('init', OLD_PIXEL_ID);
+        // IMPORTANT: do NOT track PageView here (Shopify/Meta app already does it)
+        console.log('[Flipzy] Fliptrack Pixel initialized:', OLD_PIXEL_ID);
+      } catch (e) {
+        console.log('[Flipzy] Fliptrack init error:', e);
+      }
+      return;
+    }
+    setTimeout(tryInit, 200);
+  }
+
+  tryInit();
+})();
+</script>
+<!-- End Fliptrack Pixel (OLD 2025) -->
   </head>
 
   {% comment %}ly_liquid_scripts_begin{% endcomment %}{% capture ly_liquid_content %}{% comment %}ly_liquid_scripts_end{% endcomment %}<body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
