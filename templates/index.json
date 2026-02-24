@@ -16,7 +16,7 @@
           "type": "slide",
           "settings": {
             "video_file": "shopify://files/videos/hero04.mp4",
-            "image_fallback": "shopify://shop_images/hf_20260205_174626_258501e8-0c54-4cb7-bbb1-054228b7da49_2.jpg",
+            "image_fallback": "shopify://shop_images/white_copy_2.jpg",
             "heading": "<p>Wooden<strong> planner </strong>that Makes Tasks <strong>Fun</strong></p>",
             "button_text": "Go to Shop"
           }
