@@ -76,7 +76,10 @@
         
         <div class="flipzy-media-wrapper">
           {% if block.settings.video_file != blank %}
-            {{ block.settings.video_file | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'hero-video' }}
+            {% if block.settings.image_fallback != blank %}
+              {{ block.settings.image_fallback | image_url: width: 1800 | image_tag: loading: 'eager', class: 'flipzy-hero-fallback', style: 'position: absolute; top: 0; left: 0; z-index: 2; transition: opacity 0.5s ease;' }}
+            {% endif %}
+            {{ block.settings.video_file | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, controls: false, class: 'hero-video', style: 'position: absolute; top: 0; left: 0; z-index: 1;' }}
           {% elsif block.settings.image_fallback != blank %}
             {{ block.settings.image_fallback | image_url: width: 1800 | image_tag: loading: 'eager' }}
           {% else %}
@@ -200,6 +203,28 @@
 
       if(prevBtn) prevBtn.onclick = () => scrollHero(-1);
       if(nextBtn) nextBtn.onclick = () => scrollHero(1);
+
+      const slides = heroElement.querySelectorAll('.flipzy-slide');
+      slides.forEach(slide => {
+        const video = slide.querySelector('.hero-video');
+        const fallback = slide.querySelector('.flipzy-hero-fallback');
+        
+        if (video) {
+          const playVideo = () => {
+            video.play();
+            if (fallback) fallback.style.opacity = '0';
+          };
+          
+          if (video.readyState >= 3) {
+            playVideo();
+          } else {
+            video.addEventListener('canplaythrough', playVideo);
+            video.addEventListener('playing', () => {
+              if (fallback) fallback.style.opacity = '0';
+            });
+          }
+        }
+      });
     }
 
     document.addEventListener('DOMContentLoaded', () => {
