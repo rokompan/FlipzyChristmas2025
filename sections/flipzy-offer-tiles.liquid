@@ -590,9 +590,9 @@ function formatPerItemMoney(cents) {
         // Calculate per item from the rounded total
         let perItemCents = finalPrice / qty;
         
-        // Round to nearest 0.50 (50 cents)
-        // e.g. 2525 -> 2550, 2510 -> 2500
-        perItemCents = Math.round(perItemCents / 50) * 50;
+        // Round to nearest 0.25 (25 cents)
+        // e.g. 2512 -> 2525, 2510 -> 2500
+        perItemCents = Math.round(perItemCents / 25) * 25;
         
         perItemEl.innerText = formatPerItemMoney(perItemCents);
     }
