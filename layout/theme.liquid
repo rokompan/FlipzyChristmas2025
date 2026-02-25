@@ -15,6 +15,12 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {% comment %} Preload LCP element from the index page hero slider. {% endcomment %}
+    {% if template == 'index' %}
+      <link rel="preload" as="video" href="https://cdn.shopify.com/videos/c/o/v/6df17336edff44299bade80041d8e6a2.mp4" type="video/mp4" fetchpriority="high">
+      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0893/5895/8920/files/IMG_0692.jpg?v=1738221762" fetchpriority="high">
+    {% endif %}
+
     <title>
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
