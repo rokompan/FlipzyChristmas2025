@@ -24,7 +24,7 @@
         "slide_wiHe7j": {
           "type": "slide",
           "settings": {
-            "image_fallback": "shopify://shop_images/Gemini_Generated_Image_pcumu6pcumu6pcum.jpg",
+            "image_fallback": "shopify://shop_images/stickers.webp",
             "heading": "<p>30 <strong>stickers</strong> to customize your <strong>routine</strong></p>",
             "button_text": "Go to Shop"
           }
@@ -32,7 +32,7 @@
         "slide_pde3JQ": {
           "type": "slide",
           "settings": {
-            "image_fallback": "shopify://shop_images/Gemini_Generated_Image_vpr32bvpr32bvpr3_1.jpg",
+            "image_fallback": "shopify://shop_images/natakni.webp",
             "heading": "<p><strong>Rearange</strong> tiles to fit any scenairo.</p>",
             "button_text": "Go to Shop"
           }
@@ -40,7 +40,7 @@
         "slide_XfNBGf": {
           "type": "slide",
           "settings": {
-            "image_fallback": "shopify://shop_images/Gemini_Generated_Image_fh8lhgfh8lhgfh8l.jpg",
+            "image_fallback": "shopify://shop_images/moar.webp",
             "heading": "<p>Get as <strong>many</strong> Flipzy as your <strong>family</strong> needs.</p>",
             "button_text": "Go to Shop"
           }
@@ -129,7 +129,7 @@
         "desktop_layout": "media_right",
         "mobile_layout": "text_first",
         "heading": "What is Flipzy?",
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/efa91ddb30bb4e00bc1b3a1456b8a2d0.mp4",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/da40f714249947c6a45debdf46286069.mp4",
         "fallback_image": "shopify://shop_images/mom_boy-wide3.jpg"
       }
     },
