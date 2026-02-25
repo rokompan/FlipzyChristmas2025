@@ -303,18 +303,26 @@
       }
     </script>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1K7EE2NTY1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-1K7EE2NTY1');
+      window.addEventListener('load', function() {
+        var gaScript = document.createElement('script');
+        gaScript.async = true;
+        gaScript.src = "https://www.googletagmanager.com/gtag/js?id=G-1K7EE2NTY1";
+        document.head.appendChild(gaScript);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-1K7EE2NTY1');
+      });
     </script>
 
 <!-- Fliptrack Pixel (OLD 2025) - add as secondary pixel without duplicating base code -->
 <script>
 (function initFliptrackPixel(){
   var OLD_PIXEL_ID = '1263073335386700';
+  var attempts = 0;
+  var maxAttempts = 50;
 
   function tryInit() {
     if (window.fbq && typeof window.fbq === 'function') {
@@ -328,10 +336,18 @@
       }
       return;
     }
-    setTimeout(tryInit, 200);
+    
+    attempts++;
+    if (attempts < maxAttempts) {
+      setTimeout(tryInit, 200);
+    } else {
+      console.log('[Flipzy] Fliptrack Pixel init aborted after ' + maxAttempts + ' attempts.');
+    }
   }
 
-  tryInit();
+  window.addEventListener('load', function() {
+    setTimeout(tryInit, 1000);
+  });
 })();
 </script>
 <!-- End Fliptrack Pixel (OLD 2025) -->

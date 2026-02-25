@@ -131,7 +131,7 @@
             <source src="{{ section.settings.video_url }}" type="video/mp4">
           </video>
         {% elsif section.settings.fallback_image != blank %}
-          <img class="flipzy-feature-image" src="{{ section.settings.fallback_image | image_url: width: 1200 }}" loading="lazy">
+          <img class="flipzy-feature-image" src="{{ section.settings.fallback_image | image_url: width: 1200 }}" loading="lazy" alt="{{ section.settings.heading | strip_html | escape }}" width="{{ section.settings.fallback_image.width }}" height="{{ section.settings.fallback_image.height }}">
         {% endif %}
       </div>
     </div>
@@ -143,7 +143,7 @@
           <div class="flipzy-feature-point" {{ block.shopify_attributes }}>
             <div class="flipzy-feature-icon-box">
               {% if block.settings.custom_icon != blank %}
-                <img src="{{ block.settings.custom_icon | image_url: width: 64 }}" alt="icon" loading="lazy">
+                <img src="{{ block.settings.custom_icon | image_url: width: 64 }}" alt="icon" loading="lazy" width="{{ block.settings.custom_icon.width }}" height="{{ block.settings.custom_icon.height }}">
               {% else %}
                 {% case block.settings.icon_type %}
                   {% when 'puzzle_classic' %}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 6c-2.61.7-2.61 3.3 0 4c1.93.5 1.68 3-1.21 3.5a8 8 0 1 0-9.29 9.29c.5-2.89 3-2.64 3.5-1.21.7 2.61 3.3 2.61 4 0 1.78-.66 1.78-3.34 0-4-2.61-.7-2.61-3.3 0-4 1.78-.66 1.78-3.34 0-4-.7-2.61-3.3-2.61-4 0z"></path></svg>
