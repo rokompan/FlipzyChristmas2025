@@ -363,8 +363,7 @@
              <div class="flipzy-header-text">
                 <h2 class="flipzy-offer-title">{{ section.settings.title | default: product.title }}</h2>
                 <div class="flipzy-mag-rating">
-                  <span class="flipzy-mag-stars" style="font-size:1.2rem;"></span>
-                  <span style="font-size:0.85rem;">{{ 'sections.flipzy_offer.rating_text' | t }}</span>
+                  <span style="font-size:0.95rem; font-weight:700;">⭐️⭐️⭐️⭐️⭐️ 4.8/5 from <span class="dynamic-parent-count">346</span> parents</span>
                 </div>
              </div>
           </div>
@@ -698,11 +697,32 @@ function formatPerItemMoney(cents) {
       if (el) el.innerText = dateString;
   }
   
+  // Dynamic Parent Rating count
+  function calculateParentRating() {
+      const startDate = new Date('2026-03-02T00:00:00');
+      const today = new Date();
+      const diffTime = today - startDate;
+      let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays < 0) diffDays = 0;
+      
+      const baseParents = 346;
+      const currentParents = baseParents + (diffDays * 3);
+      
+      const elements = document.querySelectorAll('.dynamic-parent-count');
+      elements.forEach(function(el) {
+          el.innerText = currentParents;
+      });
+  }
+
   // Run on load
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', calculateDeliveryDate);
+    document.addEventListener('DOMContentLoaded', function() {
+      calculateDeliveryDate();
+      calculateParentRating();
+    });
   } else {
     calculateDeliveryDate();
+    calculateParentRating();
   }
 </script>
 
