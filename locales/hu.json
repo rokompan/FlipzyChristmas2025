@@ -430,7 +430,18 @@
       "bullet_3": "Függetlenséget épít",
       "add_to_cart": "Hozzáadás a kosárhoz",
       "free_shipping": "Ingyenes szállítás",
-      "please_select_product": "Kérjük, válassza ki a terméket a beállítások szakaszban."
+      "please_select_product": "Kérjük, válassza ki a terméket a beállítások szakaszban.",
+      "rating_prefix": "⭐️⭐️⭐️⭐️⭐️ 4.8/5 from ",
+      "rating_suffix": " szülők",
+      "benefit_3": "Kevesebb zsörtölődés. Több együttműködés.",
+      "benefit_4": "Függetlenséget és felelősséget épít",
+      "inventory_suffix": " maradt a készleten",
+      "today_price": "Ma:",
+      "benefit_1": "A gyerekek be akarják fejezni a rutinjukat",
+      "benefit_2": "10-20 perc nyugalom minden reggel",
+      "inventory_prefix": "⚡ Csak ",
+      "regular_price": "Normál ár:",
+      "guarantee_3": "Több mint 1000 család használja"
     },
     "flipzy_sticky": {
       "opt_4": "4x Flipzy (🔥 Best Value)",
