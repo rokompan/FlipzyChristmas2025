@@ -362,17 +362,17 @@
              
              <div class="flipzy-header-text">
                 <div class="flipzy-mag-rating" style="margin-bottom: 5px;">
-                  <span style="font-size:0.95rem; font-weight:700;">⭐️⭐️⭐️⭐️⭐️ 4.8/5 from <span class="dynamic-parent-count">346</span> parents</span>
+                  <span style="font-size:0.95rem; font-weight:700;">{{ 'sections.flipzy_offer.rating_prefix' | t | default: '⭐️⭐️⭐️⭐️⭐️ 4.8/5 from ' }}<span class="dynamic-parent-count">346</span>{{ 'sections.flipzy_offer.rating_suffix' | t | default: ' parents' }}</span>
                 </div>
                 <h2 class="flipzy-offer-title">{{ section.settings.title | default: product.title }}</h2>
              </div>
           </div>
           
           <ul class="flipzy-mag-list">
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#9989;</span> Kids WANT to complete their routine</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#9200;</span> 10–20 minutes of peace every morning</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#128524;</span> Less nagging. More cooperation.</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#128170;</span> Builds independence & responsibility</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#9989;</span> {{ 'sections.flipzy_offer.benefit_1' | t | default: 'Kids WANT to complete their routine' }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#9200;</span> {{ 'sections.flipzy_offer.benefit_2' | t | default: '10–20 minutes of peace every morning' }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#128524;</span> {{ 'sections.flipzy_offer.benefit_3' | t | default: 'Less nagging. More cooperation.' }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#128170;</span> {{ 'sections.flipzy_offer.benefit_4' | t | default: 'Builds independence & responsibility' }}</li>
           </ul>
 
           <span class="flipzy-qty-label">{{ 'sections.flipzy_offer.qty_label' | t }}</span>
@@ -412,7 +412,7 @@
           <!-- Urgency snippet -->
           <div style="text-align: center; margin-bottom: 20px;">
              <span style="display:inline-flex; align-items:center; gap:6px; font-weight:700; color:#dc2626; font-size:1.05rem; background:#fee2e2; padding:8px 16px; border-radius:30px;">
-               ⚡ Only <span class="dynamic-inventory-count">26</span> left in stock
+               {{ 'sections.flipzy_offer.inventory_prefix' | t | default: '⚡ Only ' }}<span class="dynamic-inventory-count">26</span>{{ 'sections.flipzy_offer.inventory_suffix' | t | default: ' left in stock' }}
              </span>
           </div>
 
@@ -421,13 +421,13 @@
             <!-- Left Side: Price Breakdown -->
             <div class="flipzy-summary-box-mobile-fix" style="display: flex; flex-direction: column; justify-content: center; padding-right: 15px; border-right: 2px solid #e2e8f0;">
                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                  <div style="font-size:0.95rem; color:#6b7280; font-weight: 500;">Regular price:</div>
+                  <div style="font-size:0.95rem; color:#6b7280; font-weight: 500;">{{ 'sections.flipzy_offer.regular_price' | t | default: 'Regular price:' }}</div>
                   <div id="offer-compare-price" style="font-size:1.1rem; text-decoration:line-through; color:#9ca3af; font-weight:600;">
                      {% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money }}{% else %}{{ variant.price | money }}{% endif %}
                   </div>
                </div>
                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <div class="flipzy-summary-text" style="font-size: 1.15rem;">Today:</div>
+                  <div class="flipzy-summary-text" style="font-size: 1.15rem;">{{ 'sections.flipzy_offer.today_price' | t | default: 'Today:' }}</div>
                   <div class="flipzy-summary-price" id="offer-total-price" data-base="{{ variant.price }}" style="font-weight: 800; font-size: 1.4rem;">{{ variant.price | money }}</div>
                </div>
                <div style="text-align:right; margin-top: 5px;">
@@ -438,9 +438,9 @@
             <!-- Right Side: Guarantees -->
             <div style="display: flex; flex-direction: column; justify-content: center; padding-left: 5px;">
                <ul class="flipzy-mag-list" style="margin-bottom: 0; padding: 0; display: flex; flex-direction: column; gap: 8px;">
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> Secure checkout</li>
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> 30-day guarantee</li>
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> Used by 1000+ families</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> {{ 'sections.flipzy_offer.guarantee_1' | t | default: 'Secure checkout' }}</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> {{ 'sections.flipzy_offer.guarantee_2' | t | default: '30-day guarantee' }}</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> {{ 'sections.flipzy_offer.guarantee_3' | t | default: 'Used by 1000+ families' }}</li>
                </ul>
             </div>
             
@@ -497,7 +497,7 @@
       </div>
 
     {% else %}
-       <p style="text-align:center; padding: 50px;">Please select a product in the section settings.</p>
+       <p style="text-align:center; padding: 50px;">{{ 'sections.flipzy_offer.please_select_product' | t | default: 'Please select a product in the section settings.' }}</p>
     {% endif %}
 
   </div>
