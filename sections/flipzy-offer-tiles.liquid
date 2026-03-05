@@ -416,31 +416,31 @@
              </span>
           </div>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; justify-content: space-between; align-items: center;">
+          <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 25px; align-items: stretch; background: #f8fafc; padding: 15px; border-radius: 12px;">
             
             <!-- Left Side: Price Breakdown -->
-            <div class="flipzy-summary-box" style="flex: 1; min-width: 140px; margin-bottom: 0;">
-               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+            <div style="flex: 1 1 200px; display: flex; flex-direction: column; justify-content: center; padding-right: 15px; border-right: 2px solid #e2e8f0;">
+               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                   <div style="font-size:0.95rem; color:#6b7280; font-weight: 500;">Regular price:</div>
                   <div id="offer-compare-price" style="font-size:1.1rem; text-decoration:line-through; color:#9ca3af; font-weight:600;">
                      {% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money }}{% else %}{{ variant.price | money }}{% endif %}
                   </div>
                </div>
-               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-                  <div class="flipzy-summary-text" style="font-size: 1.2rem;">Today:</div>
+               <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <div class="flipzy-summary-text" style="font-size: 1.25rem;">Today:</div>
                   <div class="flipzy-summary-price" id="offer-total-price" data-base="{{ variant.price }}">{{ variant.price | money }}</div>
                </div>
-               <div style="text-align:right;">
+               <div style="text-align:right; margin-top: 5px;">
                   <div class="flipzy-shipping-text" id="offer-shipping-text" style="display:none; color:#16a34a;"></div>
                </div>
             </div>
 
             <!-- Right Side: Guarantees -->
-            <div style="flex: 1; min-width: 150px; display: flex; flex-direction: column; justify-content: center;">
-               <ul class="flipzy-mag-list" style="margin-bottom: 0; padding: 0; display: flex; flex-direction: column; gap: 8px;">
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1rem; color:#16a34a; margin-right: 5px;">✔</span> Secure checkout</li>
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1rem; color:#16a34a; margin-right: 5px;">✔</span> 30-day guarantee</li>
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1rem; color:#16a34a; margin-right: 5px;">✔</span> Used by 1000+ families</li>
+            <div style="flex: 2 1 200px; display: flex; flex-direction: column; justify-content: center;">
+               <ul class="flipzy-mag-list" style="margin-bottom: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 8px;">✔</span> Secure checkout</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 8px;">✔</span> 30-day guarantee</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 8px;">✔</span> Used by 1000+ families</li>
                </ul>
             </div>
             
@@ -724,19 +724,72 @@ function formatMoney(cents) {
       });
   }
 
+  // Hide FAQ widget logic
+  function initHideFAQSystem() {
+      // Setup observer to watch the section
+      const section = document.getElementById('flipzy-offer-section');
+      if (!section) return;
+
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              // Usually FAQ floats have these classes or IDs. We'll add a generic style block to ensure it affects them if we can't find the exact ID.
+              if (entry.isIntersecting) {
+                  document.documentElement.classList.add('hide-faq-widget');
+              } else {
+                  document.documentElement.classList.remove('hide-faq-widget');
+              }
+          });
+      }, {
+          root: null,
+          threshold: 0.1 // Trigger when 10% of the offer section is visible
+      });
+
+      observer.observe(section);
+  }
+
   // Run on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       calculateDeliveryDate();
       calculateParentRating();
       calculateInventory();
+      initHideFAQSystem();
     });
   } else {
     calculateDeliveryDate();
     calculateParentRating();
     calculateInventory();
+    initHideFAQSystem();
   }
 </script>
+
+<style>
+  /* Global CSS state injected onto the HTML element when the offer tiles are visible */
+  html.hide-faq-widget #shopify-chat, 
+  html.hide-faq-widget .dummy-chat-widget,
+  html.hide-faq-widget iframe[id^="dummy-chat"] {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+  }
+  
+  /* Mobile adjustments for the side-by-side flex box */
+  @media (max-width: 600px) {
+      .flipzy-summary-box {
+          border-right: none !important;
+          border-bottom: 2px solid #e2e8f0;
+          padding-right: 0 !important;
+          padding-bottom: 15px;
+          margin-bottom: 15px !important;
+      }
+      .flipzy-summary-text {
+          font-size: 1.1rem !important;
+      }
+      .flipzy-qty-btn[data-badge="true"] .flipzy-btn-badge {
+         font-size: 0.70rem !important; /* Fix overlaps on older small screens */
+      }
+  }
+</style>
 
 {% schema %}
 {
