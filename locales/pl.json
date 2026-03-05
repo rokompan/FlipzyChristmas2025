@@ -431,7 +431,12 @@
     "cart_upsell": {
       "upgrade_btn": "Tylko aktualizacja",
       "add_plus_one": "Dodaj +1",
-      "upsell_2_badge": "Najlepsza wartość"
+      "upsell_2_badge": "Najlepsza wartość",
+      "upsell_1_badge": "Popularny",
+      "upsell_1_sub": "Dodaj jeszcze 1, aby odblokować darmową wysyłkę!",
+      "upsell_2_head": "⚡ Najlepsza wartość i bezpłatna wysyłka",
+      "upsell_2_sub": "Dodaj jeszcze 1, aby otrzymać 25% zniżki!",
+      "upsell_1_head": "⭐ Popularne i bezpłatna wysyłka"
     },
     "flipzy_help": {
       "ask_question": "💬 Zadaj pytanie",
@@ -443,6 +448,40 @@
       "email_placeholder": "Twój adres e-mail (jeśli chcesz otrzymać odpowiedź)",
       "message_label": "Twoja wiadomość",
       "message_placeholder": "Jak możemy pomóc?"
+    },
+    "flipzy_offer": {
+      "rating_text": "4,8 / 5",
+      "bullet_1": "Flip motywuje dzieci do ukończenia gry",
+      "unit_items": "Flipzy",
+      "badge_popular": "⭐ Popularny",
+      "badge_3for2": "3 za 2",
+      "guarantee_2": "2-letnia gwarancja",
+      "bullet_3": "Buduje niezależność",
+      "bullet_4": "Bez ekranów, bez aplikacji",
+      "sold_out": "Wyprzedane",
+      "badge_bestseller": "Bestseller",
+      "guarantee_1": "30-dniowy zwrot pieniędzy",
+      "badge_best_value": "🔥 Najlepsza wartość",
+      "add_to_cart": "Dodaj do koszyka",
+      "delivered_by": "Dostarczone przez",
+      "offer_2": "10% zniżki + darmowa wysyłka",
+      "offer_3": "20% zniżki + darmowa wysyłka",
+      "qty_label": "Wybierz ilość:",
+      "total_price": "Cena całkowita:",
+      "unit_item": "Flipzy",
+      "free_shipping": "Darmowa wysyłka",
+      "heading": "Dołącz do setek szczęśliwych rodzin",
+      "bullet_2": "Mniej przypominania, mniej kłótni",
+      "price_per_item": "Cena za sztukę:",
+      "offer_4": "25% zniżki + darmowa wysyłka",
+      "calculating": "Obliczanie..."
+    },
+    "flipzy_sticky": {
+      "qty_final_1": "1x Flipzy",
+      "qty_final_2": "2x Flipzy (⭐ Popularne + Darmowa wysyłka)",
+      "qty_final_4": "4x Flipzy (🔥 Najlepsza wartość)",
+      "qty_label": "Ilość:",
+      "qty_final_3": "3x Flipzy (oferta 3 za 2)"
     }
   },
   "localization": {
