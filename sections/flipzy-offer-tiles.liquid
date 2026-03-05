@@ -518,33 +518,24 @@ function formatWithSeparators(number, precision, thousands, decimal) {
 
 function formatMoney(cents) {
   const currencyCode = {{ cart.currency.iso_code | json }};
-  const moneyFormat = window.offerConfig ? window.offerConfig.moneyFormat : null;
-
-  if (!moneyFormat) return (cents / 100).toFixed(0) + ' ' + currencyCode;
-
-  // STRICT RULE: User wants NO decimals for any currency (EUR, HUF, etc)
-  let precision = 0; 
-  let val = cents / 100;
-  let formatted = moneyFormat;
-
-  // Detect format type and apply correct separators
-  // European/Dot-Thousands: matches 'amount_with_comma_separator' or 'amount_no_decimals_with_comma_separator'
-  if (formatted.indexOf('comma_separator') !== -1) {
-      let str = formatWithSeparators(val, precision, '.', ',');
-      formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
-  } 
-  // Default/Comma-Thousands: matches 'amount', 'amount_no_decimals', etc.
-  else {
-      let str = formatWithSeparators(val, precision, ',', '.');
-      formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
+  const currencySymbol = {{ cart.currency.symbol | json }};
+  
+  // STRICT RULE: NO decimals for any currency (EUR, HUF, CZK, etc)
+  let val = Math.round(cents / 100);
+  
+  let thousands = '.';
+  if (currencyCode === 'USD' || currencyCode === 'GBP' || currencyCode === 'CAD' || currencyCode === 'AUD') {
+      thousands = ',';
   }
-
-  // Fallback: If replacement failed or stripped
-  if (formatted.indexOf('{' + '{') !== -1 || formatted.indexOf('}' + '}') !== -1) {
-       return formatWithSeparators(val, precision, ',', '.') + ' ' + currencyCode; 
+  
+  let numStr = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+  
+  // Native positioning based on currency
+  if (currencyCode === 'HUF' || currencyCode === 'CZK' || currencyCode === 'RON' || currencyCode === 'PLN' || currencyCode === 'SEK' || currencyCode === 'DKK' || currencyCode === 'NOK') {
+      return numStr + ' ' + currencySymbol;
+  } else {
+      return currencySymbol + numStr;
   }
-
-  return formatted;
 }
 
   function selectOfferQty(qty, element) {

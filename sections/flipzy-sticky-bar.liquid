@@ -251,31 +251,24 @@
   // Mirrored Format Money Logic
   function formatStickyMoney(cents) {
     const currencyCode = {{ cart.currency.iso_code | json }};
-    const moneyFormat = window.stickyConfig.moneyFormat;
+    const currencySymbol = {{ cart.currency.symbol | json }};
     
-    if (!moneyFormat) return (cents / 100).toFixed(0) + ' ' + currencyCode;
-
-    // STRICT RULE: User wants NO decimals for any currency (EUR, HUF, etc)
-    let precision = 0; 
-
-    let val = cents / 100;
-    let formatted = moneyFormat;
-
-    // Detect format type and apply correct separators
-    if (formatted.indexOf('comma_separator') !== -1) {
-        let str = formatWithSeparators(val, precision, '.', ',');
-        formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
-    } 
-    else {
-        let str = formatWithSeparators(val, precision, ',', '.');
-        formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
+    // STRICT RULE: NO decimals for any currency
+    let val = Math.round(cents / 100);
+    
+    let thousands = '.';
+    if (currencyCode === 'USD' || currencyCode === 'GBP' || currencyCode === 'CAD' || currencyCode === 'AUD') {
+        thousands = ',';
     }
     
-    if (formatted.indexOf('{' + '{') !== -1 || formatted.indexOf('}' + '}') !== -1) {
-         return formatWithSeparators(val, precision, ',', '.') + ' ' + currencyCode;
+    let numStr = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+    
+    // Native positioning based on currency
+    if (currencyCode === 'HUF' || currencyCode === 'CZK' || currencyCode === 'RON' || currencyCode === 'PLN' || currencyCode === 'SEK' || currencyCode === 'DKK' || currencyCode === 'NOK') {
+        return numStr + ' ' + currencySymbol;
+    } else {
+        return currencySymbol + numStr;
     }
-
-    return formatted;
   }
 
   function updateStickyPrice(select) {
