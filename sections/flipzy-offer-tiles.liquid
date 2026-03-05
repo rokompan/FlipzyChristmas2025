@@ -427,8 +427,8 @@
                   </div>
                </div>
                <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <div class="flipzy-summary-text" style="font-size: 1.25rem;">Today:</div>
-                  <div class="flipzy-summary-price" id="offer-total-price" data-base="{{ variant.price }}">{{ variant.price | money }}</div>
+                  <div class="flipzy-summary-text" style="font-size: 1.15rem;">Today:</div>
+                  <div class="flipzy-summary-price" id="offer-total-price" data-base="{{ variant.price }}" style="font-weight: 800; font-size: 1.4rem;">{{ variant.price | money }}</div>
                </div>
                <div style="text-align:right; margin-top: 5px;">
                   <div class="flipzy-shipping-text" id="offer-shipping-text" style="display:none; color:#16a34a;"></div>
@@ -437,10 +437,10 @@
 
             <!-- Right Side: Guarantees -->
             <div style="display: flex; flex-direction: column; justify-content: center; padding-left: 5px;">
-               <ul class="flipzy-mag-list" style="margin-bottom: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> Secure checkout</li>
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> 30-day guarantee</li>
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> Used by 1000+ families</li>
+               <ul class="flipzy-mag-list" style="margin-bottom: 0; padding: 0; display: flex; flex-direction: column; gap: 8px;">
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> Secure checkout</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> 30-day guarantee</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> Used by 1000+ families</li>
                </ul>
             </div>
             
@@ -752,24 +752,38 @@ function formatMoney(cents) {
   
   /* Mobile adjustments for the side-by-side flex box */
   @media (max-width: 600px) {
+      /* The container block holding both elements */
       .flipzy-summary-box-mobile-fix {
-          padding-right: 10px !important;
+          padding-right: 8px !important;
       }
+      
       .flipzy-summary-box-mobile-fix .flipzy-summary-text {
-          font-size: 1.1rem !important;
+          font-size: 1.05rem !important;
       }
       .flipzy-summary-box-mobile-fix #offer-total-price {
-          font-size: 1.1rem !important;
+          font-size: 1.35rem !important;
       }
       .flipzy-summary-box-mobile-fix #offer-compare-price {
-          font-size: 0.95rem !important;
+          font-size: 0.9rem !important;
+          margin-bottom: -2px !important;
       }
       .flipzy-summary-box-mobile-fix > div > div {
           font-size: 0.85rem !important; 
       }
       
+      /* Make sure the main grid stays tight */
+      div[style*="grid-template-columns: 1fr 1fr"] {
+         gap: 8px !important;
+         padding: 12px 10px !important;
+         margin-bottom: 20px !important;
+      }
+      
       .flipzy-mag-item {
-          font-size: 0.8rem !important;
+          font-size: 0.75rem !important;
+      }
+      .flipzy-mag-icon {
+          font-size: 0.9rem !important;
+          margin-right: 4px !important;
       }
       
       .flipzy-qty-btn[data-badge="true"] .flipzy-btn-badge {
