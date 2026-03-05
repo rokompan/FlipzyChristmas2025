@@ -416,10 +416,10 @@
              </span>
           </div>
 
-          <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 25px; align-items: stretch; background: #f8fafc; padding: 15px; border-radius: 12px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; align-items: stretch; background: #f8fafc; padding: 15px; border-radius: 12px;">
             
             <!-- Left Side: Price Breakdown -->
-            <div class="flipzy-summary-box-mobile-fix" style="flex: 1 1 200px; display: flex; flex-direction: column; justify-content: center; padding-right: 15px; border-right: 2px solid #e2e8f0;">
+            <div class="flipzy-summary-box-mobile-fix" style="display: flex; flex-direction: column; justify-content: center; padding-right: 15px; border-right: 2px solid #e2e8f0;">
                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                   <div style="font-size:0.95rem; color:#6b7280; font-weight: 500;">Regular price:</div>
                   <div id="offer-compare-price" style="font-size:1.1rem; text-decoration:line-through; color:#9ca3af; font-weight:600;">
@@ -436,11 +436,11 @@
             </div>
 
             <!-- Right Side: Guarantees -->
-            <div style="flex: 2 1 200px; display: flex; flex-direction: column; justify-content: center;">
+            <div style="display: flex; flex-direction: column; justify-content: center; padding-left: 5px;">
                <ul class="flipzy-mag-list" style="margin-bottom: 0; padding: 0; display: flex; flex-direction: column; gap: 10px;">
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 8px;">✔</span> Secure checkout</li>
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 8px;">✔</span> 30-day guarantee</li>
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 8px;">✔</span> Used by 1000+ families</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> Secure checkout</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> 30-day guarantee</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.2; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> Used by 1000+ families</li>
                </ul>
             </div>
             
@@ -753,15 +753,25 @@ function formatMoney(cents) {
   /* Mobile adjustments for the side-by-side flex box */
   @media (max-width: 600px) {
       .flipzy-summary-box-mobile-fix {
-          border-right: none !important;
-          border-bottom: 2px solid #e2e8f0;
-          padding-right: 0 !important;
-          padding-bottom: 12px;
-          margin-bottom: 12px !important;
+          padding-right: 10px !important;
       }
-      .flipzy-summary-text {
+      .flipzy-summary-box-mobile-fix .flipzy-summary-text {
           font-size: 1.1rem !important;
       }
+      .flipzy-summary-box-mobile-fix #offer-total-price {
+          font-size: 1.1rem !important;
+      }
+      .flipzy-summary-box-mobile-fix #offer-compare-price {
+          font-size: 0.95rem !important;
+      }
+      .flipzy-summary-box-mobile-fix > div > div {
+          font-size: 0.85rem !important; 
+      }
+      
+      .flipzy-mag-item {
+          font-size: 0.8rem !important;
+      }
+      
       .flipzy-qty-btn[data-badge="true"] .flipzy-btn-badge {
          font-size: 0.70rem !important; /* Fix overlaps on older small screens */
       }
