@@ -419,7 +419,7 @@
           <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 25px; align-items: stretch; background: #f8fafc; padding: 15px; border-radius: 12px;">
             
             <!-- Left Side: Price Breakdown -->
-            <div style="flex: 1 1 200px; display: flex; flex-direction: column; justify-content: center; padding-right: 15px; border-right: 2px solid #e2e8f0;">
+            <div class="flipzy-summary-box-mobile-fix" style="flex: 1 1 200px; display: flex; flex-direction: column; justify-content: center; padding-right: 15px; border-right: 2px solid #e2e8f0;">
                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                   <div style="font-size:0.95rem; color:#6b7280; font-weight: 500;">Regular price:</div>
                   <div id="offer-compare-price" style="font-size:1.1rem; text-decoration:line-through; color:#9ca3af; font-weight:600;">
@@ -743,7 +743,8 @@ function formatMoney(cents) {
   /* Global CSS state injected onto the HTML element when the offer tiles are visible */
   html.hide-faq-widget #shopify-chat, 
   html.hide-faq-widget .dummy-chat-widget,
-  html.hide-faq-widget iframe[id^="dummy-chat"] {
+  html.hide-faq-widget iframe[id^="dummy-chat"],
+  html.hide-faq-widget #flipzy-help-popup-root {
       display: none !important;
       opacity: 0 !important;
       pointer-events: none !important;
@@ -751,12 +752,12 @@ function formatMoney(cents) {
   
   /* Mobile adjustments for the side-by-side flex box */
   @media (max-width: 600px) {
-      .flipzy-summary-box {
+      .flipzy-summary-box-mobile-fix {
           border-right: none !important;
           border-bottom: 2px solid #e2e8f0;
           padding-right: 0 !important;
-          padding-bottom: 15px;
-          margin-bottom: 15px !important;
+          padding-bottom: 12px;
+          margin-bottom: 12px !important;
       }
       .flipzy-summary-text {
           font-size: 1.1rem !important;
