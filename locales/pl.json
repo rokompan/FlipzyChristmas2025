@@ -427,6 +427,22 @@
       "min_error": "Pozycja ma minimalny limit {{ min }}",
       "max_error": "Pozycja ma maksymalny limit {{ max }}",
       "step_error": "Możesz dodać tę pozycję tylko z przyrostem o {{ step }}"
+    },
+    "cart_upsell": {
+      "upgrade_btn": "Tylko aktualizacja",
+      "add_plus_one": "Dodaj +1",
+      "upsell_2_badge": "Najlepsza wartość"
+    },
+    "flipzy_help": {
+      "ask_question": "💬 Zadaj pytanie",
+      "title": "Masz pytanie?",
+      "text": "Wyślij nam wiadomość, a my skontaktujemy się z Tobą za pośrednictwem poczty elektronicznej.",
+      "submit": "Wyślij wiadomość",
+      "reply_to": "ODPOWIEDŹ DO:",
+      "email_label": "E-mail (opcjonalnie)",
+      "email_placeholder": "Twój adres e-mail (jeśli chcesz otrzymać odpowiedź)",
+      "message_label": "Twoja wiadomość",
+      "message_placeholder": "Jak możemy pomóc?"
     }
   },
   "localization": {
