@@ -409,14 +409,16 @@
             </div>
           </div>
 
-          <div class="flipzy-summary-box" style="display:block;">
+          <div class="flipzy-summary-box" style="display:block; flex-direction: column;">
              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-                <div class="flipzy-summary-text">{{ 'sections.flipzy_offer.total_price' | t }}</div>
-                <div class="flipzy-summary-price" id="offer-total-price" data-base="{{ variant.price }}">{{ variant.price | money }}</div>
+                <div style="font-size:1rem; color:#6b7280; font-weight: 500;">Value:</div>
+                <div id="offer-compare-price" style="font-size:1.1rem; text-decoration:line-through; color:#9ca3af; font-weight:600;">
+                   {% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money }}{% else %}{{ variant.price | money }}{% endif %}
+                </div>
              </div>
              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
-                <div style="font-size:0.9rem; color:#6b7280;">{{ 'sections.flipzy_offer.price_per_item' | t }}</div>
-                <div id="offer-per-item" style="font-weight:600; color:#374151;">{{ variant.price | money }}</div>
+                <div class="flipzy-summary-text" style="font-size: 1.2rem;">{{ 'sections.flipzy_offer.total_price' | t }}</div>
+                <div class="flipzy-summary-price" id="offer-total-price" data-base="{{ variant.price }}">{{ variant.price | money }}</div>
              </div>
              <div style="text-align:right;">
                 <div class="flipzy-shipping-text" id="offer-shipping-text" style="display:none; color:#16a34a;"></div>
@@ -522,39 +524,6 @@ function formatMoney(cents) {
   return formatted;
 }
 
-function formatPerItemMoney(cents) {
-  const currencyCode = {{ cart.currency.iso_code | json }};
-  // Reuse the global config format or fallback
-  let moneyFormat = window.offerConfig ? window.offerConfig.moneyFormat : "{{ amount }} €";
-
-  let val = cents / 100;
-  
-  // Custom Precision Logic: 
-  // If value is whole (e.g. 25.00), use 0 decimals. 
-  // If value has decimals (e.g. 25.50), use 2 decimals.
-  let precision = (val % 1 === 0) ? 0 : 2;
-
-  let formatted = moneyFormat;
-
-  // Detect format type and apply correct separators
-  if (formatted.indexOf('comma_separator') !== -1) {
-      // European: 1.234,56
-      let str = formatWithSeparators(val, precision, '.', ',');
-      formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
-  } 
-  else {
-      // Standard: 1,234.56
-      let str = formatWithSeparators(val, precision, ',', '.');
-      formatted = formatted.replace(/\{\{\s*amount_?[a-z_]*\s*\}\}/g, str);
-  }
-
-  if (formatted.indexOf('{' + '{') !== -1) {
-       return formatWithSeparators(val, precision, ',', '.') + ' ' + currencyCode; 
-  }
-
-  return formatted;
-}
-
   function selectOfferQty(qty, element) {
     // 1. Update UI Selection
     currentOfferQty = qty;
@@ -564,6 +533,7 @@ function formatPerItemMoney(cents) {
     // 2. Calculate Dynamic Price using Config
     let finalPrice = 0;
     const basePrice = window.offerConfig.basePrice;
+    const compareAtPrice = window.offerConfig.compareAtPrice > basePrice ? window.offerConfig.compareAtPrice : basePrice;
     
     // Use Schema Settings (Percent Discount)
     const tier = window.offerConfig.tiers[qty] || { discount: 0 };
@@ -573,6 +543,9 @@ function formatPerItemMoney(cents) {
     const baseTotal = basePrice * qty;
     let rawPrice = baseTotal * (1 - (discountPct / 100));
 
+    // Calculate dynamic compare total
+    let compareTotal = compareAtPrice * qty;
+
     // DYNAMIC ROUNDING (Math.ceil)
     // Example: €63.24 (6324 cents) -> 63.24 / 100 = 63.24 -> ceil(63.24) = 64 -> 64 * 100 = 6400 cents (€64.00)
     // This ensures prices are always rounded UP to the nearest whole number currency unit.
@@ -581,19 +554,12 @@ function formatPerItemMoney(cents) {
 
     // 3. Format Money
     const priceEl = document.getElementById('offer-total-price');
-    priceEl.innerText = formatMoney(finalPrice);
+    if (priceEl) priceEl.innerText = formatMoney(finalPrice);
 
-    // 4. Per Item Price
-    const perItemEl = document.getElementById('offer-per-item');
-    if (perItemEl) {
-        // Calculate per item from the rounded total
-        let perItemCents = finalPrice / qty;
-        
-        // Round to nearest 0.25 (25 cents)
-        // e.g. 2512 -> 2525, 2510 -> 2500
-        perItemCents = Math.round(perItemCents / 25) * 25;
-        
-        perItemEl.innerText = formatPerItemMoney(perItemCents);
+    // 4. Compare-At Price
+    const compareEl = document.getElementById('offer-compare-price');
+    if (compareEl) {
+        compareEl.innerText = formatMoney(compareTotal);
     }
     
     // 5. Offer Text (Translatable)
@@ -660,6 +626,7 @@ function formatPerItemMoney(cents) {
 
   window.offerConfig = {
     basePrice: {{ variant.price | default: product.price | default: 0 | json }},
+    compareAtPrice: {{ variant.compare_at_price | default: product.compare_at_price | default: variant.price | default: product.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
     strings: {
        offer2: {{ 'sections.flipzy_offer.offer_2' | t | json }},
