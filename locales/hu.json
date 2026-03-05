@@ -446,6 +446,17 @@
       "upsell_1_sub": "Adj hozzá még 1-et az ingyenes szállításhoz!",
       "upsell_2_sub": "Hozzáadás 1 még kap 25% LE!",
       "add_plus_one": "+1 hozzáadása"
+    },
+    "flipzy_help": {
+      "email_label": "Email (nem kötelező)",
+      "email_placeholder": "Az Ön e-mail címe (ha választ szeretne kapni)",
+      "message_placeholder": "Hogyan segíthetünk?",
+      "reply_to": "VÁLASZ:",
+      "submit": "Üzenet küldése",
+      "ask_question": "💬 Kérdés feltevése",
+      "title": "Kérdése van?",
+      "text": "Írjon nekünk egy üzenetet, és mi válaszolunk Önnek e-mailben.",
+      "message_label": "Az Ön üzenete"
     }
   },
   "localization": {
