@@ -343,7 +343,18 @@
         "unlock_shipping_text": "Zdobądź parę Morning & Evening + Darmowa wysyłka.",
         "perfect_gift_title": "Idealny prezent?",
         "perfect_gift_text": "Dodaj dodatkowy dla przyjaciela lub kuzyna.",
-        "button_text": "Dodaj kolejny (+1)"
+        "button_text": "Dodaj kolejny (+1)",
+        "button_3pack": "Aktualizacja do 3-paku",
+        "save_badge": "SAVE {{ percent }}%",
+        "updating": "Aktualizacja...",
+        "headline_2pack": "✨ Odblokuj darmową wysyłkę!",
+        "subline_2pack": "Aktualizacja do pary Poranek i Wieczór.",
+        "button_2pack": "Aktualizacja do 2-paku",
+        "headline_3pack": "🔥 Najpopularniejszy wybór",
+        "subline_3pack": "Uaktualnij do opcji Zapłać 2, otrzymaj 1 gratis (3-pak).",
+        "headline_4pack": "🏆 Najlepsza wartość - maksymalne oszczędności",
+        "subline_4pack": "Aktualizacja do pakietu rodzinnego (4x).",
+        "button_4pack": "Aktualizacja do 4-paku"
       }
     },
     "footer": {
