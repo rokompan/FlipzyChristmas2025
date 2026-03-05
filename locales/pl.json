@@ -474,7 +474,18 @@
       "bullet_2": "Mniej przypominania, mniej kłótni",
       "price_per_item": "Cena za sztukę:",
       "offer_4": "25% zniżki + darmowa wysyłka",
-      "calculating": "Obliczanie..."
+      "calculating": "Obliczanie...",
+      "rating_suffix": " rodzice",
+      "benefit_2": "10-20 minut spokoju każdego ranka",
+      "benefit_4": "Buduje niezależność i odpowiedzialność",
+      "inventory_prefix": "⚡ Tylko ",
+      "inventory_suffix": " pozostały w magazynie",
+      "regular_price": "Cena regularna:",
+      "today_price": "Dzisiaj:",
+      "rating_prefix": "⭐️⭐️⭐️⭐️⭐️ 4.8/5 od ",
+      "guarantee_3": "Używany przez ponad 1000 rodzin",
+      "benefit_3": "Mniej dokuczania. Więcej współpracy.",
+      "benefit_1": "Dzieci CHCĄ wykonywać swoje rutynowe czynności"
     },
     "flipzy_sticky": {
       "qty_final_1": "1x Flipzy",
