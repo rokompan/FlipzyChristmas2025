@@ -344,8 +344,12 @@
       
       if (isPast) {
           bar.classList.add('is-visible');
+          // REVEAL FAQ WIDGET when sticky bar is visible
+          document.documentElement.classList.remove('hide-faq-widget');
       } else {
           bar.classList.remove('is-visible');
+          // HIDE FAQ WIDGET when navigating the main offer section above the sticky cutoff
+          document.documentElement.classList.add('hide-faq-widget');
       }
     }
     
