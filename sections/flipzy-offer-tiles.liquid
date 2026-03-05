@@ -724,42 +724,18 @@ function formatMoney(cents) {
       });
   }
 
-  // Hide FAQ widget logic
-  function initHideFAQSystem() {
-      // Setup observer to watch the section
-      const section = document.getElementById('flipzy-offer-section');
-      if (!section) return;
-
-      const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-              // Usually FAQ floats have these classes or IDs. We'll add a generic style block to ensure it affects them if we can't find the exact ID.
-              if (entry.isIntersecting) {
-                  document.documentElement.classList.add('hide-faq-widget');
-              } else {
-                  document.documentElement.classList.remove('hide-faq-widget');
-              }
-          });
-      }, {
-          root: null,
-          threshold: 0.1 // Trigger when 10% of the offer section is visible
-      });
-
-      observer.observe(section);
-  }
-
+          // The FAQ hide logic has been moved to flipzy-sticky-bar.liquid
   // Run on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       calculateDeliveryDate();
       calculateParentRating();
       calculateInventory();
-      initHideFAQSystem();
     });
   } else {
     calculateDeliveryDate();
     calculateParentRating();
     calculateInventory();
-    initHideFAQSystem();
   }
 </script>
 
