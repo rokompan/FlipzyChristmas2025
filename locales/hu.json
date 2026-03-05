@@ -428,14 +428,19 @@
       "unit_items": "Flipzy",
       "guarantee_2": "2 év garancia",
       "bullet_3": "Függetlenséget épít",
-      "add_to_cart": "Hozzáadás a kosárhoz"
+      "add_to_cart": "Hozzáadás a kosárhoz",
+      "free_shipping": "Ingyenes szállítás"
     },
     "flipzy_sticky": {
       "opt_4": "4x Flipzy (🔥 Best Value)",
       "opt_3": "3x Flipzy (3 for 2 Deal)",
       "opt_1": "1x Flipzy",
       "qty_label": "Mennyiség:",
-      "opt_2": "2x Flipzy (⭐ Népszerű + Ingyenes szállítás)"
+      "opt_2": "2x Flipzy (⭐ Népszerű + Ingyenes szállítás)",
+      "qty_final_2": "2x Flipzy (⭐ Népszerű + Ingyenes szállítás)",
+      "qty_final_3": "3x Flipzy (3 for 2 Deal)",
+      "qty_final_4": "4x Flipzy (🔥 Best Value)",
+      "qty_final_1": "1x Flipzy"
     },
     "cart_upsell": {
       "upsell_2_head": "⚡ Legjobb érték és ingyenes szállítás",
