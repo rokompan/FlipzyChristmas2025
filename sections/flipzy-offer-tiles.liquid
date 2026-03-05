@@ -361,18 +361,18 @@
              </div>
              
              <div class="flipzy-header-text">
-                <h2 class="flipzy-offer-title">{{ section.settings.title | default: product.title }}</h2>
-                <div class="flipzy-mag-rating">
+                <div class="flipzy-mag-rating" style="margin-bottom: 5px;">
                   <span style="font-size:0.95rem; font-weight:700;">⭐️⭐️⭐️⭐️⭐️ 4.8/5 from <span class="dynamic-parent-count">346</span> parents</span>
                 </div>
+                <h2 class="flipzy-offer-title">{{ section.settings.title | default: product.title }}</h2>
              </div>
           </div>
           
           <ul class="flipzy-mag-list">
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">✅</span> {{ 'sections.flipzy_offer.bullet_1' | t }}</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">😌</span> {{ 'sections.flipzy_offer.bullet_2' | t }}</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">💪</span> {{ 'sections.flipzy_offer.bullet_3' | t }}</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">📵</span> {{ 'sections.flipzy_offer.bullet_4' | t }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">✅</span> Kids WANT to complete their routine</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">⏰</span> Saves you 10–20 minutes every morning</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">�</span> Less nagging. More cooperation.</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">�</span> Builds independence & responsibility</li>
           </ul>
 
           <span class="flipzy-qty-label">{{ 'sections.flipzy_offer.qty_label' | t }}</span>
@@ -409,6 +409,13 @@
             </div>
           </div>
 
+          <!-- Urgency snippet -->
+          <div style="text-align: center; margin-bottom: 20px;">
+             <span style="display:inline-flex; align-items:center; gap:6px; font-weight:700; color:#dc2626; font-size:1.05rem; background:#fee2e2; padding:8px 16px; border-radius:30px;">
+               ⚡ Only <span class="dynamic-inventory-count">26</span> left - going fast
+             </span>
+          </div>
+
           <div class="flipzy-summary-box" style="display:block; flex-direction: column;">
              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
                 <div style="font-size:1rem; color:#6b7280; font-weight: 500;">Value:</div>
@@ -441,7 +448,7 @@
             </span>
           </button>
           
-          <div class="flipzy-delivery-note">
+          <div class="flipzy-delivery-note" style="margin-bottom: 15px;">
              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="1" y="3" width="15" height="13"></rect>
                 <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
@@ -450,6 +457,12 @@
              </svg>
              {{ 'sections.flipzy_offer.delivered_by' | t }} <span id="flipzy-delivery-date">{{ 'sections.flipzy_offer.calculating' | t }}</span>
           </div>
+          
+          <ul class="flipzy-mag-list" style="margin-bottom: 0; align-items: center; text-align: left;">
+            <li class="flipzy-mag-item" style="font-size: 1rem; color: #4b5563;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a;">✔</span> Secure checkout</li>
+            <li class="flipzy-mag-item" style="font-size: 1rem; color: #4b5563;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a;">✔</span> 30-day guarantee</li>
+            <li class="flipzy-mag-item" style="font-size: 1rem; color: #4b5563;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a;">✔</span> Used by 1000+ families</li>
+          </ul>
           
           <!-- HIDDEN STANDARD FORM -->
           <div style="display:none;">
@@ -681,15 +694,37 @@ function formatMoney(cents) {
       });
   }
 
+  // Dynamic Inventory calculation
+  function calculateInventory() {
+      const startDate = new Date('2026-03-05T00:00:00'); // Based on today as the start date
+      const today = new Date();
+      const diffTime = today - startDate;
+      let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays < 0) diffDays = 0;
+      
+      const baseInventory = 26;
+      let currentInventory = baseInventory - (diffDays * 4);
+      
+      // Bottom out at 3 just so it never hits 0 or negatives and stays urgent
+      if (currentInventory < 3) currentInventory = 3;
+      
+      const elements = document.querySelectorAll('.dynamic-inventory-count');
+      elements.forEach(function(el) {
+          el.innerText = currentInventory;
+      });
+  }
+
   // Run on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       calculateDeliveryDate();
       calculateParentRating();
+      calculateInventory();
     });
   } else {
     calculateDeliveryDate();
     calculateParentRating();
+    calculateInventory();
   }
 </script>
 
