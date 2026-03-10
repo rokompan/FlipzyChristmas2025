@@ -412,7 +412,7 @@
           <!-- Urgency snippet -->
           <div style="text-align: center; margin-bottom: 20px;">
              <span style="display:inline-flex; align-items:center; gap:6px; font-weight:700; color:#dc2626; font-size:1.05rem; background:#fee2e2; padding:8px 16px; border-radius:30px;">
-               {{ 'sections.flipzy_offer.inventory_prefix' | t | default: '⚡ Only ' }}<span class="dynamic-inventory-count">26</span>{{ 'sections.flipzy_offer.inventory_suffix' | t | default: ' left in stock' }}
+               {{ 'sections.flipzy_offer.inventory_prefix' | t | default: '⚡ Only ' }}<span class="dynamic-inventory-count">64</span>{{ 'sections.flipzy_offer.inventory_suffix' | t | default: ' left in stock' }}
              </span>
           </div>
 
@@ -697,14 +697,19 @@ function formatMoney(cents) {
 
   // Dynamic Inventory calculation
   function calculateInventory() {
-      const startDate = new Date('2026-03-05T00:00:00'); // Based on today as the start date
+      const startDate = new Date('2026-03-10T00:00:00'); // Based on today as the start date
       const today = new Date();
       const diffTime = today - startDate;
       let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
       if (diffDays < 0) diffDays = 0;
       
-      const baseInventory = 26;
-      let currentInventory = baseInventory - (diffDays * 4);
+      let currentInventory = 64;
+      
+      for (let i = 0; i < diffDays; i++) {
+          // Predictable pseudo-random drop between 5 and 9 based on the day index
+          let drop = ((i * 17) % 5) + 5;
+          currentInventory -= drop;
+      }
       
       // Bottom out at 3 just so it never hits 0 or negatives and stays urgent
       if (currentInventory < 3) currentInventory = 3;
