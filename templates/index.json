@@ -37,13 +37,6 @@
             "button_text": "Go to Shop"
           }
         },
-        "slide_UrAMPb": {
-          "type": "slide",
-          "settings": {
-            "heading": "<p>Flipzy - <strong>Wooden Planner</strong> That Makes Tasks Fun</p>",
-            "button_text": "Get Flipzy Now"
-          }
-        },
         "slide_XfNBGf": {
           "type": "slide",
           "settings": {
@@ -65,7 +58,6 @@
         "slide_M6LaR3",
         "slide_wiHe7j",
         "slide_pde3JQ",
-        "slide_UrAMPb",
         "slide_XfNBGf",
         "slide_C3LWGL"
       ],
