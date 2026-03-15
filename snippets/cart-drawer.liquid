@@ -844,80 +844,72 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // We use event delegation on document to catch the button click
-    // even if the cart drawer DOM is completely replaced by AJAX form updates
-    document.addEventListener('click', function(e) {
-      if (
-        e.target && 
-        (e.target.closest('#CartDrawer-Checkout') || e.target.closest('.cart__checkout-button'))
-      ) {
-        var checkoutBtn = e.target.closest('#CartDrawer-Checkout') || e.target.closest('.cart__checkout-button');
-        var cartDrawer = checkoutBtn.closest('cart-drawer');
+    document.addEventListener('submit', function(e) {
+      if (e.target && e.target.id === 'CartDrawer-Form') {
+        var form = e.target;
         
-        // Ensure the click happened inside our cart drawer
-        if (checkoutBtn && cartDrawer) {
-          var form = checkoutBtn.form || checkoutBtn.closest('form') || document.getElementById('CartDrawer-Form');
+        // Find the checkout button
+        var checkoutBtn = form.querySelector('#CartDrawer-Checkout') || form.querySelector('.cart__checkout-button');
+        
+        if (checkoutBtn) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
           
-          if (form) {
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            
-            // Read visible total. Fallbacks applied
-            var totalElem = document.querySelector('p.totals__total-value') || 
-                            document.querySelector('.totals__total-value') ||
-                            document.querySelector('.cart-drawer__footer .totals__total-value');
-            
-            var totalText = totalElem ? totalElem.textContent.trim() : '';
-            
-            // Parse currency (matches 3 uppercase letters, e.g. PLN, EUR, USD)
-            var currencyMatch = totalText.match(/[A-Z]{3}/i);
-            var parsedCurrency = currencyMatch ? currencyMatch[0].toUpperCase() : '';
-            
-            // Fallback for presentment currency
-            if (!parsedCurrency && window.Shopify && window.Shopify.currency) {
-              parsedCurrency = window.Shopify.currency.active;
-            }
-            
-            var payload = {
-              currency: parsedCurrency,
-              total_raw: totalText
-            };
-            
-            checkoutBtn.disabled = true;
-            var originalText = checkoutBtn.innerHTML;
-            checkoutBtn.innerHTML = '...';
-            
-            // Because we prevented default on the original submit button click, 
-            // calling form.submit() programmaticially usually does not pack the `name=checkout` param.
-            // Shopify backend checks for `checkout` in request payload to redirect properly to /checkout route.
-            var hiddenCheckoutInput = form.querySelector('input[name="checkout"]');
-            if (!hiddenCheckoutInput) {
-              hiddenCheckoutInput = document.createElement('input');
-              hiddenCheckoutInput.type = 'hidden';
-              hiddenCheckoutInput.name = 'checkout';
-              hiddenCheckoutInput.value = 'Checkout';
-              form.appendChild(hiddenCheckoutInput);
-            }
-            
-            // POST to external endpoint
-            fetch('https://biberbav.si/cod/snapshot', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(payload)
-            })
-            .catch(function(err) {
-              // Ignore snapshot error, proceed to checkout
-              console.warn('Snapshot error:', err);
-            })
-            .finally(function() {
-              // Proceed to Shopify checkout
-              checkoutBtn.innerHTML = originalText;
-              checkoutBtn.disabled = false;
-              form.submit();
-            });
+          // Read visible total. Fallbacks applied
+          var totalElem = document.querySelector('p.totals__total-value') || 
+                          document.querySelector('.totals__total-value') ||
+                          document.querySelector('.cart-drawer__footer .totals__total-value');
+          
+          var totalText = totalElem ? totalElem.textContent.trim() : '';
+          
+          // Parse currency (matches 3 uppercase letters, e.g. PLN, EUR, USD)
+          var currencyMatch = totalText.match(/[A-Z]{3}/i);
+          var parsedCurrency = currencyMatch ? currencyMatch[0].toUpperCase() : '';
+          
+          // Fallback for presentment currency
+          if (!parsedCurrency && window.Shopify && window.Shopify.currency) {
+            parsedCurrency = window.Shopify.currency.active;
           }
+          
+          var payload = {
+            presentmentCurrency: parsedCurrency,
+            presentmentTotalRaw: totalText,
+            pageUrl: window.location.href,
+            timestamp: new Date().toISOString()
+          };
+          
+          checkoutBtn.disabled = true;
+          var originalText = checkoutBtn.innerHTML;
+          checkoutBtn.innerHTML = '...';
+          
+          // Ensure checkout input exists so Shopify routes to checkout instead of cart
+          var hiddenCheckoutInput = form.querySelector('input[name="checkout"]');
+          if (!hiddenCheckoutInput) {
+            hiddenCheckoutInput = document.createElement('input');
+            hiddenCheckoutInput.type = 'hidden';
+            hiddenCheckoutInput.name = 'checkout';
+            hiddenCheckoutInput.value = 'Checkout';
+            form.appendChild(hiddenCheckoutInput);
+          }
+          
+          // POST to external endpoint
+          fetch('https://biberbav.si/cod/snapshot', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          })
+          .catch(function(err) {
+            // Ignore snapshot error, proceed to checkout
+            console.warn('Snapshot error:', err);
+          })
+          .finally(function() {
+            // Proceed to Shopify checkout natevely without triggering our submit listener again
+            checkoutBtn.innerHTML = originalText;
+            checkoutBtn.disabled = false;
+            HTMLFormElement.prototype.submit.call(form);
+          });
         }
       }
     }, true); // Use capture phase
