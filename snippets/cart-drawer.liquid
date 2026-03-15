@@ -844,29 +844,14 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('[Snapshot] DOMContentLoaded - initializing snapshot listeners');
-    
-    // We try to catch both click and submit to see what fires
-    document.addEventListener('click', function(e) {
-      if (
-        e.target && 
-        (e.target.closest('#CartDrawer-Checkout') || e.target.closest('.cart__checkout-button'))
-      ) {
-        console.log('[Snapshot] Click event caught on checkout button', e.target);
-      }
-    }, true);
-
     document.addEventListener('submit', function(e) {
-      console.log('[Snapshot] Submit event caught on form', e.target);
       if (e.target && e.target.id === 'CartDrawer-Form') {
         var form = e.target;
         
         // Find the checkout button (might be outside the form but linked via form="CartDrawer-Form")
         var checkoutBtn = document.querySelector('#CartDrawer-Checkout') || document.querySelector('.cart__checkout-button');
-        console.log('[Snapshot] Checkout button found:', !!checkoutBtn);
         
         if (checkoutBtn) {
-          console.log('[Snapshot] Preventing default form submission');
           e.preventDefault();
           e.stopImmediatePropagation();
           
@@ -876,7 +861,6 @@
                           document.querySelector('.cart-drawer__footer .totals__total-value');
           
           var totalText = totalElem ? totalElem.textContent.trim() : '';
-          console.log('[Snapshot] Total text parsed:', totalText);
           
           // Parse currency (matches 3 uppercase letters, e.g. PLN, EUR, USD)
           var currencyMatch = totalText.match(/[A-Z]{3}/i);
@@ -886,7 +870,6 @@
           if (!parsedCurrency && window.Shopify && window.Shopify.currency) {
             parsedCurrency = window.Shopify.currency.active;
           }
-          console.log('[Snapshot] Currency parsed:', parsedCurrency);
           
           var payload = {
             presentmentCurrency: parsedCurrency,
@@ -894,7 +877,6 @@
             pageUrl: window.location.href,
             timestamp: new Date().toISOString()
           };
-          console.log('[Snapshot] Payload ready:', payload);
           
           checkoutBtn.disabled = true;
           var originalText = checkoutBtn.innerHTML;
@@ -902,33 +884,28 @@
           
           // Ensure checkout input exists so Shopify routes to checkout instead of cart
           var hiddenCheckoutInput = form.querySelector('input[name="checkout"]');
-          console.log('[Snapshot] Hidden checkout input exists:', !!hiddenCheckoutInput);
           if (!hiddenCheckoutInput) {
             hiddenCheckoutInput = document.createElement('input');
             hiddenCheckoutInput.type = 'hidden';
             hiddenCheckoutInput.name = 'checkout';
             hiddenCheckoutInput.value = 'Checkout';
             form.appendChild(hiddenCheckoutInput);
-            console.log('[Snapshot] Hidden checkout input created');
           }
           
-          console.log('[Snapshot] Using navigator.sendBeacon for true fire-and-forget POST');
           // Format as URL encoded to avoid JSON preflight
           var formBody = new URLSearchParams(payload);
           
           try {
-            var beaconSent = navigator.sendBeacon('https://biberbav.si/cod/snapshot', formBody);
-            console.log('[Snapshot] Beacon queued successfully:', beaconSent);
+            navigator.sendBeacon('https://biberbav.si/cod/snapshot', formBody);
           } catch(err) {
-            console.error('[Snapshot] Beacon sending error:', err);
+            console.error('Snapshot error:', err);
           }
           
-          // Proceed to Shopify checkout natevely immediately
+          // Proceed to Shopify checkout natively immediately
           setTimeout(function() {
             checkoutBtn.innerHTML = originalText;
             checkoutBtn.disabled = false;
             HTMLFormElement.prototype.submit.call(form);
-            console.log('[Snapshot] main form.submit() called');
           }, 100);
         }
       }
