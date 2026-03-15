@@ -871,11 +871,38 @@
             parsedCurrency = window.Shopify.currency.active;
           }
           
+          // Parse numeric value
+          var numericValue = 0;
+          var parsedText = totalText.replace(/[^\d.,]/g, '');
+          if (parsedText) {
+            var lastDot = parsedText.lastIndexOf('.');
+            var lastComma = parsedText.lastIndexOf(',');
+            if (lastComma > lastDot) {
+              numericValue = parseFloat(parsedText.replace(/\./g, '').replace(',', '.'));
+            } else if (lastDot > lastComma) {
+              numericValue = parseFloat(parsedText.replace(/,/g, ''));
+            } else {
+              numericValue = parseFloat(parsedText);
+            }
+          }
+
+          // Generate UUID
+          var uuid = '';
+          if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+            uuid = crypto.randomUUID();
+          } else {
+            uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+              var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+              return v.toString(16);
+            });
+          }
+          
           var payload = {
             presentmentCurrency: parsedCurrency,
             presentmentTotalRaw: totalText,
             pageUrl: window.location.href,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            snapshotId: uuid
           };
           
           checkoutBtn.disabled = true;
@@ -901,12 +928,35 @@
             console.error('Snapshot error:', err);
           }
           
-          // Proceed to Shopify checkout natively immediately
-          setTimeout(function() {
+          // Save cart attributes via Shopify API before proceeding to checkout natively
+          var rootUrl = window.Shopify && window.Shopify.routes && window.Shopify.routes.root ? window.Shopify.routes.root : '/';
+          
+          function proceedToCheckout() {
             checkoutBtn.innerHTML = originalText;
             checkoutBtn.disabled = false;
             HTMLFormElement.prototype.submit.call(form);
-          }, 100);
+          }
+          
+          // Wait for the cart attributes POST to succeed or fail, then redirect to checkout
+          fetch(rootUrl + 'cart/update.js', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              attributes: {
+                cod_presentment_currency: parsedCurrency,
+                cod_presentment_total_raw: totalText,
+                cod_presentment_total: numericValue,
+                cod_snapshot_id: uuid
+              }
+            })
+          })
+          .then(proceedToCheckout)
+          .catch(function(err) {
+            console.error('Cart update error:', err);
+            proceedToCheckout();
+          });
         }
       }
     }, true); // Use capture phase
