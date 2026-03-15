@@ -861,8 +861,8 @@
       if (e.target && e.target.id === 'CartDrawer-Form') {
         var form = e.target;
         
-        // Find the checkout button
-        var checkoutBtn = form.querySelector('#CartDrawer-Checkout') || form.querySelector('.cart__checkout-button');
+        // Find the checkout button (might be outside the form but linked via form="CartDrawer-Form")
+        var checkoutBtn = document.querySelector('#CartDrawer-Checkout') || document.querySelector('.cart__checkout-button');
         console.log('[Snapshot] Checkout button found:', !!checkoutBtn);
         
         if (checkoutBtn) {
