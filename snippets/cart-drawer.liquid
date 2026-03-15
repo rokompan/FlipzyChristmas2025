@@ -916,24 +916,27 @@
           // POST to external endpoint
           fetch('https://biberbav.si/cod/snapshot', {
             method: 'POST',
+            mode: 'no-cors',
             headers: {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(payload)
           })
           .then(res => {
-            console.log('[Snapshot] Fetch resolved with status:', res.status);
+            console.log('[Snapshot] Fetch resolved (opaque response if no-cors)');
           })
           .catch(function(err) {
             console.error('[Snapshot] Snapshot error:', err);
           })
           .finally(function() {
-            console.log('[Snapshot] Finally block reached, navigating to checkout natively');
-            // Proceed to Shopify checkout natevely without triggering our submit listener again
-            checkoutBtn.innerHTML = originalText;
-            checkoutBtn.disabled = false;
-            HTMLFormElement.prototype.submit.call(form);
-            console.log('[Snapshot] form.submit() called');
+            setTimeout(function() {
+              console.log('[Snapshot] Finally block reached, navigating to checkout natively');
+              // Proceed to Shopify checkout natevely without triggering our submit listener again
+              checkoutBtn.innerHTML = originalText;
+              checkoutBtn.disabled = false;
+              HTMLFormElement.prototype.submit.call(form);
+              console.log('[Snapshot] form.submit() called');
+            }, 300); // give the opaque network request a tiny bit of actual network time before page unload
           });
         }
       }
