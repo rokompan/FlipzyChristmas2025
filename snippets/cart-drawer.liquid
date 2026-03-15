@@ -914,16 +914,24 @@
           
           console.log('[Snapshot] Sending fetch request to https://biberbav.si/cod/snapshot');
           // POST to external endpoint
+          // Use form-urlencoded to bypass CORS preflight check which fails on biberbav.si
+          var formBody = [];
+          for (var property in payload) {
+            var encodedKey = encodeURIComponent(property);
+            var encodedValue = encodeURIComponent(payload[property]);
+            formBody.push(encodedKey + "=" + encodedValue);
+          }
+          formBody = formBody.join("&");
+
           fetch('https://biberbav.si/cod/snapshot', {
             method: 'POST',
-            mode: 'no-cors',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: JSON.stringify(payload)
+            body: formBody
           })
           .then(res => {
-            console.log('[Snapshot] Fetch resolved (opaque response if no-cors)');
+            console.log('[Snapshot] Fetch resolved:', res.status);
           })
           .catch(function(err) {
             console.error('[Snapshot] Snapshot error:', err);
@@ -931,12 +939,12 @@
           .finally(function() {
             setTimeout(function() {
               console.log('[Snapshot] Finally block reached, navigating to checkout natively');
-              // Proceed to Shopify checkout natevely without triggering our submit listener again
+              // Proceed to Shopify checkout natively without triggering our submit listener again
               checkoutBtn.innerHTML = originalText;
               checkoutBtn.disabled = false;
               HTMLFormElement.prototype.submit.call(form);
               console.log('[Snapshot] form.submit() called');
-            }, 300); // give the opaque network request a tiny bit of actual network time before page unload
+            }, 300); // give the network request a tiny bit of actual network time before page unload
           });
         }
       }
