@@ -410,11 +410,13 @@
           </div>
 
           <!-- Urgency snippet -->
+          {%- if section.settings.inventory_text != blank -%}
           <div style="text-align: center; margin-bottom: 20px;">
              <span style="display:inline-flex; align-items:center; gap:6px; font-weight:700; color:#dc2626; font-size:1.05rem; background:#fee2e2; padding:8px 16px; border-radius:30px;">
-               {{ 'sections.flipzy_offer.inventory_prefix' | t | default: '⚡ Only ' }}<span class="dynamic-inventory-count">64</span>{{ 'sections.flipzy_offer.inventory_suffix' | t | default: ' left in stock' }}
+               {{ section.settings.inventory_text }}
              </span>
           </div>
+          {%- endif -%}
 
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; align-items: stretch; background: #f8fafc; padding: 15px; border-radius: 12px;">
             
@@ -695,43 +697,16 @@ function formatMoney(cents) {
       });
   }
 
-  // Dynamic Inventory calculation
-  function calculateInventory() {
-      const startDate = new Date('2026-03-10T00:00:00'); // Based on today as the start date
-      const today = new Date();
-      const diffTime = today - startDate;
-      let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays < 0) diffDays = 0;
-      
-      let currentInventory = 64;
-      
-      for (let i = 0; i < diffDays; i++) {
-          // Predictable pseudo-random drop between 5 and 9 based on the day index
-          let drop = ((i * 17) % 5) + 5;
-          currentInventory -= drop;
-      }
-      
-      // Bottom out at 3 just so it never hits 0 or negatives and stays urgent
-      if (currentInventory < 3) currentInventory = 3;
-      
-      const elements = document.querySelectorAll('.dynamic-inventory-count');
-      elements.forEach(function(el) {
-          el.innerText = currentInventory;
-      });
-  }
-
           // The FAQ hide logic has been moved to flipzy-sticky-bar.liquid
   // Run on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() {
       calculateDeliveryDate();
       calculateParentRating();
-      calculateInventory();
     });
   } else {
     calculateDeliveryDate();
     calculateParentRating();
-    calculateInventory();
   }
 </script>
 
@@ -796,6 +771,16 @@ function formatMoney(cents) {
       "type": "product",
       "id": "main_product",
       "label": "Main Product for Offer"
+    },
+    {
+      "type": "header",
+      "content": "Urgency Settings"
+    },
+    {
+      "type": "text",
+      "id": "inventory_text",
+      "label": "Inventory Text",
+      "default": "⚡ Only 64 left in stock"
     },
     {
       "type": "header",
