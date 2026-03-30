@@ -936,27 +936,7 @@
             HTMLFormElement.prototype.submit.call(form);
           }
 
-          /* TEMPORARILY DISABLED - COD cart attributes
-          fetch(rootUrl + 'cart/update.js', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              attributes: {
-                cod_presentment_currency: parsedCurrency,
-                cod_presentment_total_raw: totalText,
-                cod_presentment_total: numericValue,
-                cod_snapshot_id: uuid
-              }
-            })
-          })
-          .then(proceedToCheckout)
-          .catch(function(err) {
-            console.error('Cart update error:', err);
-            proceedToCheckout();
-          });
-          */
+          
           proceedToCheckout();
         }
       }
