@@ -928,7 +928,6 @@
             console.error('Snapshot error:', err);
           }
           
-          // Save cart attributes via Shopify API before proceeding to checkout natively
           var rootUrl = window.Shopify && window.Shopify.routes && window.Shopify.routes.root ? window.Shopify.routes.root : '/';
           
           function proceedToCheckout() {
@@ -936,8 +935,8 @@
             checkoutBtn.disabled = false;
             HTMLFormElement.prototype.submit.call(form);
           }
-          
-          // Wait for the cart attributes POST to succeed or fail, then redirect to checkout
+
+          /* TEMPORARILY DISABLED - COD cart attributes
           fetch(rootUrl + 'cart/update.js', {
             method: 'POST',
             headers: {
@@ -957,6 +956,8 @@
             console.error('Cart update error:', err);
             proceedToCheckout();
           });
+          */
+          proceedToCheckout();
         }
       }
     }, true); // Use capture phase
