@@ -314,7 +314,28 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Inklusive told. Skatter, rabatter og <a href=\"{{ link }}\">levering</a> beregnes ved betaling.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Inklusive told. Skatter, rabatter og levering beregnes ved betaling.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Skatter, rabatter og <a href=\"{{ link }}\">levering</a> beregnes ved betaling.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Skatter, rabatter og levering beregnes ved betaling."
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "Skatter, rabatter og levering beregnes ved betaling.",
+      "upsell": {
+        "perfect_gift_text": "Tilføj en ekstra til en ven eller fætter.",
+        "subline_2pack": "Opgrader til parret Morning & Evening.",
+        "subline_3pack": "Opgrader til Betal 2, få 1 gratis (3-pak).",
+        "updating": "Opdatering...",
+        "try_again": "Prøv igen",
+        "image_alt": "Morgen- og aftenrutine",
+        "perfect_gift_title": "Den perfekte gave?",
+        "unlock_shipping_text": "Få parret Morning & Evening + gratis forsendelse.",
+        "button_3pack": "Opgrader til 3-pak",
+        "headline_4pack": "🏆 Bedste værdi - maksimal besparelse",
+        "save_badge": "SAVE {{ percent }}%.",
+        "unlock_shipping_title": "Lås op for gratis forsendelse! 🚚",
+        "headline_3pack": "🔥 Det mest populære valg",
+        "subline_4pack": "Opgrader til familiepakken (4x).",
+        "button_4pack": "Opgrader til 4-pak",
+        "adding": "Tilføjelse...",
+        "button_text": "Tilføj en anden (+1)",
+        "headline_2pack": "✨ Lås op for gratis forsendelse!",
+        "button_2pack": "Opgrader til 2-pak"
+      }
     },
     "footer": {
       "payment": "Betalingsmetoder"
@@ -406,7 +427,21 @@
       "regular_price": "Almindelig pris:",
       "badge_popular": "⭐ Populær",
       "delivered_by": "Leveret af",
-      "unit_items": "Flipzy"
+      "unit_items": "Flipzy",
+      "bullet_4": "Ingen skærme, ingen apps",
+      "benefit_1": "Børn VIL gennemføre deres rutine",
+      "rating_text": "4,8 / 5 bedømt",
+      "heading": "Slut dig til hundredvis af glade familier",
+      "bullet_1": "Flip motiverer børn til at blive færdige",
+      "bullet_2": "Færre påmindelser, færre skænderier",
+      "benefit_2": "10-20 minutters fred hver morgen",
+      "benefit_4": "Opbygger uafhængighed og ansvar",
+      "rating_prefix": "⭐️⭐️⭐️⭐️⭐️ 4.8/5 fra ",
+      "rating_suffix": " forældre",
+      "bullet_3": "Opbygger uafhængighed",
+      "benefit_3": "Mindre brok. Mere samarbejde.",
+      "inventory_prefix": "⚡ Kun ",
+      "inventory_suffix": " tilbage på lager"
     },
     "cart_upsell": {
       "upsell_1_badge": "Populær",
