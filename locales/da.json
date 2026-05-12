@@ -382,6 +382,59 @@
       "min_error": "Denne vare har en minimumsgrænse på {{ min }}",
       "max_error": "Denne vare har en maksimumgrænse på {{ max }}",
       "step_error": "Du kan kun tilføje denne vare i intervaller på {{ step }}"
+    },
+    "flipzy_offer": {
+      "offer_2": "10% rabat + gratis forsendelse",
+      "offer_4": "25% rabat + gratis forsendelse",
+      "unit_item": "Flipzy",
+      "badge_bestseller": "Bestseller",
+      "today_price": "I dag:",
+      "badge_best_value": "🔥 Bedste værdi",
+      "total_price": "Samlet pris:",
+      "calculating": "Beregning af...",
+      "price_per_item": "Pris pr. genstand:",
+      "offer_3": "20 % rabat + gratis forsendelse",
+      "guarantee_3": "Brugt af 1000+ familier",
+      "qty_label": "Vælg antal:",
+      "add_to_cart": "Læg i kurv",
+      "sold_out": "Udsolgt",
+      "guarantee_1": "Sikker checkout",
+      "please_select_product": "Vælg et produkt i afsnittet indstillinger.",
+      "badge_3for2": "3 for 2",
+      "free_shipping": "Gratis forsendelse",
+      "guarantee_2": "30 dages garanti",
+      "regular_price": "Almindelig pris:",
+      "badge_popular": "⭐ Populær",
+      "delivered_by": "Leveret af",
+      "unit_items": "Flipzy"
+    },
+    "cart_upsell": {
+      "upsell_1_badge": "Populær",
+      "upgrade_btn": "Kun opgradering",
+      "upsell_2_sub": "Tilføj 1 mere for at få 25% rabat!",
+      "upsell_1_sub": "Tilføj 1 mere for at låse op for gratis forsendelse!",
+      "upsell_2_badge": "Bedste værdi",
+      "add_plus_one": "Tilføj +1",
+      "upsell_1_head": "⭐ Populær & gratis forsendelse",
+      "upsell_2_head": "⚡ Bedste værdi og gratis forsendelse"
+    },
+    "flipzy_help": {
+      "ask_question": "💬 Stil et spørgsmål",
+      "text": "Send os en besked, så vender vi tilbage til dig via e-mail.",
+      "message_label": "Din besked",
+      "message_placeholder": "Hvordan kan vi hjælpe?",
+      "submit": "Send besked",
+      "title": "Har du et spørgsmål?",
+      "email_label": "E-mail (valgfrit)",
+      "email_placeholder": "Din e-mail (hvis du vil have et svar)",
+      "reply_to": "SVAR TIL:"
+    },
+    "flipzy_sticky": {
+      "qty_final_1": "1x Flipzy",
+      "qty_label": "Mængde:",
+      "qty_final_2": "2x Flipzy (⭐ Populær + gratis forsendelse)",
+      "qty_final_4": "4x Flipzy (🔥 Bedste værdi)",
+      "qty_final_3": "3x Flipzy (3 for 2 tilbud)"
     }
   },
   "localization": {
