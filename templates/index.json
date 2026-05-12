@@ -79,6 +79,7 @@
       "name": "Flipzy Offer Tiles",
       "settings": {
         "main_product": "flipzy-wooden-routine-board",
+        "inventory_text": "⚡ Only 64 left in stock",
         "qty_1_label": "1x Flipzy",
         "qty_2_label": "Free Shipping",
         "qty_2_discount": 0,
@@ -307,7 +308,7 @@
         "image_2_bg": "#eadbc8",
         "card_title": "Everything you need to start your journey to smoother routines",
         "featured_product": "flipzy-wooden-routine-board",
-        "trust_1": "Free shipping over 50€",
+        "trust_1": "Free shipping over 60€",
         "trust_2": "Taxes included",
         "trust_3": "Ships in 24h",
         "trust_4": "30-day money-back guarantee",
