@@ -323,17 +323,17 @@
         "try_again": "Prøv igen",
         "image_alt": "Morgen- og aftenrutine",
         "perfect_gift_title": "Den perfekte gave?",
-        "unlock_shipping_text": "Få parret Morning & Evening + gratis forsendelse.",
+        "unlock_shipping_text": "Få parret Morning & Evening + fri fragt.",
         "button_3pack": "Opgrader til 3-pak",
         "headline_4pack": "🏆 Bedste værdi - maksimal besparelse",
         "save_badge": "SAVE {{ percent }}%.",
-        "unlock_shipping_title": "Lås op for gratis forsendelse! 🚚",
+        "unlock_shipping_title": "Lås op for fri fragt! 🚚",
         "headline_3pack": "🔥 Det mest populære valg",
         "subline_4pack": "Opgrader til familiepakken (4x).",
         "button_4pack": "Opgrader til 4-pak",
         "adding": "Tilføjelse...",
         "button_text": "Tilføj en anden (+1)",
-        "headline_2pack": "✨ Lås op for gratis forsendelse!",
+        "headline_2pack": "✨ Lås op for fri fragt!",
         "button_2pack": "Opgrader til 2-pak"
       }
     },
@@ -405,8 +405,8 @@
       "step_error": "Du kan kun tilføje denne vare i intervaller på {{ step }}"
     },
     "flipzy_offer": {
-      "offer_2": "10% rabat + gratis forsendelse",
-      "offer_4": "25% rabat + gratis forsendelse",
+      "offer_2": "10% rabat + fri fragt",
+      "offer_4": "25% rabat + fri fragt",
       "unit_item": "Flipzy",
       "badge_bestseller": "Bestseller",
       "today_price": "I dag:",
@@ -414,7 +414,7 @@
       "total_price": "Samlet pris:",
       "calculating": "Beregning af...",
       "price_per_item": "Pris pr. genstand:",
-      "offer_3": "20 % rabat + gratis forsendelse",
+      "offer_3": "20 % rabat + fri fragt",
       "guarantee_3": "Brugt af 1000+ familier",
       "qty_label": "Vælg antal:",
       "add_to_cart": "Læg i kurv",
@@ -422,7 +422,7 @@
       "guarantee_1": "Sikker checkout",
       "please_select_product": "Vælg et produkt i afsnittet indstillinger.",
       "badge_3for2": "3 for 2",
-      "free_shipping": "Gratis forsendelse",
+      "free_shipping": "fri fragt",
       "guarantee_2": "30 dages garanti",
       "regular_price": "Almindelig pris:",
       "badge_popular": "⭐ Populær",
@@ -447,11 +447,11 @@
       "upsell_1_badge": "Populær",
       "upgrade_btn": "Kun opgradering",
       "upsell_2_sub": "Tilføj 1 mere for at få 25% rabat!",
-      "upsell_1_sub": "Tilføj 1 mere for at låse op for gratis forsendelse!",
+      "upsell_1_sub": "Tilføj 1 mere for at låse op for fri fragt!",
       "upsell_2_badge": "Bedste værdi",
       "add_plus_one": "Tilføj +1",
-      "upsell_1_head": "⭐ Populær & gratis forsendelse",
-      "upsell_2_head": "⚡ Bedste værdi og gratis forsendelse"
+      "upsell_1_head": "⭐ Populær & fri fragt",
+      "upsell_2_head": "⚡ Bedste værdi og fri fragt"
     },
     "flipzy_help": {
       "ask_question": "💬 Stil et spørgsmål",
@@ -467,7 +467,7 @@
     "flipzy_sticky": {
       "qty_final_1": "1x Flipzy",
       "qty_label": "Mængde:",
-      "qty_final_2": "2x Flipzy (⭐ Populær + gratis forsendelse)",
+      "qty_final_2": "2x Flipzy (⭐ Populær + fri fragt)",
       "qty_final_4": "4x Flipzy (🔥 Bedste værdi)",
       "qty_final_3": "3x Flipzy (3 for 2 tilbud)"
     }
