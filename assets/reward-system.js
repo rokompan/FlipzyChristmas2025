@@ -1081,6 +1081,12 @@
       var c2x;
       var c2y;
       var side;
+      var turn;
+      var horizontalHandle;
+      var verticalHandle;
+      var verticalSign;
+      var midX;
+      var midY;
 
       if (p1.row === p2.row) {
         c1x = p1.x + dx * 0.38;
@@ -1089,10 +1095,17 @@
         c2y = p2.y + wave;
       } else {
         side = p1.x > BOARD.width / 2 ? 1 : -1;
-        c1x = clamp(p1.x + side * clamp(Math.abs(dy) * 0.34, 110, 160), 150, BOARD.width - 150);
-        c1y = p1.y + dy * 0.34;
-        c2x = clamp(p2.x + side * clamp(Math.abs(dy) * 0.34, 110, 160), 150, BOARD.width - 150);
-        c2y = p2.y - dy * 0.34;
+        turn = clamp(Math.abs(dy) * 0.26, 120, 170);
+        horizontalHandle = clamp(Math.abs(dy) * 0.2, 85, 135);
+        verticalHandle = clamp(Math.abs(dy) * 0.18, 80, 145);
+        verticalSign = dy < 0 ? -1 : 1;
+        midX = side > 0 ? Math.max(p1.x, p2.x) + turn : Math.min(p1.x, p2.x) - turn;
+        midX = clamp(midX, 250, BOARD.width - 250);
+        midY = p1.y + dy / 2;
+
+        path += ' C' + round(p1.x + side * horizontalHandle) + ' ' + round(p1.y) + ' ' + round(midX) + ' ' + round(midY - verticalSign * verticalHandle) + ' ' + round(midX) + ' ' + round(midY);
+        path += ' C' + round(midX) + ' ' + round(midY + verticalSign * verticalHandle) + ' ' + round(p2.x + side * horizontalHandle) + ' ' + round(p2.y) + ' ' + p2.x + ' ' + p2.y;
+        continue;
       }
 
       path += ' C' + round(c1x) + ' ' + round(c1y) + ' ' + round(c2x) + ' ' + round(c2y) + ' ' + p2.x + ' ' + p2.y;
