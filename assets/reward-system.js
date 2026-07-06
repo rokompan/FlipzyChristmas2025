@@ -743,7 +743,7 @@
     addBox(graphicObstacles, header.box, 22);
     addBox(graphicObstacles, rewardLabel.box, 26);
     addBox(graphicObstacles, startLabel.box, 18);
-    addStepObstacles(graphicObstacles, points, radius);
+    addStepObstacles(graphicObstacles, points, radius, miniSet);
 
     miniLabels.forEach(function (label) {
       addBox(graphicObstacles, label.box, 12);
@@ -786,12 +786,8 @@
     ];
     var i;
 
-    for (i = 0; i < layout.count; i += 1) {
-      var row = Math.floor(i / layout.cols);
-      var col = i % layout.cols;
-      var cx = layout.startX + col * layout.cell;
-      var cy = layout.startY + row * layout.cell;
-      pieces.push(renderSticker(cx, cy, radius, theme, stickerUrl, instanceId, i));
+    for (i = 0; i < layout.positions.length; i += 1) {
+      pieces.push(renderSticker(layout.positions[i].x, layout.positions[i].y, radius, theme, stickerUrl, instanceId, i));
     }
 
     pieces.push('</svg>');
@@ -857,25 +853,74 @@
   }
 
   function stickerSheetLayout(radius, requested) {
-    var marginX = 128;
-    var top = 310;
-    var bottom = 130;
-    var gap = clamp(radius * 0.36, 26, 44);
-    var cell = radius * 2 + gap;
-    var cols = Math.max(1, Math.floor((BOARD.width - marginX * 2 + gap) / cell));
-    var maxRows = Math.max(1, Math.floor((BOARD.height - top - bottom + gap) / cell));
-    var count = Math.min(requested, cols * maxRows);
+    var marginX = 150;
+    var top = 500;
+    var bottom = 170;
+    var diameter = radius * 2;
+    var minGap = clamp(radius * 0.34, 26, 40);
+    var usableW = BOARD.width - marginX * 2;
+    var usableH = BOARD.height - top - bottom;
+    var maxCols = Math.max(1, Math.floor((usableW + minGap) / (diameter + minGap)));
+    var maxRows = Math.max(1, Math.floor((usableH + minGap) / (diameter + minGap)));
+    var maxCount = maxCols * maxRows;
+    var count = Math.min(requested, maxCount);
+    var cols = clamp(Math.ceil(Math.sqrt(count * usableW / usableH)), 1, maxCols);
     var rows = Math.ceil(count / cols);
-    var gridWidth = cols * radius * 2 + (cols - 1) * gap;
-    var gridHeight = rows * radius * 2 + (rows - 1) * gap;
+    var totalSlots;
+    var xStep;
+    var yStep;
+    var jitterX;
+    var jitterY;
+    var positions = [];
+    var usedSlots = {};
+    var i;
+
+    while (rows > maxRows && cols < maxCols) {
+      cols += 1;
+      rows = Math.ceil(count / cols);
+    }
+
+    totalSlots = rows * cols;
+    xStep = cols > 1 ? (usableW - diameter) / (cols - 1) : 0;
+    yStep = rows > 1 ? (usableH - diameter) / (rows - 1) : 0;
+    jitterX = cols > 1 ? Math.min(radius * 0.42, Math.max(0, (xStep - diameter - minGap) / 2)) : 0;
+    jitterY = rows > 1 ? Math.min(radius * 0.36, Math.max(0, (yStep - diameter - minGap) / 2)) : 0;
+
+    for (i = 0; i < count; i += 1) {
+      var slot = count === totalSlots || count === 1 ? i : Math.round(i * (totalSlots - 1) / (count - 1));
+      var guard = 0;
+      var row;
+      var col;
+      var cx;
+      var cy;
+
+      while (usedSlots[slot] && guard < totalSlots) {
+        slot = (slot + 1) % totalSlots;
+        guard += 1;
+      }
+
+      usedSlots[slot] = true;
+      row = Math.floor(slot / cols);
+      col = slot % cols;
+      cx = marginX + radius + (cols > 1 ? col * xStep : (usableW - diameter) / 2) + stickerJitter(i, 11) * jitterX;
+      cy = top + radius + (rows > 1 ? row * yStep : (usableH - diameter) / 2) + stickerJitter(i, 23) * jitterY;
+
+      positions.push({
+        x: round(clamp(cx, marginX + radius, BOARD.width - marginX - radius)),
+        y: round(clamp(cy, top + radius, BOARD.height - bottom - radius))
+      });
+    }
 
     return {
-      cell: cell,
       cols: cols,
       count: count,
-      startX: (BOARD.width - gridWidth) / 2 + radius,
-      startY: top + Math.max(0, (BOARD.height - top - bottom - gridHeight) / 2) + radius
+      positions: positions
     };
+  }
+
+  function stickerJitter(index, salt) {
+    var value = Math.sin((index + 1) * (salt + 17) * 12.9898) * 43758.5453;
+    return (value - Math.floor(value)) * 2 - 1;
   }
 
   function stickerAssetUrl(theme, uploads) {
@@ -967,26 +1012,40 @@
     return '<polygon points="' + starPoints(x, y, size, size * 0.44, 5) + '" fill="' + theme.accent3 + '"/>';
   }
 
+  function miniBadgeRadius(radius) {
+    return radius + clamp(Math.round(radius * 0.12), 8, 12);
+  }
+
+  function finalBadgeRadius(radius) {
+    return radius + clamp(Math.round(radius * 0.28), 20, 28);
+  }
+
   function renderSteps(points, radius, theme, miniSet, showNumbers) {
     return points.map(function (point) {
       var isFinal = point.index === points.length;
       var isMini = !!miniSet[point.index] && !isFinal;
-      var r = isFinal ? radius + 14 : radius;
-      var fill = isFinal ? theme.labelFill : (isMini ? theme.miniFill : theme.circleFill);
-      var stroke = isFinal ? theme.miniStroke : (isMini ? theme.miniStroke : theme.circleStroke);
-      var text = isFinal ? theme.circleText : (isMini ? theme.miniText : theme.circleText);
+      var r = isFinal ? finalBadgeRadius(radius) : (isMini ? miniBadgeRadius(radius) : radius);
+      var fill = isFinal ? theme.rewardFill : (isMini ? theme.miniFill : theme.circleFill);
+      var stroke = isFinal ? theme.rewardStroke : (isMini ? theme.miniStroke : theme.circleStroke);
+      var text = isFinal ? theme.rewardText : (isMini ? theme.miniText : theme.circleText);
+      var strokeWidth = isFinal ? 15 : (isMini ? 13 : 11);
+      var textStroke = isFinal ? ' stroke="' + theme.rewardStroke + '" stroke-width="' + round(r * 0.08) + '" stroke-linejoin="round" paint-order="stroke fill"' : '';
       var pieces = [
-        isFinal ? '<polygon points="' + starPoints(point.x, point.y, r * 1.45, r * 1.08, 18) + '" fill="' + theme.accent3 + '" opacity="0.82"/>' : '',
-        '<circle cx="' + (point.x + 8) + '" cy="' + (point.y + 12) + '" r="' + r + '" fill="#000000" opacity="0.12"/>',
-        '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + r + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + (isFinal ? 13 : 11) + '"/>'
+        isFinal ? '<polygon points="' + starPoints(point.x, point.y, r * 1.64, r * 1.17, 22) + '" fill="' + theme.accent3 + '" opacity="0.92"/>' : '',
+        isMini ? '<polygon points="' + starPoints(point.x, point.y, r * 1.32, r * 1.08, 14) + '" fill="' + theme.accent3 + '" opacity="0.42"/>' : '',
+        isFinal ? '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + round(r * 1.28) + '" fill="' + theme.rewardFill + '" opacity="0.2"/>' : '',
+        '<circle cx="' + (point.x + (isFinal ? 11 : 8)) + '" cy="' + (point.y + (isFinal ? 15 : 12)) + '" r="' + r + '" fill="#000000" opacity="' + (isFinal ? 0.18 : (isMini ? 0.15 : 0.12)) + '"/>',
+        '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + r + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + strokeWidth + '"/>',
+        isFinal ? '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + round(r - strokeWidth * 0.9) + '" fill="none" stroke="' + theme.labelFill + '" stroke-width="6" opacity="0.82"/>' : '',
+        isMini ? '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + round(r - strokeWidth * 0.7) + '" fill="none" stroke="' + theme.labelFill + '" stroke-width="5" opacity="0.62"/>' : ''
       ];
 
       if (isMini) {
-        pieces.push('<polygon points="' + starPoints(point.x + r * 0.48, point.y - r * 0.48, r * 0.22, r * 0.1, 5) + '" fill="' + theme.rewardFill + '" stroke="' + stroke + '" stroke-width="5"/>');
+        pieces.push('<polygon points="' + starPoints(point.x + r * 0.52, point.y - r * 0.52, r * 0.25, r * 0.11, 5) + '" fill="' + theme.rewardFill + '" stroke="' + stroke + '" stroke-width="5"/>');
       }
 
       if (showNumbers) {
-        pieces.push('<text x="' + point.x + '" y="' + point.y + '" text-anchor="middle" dominant-baseline="middle" fill="' + text + '" font-family="Poppins, Arial, sans-serif" font-size="' + round(r * 0.76) + '" font-weight="900">' + point.index + '</text>');
+        pieces.push('<text x="' + point.x + '" y="' + point.y + '" text-anchor="middle" dominant-baseline="middle" fill="' + text + '" font-family="Poppins, Arial, sans-serif" font-size="' + round(r * (isFinal ? 0.72 : 0.76)) + '" font-weight="900"' + textStroke + '>' + point.index + '</text>');
       } else if (isMini) {
         pieces.push('<polygon points="' + starPoints(point.x, point.y, r * 0.32, r * 0.15, 5) + '" fill="' + text + '" opacity="0.9"/>');
       }
@@ -996,7 +1055,7 @@
   }
 
   function renderFinalMarker(point, radius, theme) {
-    var r = radius + 17;
+    var r = finalBadgeRadius(radius) * 0.82;
     var x = point.x - r * 0.38;
     var y = point.y - r * 0.28;
     var w = r * 0.76;
@@ -1015,7 +1074,9 @@
     return labels.map(function (label) {
       return [
         '<g>',
-          '<rect x="' + label.box.x + '" y="' + label.box.y + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="24" fill="' + theme.labelFill + '" stroke="' + theme.miniStroke + '" stroke-width="4"/>',
+          '<rect x="' + (label.box.x + 5) + '" y="' + (label.box.y + 7) + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="27" fill="#000000" opacity="0.12"/>',
+          '<rect x="' + label.box.x + '" y="' + label.box.y + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="27" fill="' + theme.miniFill + '" stroke="' + theme.miniStroke + '" stroke-width="5"/>',
+          '<rect x="' + (label.box.x + 13) + '" y="' + (label.box.y + 10) + '" width="' + (label.box.w - 26) + '" height="' + round(label.box.h * 0.32) + '" rx="13" fill="' + theme.labelFill + '" opacity="0.38"/>',
           '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + (label.box.y + label.box.h / 2 + 11) + '" text-anchor="middle" fill="' + theme.miniText + '" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="900">Mini reward</text>',
         '</g>'
       ].join('');
@@ -1035,8 +1096,11 @@
 
     return [
       '<g>',
+        '<rect x="' + (label.box.x + 7) + '" y="' + (label.box.y + 10) + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="' + round(label.box.h / 2) + '" fill="#000000" opacity="0.16"/>',
+        '<rect x="' + label.box.x + '" y="' + label.box.y + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="' + round(label.box.h / 2) + '" fill="' + theme.rewardFill + '" stroke="' + theme.rewardStroke + '" stroke-width="7"/>',
+        '<rect x="' + (label.box.x + 18) + '" y="' + (label.box.y + 14) + '" width="' + (label.box.w - 36) + '" height="' + round(label.box.h * 0.3) + '" rx="' + round(label.box.h * 0.15) + '" fill="' + theme.labelFill + '" opacity="0.28"/>',
         label.lines.map(function (line, index) {
-          return '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + round(centerY + index * label.lineHeight) + '" text-anchor="middle" dominant-baseline="middle" fill="' + theme.title + '" font-family="Poppins, Arial, sans-serif" font-size="' + label.fontSize + '" font-weight="900">' + escapeHtml(line) + '</text>';
+          return '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + round(centerY + index * label.lineHeight) + '" text-anchor="middle" dominant-baseline="middle" fill="' + theme.rewardText + '" stroke="' + theme.rewardStroke + '" stroke-width="' + round(label.fontSize * 0.09) + '" stroke-linejoin="round" paint-order="stroke fill" font-family="Poppins, Arial, sans-serif" font-size="' + label.fontSize + '" font-weight="900">' + escapeHtml(line) + '</text>';
         }).join(''),
       '</g>'
     ].join('');
@@ -1080,12 +1144,16 @@
 
   function layoutRewardLabel(state, theme, point, radius) {
     var text = cleanText(state.rewardLabel) || 'Special reward';
-    var lines = layoutText(text, 600, 50, 32, 2);
-    var h = lines.lineHeight * lines.lines.length + 18;
-    var w = 620;
-    var y = point.y + radius + 74;
+    var lines = layoutText(text, 660, 52, 34, 2);
+    var longest = lines.lines.reduce(function (width, line) {
+      return Math.max(width, approxTextWidth(line, lines.fontSize, 900));
+    }, 0);
+    var h = Math.max(90, lines.lineHeight * lines.lines.length + 30);
+    var w = clamp(longest + 112, 520, 760);
+    var rewardRadius = finalBadgeRadius(radius);
+    var y = point.y + rewardRadius + 64;
 
-    if (y + h > BOARD.height - 120) y = point.y - radius - h - 80;
+    if (y + h > BOARD.height - 120) y = point.y - rewardRadius - h - 80;
 
     return {
       box: {
@@ -1123,6 +1191,9 @@
 
   function buildMiniLabels(points, miniSet, showLabels, radius, headerBox, rewardBox) {
     var labels = [];
+    var badgeRadius = miniBadgeRadius(radius);
+    var labelWidth = 220;
+    var labelHeight = 54;
 
     if (!showLabels) return labels;
 
@@ -1132,15 +1203,15 @@
 
       if (!miniSet[point.index] || point.index === points.length) return;
 
-      y = point.row % 2 === 0 ? point.y - radius - 62 : point.y + radius + 14;
-      if (y < headerBox.y + headerBox.h + 12) y = point.y + radius + 14;
-      if (y + 48 > rewardBox.y - 20) y = point.y - radius - 62;
+      y = point.row % 2 === 0 ? point.y - badgeRadius - 74 : point.y + badgeRadius + 18;
+      if (y < headerBox.y + headerBox.h + 12) y = point.y + badgeRadius + 18;
+      if (y + labelHeight > rewardBox.y - 20) y = point.y - badgeRadius - 74;
 
       box = {
-        x: clamp(point.x - 96, 70, BOARD.width - 192 - 70),
+        x: clamp(point.x - labelWidth / 2, 70, BOARD.width - labelWidth - 70),
         y: y,
-        w: 192,
-        h: 48
+        w: labelWidth,
+        h: labelHeight
       };
 
       labels.push({ point: point, box: box });
@@ -1591,9 +1662,12 @@
     ].join('');
   }
 
-  function addStepObstacles(obstacles, points, radius) {
+  function addStepObstacles(obstacles, points, radius, miniSet) {
     points.forEach(function (point) {
-      var r = point.index === points.length ? radius + 34 : radius + 18;
+      var isFinal = point.index === points.length;
+      var isMini = miniSet && miniSet[point.index] && !isFinal;
+      var r = isFinal ? finalBadgeRadius(radius) * 1.65 : (isMini ? miniBadgeRadius(radius) * 1.32 : radius + 18);
+
       addBox(obstacles, { x: point.x - r, y: point.y - r, w: r * 2, h: r * 2 }, 0);
     });
   }
