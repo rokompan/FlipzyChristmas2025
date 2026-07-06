@@ -19,6 +19,82 @@
 
   var THEMES = [
     {
+      id: 'castle',
+      name: 'Castle Quest',
+      background: '#fff2cf',
+      backgroundAlt: '#d9ecff',
+      backgroundBand: '#d8c096',
+      title: '#4a2b23',
+      text: '#5b463f',
+      pathOuter: '#9a6a3d',
+      pathInner: '#ffd56f',
+      pathDash: '#fff4bd',
+      pathAccent: '#b98545',
+      circleFill: '#fff7dc',
+      circleStroke: '#8d5a31',
+      circleText: '#50301f',
+      miniFill: '#f6c048',
+      miniStroke: '#9b651c',
+      miniText: '#3c250d',
+      rewardFill: '#c65f57',
+      rewardStroke: '#79342f',
+      rewardText: '#ffffff',
+      labelFill: '#fffaf0',
+      labelStroke: '#caa66a',
+      accent: '#c65f57',
+      accent2: '#759b71',
+      accent3: '#f6c048',
+      roadStyle: 'cobble',
+      roadDecor: 'crown',
+      motifs: {
+        mainRewardGift: 'treasure',
+        miniRewardGift: 'coin',
+        motifTop: 'castle',
+        motifUpper: 'flag',
+        motifMiddle: 'shield',
+        motifLower: 'starCloud',
+        motifBottom: 'mountains'
+      }
+    },
+    {
+      id: 'princess',
+      name: 'Princess Garden',
+      background: '#fff0f8',
+      backgroundAlt: '#e9ddff',
+      backgroundBand: '#ffe6b5',
+      title: '#74315d',
+      text: '#5a3c59',
+      pathOuter: '#d981a7',
+      pathInner: '#ffd6e7',
+      pathDash: '#ffffff',
+      pathAccent: '#b96fd0',
+      circleFill: '#ffffff',
+      circleStroke: '#bf6f9b',
+      circleText: '#673052',
+      miniFill: '#ffe071',
+      miniStroke: '#b87d1b',
+      miniText: '#35260a',
+      rewardFill: '#8f7bd4',
+      rewardStroke: '#5b4a9b',
+      rewardText: '#ffffff',
+      labelFill: '#fffafd',
+      labelStroke: '#e8b4cd',
+      accent: '#d86d9d',
+      accent2: '#8f7bd4',
+      accent3: '#ffe071',
+      roadStyle: 'ribbon',
+      roadDecor: 'heart',
+      motifs: {
+        mainRewardGift: 'crown',
+        miniRewardGift: 'gem',
+        motifTop: 'rainbow',
+        motifUpper: 'starCloud',
+        motifMiddle: 'balloon',
+        motifLower: 'flower',
+        motifBottom: 'castle'
+      }
+    },
+    {
       id: 'garden',
       name: 'Playful Garden',
       background: '#fff8df',
@@ -43,6 +119,8 @@
       accent: '#ed7473',
       accent2: '#55b8a5',
       accent3: '#f3c94f',
+      roadStyle: 'garden',
+      roadDecor: 'leaf',
       motifs: {
         mainRewardGift: 'gift',
         miniRewardGift: 'miniGift',
@@ -78,6 +156,8 @@
       accent: '#ff7f66',
       accent2: '#4fb5d8',
       accent3: '#ffe071',
+      roadStyle: 'space',
+      roadDecor: 'star',
       motifs: {
         mainRewardGift: 'rocket',
         miniRewardGift: 'miniGift',
@@ -113,6 +193,8 @@
       accent: '#ff6f7e',
       accent2: '#2ba6b1',
       accent3: '#ffca6e',
+      roadStyle: 'river',
+      roadDecor: 'bubble',
       motifs: {
         mainRewardGift: 'gift',
         miniRewardGift: 'shell',
@@ -148,6 +230,8 @@
       accent: '#c95081',
       accent2: '#5fb8a9',
       accent3: '#ffe070',
+      roadStyle: 'candy',
+      roadDecor: 'sprinkle',
       motifs: {
         mainRewardGift: 'gift',
         miniRewardGift: 'miniGift',
@@ -183,6 +267,8 @@
       accent: '#7b71c8',
       accent2: '#6f9149',
       accent3: '#f2c25b',
+      roadStyle: 'dino',
+      roadDecor: 'footprint',
       motifs: {
         mainRewardGift: 'gift',
         miniRewardGift: 'leafSprig',
@@ -204,7 +290,7 @@
     stepCount: 24,
     showNumbers: true,
     showMiniLabels: true,
-    theme: 'garden',
+    theme: 'castle',
     miniRewards: [6, 12, 18],
     graphicSlots: defaultGraphicSlots()
   };
@@ -599,8 +685,9 @@
       '<svg class="flipzy-rewards__poster-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(state.title || 'Reward poster') + '">',
         '<title>' + escapeHtml(state.title || 'Reward poster') + '</title>',
         renderBackground(theme),
-        graphics,
         renderRoad(pathD, radius, theme),
+        renderRoadDecor(points, radius, theme),
+        graphics,
         header.svg,
         renderStartLabel(startLabel, theme),
         renderRewardLabel(rewardLabel, theme),
@@ -622,11 +709,78 @@
   function renderRoad(pathD, radius, theme) {
     if (!pathD) return '';
 
-    return [
-      '<path d="' + pathD + '" fill="none" stroke="' + theme.pathOuter + '" stroke-width="' + round(radius * 2.05) + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.98"/>',
-      '<path d="' + pathD + '" fill="none" stroke="' + theme.pathInner + '" stroke-width="' + round(radius * 1.22) + '" stroke-linecap="round" stroke-linejoin="round"/>',
-      '<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.14) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.6) + ' ' + round(radius * 0.55) + '" opacity="0.92"/>'
-    ].join('');
+    var outer = round(radius * (theme.roadStyle === 'river' ? 2.35 : 2.05));
+    var inner = round(radius * (theme.roadStyle === 'cobble' ? 1.36 : 1.22));
+    var pieces = [
+      '<path d="' + pathD + '" fill="none" stroke="' + theme.pathOuter + '" stroke-width="' + outer + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.98"/>',
+      '<path d="' + pathD + '" fill="none" stroke="' + theme.pathInner + '" stroke-width="' + inner + '" stroke-linecap="round" stroke-linejoin="round"/>'
+    ];
+
+    if (theme.roadStyle === 'cobble') {
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.pathOuter) + '" stroke-width="' + round(radius * 0.28) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.22) + ' ' + round(radius * 0.46) + '" opacity="0.55"/>');
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.12) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.5) + ' ' + round(radius * 0.62) + '" opacity="0.8"/>');
+    } else if (theme.roadStyle === 'candy') {
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.accent2) + '" stroke-width="' + round(radius * 0.26) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.38) + ' ' + round(radius * 0.9) + '" opacity="0.8"/>');
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.13) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.3) + ' ' + round(radius * 0.45) + '" opacity="0.95"/>');
+    } else if (theme.roadStyle === 'river') {
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.12) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.32) + ' ' + round(radius * 0.55) + '" opacity="0.8"/>');
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.accent2) + '" stroke-width="' + round(radius * 0.1) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 1.1) + ' ' + round(radius * 0.9) + '" opacity="0.5"/>');
+    } else if (theme.roadStyle === 'dino') {
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.pathOuter) + '" stroke-width="' + round(radius * 0.18) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.25) + ' ' + round(radius * 0.65) + '" opacity="0.65"/>');
+    } else {
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.14) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.6) + ' ' + round(radius * 0.55) + '" opacity="0.92"/>');
+    }
+
+    return pieces.join('');
+  }
+
+  function renderRoadDecor(points, radius, theme) {
+    var pieces = [];
+    var every = points.length > 36 ? 6 : points.length > 20 ? 4 : 3;
+    var size = clamp(radius * 0.28, 11, 22);
+
+    for (var i = 1; i < points.length - 1; i += every) {
+      var a = points[i - 1];
+      var b = points[i];
+      var dx = b.x - a.x;
+      var dy = b.y - a.y;
+      var len = Math.max(1, Math.sqrt(dx * dx + dy * dy));
+      var side = i % 2 === 0 ? 1 : -1;
+      var x = clamp((a.x + b.x) / 2 + (-dy / len) * radius * 1.38 * side, 82, BOARD.width - 82);
+      var y = clamp((a.y + b.y) / 2 + (dx / len) * radius * 1.38 * side, 430, BOARD.height - 230);
+
+      pieces.push(renderRoadDecorShape(theme.roadDecor || 'star', x, y, size, theme, i));
+    }
+
+    return '<g opacity="0.9">' + pieces.join('') + '</g>';
+  }
+
+  function renderRoadDecorShape(kind, x, y, size, theme, index) {
+    if (kind === 'bubble') {
+      return '<g fill="none" stroke="' + theme.accent2 + '" stroke-width="4"><circle cx="' + round(x) + '" cy="' + round(y) + '" r="' + round(size * 0.75) + '"/><circle cx="' + round(x + size * 0.9) + '" cy="' + round(y - size * 0.65) + '" r="' + round(size * 0.38) + '"/></g>';
+    }
+
+    if (kind === 'heart') {
+      return '<path d="M' + round(x) + ' ' + round(y + size * 0.78) + ' C' + round(x - size * 1.25) + ' ' + round(y - size * 0.2) + ' ' + round(x - size * 0.72) + ' ' + round(y - size) + ' ' + round(x) + ' ' + round(y - size * 0.35) + ' C' + round(x + size * 0.72) + ' ' + round(y - size) + ' ' + round(x + size * 1.25) + ' ' + round(y - size * 0.2) + ' ' + round(x) + ' ' + round(y + size * 0.78) + ' Z" fill="' + theme.accent + '"/>';
+    }
+
+    if (kind === 'leaf') {
+      return '<path d="M' + round(x - size) + ' ' + round(y + size * 0.5) + ' C' + round(x - size * 0.55) + ' ' + round(y - size * 0.95) + ' ' + round(x + size * 0.85) + ' ' + round(y - size * 0.8) + ' ' + round(x + size) + ' ' + round(y + size * 0.45) + ' C' + round(x + size * 0.12) + ' ' + round(y + size * 0.8) + ' ' + round(x - size * 0.52) + ' ' + round(y + size * 0.72) + ' ' + round(x - size) + ' ' + round(y + size * 0.5) + ' Z" fill="' + theme.accent2 + '"/>';
+    }
+
+    if (kind === 'footprint') {
+      return '<g fill="' + theme.pathOuter + '"><ellipse cx="' + round(x) + '" cy="' + round(y) + '" rx="' + round(size * 0.48) + '" ry="' + round(size * 0.68) + '" transform="rotate(' + (index % 2 ? -18 : 18) + ' ' + round(x) + ' ' + round(y) + ')"/><circle cx="' + round(x - size * 0.38) + '" cy="' + round(y - size * 0.75) + '" r="' + round(size * 0.18) + '"/><circle cx="' + round(x) + '" cy="' + round(y - size * 0.88) + '" r="' + round(size * 0.18) + '"/><circle cx="' + round(x + size * 0.38) + '" cy="' + round(y - size * 0.75) + '" r="' + round(size * 0.18) + '"/></g>';
+    }
+
+    if (kind === 'sprinkle') {
+      return '<g stroke-linecap="round" stroke-width="5"><path d="M' + round(x - size) + ' ' + round(y) + ' L' + round(x - size * 0.2) + ' ' + round(y - size * 0.45) + '" stroke="' + theme.accent + '"/><path d="M' + round(x + size * 0.2) + ' ' + round(y + size * 0.55) + ' L' + round(x + size) + ' ' + round(y + size * 0.1) + '" stroke="' + theme.accent2 + '"/></g>';
+    }
+
+    if (kind === 'crown') {
+      return '<path d="M' + round(x - size) + ' ' + round(y + size * 0.55) + ' L' + round(x - size * 0.65) + ' ' + round(y - size * 0.45) + ' L' + round(x) + ' ' + round(y + size * 0.1) + ' L' + round(x + size * 0.65) + ' ' + round(y - size * 0.45) + ' L' + round(x + size) + ' ' + round(y + size * 0.55) + ' Z" fill="' + theme.accent3 + '" stroke="' + theme.miniStroke + '" stroke-width="3"/>';
+    }
+
+    return '<polygon points="' + starPoints(x, y, size, size * 0.44, 5) + '" fill="' + theme.accent3 + '"/>';
   }
 
   function renderSteps(points, radius, theme, miniSet, showNumbers) {
@@ -811,16 +965,28 @@
 
     for (row = 0; row < rows; row += 1) {
       var rowCount = base + (row < extra ? 1 : 0);
-      var xGap = rowCount === 1 ? 0 : (area.right - area.left) / (rowCount - 1);
+      var rowInset = rows > 3 ? (row % 3) * 24 : row * 18;
+      var rowLeft = area.left + rowInset;
+      var rowRight = area.right - ((row + 1) % 3) * 24;
+      var xGap = rowCount === 1 ? 0 : (rowRight - rowLeft) / (rowCount - 1);
+      var rowY = rows === 1 ? (area.top + area.bottom) / 2 : area.top + yGap * row;
+      var wave = clamp(yGap * 0.18, 16, 54);
       var col;
 
       for (col = 0; col < rowCount; col += 1) {
         var displayCol = row % 2 === 1 ? rowCount - 1 - col : col;
+        var t = rowCount === 1 ? 0.5 : displayCol / (rowCount - 1);
+        var x = rowCount === 1 ? (area.left + area.right) / 2 : rowLeft + xGap * displayCol;
+        var y = rowY + Math.sin(t * Math.PI * 1.45 + row * 0.8) * wave;
+
+        if (rowCount > 2 && (displayCol === 0 || displayCol === rowCount - 1)) {
+          y += (displayCol === 0 ? 1 : -1) * wave * 0.28;
+        }
 
         points.push({
           index: index,
-          x: Math.round(rowCount === 1 ? (area.left + area.right) / 2 : area.left + xGap * displayCol),
-          y: Math.round(rows === 1 ? (area.top + area.bottom) / 2 : area.top + yGap * row),
+          x: Math.round(clamp(x, area.left, area.right)),
+          y: Math.round(clamp(y, area.top, area.bottom)),
           row: row
         });
         index += 1;
@@ -832,9 +998,23 @@
 
   function buildPath(points) {
     if (!points || points.length < 2) return '';
-    return points.map(function (point, index) {
-      return (index === 0 ? 'M' : 'L') + point.x + ' ' + point.y;
-    }).join(' ');
+    var path = 'M' + points[0].x + ' ' + points[0].y;
+    var tension = 0.34;
+
+    for (var i = 0; i < points.length - 1; i += 1) {
+      var p0 = points[Math.max(0, i - 1)];
+      var p1 = points[i];
+      var p2 = points[i + 1];
+      var p3 = points[Math.min(points.length - 1, i + 2)];
+      var c1x = p1.x + (p2.x - p0.x) * tension;
+      var c1y = p1.y + (p2.y - p0.y) * tension;
+      var c2x = p2.x - (p3.x - p1.x) * tension;
+      var c2y = p2.y - (p3.y - p1.y) * tension;
+
+      path += ' C' + round(c1x) + ' ' + round(c1y) + ' ' + round(c2x) + ' ' + round(c2y) + ' ' + p2.x + ' ' + p2.y;
+    }
+
+    return path;
   }
 
   function buildGraphics(state, uploads, theme, points, miniSet, baseObstacles) {
@@ -1048,6 +1228,63 @@
         '<path d="M8 36 C20 24 32 24 44 36 C56 48 68 48 80 36 C86 30 91 28 96 30" fill="none" stroke="' + theme.accent2 + '" stroke-width="8" stroke-linecap="round"/>',
         '<path d="M5 58 C17 46 29 46 41 58 C53 70 65 70 77 58 C84 51 91 49 97 53" fill="none" stroke="' + theme.pathOuter + '" stroke-width="8" stroke-linecap="round"/>',
         '<path d="M14 80 C28 68 42 68 56 80 C70 91 84 88 94 78" fill="none" stroke="' + theme.accent + '" stroke-width="8" stroke-linecap="round"/>'
+      ].join('');
+    } else if (name === 'treasure') {
+      body = [
+        '<path d="M18 45 C18 27 31 16 50 16 C69 16 82 27 82 45 V82 H18 Z" fill="' + theme.accent3 + '" stroke="' + theme.rewardStroke + '" stroke-width="4"/>',
+        '<path d="M18 45 H82" stroke="' + theme.rewardStroke + '" stroke-width="5"/>',
+        '<rect x="24" y="48" width="52" height="34" rx="5" fill="' + theme.accent + '" stroke="' + theme.rewardStroke + '" stroke-width="4"/>',
+        '<circle cx="50" cy="61" r="7" fill="' + theme.labelFill + '" stroke="' + theme.rewardStroke + '" stroke-width="3"/>',
+        '<path d="M32 35 H68" stroke="' + theme.labelFill + '" stroke-width="5" stroke-linecap="round" opacity="0.75"/>'
+      ].join('');
+    } else if (name === 'coin') {
+      body = [
+        '<ellipse cx="39" cy="67" rx="20" ry="13" fill="' + theme.accent3 + '" stroke="' + theme.miniStroke + '" stroke-width="4"/>',
+        '<ellipse cx="57" cy="54" rx="22" ry="14" fill="' + theme.accent3 + '" stroke="' + theme.miniStroke + '" stroke-width="4"/>',
+        '<circle cx="55" cy="40" r="21" fill="' + theme.miniFill + '" stroke="' + theme.miniStroke + '" stroke-width="4"/>',
+        '<text x="55" y="50" text-anchor="middle" fill="' + theme.miniText + '" font-family="Arial, sans-serif" font-size="26" font-weight="900">$</text>'
+      ].join('');
+    } else if (name === 'castle') {
+      body = [
+        '<rect x="18" y="42" width="64" height="43" rx="4" fill="' + theme.backgroundAlt + '" stroke="' + theme.circleStroke + '" stroke-width="4"/>',
+        '<rect x="24" y="27" width="15" height="58" fill="' + theme.labelFill + '" stroke="' + theme.circleStroke + '" stroke-width="4"/>',
+        '<rect x="61" y="27" width="15" height="58" fill="' + theme.labelFill + '" stroke="' + theme.circleStroke + '" stroke-width="4"/>',
+        '<path d="M23 27 L31.5 14 L40 27 Z M60 27 L68.5 14 L77 27 Z M38 42 L50 25 L62 42 Z" fill="' + theme.accent3 + '" stroke="' + theme.circleStroke + '" stroke-width="3"/>',
+        '<path d="M44 85 V69 C44 61 56 61 56 69 V85" fill="' + theme.accent + '" stroke="' + theme.circleStroke + '" stroke-width="3"/>'
+      ].join('');
+    } else if (name === 'flag') {
+      body = [
+        '<path d="M29 87 V17" stroke="' + theme.circleStroke + '" stroke-width="7" stroke-linecap="round"/>',
+        '<path d="M32 19 C50 11 64 24 82 16 V55 C64 63 50 50 32 58 Z" fill="' + theme.accent + '" stroke="' + theme.rewardStroke + '" stroke-width="4"/>',
+        '<path d="M40 25 C52 22 63 31 76 27" fill="none" stroke="' + theme.labelFill + '" stroke-width="5" stroke-linecap="round"/>'
+      ].join('');
+    } else if (name === 'shield') {
+      body = [
+        '<path d="M50 12 L82 25 V50 C82 69 69 82 50 91 C31 82 18 69 18 50 V25 Z" fill="' + theme.accent2 + '" stroke="' + theme.circleStroke + '" stroke-width="4"/>',
+        '<path d="M50 18 V86" stroke="' + theme.labelFill + '" stroke-width="5"/>',
+        '<path d="M24 48 H76" stroke="' + theme.labelFill + '" stroke-width="5"/>',
+        '<polygon points="' + starPoints(50, 49, 13, 6, 5) + '" fill="' + theme.accent3 + '"/>'
+      ].join('');
+    } else if (name === 'crown') {
+      body = [
+        '<path d="M16 74 L24 32 L42 58 L51 22 L62 58 L78 32 L86 74 Z" fill="' + theme.accent3 + '" stroke="' + theme.miniStroke + '" stroke-width="4"/>',
+        '<rect x="20" y="70" width="62" height="13" rx="6" fill="' + theme.accent + '" stroke="' + theme.miniStroke + '" stroke-width="4"/>',
+        '<circle cx="24" cy="31" r="6" fill="' + theme.labelFill + '"/><circle cx="51" cy="22" r="6" fill="' + theme.labelFill + '"/><circle cx="78" cy="31" r="6" fill="' + theme.labelFill + '"/>'
+      ].join('');
+    } else if (name === 'gem') {
+      body = [
+        '<path d="M27 24 H73 L88 43 L50 88 L12 43 Z" fill="' + theme.accent2 + '" stroke="' + theme.circleStroke + '" stroke-width="4"/>',
+        '<path d="M27 24 L39 43 L50 24 L61 43 L73 24 M12 43 H88 M39 43 L50 88 L61 43" fill="none" stroke="' + theme.labelFill + '" stroke-width="4" opacity="0.85"/>'
+      ].join('');
+    } else if (name === 'flower') {
+      body = [
+        '<path d="M50 54 C42 29 58 29 50 54 Z" fill="' + theme.accent + '" stroke="' + theme.circleStroke + '" stroke-width="3"/>',
+        '<path d="M50 54 C25 44 33 30 50 54 Z" fill="' + theme.accent2 + '" stroke="' + theme.circleStroke + '" stroke-width="3"/>',
+        '<path d="M50 54 C75 44 67 30 50 54 Z" fill="' + theme.accent2 + '" stroke="' + theme.circleStroke + '" stroke-width="3"/>',
+        '<path d="M50 54 C37 75 24 63 50 54 Z" fill="' + theme.accent + '" stroke="' + theme.circleStroke + '" stroke-width="3"/>',
+        '<path d="M50 54 C63 75 76 63 50 54 Z" fill="' + theme.accent + '" stroke="' + theme.circleStroke + '" stroke-width="3"/>',
+        '<circle cx="50" cy="54" r="9" fill="' + theme.accent3 + '" stroke="' + theme.circleStroke + '" stroke-width="3"/>',
+        '<path d="M50 63 V91" stroke="' + theme.accent2 + '" stroke-width="6" stroke-linecap="round"/>'
       ].join('');
     } else {
       body = [
