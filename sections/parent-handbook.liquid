@@ -1,0 +1,473 @@
+{{ 'parent-handbook.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'parent-handbook.js' | asset_url }}" defer="defer"></script>
+
+{% comment %}
+  Parent Handbook content lives in this file now.
+  Edit the HTML inside the .flipzy-handbook article when the handbook copy changes.
+{% endcomment %}
+
+<article class="flipzy-handbook" aria-label="Parent Handbook">
+  {% comment %} EDIT CONTENT: Start editing the handbook body below this line. {% endcomment %}
+
+  <div class="flipzy-handbook__book">
+    <header class="cover">
+      <div>
+        <div class="eyebrow">Flipzy Parent Handbook</div>
+        <h1>Calmer routines, more capable kids.</h1>
+        <p class="subtitle">A practical, evidence-informed handbook for parents who want less nagging, fewer screen battles, smoother mornings and evenings, and more independent children.</p>
+        <p class="edition">Printable HTML draft v0.2 &middot; Built for PDF export</p>
+        <button type="button" class="flipzy-handbook__print-button" data-flipzy-handbook-print>
+          Print / Save as PDF
+        </button>
+      </div>
+      <figure>
+        <img class="hero-img" src="https://flipzy.toys/cdn/shop/files/flipzy.webp?v=1772006058&amp;width=800" alt="Flipzy wooden routine board with flipped task tiles" width="800" height="491">
+        <figcaption class="caption">Flipzy turns routine steps into visible, tactile progress.</figcaption>
+      </figure>
+    </header>
+
+    <nav class="toc" id="toc" aria-label="Table of contents">
+      <h2>Table of Contents</h2>
+      <div class="toc-grid">
+        <a href="#start">1. What this handbook is really for</a>
+        <a href="#philosophy">2. The Flipzy philosophy</a>
+        <a href="#routines-work">3. Why routines work</a>
+        <a href="#play">4. Why play belongs in routines</a>
+        <a href="#rewards">5. Rewards, motivation, and pride</a>
+        <a href="#ages">6. Age-by-age expectations</a>
+        <a href="#method">7. The Flipzy Loop</a>
+        <a href="#setup">8. How to introduce Flipzy</a>
+        <a href="#routine-library">9. Predefined routine library</a>
+        <a href="#common-routines">10. How to handle the big daily routines</a>
+        <a href="#screens">11. Screens and transitions</a>
+        <a href="#troubleshooting">12. Troubleshooting when it stops working</a>
+        <a href="#scenarios">13. Real-life scenarios</a>
+        <a href="#sources">14. Further reading and source inspiration</a>
+      </div>
+    </nav>
+
+    <section class="chapter" id="start">
+      <h2>1. What this handbook is really for</h2>
+      <p class="lead">This handbook is for the normal, loving, tired parent who is done repeating the same sentence twelve times every morning. It is for the parent who does not want to shout, but ends up shouting. It is for the family where brushing teeth, turning off a screen, putting on shoes, cleaning up toys, or going to bed has become a daily negotiation.</p>
+      <p>Flipzy can help because it gives children something concrete to follow. A young child does not experience &ldquo;get ready&rdquo; as a neat adult category. To the child, &ldquo;get ready&rdquo; can mean leaving a warm bed, stopping a game, finding clothes, tolerating a scratchy sock, remembering breakfast, brushing teeth, and moving toward the door before their brain has fully woken up. That is a lot. A visual routine breaks that large invisible demand into small visible actions.</p>
+      <p>This book is not only a product guide. It is a parenting routine book that can be used with Flipzy, paper cards, magnets, drawings, sticky notes, a whiteboard, or a simple spoken sequence. Flipzy is the tool; the deeper system is predictable structure, warm connection, clear language, practice, and calm follow-through.</p>
+      <div class="note warning">
+        <p><strong>Important:</strong> This handbook is not medical or psychological advice. If a child is regularly unsafe, extremely aggressive, deeply anxious, not sleeping, delayed in language or development, or if a parent feels close to losing control, the right next step is professional support. A routine board can support family life, but it should never replace a pediatrician, therapist, occupational therapist, speech therapist, or family support service when those are needed.</p>
+      </div>
+    </section>
+
+    <section class="chapter" id="philosophy">
+      <h2>2. The Flipzy philosophy: connection first, structure second, rewards third</h2>
+      <p>The biggest mistake with routine tools is using them as a new way to pressure the child. When the tool becomes a scoreboard for failure, children feel controlled and parents feel disappointed. When the tool becomes a helper, children feel capable and parents can step out of the role of constant reminder.</p>
+      <p>The first layer is connection. Children usually cooperate better with adults they feel safe with. Connection does not mean giving in. It means the child feels seen before they are guided. A parent can say, &ldquo;You really wanted to keep playing. It is hard to stop,&rdquo; and still hold the boundary: &ldquo;Now it is bath time.&rdquo; Warmth and firmness are not opposites. In daily routines, they need each other.</p>
+      <p>The second layer is structure. Structure means the child knows what happens, in what order, and what counts as done. A predictable routine reduces the number of decisions the child has to make and the number of arguments the parent has to enter. The routine becomes the calm third thing in the room: not parent versus child, but parent and child looking together at what comes next.</p>
+      <p>The third layer is rewards, but rewards are not the foundation. Rewards can help launch a new behavior, especially when the child is capable but not motivated, or when a routine has become emotionally loaded. But the best long-term motivation comes from mastery, independence, belonging, and pride. Flipzy&rsquo;s flipping action is powerful because it creates a small moment of completion. The child sees progress, feels progress, and participates in finishing the routine.</p>
+      <p class="pull">The goal is not a child who obeys a board. The goal is a child who slowly learns, &ldquo;I know what comes next, and I can do it.&rdquo;</p>
+    </section>
+
+    <section class="chapter" id="routines-work">
+      <h2>3. Why routines work</h2>
+      <p>Routines work because they make family life more predictable. Predictability gives children emotional security. When a child knows the order of the morning or evening, they do not have to constantly guess, resist, negotiate, or wait for the adult to command the next step. The routine carries part of the mental load.</p>
+      <p>For adults, a routine can look boring. For children, boring can be beautiful. A familiar sequence tells the body, &ldquo;I know this.&rdquo; That is why the same bedtime story, the same goodnight words, or the same morning order can calm a child over time. The repeated pattern becomes a bridge from dependence to independence.</p>
+      <p>Routines also help because they make expectations visible. &ldquo;Be good&rdquo; is too abstract. &ldquo;Put pajamas in the basket&rdquo; is visible. &ldquo;Hurry up&rdquo; is stressful. &ldquo;Shoes, jacket, bag&rdquo; is actionable. A child can flip a tile after finishing a step because the step has a beginning and an end. That sense of an ending matters.</p>
+      <div class="image-row">
+        <figure>
+          <img src="https://flipzy.toys/cdn/shop/files/stickers.webp?v=1772005226&amp;width=1000" alt="A child flipping a wooden routine tile on Flipzy" width="1000" height="671">
+          <figcaption class="caption">A physical action gives children a concrete &ldquo;done&rdquo; moment.</figcaption>
+        </figure>
+        <figure>
+          <img src="https://flipzy.toys/cdn/shop/files/natakni.webp?v=1772005465&amp;width=1000" alt="Close-up of Flipzy wooden hinge and stickers" width="1000" height="747">
+          <figcaption class="caption">Small tactile details can make routines feel more real than spoken reminders.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="chapter" id="play">
+      <h2>4. Why play belongs in routines</h2>
+      <p>Play is not a decoration added to parenting after the serious work is done. For young children, play is often the route into learning. A child may resist &ldquo;put on socks&rdquo; but join &ldquo;can your socks jump onto your feet?&rdquo; A child may ignore &ldquo;go to the bathroom&rdquo; but follow &ldquo;the toothbrush is waiting for its driver.&rdquo; Play lowers threat and invites participation.</p>
+      <p>This does not mean every routine needs to become a performance. Parents are busy and often exhausted. A playful routine can be very small: a silly voice, a race against a song, a choice between dinosaur steps and tiny mouse steps, or asking the child to teach a teddy bear the bedtime routine. These small playful moves protect the relationship while still moving the routine forward.</p>
+      <p>Play is especially useful before correction. A child who receives only commands may start resisting the parent rather than the task. A child who receives warmth and play is more likely to feel that the parent is on their team. The task still happens, but the emotional climate is different.</p>
+    </section>
+
+    <section class="chapter" id="rewards">
+      <h2>5. Rewards, motivation, and pride</h2>
+      <p>Rewards are useful when they are used as training wheels. They help a child experience success before the habit is strong enough to stand on its own. A reward system works best when the target behavior is specific, the child can realistically do it, the feedback comes quickly, and the parent notices effort instead of only perfect outcomes.</p>
+      <p>A reward is planned before the behavior. A bribe is usually offered during a crisis to make the crisis stop. &ldquo;When teeth are brushed, you choose the story&rdquo; is a reward structure. &ldquo;If you stop screaming, I will give you chocolate&rdquo; is a rescue attempt. Every parent has used rescue attempts sometimes; there is no shame in that. But if the rescue becomes the pattern, the child learns that escalation is part of getting what they want.</p>
+      <p>With Flipzy, the first reward is often the flip itself. The child gets to move the task from not done to done. That simple action gives visible progress and a small burst of control. For some children that is enough. For others, especially when a routine is new or difficult, you can add a small privilege: choosing the bedtime story, picking music in the car, being the breakfast helper, or earning a shared family activity.</p>
+      <p>The most important part is fading. At first, you might celebrate every step. Later, you celebrate the whole routine. Later still, the routine simply becomes what the family does. The message is not &ldquo;you only do things for prizes.&rdquo; The message is, &ldquo;You were learning, the system helped you, and now this skill belongs to you.&rdquo;</p>
+    </section>
+
+    <section class="chapter" id="ages">
+      <h2>6. Age-by-age expectations</h2>
+      <p>Children develop at different speeds, so age ranges should be treated as a flexible map rather than a strict rule. The same routine can look very different for a three-year-old and a seven-year-old. A younger child needs the parent beside them; an older child may need more ownership and less babyish language.</p>
+      <table class="age-table">
+        <thead>
+          <tr>
+            <th>Age</th>
+            <th>What they usually need</th>
+            <th>Best routine style</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2&ndash;3</td>
+            <td>Physical help, repetition, short language, immediate feedback, and a lot of patience.</td>
+            <td>Two or three steps, pictures or objects, parent doing most of the guiding.</td>
+          </tr>
+          <tr>
+            <td>3&ndash;4</td>
+            <td>Predictable limits, playful transitions, simple choices, and help naming feelings.</td>
+            <td>Three or four steps, child moves/flips with help, very immediate celebration.</td>
+          </tr>
+          <tr>
+            <td>4&ndash;5</td>
+            <td>Independence practice, story, imagination, helper roles, and emotional coaching.</td>
+            <td>Four or five steps, child checks what comes next, parent asks instead of commands.</td>
+          </tr>
+          <tr>
+            <td>5&ndash;6</td>
+            <td>Responsibility, pride, problem-solving, and practice finishing tasks.</td>
+            <td>Child helps design the routine, parent reviews weekly, rewards become privileges.</td>
+          </tr>
+          <tr>
+            <td>6&ndash;8</td>
+            <td>Planning, fairness, autonomy, and natural consequences.</td>
+            <td>Checklists, timers, co-created expectations, fewer rewards, more ownership.</td>
+          </tr>
+          <tr>
+            <td>8&ndash;10</td>
+            <td>Respect, privacy, meaningful responsibility, and collaborative limits.</td>
+            <td>Written agreements or mature checklists; avoid childish systems unless the child likes them.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>The practical rule is simple: if the child cannot do the routine, make it easier. If the child can do it but will not start, make it more visible, more playful, or more motivating. If the child can do it and starts reliably, fade support and give them more ownership.</p>
+    </section>
+
+    <section class="chapter" id="method">
+      <h2>7. The Flipzy Loop</h2>
+      <p>The Flipzy Loop is the method behind the handbook. It keeps routines from becoming just another command system. You use the loop whenever you introduce a routine, repair a routine, or help a child through a difficult transition.</p>
+      <div class="method">
+        <div>
+          <b>Connect</b><span>Briefly enter the child&rsquo;s world before giving direction. &ldquo;That tower is huge. You worked hard on it.&rdquo;</span>
+        </div>
+        <div>
+          <b>Prepare</b><span>Say what is coming. &ldquo;In five minutes, we start bedtime.&rdquo;</span>
+        </div>
+        <div>
+          <b>Show</b><span>Point to the routine or tile. &ldquo;Check Flipzy. First pajamas.&rdquo;</span>
+        </div>
+        <div>
+          <b>Practice</b><span>Do the skill together before expecting independence. &ldquo;I start one sleeve, you do the other.&rdquo;</span>
+        </div>
+        <div>
+          <b>Celebrate</b><span>Notice the exact behavior. &ldquo;You started after one reminder. That helped.&rdquo;</span>
+        </div>
+        <div>
+          <b>Repair</b><span>When it fails, adjust instead of quitting. &ldquo;Tomorrow we make the first step smaller.&rdquo;</span>
+        </div>
+      </div>
+      <p>This loop also protects the parent from overtalking. Many routine problems get worse because the adult keeps explaining, convincing, warning, and repeating. The child hears pressure, not clarity. The loop gives the adult a calmer path: connect briefly, show the step, help start, celebrate effort, and repair later.</p>
+    </section>
+
+    <section class="chapter" id="setup">
+      <h2>8. How to introduce Flipzy without turning it into pressure</h2>
+      <p>Introduce Flipzy during a calm moment, not during the worst bedtime meltdown of the month. The first experience should feel like discovery. Put it on the table or wall, let the child touch it, flip pieces, choose stickers, and explore. If the first message is &ldquo;You never listen, so now we need this,&rdquo; the tool already feels like punishment.</p>
+      <p>A better introduction is: &ldquo;Sometimes mornings feel rushed. This will help us remember what comes next.&rdquo; That sentence puts the problem outside the child. The child is not the problem; the routine is the thing the family is improving together.</p>
+      <p>Start with one routine. Parents often want to fix morning, bedtime, screens, cleanup, meals, and chores immediately. That is too much. Choose one common routine that matters but is not the most explosive problem in the house. For many families, the best starter is not bedtime, because bedtime is already emotionally loaded. A better first routine might be coming home, getting dressed, putting shoes away, or a small cleanup sequence.</p>
+      <p>For the first week, reward participation more than perfection. The child is not only learning the task; they are learning the system. Notice when they check the board, when they flip a tile, when they remember one step, or when they recover after getting distracted. The first win is not a flawless routine. The first win is that the routine becomes a shared language.</p>
+      <figure class="full-img">
+        <img src="https://flipzy.toys/cdn/shop/files/whatsinthebox7.jpg?v=1764539508&amp;width=1000" alt="Flipzy box contents with wooden board, tiles, stickers, tape and instructions" width="1000" height="781">
+        <figcaption class="caption">The product system is modular: board, task pieces, stickers, mounting tape and instructions. Use that modularity to start small.</figcaption>
+      </figure>
+    </section>
+
+    <section class="chapter pagebreak" id="routine-library">
+      <h2>9. Predefined routine library</h2>
+      <p class="lead">Your routine builder idea is exactly right: parents need ready-made starting points. They should not have to invent a perfect routine while the child is already screaming. A predefined routine gives them a first draft. Then they can rearrange, remove, or replace steps until it fits their child.</p>
+      <p>The examples below are intentionally practical. They are not meant to be followed like law. They are starter packs. A family can use the same Flipzy board for morning, evening, after-school, chores, calm transitions, weekend anchors, or sibling teamwork. The homepage currently frames Flipzy as customizable with 30 included task stickers and routines that can be adapted for mornings, afternoons, bedtime, after-school tasks, chores, and calm transitions. This handbook turns that flexibility into concrete examples parents can copy.</p>
+      <figure class="full-img">
+        <img src="https://flipzy.toys/cdn/shop/files/tasks-30.jpg?v=1757933601&amp;width=1000" alt="Grid of 30 Flipzy task sticker illustrations" width="1000" height="716">
+        <figcaption class="caption">A routine system becomes easier when parents can pick from a visible task library instead of inventing every step from scratch.</figcaption>
+      </figure>
+      <div class="routine-grid">
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>1. Gentle Morning Starter</h4>
+            <span>Ages 3&ndash;5</span>
+          </div>
+          <p>Use this when mornings feel rushed, but the child is still learning basic self-care. The aim is not speed. The aim is to make the first hour predictable enough that the child can move without constant verbal pressure.</p>
+          <div class="chips">
+            <span class="chip">Toilet</span><span class="chip">Get dressed</span><span class="chip">Breakfast</span><span class="chip">Brush teeth</span><span class="chip">Shoes</span><span class="chip">Bag</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;Good morning. First toilet, then clothes. Check what comes next.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> The child gets stuck on clothing. Put only two clothing choices out the night before.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>2. Independent School Morning</h4>
+            <span>Ages 5&ndash;8</span>
+          </div>
+          <p>Use this when the child can do most steps but forgets the order, wanders away, or waits for reminders. This routine moves responsibility from the parent&rsquo;s voice to the visible sequence.</p>
+          <div class="chips">
+            <span class="chip">Bathroom</span><span class="chip">Clothes</span><span class="chip">Breakfast</span><span class="chip">Teeth</span><span class="chip">Pack bag</span><span class="chip">Shoes/jacket</span><span class="chip">Door check</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;You are the morning captain. Check the board and tell me what is next.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> The child cannot manage the bag step. Move bag packing to the evening routine.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>3. Calm Bedtime Basic</h4>
+            <span>Ages 3&ndash;6</span>
+          </div>
+          <p>This is the default routine for families who need evenings to become boring, warm, and repeatable. It works best when it starts before the child is overtired.</p>
+          <div class="chips">
+            <span class="chip">Toilet</span><span class="chip">Pajamas</span><span class="chip">Brush teeth</span><span class="chip">Story</span><span class="chip">Hug</span><span class="chip">Lights out</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;First pajamas, then teeth, then story. The order stays the same.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> Bedtime takes more than 45 minutes. Start 20 minutes earlier and remove one optional activity.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>4. Bedtime for a Child Who Delays</h4>
+            <span>Ages 4&ndash;8</span>
+          </div>
+          <p>Use this when the child asks for water, another toy, another hug, another question, and another story. The routine gives closeness, but closes the door on endless negotiation.</p>
+          <div class="chips">
+            <span class="chip">Last drink</span><span class="chip">Toilet</span><span class="chip">Teeth</span><span class="chip">One story</span><span class="chip">Two hugs</span><span class="chip">Lights out</span><span class="chip">Parent check</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;You get one story and two hugs. After lights out, I will check once.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> The child is genuinely anxious. Add a predictable check-in, not endless conversation.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>5. Screen-to-Real-Life Transition</h4>
+            <span>Ages 3&ndash;8</span>
+          </div>
+          <p>Use this when stopping screens causes screaming, bargaining, or collapse. The key is to define the ending before the screen starts and give the body something to do afterward.</p>
+          <div class="chips">
+            <span class="chip">Rule before screen</span><span class="chip">One episode/timer</span><span class="chip">Press stop</span><span class="chip">Flip tile</span><span class="chip">Body reset</span><span class="chip">Next activity</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;When the timer rings, you press stop. Then we jump ten times and have snack.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> The child cannot stop mid-video. Use full episodes instead of arbitrary minutes.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>6. After-Kindergarten / After-School Landing</h4>
+            <span>Ages 3&ndash;8</span>
+          </div>
+          <p>Use this when the child comes home wild, silent, hungry, angry, or emotionally finished. This routine respects decompression before asking for bigger cooperation.</p>
+          <div class="chips">
+            <span class="chip">Shoes off</span><span class="chip">Jacket/bag</span><span class="chip">Wash hands</span><span class="chip">Water/snack</span><span class="chip">10-minute reset</span><span class="chip">Next job</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;You are home. Shoes and hands first. Talking can come after snack.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> The child melts down immediately. Reduce language and offer food/water first.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>7. Cleanup Without Tears</h4>
+            <span>Ages 3&ndash;7</span>
+          </div>
+          <p>Use this when cleanup feels too big. The routine turns a vague command into categories, and at first the parent works beside the child so the child learns how cleanup is done.</p>
+          <div class="chips">
+            <span class="chip">Cars in bin</span><span class="chip">Blocks in box</span><span class="chip">Books on shelf</span><span class="chip">Stuffies in basket</span><span class="chip">Floor check</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;I will do books. You do cars. Start with the red car.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> The room is a disaster. Set a five-minute cleanup goal instead of full-room perfection.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>8. Mealtime Helper Routine</h4>
+            <span>Ages 4&ndash;8</span>
+          </div>
+          <p>This routine is not about forcing eating. It is about participation, sitting, and simple contribution. It gives children a useful role without making food a reward battle.</p>
+          <div class="chips">
+            <span class="chip">Wash hands</span><span class="chip">Set one item</span><span class="chip">Sit</span><span class="chip">Eat/try calmly</span><span class="chip">Plate to sink</span><span class="chip">Wipe spot</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;You do not have to love the food. Your job is sitting and plate to sink.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> Food refusal becomes emotional. Stop rewarding bites; reward sitting, manners, and cleanup.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>9. Weekend Reset</h4>
+            <span>Ages 4&ndash;9</span>
+          </div>
+          <p>Weekends should feel freer than school days, but many children become dysregulated when the whole structure disappears. This routine keeps a few anchors so the day still has shape.</p>
+          <div class="chips">
+            <span class="chip">Breakfast</span><span class="chip">Get dressed</span><span class="chip">Outdoor/body time</span><span class="chip">One home job</span><span class="chip">Screen block</span><span class="chip">Evening reset</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;Today is flexible, but we still keep our anchors: clothes, outside, one job, bedtime.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> The family travels. Keep only morning and evening anchors.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>10. Sibling Team Routine</h4>
+            <span>Ages 3&ndash;9</span>
+          </div>
+          <p>Use this when siblings compete, copy each other, or fight during transitions. The children get separate jobs but a shared finish, so the family wins together.</p>
+          <div class="chips">
+            <span class="chip">Child A job</span><span class="chip">Child B job</span><span class="chip">Team check</span><span class="chip">Flip together</span><span class="chip">Shared celebration</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;Your job is shoes. His job is bag. When both are done, we flip the team tile.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> One child always wins. Use different jobs and avoid comparing speed.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>11. Leaving the House</h4>
+            <span>Ages 2&ndash;7</span>
+          </div>
+          <p>This routine works because it turns the final chaos into a short physical sequence near the door. The fewer places the child has to go, the better.</p>
+          <div class="chips">
+            <span class="chip">Last toilet</span><span class="chip">Shoes</span><span class="chip">Jacket</span><span class="chip">Bag</span><span class="chip">Hand/door</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;It is time to leave. Shoes first. Do you want to sit or stand?&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> The child runs away. Stop chasing as a game; calmly guide the body back.</p>
+        </article>
+
+        <article class="routine-card">
+          <div class="routine-head">
+            <h4>12. Hygiene Mini Routine</h4>
+            <span>Ages 3&ndash;8</span>
+          </div>
+          <p>This is useful for children who resist teeth, hair, face washing, or hand washing. The routine should be short and concrete, with small choices inside the non-negotiable task.</p>
+          <div class="chips">
+            <span class="chip">Toilet</span><span class="chip">Wash hands</span><span class="chip">Brush teeth</span><span class="chip">Comb hair</span><span class="chip">Face check</span>
+          </div>
+          <p class="script"><strong>Parent script:</strong> &ldquo;You choose: teeth first or hair first. Both are happening.&rdquo;</p>
+          <p class="smallnote"><strong>Adjust it when:</strong> The child has sensory resistance. Change toothbrush, toothpaste, water temperature, or comb type.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="chapter" id="common-routines">
+      <h2>10. How to handle the big daily routines</h2>
+      <h3>Morning</h3>
+      <p>Morning routines fail when the first decision happens too late. Clothes, bags, special items, and breakfast expectations should be decided before the morning starts. The child&rsquo;s morning brain is not built for a long list of new decisions. A strong morning routine begins the night before.</p>
+      <p>Use fewer words than you think you need. Instead of &ldquo;Come on, we are late, why are you still not dressed?&rdquo; try &ldquo;Clothes first.&rdquo; Then point to the board. If the child is stuck, help the body start rather than adding a lecture. One arm into the shirt can be enough to begin momentum.</p>
+
+      <h3>Leaving the house</h3>
+      <p>Leaving is difficult because it forces a transition. The child must stop the home world and enter the outside world. Keep the leaving routine physically close to the door: last toilet, shoes, jacket, bag, hand. If the child runs away, do not chase as a game. Calmly guide the child back and say, &ldquo;Running means I help your body.&rdquo;</p>
+
+      <h3>Coming home</h3>
+      <p>Many children fall apart after kindergarten or school because they have used up their self-control. Do not start with twenty questions. Start with landing: shoes off, bag in place, hands washed, water, snack, and a short decompression period. A child who looks rude or wild may simply be overloaded.</p>
+
+      <h3>Cleanup</h3>
+      <p>&ldquo;Clean your room&rdquo; is not a useful instruction for most young children. It is too large and too abstract. Say the category: cars in the red bin, books on the shelf, stuffed animals in the basket. At first, clean beside the child. You are not spoiling them; you are teaching the method. Later, you can step back.</p>
+
+      <h3>Mealtime</h3>
+      <p>Mealtime routines should focus on participation and calm behavior, not forcing food. The parent chooses what food is offered and when. The child chooses how much to eat from what is available. A good Flipzy mealtime routine might include washing hands, sitting, using polite words, putting the plate by the sink, and wiping the spot. Be cautious about rewarding bites; food pressure can create bigger problems than it solves.</p>
+
+      <h3>Bedtime</h3>
+      <p>Bedtime should become boring in the best possible way. The more dramatic bedtime becomes, the more energy it attracts. Use the same order, the same number of stories, the same goodnight phrase, and the same calm return if the child gets up. Do not make love conditional. Hugs are not earned. Extra privileges, such as choosing a story or song, can be linked to finishing the routine on time.</p>
+    </section>
+
+    <section class="chapter" id="screens">
+      <h2>11. Screens and transitions</h2>
+      <p>Screens are hard to stop because they are built to hold attention. A child who melts down when a video stops is not necessarily being manipulative; their brain and body may be struggling with the shift from high stimulation to real life. That does not mean the screen should continue. It means the transition needs structure.</p>
+      <p>Set the rule before the screen begins. &ldquo;One episode. When it ends, you press stop and flip the tile.&rdquo; Use endings children can understand: one episode, one timer, one playlist, or one game level. Avoid vague promises like &ldquo;a little bit,&rdquo; because vague endings invite negotiation.</p>
+      <p>After the screen, give the body a bridge. Jumping, snack, outside, bath, drawing, or helping with a small task usually works better than asking the child to move directly from screen stimulation into a demanding chore. The parent script should stay warm and firm: &ldquo;You want more. The episode is done. Press stop. Then snack.&rdquo;</p>
+    </section>
+
+    <section class="chapter" id="troubleshooting">
+      <h2>12. Troubleshooting when it stops working</h2>
+      <p>When a routine fails, do not immediately decide that the child is impossible or the system is useless. Most routine breakdowns have a reason. The task may be too big, the reward may be too delayed, the parent may be using too many words, the routine may start too late, or the child may be tired, hungry, anxious, sensory-overloaded, or under-connected.</p>
+
+      <h3>&ldquo;They ignore me.&rdquo;</h3>
+      <p>Before assuming defiance, check the delivery. Were you close enough? Did you say one instruction or five? Did the child have time to switch attention? Did you follow through calmly? A useful pattern is: get close, say the child&rsquo;s name, give one clear action, wait a few seconds, then help start. Do not shout from another room and count that as a real instruction.</p>
+
+      <h3>&ldquo;They say no to everything.&rdquo;</h3>
+      <p>&ldquo;No&rdquo; often means &ldquo;I want control,&rdquo; &ldquo;I am tired,&rdquo; &ldquo;I do not want to stop,&rdquo; or &ldquo;this feels too hard.&rdquo; Give control inside the boundary. &ldquo;Pajamas are happening. Red or blue?&rdquo; &ldquo;Shoes are happening. Sitting or standing?&rdquo; If the child does not really have the option to refuse, do not ask it as a question.</p>
+
+      <h3>&ldquo;The reward worked for two days and stopped.&rdquo;</h3>
+      <p>That usually means the novelty wore off, the task is too hard, the reward is not meaningful, or the reward is too far away. Make the behavior smaller and the feedback quicker. Instead of rewarding &ldquo;a perfect bedtime,&rdquo; reward &ldquo;starting pajamas after one reminder.&rdquo; Build from there.</p>
+
+      <h3>&ldquo;They only do it for rewards.&rdquo;</h3>
+      <p>This usually means the system stayed in launch mode too long. Start fading. Move from rewarding every step to rewarding the whole routine, then several smooth days, then only new hard skills. Add meaning: &ldquo;Teeth are not for points. Teeth keep your mouth healthy. The points helped you learn.&rdquo;</p>
+
+      <h3>&ldquo;I get angry and yell.&rdquo;</h3>
+      <p>Parents need routines too. A parent who is hungry, late, overstimulated, and unsupported will eventually explode. Build a parent reset phrase: &ldquo;I am getting too angry. I am taking one breath.&rdquo; If you yell, repair after. &ldquo;I shouted. That was scary. I am sorry. The rule still matters, and I will try to hold it calmly.&rdquo; Repair does not remove the boundary; it repairs the relationship.</p>
+
+      <h3>&ldquo;Nothing works.&rdquo;</h3>
+      <p>When nothing works, reduce the plan. For seven days, choose one connection habit, one tiny routine, one clear phrase, and one immediate celebration. Ten minutes of child-led play, pajamas in the basket, the phrase &ldquo;pajamas in basket,&rdquo; and choosing the story may do more than a complex chart with ten targets.</p>
+    </section>
+
+    <section class="chapter" id="scenarios">
+      <h2>13. Real-life scenarios</h2>
+      <article class="scenario">
+        <h4>The morning sock battle</h4>
+        <p>The child screams that the socks feel wrong. A tired parent may answer, &ldquo;You wear them every day. Stop being dramatic.&rdquo; A better response is, &ldquo;These socks feel wrong today. We still need socks. Choose the blue soft socks or dinosaur socks.&rdquo; If this happens often, the real solution is not a daily debate; it is a sock basket with only acceptable socks.</p>
+      </article>
+      <article class="scenario">
+        <h4>The screen meltdown</h4>
+        <p>The child begs for one more episode. If the parent gives one more after screaming starts, screaming becomes part of the screen routine. Instead, define the ending before starting. When the ending comes, say, &ldquo;You want more. The episode is finished. Press stop or I will help.&rdquo; Then move immediately into a body reset: jumping, snack, bath, or outside.</p>
+      </article>
+      <article class="scenario">
+        <h4>Cleanup refusal</h4>
+        <p>The child says, &ldquo;I did not make this mess.&rdquo; Instead of entering a fairness trial, divide the work. &ldquo;I will do books. You do cars.&rdquo; After the child starts, name the effort: &ldquo;You started even though you did not want to. That is helpful.&rdquo; Over time, the child learns cleanup as a sequence, not a punishment.</p>
+      </article>
+      <article class="scenario">
+        <h4>Bedtime escape</h4>
+        <p>The child leaves bed five times. If every return becomes a new conversation, leaving bed becomes rewarding. The first time, calmly say, &ldquo;It is sleep time. Back to bed.&rdquo; The next time, use fewer words: &ldquo;Back to bed.&rdquo; Keep the response boring, warm, and consistent.</p>
+      </article>
+      <article class="scenario">
+        <h4>Sibling jealousy</h4>
+        <p>One child says, &ldquo;He always gets more pieces.&rdquo; Do not compare. Say, &ldquo;His job is different. Your job is shoes. You can earn your piece with shoes.&rdquo; If comparison is poisoning the routine, switch to a family goal where both children contribute to a shared celebration.</p>
+      </article>
+    </section>
+
+    <section class="chapter sources" id="sources">
+      <h2>14. Further reading and source inspiration</h2>
+      <p>This handbook is an original synthesis. The routine examples, scripts, and Flipzy-specific advice were written for this guide; they are not copied from any one programme or book. The sources below are real places to continue reading. Some are free online resources, some are formal programmes, and some are books that many parents and professionals use when they want to go deeper.</p>
+
+      <p><strong>Positive parenting, structure, directions, rewards and consequences.</strong> Start with <a href="https://www.cdc.gov/parenting-toddlers/site.html" target="_blank" rel="noopener">CDC Essentials for Parenting Toddlers and Preschoolers</a>, especially the sections on communicating with your child, creating structure and rules, giving directions, and using discipline and consequences. For a more detailed behavior-change approach, see Alan E. Kazdin&rsquo;s <em>The Kazdin Method for Parenting the Defiant Child</em>, Mariner Books, ISBN-13: 978-0547085821.</p>
+
+      <p><strong>Schedules, routines and predictable daily rhythm.</strong> The most directly relevant free resources are Head Start&rsquo;s <a href="https://headstart.gov/about-us/article/schedules-routines-home" target="_blank" rel="noopener">Schedules and Routines at Home</a> and <a href="https://headstart.gov/about-us/article/importance-schedules-routines" target="_blank" rel="noopener">The Importance of Schedules and Routines</a>. These are useful because they separate the larger family schedule, such as meals, bath and bedtime, from the smaller step-by-step routines inside each part of the day.</p>
+
+      <p><strong>Connection, attention and brain development.</strong> The Harvard Center on the Developing Child has clear, parent-friendly material on <a href="https://developingchild.harvard.edu/key-concept/serve-and-return/" target="_blank" rel="noopener">serve-and-return interactions</a>, which is the idea behind responsive back-and-forth connection. For routines, transitions and self-control, also see Harvard&rsquo;s <a href="https://developingchild.harvard.edu/resource-guides/guide-executive-function/" target="_blank" rel="noopener">Guide to Executive Function</a> and <a href="https://developingchild.harvard.edu/resources/handouts-tools/activities-guide-enhancing-and-practicing-executive-function-skills/" target="_blank" rel="noopener">Activities Guide for Enhancing and Practicing Executive Function Skills</a>.</p>
+
+      <p><strong>Developmentally appropriate practice.</strong> NAEYC&rsquo;s <a href="https://www.naeyc.org/resources/position-statements/dap/contents" target="_blank" rel="noopener">Developmentally Appropriate Practice position statement</a> is a good reference for keeping expectations realistic, strengths-based and play-based. It is written for educators, but the principles translate well to parents: children need active engagement, meaningful participation, warm relationships, and expectations that match their development.</p>
+
+      <p><strong>Play-based learning and playful parent-child practice.</strong> For the playful side of this handbook, see <a href="https://learningthroughplay.com/" target="_blank" rel="noopener">The LEGO Foundation&rsquo;s Learning Through Play</a> resources, the UNICEF and LEGO Foundation report <a href="https://www.unicef.org/sites/default/files/2018-12/UNICEF-Lego-Foundation-Learning-through-Play.pdf" target="_blank" rel="noopener"><em>Learning through Play</em></a>, and Invest in Play&rsquo;s <a href="https://learning.investinplay.com/programmes/parent-programme/core-programme" target="_blank" rel="noopener">Six Bricks parent programme</a>. These are useful when a family wants routines to feel less like commands and more like small, repeatable practice through play.</p>
+
+      <p><strong>Montessori-informed independence.</strong> For the Montessori side, the safest modern overview is Chlo&euml; Marshall&rsquo;s peer-reviewed article <a href="https://www.nature.com/articles/s41539-017-0012-7" target="_blank" rel="noopener">&ldquo;Montessori education: a review of the evidence base&rdquo;</a>, <em>npj Science of Learning</em>, 2017, DOI: 10.1038/s41539-017-0012-7. For the original philosophy, look for Maria Montessori&rsquo;s <em>The Absorbent Mind</em> and <em>The Discovery of the Child</em>; there are many editions, so ISBN varies by publisher.</p>
+
+      <p><strong>Screens and family media habits.</strong> The American Academy of Pediatrics offers the free <a href="https://www.healthychildren.org/English/fmp/Pages/MediaPlan.aspx" target="_blank" rel="noopener">Family Media Plan</a>, and HealthyChildren.org has a practical guide on <a href="https://www.healthychildren.org/English/family-life/Media/Pages/How-to-Make-a-Family-Media-Use-Plan.aspx" target="_blank" rel="noopener">how to make a family media plan</a>. These are the best follow-up sources for screen-time rules, screen-free zones, bedtime media habits, and planning before the argument starts.</p>
+
+      <p><strong>Evidence-based parenting programmes.</strong> For more structured support, see <a href="https://www.triplep.net/glo-en/home/" target="_blank" rel="noopener">Triple P &ndash; Positive Parenting Program</a> and <a href="https://www.incredibleyears.com/early-intervention-programs/parents" target="_blank" rel="noopener">The Incredible Years parent programmes</a>. These are not the same as this handbook, but they are serious references if a family wants a more formal parent-training path.</p>
+
+      <p><strong>Harder behavior, explosions and collaborative problem solving.</strong> When a child&rsquo;s reactions are intense, repeated and far beyond normal routine resistance, Ross W. Greene&rsquo;s <em>The Explosive Child</em>, 6th edition, HarperCollins, ISBN-13: 978-0063092464, is a major reference for the Collaborative &amp; Proactive Solutions approach. It is especially relevant when punishments and rewards are not enough because the child is missing specific flexibility, frustration-tolerance or problem-solving skills.</p>
+
+      <p><strong>Food and mealtime pressure.</strong> For feeding, see the Ellyn Satter Institute&rsquo;s <a href="https://www.ellynsatterinstitute.org/how-to-feed/division-of-responsibility/" target="_blank" rel="noopener">Satter Division of Responsibility in Feeding</a>. It is a helpful counterbalance to reward-heavy eating advice because it separates the parent&rsquo;s job, what, when and where food is offered, from the child&rsquo;s job, whether and how much to eat.</p>
+
+      <p><strong>Everyday communication with children.</strong> For warmer, clearer parent language, see Adele Faber and Elaine Mazlish&rsquo;s <em>How to Talk So Kids Will Listen &amp; Listen So Kids Will Talk</em>, Scribner, ISBN-13: 978-1451663884. For a brain-development and discipline perspective, see Daniel J. Siegel and Tina Payne Bryson&rsquo;s <em>No-Drama Discipline</em>, Bantam, ISBN-13: 978-0345548047.</p>
+
+      <p><strong>Flipzy and image sources.</strong> Flipzy product page and homepage images were used as embedded visual examples in this page. The routine examples were written to match Flipzy&rsquo;s modular routine-board use, task stickers, and morning, evening, after-school, chores and calm-transition positioning.</p>
+    </section>
+  </div>
+
+  {% comment %} EDIT CONTENT: Stop editing the handbook body above this line. {% endcomment %}
+</article>
+
+{% schema %}
+{
+  "name": "Parent Handbook",
+  "tag": "section",
+  "class": "section section-parent-handbook",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Parent Handbook"
+    }
+  ]
+}
+{% endschema %}

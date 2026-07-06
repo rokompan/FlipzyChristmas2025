@@ -1,0 +1,571 @@
+.flipzy-handbook {
+  --ink: #2e241c;
+  --muted: #6e5c4e;
+  --paper: #fffaf2;
+  --panel: #ffffff;
+  --wood: #d9a96a;
+  --sun: #f7c948;
+  --green: #8abf4f;
+  --orange: #f29f4b;
+  --blue: #7db9d8;
+  --pink: #f6b8b8;
+  --purple: #7e5aa8;
+  --line: #eadcc7;
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.62;
+}
+
+.flipzy-handbook *,
+.flipzy-handbook *::before,
+.flipzy-handbook *::after {
+  box-sizing: border-box;
+}
+
+.flipzy-handbook__book {
+  background: var(--paper);
+  margin: 0 auto;
+  max-width: 980px;
+}
+
+.flipzy-handbook .cover {
+  align-items: center;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: 1.1fr 0.9fr;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 64px 48px;
+  position: relative;
+}
+
+.flipzy-handbook .cover::before {
+  background: var(--sun);
+  border-radius: 48% 52% 62% 38%;
+  content: "";
+  height: 460px;
+  inset: -20% -10% auto auto;
+  opacity: 0.45;
+  position: absolute;
+  transform: rotate(-14deg);
+  width: 460px;
+}
+
+.flipzy-handbook .cover::after {
+  background: var(--blue);
+  border-radius: 60% 40% 48% 52%;
+  bottom: -140px;
+  content: "";
+  height: 360px;
+  left: -140px;
+  opacity: 0.35;
+  position: absolute;
+  width: 360px;
+}
+
+.flipzy-handbook .cover > * {
+  position: relative;
+  z-index: 1;
+}
+
+.flipzy-handbook .eyebrow {
+  color: var(--purple);
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.flipzy-handbook h1 {
+  color: var(--ink);
+  font-size: 64px;
+  letter-spacing: 0;
+  line-height: 0.96;
+  margin: 18px 0;
+}
+
+.flipzy-handbook .subtitle {
+  color: var(--muted);
+  font-size: 24px;
+  line-height: 1.38;
+  max-width: 620px;
+}
+
+.flipzy-handbook .edition {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  display: inline-block;
+  font: 700 14px system-ui, -apple-system, Segoe UI, sans-serif;
+  margin-top: 28px;
+  padding: 10px 14px;
+}
+
+.flipzy-handbook__print-button {
+  background: var(--purple);
+  border: 0;
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font: 800 15px system-ui, -apple-system, Segoe UI, sans-serif;
+  justify-content: center;
+  margin-top: 16px;
+  min-height: 48px;
+  padding: 13px 18px;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.flipzy-handbook__print-button:hover,
+.flipzy-handbook__print-button:focus-visible {
+  background: #5f3f86;
+  transform: translateY(-1px);
+}
+
+.flipzy-handbook__print-button:focus-visible {
+  outline: 3px solid rgba(126, 90, 168, 0.35);
+  outline-offset: 3px;
+}
+
+.flipzy-handbook .hero-img {
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 24px 60px rgba(74, 48, 24, 0.18);
+  width: 100%;
+}
+
+.flipzy-handbook .caption {
+  color: var(--muted);
+  font: 13px/1.4 system-ui, -apple-system, Segoe UI, sans-serif;
+  margin-top: 8px;
+}
+
+.flipzy-handbook .toc {
+  background: #fff7e8;
+  border-bottom: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  padding: 56px 48px 36px;
+}
+
+.flipzy-handbook .toc h2 {
+  margin-top: 0;
+}
+
+.flipzy-handbook .toc-grid {
+  column-gap: 48px;
+  columns: 2;
+}
+
+.flipzy-handbook .toc-grid a {
+  border-bottom: 1px dotted rgba(46, 36, 28, 0.16);
+  break-inside: avoid;
+  color: var(--ink);
+  display: block;
+  padding: 4px 0;
+  text-decoration: none;
+}
+
+.flipzy-handbook .toc-grid a:hover,
+.flipzy-handbook .toc-grid a:focus-visible {
+  color: var(--purple);
+}
+
+.flipzy-handbook section {
+  padding: 44px 48px;
+}
+
+.flipzy-handbook .chapter {
+  border-top: 1px solid var(--line);
+}
+
+.flipzy-handbook h2 {
+  color: var(--ink);
+  font-size: 40px;
+  letter-spacing: 0;
+  line-height: 1.08;
+  margin: 0 0 22px;
+}
+
+.flipzy-handbook h3 {
+  color: var(--ink);
+  font-size: 28px;
+  letter-spacing: 0;
+  line-height: 1.18;
+  margin: 34px 0 12px;
+}
+
+.flipzy-handbook h4 {
+  color: var(--ink);
+  font-size: 21px;
+  letter-spacing: 0;
+  line-height: 1.18;
+  margin: 0 0 8px;
+}
+
+.flipzy-handbook p {
+  color: var(--ink);
+  margin: 0 0 18px;
+}
+
+.flipzy-handbook .lead {
+  color: #4e3f33;
+  font-size: 22px;
+  line-height: 1.52;
+}
+
+.flipzy-handbook .note {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-left: 8px solid var(--green);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(74, 48, 24, 0.06);
+  margin: 26px 0;
+  padding: 20px 22px;
+}
+
+.flipzy-handbook .warning {
+  border-left-color: var(--orange);
+}
+
+.flipzy-handbook .pull {
+  color: var(--purple);
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1.25;
+  margin: 28px 0;
+}
+
+.flipzy-handbook .image-row {
+  align-items: start;
+  display: grid;
+  gap: 22px;
+  grid-template-columns: 1fr 1fr;
+  margin: 28px 0;
+}
+
+.flipzy-handbook figure {
+  margin: 0;
+}
+
+.flipzy-handbook figure img,
+.flipzy-handbook .full-img img {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 14px 36px rgba(74, 48, 24, 0.12);
+  width: 100%;
+}
+
+.flipzy-handbook .full-img {
+  margin: 30px 0;
+}
+
+.flipzy-handbook .full-img img {
+  border-radius: 30px;
+}
+
+.flipzy-handbook .method {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 26px 0;
+}
+
+.flipzy-handbook .method div {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 132px;
+  padding: 18px;
+}
+
+.flipzy-handbook .method b {
+  color: var(--purple);
+  display: block;
+  font: 800 15px system-ui, -apple-system, Segoe UI, sans-serif;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.flipzy-handbook .method span {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.flipzy-handbook .routine-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 26px;
+}
+
+.flipzy-handbook .routine-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  break-inside: avoid;
+  box-shadow: 0 8px 24px rgba(74, 48, 24, 0.06);
+  padding: 20px;
+}
+
+.flipzy-handbook .routine-head {
+  align-items: flex-start;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+}
+
+.flipzy-handbook .routine-head span {
+  background: #fff3c4;
+  border-radius: 999px;
+  color: #70551b;
+  font: 800 12px system-ui, -apple-system, Segoe UI, sans-serif;
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.flipzy-handbook .routine-card p {
+  font-size: 15.5px;
+  line-height: 1.52;
+  margin-bottom: 12px;
+}
+
+.flipzy-handbook .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 14px 0;
+}
+
+.flipzy-handbook .chip {
+  background: #f5efe5;
+  border: 1px solid #eadcc7;
+  border-radius: 999px;
+  color: #514234;
+  display: inline-block;
+  font: 700 13px system-ui, -apple-system, Segoe UI, sans-serif;
+  padding: 6px 9px;
+}
+
+.flipzy-handbook .script {
+  border-top: 1px dashed var(--line);
+  padding-top: 12px;
+}
+
+.flipzy-handbook .smallnote {
+  color: var(--muted);
+}
+
+.flipzy-handbook .age-table {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-collapse: separate;
+  border-radius: 8px;
+  border-spacing: 0;
+  margin: 24px 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.flipzy-handbook .age-table th,
+.flipzy-handbook .age-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 14px 16px;
+  vertical-align: top;
+}
+
+.flipzy-handbook .age-table th {
+  background: #fff3c4;
+  color: #4a3928;
+  font: 800 14px system-ui, -apple-system, Segoe UI, sans-serif;
+  text-align: left;
+}
+
+.flipzy-handbook .age-table tr:last-child td {
+  border-bottom: none;
+}
+
+.flipzy-handbook .age-table td {
+  font-size: 16px;
+}
+
+.flipzy-handbook .scenario {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  break-inside: avoid;
+  margin: 20px 0;
+  padding: 22px;
+}
+
+.flipzy-handbook .scenario h4 {
+  color: var(--purple);
+}
+
+.flipzy-handbook .sources {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.flipzy-handbook .sources a {
+  color: var(--purple);
+}
+
+.flipzy-handbook .pagebreak {
+  break-before: page;
+}
+
+@media screen and (max-width: 760px) {
+  .flipzy-handbook {
+    font-size: 17px;
+  }
+
+  .flipzy-handbook .cover,
+  .flipzy-handbook section,
+  .flipzy-handbook .toc {
+    padding: 32px 22px;
+  }
+
+  .flipzy-handbook .cover {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .flipzy-handbook h1 {
+    font-size: 46px;
+  }
+
+  .flipzy-handbook .toc-grid {
+    columns: 1;
+  }
+
+  .flipzy-handbook .method,
+  .flipzy-handbook .routine-grid,
+  .flipzy-handbook .image-row {
+    grid-template-columns: 1fr;
+  }
+
+  .flipzy-handbook .routine-head {
+    display: block;
+  }
+
+  .flipzy-handbook .routine-head span {
+    display: inline-block;
+    margin-top: 8px;
+  }
+}
+
+@media print {
+  @page {
+    margin: 18mm 16mm;
+    size: A4;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    letter-spacing: 0 !important;
+  }
+
+  body > .shopify-section-group-header-group,
+  body > .shopify-section-group-footer-group,
+  #shopify-section-header,
+  #shopify-section-footer,
+  .shopify-section-header,
+  .shopify-section-footer,
+  .header-wrapper,
+  .announcement-bar-section,
+  .footer,
+  .flipzy-handbook__print-button {
+    display: none !important;
+  }
+
+  main,
+  #MainContent {
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .flipzy-handbook {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 12pt !important;
+    line-height: 1.45 !important;
+  }
+
+  .flipzy-handbook *,
+  .flipzy-handbook *::before,
+  .flipzy-handbook *::after {
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .flipzy-handbook__book {
+    max-width: none !important;
+  }
+
+  .flipzy-handbook .cover {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+    padding: 0 0 18mm !important;
+  }
+
+  .flipzy-handbook .cover::before,
+  .flipzy-handbook .cover::after {
+    display: none !important;
+  }
+
+  .flipzy-handbook h1 {
+    font-size: 42pt !important;
+  }
+
+  .flipzy-handbook h2 {
+    font-size: 25pt !important;
+  }
+
+  .flipzy-handbook h3 {
+    font-size: 17pt !important;
+  }
+
+  .flipzy-handbook section,
+  .flipzy-handbook .toc {
+    padding: 0 0 8mm !important;
+  }
+
+  .flipzy-handbook .chapter {
+    padding-top: 10mm !important;
+  }
+
+  .flipzy-handbook .routine-grid,
+  .flipzy-handbook .method,
+  .flipzy-handbook .image-row {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .flipzy-handbook .routine-card,
+  .flipzy-handbook .scenario,
+  .flipzy-handbook .note,
+  .flipzy-handbook figure img,
+  .flipzy-handbook .full-img img {
+    box-shadow: none !important;
+  }
+
+  .flipzy-handbook a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  .flipzy-handbook a[href]::after {
+    content: "" !important;
+  }
+}
