@@ -712,11 +712,13 @@
     var theme = getTheme(state.theme);
     var radius = stepRadius(state.stepCount);
     var header = layoutHeader(state, theme);
+    var pathInset = radius >= 90 ? 340 : radius >= 78 ? 300 : 270;
+    var pathBottomInset = radius >= 90 ? 390 : radius >= 78 ? 350 : 320;
     var pathArea = {
-      left: 220,
-      right: 1880,
-      top: Math.max(590, header.box.y + header.box.h + 80),
-      bottom: 2680
+      left: pathInset,
+      right: BOARD.width - pathInset,
+      top: Math.max(660, header.box.y + header.box.h + radius + 78),
+      bottom: BOARD.height - pathBottomInset
     };
     var points = buildStepPoints(state.stepCount, pathArea);
     var finalPoint = points[points.length - 1];
@@ -772,7 +774,6 @@
     var outer = round(radius * (theme.roadStyle === 'river' ? 2.8 : 2.55));
     var inner = round(radius * (theme.roadStyle === 'cobble' ? 1.9 : 1.72));
     var pieces = [
-      '<path d="' + pathD + '" fill="none" stroke="#000000" stroke-width="' + outer + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.08" transform="translate(9 12)"/>',
       '<path d="' + pathD + '" fill="none" stroke="' + theme.pathOuter + '" stroke-width="' + outer + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.99"/>',
       '<path d="' + pathD + '" fill="none" stroke="' + theme.pathInner + '" stroke-width="' + inner + '" stroke-linecap="round" stroke-linejoin="round"/>'
     ];
@@ -1088,9 +1089,9 @@
         c2y = p2.y + wave;
       } else {
         side = p1.x > BOARD.width / 2 ? 1 : -1;
-        c1x = p1.x + side * 210;
+        c1x = clamp(p1.x + side * clamp(Math.abs(dy) * 0.34, 110, 160), 150, BOARD.width - 150);
         c1y = p1.y + dy * 0.34;
-        c2x = p2.x + side * 210;
+        c2x = clamp(p2.x + side * clamp(Math.abs(dy) * 0.34, 110, 160), 150, BOARD.width - 150);
         c2y = p2.y - dy * 0.34;
       }
 
