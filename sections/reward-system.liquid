@@ -1,0 +1,114 @@
+{{ 'reward-system.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'reward-system.js' | asset_url }}" defer="defer"></script>
+
+<section class="flipzy-rewards" id="FlipzyRewardSystem-{{ section.id }}" data-flipzy-reward-system>
+  <div class="flipzy-rewards__shell">
+    <aside class="flipzy-rewards__controls" aria-label="Reward poster controls">
+      <div class="flipzy-rewards__masthead">
+        <p>Flipzy Reward Builder</p>
+        <h1>Reward poster maker</h1>
+      </div>
+
+      <fieldset class="flipzy-rewards__group">
+        <legend>Poster text</legend>
+        <label class="flipzy-rewards__field">
+          <span>Child name</span>
+          <input data-flipzy-control="childName" type="text" autocomplete="name">
+        </label>
+        <label class="flipzy-rewards__field">
+          <span>Title</span>
+          <input data-flipzy-control="title" type="text">
+        </label>
+        <label class="flipzy-rewards__field">
+          <span>Agreement</span>
+          <textarea data-flipzy-control="subtitle" rows="3"></textarea>
+        </label>
+        <div class="flipzy-rewards__field-grid">
+          <label class="flipzy-rewards__field">
+            <span>Start label</span>
+            <input data-flipzy-control="startLabel" type="text">
+          </label>
+          <label class="flipzy-rewards__field">
+            <span>Reward label</span>
+            <input data-flipzy-control="rewardLabel" type="text">
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="flipzy-rewards__group">
+        <legend>Path</legend>
+        <label class="flipzy-rewards__field">
+          <span>Steps</span>
+          <input data-flipzy-control="stepCount" type="range" min="1" max="50" step="1">
+        </label>
+        <label class="flipzy-rewards__field flipzy-rewards__field--compact">
+          <span>Step count</span>
+          <input data-flipzy-control="stepCount" type="number" min="1" max="50" step="1" inputmode="numeric">
+        </label>
+        <div class="flipzy-rewards__checks">
+          <label>
+            <input data-flipzy-control="showNumbers" type="checkbox">
+            <span>Show numbers</span>
+          </label>
+          <label>
+            <input data-flipzy-control="showMiniLabels" type="checkbox">
+            <span>Show mini reward labels</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset class="flipzy-rewards__group">
+        <legend>Theme</legend>
+        <label class="flipzy-rewards__field">
+          <span>Style</span>
+          <select data-flipzy-control="theme"></select>
+        </label>
+      </fieldset>
+
+      <fieldset class="flipzy-rewards__group">
+        <legend>Mini rewards</legend>
+        <div class="flipzy-rewards__presets" aria-label="Mini reward presets">
+          <button type="button" data-flipzy-mini-preset="half">Half</button>
+          <button type="button" data-flipzy-mini-preset="thirds">Thirds</button>
+          <button type="button" data-flipzy-mini-preset="quarters">Quarters</button>
+          <button type="button" data-flipzy-mini-preset="every3">Every 3</button>
+          <button type="button" data-flipzy-mini-preset="every5">Every 5</button>
+          <button type="button" data-flipzy-mini-preset="clear">Clear</button>
+        </div>
+        <div class="flipzy-rewards__step-picker" data-flipzy-mini-step-picker aria-label="Mini reward step selection"></div>
+      </fieldset>
+
+      <fieldset class="flipzy-rewards__group">
+        <legend>Graphics</legend>
+        <div class="flipzy-rewards__graphic-slots" data-flipzy-graphic-slots></div>
+      </fieldset>
+    </aside>
+
+    <main class="flipzy-rewards__preview" aria-label="Reward poster preview">
+      <div class="flipzy-rewards__toolbar">
+        <span data-flipzy-save-status>Saved locally</span>
+        <div>
+          <button type="button" class="flipzy-rewards__secondary" data-flipzy-reset>Restore defaults</button>
+          <button type="button" class="flipzy-rewards__primary" data-flipzy-print>Print poster</button>
+        </div>
+      </div>
+      <div class="flipzy-rewards__poster-frame" data-flipzy-poster-frame>
+        <div class="flipzy-rewards__poster" data-flipzy-poster></div>
+      </div>
+    </main>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reward System",
+  "tag": "section",
+  "class": "section section-reward-system",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Reward System"
+    }
+  ]
+}
+{% endschema %}

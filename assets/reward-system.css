@@ -1,0 +1,430 @@
+.flipzy-rewards {
+  --frs-bg: #f6f1ea;
+  --frs-panel: #ffffff;
+  --frs-ink: #20242c;
+  --frs-muted: #667085;
+  --frs-line: #ded7cb;
+  --frs-soft: #fbf8f1;
+  --frs-blue: #246b8f;
+  --frs-blue-dark: #174c66;
+  --frs-yellow: #f0c44f;
+  --frs-pink: #e9748d;
+  --frs-green: #6fa86f;
+
+  background: var(--frs-bg);
+  color: var(--frs-ink);
+  font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 28px 16px 40px;
+}
+
+.flipzy-rewards *,
+.flipzy-rewards *::before,
+.flipzy-rewards *::after {
+  box-sizing: border-box;
+}
+
+.flipzy-rewards__shell {
+  align-items: start;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(300px, 410px) minmax(0, 1fr);
+  margin: 0 auto;
+  max-width: 1460px;
+}
+
+.flipzy-rewards__controls {
+  background: var(--frs-panel);
+  border: 1px solid var(--frs-line);
+  border-radius: 8px;
+  max-height: calc(100dvh - 56px);
+  overflow: auto;
+  padding: 18px;
+  position: sticky;
+  top: 20px;
+}
+
+.flipzy-rewards__masthead {
+  border-bottom: 1px solid var(--frs-line);
+  padding-bottom: 14px;
+}
+
+.flipzy-rewards__masthead p {
+  color: var(--frs-blue);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  margin: 0 0 7px;
+  text-transform: uppercase;
+}
+
+.flipzy-rewards__masthead h1 {
+  color: var(--frs-ink);
+  font-size: 26px;
+  letter-spacing: 0;
+  line-height: 1.08;
+  margin: 0;
+}
+
+.flipzy-rewards__group {
+  border: 0;
+  border-top: 1px solid var(--frs-line);
+  margin: 0;
+  padding: 18px 0 0;
+}
+
+.flipzy-rewards__group + .flipzy-rewards__group {
+  margin-top: 18px;
+}
+
+.flipzy-rewards__group legend {
+  color: var(--frs-ink);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0;
+  padding: 0 10px 0 0;
+}
+
+.flipzy-rewards__field {
+  display: grid;
+  gap: 7px;
+  margin: 0 0 12px;
+}
+
+.flipzy-rewards__field span,
+.flipzy-rewards__checks span,
+.flipzy-rewards__slot-name {
+  color: var(--frs-muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.flipzy-rewards__field input,
+.flipzy-rewards__field textarea,
+.flipzy-rewards__field select {
+  appearance: none;
+  background: #ffffff;
+  border: 1px solid #cfc7bb;
+  border-radius: 8px;
+  color: var(--frs-ink);
+  font: 600 14px/1.35 Poppins, system-ui, sans-serif;
+  min-height: 42px;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+.flipzy-rewards__field textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.flipzy-rewards__field input[type="range"] {
+  accent-color: var(--frs-blue);
+  border: 0;
+  min-height: 28px;
+  padding: 0;
+}
+
+.flipzy-rewards__field input:focus-visible,
+.flipzy-rewards__field textarea:focus-visible,
+.flipzy-rewards__field select:focus-visible,
+.flipzy-rewards button:focus-visible,
+.flipzy-rewards__upload-label:focus-visible {
+  outline: 3px solid rgba(36, 107, 143, 0.28);
+  outline-offset: 2px;
+}
+
+.flipzy-rewards__field-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.flipzy-rewards__field--compact {
+  max-width: 150px;
+}
+
+.flipzy-rewards__checks {
+  display: grid;
+  gap: 8px;
+}
+
+.flipzy-rewards__checks label,
+.flipzy-rewards__slot-toggle {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 9px;
+}
+
+.flipzy-rewards__checks input,
+.flipzy-rewards__slot-toggle input {
+  accent-color: var(--frs-blue);
+  height: 18px;
+  width: 18px;
+}
+
+.flipzy-rewards__presets {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 12px;
+}
+
+.flipzy-rewards button,
+.flipzy-rewards__upload-label {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #cfc7bb;
+  border-radius: 8px;
+  color: var(--frs-ink);
+  cursor: pointer;
+  display: inline-flex;
+  font: 800 13px/1.15 Poppins, system-ui, sans-serif;
+  justify-content: center;
+  min-height: 38px;
+  padding: 9px 11px;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.flipzy-rewards button:hover,
+.flipzy-rewards__upload-label:hover {
+  border-color: var(--frs-blue);
+  color: var(--frs-blue-dark);
+  transform: translateY(-1px);
+}
+
+.flipzy-rewards__step-picker {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+}
+
+.flipzy-rewards__step-picker button {
+  aspect-ratio: 1;
+  font-size: 12px;
+  min-height: 0;
+  padding: 0;
+}
+
+.flipzy-rewards__step-picker button[aria-pressed="true"] {
+  background: var(--frs-yellow);
+  border-color: #c6921f;
+  color: #33250a;
+}
+
+.flipzy-rewards__step-picker button:disabled {
+  background: #f1eee8;
+  border-color: #ded7cb;
+  color: #9b9388;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.flipzy-rewards__graphic-slots {
+  display: grid;
+  gap: 12px;
+}
+
+.flipzy-rewards__slot {
+  border-top: 1px solid #ebe5da;
+  display: grid;
+  gap: 9px;
+  padding-top: 12px;
+}
+
+.flipzy-rewards__slot:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.flipzy-rewards__slot-actions {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.flipzy-rewards__slot input[type="file"] {
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+}
+
+.flipzy-rewards__slot-status {
+  color: var(--frs-muted);
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.flipzy-rewards__preview {
+  min-width: 0;
+}
+
+.flipzy-rewards__toolbar {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.flipzy-rewards__toolbar > span {
+  color: var(--frs-muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.flipzy-rewards__toolbar > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  justify-content: end;
+}
+
+.flipzy-rewards__primary {
+  background: var(--frs-blue) !important;
+  border-color: var(--frs-blue) !important;
+  color: #ffffff !important;
+}
+
+.flipzy-rewards__primary:hover {
+  background: var(--frs-blue-dark) !important;
+  border-color: var(--frs-blue-dark) !important;
+}
+
+.flipzy-rewards__secondary {
+  background: var(--frs-soft) !important;
+}
+
+.flipzy-rewards__poster-frame {
+  background: #d9d2c7;
+  border: 1px solid var(--frs-line);
+  border-radius: 8px;
+  margin: 0 auto;
+  max-width: min(100%, 840px);
+  padding: 14px;
+}
+
+.flipzy-rewards__poster {
+  aspect-ratio: 210 / 297;
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 20px 44px rgba(32, 36, 44, 0.18);
+  overflow: hidden;
+  width: 100%;
+}
+
+.flipzy-rewards__poster svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 1180px) {
+  .flipzy-rewards__shell {
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  }
+
+  .flipzy-rewards__step-picker {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .flipzy-rewards {
+    padding: 16px 12px 28px;
+  }
+
+  .flipzy-rewards__shell {
+    grid-template-columns: 1fr;
+  }
+
+  .flipzy-rewards__controls {
+    max-height: none;
+    position: static;
+  }
+
+  .flipzy-rewards__poster-frame {
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .flipzy-rewards__field-grid,
+  .flipzy-rewards__presets,
+  .flipzy-rewards__slot-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .flipzy-rewards__step-picker {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .flipzy-rewards__toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .flipzy-rewards__toolbar > div {
+    justify-content: stretch;
+  }
+
+  .flipzy-rewards__toolbar button {
+    flex: 1 1 auto;
+  }
+}
+
+@page {
+  margin: 0;
+  size: A4 portrait;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    height: 297mm;
+    margin: 0 !important;
+    min-height: 297mm;
+    width: 210mm;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .flipzy-rewards__poster-frame,
+  .flipzy-rewards__poster-frame * {
+    visibility: visible !important;
+  }
+
+  .flipzy-rewards__poster-frame {
+    background: #ffffff !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    height: 297mm !important;
+    inset: 0 auto auto 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    padding: 0 !important;
+    position: fixed !important;
+    width: 210mm !important;
+  }
+
+  .flipzy-rewards__poster {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    height: 297mm !important;
+    width: 210mm !important;
+  }
+
+  .flipzy-rewards__poster svg {
+    height: 297mm !important;
+    width: 210mm !important;
+  }
+}
