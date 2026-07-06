@@ -2,6 +2,88 @@
 <script src="{{ 'reward-system.js' | asset_url }}" defer="defer"></script>
 
 <section class="flipzy-rewards" id="FlipzyRewardSystem-{{ section.id }}" data-flipzy-reward-system>
+  <script type="application/json" data-flipzy-reward-assets>
+    {
+      "castle": {
+        "background": {{ 'reward-system-theme-castle-background.jpg' | asset_url | json }},
+        "mainRewardGift": {{ 'reward-system-theme-castle-reward.png' | asset_url | json }},
+        "miniRewardGift": {{ 'reward-system-theme-castle-mini-reward.png' | asset_url | json }},
+        "motifTop": {{ 'reward-system-theme-castle-motif-top.png' | asset_url | json }},
+        "motifUpper": {{ 'reward-system-theme-castle-motif-upper.png' | asset_url | json }},
+        "motifMiddle": {{ 'reward-system-theme-castle-motif-middle.png' | asset_url | json }},
+        "motifLower": {{ 'reward-system-theme-castle-motif-lower.png' | asset_url | json }},
+        "motifBottom": {{ 'reward-system-theme-castle-motif-bottom.png' | asset_url | json }},
+        "pathTexture": {{ 'reward-system-theme-castle-path-texture.png' | asset_url | json }}
+      },
+      "princess": {
+        "background": {{ 'reward-system-theme-princess-background.jpg' | asset_url | json }},
+        "mainRewardGift": {{ 'reward-system-theme-princess-reward.png' | asset_url | json }},
+        "miniRewardGift": {{ 'reward-system-theme-princess-mini-reward.png' | asset_url | json }},
+        "motifTop": {{ 'reward-system-theme-princess-motif-top.png' | asset_url | json }},
+        "motifUpper": {{ 'reward-system-theme-princess-motif-upper.png' | asset_url | json }},
+        "motifMiddle": {{ 'reward-system-theme-princess-motif-middle.png' | asset_url | json }},
+        "motifLower": {{ 'reward-system-theme-princess-motif-lower.png' | asset_url | json }},
+        "motifBottom": {{ 'reward-system-theme-princess-motif-bottom.png' | asset_url | json }},
+        "pathTexture": {{ 'reward-system-theme-princess-path-texture.png' | asset_url | json }}
+      },
+      "garden": {
+        "background": {{ 'reward-system-theme-garden-background.jpg' | asset_url | json }},
+        "mainRewardGift": {{ 'reward-system-theme-garden-reward.png' | asset_url | json }},
+        "miniRewardGift": {{ 'reward-system-theme-garden-mini-reward.png' | asset_url | json }},
+        "motifTop": {{ 'reward-system-theme-garden-motif-top.png' | asset_url | json }},
+        "motifUpper": {{ 'reward-system-theme-garden-motif-upper.png' | asset_url | json }},
+        "motifMiddle": {{ 'reward-system-theme-garden-motif-middle.png' | asset_url | json }},
+        "motifLower": {{ 'reward-system-theme-garden-motif-lower.png' | asset_url | json }},
+        "motifBottom": {{ 'reward-system-theme-garden-motif-bottom.png' | asset_url | json }},
+        "pathTexture": {{ 'reward-system-theme-garden-path-texture.png' | asset_url | json }}
+      },
+      "space": {
+        "background": {{ 'reward-system-theme-space-background.jpg' | asset_url | json }},
+        "mainRewardGift": {{ 'reward-system-theme-space-reward.png' | asset_url | json }},
+        "miniRewardGift": {{ 'reward-system-theme-space-mini-reward.png' | asset_url | json }},
+        "motifTop": {{ 'reward-system-theme-space-motif-top.png' | asset_url | json }},
+        "motifUpper": {{ 'reward-system-theme-space-motif-upper.png' | asset_url | json }},
+        "motifMiddle": {{ 'reward-system-theme-space-motif-middle.png' | asset_url | json }},
+        "motifLower": {{ 'reward-system-theme-space-motif-lower.png' | asset_url | json }},
+        "motifBottom": {{ 'reward-system-theme-space-motif-bottom.png' | asset_url | json }},
+        "pathTexture": {{ 'reward-system-theme-space-path-texture.png' | asset_url | json }}
+      },
+      "ocean": {
+        "background": {{ 'reward-system-theme-ocean-background.jpg' | asset_url | json }},
+        "mainRewardGift": {{ 'reward-system-theme-ocean-reward.png' | asset_url | json }},
+        "miniRewardGift": {{ 'reward-system-theme-ocean-mini-reward.png' | asset_url | json }},
+        "motifTop": {{ 'reward-system-theme-ocean-motif-top.png' | asset_url | json }},
+        "motifUpper": {{ 'reward-system-theme-ocean-motif-upper.png' | asset_url | json }},
+        "motifMiddle": {{ 'reward-system-theme-ocean-motif-middle.png' | asset_url | json }},
+        "motifLower": {{ 'reward-system-theme-ocean-motif-lower.png' | asset_url | json }},
+        "motifBottom": {{ 'reward-system-theme-ocean-motif-bottom.png' | asset_url | json }},
+        "pathTexture": {{ 'reward-system-theme-ocean-path-texture.png' | asset_url | json }}
+      },
+      "candy": {
+        "background": {{ 'reward-system-theme-candy-background.jpg' | asset_url | json }},
+        "mainRewardGift": {{ 'reward-system-theme-candy-reward.png' | asset_url | json }},
+        "miniRewardGift": {{ 'reward-system-theme-candy-mini-reward.png' | asset_url | json }},
+        "motifTop": {{ 'reward-system-theme-candy-motif-top.png' | asset_url | json }},
+        "motifUpper": {{ 'reward-system-theme-candy-motif-upper.png' | asset_url | json }},
+        "motifMiddle": {{ 'reward-system-theme-candy-motif-middle.png' | asset_url | json }},
+        "motifLower": {{ 'reward-system-theme-candy-motif-lower.png' | asset_url | json }},
+        "motifBottom": {{ 'reward-system-theme-candy-motif-bottom.png' | asset_url | json }},
+        "pathTexture": {{ 'reward-system-theme-candy-path-texture.png' | asset_url | json }}
+      },
+      "dino": {
+        "background": {{ 'reward-system-theme-dino-background.jpg' | asset_url | json }},
+        "mainRewardGift": {{ 'reward-system-theme-dino-reward.png' | asset_url | json }},
+        "miniRewardGift": {{ 'reward-system-theme-dino-mini-reward.png' | asset_url | json }},
+        "motifTop": {{ 'reward-system-theme-dino-motif-top.png' | asset_url | json }},
+        "motifUpper": {{ 'reward-system-theme-dino-motif-upper.png' | asset_url | json }},
+        "motifMiddle": {{ 'reward-system-theme-dino-motif-middle.png' | asset_url | json }},
+        "motifLower": {{ 'reward-system-theme-dino-motif-lower.png' | asset_url | json }},
+        "motifBottom": {{ 'reward-system-theme-dino-motif-bottom.png' | asset_url | json }},
+        "pathTexture": {{ 'reward-system-theme-dino-path-texture.png' | asset_url | json }}
+      }
+    }
+  </script>
+
   <div class="flipzy-rewards__shell">
     <aside class="flipzy-rewards__controls" aria-label="Reward poster controls">
       <div class="flipzy-rewards__masthead">

@@ -4,6 +4,24 @@ Use one pack per theme. Keep every PNG transparent, centered, and isolated. Do n
 
 Background JPGs should be full-bleed A4-ish poster backgrounds at `1200x2000`, with soft detail around the edges and calmer open space through the middle for the SVG road, circles, labels, and user text.
 
+## Shopify Asset Workflow
+
+The generated source packs can stay in numbered folders, but Shopify theme assets should use a flat, lowercase naming scheme because the theme `assets/` directory is flat:
+
+- `reward-system-theme-{theme}-background.jpg`
+- `reward-system-theme-{theme}-reward.png`
+- `reward-system-theme-{theme}-mini-reward.png`
+- `reward-system-theme-{theme}-motif-top.png`
+- `reward-system-theme-{theme}-motif-upper.png`
+- `reward-system-theme-{theme}-motif-middle.png`
+- `reward-system-theme-{theme}-motif-lower.png`
+- `reward-system-theme-{theme}-motif-bottom.png`
+- `reward-system-theme-{theme}-path-texture.png`
+
+Current themes use these slugs: `castle`, `princess`, `garden`, `space`, `ocean`, `candy`, `dino`.
+
+To replace art for an existing theme, keep the same production filename and overwrite the file in `assets/`. No JavaScript change is needed. To add a new theme, add a matching theme object in `assets/reward-system.js`, add its asset URLs to the JSON map in `sections/reward-system.liquid`, and follow the same filename pattern.
+
 ## Pack 01: Castle Quest
 
 - `background01-themeCastle.jpg` - `1200x2000` - Warm medieval reward-map background, sunny castle courtyard, parchment-gold ground, soft blue sky, distant stone walls and towers near the edges, whimsical children's board-game style, open central space, no text, no numbers, no path.

@@ -304,6 +304,7 @@
     this.graphicSlots = root.querySelector('[data-flipzy-graphic-slots]');
     this.state = loadState();
     this.uploads = {};
+    this.assetMap = readThemeAssetMap(root);
     this.db = null;
     this.saveTimer = null;
     this.statusTimer = null;
@@ -616,7 +617,7 @@
 
   RewardApp.prototype.renderPoster = function () {
     if (!this.poster) return;
-    this.poster.innerHTML = buildPosterSvg(this.state, this.uploads, this.instanceId);
+    this.poster.innerHTML = buildPosterSvg(this.state, this.uploads, this.instanceId, this.assetMap);
   };
 
   RewardApp.prototype.printPoster = function () {
@@ -708,8 +709,8 @@
     }
   };
 
-  function buildPosterSvg(state, uploads, instanceId) {
-    var theme = getTheme(state.theme);
+  function buildPosterSvg(state, uploads, instanceId, assetMap) {
+    var theme = getThemeWithAssets(state.theme, assetMap);
     var radius = stepRadius(state.stepCount);
     var header = layoutHeader(state, theme);
     var pathInset = radius >= 90 ? 340 : radius >= 78 ? 300 : 270;
@@ -728,6 +729,7 @@
     var miniLabels = buildMiniLabels(points, miniSet, state.showMiniLabels, radius, header.box, rewardLabel.box);
     var obstacles = [];
     var pathD = buildPath(points);
+    var pathTextureId = theme.assets.pathTexture ? svgId(instanceId + '-' + theme.id + '-path-texture') : '';
     var graphics;
 
     addBox(obstacles, header.box, 22);
@@ -745,8 +747,9 @@
     return [
       '<svg class="flipzy-rewards__poster-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(state.title || 'Reward poster') + '">',
         '<title>' + escapeHtml(state.title || 'Reward poster') + '</title>',
+        renderDefinitions(theme, pathTextureId),
         renderBackground(theme),
-        renderRoad(pathD, radius, theme),
+        renderRoad(pathD, radius, theme, pathTextureId),
         renderRoadDecor(points, radius, theme),
         graphics,
         header.svg,
@@ -760,15 +763,32 @@
   }
 
   function renderBackground(theme) {
+    var pieces = ['<rect width="' + BOARD.width + '" height="' + BOARD.height + '" fill="' + theme.background + '"/>'];
+
+    if (theme.assets.background) {
+      pieces.push('<image href="' + escapeAttr(theme.assets.background) + '" x="0" y="0" width="' + BOARD.width + '" height="' + BOARD.height + '" preserveAspectRatio="none"/>');
+    } else {
+      pieces.push('<path d="M0 0 H' + BOARD.width + ' V330 C1710 430 1320 325 980 425 C610 532 285 470 0 610 Z" fill="' + theme.backgroundAlt + '" opacity="0.82"/>');
+      pieces.push('<path d="M0 2790 C360 2630 720 2690 1050 2780 C1425 2884 1745 2860 2100 2700 V2970 H0 Z" fill="' + theme.backgroundBand + '" opacity="0.66"/>');
+    }
+
+    pieces.push('<rect x="70" y="70" width="1960" height="2830" rx="76" fill="none" stroke="' + theme.labelStroke + '" stroke-width="9" opacity="0.75"/>');
+    return pieces.join('');
+  }
+
+  function renderDefinitions(theme, pathTextureId) {
+    if (!pathTextureId || !theme.assets.pathTexture) return '';
+
     return [
-      '<rect width="' + BOARD.width + '" height="' + BOARD.height + '" fill="' + theme.background + '"/>',
-      '<path d="M0 0 H' + BOARD.width + ' V330 C1710 430 1320 325 980 425 C610 532 285 470 0 610 Z" fill="' + theme.backgroundAlt + '" opacity="0.82"/>',
-      '<path d="M0 2790 C360 2630 720 2690 1050 2780 C1425 2884 1745 2860 2100 2700 V2970 H0 Z" fill="' + theme.backgroundBand + '" opacity="0.66"/>',
-      '<rect x="70" y="70" width="1960" height="2830" rx="76" fill="none" stroke="' + theme.labelStroke + '" stroke-width="9" opacity="0.75"/>'
+      '<defs>',
+        '<pattern id="' + escapeAttr(pathTextureId) + '" patternUnits="userSpaceOnUse" width="800" height="220" patternTransform="scale(0.72)">',
+          '<image href="' + escapeAttr(theme.assets.pathTexture) + '" x="0" y="0" width="800" height="220" preserveAspectRatio="none"/>',
+        '</pattern>',
+      '</defs>'
     ].join('');
   }
 
-  function renderRoad(pathD, radius, theme) {
+  function renderRoad(pathD, radius, theme, pathTextureId) {
     if (!pathD) return '';
 
     var outer = round(radius * (theme.roadStyle === 'river' ? 2.8 : 2.55));
@@ -777,6 +797,10 @@
       '<path d="' + pathD + '" fill="none" stroke="' + theme.pathOuter + '" stroke-width="' + outer + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.99"/>',
       '<path d="' + pathD + '" fill="none" stroke="' + theme.pathInner + '" stroke-width="' + inner + '" stroke-linecap="round" stroke-linejoin="round"/>'
     ];
+
+    if (pathTextureId) {
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="url(#' + escapeAttr(pathTextureId) + ')" stroke-width="' + round(inner * 0.86) + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.32"/>');
+    }
 
     if (theme.roadStyle === 'cobble') {
       pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.pathOuter) + '" stroke-width="' + round(radius * 0.22) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.24) + ' ' + round(radius * 0.5) + '" opacity="0.55"/>');
@@ -931,6 +955,7 @@
     var titleY = y;
     var subtitleY;
     var bottom;
+    var halo = theme.assets && theme.assets.background ? theme.labelFill : '';
 
     if (child) {
       var badgeText = 'For ' + child;
@@ -939,11 +964,11 @@
       pieces.push('<text x="1050" y="118" text-anchor="middle" fill="' + theme.text + '" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="900">' + escapeHtml(badgeText) + '</text>');
     }
 
-    pieces.push(svgTextLines(titleLayout.lines, 1050, titleY, titleLayout.fontSize, titleLayout.lineHeight, theme.title, 900, 'middle'));
+    pieces.push(svgTextLines(titleLayout.lines, 1050, titleY, titleLayout.fontSize, titleLayout.lineHeight, theme.title, 900, 'middle', halo));
     subtitleY = titleY + titleLayout.lineHeight * titleLayout.lines.length + 22;
 
     if (subtitleLayout.lines.length) {
-      pieces.push(svgTextLines(subtitleLayout.lines, 1050, subtitleY, subtitleLayout.fontSize, subtitleLayout.lineHeight, theme.text, 800, 'middle'));
+      pieces.push(svgTextLines(subtitleLayout.lines, 1050, subtitleY, subtitleLayout.fontSize, subtitleLayout.lineHeight, theme.text, 800, 'middle', halo));
       bottom = subtitleY + subtitleLayout.lineHeight * subtitleLayout.lines.length;
     } else {
       bottom = subtitleY;
@@ -1119,12 +1144,19 @@
     var pieces = [];
 
     SLOT_DEFS.forEach(function (slot) {
-      var activeSlot = scaleGraphicSlot(slot, state.stepCount);
-      var box;
+      var scales = graphicScales(state.stepCount);
+      var activeSlot;
+      var box = null;
+      var i;
 
       if (state.graphicSlots[slot.id] === false) return;
 
-      box = findSafeGraphicBox(activeSlot, obstacles, points, miniSet);
+      for (i = 0; i < scales.length; i += 1) {
+        activeSlot = resizeGraphicSlot(slot, scales[i]);
+        box = findSafeGraphicBox(activeSlot, obstacles, points, miniSet);
+        if (box) break;
+      }
+
       if (!box) return;
 
       pieces.push(renderGraphicSlot(activeSlot, theme, box, uploads[slot.id]));
@@ -1175,17 +1207,15 @@
     return null;
   }
 
-  function scaleGraphicSlot(slot, stepCount) {
-    var scale = 1;
-    var copy;
+  function graphicScales(stepCount) {
+    if (stepCount > 42) return [0.55, 0.46];
+    if (stepCount > 34) return [0.68, 0.55, 0.46];
+    if (stepCount > 28) return [0.82, 0.68, 0.55];
+    return [1, 0.84, 0.68, 0.55];
+  }
 
-    if (stepCount > 42) {
-      scale = 0.55;
-    } else if (stepCount > 34) {
-      scale = 0.68;
-    } else if (stepCount > 28) {
-      scale = 0.82;
-    }
+  function resizeGraphicSlot(slot, scale) {
+    var copy;
 
     copy = {};
     Object.keys(slot).forEach(function (key) {
@@ -1244,11 +1274,21 @@
   }
 
   function renderGraphicSlot(slot, theme, box, upload) {
+    var themeAsset = theme.assets[slot.id];
+
     if (upload && upload.dataUrl) {
-      return '<image href="' + escapeAttr(upload.dataUrl) + '" x="' + box.x + '" y="' + box.y + '" width="' + box.w + '" height="' + box.h + '" preserveAspectRatio="xMidYMid meet"/>';
+      return renderImage(upload.dataUrl, box);
+    }
+
+    if (themeAsset) {
+      return renderImage(themeAsset, box);
     }
 
     return renderMotif(theme.motifs[slot.id] || slot.motif, theme, box.x, box.y, box.w, box.h);
+  }
+
+  function renderImage(url, box) {
+    return '<image href="' + escapeAttr(url) + '" x="' + box.x + '" y="' + box.y + '" width="' + box.w + '" height="' + box.h + '" preserveAspectRatio="xMidYMid meet"/>';
   }
 
   function renderMotif(name, theme, x, y, w, h) {
@@ -1450,11 +1490,13 @@
     return trimmed;
   }
 
-  function svgTextLines(lines, x, y, fontSize, lineHeight, fill, weight, anchor) {
+  function svgTextLines(lines, x, y, fontSize, lineHeight, fill, weight, anchor, halo) {
+    var haloAttrs = halo ? ' stroke="' + halo + '" stroke-width="' + round(fontSize * 0.18) + '" stroke-linejoin="round" stroke-opacity="0.82" paint-order="stroke fill"' : '';
+
     if (!lines.length) return '';
 
     return [
-      '<text x="' + x + '" y="' + y + '" text-anchor="' + anchor + '" fill="' + fill + '" font-family="Poppins, Arial, sans-serif" font-size="' + fontSize + '" font-weight="' + weight + '">',
+      '<text x="' + x + '" y="' + y + '" text-anchor="' + anchor + '" fill="' + fill + '" font-family="Poppins, Arial, sans-serif" font-size="' + fontSize + '" font-weight="' + weight + '"' + haloAttrs + '>',
         lines.map(function (line, index) {
           return '<tspan x="' + x + '" dy="' + (index === 0 ? 0 : lineHeight) + '">' + escapeHtml(line) + '</tspan>';
         }).join(''),
@@ -1696,6 +1738,33 @@
     return control.value;
   }
 
+  function readThemeAssetMap(root) {
+    var node = root.querySelector('[data-flipzy-reward-assets]');
+
+    if (!node) return {};
+
+    try {
+      return JSON.parse(node.textContent || '{}') || {};
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function getThemeWithAssets(id, assetMap) {
+    var theme = clone(getTheme(id));
+    var assets = assetMap && assetMap[theme.id] && typeof assetMap[theme.id] === 'object' ? assetMap[theme.id] : {};
+
+    theme.assets = {};
+
+    Object.keys(assets).forEach(function (key) {
+      if (typeof assets[key] === 'string' && assets[key]) {
+        theme.assets[key] = assets[key];
+      }
+    });
+
+    return theme;
+  }
+
   function getTheme(id) {
     for (var i = 0; i < THEMES.length; i += 1) {
       if (THEMES[i].id === id) return THEMES[i];
@@ -1762,6 +1831,10 @@
 
   function escapeAttr(value) {
     return escapeHtml(value);
+  }
+
+  function svgId(value) {
+    return String(value || 'flipzy-reward').replace(/[^a-zA-Z0-9_-]/g, '-');
   }
 
   function clamp(value, min, max) {
