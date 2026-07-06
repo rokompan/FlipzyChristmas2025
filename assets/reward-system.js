@@ -712,15 +712,15 @@
     var theme = getTheme(state.theme);
     var radius = stepRadius(state.stepCount);
     var header = layoutHeader(state, theme);
-    var rewardLabel = layoutRewardLabel(state, theme);
     var pathArea = {
-      left: 260,
-      right: 1840,
-      top: Math.max(610, header.box.y + header.box.h + 88),
-      bottom: 2520
+      left: 220,
+      right: 1880,
+      top: Math.max(590, header.box.y + header.box.h + 80),
+      bottom: 2680
     };
     var points = buildStepPoints(state.stepCount, pathArea);
     var finalPoint = points[points.length - 1];
+    var rewardLabel = layoutRewardLabel(state, theme, finalPoint, radius);
     var startLabel = layoutStartLabel(state, points[0], radius, header.box);
     var miniSet = toSet(state.miniRewards);
     var miniLabels = buildMiniLabels(points, miniSet, state.showMiniLabels, radius, header.box, rewardLabel.box);
@@ -761,23 +761,25 @@
     return [
       '<rect width="' + BOARD.width + '" height="' + BOARD.height + '" fill="' + theme.background + '"/>',
       '<path d="M0 0 H' + BOARD.width + ' V330 C1710 430 1320 325 980 425 C610 532 285 470 0 610 Z" fill="' + theme.backgroundAlt + '" opacity="0.82"/>',
-      '<path d="M0 2790 C360 2630 720 2690 1050 2780 C1425 2884 1745 2860 2100 2700 V2970 H0 Z" fill="' + theme.backgroundBand + '" opacity="0.66"/>'
+      '<path d="M0 2790 C360 2630 720 2690 1050 2780 C1425 2884 1745 2860 2100 2700 V2970 H0 Z" fill="' + theme.backgroundBand + '" opacity="0.66"/>',
+      '<rect x="70" y="70" width="1960" height="2830" rx="76" fill="none" stroke="' + theme.labelStroke + '" stroke-width="9" opacity="0.75"/>'
     ].join('');
   }
 
   function renderRoad(pathD, radius, theme) {
     if (!pathD) return '';
 
-    var outer = round(radius * (theme.roadStyle === 'river' ? 2.35 : 2.05));
-    var inner = round(radius * (theme.roadStyle === 'cobble' ? 1.36 : 1.22));
+    var outer = round(radius * (theme.roadStyle === 'river' ? 2.8 : 2.55));
+    var inner = round(radius * (theme.roadStyle === 'cobble' ? 1.9 : 1.72));
     var pieces = [
-      '<path d="' + pathD + '" fill="none" stroke="' + theme.pathOuter + '" stroke-width="' + outer + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.98"/>',
+      '<path d="' + pathD + '" fill="none" stroke="#000000" stroke-width="' + outer + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.08" transform="translate(9 12)"/>',
+      '<path d="' + pathD + '" fill="none" stroke="' + theme.pathOuter + '" stroke-width="' + outer + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.99"/>',
       '<path d="' + pathD + '" fill="none" stroke="' + theme.pathInner + '" stroke-width="' + inner + '" stroke-linecap="round" stroke-linejoin="round"/>'
     ];
 
     if (theme.roadStyle === 'cobble') {
-      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.pathOuter) + '" stroke-width="' + round(radius * 0.28) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.22) + ' ' + round(radius * 0.46) + '" opacity="0.55"/>');
-      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.12) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.5) + ' ' + round(radius * 0.62) + '" opacity="0.8"/>');
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.pathOuter) + '" stroke-width="' + round(radius * 0.22) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.24) + ' ' + round(radius * 0.5) + '" opacity="0.55"/>');
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.12) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.46) + ' ' + round(radius * 0.62) + '" opacity="0.85"/>');
     } else if (theme.roadStyle === 'candy') {
       pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.accent2) + '" stroke-width="' + round(radius * 0.26) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.38) + ' ' + round(radius * 0.9) + '" opacity="0.8"/>');
       pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.13) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.3) + ' ' + round(radius * 0.45) + '" opacity="0.95"/>');
@@ -846,12 +848,14 @@
     return points.map(function (point) {
       var isFinal = point.index === points.length;
       var isMini = !!miniSet[point.index] && !isFinal;
-      var r = isFinal ? radius + 17 : radius;
-      var fill = isFinal ? theme.rewardFill : (isMini ? theme.miniFill : theme.circleFill);
-      var stroke = isFinal ? theme.rewardStroke : (isMini ? theme.miniStroke : theme.circleStroke);
-      var text = isFinal ? theme.rewardText : (isMini ? theme.miniText : theme.circleText);
+      var r = isFinal ? radius + 14 : radius;
+      var fill = isFinal ? theme.labelFill : (isMini ? theme.miniFill : theme.circleFill);
+      var stroke = isFinal ? theme.miniStroke : (isMini ? theme.miniStroke : theme.circleStroke);
+      var text = isFinal ? theme.circleText : (isMini ? theme.miniText : theme.circleText);
       var pieces = [
-        '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + r + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + (isFinal ? 12 : 9) + '"/>'
+        isFinal ? '<polygon points="' + starPoints(point.x, point.y, r * 1.45, r * 1.08, 18) + '" fill="' + theme.accent3 + '" opacity="0.82"/>' : '',
+        '<circle cx="' + (point.x + 8) + '" cy="' + (point.y + 12) + '" r="' + r + '" fill="#000000" opacity="0.12"/>',
+        '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + r + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + (isFinal ? 13 : 11) + '"/>'
       ];
 
       if (isMini) {
@@ -859,7 +863,7 @@
       }
 
       if (showNumbers) {
-        pieces.push('<text x="' + point.x + '" y="' + (point.y + r * 0.25) + '" text-anchor="middle" fill="' + text + '" font-family="Poppins, Arial, sans-serif" font-size="' + round(r * 0.74) + '" font-weight="900">' + point.index + '</text>');
+        pieces.push('<text x="' + point.x + '" y="' + point.y + '" text-anchor="middle" dominant-baseline="middle" fill="' + text + '" font-family="Poppins, Arial, sans-serif" font-size="' + round(r * 0.76) + '" font-weight="900">' + point.index + '</text>');
       } else if (isMini) {
         pieces.push('<polygon points="' + starPoints(point.x, point.y, r * 0.32, r * 0.15, 5) + '" fill="' + text + '" opacity="0.9"/>');
       }
@@ -898,8 +902,7 @@
   function renderStartLabel(label, theme) {
     return [
       '<g>',
-        '<rect x="' + label.box.x + '" y="' + label.box.y + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="28" fill="' + theme.labelFill + '" stroke="' + theme.labelStroke + '" stroke-width="5"/>',
-        '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + (label.box.y + label.box.h / 2 + 12) + '" text-anchor="middle" fill="' + theme.title + '" font-family="Poppins, Arial, sans-serif" font-size="34" font-weight="900">' + escapeHtml(label.text) + '</text>',
+        '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + (label.box.y + label.box.h / 2 + 12) + '" text-anchor="middle" fill="' + theme.title + '" font-family="Poppins, Arial, sans-serif" font-size="50" font-weight="900">' + escapeHtml(label.text) + '</text>',
       '</g>'
     ].join('');
   }
@@ -909,9 +912,8 @@
 
     return [
       '<g>',
-        '<rect x="' + label.box.x + '" y="' + label.box.y + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="38" fill="' + theme.rewardFill + '" stroke="' + theme.rewardStroke + '" stroke-width="8"/>',
         label.lines.map(function (line, index) {
-          return '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + round(centerY + index * label.lineHeight) + '" text-anchor="middle" dominant-baseline="middle" fill="' + theme.rewardText + '" font-family="Poppins, Arial, sans-serif" font-size="' + label.fontSize + '" font-weight="900">' + escapeHtml(line) + '</text>';
+          return '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + round(centerY + index * label.lineHeight) + '" text-anchor="middle" dominant-baseline="middle" fill="' + theme.title + '" font-family="Poppins, Arial, sans-serif" font-size="' + label.fontSize + '" font-weight="900">' + escapeHtml(line) + '</text>';
         }).join(''),
       '</g>'
     ].join('');
@@ -921,9 +923,9 @@
     var child = cleanText(state.childName);
     var title = cleanText(state.title) || 'Reward Quest';
     var subtitle = cleanText(state.subtitle);
-    var titleLayout = layoutText(title, 1740, 82, 54, 2);
-    var subtitleLayout = layoutText(subtitle, 1660, 35, 26, 3);
-    var y = child ? 224 : 150;
+    var titleLayout = layoutText(title, 1540, 88, 58, 2);
+    var subtitleLayout = layoutText(subtitle, 1580, 34, 25, 2);
+    var y = child ? 210 : 142;
     var pieces = [];
     var titleY = y;
     var subtitleY;
@@ -932,15 +934,15 @@
     if (child) {
       var badgeText = 'For ' + child;
       var badgeW = clamp(approxTextWidth(badgeText, 28, 800) + 64, 180, 760);
-      pieces.push('<rect x="180" y="82" width="' + badgeW + '" height="54" rx="27" fill="' + theme.labelFill + '" stroke="' + theme.labelStroke + '" stroke-width="4"/>');
-      pieces.push('<text x="' + (180 + badgeW / 2) + '" y="118" text-anchor="middle" fill="' + theme.text + '" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="900">' + escapeHtml(badgeText) + '</text>');
+      pieces.push('<rect x="' + (1050 - badgeW / 2) + '" y="82" width="' + badgeW + '" height="54" rx="27" fill="' + theme.labelFill + '" stroke="' + theme.labelStroke + '" stroke-width="4"/>');
+      pieces.push('<text x="1050" y="118" text-anchor="middle" fill="' + theme.text + '" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="900">' + escapeHtml(badgeText) + '</text>');
     }
 
-    pieces.push(svgTextLines(titleLayout.lines, 180, titleY, titleLayout.fontSize, titleLayout.lineHeight, theme.title, 900, 'start'));
+    pieces.push(svgTextLines(titleLayout.lines, 1050, titleY, titleLayout.fontSize, titleLayout.lineHeight, theme.title, 900, 'middle'));
     subtitleY = titleY + titleLayout.lineHeight * titleLayout.lines.length + 22;
 
     if (subtitleLayout.lines.length) {
-      pieces.push(svgTextLines(subtitleLayout.lines, 184, subtitleY, subtitleLayout.fontSize, subtitleLayout.lineHeight, theme.text, 700, 'start'));
+      pieces.push(svgTextLines(subtitleLayout.lines, 1050, subtitleY, subtitleLayout.fontSize, subtitleLayout.lineHeight, theme.text, 800, 'middle'));
       bottom = subtitleY + subtitleLayout.lineHeight * subtitleLayout.lines.length;
     } else {
       bottom = subtitleY;
@@ -948,18 +950,26 @@
 
     return {
       svg: '<g>' + pieces.join('') + '</g>',
-      box: { x: 130, y: 58, w: 1840, h: bottom - 58 + 42 }
+      box: { x: 180, y: 58, w: 1740, h: bottom - 58 + 42 }
     };
   }
 
-  function layoutRewardLabel(state) {
+  function layoutRewardLabel(state, theme, point, radius) {
     var text = cleanText(state.rewardLabel) || 'Special reward';
-    var lines = layoutText(text, 1220, 43, 31, 2);
-    var h = lines.lineHeight * lines.lines.length + 42;
-    var box = { x: 420, y: 2770 - h / 2, w: 1260, h: h };
+    var lines = layoutText(text, 600, 50, 32, 2);
+    var h = lines.lineHeight * lines.lines.length + 18;
+    var w = 620;
+    var y = point.y + radius + 74;
+
+    if (y + h > BOARD.height - 120) y = point.y - radius - h - 80;
 
     return {
-      box: box,
+      box: {
+        x: clamp(point.x - w / 2, 70, BOARD.width - w - 70),
+        y: y,
+        w: w,
+        h: h
+      },
       lines: lines.lines,
       fontSize: lines.fontSize,
       lineHeight: lines.lineHeight
@@ -968,9 +978,9 @@
 
   function layoutStartLabel(state, point, radius, headerBox) {
     var text = cleanText(state.startLabel) || 'Start';
-    var width = clamp(approxTextWidth(text, 34, 900) + 70, 150, 430);
-    var height = 62;
-    var y = point.y - radius - height - 24;
+    var width = clamp(approxTextWidth(text, 50, 900) + 60, 180, 520);
+    var height = 72;
+    var y = point.y - radius - height - 34;
 
     if (y < headerBox.y + headerBox.h + 14) {
       y = point.y + radius + 24;
@@ -1016,8 +1026,9 @@
   }
 
   function buildStepPoints(count, area) {
-    var cols = count <= 8 ? 4 : count <= 16 ? 5 : count <= 30 ? 6 : 7;
+    var cols = count <= 8 ? 4 : count <= 30 ? 5 : count <= 42 ? 6 : 7;
     var rows = Math.ceil(count / cols);
+    if (rows % 2 === 0 && rows < count) rows += 1;
     var base = Math.floor(count / rows);
     var extra = count % rows;
     var yGap = rows === 1 ? 0 : (area.bottom - area.top) / (rows - 1);
@@ -1027,12 +1038,12 @@
 
     for (row = 0; row < rows; row += 1) {
       var rowCount = base + (row < extra ? 1 : 0);
-      var rowInset = rows > 3 ? (row % 2) * 34 : row * 16;
+      var rowInset = rows > 3 ? (row % 2) * 22 : row * 12;
       var rowLeft = area.left + rowInset;
-      var rowRight = area.right - ((row + 1) % 2) * 34;
+      var rowRight = area.right - rowInset;
       var xGap = rowCount === 1 ? 0 : (rowRight - rowLeft) / (rowCount - 1);
-      var rowY = rows === 1 ? (area.top + area.bottom) / 2 : area.top + yGap * row;
-      var wave = clamp(yGap * 0.08, 8, 24);
+      var rowY = rows === 1 ? (area.top + area.bottom) / 2 : area.bottom - yGap * row;
+      var wave = clamp(yGap * 0.055, 5, 15);
       var col;
 
       for (col = 0; col < rowCount; col += 1) {
@@ -1478,11 +1489,11 @@
   }
 
   function stepRadius(count) {
-    if (count <= 8) return 72;
-    if (count <= 16) return 62;
-    if (count <= 30) return 54;
-    if (count <= 40) return 48;
-    return 42;
+    if (count <= 8) return 112;
+    if (count <= 16) return 104;
+    if (count <= 30) return 92;
+    if (count <= 40) return 78;
+    return 66;
   }
 
   function normalizeMiniRewards(values, stepCount) {
