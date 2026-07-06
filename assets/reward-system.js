@@ -8,13 +8,13 @@
   var BOARD = { width: 2100, height: 2970 };
 
   var SLOT_DEFS = [
-    { id: 'mainRewardGift', label: 'Main reward gift', width: 260, height: 240, band: [1760, 2560], motif: 'gift' },
-    { id: 'miniRewardGift', label: 'Mini reward gift', width: 190, height: 180, band: [780, 2140], motif: 'miniGift' },
+    { id: 'mainRewardGift', label: 'Main reward gift', width: 340, height: 315, band: [1760, 2560], motif: 'gift' },
+    { id: 'miniRewardGift', label: 'Mini reward gift', width: 260, height: 240, band: [780, 2140], motif: 'miniGift' },
     { id: 'motifTop', label: 'Motif top', width: 240, height: 160, band: [360, 820], motif: 'rainbow' },
-    { id: 'motifUpper', label: 'Motif upper', width: 200, height: 180, band: [700, 1220], motif: 'starCloud' },
-    { id: 'motifMiddle', label: 'Motif middle', width: 220, height: 170, band: [1200, 1820], motif: 'kite' },
-    { id: 'motifLower', label: 'Motif lower', width: 205, height: 190, band: [1820, 2360], motif: 'leafSprig' },
-    { id: 'motifBottom', label: 'Motif bottom', width: 250, height: 160, band: [2280, 2640], motif: 'mountains' }
+    { id: 'motifUpper', label: 'Motif upper', width: 280, height: 260, band: [700, 1220], motif: 'starCloud' },
+    { id: 'motifMiddle', label: 'Motif middle', width: 300, height: 250, band: [1200, 1820], motif: 'kite' },
+    { id: 'motifLower', label: 'Motif lower', width: 285, height: 265, band: [1820, 2360], motif: 'leafSprig' },
+    { id: 'motifBottom', label: 'Motif bottom', width: 340, height: 220, band: [2280, 2640], motif: 'mountains' }
   ];
 
   var THEMES = [
@@ -622,6 +622,7 @@
 
   RewardApp.prototype.printPoster = function () {
     var svg = this.poster && this.poster.querySelector('svg');
+    var stickerSvg = buildStickerSheetSvg(this.state, this.uploads, this.instanceId, this.assetMap);
     var frame;
     var doc;
     var win;
@@ -658,12 +659,19 @@
           '<title>Reward poster</title>',
           '<style>',
             '@page{size:A4 portrait;margin:0;}',
-            'html,body{background:#fff;height:297mm;margin:0;overflow:hidden;padding:0;width:210mm;}',
+            'html,body{background:#fff;margin:0;padding:0;width:210mm;}',
+            '.flipzy-print-page{break-after:page;height:297mm;overflow:hidden;page-break-after:always;width:210mm;}',
+            '.flipzy-print-page:last-child{break-after:auto;page-break-after:auto;}',
             'svg{display:block;height:297mm;width:210mm;print-color-adjust:exact;-webkit-print-color-adjust:exact;}',
           '</style>',
         '</head>',
         '<body>',
-          svg.outerHTML,
+          '<div class="flipzy-print-page">',
+            svg.outerHTML,
+          '</div>',
+          '<div class="flipzy-print-page">',
+            stickerSvg,
+          '</div>',
         '</body>',
       '</html>'
     ].join(''));
@@ -727,31 +735,30 @@
     var startLabel = layoutStartLabel(state, points[0], radius, header.box);
     var miniSet = toSet(state.miniRewards);
     var miniLabels = buildMiniLabels(points, miniSet, state.showMiniLabels, radius, header.box, rewardLabel.box);
-    var obstacles = [];
+    var graphicObstacles = [];
     var pathD = buildPath(points);
     var pathTextureId = theme.assets.pathTexture ? svgId(instanceId + '-' + theme.id + '-path-texture') : '';
     var graphics;
 
-    addBox(obstacles, header.box, 22);
-    addBox(obstacles, rewardLabel.box, 26);
-    addBox(obstacles, startLabel.box, 18);
-    addPathObstacles(obstacles, points, radius + 28);
-    addStepObstacles(obstacles, points, radius);
+    addBox(graphicObstacles, header.box, 22);
+    addBox(graphicObstacles, rewardLabel.box, 26);
+    addBox(graphicObstacles, startLabel.box, 18);
+    addStepObstacles(graphicObstacles, points, radius);
 
     miniLabels.forEach(function (label) {
-      addBox(obstacles, label.box, 12);
+      addBox(graphicObstacles, label.box, 12);
     });
 
-    graphics = buildGraphics(state, uploads, theme, points, miniSet, obstacles);
+    graphics = buildGraphics(state, uploads, theme, points, miniSet, graphicObstacles);
 
     return [
       '<svg class="flipzy-rewards__poster-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(state.title || 'Reward poster') + '">',
         '<title>' + escapeHtml(state.title || 'Reward poster') + '</title>',
         renderDefinitions(theme, pathTextureId),
         renderBackground(theme),
+        graphics,
         renderRoad(pathD, radius, theme, pathTextureId),
         renderRoadDecor(points, radius, theme),
-        graphics,
         header.svg,
         renderStartLabel(startLabel, theme),
         renderRewardLabel(rewardLabel, theme),
@@ -760,6 +767,35 @@
         state.showNumbers ? '' : renderFinalMarker(finalPoint, radius, theme),
       '</svg>'
     ].join('');
+  }
+
+  function buildStickerSheetSvg(state, uploads, instanceId, assetMap) {
+    var theme = getThemeWithAssets(state.theme, assetMap);
+    var radius = stepRadius(state.stepCount);
+    var requested = state.stepCount + Math.max(8, Math.ceil(state.stepCount * 0.25));
+    var layout = stickerSheetLayout(radius, requested);
+    var stickerUrl = stickerAssetUrl(theme, uploads);
+    var title = (cleanText(state.childName) || 'Reward') + ' stickers';
+    var pieces = [
+      '<svg class="flipzy-rewards__sticker-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(title) + '">',
+        '<title>' + escapeHtml(title) + '</title>',
+        '<rect width="' + BOARD.width + '" height="' + BOARD.height + '" fill="#ffffff"/>',
+        '<path d="M0 0 H' + BOARD.width + ' V260 C1700 345 1360 220 1030 310 C640 416 310 350 0 500 Z" fill="' + theme.backgroundAlt + '" opacity="0.42"/>',
+        '<text x="1050" y="150" text-anchor="middle" fill="' + theme.title + '" font-family="Poppins, Arial, sans-serif" font-size="74" font-weight="900" stroke="' + theme.labelFill + '" stroke-width="12" stroke-linejoin="round" paint-order="stroke fill">' + escapeHtml(title) + '</text>',
+        '<text x="1050" y="222" text-anchor="middle" fill="' + theme.text + '" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="800">Cut-out circles for this reward poster</text>'
+    ];
+    var i;
+
+    for (i = 0; i < layout.count; i += 1) {
+      var row = Math.floor(i / layout.cols);
+      var col = i % layout.cols;
+      var cx = layout.startX + col * layout.cell;
+      var cy = layout.startY + row * layout.cell;
+      pieces.push(renderSticker(cx, cy, radius, theme, stickerUrl, instanceId, i));
+    }
+
+    pieces.push('</svg>');
+    return pieces.join('');
   }
 
   function renderBackground(theme) {
@@ -781,7 +817,7 @@
 
     return [
       '<defs>',
-        '<pattern id="' + escapeAttr(pathTextureId) + '" patternUnits="userSpaceOnUse" width="800" height="220" patternTransform="scale(0.72)">',
+        '<pattern id="' + escapeAttr(pathTextureId) + '" patternUnits="userSpaceOnUse" width="800" height="220">',
           '<image href="' + escapeAttr(theme.assets.pathTexture) + '" x="0" y="0" width="800" height="220" preserveAspectRatio="none"/>',
         '</pattern>',
       '</defs>'
@@ -799,7 +835,7 @@
     ];
 
     if (pathTextureId) {
-      pieces.push('<path d="' + pathD + '" fill="none" stroke="url(#' + escapeAttr(pathTextureId) + ')" stroke-width="' + round(inner * 0.86) + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.32"/>');
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="url(#' + escapeAttr(pathTextureId) + ')" stroke-width="' + round(inner * 0.9) + '" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>');
     }
 
     if (theme.roadStyle === 'cobble') {
@@ -816,6 +852,68 @@
     } else {
       pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.14) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.6) + ' ' + round(radius * 0.55) + '" opacity="0.92"/>');
     }
+
+    return pieces.join('');
+  }
+
+  function stickerSheetLayout(radius, requested) {
+    var marginX = 128;
+    var top = 310;
+    var bottom = 130;
+    var gap = clamp(radius * 0.36, 26, 44);
+    var cell = radius * 2 + gap;
+    var cols = Math.max(1, Math.floor((BOARD.width - marginX * 2 + gap) / cell));
+    var maxRows = Math.max(1, Math.floor((BOARD.height - top - bottom + gap) / cell));
+    var count = Math.min(requested, cols * maxRows);
+    var rows = Math.ceil(count / cols);
+    var gridWidth = cols * radius * 2 + (cols - 1) * gap;
+    var gridHeight = rows * radius * 2 + (rows - 1) * gap;
+
+    return {
+      cell: cell,
+      cols: cols,
+      count: count,
+      startX: (BOARD.width - gridWidth) / 2 + radius,
+      startY: top + Math.max(0, (BOARD.height - top - bottom - gridHeight) / 2) + radius
+    };
+  }
+
+  function stickerAssetUrl(theme, uploads) {
+    if (uploads && uploads.miniRewardGift && uploads.miniRewardGift.dataUrl) {
+      return uploads.miniRewardGift.dataUrl;
+    }
+
+    return theme.assets.sticker || theme.assets.miniRewardGift || theme.assets.mainRewardGift || '';
+  }
+
+  function renderSticker(cx, cy, radius, theme, stickerUrl, instanceId, index) {
+    var clipId = svgId(instanceId + '-sticker-' + index);
+    var artSize = round(radius * 1.64);
+    var artBox = {
+      x: round(cx - artSize / 2),
+      y: round(cy - artSize / 2),
+      w: artSize,
+      h: artSize
+    };
+    var innerRadius = round(radius - Math.max(10, radius * 0.13));
+    var pieces = [
+      '<g>',
+        '<circle cx="' + round(cx + radius * 0.06) + '" cy="' + round(cy + radius * 0.08) + '" r="' + radius + '" fill="#000000" opacity="0.08"/>',
+        '<circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + radius + '" fill="' + theme.circleFill + '"/>',
+        '<clipPath id="' + escapeAttr(clipId) + '"><circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + innerRadius + '"/></clipPath>'
+    ];
+
+    if (stickerUrl) {
+      pieces.push('<image href="' + escapeAttr(stickerUrl) + '" x="' + artBox.x + '" y="' + artBox.y + '" width="' + artBox.w + '" height="' + artBox.h + '" preserveAspectRatio="xMidYMid meet" clip-path="url(#' + escapeAttr(clipId) + ')"/>');
+    } else {
+      pieces.push('<g clip-path="url(#' + escapeAttr(clipId) + ')">' + renderMotif(theme.motifs.miniRewardGift || 'miniGift', theme, artBox.x, artBox.y, artBox.w, artBox.h) + '</g>');
+    }
+
+    pieces.push(
+        '<circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + round(radius - 5) + '" fill="none" stroke="' + theme.circleStroke + '" stroke-width="' + clamp(radius * 0.08, 6, 10) + '"/>',
+        '<circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + radius + '" fill="none" stroke="#707070" stroke-width="2.5" stroke-dasharray="' + round(radius * 0.12) + ' ' + round(radius * 0.08) + '" opacity="0.72"/>',
+      '</g>'
+    );
 
     return pieces.join('');
   }
@@ -1107,11 +1205,6 @@
       var c2y;
       var side;
       var turn;
-      var horizontalHandle;
-      var verticalHandle;
-      var verticalSign;
-      var midX;
-      var midY;
 
       if (p1.row === p2.row) {
         c1x = p1.x + dx * 0.38;
@@ -1120,17 +1213,11 @@
         c2y = p2.y + wave;
       } else {
         side = p1.x > BOARD.width / 2 ? 1 : -1;
-        turn = clamp(Math.abs(dy) * 0.26, 120, 170);
-        horizontalHandle = clamp(Math.abs(dy) * 0.2, 85, 135);
-        verticalHandle = clamp(Math.abs(dy) * 0.18, 80, 145);
-        verticalSign = dy < 0 ? -1 : 1;
-        midX = side > 0 ? Math.max(p1.x, p2.x) + turn : Math.min(p1.x, p2.x) - turn;
-        midX = clamp(midX, 250, BOARD.width - 250);
-        midY = p1.y + dy / 2;
-
-        path += ' C' + round(p1.x + side * horizontalHandle) + ' ' + round(p1.y) + ' ' + round(midX) + ' ' + round(midY - verticalSign * verticalHandle) + ' ' + round(midX) + ' ' + round(midY);
-        path += ' C' + round(midX) + ' ' + round(midY + verticalSign * verticalHandle) + ' ' + round(p2.x + side * horizontalHandle) + ' ' + round(p2.y) + ' ' + p2.x + ' ' + p2.y;
-        continue;
+        turn = clamp(Math.abs(dy) * 0.38, 185, 230);
+        c1x = clamp(p1.x + side * turn, 170, BOARD.width - 170);
+        c1y = p1.y;
+        c2x = clamp(p2.x + side * turn, 170, BOARD.width - 170);
+        c2y = p2.y;
       }
 
       path += ' C' + round(c1x) + ' ' + round(c1y) + ' ' + round(c2x) + ' ' + round(c2y) + ' ' + p2.x + ' ' + p2.y;
