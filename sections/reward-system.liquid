@@ -5,7 +5,6 @@
   <div class="flipzy-rewards__shell">
     <aside class="flipzy-rewards__controls" aria-label="Reward poster controls">
       <div class="flipzy-rewards__masthead">
-        <p>Flipzy Reward Builder</p>
         <h1>Reward poster maker</h1>
       </div>
 
@@ -37,14 +36,16 @@
 
       <fieldset class="flipzy-rewards__group">
         <legend>Path</legend>
-        <label class="flipzy-rewards__field">
-          <span>Steps</span>
-          <input data-flipzy-control="stepCount" type="range" min="1" max="50" step="1">
-        </label>
-        <label class="flipzy-rewards__field flipzy-rewards__field--compact">
-          <span>Step count</span>
-          <input data-flipzy-control="stepCount" type="number" min="1" max="50" step="1" inputmode="numeric">
-        </label>
+        <div class="flipzy-rewards__step-control">
+          <label class="flipzy-rewards__field">
+            <span>Steps</span>
+            <input data-flipzy-control="stepCount" type="range" min="1" max="50" step="1">
+          </label>
+          <label class="flipzy-rewards__field">
+            <span>Count</span>
+            <input data-flipzy-control="stepCount" type="number" min="1" max="50" step="1" inputmode="numeric">
+          </label>
+        </div>
         <div class="flipzy-rewards__checks">
           <label>
             <input data-flipzy-control="showNumbers" type="checkbox">

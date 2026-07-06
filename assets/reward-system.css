@@ -14,7 +14,7 @@
   background: var(--frs-bg);
   color: var(--frs-ink);
   font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  padding: 18px 12px 28px;
+  padding: 14px 10px 24px;
 }
 
 .flipzy-rewards *,
@@ -26,8 +26,8 @@
 .flipzy-rewards__shell {
   align-items: start;
   display: grid;
-  gap: 18px;
-  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: 16px;
+  grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
   margin: 0 auto;
   max-width: 1460px;
 }
@@ -38,14 +38,14 @@
   border-radius: 8px;
   max-height: calc(100dvh - 36px);
   overflow: auto;
-  padding: 12px;
+  padding: 10px;
   position: sticky;
   top: 12px;
 }
 
 .flipzy-rewards__masthead {
   border-bottom: 1px solid var(--frs-line);
-  padding-bottom: 9px;
+  padding-bottom: 7px;
 }
 
 .flipzy-rewards__masthead p {
@@ -60,7 +60,7 @@
 
 .flipzy-rewards__masthead h1 {
   color: var(--frs-ink);
-  font-size: 22px;
+  font-size: 20px;
   letter-spacing: 0;
   line-height: 1.08;
   margin: 0;
@@ -70,16 +70,16 @@
   border: 0;
   border-top: 1px solid var(--frs-line);
   margin: 0;
-  padding: 11px 0 0;
+  padding: 8px 0 0;
 }
 
 .flipzy-rewards__group + .flipzy-rewards__group {
-  margin-top: 11px;
+  margin-top: 8px;
 }
 
 .flipzy-rewards__group legend {
   color: var(--frs-ink);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0;
   padding: 0 10px 0 0;
@@ -87,15 +87,15 @@
 
 .flipzy-rewards__field {
   display: grid;
-  gap: 4px;
-  margin: 0 0 8px;
+  gap: 3px;
+  margin: 0 0 6px;
 }
 
 .flipzy-rewards__field span,
 .flipzy-rewards__checks span,
 .flipzy-rewards__slot-name {
   color: var(--frs-muted);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   line-height: 1.3;
 }
@@ -108,21 +108,21 @@
   border: 1px solid #cfc7bb;
   border-radius: 7px;
   color: var(--frs-ink);
-  font: 600 13px/1.25 Poppins, system-ui, sans-serif;
-  min-height: 34px;
-  padding: 7px 9px;
+  font: 600 12px/1.2 Poppins, system-ui, sans-serif;
+  min-height: 30px;
+  padding: 5px 8px;
   width: 100%;
 }
 
 .flipzy-rewards__field textarea {
-  min-height: 62px;
+  min-height: 52px;
   resize: vertical;
 }
 
 .flipzy-rewards__field input[type="range"] {
   accent-color: var(--frs-blue);
   border: 0;
-  min-height: 28px;
+  min-height: 22px;
   padding: 0;
 }
 
@@ -137,17 +137,21 @@
 
 .flipzy-rewards__field-grid {
   display: grid;
-  gap: 8px;
+  gap: 6px;
   grid-template-columns: 1fr 1fr;
 }
 
-.flipzy-rewards__field--compact {
-  max-width: 118px;
+.flipzy-rewards__step-control {
+  align-items: end;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) 72px;
 }
 
 .flipzy-rewards__checks {
   display: grid;
-  gap: 5px;
+  gap: 5px 8px;
+  grid-template-columns: 1fr 1fr;
 }
 
 .flipzy-rewards__checks label,
@@ -155,21 +159,21 @@
   align-items: center;
   cursor: pointer;
   display: flex;
-  gap: 7px;
+  gap: 5px;
 }
 
 .flipzy-rewards__checks input,
 .flipzy-rewards__slot-toggle input {
   accent-color: var(--frs-blue);
-  height: 16px;
-  width: 16px;
+  height: 15px;
+  width: 15px;
 }
 
 .flipzy-rewards__presets {
   display: grid;
-  gap: 6px;
+  gap: 5px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-bottom: 9px;
+  margin-bottom: 7px;
 }
 
 .flipzy-rewards button,
@@ -181,10 +185,10 @@
   color: var(--frs-ink);
   cursor: pointer;
   display: inline-flex;
-  font: 800 12px/1.1 Poppins, system-ui, sans-serif;
+  font: 800 11px/1.1 Poppins, system-ui, sans-serif;
   justify-content: center;
-  min-height: 32px;
-  padding: 7px 9px;
+  min-height: 29px;
+  padding: 6px 7px;
   text-decoration: none;
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
@@ -198,13 +202,13 @@
 
 .flipzy-rewards__step-picker {
   display: grid;
-  gap: 5px;
+  gap: 4px;
   grid-template-columns: repeat(10, minmax(0, 1fr));
 }
 
 .flipzy-rewards__step-picker button {
   aspect-ratio: 1;
-  font-size: 11px;
+  font-size: 10px;
   min-height: 0;
   padding: 0;
 }
@@ -225,14 +229,16 @@
 
 .flipzy-rewards__graphic-slots {
   display: grid;
-  gap: 7px;
+  gap: 4px;
 }
 
 .flipzy-rewards__slot {
   border-top: 1px solid #ebe5da;
+  align-items: center;
   display: grid;
-  gap: 6px;
-  padding-top: 8px;
+  gap: 5px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding-top: 5px;
 }
 
 .flipzy-rewards__slot:first-child {
@@ -241,9 +247,9 @@
 }
 
 .flipzy-rewards__slot-actions {
-  display: grid;
-  gap: 6px;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  gap: 5px;
+  justify-content: end;
 }
 
 .flipzy-rewards__slot input[type="file"] {
@@ -257,7 +263,9 @@
 .flipzy-rewards__slot-status {
   color: var(--frs-muted);
   font-size: 11px;
+  grid-column: 1 / -1;
   line-height: 1.35;
+  margin-top: -2px;
 }
 
 .flipzy-rewards__preview {
@@ -395,46 +403,31 @@
     width: 210mm;
   }
 
-  body:has(.flipzy-rewards) > * {
-    display: none !important;
+  body * {
+    visibility: hidden !important;
   }
 
-  body:has(.flipzy-rewards) > main,
-  body:has(.flipzy-rewards) > .shopify-section:has(.flipzy-rewards),
-  body:has(.flipzy-rewards) > .flipzy-rewards {
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  body:has(.flipzy-rewards) main > * {
-    display: none !important;
-  }
-
-  body:has(.flipzy-rewards) main > .shopify-section:has(.flipzy-rewards),
-  body:has(.flipzy-rewards) main .section-reward-system:has(.flipzy-rewards) {
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  .flipzy-rewards,
-  .flipzy-rewards__shell,
-  .flipzy-rewards__preview,
   .flipzy-rewards__poster-frame,
+  .flipzy-rewards__poster-frame *,
   .flipzy-rewards__poster {
+    visibility: visible !important;
+  }
+
+  .flipzy-rewards__poster-frame {
     background: #ffffff !important;
     border: 0 !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
     display: block !important;
     height: 297mm !important;
+    inset: 0 auto auto 0 !important;
     margin: 0 !important;
     max-height: none !important;
     max-width: none !important;
     min-height: 0 !important;
     overflow: hidden !important;
     padding: 0 !important;
-    position: static !important;
+    position: fixed !important;
     width: 210mm !important;
   }
 
@@ -443,13 +436,13 @@
     display: none !important;
   }
 
-  .flipzy-rewards__poster-frame {
-    border-radius: 0 !important;
-  }
-
   .flipzy-rewards__poster {
     aspect-ratio: auto !important;
+    border: 0 !important;
     border-radius: 0 !important;
+    box-shadow: none !important;
+    height: 297mm !important;
+    width: 210mm !important;
   }
 
   .flipzy-rewards__poster svg {

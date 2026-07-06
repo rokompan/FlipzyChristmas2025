@@ -392,7 +392,7 @@
       }
 
       if (printButton) {
-        window.print();
+        self.printPoster();
         return;
       }
 
@@ -592,7 +592,8 @@
       var enabled = self.state.graphicSlots[slot.id] !== false;
       var upload = self.uploads[slot.id];
       var inputId = self.instanceId + '-' + slot.id + '-upload';
-      var status = upload ? 'Uploaded: ' + upload.name : 'Theme default';
+      var status = upload ? '<div class="flipzy-rewards__slot-status">Uploaded: ' + escapeHtml(upload.name) + '</div>' : '';
+      var clearButton = upload ? '<button type="button" data-flipzy-clear-upload="' + escapeAttr(slot.id) + '">Default</button>' : '';
 
       return [
         '<div class="flipzy-rewards__slot">',
@@ -602,10 +603,10 @@
           '</label>',
           '<div class="flipzy-rewards__slot-actions">',
             '<input id="' + escapeAttr(inputId) + '" type="file" accept="image/png" data-flipzy-slot-upload="' + escapeAttr(slot.id) + '">',
-            '<label class="flipzy-rewards__upload-label" for="' + escapeAttr(inputId) + '" tabindex="0">Upload PNG</label>',
-            '<button type="button" data-flipzy-clear-upload="' + escapeAttr(slot.id) + '">Theme default</button>',
+            '<label class="flipzy-rewards__upload-label" for="' + escapeAttr(inputId) + '" tabindex="0">PNG</label>',
+            clearButton,
           '</div>',
-          '<div class="flipzy-rewards__slot-status">' + escapeHtml(status) + '</div>',
+          status,
         '</div>'
       ].join('');
     }).join('');
@@ -616,6 +617,64 @@
   RewardApp.prototype.renderPoster = function () {
     if (!this.poster) return;
     this.poster.innerHTML = buildPosterSvg(this.state, this.uploads, this.instanceId);
+  };
+
+  RewardApp.prototype.printPoster = function () {
+    var svg = this.poster && this.poster.querySelector('svg');
+    var frame;
+    var doc;
+    var win;
+
+    if (!svg) return;
+
+    frame = document.createElement('iframe');
+    frame.setAttribute('title', 'Reward poster print');
+    frame.setAttribute('aria-hidden', 'true');
+    frame.style.border = '0';
+    frame.style.height = '0';
+    frame.style.position = 'fixed';
+    frame.style.right = '0';
+    frame.style.top = '0';
+    frame.style.width = '0';
+
+    document.body.appendChild(frame);
+
+    win = frame.contentWindow;
+    doc = win && win.document;
+
+    if (!win || !doc) {
+      frame.remove();
+      window.print();
+      return;
+    }
+
+    doc.open();
+    doc.write([
+      '<!doctype html>',
+      '<html>',
+        '<head>',
+          '<meta charset="utf-8">',
+          '<title>Reward poster</title>',
+          '<style>',
+            '@page{size:A4 portrait;margin:0;}',
+            'html,body{background:#fff;height:297mm;margin:0;overflow:hidden;padding:0;width:210mm;}',
+            'svg{display:block;height:297mm;width:210mm;print-color-adjust:exact;-webkit-print-color-adjust:exact;}',
+          '</style>',
+        '</head>',
+        '<body>',
+          svg.outerHTML,
+        '</body>',
+      '</html>'
+    ].join(''));
+    doc.close();
+
+    window.setTimeout(function () {
+      win.focus();
+      win.print();
+      window.setTimeout(function () {
+        frame.remove();
+      }, 1000);
+    }, 120);
   };
 
   RewardApp.prototype.persist = function () {
@@ -846,10 +905,14 @@
   }
 
   function renderRewardLabel(label, theme) {
+    var centerY = label.box.y + label.box.h / 2 - ((label.lines.length - 1) * label.lineHeight) / 2;
+
     return [
       '<g>',
         '<rect x="' + label.box.x + '" y="' + label.box.y + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="38" fill="' + theme.rewardFill + '" stroke="' + theme.rewardStroke + '" stroke-width="8"/>',
-        svgTextLines(label.lines, label.box.x + label.box.w / 2, label.textY, label.fontSize, label.lineHeight, theme.rewardText, 900, 'middle'),
+        label.lines.map(function (line, index) {
+          return '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + round(centerY + index * label.lineHeight) + '" text-anchor="middle" dominant-baseline="middle" fill="' + theme.rewardText + '" font-family="Poppins, Arial, sans-serif" font-size="' + label.fontSize + '" font-weight="900">' + escapeHtml(line) + '</text>';
+        }).join(''),
       '</g>'
     ].join('');
   }
@@ -899,8 +962,7 @@
       box: box,
       lines: lines.lines,
       fontSize: lines.fontSize,
-      lineHeight: lines.lineHeight,
-      textY: box.y + 34
+      lineHeight: lines.lineHeight
     };
   }
 
@@ -965,23 +1027,19 @@
 
     for (row = 0; row < rows; row += 1) {
       var rowCount = base + (row < extra ? 1 : 0);
-      var rowInset = rows > 3 ? (row % 3) * 24 : row * 18;
+      var rowInset = rows > 3 ? (row % 2) * 34 : row * 16;
       var rowLeft = area.left + rowInset;
-      var rowRight = area.right - ((row + 1) % 3) * 24;
+      var rowRight = area.right - ((row + 1) % 2) * 34;
       var xGap = rowCount === 1 ? 0 : (rowRight - rowLeft) / (rowCount - 1);
       var rowY = rows === 1 ? (area.top + area.bottom) / 2 : area.top + yGap * row;
-      var wave = clamp(yGap * 0.18, 16, 54);
+      var wave = clamp(yGap * 0.08, 8, 24);
       var col;
 
       for (col = 0; col < rowCount; col += 1) {
         var displayCol = row % 2 === 1 ? rowCount - 1 - col : col;
         var t = rowCount === 1 ? 0.5 : displayCol / (rowCount - 1);
         var x = rowCount === 1 ? (area.left + area.right) / 2 : rowLeft + xGap * displayCol;
-        var y = rowY + Math.sin(t * Math.PI * 1.45 + row * 0.8) * wave;
-
-        if (rowCount > 2 && (displayCol === 0 || displayCol === rowCount - 1)) {
-          y += (displayCol === 0 ? 1 : -1) * wave * 0.28;
-        }
+        var y = rowY + Math.sin(t * Math.PI * 2 + row * 0.65) * wave;
 
         points.push({
           index: index,
@@ -999,17 +1057,31 @@
   function buildPath(points) {
     if (!points || points.length < 2) return '';
     var path = 'M' + points[0].x + ' ' + points[0].y;
-    var tension = 0.34;
 
     for (var i = 0; i < points.length - 1; i += 1) {
-      var p0 = points[Math.max(0, i - 1)];
       var p1 = points[i];
       var p2 = points[i + 1];
-      var p3 = points[Math.min(points.length - 1, i + 2)];
-      var c1x = p1.x + (p2.x - p0.x) * tension;
-      var c1y = p1.y + (p2.y - p0.y) * tension;
-      var c2x = p2.x - (p3.x - p1.x) * tension;
-      var c2y = p2.y - (p3.y - p1.y) * tension;
+      var dx = p2.x - p1.x;
+      var dy = p2.y - p1.y;
+      var wave = ((i % 2 === 0) ? 1 : -1) * clamp(Math.abs(dx) * 0.035, 8, 28);
+      var c1x;
+      var c1y;
+      var c2x;
+      var c2y;
+      var side;
+
+      if (p1.row === p2.row) {
+        c1x = p1.x + dx * 0.38;
+        c1y = p1.y + wave;
+        c2x = p2.x - dx * 0.38;
+        c2y = p2.y + wave;
+      } else {
+        side = p1.x > BOARD.width / 2 ? 1 : -1;
+        c1x = p1.x + side * 210;
+        c1y = p1.y + dy * 0.34;
+        c2x = p2.x + side * 210;
+        c2y = p2.y - dy * 0.34;
+      }
 
       path += ' C' + round(c1x) + ' ' + round(c1y) + ' ' + round(c2x) + ' ' + round(c2y) + ' ' + p2.x + ' ' + p2.y;
     }
