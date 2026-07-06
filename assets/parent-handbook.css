@@ -461,14 +461,20 @@
 
 @media print {
   @page {
-    margin: 18mm 16mm;
+    margin: 14mm 13mm;
     size: A4;
+  }
+
+  html {
+    background: #ffffff !important;
   }
 
   body {
     background: #ffffff !important;
     color: #111111 !important;
     letter-spacing: 0 !important;
+    margin: 0 !important;
+    min-height: auto !important;
   }
 
   body > .shopify-section-group-header-group,
@@ -494,8 +500,10 @@
   .flipzy-handbook {
     background: #ffffff !important;
     color: #111111 !important;
-    font-size: 12pt !important;
-    line-height: 1.45 !important;
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: 10.5pt !important;
+    line-height: 1.42 !important;
+    padding: 12mm 13mm !important;
   }
 
   .flipzy-handbook *,
@@ -507,13 +515,22 @@
   }
 
   .flipzy-handbook__book {
+    background: #ffffff !important;
+    margin: 0 auto !important;
     max-width: none !important;
+    width: 100% !important;
   }
 
   .flipzy-handbook .cover {
+    align-items: start !important;
+    break-after: page;
+    display: grid !important;
+    gap: 8mm !important;
     grid-template-columns: 1fr !important;
     min-height: auto !important;
-    padding: 0 0 18mm !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    page-break-after: always;
   }
 
   .flipzy-handbook .cover::before,
@@ -521,30 +538,128 @@
     display: none !important;
   }
 
+  .flipzy-handbook .eyebrow {
+    color: #4b3863 !important;
+    font-size: 8pt !important;
+    letter-spacing: 0.12em !important;
+    margin: 0 0 4mm !important;
+  }
+
   .flipzy-handbook h1 {
-    font-size: 42pt !important;
+    color: #1e1712 !important;
+    font-size: 30pt !important;
+    line-height: 1.04 !important;
+    margin: 0 0 5mm !important;
+  }
+
+  .flipzy-handbook .subtitle {
+    color: #4d4036 !important;
+    font-size: 12.5pt !important;
+    line-height: 1.35 !important;
+    margin: 0 0 8mm !important;
+    max-width: 145mm !important;
+  }
+
+  .flipzy-handbook .hero-img {
+    border-radius: 0 !important;
+    display: block !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    max-height: 108mm !important;
+    max-width: 150mm !important;
+    object-fit: contain !important;
+    width: auto !important;
+  }
+
+  .flipzy-handbook .caption {
+    color: #6a625b !important;
+    font-size: 7.5pt !important;
+    line-height: 1.3 !important;
+    margin-top: 2.5mm !important;
+    text-align: center !important;
+  }
+
+  .flipzy-handbook .toc {
+    break-before: page;
+    page-break-before: always;
   }
 
   .flipzy-handbook h2 {
-    font-size: 25pt !important;
+    break-after: avoid;
+    color: #1e1712 !important;
+    font-size: 18pt !important;
+    line-height: 1.15 !important;
+    margin: 0 0 5mm !important;
+    page-break-after: avoid;
   }
 
   .flipzy-handbook h3 {
-    font-size: 17pt !important;
+    break-after: avoid;
+    color: #1e1712 !important;
+    font-size: 13pt !important;
+    line-height: 1.22 !important;
+    margin: 7mm 0 2.5mm !important;
+    page-break-after: avoid;
+  }
+
+  .flipzy-handbook h4 {
+    break-after: avoid;
+    color: #1e1712 !important;
+    font-size: 11pt !important;
+    line-height: 1.2 !important;
+    margin: 0 0 2mm !important;
+    page-break-after: avoid;
+  }
+
+  .flipzy-handbook p {
+    color: #241c16 !important;
+    margin: 0 0 3.4mm !important;
+    orphans: 3;
+    widows: 3;
+  }
+
+  .flipzy-handbook .lead,
+  .flipzy-handbook .pull {
+    break-before: avoid;
+    color: #2d241d !important;
+    font-size: 11.5pt !important;
+    line-height: 1.45 !important;
+    margin: 0 0 4mm !important;
+    page-break-before: avoid;
   }
 
   .flipzy-handbook section,
   .flipzy-handbook .toc {
-    padding: 0 0 8mm !important;
+    border-top: 0 !important;
+    padding: 0 0 6mm !important;
   }
 
   .flipzy-handbook .chapter {
-    padding-top: 10mm !important;
+    break-inside: auto !important;
+    padding-top: 7mm !important;
+  }
+
+  .flipzy-handbook .toc h2 {
+    margin-bottom: 6mm !important;
+  }
+
+  .flipzy-handbook .toc-grid {
+    column-gap: 10mm !important;
+    columns: 2 !important;
+  }
+
+  .flipzy-handbook .toc-grid a {
+    border-bottom: 0.2mm dotted #cfc5b8 !important;
+    color: #241c16 !important;
+    font-size: 9.5pt !important;
+    line-height: 1.35 !important;
+    padding: 0 0 2mm !important;
   }
 
   .flipzy-handbook .routine-grid,
   .flipzy-handbook .method,
   .flipzy-handbook .image-row {
+    gap: 5mm !important;
     grid-template-columns: 1fr 1fr !important;
   }
 
@@ -554,6 +669,88 @@
   .flipzy-handbook figure img,
   .flipzy-handbook .full-img img {
     box-shadow: none !important;
+  }
+
+  .flipzy-handbook .routine-card,
+  .flipzy-handbook .scenario,
+  .flipzy-handbook .note,
+  .flipzy-handbook .method div {
+    border: 0.25mm solid #ded6cc !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    padding: 4mm !important;
+  }
+
+  .flipzy-handbook .routine-card p,
+  .flipzy-handbook .age-table td,
+  .flipzy-handbook .method span,
+  .flipzy-handbook .sources {
+    font-size: 9pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .flipzy-handbook .routine-head {
+    border-bottom: 0.2mm solid #ded6cc !important;
+    display: block !important;
+    margin-bottom: 3mm !important;
+    padding-bottom: 2mm !important;
+  }
+
+  .flipzy-handbook .routine-head span,
+  .flipzy-handbook .chip {
+    border: 0.2mm solid #ded6cc !important;
+    color: #342b23 !important;
+    display: inline-block !important;
+    font-size: 7.5pt !important;
+    line-height: 1.2 !important;
+    margin-top: 1.5mm !important;
+    padding: 1.2mm 2mm !important;
+  }
+
+  .flipzy-handbook .chips {
+    gap: 1.5mm !important;
+    margin: 2.5mm 0 !important;
+  }
+
+  .flipzy-handbook figure img,
+  .flipzy-handbook .full-img img {
+    border-radius: 0 !important;
+    display: block !important;
+    height: auto !important;
+    max-height: 105mm !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    width: auto !important;
+  }
+
+  .flipzy-handbook .image-row figure img {
+    max-height: 70mm !important;
+  }
+
+  .flipzy-handbook .full-img {
+    margin: 6mm 0 !important;
+  }
+
+  .flipzy-handbook .age-table {
+    border: 0.25mm solid #ded6cc !important;
+    border-radius: 0 !important;
+    margin: 5mm 0 !important;
+  }
+
+  .flipzy-handbook .age-table th,
+  .flipzy-handbook .age-table td {
+    border-bottom: 0.2mm solid #ded6cc !important;
+    padding: 2.8mm 3mm !important;
+  }
+
+  .flipzy-handbook .age-table th {
+    color: #241c16 !important;
+    font-size: 8pt !important;
+  }
+
+  .flipzy-handbook .pagebreak {
+    break-before: page !important;
+    page-break-before: always !important;
   }
 
   .flipzy-handbook a {
