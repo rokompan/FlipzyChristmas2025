@@ -943,18 +943,16 @@
 
   function renderSticker(cx, cy, radius, theme, stickerUrl, instanceId, index) {
     var clipId = svgId(instanceId + '-sticker-' + index);
-    var artSize = round(radius * 1.98);
+    var artSize = round(radius * 2.46);
     var artBox = {
       x: round(cx - artSize / 2),
       y: round(cy - artSize / 2),
       w: artSize,
       h: artSize
     };
-    var innerRadius = round(radius * 0.98);
+    var innerRadius = round(radius * 1.08);
     var pieces = [
       '<g>',
-        '<circle cx="' + round(cx + radius * 0.06) + '" cy="' + round(cy + radius * 0.08) + '" r="' + radius + '" fill="#000000" opacity="0.08"/>',
-        '<circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + radius + '" fill="' + theme.circleFill + '"/>',
         '<clipPath id="' + escapeAttr(clipId) + '"><circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + innerRadius + '"/></clipPath>'
     ];
 
@@ -964,10 +962,7 @@
       pieces.push(svgImage(stickerUrl, 'x="' + artBox.x + '" y="' + artBox.y + '" width="' + artBox.w + '" height="' + artBox.h + '" preserveAspectRatio="xMidYMid meet" clip-path="url(#' + escapeAttr(clipId) + ')"'));
     }
 
-    pieces.push(
-        '<circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + round(radius * 0.99) + '" fill="none" stroke="#d8d8d8" stroke-width="1.8" opacity="0.5"/>',
-      '</g>'
-    );
+    pieces.push('</g>');
 
     return pieces.join('');
   }
