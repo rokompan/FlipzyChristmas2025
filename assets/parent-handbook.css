@@ -122,10 +122,11 @@
 }
 
 .flipzy-handbook .hero-img {
-  background: #ffffff;
+  background: transparent;
   border-radius: 32px;
-  box-shadow: 0 24px 60px rgba(74, 48, 24, 0.18);
+  box-shadow: none;
   display: block;
+  filter: drop-shadow(0 24px 34px rgba(74, 48, 24, 0.16));
   height: auto;
   object-fit: contain;
   width: 100%;
@@ -511,6 +512,7 @@
   .flipzy-handbook *::after {
     background: transparent !important;
     box-shadow: none !important;
+    filter: none !important;
     text-shadow: none !important;
   }
 
