@@ -2,20 +2,50 @@
   'use strict';
 
   var STORAGE_KEY = 'flipzyRewardSystem.settings.v1';
-  var DB_NAME = 'flipzyRewardSystemUploads';
-  var DB_VERSION = 1;
-  var DB_STORE = 'uploads';
   var BOARD = { width: 2100, height: 2970 };
 
-  var SLOT_DEFS = [
-    { id: 'mainRewardGift', label: 'Main reward gift', width: 340, height: 315, band: [1760, 2560], motif: 'gift' },
-    { id: 'miniRewardGift', label: 'Mini reward gift', width: 260, height: 240, band: [780, 2140], motif: 'miniGift' },
-    { id: 'motifTop', label: 'Motif top', width: 240, height: 160, band: [360, 820], motif: 'rainbow' },
-    { id: 'motifUpper', label: 'Motif upper', width: 280, height: 260, band: [700, 1220], motif: 'starCloud' },
-    { id: 'motifMiddle', label: 'Motif middle', width: 300, height: 250, band: [1200, 1820], motif: 'kite' },
-    { id: 'motifLower', label: 'Motif lower', width: 285, height: 265, band: [1820, 2360], motif: 'leafSprig' },
-    { id: 'motifBottom', label: 'Motif bottom', width: 340, height: 220, band: [2280, 2640], motif: 'mountains' }
-  ];
+  var DEFAULT_COPY = {
+    defaults: {
+      childName: 'Mia',
+      title: "{{ child }}'s Reward Quest",
+      subtitle: 'I earn each step by finishing my agreed routine with a calm body and a brave try.',
+      startLabel: 'Start',
+      rewardLabel: 'Family movie night'
+    },
+    themes: {
+      castle: 'Castle Quest',
+      princess: 'Princess Garden',
+      garden: 'Playful Garden',
+      space: 'Space Quest',
+      ocean: 'Ocean Adventure',
+      candy: 'Candy Parade',
+      dino: 'Dino Trail'
+    },
+    status: {
+      saved: 'Saved locally',
+      saving: 'Saving...',
+      storageFull: 'Storage is full',
+      preparingPrint: 'Preparing print...',
+      printReady: 'Print ready',
+      printFailed: 'Print failed'
+    },
+    controls: {
+      mainRewardStep: 'Main reward step'
+    },
+    poster: {
+      posterAria: 'Reward poster',
+      fallbackTitle: 'Reward Quest',
+      forChild: 'For {{ child }}',
+      miniReward: 'Mini reward',
+      stickerDefaultName: 'Reward',
+      stickersTitle: '{{ child }} stickers',
+      stickerSubtitle: 'Cut-out circles for this reward poster'
+    },
+    print: {
+      frameTitle: 'Reward poster print',
+      documentTitle: 'Reward poster'
+    }
+  };
 
   var THEMES = [
     {
@@ -48,12 +78,7 @@
       roadDecor: 'crown',
       motifs: {
         mainRewardGift: 'treasure',
-        miniRewardGift: 'coin',
-        motifTop: 'castle',
-        motifUpper: 'flag',
-        motifMiddle: 'shield',
-        motifLower: 'starCloud',
-        motifBottom: 'mountains'
+        miniRewardGift: 'coin'
       }
     },
     {
@@ -86,12 +111,7 @@
       roadDecor: 'heart',
       motifs: {
         mainRewardGift: 'crown',
-        miniRewardGift: 'gem',
-        motifTop: 'rainbow',
-        motifUpper: 'starCloud',
-        motifMiddle: 'balloon',
-        motifLower: 'flower',
-        motifBottom: 'castle'
+        miniRewardGift: 'gem'
       }
     },
     {
@@ -123,12 +143,7 @@
       roadDecor: 'leaf',
       motifs: {
         mainRewardGift: 'gift',
-        miniRewardGift: 'miniGift',
-        motifTop: 'rainbow',
-        motifUpper: 'leafSprig',
-        motifMiddle: 'kite',
-        motifLower: 'starCloud',
-        motifBottom: 'mountains'
+        miniRewardGift: 'miniGift'
       }
     },
     {
@@ -160,12 +175,7 @@
       roadDecor: 'star',
       motifs: {
         mainRewardGift: 'rocket',
-        miniRewardGift: 'miniGift',
-        motifTop: 'planet',
-        motifUpper: 'starCloud',
-        motifMiddle: 'rocket',
-        motifLower: 'rainbow',
-        motifBottom: 'mountains'
+        miniRewardGift: 'miniGift'
       }
     },
     {
@@ -197,12 +207,7 @@
       roadDecor: 'bubble',
       motifs: {
         mainRewardGift: 'gift',
-        miniRewardGift: 'shell',
-        motifTop: 'waves',
-        motifUpper: 'rainbow',
-        motifMiddle: 'shell',
-        motifLower: 'waves',
-        motifBottom: 'mountains'
+        miniRewardGift: 'shell'
       }
     },
     {
@@ -234,12 +239,7 @@
       roadDecor: 'sprinkle',
       motifs: {
         mainRewardGift: 'gift',
-        miniRewardGift: 'miniGift',
-        motifTop: 'rainbow',
-        motifUpper: 'starCloud',
-        motifMiddle: 'balloon',
-        motifLower: 'kite',
-        motifBottom: 'waves'
+        miniRewardGift: 'miniGift'
       }
     },
     {
@@ -271,12 +271,7 @@
       roadDecor: 'footprint',
       motifs: {
         mainRewardGift: 'gift',
-        miniRewardGift: 'leafSprig',
-        motifTop: 'mountains',
-        motifUpper: 'leafSprig',
-        motifMiddle: 'kite',
-        motifLower: 'starCloud',
-        motifBottom: 'mountains'
+        miniRewardGift: 'leafSprig'
       }
     }
   ];
@@ -291,8 +286,7 @@
     showNumbers: true,
     showMiniLabels: true,
     theme: 'castle',
-    miniRewards: [6, 12, 18],
-    graphicSlots: defaultGraphicSlots()
+    miniRewards: [6, 12, 18]
   };
 
   function RewardApp(root) {
@@ -301,44 +295,44 @@
     this.poster = root.querySelector('[data-flipzy-poster]');
     this.saveStatus = root.querySelector('[data-flipzy-save-status]');
     this.stepPicker = root.querySelector('[data-flipzy-mini-step-picker]');
-    this.graphicSlots = root.querySelector('[data-flipzy-graphic-slots]');
-    this.state = loadState();
-    this.uploads = {};
+    this.themeButtons = root.querySelector('[data-flipzy-theme-buttons]');
+    this.copy = mergeCopy(DEFAULT_COPY, readRewardCopy(root));
+    this.state = loadState(this.copy);
     this.assetMap = readThemeAssetMap(root);
-    this.db = null;
     this.saveTimer = null;
     this.statusTimer = null;
   }
 
   RewardApp.prototype.init = function () {
-    var self = this;
-
     this.populateThemes();
     this.bindEvents();
     this.renderFormState();
     this.renderMiniStepPicker();
-    this.renderGraphicSlots();
     this.renderPoster();
-
-    openUploadDb().then(function (db) {
-      self.db = db;
-      return loadUploads(db);
-    }).then(function (uploads) {
-      self.uploads = uploads;
-      self.renderGraphicSlots();
-      self.renderPoster();
-    });
   };
 
   RewardApp.prototype.populateThemes = function () {
-    var selects = this.root.querySelectorAll('select[data-flipzy-control="theme"]');
-    var html = THEMES.map(function (theme) {
-      return '<option value="' + escapeAttr(theme.id) + '">' + escapeHtml(theme.name) + '</option>';
+    var self = this;
+    var html;
+
+    if (!this.themeButtons) return;
+
+    html = THEMES.map(function (theme) {
+      var name = themeName(theme, self.copy);
+
+      return [
+        '<button type="button" class="flipzy-rewards__theme-button" data-flipzy-theme="' + escapeAttr(theme.id) + '"',
+          ' style="--theme-bg:' + escapeAttr(theme.backgroundAlt) + ';--theme-path:' + escapeAttr(theme.pathInner) + ';--theme-edge:' + escapeAttr(theme.pathOuter) + ';--theme-accent:' + escapeAttr(theme.accent) + ';--theme-accent-2:' + escapeAttr(theme.accent3) + '">',
+          '<span class="flipzy-rewards__theme-swatch" aria-hidden="true">',
+            '<span></span><span></span><span></span>',
+          '</span>',
+          '<span>' + escapeHtml(name) + '</span>',
+        '</button>'
+      ].join('');
     }).join('');
 
-    Array.prototype.forEach.call(selects, function (select) {
-      select.innerHTML = html;
-    });
+    this.themeButtons.innerHTML = html;
+    this.syncThemeButtons();
   };
 
   RewardApp.prototype.bindEvents = function () {
@@ -346,24 +340,12 @@
 
     this.root.addEventListener('input', function (event) {
       var control = event.target.closest('[data-flipzy-control]');
-      if (!control || control.type === 'checkbox' || control.tagName === 'SELECT') return;
+      if (!control || control.type === 'checkbox') return;
       self.handleControl(control);
     });
 
     this.root.addEventListener('change', function (event) {
       var control = event.target.closest('[data-flipzy-control]');
-      var slotToggle = event.target.closest('[data-flipzy-slot-toggle]');
-      var slotUpload = event.target.closest('[data-flipzy-slot-upload]');
-
-      if (slotUpload) {
-        self.handleUpload(slotUpload);
-        return;
-      }
-
-      if (slotToggle) {
-        self.setGraphicSlot(slotToggle.getAttribute('data-flipzy-slot-toggle'), slotToggle.checked);
-        return;
-      }
 
       if (control) {
         self.handleControl(control);
@@ -373,7 +355,7 @@
     this.root.addEventListener('click', function (event) {
       var preset = event.target.closest('[data-flipzy-mini-preset]');
       var step = event.target.closest('[data-flipzy-mini-step]');
-      var clearUpload = event.target.closest('[data-flipzy-clear-upload]');
+      var themeButton = event.target.closest('[data-flipzy-theme]');
       var printButton = event.target.closest('[data-flipzy-print]');
       var resetButton = event.target.closest('[data-flipzy-reset]');
 
@@ -387,8 +369,8 @@
         return;
       }
 
-      if (clearUpload) {
-        self.clearUpload(clearUpload.getAttribute('data-flipzy-clear-upload'));
+      if (themeButton) {
+        self.setTheme(themeButton.getAttribute('data-flipzy-theme'));
         return;
       }
 
@@ -398,10 +380,9 @@
       }
 
       if (resetButton) {
-        self.state = createDefaultState();
+        self.state = createDefaultState(self.copy);
         self.renderFormState();
         self.renderMiniStepPicker();
-        self.renderGraphicSlots();
         self.persist();
         self.renderPoster();
       }
@@ -421,7 +402,7 @@
     } else if (key === 'showNumbers' || key === 'showMiniLabels') {
       this.state[key] = !!value;
     } else if (key === 'theme') {
-      this.state.theme = hasTheme(value) ? value : DEFAULT_STATE.theme;
+      this.state.theme = hasTheme(value) ? value : (DEFAULT_STATE.theme || 'castle');
     } else if (typeof this.state[key] === 'string') {
       this.state[key] = value;
     }
@@ -430,65 +411,13 @@
     this.renderPoster();
   };
 
-  RewardApp.prototype.setGraphicSlot = function (slot, enabled) {
-    if (!isKnownSlot(slot)) return;
-    this.state.graphicSlots[slot] = !!enabled;
+  RewardApp.prototype.setTheme = function (themeId) {
+    if (!hasTheme(themeId) || themeId === this.state.theme) return;
+
+    this.state.theme = themeId;
+    this.syncThemeButtons();
     this.persist();
     this.renderPoster();
-  };
-
-  RewardApp.prototype.handleUpload = function (input) {
-    var self = this;
-    var slot = input.getAttribute('data-flipzy-slot-upload');
-    var file = input.files && input.files[0];
-
-    if (!isKnownSlot(slot) || !file) return;
-
-    if (file.type !== 'image/png' && !/\.png$/i.test(file.name)) {
-      input.value = '';
-      window.alert('Please upload a PNG image.');
-      return;
-    }
-
-    if (!this.db) {
-      input.value = '';
-      window.alert('This browser could not open local image storage. The poster settings still save, but PNG uploads need IndexedDB.');
-      return;
-    }
-
-    readFileAsDataUrl(file).then(function (dataUrl) {
-      var record = {
-        slot: slot,
-        name: file.name,
-        dataUrl: dataUrl,
-        updatedAt: Date.now()
-      };
-
-      return saveUpload(self.db, record).then(function () {
-        self.uploads[slot] = record;
-        input.value = '';
-        self.renderGraphicSlots();
-        self.renderPoster();
-        self.setStatus('PNG saved locally');
-      });
-    }).catch(function () {
-      input.value = '';
-      window.alert('The PNG could not be saved in this browser.');
-    });
-  };
-
-  RewardApp.prototype.clearUpload = function (slot) {
-    var self = this;
-
-    if (!isKnownSlot(slot)) return;
-
-    delete this.uploads[slot];
-
-    deleteUpload(this.db, slot).then(function () {
-      self.renderGraphicSlots();
-      self.renderPoster();
-      self.setStatus('Theme graphic restored');
-    });
   };
 
   RewardApp.prototype.applyMiniPreset = function (preset) {
@@ -550,6 +479,8 @@
         control.value = self.state[key];
       }
     });
+
+    this.syncThemeButtons();
   };
 
   RewardApp.prototype.syncControls = function (key) {
@@ -565,6 +496,17 @@
     });
   };
 
+  RewardApp.prototype.syncThemeButtons = function () {
+    var self = this;
+
+    if (!this.themeButtons) return;
+
+    Array.prototype.forEach.call(this.themeButtons.querySelectorAll('[data-flipzy-theme]'), function (button) {
+      var isActive = button.getAttribute('data-flipzy-theme') === self.state.theme;
+      button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    });
+  };
+
   RewardApp.prototype.renderMiniStepPicker = function () {
     var count = this.state.stepCount;
     var miniSet = toSet(this.state.miniRewards);
@@ -576,63 +518,31 @@
     for (i = 1; i <= count; i += 1) {
       html.push(
         '<button type="button" data-flipzy-mini-step="' + i + '" aria-pressed="' + (miniSet[i] ? 'true' : 'false') + '"' +
-        (i === count ? ' disabled title="Main reward step"' : '') + '>' + i + '</button>'
+        (i === count ? ' disabled title="' + escapeAttr(copyText(this.copy, 'controls.mainRewardStep', DEFAULT_COPY.controls.mainRewardStep)) + '"' : '') + '>' + i + '</button>'
       );
     }
 
     this.stepPicker.innerHTML = html.join('');
   };
 
-  RewardApp.prototype.renderGraphicSlots = function () {
-    var self = this;
-    var html;
-
-    if (!this.graphicSlots) return;
-
-    html = SLOT_DEFS.map(function (slot) {
-      var enabled = self.state.graphicSlots[slot.id] !== false;
-      var upload = self.uploads[slot.id];
-      var inputId = self.instanceId + '-' + slot.id + '-upload';
-      var status = upload ? '<div class="flipzy-rewards__slot-status">Uploaded: ' + escapeHtml(upload.name) + '</div>' : '';
-      var clearButton = upload ? '<button type="button" data-flipzy-clear-upload="' + escapeAttr(slot.id) + '">Default</button>' : '';
-
-      return [
-        '<div class="flipzy-rewards__slot">',
-          '<label class="flipzy-rewards__slot-toggle">',
-            '<input type="checkbox" data-flipzy-slot-toggle="' + escapeAttr(slot.id) + '"' + (enabled ? ' checked' : '') + '>',
-            '<span class="flipzy-rewards__slot-name">' + escapeHtml(slot.label) + '</span>',
-          '</label>',
-          '<div class="flipzy-rewards__slot-actions">',
-            '<input id="' + escapeAttr(inputId) + '" type="file" accept="image/png" data-flipzy-slot-upload="' + escapeAttr(slot.id) + '">',
-            '<label class="flipzy-rewards__upload-label" for="' + escapeAttr(inputId) + '" tabindex="0">PNG</label>',
-            clearButton,
-          '</div>',
-          status,
-        '</div>'
-      ].join('');
-    }).join('');
-
-    this.graphicSlots.innerHTML = html;
-  };
-
   RewardApp.prototype.renderPoster = function () {
     if (!this.poster) return;
-    this.poster.innerHTML = buildPosterSvg(this.state, this.uploads, this.instanceId, this.assetMap);
+    this.poster.innerHTML = buildPosterSvg(this.state, this.instanceId, this.assetMap, this.copy);
   };
 
   RewardApp.prototype.printPoster = function () {
     var self = this;
     var svg = this.poster && this.poster.querySelector('svg');
-    var stickerSvg = buildStickerSheetSvg(this.state, this.uploads, this.instanceId, this.assetMap);
+    var stickerSvg = buildStickerSheetSvg(this.state, this.instanceId, this.assetMap, this.copy);
     var frame;
     var doc;
     var win;
 
     if (!svg) return;
-    this.setStatus('Preparing print...');
+    this.setStatusKey('preparingPrint');
 
     frame = document.createElement('iframe');
-    frame.setAttribute('title', 'Reward poster print');
+    frame.setAttribute('title', copyText(this.copy, 'print.frameTitle', DEFAULT_COPY.print.frameTitle));
     frame.setAttribute('aria-hidden', 'true');
     frame.style.border = '0';
     frame.style.height = '0';
@@ -659,7 +569,7 @@
         '<html>',
           '<head>',
             '<meta charset="utf-8">',
-            '<title>Reward poster</title>',
+            '<title>' + escapeHtml(copyText(self.copy, 'print.documentTitle', DEFAULT_COPY.print.documentTitle)) + '</title>',
             '<style>',
               '@page{size:A4 portrait;margin:0;}',
               'html,body{background:#fff;margin:0;padding:0;width:210mm;}',
@@ -683,14 +593,14 @@
     }).then(function () {
       return waitForPaint(win);
     }).then(function () {
-      self.setStatus('Print ready');
+      self.setStatusKey('printReady');
       win.focus();
       win.print();
       window.setTimeout(function () {
         frame.remove();
       }, 1000);
     }).catch(function () {
-      self.setStatus('Print failed');
+      self.setStatusKey('printFailed');
       frame.remove();
       window.print();
     });
@@ -700,37 +610,42 @@
     var self = this;
 
     window.clearTimeout(this.saveTimer);
-    this.setStatus('Saving...');
+    this.setStatusKey('saving');
 
     this.saveTimer = window.setTimeout(function () {
       try {
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify(self.state));
-        self.setStatus('Saved locally');
+        self.setStatusKey('saved');
       } catch (error) {
-        self.setStatus('Storage is full');
+        self.setStatusKey('storageFull');
       }
     }, 120);
   };
 
+  RewardApp.prototype.setStatusKey = function (key) {
+    this.setStatus(copyText(this.copy, 'status.' + key, DEFAULT_COPY.status[key] || key));
+  };
+
   RewardApp.prototype.setStatus = function (message) {
     var self = this;
+    var savedMessage = copyText(this.copy, 'status.saved', DEFAULT_COPY.status.saved);
 
     if (!this.saveStatus) return;
 
     this.saveStatus.textContent = message;
     window.clearTimeout(this.statusTimer);
 
-    if (message !== 'Saved locally') {
+    if (message !== savedMessage) {
       this.statusTimer = window.setTimeout(function () {
-        self.saveStatus.textContent = 'Saved locally';
+        self.saveStatus.textContent = savedMessage;
       }, 2200);
     }
   };
 
-  function buildPosterSvg(state, uploads, instanceId, assetMap) {
-    var theme = getThemeWithAssets(state.theme, assetMap);
+  function buildPosterSvg(state, instanceId, assetMap, copy) {
+    var theme = getThemeWithAssets(state.theme, assetMap, copy);
     var radius = stepRadius(state.stepCount);
-    var header = layoutHeader(state, theme);
+    var header = layoutHeader(state, theme, copy);
     var pathInset = radius >= 90 ? 340 : radius >= 78 ? 300 : 270;
     var pathBottomInset = radius >= 90 ? 390 : radius >= 78 ? 350 : 320;
     var pathArea = {
@@ -742,62 +657,49 @@
     var points = buildStepPoints(state.stepCount, pathArea);
     var finalPoint = points[points.length - 1];
     var rewardLabel = layoutRewardLabel(state, theme, finalPoint, radius);
-    var startLabel = layoutStartLabel(state, points[0], radius, header.box);
+    var startLabel = layoutStartLabel(state, points[0], radius, header.box, copy);
     var miniSet = toSet(state.miniRewards);
     var miniLabels = buildMiniLabels(points, miniSet, state.showMiniLabels, radius, header.box, rewardLabel.box);
-    var graphicObstacles = [];
     var pathD = buildPath(points);
     var pathTextureId = theme.assets.pathTexture ? svgId(instanceId + '-' + theme.id + '-path-texture') : '';
     var finalRewardGraphic = {
-      enabled: state.graphicSlots.mainRewardGift !== false,
-      url: graphicAssetUrl(theme, uploads, 'mainRewardGift')
+      url: theme.assets.mainRewardGift || ''
     };
-    var graphics;
-
-    addBox(graphicObstacles, header.box, 22);
-    if (rewardLabel.visible) addBox(graphicObstacles, rewardLabel.box, 26);
-    addBox(graphicObstacles, startLabel.box, 18);
-    addStepObstacles(graphicObstacles, points, radius, miniSet);
-    addRoadObstacles(graphicObstacles, points, radius);
-
-    miniLabels.forEach(function (label) {
-      addBox(graphicObstacles, label.box, 12);
-    });
-
-    graphics = buildGraphics(state, uploads, theme, points, miniSet, graphicObstacles);
+    var posterTitle = cleanText(state.title) || copyText(copy, 'poster.posterAria', DEFAULT_COPY.poster.posterAria);
 
     return [
-      '<svg class="flipzy-rewards__poster-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(state.title || 'Reward poster') + '">',
-        '<title>' + escapeHtml(state.title || 'Reward poster') + '</title>',
+      '<svg class="flipzy-rewards__poster-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(posterTitle) + '">',
+        '<title>' + escapeHtml(posterTitle) + '</title>',
         renderDefinitions(theme, pathTextureId),
         renderBackground(theme),
-        graphics,
         renderRoad(pathD, radius, theme, pathTextureId),
         renderRoadDecor(points, radius, theme),
         header.svg,
         renderStartLabel(startLabel, theme),
         renderRewardLabel(rewardLabel, theme),
         renderSteps(points, radius, theme, miniSet, state.showNumbers, finalRewardGraphic),
-        renderMiniLabels(miniLabels, theme),
+        renderMiniLabels(miniLabels, theme, copy),
         state.showNumbers ? '' : renderFinalMarker(finalPoint, radius, theme),
       '</svg>'
     ].join('');
   }
 
-  function buildStickerSheetSvg(state, uploads, instanceId, assetMap) {
-    var theme = getThemeWithAssets(state.theme, assetMap);
+  function buildStickerSheetSvg(state, instanceId, assetMap, copy) {
+    var theme = getThemeWithAssets(state.theme, assetMap, copy);
     var radius = stepRadius(state.stepCount);
     var requested = state.stepCount + Math.max(8, Math.ceil(state.stepCount * 0.25));
     var layout = stickerSheetLayout(radius, requested);
-    var stickerUrl = stickerAssetUrl(theme, uploads);
-    var title = (cleanText(state.childName) || 'Reward') + ' stickers';
+    var stickerUrl = stickerAssetUrl(theme);
+    var stickerChild = cleanText(state.childName) || copyText(copy, 'poster.stickerDefaultName', DEFAULT_COPY.poster.stickerDefaultName);
+    var title = copyText(copy, 'poster.stickersTitle', DEFAULT_COPY.poster.stickersTitle, { child: stickerChild });
+    var subtitle = copyText(copy, 'poster.stickerSubtitle', DEFAULT_COPY.poster.stickerSubtitle);
     var pieces = [
       '<svg class="flipzy-rewards__sticker-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(title) + '">',
         '<title>' + escapeHtml(title) + '</title>',
         '<rect width="' + BOARD.width + '" height="' + BOARD.height + '" fill="#ffffff"/>',
         '<path d="M0 0 H' + BOARD.width + ' V260 C1700 345 1360 220 1030 310 C640 416 310 350 0 500 Z" fill="' + theme.backgroundAlt + '" opacity="0.42"/>',
         '<text x="1050" y="150" text-anchor="middle" fill="' + theme.title + '" font-family="Poppins, Arial, sans-serif" font-size="74" font-weight="900" stroke="' + theme.labelFill + '" stroke-width="12" stroke-linejoin="round" paint-order="stroke fill">' + escapeHtml(title) + '</text>',
-        '<text x="1050" y="222" text-anchor="middle" fill="' + theme.text + '" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="800">Cut-out circles for this reward poster</text>'
+        '<text x="1050" y="222" text-anchor="middle" fill="' + theme.text + '" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="800">' + escapeHtml(subtitle) + '</text>'
     ];
     var i;
 
@@ -819,7 +721,6 @@
       pieces.push('<path d="M0 2790 C360 2630 720 2690 1050 2780 C1425 2884 1745 2860 2100 2700 V2970 H0 Z" fill="' + theme.backgroundBand + '" opacity="0.66"/>');
     }
 
-    pieces.push('<rect x="70" y="70" width="1960" height="2830" rx="76" fill="none" stroke="' + theme.labelStroke + '" stroke-width="9" opacity="0.75"/>');
     return pieces.join('');
   }
 
@@ -938,11 +839,7 @@
     return (value - Math.floor(value)) * 2 - 1;
   }
 
-  function stickerAssetUrl(theme, uploads) {
-    if (uploads && uploads.miniRewardGift && uploads.miniRewardGift.dataUrl) {
-      return uploads.miniRewardGift.dataUrl;
-    }
-
+  function stickerAssetUrl(theme) {
     return theme.assets.sticker || theme.assets.miniRewardGift || theme.assets.mainRewardGift || '';
   }
 
@@ -1043,7 +940,7 @@
         isFinal ? '<polygon points="' + starPoints(point.x, point.y, r * 1.64, r * 1.17, 22) + '" fill="' + theme.accent3 + '" opacity="0.92"/>' : '',
         isMini ? '<polygon points="' + starPoints(point.x, point.y, r * 1.32, r * 1.08, 14) + '" fill="' + theme.accent3 + '" opacity="0.42"/>' : '',
         isFinal ? '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + round(r * 1.28) + '" fill="' + theme.accent3 + '" opacity="0.18"/>' : '',
-        isFinal && finalRewardGraphic && finalRewardGraphic.enabled ? renderFinalRewardIcon(point, r, theme, finalRewardGraphic.url) : '',
+        isFinal ? renderFinalRewardIcon(point, r, theme, finalRewardGraphic && finalRewardGraphic.url) : '',
         isFinal ? renderFinalRewardRibbons(point, r, theme) : '',
         '<circle cx="' + (point.x + (isFinal ? 11 : 8)) + '" cy="' + (point.y + (isFinal ? 15 : 12)) + '" r="' + r + '" fill="#000000" opacity="' + (isFinal ? 0.18 : (isMini ? 0.15 : 0.12)) + '"/>',
         '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + r + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + strokeWidth + '"/>',
@@ -1132,14 +1029,16 @@
     ].join('');
   }
 
-  function renderMiniLabels(labels, theme) {
+  function renderMiniLabels(labels, theme, copy) {
+    var labelText = copyText(copy, 'poster.miniReward', DEFAULT_COPY.poster.miniReward);
+
     return labels.map(function (label) {
       return [
         '<g>',
           '<rect x="' + (label.box.x + 5) + '" y="' + (label.box.y + 7) + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="27" fill="#000000" opacity="0.12"/>',
           '<rect x="' + label.box.x + '" y="' + label.box.y + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="27" fill="' + theme.miniFill + '" stroke="' + theme.miniStroke + '" stroke-width="5"/>',
           '<rect x="' + (label.box.x + 13) + '" y="' + (label.box.y + 10) + '" width="' + (label.box.w - 26) + '" height="' + round(label.box.h * 0.32) + '" rx="13" fill="' + theme.labelFill + '" opacity="0.38"/>',
-          '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + (label.box.y + label.box.h / 2 + 11) + '" text-anchor="middle" fill="' + theme.miniText + '" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="900">Mini reward</text>',
+          '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + (label.box.y + label.box.h / 2 + 11) + '" text-anchor="middle" fill="' + theme.miniText + '" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="900">' + escapeHtml(labelText) + '</text>',
         '</g>'
       ].join('');
     }).join('');
@@ -1174,9 +1073,9 @@
     ].join('');
   }
 
-  function layoutHeader(state, theme) {
+  function layoutHeader(state, theme, copy) {
     var child = cleanText(state.childName);
-    var title = cleanText(state.title) || 'Reward Quest';
+    var title = cleanText(state.title) || copyText(copy, 'poster.fallbackTitle', DEFAULT_COPY.poster.fallbackTitle);
     var subtitle = cleanText(state.subtitle);
     var titleLayout = layoutText(title, 1540, 88, 58, 2);
     var subtitleLayout = layoutText(subtitle, 1580, 34, 25, 2);
@@ -1188,7 +1087,7 @@
     var halo = theme.assets && theme.assets.background ? theme.labelFill : '';
 
     if (child) {
-      var badgeText = 'For ' + child;
+      var badgeText = copyText(copy, 'poster.forChild', DEFAULT_COPY.poster.forChild, { child: child });
       var badgeW = clamp(approxTextWidth(badgeText, 28, 800) + 64, 180, 760);
       pieces.push('<rect x="' + (1050 - badgeW / 2) + '" y="82" width="' + badgeW + '" height="54" rx="27" fill="' + theme.labelFill + '" stroke="' + theme.labelStroke + '" stroke-width="4"/>');
       pieces.push('<text x="1050" y="118" text-anchor="middle" fill="' + theme.text + '" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="900">' + escapeHtml(badgeText) + '</text>');
@@ -1247,8 +1146,8 @@
     };
   }
 
-  function layoutStartLabel(state, point, radius, headerBox) {
-    var text = cleanText(state.startLabel) || 'Start';
+  function layoutStartLabel(state, point, radius, headerBox, copy) {
+    var text = cleanText(state.startLabel) || copyText(copy, 'defaults.startLabel', DEFAULT_COPY.defaults.startLabel);
     var width = clamp(approxTextWidth(text, 50, 900) + 60, 180, 520);
     var height = 72;
     var y = point.y - radius - height - 34;
@@ -1379,160 +1278,6 @@
       c2x: clamp(p2.x + side * turn, 170, BOARD.width - 170),
       c2y: p2.y
     };
-  }
-
-  function buildGraphics(state, uploads, theme, points, miniSet, baseObstacles) {
-    var obstacles = baseObstacles.slice();
-    var pieces = [];
-
-    SLOT_DEFS.forEach(function (slot) {
-      var scales = graphicScales(state.stepCount);
-      var activeSlot;
-      var box = null;
-      var i;
-
-      if (slot.id === 'mainRewardGift') return;
-      if (state.graphicSlots[slot.id] === false) return;
-
-      for (i = 0; i < scales.length; i += 1) {
-        activeSlot = resizeGraphicSlot(slot, scales[i]);
-        box = findSafeGraphicBox(activeSlot, obstacles, points, miniSet, stepRadius(state.stepCount));
-        if (box) break;
-      }
-
-      if (!box) return;
-
-      pieces.push(renderGraphicSlot(activeSlot, theme, box, uploads[slot.id]));
-      addBox(obstacles, box, 22);
-    });
-
-    return pieces.join('');
-  }
-
-  function findSafeGraphicBox(slot, obstacles, points, miniSet, radius) {
-    var preferred = preferredGraphicPosition(slot, points, miniSet);
-    var candidates = [];
-    var x;
-    var y;
-    var offsets = [
-      [0, 0], [-140, 0], [140, 0], [0, -120], [0, 120],
-      [-220, -90], [220, -90], [-220, 90], [220, 90]
-    ];
-
-    offsets.forEach(function (offset) {
-      candidates.push({
-        x: clamp(preferred.x + offset[0], 70, BOARD.width - slot.width - 70),
-        y: clamp(preferred.y + offset[1], 330, BOARD.height - slot.height - 260)
-      });
-    });
-
-    for (y = 330; y <= BOARD.height - slot.height - 260; y += 78) {
-      for (x = 70; x <= BOARD.width - slot.width - 70; x += 78) {
-        candidates.push({ x: x, y: y });
-      }
-    }
-
-    candidates.sort(function (a, b) {
-      return graphicScore(a, slot, preferred) - graphicScore(b, slot, preferred);
-    });
-
-    for (var i = 0; i < candidates.length; i += 1) {
-      var candidate = {
-        x: Math.round(candidates[i].x),
-        y: Math.round(candidates[i].y),
-        w: slot.width,
-        h: slot.height
-      };
-
-      if (!collides(candidate, obstacles)) return candidate;
-    }
-
-    return null;
-  }
-
-  function graphicScales(stepCount) {
-    if (stepCount > 42) return [0.55, 0.46];
-    if (stepCount > 34) return [0.68, 0.55, 0.46];
-    if (stepCount > 28) return [0.82, 0.68, 0.55];
-    return [1, 0.84, 0.68, 0.55];
-  }
-
-  function resizeGraphicSlot(slot, scale) {
-    var copy;
-
-    copy = {};
-    Object.keys(slot).forEach(function (key) {
-      copy[key] = slot[key];
-    });
-    copy.width = Math.round(slot.width * scale);
-    copy.height = Math.round(slot.height * scale);
-    return copy;
-  }
-
-  function preferredGraphicPosition(slot, points, miniSet) {
-    var finalPoint = points[points.length - 1];
-    var miniPoint = null;
-    var x;
-    var y;
-
-    points.some(function (point) {
-      if (miniSet[point.index]) {
-        miniPoint = point;
-        return true;
-      }
-      return false;
-    });
-
-    if (slot.id === 'mainRewardGift') {
-      x = finalPoint.x < BOARD.width / 2 ? BOARD.width - slot.width - 150 : 150;
-      y = clamp(finalPoint.y - slot.height / 2, slot.band[0], slot.band[1] - slot.height);
-      return { x: x, y: y };
-    }
-
-    if (slot.id === 'miniRewardGift' && miniPoint) {
-      x = miniPoint.x < BOARD.width / 2 ? BOARD.width - slot.width - 135 : 135;
-      y = clamp(miniPoint.y - slot.height / 2, slot.band[0], slot.band[1] - slot.height);
-      return { x: x, y: y };
-    }
-
-    var sideLeft = slot.id === 'motifUpper' || slot.id === 'motifLower';
-    x = sideLeft ? 130 : BOARD.width - slot.width - 130;
-    y = (slot.band[0] + slot.band[1] - slot.height) / 2;
-
-    if (slot.id === 'motifMiddle') x = BOARD.width - slot.width - 150;
-    if (slot.id === 'motifBottom') x = 150;
-
-    return { x: x, y: y };
-  }
-
-  function graphicScore(candidate, slot, preferred) {
-    var cx = candidate.x + slot.width / 2;
-    var cy = candidate.y + slot.height / 2;
-    var px = preferred.x + slot.width / 2;
-    var py = preferred.y + slot.height / 2;
-    var bandCenter = (slot.band[0] + slot.band[1]) / 2;
-
-    return Math.abs(cx - px) + Math.abs(cy - py) + Math.abs(cy - bandCenter) * 0.45;
-  }
-
-  function renderGraphicSlot(slot, theme, box, upload) {
-    var themeAsset = upload && upload.dataUrl ? upload.dataUrl : theme.assets[slot.id];
-
-    if (themeAsset) return renderImage(themeAsset, box);
-
-    return renderMotif(theme.motifs[slot.id] || slot.motif, theme, box.x, box.y, box.w, box.h);
-  }
-
-  function graphicAssetUrl(theme, uploads, slotId) {
-    if (uploads && uploads[slotId] && uploads[slotId].dataUrl) {
-      return uploads[slotId].dataUrl;
-    }
-
-    return theme.assets[slotId] || '';
-  }
-
-  function renderImage(url, box) {
-    return svgImage(url, 'x="' + box.x + '" y="' + box.y + '" width="' + box.w + '" height="' + box.h + '" preserveAspectRatio="xMidYMid meet"');
   }
 
   function svgImage(url, attrs) {
@@ -1848,54 +1593,6 @@
     ].join('');
   }
 
-  function addStepObstacles(obstacles, points, radius, miniSet) {
-    points.forEach(function (point) {
-      var isFinal = point.index === points.length;
-      var isMini = miniSet && miniSet[point.index] && !isFinal;
-      var r = isFinal ? finalBadgeRadius(radius) * 1.95 : (isMini ? miniBadgeRadius(radius) * 1.38 : radius + 24);
-
-      addBox(obstacles, { x: point.x - r, y: point.y - r, w: r * 2, h: r * 2 }, 0);
-    });
-  }
-
-  function addRoadObstacles(obstacles, points, radius) {
-    var pad = radius * 1.58;
-
-    for (var i = 0; i < points.length - 1; i += 1) {
-      var a = points[i];
-      var b = points[i + 1];
-      var controls = pathControls(a, b, b.x - a.x, b.y - a.y, i);
-      var xs = [a.x, b.x, controls.c1x, controls.c2x];
-      var ys = [a.y, b.y, controls.c1y, controls.c2y];
-      var minX = Math.min.apply(Math, xs);
-      var maxX = Math.max.apply(Math, xs);
-      var minY = Math.min.apply(Math, ys);
-      var maxY = Math.max.apply(Math, ys);
-
-      addBox(obstacles, { x: minX, y: minY, w: maxX - minX, h: maxY - minY }, pad);
-    }
-  }
-
-  function addBox(obstacles, box, pad) {
-    obstacles.push({
-      x: box.x - pad,
-      y: box.y - pad,
-      w: box.w + pad * 2,
-      h: box.h + pad * 2
-    });
-  }
-
-  function collides(box, obstacles) {
-    for (var i = 0; i < obstacles.length; i += 1) {
-      if (intersects(box, obstacles[i])) return true;
-    }
-    return false;
-  }
-
-  function intersects(a, b) {
-    return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
-  }
-
   function stepRadius(count) {
     if (count <= 8) return 112;
     if (count <= 16) return 104;
@@ -1923,19 +1620,11 @@
     });
   }
 
-  function defaultGraphicSlots() {
-    var slots = {};
-    SLOT_DEFS.forEach(function (slot) {
-      slots[slot.id] = true;
-    });
-    return slots;
+  function createDefaultState(copy) {
+    return normalizeState(localizedDefaultState(copy), copy);
   }
 
-  function createDefaultState() {
-    return normalizeState(clone(DEFAULT_STATE));
-  }
-
-  function loadState() {
+  function loadState(copy) {
     var saved;
 
     try {
@@ -1944,145 +1633,42 @@
       saved = null;
     }
 
-    return normalizeState(saved || createDefaultState());
+    return normalizeState(saved || createDefaultState(copy), copy);
   }
 
-  function normalizeState(value) {
-    var base = clone(DEFAULT_STATE);
+  function normalizeState(value, copy) {
+    var base = localizedDefaultState(copy);
     var source = value && typeof value === 'object' ? value : {};
 
-    base.childName = typeof source.childName === 'string' ? source.childName : base.childName;
-    base.title = typeof source.title === 'string' ? source.title : base.title;
-    base.subtitle = typeof source.subtitle === 'string' ? source.subtitle : base.subtitle;
-    base.startLabel = typeof source.startLabel === 'string' ? source.startLabel : base.startLabel;
-    base.rewardLabel = typeof source.rewardLabel === 'string' ? source.rewardLabel : base.rewardLabel;
+    base.childName = sourceTextValue(source, base, 'childName');
+    base.title = sourceTextValue(source, base, 'title');
+    base.subtitle = sourceTextValue(source, base, 'subtitle');
+    base.startLabel = sourceTextValue(source, base, 'startLabel');
+    base.rewardLabel = sourceTextValue(source, base, 'rewardLabel');
     base.stepCount = clamp(parseInt(source.stepCount, 10) || base.stepCount, 1, 50);
     base.showNumbers = typeof source.showNumbers === 'boolean' ? source.showNumbers : base.showNumbers;
     base.showMiniLabels = typeof source.showMiniLabels === 'boolean' ? source.showMiniLabels : base.showMiniLabels;
     base.theme = hasTheme(source.theme) ? source.theme : base.theme;
     base.miniRewards = normalizeMiniRewards(source.miniRewards || base.miniRewards, base.stepCount);
-    base.graphicSlots = defaultGraphicSlots();
-
-    if (source.graphicSlots && typeof source.graphicSlots === 'object') {
-      SLOT_DEFS.forEach(function (slot) {
-        if (typeof source.graphicSlots[slot.id] === 'boolean') {
-          base.graphicSlots[slot.id] = source.graphicSlots[slot.id];
-        }
-      });
-    }
 
     return base;
   }
 
-  function openUploadDb() {
-    return new Promise(function (resolve) {
-      var request;
+  function localizedDefaultState(copy) {
+    var base = clone(DEFAULT_STATE);
 
-      if (!window.indexedDB) {
-        resolve(null);
-        return;
-      }
-
-      request = window.indexedDB.open(DB_NAME, DB_VERSION);
-
-      request.onupgradeneeded = function () {
-        var db = request.result;
-        if (!db.objectStoreNames.contains(DB_STORE)) {
-          db.createObjectStore(DB_STORE, { keyPath: 'slot' });
-        }
-      };
-
-      request.onsuccess = function () {
-        resolve(request.result);
-      };
-
-      request.onerror = function () {
-        resolve(null);
-      };
-    });
+    base.childName = copyText(copy, 'defaults.childName', DEFAULT_COPY.defaults.childName);
+    base.title = copyText(copy, 'defaults.title', DEFAULT_COPY.defaults.title, { child: base.childName });
+    base.subtitle = copyText(copy, 'defaults.subtitle', DEFAULT_COPY.defaults.subtitle);
+    base.startLabel = copyText(copy, 'defaults.startLabel', DEFAULT_COPY.defaults.startLabel);
+    base.rewardLabel = copyText(copy, 'defaults.rewardLabel', DEFAULT_COPY.defaults.rewardLabel);
+    return base;
   }
 
-  function loadUploads(db) {
-    return new Promise(function (resolve) {
-      var uploads = {};
-      var transaction;
-      var store;
-      var request;
-
-      if (!db) {
-        resolve(uploads);
-        return;
-      }
-
-      transaction = db.transaction(DB_STORE, 'readonly');
-      store = transaction.objectStore(DB_STORE);
-
-      if (store.getAll) {
-        request = store.getAll();
-        request.onsuccess = function () {
-          (request.result || []).forEach(function (record) {
-            if (record && record.slot && record.dataUrl) uploads[record.slot] = record;
-          });
-          resolve(uploads);
-        };
-        request.onerror = function () {
-          resolve(uploads);
-        };
-      } else {
-        request = store.openCursor();
-        request.onsuccess = function () {
-          var cursor = request.result;
-          if (cursor) {
-            if (cursor.value && cursor.value.slot && cursor.value.dataUrl) uploads[cursor.value.slot] = cursor.value;
-            cursor.continue();
-          } else {
-            resolve(uploads);
-          }
-        };
-        request.onerror = function () {
-          resolve(uploads);
-        };
-      }
-    });
-  }
-
-  function saveUpload(db, record) {
-    return new Promise(function (resolve, reject) {
-      var request;
-
-      if (!db) {
-        reject();
-        return;
-      }
-
-      request = db.transaction(DB_STORE, 'readwrite').objectStore(DB_STORE).put(record);
-      request.onsuccess = function () { resolve(); };
-      request.onerror = function () { reject(); };
-    });
-  }
-
-  function deleteUpload(db, slot) {
-    return new Promise(function (resolve) {
-      var request;
-
-      if (!db) {
-        resolve();
-        return;
-      }
-
-      request = db.transaction(DB_STORE, 'readwrite').objectStore(DB_STORE).delete(slot);
-      request.onsuccess = function () { resolve(); };
-      request.onerror = function () { resolve(); };
-    });
-  }
-
-  function readFileAsDataUrl(file) {
-    return new Promise(function (resolve, reject) {
-      var reader = new FileReader();
-      reader.onload = function () { resolve(reader.result); };
-      reader.onerror = function () { reject(); };
-      reader.readAsDataURL(file);
-    });
+  function sourceTextValue(source, base, key) {
+    if (typeof source[key] !== 'string') return base[key];
+    if (source[key] === DEFAULT_STATE[key] && base[key] !== DEFAULT_STATE[key]) return base[key];
+    return source[key];
   }
 
   function readControlValue(control) {
@@ -2102,11 +1688,76 @@
     }
   }
 
-  function getThemeWithAssets(id, assetMap) {
+  function readRewardCopy(root) {
+    var node = root.querySelector('[data-flipzy-reward-copy]');
+
+    if (!node) return {};
+
+    try {
+      return JSON.parse(node.textContent || '{}') || {};
+    } catch (error) {
+      return {};
+    }
+  }
+
+  function mergeCopy(base, override) {
+    var result = clone(base || {});
+
+    mergeObject(result, override || {});
+    return result;
+  }
+
+  function mergeObject(target, source) {
+    Object.keys(source || {}).forEach(function (key) {
+      var value = source[key];
+
+      if (value && typeof value === 'object' && !Array.isArray(value)) {
+        if (!target[key] || typeof target[key] !== 'object' || Array.isArray(target[key])) {
+          target[key] = {};
+        }
+        mergeObject(target[key], value);
+      } else if (typeof value === 'string') {
+        target[key] = value;
+      }
+    });
+  }
+
+  function copyText(copy, path, fallback, replacements) {
+    var parts = String(path || '').split('.');
+    var value = copy || {};
+
+    for (var i = 0; i < parts.length; i += 1) {
+      if (!value || typeof value !== 'object' || typeof value[parts[i]] === 'undefined') {
+        value = null;
+        break;
+      }
+      value = value[parts[i]];
+    }
+
+    if (typeof value !== 'string' || !value) value = fallback || '';
+    return formatCopy(value, replacements);
+  }
+
+  function formatCopy(value, replacements) {
+    var output = String(value || '');
+
+    Object.keys(replacements || {}).forEach(function (key) {
+      var escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      var token = new RegExp('{{\\s*' + escapedKey + '\\s*}}', 'g');
+      var bracketToken = new RegExp('\\[\\[\\s*' + escapedKey + '\\s*\\]\\]', 'g');
+
+      output = output.replace(token, replacements[key]).replace(bracketToken, replacements[key]);
+    });
+
+    return output;
+  }
+
+  function getThemeWithAssets(id, assetMap, copy) {
     var theme = clone(getTheme(id));
     var assets = assetMap && assetMap[theme.id] && typeof assetMap[theme.id] === 'object' ? assetMap[theme.id] : {};
 
     theme.assets = {};
+    theme.name = themeName(theme, copy);
 
     Object.keys(assets).forEach(function (key) {
       if (typeof assets[key] === 'string' && assets[key]) {
@@ -2115,6 +1766,10 @@
     });
 
     return theme;
+  }
+
+  function themeName(theme, copy) {
+    return copyText(copy, 'themes.' + theme.id, theme.name);
   }
 
   function getTheme(id) {
@@ -2127,12 +1782,6 @@
   function hasTheme(id) {
     return THEMES.some(function (theme) {
       return theme.id === id;
-    });
-  }
-
-  function isKnownSlot(id) {
-    return SLOT_DEFS.some(function (slot) {
-      return slot.id === id;
     });
   }
 

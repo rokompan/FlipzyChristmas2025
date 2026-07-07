@@ -12,11 +12,6 @@ The generated source packs can stay in numbered folders, but Shopify theme asset
 - `reward-system-theme-{theme}-reward.png`
 - `reward-system-theme-{theme}-mini-reward.png`
 - `reward-system-theme-{theme}-sticker.png`
-- `reward-system-theme-{theme}-motif-top.png`
-- `reward-system-theme-{theme}-motif-upper.png`
-- `reward-system-theme-{theme}-motif-middle.png`
-- `reward-system-theme-{theme}-motif-lower.png`
-- `reward-system-theme-{theme}-motif-bottom.png`
 - `reward-system-theme-{theme}-path-texture.png`
 
 Current themes use these slugs: `castle`, `princess`, `garden`, `space`, `ocean`, `candy`, `dino`.
@@ -29,11 +24,6 @@ To replace art for an existing theme, keep the same production filename and over
 - `reward01-themeCastle.png` - `300x300` - Transparent PNG, cute treasure chest overflowing with gold coins and small jewels, warm medieval fantasy style, front view, no text.
 - `miniReward01-themeCastle.png` - `220x220` - Transparent PNG, shiny gold coin stack with one star sparkle, kid-friendly illustration, no text.
 - `sticker01-themeCastle.png` - `512x512` - Transparent PNG, circular reward sticker badge artwork for kids, golden castle shield with a bright star and tiny gem sparkles, centered inside a perfect circle, bold cheerful board-game style, no text, no numbers, no cut line, no mockup, transparent outside the circular badge.
-- `motifTop01-themeCastle.png` - `320x240` - Transparent PNG, small fairytale castle towers on soft clouds, warm gold and cream palette, no text.
-- `motifUpper01-themeCastle.png` - `280x280` - Transparent PNG, red medieval flag on a wooden pole, simple playful shape, no text.
-- `motifMiddle01-themeCastle.png` - `280x280` - Transparent PNG, rounded knight shield with star emblem, warm green and gold, no text.
-- `motifLower01-themeCastle.png` - `280x280` - Transparent PNG, small cloud with crown-shaped sparkles, soft cream and gold, no text.
-- `motifBottom01-themeCastle.png` - `340x240` - Transparent PNG, distant rounded hills and castle road stones, soft muted colors, no text.
 - `pathTexture01-themeCastle.png` - `800x220` - Transparent seamless scatter texture tile for overlaying on a curved golden path: small irregular tan cobblestone chips, tiny crown-shaped flecks, soft parchment speckles, sparse and randomized across the full canvas, tileable on all edges, no continuous road strip, no borders, no lane lines, no circles, no numbers, no text.
 
 ## Pack 02: Princess Garden
@@ -42,11 +32,6 @@ To replace art for an existing theme, keep the same production filename and over
 - `reward02-themePrincess.png` - `300x300` - Transparent PNG, polished golden crown with pink and purple gems, friendly toy-like illustration, no text.
 - `miniReward02-themePrincess.png` - `220x220` - Transparent PNG, single faceted heart gem with tiny sparkles, pink and lavender, no text.
 - `sticker02-themePrincess.png` - `512x512` - Transparent PNG, circular reward sticker badge artwork for kids, faceted heart jewel with a tiny crown and magical sparkle dust, pastel pink lavender and gold, centered inside a perfect circle, bold cheerful board-game style, no text, no numbers, no cut line, no mockup, transparent outside the circular badge.
-- `motifTop02-themePrincess.png` - `320x240` - Transparent PNG, pastel rainbow with clouds and tiny stars, no text.
-- `motifUpper02-themePrincess.png` - `280x280` - Transparent PNG, cloud cluster with magic wand sparkles, no text.
-- `motifMiddle02-themePrincess.png` - `280x280` - Transparent PNG, heart balloon with ribbon, soft pink and violet, no text.
-- `motifLower02-themePrincess.png` - `280x280` - Transparent PNG, five-petal royal garden flower with green stem, no text.
-- `motifBottom02-themePrincess.png` - `340x240` - Transparent PNG, small pastel castle on rolling hills, no text.
 - `pathTexture02-themePrincess.png` - `800x220` - Transparent seamless scatter texture tile for overlaying on a curved pastel path: tiny pearl dots, small heart sparkles, soft gold glitter flecks, very light magical dust, sparse and randomized across the full canvas, tileable on all edges, no continuous ribbon strip, no borders, no lane lines, no circles, no numbers, no text.
 
 ## Pack 03: Playful Garden
@@ -55,11 +40,6 @@ To replace art for an existing theme, keep the same production filename and over
 - `reward03-themeGarden.png` - `300x300` - Transparent PNG, cheerful wrapped gift with leaf ribbon and sparkles, no text.
 - `miniReward03-themeGarden.png` - `220x220` - Transparent PNG, small wrapped present with star sparkles, no text.
 - `sticker03-themeGarden.png` - `512x512` - Transparent PNG, circular reward sticker badge artwork for kids, happy flower medal with leaves, tiny petals and star sparkles, fresh garden greens and warm yellow, centered inside a perfect circle, bold cheerful board-game style, no text, no numbers, no cut line, no mockup, transparent outside the circular badge.
-- `motifTop03-themeGarden.png` - `320x240` - Transparent PNG, friendly rainbow with soft clouds, no text.
-- `motifUpper03-themeGarden.png` - `280x280` - Transparent PNG, leafy sprig with three rounded leaves, no text.
-- `motifMiddle03-themeGarden.png` - `280x280` - Transparent PNG, playful kite with tail bows, no text.
-- `motifLower03-themeGarden.png` - `280x280` - Transparent PNG, cloud with colorful stars, no text.
-- `motifBottom03-themeGarden.png` - `340x240` - Transparent PNG, simple rounded green hills with tiny flowers, no text.
 - `pathTexture03-themeGarden.png` - `800x220` - Transparent seamless scatter texture tile for overlaying on a curved garden path: tiny leaf marks, soft grass strokes, small flower petal flecks, pale trail speckles, sparse and randomized across the full canvas, tileable on all edges, no continuous trail strip, no borders, no lane lines, no circles, no numbers, no text.
 
 ## Pack 04: Space Quest
@@ -68,11 +48,6 @@ To replace art for an existing theme, keep the same production filename and over
 - `reward04-themeSpace.png` - `300x300` - Transparent PNG, cute rocket ship with warm orange flame and star sparkles, no text.
 - `miniReward04-themeSpace.png` - `220x220` - Transparent PNG, small yellow star badge or mini supply pod, no text.
 - `sticker04-themeSpace.png` - `512x512` - Transparent PNG, circular reward sticker badge artwork for kids, smiling star medal with tiny rocket trail and planet sparkles, blue violet and sunny yellow, centered inside a perfect circle, bold cheerful board-game style, no text, no numbers, no cut line, no mockup, transparent outside the circular badge.
-- `motifTop04-themeSpace.png` - `320x240` - Transparent PNG, friendly ringed planet with two small stars, no text.
-- `motifUpper04-themeSpace.png` - `280x280` - Transparent PNG, cloud-shaped nebula with stars, no text.
-- `motifMiddle04-themeSpace.png` - `280x280` - Transparent PNG, small rocket flying diagonally, no text.
-- `motifLower04-themeSpace.png` - `280x280` - Transparent PNG, moon crater and star cluster, no text.
-- `motifBottom04-themeSpace.png` - `340x240` - Transparent PNG, rounded alien hills with tiny stars, no text.
 - `pathTexture04-themeSpace.png` - `800x220` - Transparent seamless scatter texture tile for overlaying on a curved space path: tiny stars, comet dust dots, small planet-ring flecks, soft cosmic speckles, sparse and randomized across the full canvas, tileable on all edges, no continuous galaxy strip, no borders, no lane lines, no circles, no numbers, no text.
 
 ## Pack 05: Ocean Adventure
@@ -81,11 +56,6 @@ To replace art for an existing theme, keep the same production filename and over
 - `reward05-themeOcean.png` - `300x300` - Transparent PNG, treasure pearl shell with small sea gems, no text.
 - `miniReward05-themeOcean.png` - `220x220` - Transparent PNG, cute shell token with tiny bubbles, no text.
 - `sticker05-themeOcean.png` - `512x512` - Transparent PNG, circular reward sticker badge artwork for kids, pearl shell medal with bubbles, coral flecks and tiny sea-star sparkles, aqua turquoise and soft pink, centered inside a perfect circle, bold cheerful board-game style, no text, no numbers, no cut line, no mockup, transparent outside the circular badge.
-- `motifTop05-themeOcean.png` - `320x240` - Transparent PNG, three friendly wave curls, no text.
-- `motifUpper05-themeOcean.png` - `280x280` - Transparent PNG, rainbow over small sea clouds, no text.
-- `motifMiddle05-themeOcean.png` - `280x280` - Transparent PNG, shell and pearl, no text.
-- `motifLower05-themeOcean.png` - `280x280` - Transparent PNG, bubble cluster and little coral, no text.
-- `motifBottom05-themeOcean.png` - `340x240` - Transparent PNG, sandy island shape with shells, no text.
 - `pathTexture05-themeOcean.png` - `800x220` - Transparent seamless scatter texture tile for overlaying on a curved ocean path: tiny bubbles, shell chips, soft foam dots, small coral flecks, sparse and randomized across the full canvas, tileable on all edges, no continuous river strip, no borders, no lane lines, no circles, no numbers, no text.
 
 ## Pack 06: Candy Parade
@@ -94,11 +64,6 @@ To replace art for an existing theme, keep the same production filename and over
 - `reward06-themeCandy.png` - `300x300` - Transparent PNG, big wrapped candy prize box with teal ribbon, no text.
 - `miniReward06-themeCandy.png` - `220x220` - Transparent PNG, small wrapped candy with sparkles, no text.
 - `sticker06-themeCandy.png` - `512x512` - Transparent PNG, circular reward sticker badge artwork for kids, wrapped candy medal with sprinkles, sugar crystals and tiny stars, pink teal and butter yellow, centered inside a perfect circle, bold cheerful board-game style, no text, no numbers, no cut line, no mockup, transparent outside the circular badge.
-- `motifTop06-themeCandy.png` - `320x240` - Transparent PNG, candy rainbow with marshmallow clouds, no text.
-- `motifUpper06-themeCandy.png` - `280x280` - Transparent PNG, whipped cream cloud with sprinkles, no text.
-- `motifMiddle06-themeCandy.png` - `280x280` - Transparent PNG, glossy balloon lollipop, no text.
-- `motifLower06-themeCandy.png` - `280x280` - Transparent PNG, striped kite candy with ribbon tail, no text.
-- `motifBottom06-themeCandy.png` - `340x240` - Transparent PNG, candy waves and gumdrops, no text.
 - `pathTexture06-themeCandy.png` - `800x220` - Transparent seamless scatter texture tile for overlaying on a curved candy path: colorful sprinkles, sugar crystals, tiny candy confetti dots, soft frosting speckles, sparse and randomized across the full canvas, tileable on all edges, no continuous candy strip, no borders, no lane lines, no circles, no numbers, no text.
 
 ## Pack 07: Dino Trail
@@ -107,9 +72,4 @@ To replace art for an existing theme, keep the same production filename and over
 - `reward07-themeDino.png` - `300x300` - Transparent PNG, colorful dinosaur egg nest with sparkles, no text.
 - `miniReward07-themeDino.png` - `220x220` - Transparent PNG, small fossil badge or leaf token, no text.
 - `sticker07-themeDino.png` - `512x512` - Transparent PNG, circular reward sticker badge artwork for kids, friendly dinosaur egg medal with a tiny footprint, fern leaves and golden sparkles, jungle green warm sand and orange, centered inside a perfect circle, bold cheerful board-game style, no text, no numbers, no cut line, no mockup, transparent outside the circular badge.
-- `motifTop07-themeDino.png` - `320x240` - Transparent PNG, soft volcano and rounded mountains, no lava danger, no text.
-- `motifUpper07-themeDino.png` - `280x280` - Transparent PNG, tropical leaf sprig, no text.
-- `motifMiddle07-themeDino.png` - `280x280` - Transparent PNG, cute dino footprint cluster, no text.
-- `motifLower07-themeDino.png` - `280x280` - Transparent PNG, cloud with prehistoric sparkles, no text.
-- `motifBottom07-themeDino.png` - `340x240` - Transparent PNG, rounded jungle hills with ferns, no text.
 - `pathTexture07-themeDino.png` - `800x220` - Transparent seamless scatter texture tile for overlaying on a curved prehistoric path: tiny fossil chips, soft dino footprint marks, small leaf flecks, sandy stone speckles, sparse and randomized across the full canvas, tileable on all edges, no continuous trail strip, no borders, no lane lines, no circles, no numbers, no text.

@@ -92,8 +92,7 @@
 }
 
 .flipzy-rewards__field span,
-.flipzy-rewards__checks span,
-.flipzy-rewards__slot-name {
+.flipzy-rewards__checks span {
   color: var(--frs-muted);
   font-size: 11px;
   font-weight: 700;
@@ -129,8 +128,7 @@
 .flipzy-rewards__field input:focus-visible,
 .flipzy-rewards__field textarea:focus-visible,
 .flipzy-rewards__field select:focus-visible,
-.flipzy-rewards button:focus-visible,
-.flipzy-rewards__upload-label:focus-visible {
+.flipzy-rewards button:focus-visible {
   outline: 3px solid rgba(36, 107, 143, 0.28);
   outline-offset: 2px;
 }
@@ -154,16 +152,14 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.flipzy-rewards__checks label,
-.flipzy-rewards__slot-toggle {
+.flipzy-rewards__checks label {
   align-items: center;
   cursor: pointer;
   display: flex;
   gap: 5px;
 }
 
-.flipzy-rewards__checks input,
-.flipzy-rewards__slot-toggle input {
+.flipzy-rewards__checks input {
   accent-color: var(--frs-blue);
   height: 15px;
   width: 15px;
@@ -176,8 +172,7 @@
   margin-bottom: 7px;
 }
 
-.flipzy-rewards button,
-.flipzy-rewards__upload-label {
+.flipzy-rewards button {
   align-items: center;
   background: #ffffff;
   border: 1px solid #cfc7bb;
@@ -193,11 +188,72 @@
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
-.flipzy-rewards button:hover,
-.flipzy-rewards__upload-label:hover {
+.flipzy-rewards button:hover {
   border-color: var(--frs-blue);
   color: var(--frs-blue-dark);
   transform: translateY(-1px);
+}
+
+.flipzy-rewards__theme-buttons {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.flipzy-rewards__theme-button {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.18)),
+    linear-gradient(135deg, var(--theme-bg), var(--theme-path)) !important;
+  border-color: var(--theme-edge) !important;
+  border-color: color-mix(in srgb, var(--theme-edge) 72%, #ffffff) !important;
+  color: var(--frs-ink);
+  gap: 7px;
+  justify-content: start;
+  min-height: 38px;
+  padding: 6px 7px;
+  text-align: left;
+}
+
+.flipzy-rewards__theme-button:hover {
+  color: var(--frs-ink);
+}
+
+.flipzy-rewards__theme-button > span:last-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.flipzy-rewards__theme-button[aria-pressed="true"] {
+  border-color: var(--theme-edge) !important;
+  box-shadow: 0 0 0 2px rgba(32, 36, 44, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--theme-edge) 28%, transparent), inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+  color: var(--frs-ink);
+}
+
+.flipzy-rewards__theme-swatch {
+  border: 1px solid rgba(32, 36, 44, 0.18);
+  border-radius: 999px;
+  display: grid;
+  flex: 0 0 auto;
+  gap: 2px;
+  grid-template-columns: repeat(3, 1fr);
+  height: 18px;
+  overflow: hidden;
+  width: 34px;
+}
+
+.flipzy-rewards__theme-swatch span:nth-child(1) {
+  background: var(--theme-edge);
+}
+
+.flipzy-rewards__theme-swatch span:nth-child(2) {
+  background: var(--theme-path);
+}
+
+.flipzy-rewards__theme-swatch span:nth-child(3) {
+  background: var(--theme-accent-2);
 }
 
 .flipzy-rewards__step-picker {
@@ -225,47 +281,6 @@
   color: #9b9388;
   cursor: not-allowed;
   transform: none;
-}
-
-.flipzy-rewards__graphic-slots {
-  display: grid;
-  gap: 4px;
-}
-
-.flipzy-rewards__slot {
-  border-top: 1px solid #ebe5da;
-  align-items: center;
-  display: grid;
-  gap: 5px;
-  grid-template-columns: minmax(0, 1fr) auto;
-  padding-top: 5px;
-}
-
-.flipzy-rewards__slot:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.flipzy-rewards__slot-actions {
-  display: flex;
-  gap: 5px;
-  justify-content: end;
-}
-
-.flipzy-rewards__slot input[type="file"] {
-  height: 1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  width: 1px;
-}
-
-.flipzy-rewards__slot-status {
-  color: var(--frs-muted);
-  font-size: 11px;
-  grid-column: 1 / -1;
-  line-height: 1.35;
-  margin-top: -2px;
 }
 
 .flipzy-rewards__preview {
@@ -364,7 +379,7 @@
 @media screen and (max-width: 520px) {
   .flipzy-rewards__field-grid,
   .flipzy-rewards__presets,
-  .flipzy-rewards__slot-actions {
+  .flipzy-rewards__theme-buttons {
     grid-template-columns: 1fr;
   }
 

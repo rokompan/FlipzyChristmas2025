@@ -450,6 +450,80 @@
       "qty_final_3": "3x Flipzy (3 for 2 Deal)",
       "qty_final_4": "4x Flipzy (🔥 Best Value)"
     },
+    "reward_system": {
+      "name": "Reward System",
+      "ui": {
+        "controls_aria": "Reward poster controls",
+        "heading": "Reward poster maker",
+        "poster_text": "Poster text",
+        "child_name": "Child name",
+        "title": "Title",
+        "agreement": "Agreement",
+        "start_label": "Start label",
+        "reward_label": "Reward label",
+        "path": "Path",
+        "steps": "Steps",
+        "count": "Count",
+        "show_numbers": "Show numbers",
+        "show_mini_reward_labels": "Show mini reward labels",
+        "theme": "Theme",
+        "style": "Style",
+        "mini_rewards": "Mini rewards",
+        "mini_reward_presets_aria": "Mini reward presets",
+        "mini_reward_step_selection_aria": "Mini reward step selection",
+        "preview_aria": "Reward poster preview",
+        "restore_defaults": "Restore defaults",
+        "print_poster_stickers": "Print poster + stickers"
+      },
+      "defaults": {
+        "child_name": "Mia",
+        "title": "{{ child }}'s Reward Quest",
+        "subtitle": "I earn each step by finishing my agreed routine with a calm body and a brave try.",
+        "start_label": "Start",
+        "reward_label": "Family movie night"
+      },
+      "themes": {
+        "castle": "Castle Quest",
+        "princess": "Princess Garden",
+        "garden": "Playful Garden",
+        "space": "Space Quest",
+        "ocean": "Ocean Adventure",
+        "candy": "Candy Parade",
+        "dino": "Dino Trail"
+      },
+      "presets": {
+        "half": "Half",
+        "thirds": "Thirds",
+        "quarters": "Quarters",
+        "every_3": "Every 3",
+        "every_5": "Every 5",
+        "clear": "Clear"
+      },
+      "status": {
+        "saved": "Saved locally",
+        "saving": "Saving...",
+        "storage_full": "Storage is full",
+        "preparing_print": "Preparing print...",
+        "print_ready": "Print ready",
+        "print_failed": "Print failed"
+      },
+      "controls": {
+        "main_reward_step": "Main reward step"
+      },
+      "poster": {
+        "poster_aria": "Reward poster",
+        "fallback_title": "Reward Quest",
+        "for_child": "For {{ child }}",
+        "mini_reward": "Mini reward",
+        "sticker_default_name": "Reward",
+        "stickers_title": "{{ child }} stickers",
+        "sticker_subtitle": "Cut-out circles for this reward poster"
+      },
+      "print": {
+        "frame_title": "Reward poster print",
+        "document_title": "Reward poster"
+      }
+    },
     "cart_upsell": {
       "upsell_1_head": "⭐ Popular & Free Shipping",
       "upsell_1_sub": "Add 1 more to unlock Free Shipping!",
