@@ -101,10 +101,33 @@
     }
   </script>
 
-  <div class="flipzy-rewards__shell">
+  <header class="flipzy-rewards__intro">
+    <div class="flipzy-rewards__intro-copy">
+      <p class="flipzy-rewards__eyebrow">Free printable reward chart</p>
+      <h1>Free Printable Reward Chart for Kids</h1>
+      <p class="flipzy-rewards__subtitle">Create a custom reward poster and sticker sheet for routines, chores, and positive habits.</p>
+      <p>Build a personalized reward chart, choose a playful theme, set mini rewards, and print an A4 poster with a matching sticker sheet. Start with one clear habit and let your child see every small win.</p>
+      <div class="flipzy-rewards__intro-actions" aria-label="Reward chart page links">
+        <a href="#reward-chart-maker">Make a chart</a>
+        <a href="#reward-system-guide">Read the guide</a>
+      </div>
+    </div>
+    <figure class="flipzy-rewards__hero">
+      <img
+        src="{{ 'reward-system-hero.webp' | file_url }}"
+        alt="Parent and child looking at a printable reward chart with a matching sticker sheet"
+        width="1055"
+        height="1491"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async">
+    </figure>
+  </header>
+
+  <div class="flipzy-rewards__shell" id="reward-chart-maker">
     <aside class="flipzy-rewards__controls" aria-label="{{ 'sections.reward_system.ui.controls_aria' | t }}">
       <div class="flipzy-rewards__masthead">
-        <h1>{{ 'sections.reward_system.ui.heading' | t }}</h1>
+        <h2>{{ 'sections.reward_system.ui.heading' | t }}</h2>
       </div>
 
       <fieldset class="flipzy-rewards__group">
@@ -190,6 +213,8 @@
       </div>
     </main>
   </div>
+
+  {% render 'reward-system-guide' %}
 </section>
 
 {% schema %}

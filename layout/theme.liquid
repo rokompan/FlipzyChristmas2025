@@ -21,18 +21,32 @@
       <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0893/5895/8920/files/IMG_0692.jpg?v=1738221762" fetchpriority="high">
     {% endif %}
 
+    {%- liquid
+      assign seo_title_override = blank
+      assign seo_description_override = page_description
+
+      if template == 'page.reward-system' or template.suffix == 'reward-system'
+        assign seo_title_override = 'Free Printable Reward Chart for Kids | FLIPZY'
+        assign seo_description_override = 'Create a free printable reward chart for kids. Customize the poster, print stickers, and help your child practice routines, chores, and positive habits.'
+      endif
+    -%}
+
     <title>
-      {{ page_title }}
-      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {%- if seo_title_override != blank -%}
+        {{ seo_title_override }}
+      {%- else -%}
+        {{ page_title }}
+        {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+        {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {%- endif -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
+    {% if seo_description_override %}
+      <meta name="description" content="{{ seo_description_override | escape }}">
     {% endif %}
 
-    {% render 'meta-tags' %}
+    {% render 'meta-tags', seo_title_override: seo_title_override, seo_description_override: seo_description_override %}
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'pubsub.js' | asset_url }}" defer="defer"></script>

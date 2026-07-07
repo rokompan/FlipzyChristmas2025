@@ -23,6 +23,106 @@
   box-sizing: border-box;
 }
 
+.flipzy-rewards__intro {
+  align-items: center;
+  display: grid;
+  gap: 32px;
+  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.68fr);
+  margin: 0 auto 22px;
+  max-width: 1220px;
+  padding: 28px 0 12px;
+}
+
+.flipzy-rewards__intro-copy {
+  min-width: 0;
+}
+
+.flipzy-rewards__eyebrow {
+  color: var(--frs-blue);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  margin: 0 0 10px;
+  text-transform: uppercase;
+}
+
+.flipzy-rewards__intro h1 {
+  color: var(--frs-ink);
+  font-size: clamp(34px, 5vw, 68px);
+  letter-spacing: 0;
+  line-height: 0.98;
+  margin: 0;
+  max-width: 780px;
+}
+
+.flipzy-rewards__subtitle {
+  color: #46566a;
+  font-size: clamp(18px, 2.3vw, 25px);
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 18px 0 0;
+  max-width: 760px;
+}
+
+.flipzy-rewards__intro-copy > p:not(.flipzy-rewards__eyebrow):not(.flipzy-rewards__subtitle) {
+  color: var(--frs-muted);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.65;
+  margin: 14px 0 0;
+  max-width: 720px;
+}
+
+.flipzy-rewards__intro-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.flipzy-rewards__intro-actions a {
+  align-items: center;
+  background: var(--frs-blue);
+  border: 1px solid var(--frs-blue);
+  border-radius: 8px;
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 900;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 16px;
+  text-decoration: none;
+}
+
+.flipzy-rewards__intro-actions a + a {
+  background: #ffffff;
+  border-color: var(--frs-line);
+  color: var(--frs-blue-dark);
+}
+
+.flipzy-rewards__intro-actions a:hover,
+.flipzy-rewards__intro-actions a:focus-visible {
+  transform: translateY(-1px);
+}
+
+.flipzy-rewards__hero {
+  margin: 0;
+}
+
+.flipzy-rewards__hero img {
+  aspect-ratio: 1055 / 1491;
+  border-radius: 8px;
+  box-shadow: 0 22px 56px rgba(32, 36, 44, 0.16);
+  display: block;
+  height: auto;
+  max-height: 720px;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
 .flipzy-rewards__shell {
   align-items: start;
   display: grid;
@@ -58,7 +158,7 @@
   text-transform: uppercase;
 }
 
-.flipzy-rewards__masthead h1 {
+.flipzy-rewards__masthead h2 {
   color: var(--frs-ink);
   font-size: 20px;
   letter-spacing: 0;
@@ -347,6 +447,151 @@
   width: 100%;
 }
 
+.reward-system-guide {
+  background: #ffffff;
+  border: 1px solid var(--frs-line);
+  border-radius: 8px;
+  color: var(--frs-ink);
+  font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 48px auto 0;
+  max-width: 920px;
+  padding: 0;
+}
+
+.reward-system-guide *,
+.reward-system-guide *::before,
+.reward-system-guide *::after {
+  box-sizing: border-box;
+}
+
+.reward-system-guide__toc {
+  background: #f7fbf3;
+  border-bottom: 1px solid var(--frs-line);
+  border-radius: 8px 8px 0 0;
+  padding: 38px 42px 34px;
+}
+
+.reward-system-guide__toc h2 {
+  color: #1f3b2f;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 0;
+  line-height: 1.05;
+  margin: 0 0 16px;
+}
+
+.reward-system-guide__toc p,
+.reward-system-guide p,
+.reward-system-guide li {
+  color: #34423b;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+
+.reward-system-guide__toc p {
+  margin: 0 0 22px;
+  max-width: 760px;
+}
+
+.reward-system-guide__toc-grid {
+  column-gap: 28px;
+  columns: 2;
+}
+
+.reward-system-guide__toc-grid a {
+  border-bottom: 1px solid rgba(44, 68, 58, 0.14);
+  break-inside: avoid;
+  color: #235f7d;
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+  padding: 8px 0;
+  text-decoration: none;
+}
+
+.reward-system-guide__toc-grid a:hover,
+.reward-system-guide__toc-grid a:focus-visible {
+  color: var(--frs-blue-dark);
+}
+
+.reward-system-guide section {
+  padding: 36px 42px;
+}
+
+.reward-system-guide section + section {
+  border-top: 1px solid var(--frs-line);
+}
+
+.reward-system-guide h2 {
+  color: #24362e;
+  font-size: clamp(24px, 3vw, 36px);
+  letter-spacing: 0;
+  line-height: 1.15;
+  margin: 0 0 16px;
+}
+
+.reward-system-guide p {
+  margin: 0 0 16px;
+}
+
+.reward-system-guide ul,
+.reward-system-guide ol {
+  margin: 0 0 18px;
+  padding-left: 24px;
+}
+
+.reward-system-guide li + li {
+  margin-top: 6px;
+}
+
+.reward-system-guide figure {
+  margin: 26px 0 0;
+}
+
+.reward-system-guide img {
+  aspect-ratio: 1055 / 1491;
+  border-radius: 8px;
+  display: block;
+  height: auto;
+  max-height: 760px;
+  object-fit: cover;
+  object-position: center;
+  width: min(100%, 560px);
+}
+
+.reward-system-guide figcaption {
+  color: var(--frs-muted);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.45;
+  margin-top: 8px;
+}
+
+.reward-system-guide details {
+  border: 1px solid var(--frs-line);
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 13px 15px;
+}
+
+.reward-system-guide summary {
+  color: #24362e;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.reward-system-guide details p {
+  margin: 12px 0 0;
+}
+
+.reward-system-guide a {
+  color: #235f7d;
+  font-weight: 800;
+}
+
 @media screen and (max-width: 1180px) {
   .flipzy-rewards__shell {
     grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
@@ -362,6 +607,15 @@
     padding: 16px 12px 28px;
   }
 
+  .flipzy-rewards__intro {
+    grid-template-columns: 1fr;
+    padding-top: 12px;
+  }
+
+  .flipzy-rewards__hero {
+    max-width: 560px;
+  }
+
   .flipzy-rewards__shell {
     grid-template-columns: 1fr;
   }
@@ -374,9 +628,23 @@
   .flipzy-rewards__poster-frame {
     padding: 10px;
   }
+
+  .reward-system-guide,
+  .reward-system-guide__toc,
+  .reward-system-guide section {
+    border-radius: 8px;
+  }
 }
 
 @media screen and (max-width: 520px) {
+  .flipzy-rewards__intro h1 {
+    font-size: 38px;
+  }
+
+  .flipzy-rewards__intro-actions a {
+    width: 100%;
+  }
+
   .flipzy-rewards__field-grid,
   .flipzy-rewards__presets,
   .flipzy-rewards__theme-buttons {
@@ -398,6 +666,25 @@
 
   .flipzy-rewards__toolbar button {
     flex: 1 1 auto;
+  }
+
+  .reward-system-guide {
+    margin-top: 34px;
+  }
+
+  .reward-system-guide__toc,
+  .reward-system-guide section {
+    padding: 28px 20px;
+  }
+
+  .reward-system-guide__toc-grid {
+    columns: 1;
+  }
+
+  .reward-system-guide__toc p,
+  .reward-system-guide p,
+  .reward-system-guide li {
+    font-size: 15px;
   }
 }
 
