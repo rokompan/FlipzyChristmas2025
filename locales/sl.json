@@ -462,7 +462,20 @@
       "calculating": "Izračunavanje...",
       "heading": "Pridružite se stotinam srečnih družin",
       "sold_out": "Razprodano",
-      "unit_items": "Flipzy"
+      "unit_items": "Flipzy",
+      "benefit_3": "Manj pritoževanja. Več sodelovanja.",
+      "today_price": "Danes:",
+      "free_shipping": "Brezplačna dostava",
+      "rating_prefix": "⭐️⭐️⭐️⭐️⭐️ 4,8/5 od ",
+      "benefit_1": "Otroci SI ŽELIJO opraviti svojo vadbo",
+      "benefit_4": "Spodbuja samostojnost in odgovornost",
+      "inventory_prefix": "⚡ Samo ",
+      "inventory_suffix": " ostalo na zalogi",
+      "regular_price": "Redna cena:",
+      "guarantee_3": "Uporablja ga več kot 1000 družin",
+      "please_select_product": "V nastavitvah razdelka izberite izdelek.",
+      "rating_suffix": " starši",
+      "benefit_2": "10–20 minut miru vsako jutro"
     },
     "flipzy_sticky": {
       "opt_2": "2x Flipzy (⭐ Priljubljeno + brezplačna dostava)",
