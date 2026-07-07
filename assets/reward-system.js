@@ -621,6 +621,7 @@
   };
 
   RewardApp.prototype.printPoster = function () {
+    var self = this;
     var svg = this.poster && this.poster.querySelector('svg');
     var stickerSvg = buildStickerSheetSvg(this.state, this.uploads, this.instanceId, this.assetMap);
     var frame;
@@ -628,6 +629,7 @@
     var win;
 
     if (!svg) return;
+    this.setStatus('Preparing print...');
 
     frame = document.createElement('iframe');
     frame.setAttribute('title', 'Reward poster print');
@@ -650,40 +652,48 @@
       return;
     }
 
-    doc.open();
-    doc.write([
-      '<!doctype html>',
-      '<html>',
-        '<head>',
-          '<meta charset="utf-8">',
-          '<title>Reward poster</title>',
-          '<style>',
-            '@page{size:A4 portrait;margin:0;}',
-            'html,body{background:#fff;margin:0;padding:0;width:210mm;}',
-            '.flipzy-print-page{break-after:page;height:297mm;overflow:hidden;page-break-after:always;width:210mm;}',
-            '.flipzy-print-page:last-child{break-after:auto;page-break-after:auto;}',
-            'svg{display:block;height:297mm;width:210mm;print-color-adjust:exact;-webkit-print-color-adjust:exact;}',
-          '</style>',
-        '</head>',
-        '<body>',
-          '<div class="flipzy-print-page">',
-            svg.outerHTML,
-          '</div>',
-          '<div class="flipzy-print-page">',
-            stickerSvg,
-          '</div>',
-        '</body>',
-      '</html>'
-    ].join(''));
-    doc.close();
-
-    window.setTimeout(function () {
+    waitForSvgImages(svg.outerHTML + stickerSvg, window, 5000).then(function () {
+      doc.open();
+      doc.write([
+        '<!doctype html>',
+        '<html>',
+          '<head>',
+            '<meta charset="utf-8">',
+            '<title>Reward poster</title>',
+            '<style>',
+              '@page{size:A4 portrait;margin:0;}',
+              'html,body{background:#fff;margin:0;padding:0;width:210mm;}',
+              '.flipzy-print-page{break-after:page;height:297mm;overflow:hidden;page-break-after:always;width:210mm;}',
+              '.flipzy-print-page:last-child{break-after:auto;page-break-after:auto;}',
+              'svg{display:block;height:297mm;width:210mm;print-color-adjust:exact;-webkit-print-color-adjust:exact;}',
+            '</style>',
+          '</head>',
+          '<body>',
+            '<div class="flipzy-print-page">',
+              svg.outerHTML,
+            '</div>',
+            '<div class="flipzy-print-page">',
+              stickerSvg,
+            '</div>',
+          '</body>',
+        '</html>'
+      ].join(''));
+      doc.close();
+      return waitForSvgImages(doc.body ? doc.body.innerHTML : '', win, 2500);
+    }).then(function () {
+      return waitForPaint(win);
+    }).then(function () {
+      self.setStatus('Print ready');
       win.focus();
       win.print();
       window.setTimeout(function () {
         frame.remove();
       }, 1000);
-    }, 120);
+    }).catch(function () {
+      self.setStatus('Print failed');
+      frame.remove();
+      window.print();
+    });
   };
 
   RewardApp.prototype.persist = function () {
@@ -752,7 +762,7 @@
     graphics = buildGraphics(state, uploads, theme, points, miniSet, graphicObstacles);
 
     return [
-      '<svg class="flipzy-rewards__poster-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(state.title || 'Reward poster') + '">',
+      '<svg class="flipzy-rewards__poster-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(state.title || 'Reward poster') + '">',
         '<title>' + escapeHtml(state.title || 'Reward poster') + '</title>',
         renderDefinitions(theme, pathTextureId),
         renderBackground(theme),
@@ -777,7 +787,7 @@
     var stickerUrl = stickerAssetUrl(theme, uploads);
     var title = (cleanText(state.childName) || 'Reward') + ' stickers';
     var pieces = [
-      '<svg class="flipzy-rewards__sticker-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(title) + '">',
+      '<svg class="flipzy-rewards__sticker-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(title) + '">',
         '<title>' + escapeHtml(title) + '</title>',
         '<rect width="' + BOARD.width + '" height="' + BOARD.height + '" fill="#ffffff"/>',
         '<path d="M0 0 H' + BOARD.width + ' V260 C1700 345 1360 220 1030 310 C640 416 310 350 0 500 Z" fill="' + theme.backgroundAlt + '" opacity="0.42"/>',
@@ -798,7 +808,7 @@
     var pieces = ['<rect width="' + BOARD.width + '" height="' + BOARD.height + '" fill="' + theme.background + '"/>'];
 
     if (theme.assets.background) {
-      pieces.push('<image href="' + escapeAttr(theme.assets.background) + '" x="0" y="0" width="' + BOARD.width + '" height="' + BOARD.height + '" preserveAspectRatio="none"/>');
+      pieces.push(svgImage(theme.assets.background, 'x="0" y="0" width="' + BOARD.width + '" height="' + BOARD.height + '" preserveAspectRatio="none"'));
     } else {
       pieces.push('<path d="M0 0 H' + BOARD.width + ' V330 C1710 430 1320 325 980 425 C610 532 285 470 0 610 Z" fill="' + theme.backgroundAlt + '" opacity="0.82"/>');
       pieces.push('<path d="M0 2790 C360 2630 720 2690 1050 2780 C1425 2884 1745 2860 2100 2700 V2970 H0 Z" fill="' + theme.backgroundBand + '" opacity="0.66"/>');
@@ -814,7 +824,7 @@
     return [
       '<defs>',
         '<pattern id="' + escapeAttr(pathTextureId) + '" patternUnits="userSpaceOnUse" width="800" height="220">',
-          '<image href="' + escapeAttr(theme.assets.pathTexture) + '" x="0" y="0" width="800" height="220" preserveAspectRatio="none"/>',
+          svgImage(theme.assets.pathTexture, 'x="0" y="0" width="800" height="220" preserveAspectRatio="none"'),
         '</pattern>',
       '</defs>'
     ].join('');
@@ -933,14 +943,14 @@
 
   function renderSticker(cx, cy, radius, theme, stickerUrl, instanceId, index) {
     var clipId = svgId(instanceId + '-sticker-' + index);
-    var artSize = round(radius * 1.64);
+    var artSize = round(radius * 1.98);
     var artBox = {
       x: round(cx - artSize / 2),
       y: round(cy - artSize / 2),
       w: artSize,
       h: artSize
     };
-    var innerRadius = round(radius - Math.max(10, radius * 0.13));
+    var innerRadius = round(radius * 0.98);
     var pieces = [
       '<g>',
         '<circle cx="' + round(cx + radius * 0.06) + '" cy="' + round(cy + radius * 0.08) + '" r="' + radius + '" fill="#000000" opacity="0.08"/>',
@@ -948,15 +958,14 @@
         '<clipPath id="' + escapeAttr(clipId) + '"><circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + innerRadius + '"/></clipPath>'
     ];
 
+    pieces.push('<g clip-path="url(#' + escapeAttr(clipId) + ')" opacity="' + (stickerUrl ? '0.72' : '1') + '">' + renderMotif(theme.motifs.miniRewardGift || 'miniGift', theme, artBox.x, artBox.y, artBox.w, artBox.h) + '</g>');
+
     if (stickerUrl) {
-      pieces.push('<image href="' + escapeAttr(stickerUrl) + '" x="' + artBox.x + '" y="' + artBox.y + '" width="' + artBox.w + '" height="' + artBox.h + '" preserveAspectRatio="xMidYMid meet" clip-path="url(#' + escapeAttr(clipId) + ')"/>');
-    } else {
-      pieces.push('<g clip-path="url(#' + escapeAttr(clipId) + ')">' + renderMotif(theme.motifs.miniRewardGift || 'miniGift', theme, artBox.x, artBox.y, artBox.w, artBox.h) + '</g>');
+      pieces.push(svgImage(stickerUrl, 'x="' + artBox.x + '" y="' + artBox.y + '" width="' + artBox.w + '" height="' + artBox.h + '" preserveAspectRatio="xMidYMid meet" clip-path="url(#' + escapeAttr(clipId) + ')"'));
     }
 
     pieces.push(
-        '<circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + round(radius - 5) + '" fill="none" stroke="' + theme.circleStroke + '" stroke-width="' + clamp(radius * 0.08, 6, 10) + '"/>',
-        '<circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + radius + '" fill="none" stroke="#707070" stroke-width="2.5" stroke-dasharray="' + round(radius * 0.12) + ' ' + round(radius * 0.08) + '" opacity="0.72"/>',
+        '<circle cx="' + round(cx) + '" cy="' + round(cy) + '" r="' + round(radius * 0.99) + '" fill="none" stroke="#d8d8d8" stroke-width="1.8" opacity="0.5"/>',
       '</g>'
     );
 
@@ -1067,7 +1076,7 @@
     var art;
 
     if (theme.assets.mainRewardGift) {
-      art = '<image href="' + escapeAttr(theme.assets.mainRewardGift) + '" x="' + round(x + artPad) + '" y="' + round(y + artPad) + '" width="' + round(size - artPad * 2) + '" height="' + round(size - artPad * 2) + '" preserveAspectRatio="xMidYMid meet"/>';
+      art = svgImage(theme.assets.mainRewardGift, 'x="' + round(x + artPad) + '" y="' + round(y + artPad) + '" width="' + round(size - artPad * 2) + '" height="' + round(size - artPad * 2) + '" preserveAspectRatio="xMidYMid meet"');
     } else {
       art = renderMotif(motif, theme, x + artPad, y + artPad, size - artPad * 2, size - artPad * 2);
     }
@@ -1516,7 +1525,107 @@
   }
 
   function renderImage(url, box) {
-    return '<image href="' + escapeAttr(url) + '" x="' + box.x + '" y="' + box.y + '" width="' + box.w + '" height="' + box.h + '" preserveAspectRatio="xMidYMid meet"/>';
+    return svgImage(url, 'x="' + box.x + '" y="' + box.y + '" width="' + box.w + '" height="' + box.h + '" preserveAspectRatio="xMidYMid meet"');
+  }
+
+  function svgImage(url, attrs) {
+    var safeUrl = escapeAttr(url);
+    var xlink = String(url || '').indexOf('data:') === 0 ? '' : ' xlink:href="' + safeUrl + '"';
+
+    return '<image href="' + safeUrl + '"' + xlink + ' ' + attrs + '/>';
+  }
+
+  function waitForSvgImages(markup, win, timeout) {
+    return preloadImageUrls(extractSvgImageUrls(markup), win || window, timeout || 3500);
+  }
+
+  function extractSvgImageUrls(markup) {
+    var seen = {};
+    var urls = [];
+    var regex = /\b(?:href|xlink:href)=["']([^"']+)["']/g;
+    var match;
+
+    while ((match = regex.exec(markup || ''))) {
+      var url = normalizeAssetUrl(match[1]);
+      if (!url || seen[url]) continue;
+      seen[url] = true;
+      urls.push(url);
+    }
+
+    return urls;
+  }
+
+  function preloadImageUrls(urls, win, timeout) {
+    return new Promise(function (resolve) {
+      var imageWindow = win || window;
+      var ImageCtor = imageWindow.Image || window.Image;
+      var images = [];
+      var remaining = urls.length;
+      var finished = false;
+      var timer;
+
+      if (!remaining || !ImageCtor) {
+        resolve();
+        return;
+      }
+
+      function done() {
+        if (finished) return;
+        remaining -= 1;
+        if (remaining <= 0) {
+          finished = true;
+          window.clearTimeout(timer);
+          resolve();
+        }
+      }
+
+      timer = window.setTimeout(function () {
+        finished = true;
+        resolve();
+      }, timeout);
+
+      urls.forEach(function (url) {
+        var img = new ImageCtor();
+        var settled = false;
+        var settle = function () {
+          if (settled) return;
+          settled = true;
+          done();
+        };
+
+        images.push(img);
+        img.onload = settle;
+        img.onerror = settle;
+        img.src = url;
+        if (img.complete) settle();
+      });
+    });
+  }
+
+  function waitForPaint(win) {
+    return new Promise(function (resolve) {
+      var target = win || window;
+      var raf = target.requestAnimationFrame || function (callback) { target.setTimeout(callback, 60); };
+
+      raf(function () {
+        raf(function () {
+          target.setTimeout(resolve, 80);
+        });
+      });
+    });
+  }
+
+  function normalizeAssetUrl(url) {
+    var normalized = String(url || '')
+      .replace(/&amp;/g, '&')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'");
+
+    if (!normalized || normalized.charAt(0) === '#') return '';
+    if (normalized.indexOf('//') === 0) return window.location.protocol + normalized;
+    if (normalized.charAt(0) === '/') return window.location.origin + normalized;
+
+    return normalized;
   }
 
   function renderMotif(name, theme, x, y, w, h) {
