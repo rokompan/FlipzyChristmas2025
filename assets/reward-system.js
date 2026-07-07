@@ -748,12 +748,17 @@
     var graphicObstacles = [];
     var pathD = buildPath(points);
     var pathTextureId = theme.assets.pathTexture ? svgId(instanceId + '-' + theme.id + '-path-texture') : '';
+    var finalRewardGraphic = {
+      enabled: state.graphicSlots.mainRewardGift !== false,
+      url: graphicAssetUrl(theme, uploads, 'mainRewardGift')
+    };
     var graphics;
 
     addBox(graphicObstacles, header.box, 22);
     if (rewardLabel.visible) addBox(graphicObstacles, rewardLabel.box, 26);
     addBox(graphicObstacles, startLabel.box, 18);
     addStepObstacles(graphicObstacles, points, radius, miniSet);
+    addRoadObstacles(graphicObstacles, points, radius);
 
     miniLabels.forEach(function (label) {
       addBox(graphicObstacles, label.box, 12);
@@ -772,7 +777,7 @@
         header.svg,
         renderStartLabel(startLabel, theme),
         renderRewardLabel(rewardLabel, theme),
-        renderSteps(points, radius, theme, miniSet, state.showNumbers),
+        renderSteps(points, radius, theme, miniSet, state.showNumbers, finalRewardGraphic),
         renderMiniLabels(miniLabels, theme),
         state.showNumbers ? '' : renderFinalMarker(finalPoint, radius, theme),
       '</svg>'
@@ -1024,7 +1029,7 @@
     return radius + clamp(Math.round(radius * 0.28), 20, 28);
   }
 
-  function renderSteps(points, radius, theme, miniSet, showNumbers) {
+  function renderSteps(points, radius, theme, miniSet, showNumbers, finalRewardGraphic) {
     return points.map(function (point) {
       var isFinal = point.index === points.length;
       var isMini = !!miniSet[point.index] && !isFinal;
@@ -1038,7 +1043,7 @@
         isFinal ? '<polygon points="' + starPoints(point.x, point.y, r * 1.64, r * 1.17, 22) + '" fill="' + theme.accent3 + '" opacity="0.92"/>' : '',
         isMini ? '<polygon points="' + starPoints(point.x, point.y, r * 1.32, r * 1.08, 14) + '" fill="' + theme.accent3 + '" opacity="0.42"/>' : '',
         isFinal ? '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + round(r * 1.28) + '" fill="' + theme.accent3 + '" opacity="0.18"/>' : '',
-        isFinal ? renderFinalRewardIcon(point, r, theme) : '',
+        isFinal && finalRewardGraphic && finalRewardGraphic.enabled ? renderFinalRewardIcon(point, r, theme, finalRewardGraphic.url) : '',
         isFinal ? renderFinalRewardRibbons(point, r, theme) : '',
         '<circle cx="' + (point.x + (isFinal ? 11 : 8)) + '" cy="' + (point.y + (isFinal ? 15 : 12)) + '" r="' + r + '" fill="#000000" opacity="' + (isFinal ? 0.18 : (isMini ? 0.15 : 0.12)) + '"/>',
         '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + r + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + strokeWidth + '"/>',
@@ -1060,7 +1065,7 @@
     }).join('');
   }
 
-  function renderFinalRewardIcon(point, radius, theme) {
+  function renderFinalRewardIcon(point, radius, theme, assetUrl) {
     var size = round(clamp(radius * 1.42, 144, 230));
     var cx = clamp(point.x - radius * 1.02, 90 + size / 2, BOARD.width - 90 - size / 2);
     var cy = clamp(point.y - radius * 1.05, 90 + size / 2, BOARD.height - 90 - size / 2);
@@ -1070,8 +1075,8 @@
     var motif = theme.motifs.mainRewardGift || 'gift';
     var art;
 
-    if (theme.assets.mainRewardGift) {
-      art = svgImage(theme.assets.mainRewardGift, 'x="' + round(x + artPad) + '" y="' + round(y + artPad) + '" width="' + round(size - artPad * 2) + '" height="' + round(size - artPad * 2) + '" preserveAspectRatio="xMidYMid meet"');
+    if (assetUrl) {
+      art = svgImage(assetUrl, 'x="' + round(x + artPad) + '" y="' + round(y + artPad) + '" width="' + round(size - artPad * 2) + '" height="' + round(size - artPad * 2) + '" preserveAspectRatio="xMidYMid meet"');
     } else {
       art = renderMotif(motif, theme, x + artPad, y + artPad, size - artPad * 2, size - artPad * 2);
     }
@@ -1343,32 +1348,37 @@
       var p2 = points[i + 1];
       var dx = p2.x - p1.x;
       var dy = p2.y - p1.y;
-      var wave = ((i % 2 === 0) ? 1 : -1) * clamp(Math.abs(dx) * 0.035, 8, 28);
-      var c1x;
-      var c1y;
-      var c2x;
-      var c2y;
-      var side;
-      var turn;
+      var controls = pathControls(p1, p2, dx, dy, i);
 
-      if (p1.row === p2.row) {
-        c1x = p1.x + dx * 0.38;
-        c1y = p1.y + wave;
-        c2x = p2.x - dx * 0.38;
-        c2y = p2.y + wave;
-      } else {
-        side = p1.x > BOARD.width / 2 ? 1 : -1;
-        turn = clamp(Math.abs(dy) * 0.38, 185, 230);
-        c1x = clamp(p1.x + side * turn, 170, BOARD.width - 170);
-        c1y = p1.y;
-        c2x = clamp(p2.x + side * turn, 170, BOARD.width - 170);
-        c2y = p2.y;
-      }
-
-      path += ' C' + round(c1x) + ' ' + round(c1y) + ' ' + round(c2x) + ' ' + round(c2y) + ' ' + p2.x + ' ' + p2.y;
+      path += ' C' + round(controls.c1x) + ' ' + round(controls.c1y) + ' ' + round(controls.c2x) + ' ' + round(controls.c2y) + ' ' + p2.x + ' ' + p2.y;
     }
 
     return path;
+  }
+
+  function pathControls(p1, p2, dx, dy, index) {
+    var wave = ((index % 2 === 0) ? 1 : -1) * clamp(Math.abs(dx) * 0.035, 8, 28);
+    var side;
+    var turn;
+
+    if (p1.row === p2.row) {
+      return {
+        c1x: p1.x + dx * 0.38,
+        c1y: p1.y + wave,
+        c2x: p2.x - dx * 0.38,
+        c2y: p2.y + wave
+      };
+    }
+
+    side = p1.x > BOARD.width / 2 ? 1 : -1;
+    turn = clamp(Math.abs(dy) * 0.38, 185, 230);
+
+    return {
+      c1x: clamp(p1.x + side * turn, 170, BOARD.width - 170),
+      c1y: p1.y,
+      c2x: clamp(p2.x + side * turn, 170, BOARD.width - 170),
+      c2y: p2.y
+    };
   }
 
   function buildGraphics(state, uploads, theme, points, miniSet, baseObstacles) {
@@ -1381,11 +1391,12 @@
       var box = null;
       var i;
 
+      if (slot.id === 'mainRewardGift') return;
       if (state.graphicSlots[slot.id] === false) return;
 
       for (i = 0; i < scales.length; i += 1) {
         activeSlot = resizeGraphicSlot(slot, scales[i]);
-        box = findSafeGraphicBox(activeSlot, obstacles, points, miniSet);
+        box = findSafeGraphicBox(activeSlot, obstacles, points, miniSet, stepRadius(state.stepCount));
         if (box) break;
       }
 
@@ -1398,7 +1409,7 @@
     return pieces.join('');
   }
 
-  function findSafeGraphicBox(slot, obstacles, points, miniSet) {
+  function findSafeGraphicBox(slot, obstacles, points, miniSet, radius) {
     var preferred = preferredGraphicPosition(slot, points, miniSet);
     var candidates = [];
     var x;
@@ -1500,23 +1511,24 @@
     var px = preferred.x + slot.width / 2;
     var py = preferred.y + slot.height / 2;
     var bandCenter = (slot.band[0] + slot.band[1]) / 2;
-    var edgePenalty = cx > 590 && cx < 1510 ? 190 : 0;
 
-    return Math.abs(cx - px) + Math.abs(cy - py) + Math.abs(cy - bandCenter) * 0.45 + edgePenalty;
+    return Math.abs(cx - px) + Math.abs(cy - py) + Math.abs(cy - bandCenter) * 0.45;
   }
 
   function renderGraphicSlot(slot, theme, box, upload) {
-    var themeAsset = theme.assets[slot.id];
+    var themeAsset = upload && upload.dataUrl ? upload.dataUrl : theme.assets[slot.id];
 
-    if (upload && upload.dataUrl) {
-      return renderImage(upload.dataUrl, box);
-    }
-
-    if (themeAsset) {
-      return renderImage(themeAsset, box);
-    }
+    if (themeAsset) return renderImage(themeAsset, box);
 
     return renderMotif(theme.motifs[slot.id] || slot.motif, theme, box.x, box.y, box.w, box.h);
+  }
+
+  function graphicAssetUrl(theme, uploads, slotId) {
+    if (uploads && uploads[slotId] && uploads[slotId].dataUrl) {
+      return uploads[slotId].dataUrl;
+    }
+
+    return theme.assets[slotId] || '';
   }
 
   function renderImage(url, box) {
@@ -1840,22 +1852,27 @@
     points.forEach(function (point) {
       var isFinal = point.index === points.length;
       var isMini = miniSet && miniSet[point.index] && !isFinal;
-      var r = isFinal ? finalBadgeRadius(radius) * 1.65 : (isMini ? miniBadgeRadius(radius) * 1.32 : radius + 18);
+      var r = isFinal ? finalBadgeRadius(radius) * 1.95 : (isMini ? miniBadgeRadius(radius) * 1.38 : radius + 24);
 
       addBox(obstacles, { x: point.x - r, y: point.y - r, w: r * 2, h: r * 2 }, 0);
     });
   }
 
-  function addPathObstacles(obstacles, points, pad) {
+  function addRoadObstacles(obstacles, points, radius) {
+    var pad = radius * 1.58;
+
     for (var i = 0; i < points.length - 1; i += 1) {
       var a = points[i];
       var b = points[i + 1];
-      addBox(obstacles, {
-        x: Math.min(a.x, b.x),
-        y: Math.min(a.y, b.y),
-        w: Math.abs(a.x - b.x),
-        h: Math.abs(a.y - b.y)
-      }, pad);
+      var controls = pathControls(a, b, b.x - a.x, b.y - a.y, i);
+      var xs = [a.x, b.x, controls.c1x, controls.c2x];
+      var ys = [a.y, b.y, controls.c1y, controls.c2y];
+      var minX = Math.min.apply(Math, xs);
+      var maxX = Math.max.apply(Math, xs);
+      var minY = Math.min.apply(Math, ys);
+      var maxY = Math.max.apply(Math, ys);
+
+      addBox(obstacles, { x: minX, y: minY, w: maxX - minX, h: maxY - minY }, pad);
     }
   }
 
