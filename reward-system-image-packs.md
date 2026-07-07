@@ -14,7 +14,7 @@ The generated source packs can stay in numbered folders, but Shopify theme asset
 - `reward-system-theme-{theme}-sticker.png`
 - `reward-system-theme-{theme}-path-texture.png`
 
-Current themes use these slugs: `castle`, `princess`, `garden`, `space`, `ocean`, `candy`, `dino`.
+Current themes use these slugs: `castle`, `princess`, `garden`, `space`, `ocean`, `candy`, `dino`, `farm`, `jungle`.
 
 To replace art for an existing theme, keep the same production filename and overwrite the file in `assets/`. No JavaScript change is needed. To add a new theme, add a matching theme object in `assets/reward-system.js`, add its asset URLs to the JSON map in `sections/reward-system.liquid`, and follow the same filename pattern.
 
@@ -73,3 +73,19 @@ To replace art for an existing theme, keep the same production filename and over
 - `miniReward07-themeDino.png` - `220x220` - Transparent PNG, small fossil badge or leaf token, no text.
 - `sticker07-themeDino.png` - `512x512` - Transparent PNG, circular reward sticker badge artwork for kids, friendly dinosaur egg medal with a tiny footprint, fern leaves and golden sparkles, jungle green warm sand and orange, centered inside a perfect circle, bold cheerful board-game style, no text, no numbers, no cut line, no mockup, transparent outside the circular badge.
 - `pathTexture07-themeDino.png` - `800x220` - Transparent seamless scatter texture tile for overlaying on a curved prehistoric path: tiny fossil chips, soft dino footprint marks, small leaf flecks, sandy stone speckles, sparse and randomized across the full canvas, tileable on all edges, no continuous trail strip, no borders, no lane lines, no circles, no numbers, no text.
+
+## Pack 08: Farm Friends
+
+- `background08-themeFarm.jpg` - `1200x2000` - Cheerful farm reward-map background for children, sunny countryside, red barn and silo near the edges, soft green fields, hay bales, fences, apple trees, friendly cow, sheep, pig, horse and chickens placed around the border, warm cream open center for a winding reward path, playful board-game illustration style, no text, no numbers, no path.
+- `reward08-themeFarm.png` - `300x300` - Transparent PNG, cute red barn prize badge with golden hay, apples, tiny sparkles and a ribbon feel, centered, bold cheerful children's board-game style, no text, no numbers, no border, no mockup.
+- `miniReward08-themeFarm.png` - `220x220` - Transparent PNG, small shiny apple-and-hay token with a tiny star sparkle, farm animal reward style, centered, no text, no numbers, no border.
+- `sticker08-themeFarm.png` - `512x512` - Transparent PNG, circular reward sticker badge artwork for kids, smiling farm animal medal with a cow face, apple leaves, hay, tiny horseshoe sparkle and warm golden rim, centered inside a perfect circle, bold cheerful board-game style, no text, no numbers, no cut line, no mockup, transparent outside the circular badge.
+- `pathTexture08-themeFarm.png` - `800x220` - Transparent seamless scatter texture tile for overlaying on a curved farm path: small straw flecks, tiny hoof marks, soft dirt speckles, little wheat grains, a few leaf chips, sparse and randomized across the full canvas, tileable on all edges, no continuous road strip, no borders, no lane lines, no circles, no numbers, no text.
+
+## Pack 09: Jungle Safari
+
+- `background09-themeJungle.jpg` - `1200x2000` - Warm jungle safari reward-map background for children, African savanna jungle mix, acacia trees, tall grasses, tropical leaves around edges, distant gentle hills, friendly lion, elephant, giraffe, zebra and monkey placed around the border, golden sunlight, large calm open center for a winding reward path, playful board-game illustration style, no text, no numbers, no path.
+- `reward09-themeJungle.png` - `300x300` - Transparent PNG, heroic safari reward badge with a friendly lion face, golden sun rays, jungle leaves and tiny sparkles, centered, bold cheerful children's board-game style, no text, no numbers, no border, no mockup.
+- `miniReward09-themeJungle.png` - `220x220` - Transparent PNG, small paw-print safari token with green leaves and golden sparkle accents, centered, no text, no numbers, no border.
+- `sticker09-themeJungle.png` - `512x512` - Transparent PNG, circular reward sticker badge artwork for kids, friendly lion cub medal with paw print, acacia leaves, warm golden rim and tiny safari sparkles, centered inside a perfect circle, bold cheerful board-game style, no text, no numbers, no cut line, no mockup, transparent outside the circular badge.
+- `pathTexture09-themeJungle.png` - `800x220` - Transparent seamless scatter texture tile for overlaying on a curved jungle safari path: tiny paw prints, soft sandy speckles, small leaf flecks, faint grass strokes, warm pebble dots, sparse and randomized across the full canvas, tileable on all edges, no continuous road strip, no borders, no lane lines, no circles, no numbers, no text.

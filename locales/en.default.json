@@ -489,7 +489,9 @@
         "space": "Space Quest",
         "ocean": "Ocean Adventure",
         "candy": "Candy Parade",
-        "dino": "Dino Trail"
+        "dino": "Dino Trail",
+        "farm": "Farm Friends",
+        "jungle": "Jungle Safari"
       },
       "presets": {
         "half": "Half",

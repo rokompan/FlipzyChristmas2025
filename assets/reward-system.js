@@ -19,7 +19,9 @@
       space: 'Space Quest',
       ocean: 'Ocean Adventure',
       candy: 'Candy Parade',
-      dino: 'Dino Trail'
+      dino: 'Dino Trail',
+      farm: 'Farm Friends',
+      jungle: 'Jungle Safari'
     },
     status: {
       saved: 'Saved locally',
@@ -272,6 +274,72 @@
       motifs: {
         mainRewardGift: 'gift',
         miniRewardGift: 'leafSprig'
+      }
+    },
+    {
+      id: 'farm',
+      name: 'Farm Friends',
+      background: '#fff4d9',
+      backgroundAlt: '#dceec3',
+      backgroundBand: '#f0c987',
+      title: '#4d3325',
+      text: '#5b4937',
+      pathOuter: '#9b6b3a',
+      pathInner: '#e9cb85',
+      pathDash: '#fff4c7',
+      pathAccent: '#c88f4d',
+      circleFill: '#fffdf5',
+      circleStroke: '#7f5a34',
+      circleText: '#3f2a1d',
+      miniFill: '#f5c84d',
+      miniStroke: '#a3681d',
+      miniText: '#33230d',
+      rewardFill: '#d86d4e',
+      rewardStroke: '#7a3a28',
+      rewardText: '#ffffff',
+      labelFill: '#fffaf0',
+      labelStroke: '#d7b676',
+      accent: '#d86d4e',
+      accent2: '#6f9f58',
+      accent3: '#f5c84d',
+      roadStyle: 'farm',
+      roadDecor: 'hoof',
+      motifs: {
+        mainRewardGift: 'barn',
+        miniRewardGift: 'apple'
+      }
+    },
+    {
+      id: 'jungle',
+      name: 'Jungle Safari',
+      background: '#fff1c7',
+      backgroundAlt: '#d9efb4',
+      backgroundBand: '#e7c16e',
+      title: '#284421',
+      text: '#3d5130',
+      pathOuter: '#667a35',
+      pathInner: '#d9bf68',
+      pathDash: '#fff3bd',
+      pathAccent: '#9b7a39',
+      circleFill: '#fffdf3',
+      circleStroke: '#4f7d34',
+      circleText: '#273c20',
+      miniFill: '#f2bd43',
+      miniStroke: '#9d671f',
+      miniText: '#35250d',
+      rewardFill: '#e27a45',
+      rewardStroke: '#8a4a27',
+      rewardText: '#ffffff',
+      labelFill: '#fffaf0',
+      labelStroke: '#c9b56c',
+      accent: '#e27a45',
+      accent2: '#3f8b58',
+      accent3: '#f2bd43',
+      roadStyle: 'jungle',
+      roadDecor: 'paw',
+      motifs: {
+        mainRewardGift: 'safariBadge',
+        miniRewardGift: 'pawToken'
       }
     }
   ];
@@ -761,6 +829,12 @@
       pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.accent2) + '" stroke-width="' + round(radius * 0.1) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 1.1) + ' ' + round(radius * 0.9) + '" opacity="0.5"/>');
     } else if (theme.roadStyle === 'dino') {
       pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.pathOuter) + '" stroke-width="' + round(radius * 0.18) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.25) + ' ' + round(radius * 0.65) + '" opacity="0.65"/>');
+    } else if (theme.roadStyle === 'farm') {
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.pathOuter) + '" stroke-width="' + round(radius * 0.17) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.18) + ' ' + round(radius * 0.52) + '" opacity="0.62"/>');
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.1) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.52) + ' ' + round(radius * 0.7) + '" opacity="0.86"/>');
+    } else if (theme.roadStyle === 'jungle') {
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + (theme.pathAccent || theme.pathOuter) + '" stroke-width="' + round(radius * 0.18) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.22) + ' ' + round(radius * 0.58) + '" opacity="0.56"/>');
+      pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.11) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.44) + ' ' + round(radius * 0.65) + '" opacity="0.82"/>');
     } else {
       pieces.push('<path d="' + pathD + '" fill="none" stroke="' + theme.pathDash + '" stroke-width="' + round(radius * 0.14) + '" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="' + round(radius * 0.6) + ' ' + round(radius * 0.55) + '" opacity="0.92"/>');
     }
@@ -905,6 +979,14 @@
 
     if (kind === 'footprint') {
       return '<g fill="' + theme.pathOuter + '"><ellipse cx="' + round(x) + '" cy="' + round(y) + '" rx="' + round(size * 0.48) + '" ry="' + round(size * 0.68) + '" transform="rotate(' + (index % 2 ? -18 : 18) + ' ' + round(x) + ' ' + round(y) + ')"/><circle cx="' + round(x - size * 0.38) + '" cy="' + round(y - size * 0.75) + '" r="' + round(size * 0.18) + '"/><circle cx="' + round(x) + '" cy="' + round(y - size * 0.88) + '" r="' + round(size * 0.18) + '"/><circle cx="' + round(x + size * 0.38) + '" cy="' + round(y - size * 0.75) + '" r="' + round(size * 0.18) + '"/></g>';
+    }
+
+    if (kind === 'hoof') {
+      return '<g fill="' + theme.pathOuter + '" opacity="0.82"><ellipse cx="' + round(x - size * 0.25) + '" cy="' + round(y) + '" rx="' + round(size * 0.24) + '" ry="' + round(size * 0.56) + '" transform="rotate(' + (index % 2 ? -16 : 16) + ' ' + round(x - size * 0.25) + ' ' + round(y) + ')"/><ellipse cx="' + round(x + size * 0.25) + '" cy="' + round(y) + '" rx="' + round(size * 0.24) + '" ry="' + round(size * 0.56) + '" transform="rotate(' + (index % 2 ? -16 : 16) + ' ' + round(x + size * 0.25) + ' ' + round(y) + ')"/></g>';
+    }
+
+    if (kind === 'paw') {
+      return '<g fill="' + theme.pathOuter + '" opacity="0.82"><ellipse cx="' + round(x) + '" cy="' + round(y + size * 0.25) + '" rx="' + round(size * 0.46) + '" ry="' + round(size * 0.34) + '"/><circle cx="' + round(x - size * 0.5) + '" cy="' + round(y - size * 0.2) + '" r="' + round(size * 0.18) + '"/><circle cx="' + round(x - size * 0.16) + '" cy="' + round(y - size * 0.42) + '" r="' + round(size * 0.18) + '"/><circle cx="' + round(x + size * 0.16) + '" cy="' + round(y - size * 0.42) + '" r="' + round(size * 0.18) + '"/><circle cx="' + round(x + size * 0.5) + '" cy="' + round(y - size * 0.2) + '" r="' + round(size * 0.18) + '"/></g>';
     }
 
     if (kind === 'sprinkle') {
@@ -1511,6 +1593,36 @@
         '<path d="M50 54 C63 75 76 63 50 54 Z" fill="' + theme.accent + '" stroke="' + theme.circleStroke + '" stroke-width="3"/>',
         '<circle cx="50" cy="54" r="9" fill="' + theme.accent3 + '" stroke="' + theme.circleStroke + '" stroke-width="3"/>',
         '<path d="M50 63 V91" stroke="' + theme.accent2 + '" stroke-width="6" stroke-linecap="round"/>'
+      ].join('');
+    } else if (name === 'barn') {
+      body = [
+        '<path d="M16 42 L50 18 L84 42 V86 H16 Z" fill="' + theme.accent + '" stroke="' + theme.rewardStroke + '" stroke-width="4"/>',
+        '<path d="M27 86 V57 H73 V86" fill="' + theme.labelFill + '" stroke="' + theme.rewardStroke + '" stroke-width="4"/>',
+        '<path d="M29 59 L71 84 M71 59 L29 84" stroke="' + theme.rewardStroke + '" stroke-width="4" stroke-linecap="round"/>',
+        '<rect x="39" y="35" width="22" height="16" rx="3" fill="' + theme.backgroundAlt + '" stroke="' + theme.rewardStroke + '" stroke-width="3"/>',
+        '<path d="M17 43 H83" stroke="' + theme.labelFill + '" stroke-width="5" opacity="0.78"/>'
+      ].join('');
+    } else if (name === 'apple') {
+      body = [
+        '<path d="M50 37 C36 27 21 37 23 57 C25 79 39 90 50 80 C61 90 75 79 77 57 C79 37 64 27 50 37 Z" fill="' + theme.accent + '" stroke="' + theme.rewardStroke + '" stroke-width="4"/>',
+        '<path d="M50 36 C51 26 57 19 65 17" fill="none" stroke="' + theme.rewardStroke + '" stroke-width="5" stroke-linecap="round"/>',
+        '<path d="M57 25 C70 21 78 28 75 39 C64 40 57 35 57 25 Z" fill="' + theme.accent2 + '" stroke="' + theme.rewardStroke + '" stroke-width="3"/>',
+        '<path d="M34 49 C29 60 32 70 40 77" fill="none" stroke="' + theme.labelFill + '" stroke-width="5" stroke-linecap="round" opacity="0.65"/>'
+      ].join('');
+    } else if (name === 'safariBadge') {
+      body = [
+        '<circle cx="50" cy="51" r="34" fill="' + theme.accent3 + '" stroke="' + theme.rewardStroke + '" stroke-width="4"/>',
+        '<path d="M28 70 C35 53 44 43 50 27 C56 43 65 53 72 70 Z" fill="' + theme.accent + '" stroke="' + theme.rewardStroke + '" stroke-width="4" stroke-linejoin="round"/>',
+        '<circle cx="39" cy="51" r="4" fill="' + theme.labelFill + '"/><circle cx="61" cy="51" r="4" fill="' + theme.labelFill + '"/>',
+        '<path d="M43 65 C48 69 53 69 58 65" fill="none" stroke="' + theme.labelFill + '" stroke-width="4" stroke-linecap="round"/>',
+        '<polygon points="' + starPoints(75, 23, 10, 4, 5) + '" fill="' + theme.labelFill + '"/>'
+      ].join('');
+    } else if (name === 'pawToken') {
+      body = [
+        '<circle cx="50" cy="53" r="33" fill="' + theme.accent3 + '" stroke="' + theme.rewardStroke + '" stroke-width="4"/>',
+        '<ellipse cx="50" cy="62" rx="17" ry="13" fill="' + theme.accent2 + '"/>',
+        '<circle cx="31" cy="43" r="8" fill="' + theme.accent2 + '"/><circle cx="43" cy="32" r="8" fill="' + theme.accent2 + '"/><circle cx="57" cy="32" r="8" fill="' + theme.accent2 + '"/><circle cx="69" cy="43" r="8" fill="' + theme.accent2 + '"/>',
+        '<polygon points="' + starPoints(76, 74, 8, 3, 5) + '" fill="' + theme.labelFill + '"/>'
       ].join('');
     } else {
       body = [
