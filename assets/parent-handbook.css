@@ -467,15 +467,19 @@
   }
 
   html {
-    background: #ffffff !important;
+    background: #fffaf2 !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   body {
-    background: #ffffff !important;
-    color: #111111 !important;
+    background: #fffaf2 !important;
+    color: #2e241c !important;
     letter-spacing: 0 !important;
     margin: 0 !important;
     min-height: auto !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   body > .shopify-section-group-header-group,
@@ -493,31 +497,34 @@
 
   main,
   #MainContent {
+    background: #fffaf2 !important;
     display: block !important;
     margin: 0 !important;
     padding: 0 !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   .flipzy-handbook {
-    background: #ffffff !important;
-    color: #111111 !important;
+    background: #fffaf2 !important;
+    color: var(--ink) !important;
     font-family: Georgia, "Times New Roman", serif !important;
     font-size: 10.5pt !important;
     line-height: 1.42 !important;
-    padding: 12mm 13mm !important;
+    padding: 9mm 10mm !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   .flipzy-handbook *,
   .flipzy-handbook *::before,
   .flipzy-handbook *::after {
-    background: transparent !important;
-    box-shadow: none !important;
-    filter: none !important;
-    text-shadow: none !important;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
   }
 
   .flipzy-handbook__book {
-    background: #ffffff !important;
+    background: #fffaf2 !important;
     margin: 0 auto !important;
     max-width: none !important;
     width: 100% !important;
@@ -525,37 +532,73 @@
 
   .flipzy-handbook .cover {
     align-items: start !important;
+    background: #fffaf2 !important;
     break-after: page;
     display: grid !important;
     gap: 8mm !important;
     grid-template-columns: 1fr !important;
     min-height: auto !important;
     overflow: visible !important;
-    padding: 0 !important;
+    padding: 11mm 10mm 12mm !important;
     page-break-after: always;
+    position: relative !important;
   }
 
-  .flipzy-handbook .cover::before,
+  .flipzy-handbook .cover::before {
+    background: #f7c948 !important;
+    border-radius: 48% 52% 62% 38% !important;
+    content: "" !important;
+    display: block !important;
+    height: 70mm !important;
+    inset: -18mm -14mm auto auto !important;
+    opacity: 0.32 !important;
+    position: absolute !important;
+    transform: rotate(-14deg) !important;
+    width: 70mm !important;
+    z-index: 0 !important;
+  }
+
   .flipzy-handbook .cover::after {
-    display: none !important;
+    background: #7db9d8 !important;
+    border-radius: 60% 40% 48% 52% !important;
+    bottom: -18mm !important;
+    content: "" !important;
+    display: block !important;
+    height: 58mm !important;
+    left: -18mm !important;
+    opacity: 0.22 !important;
+    position: absolute !important;
+    width: 58mm !important;
+    z-index: 0 !important;
+  }
+
+  .flipzy-handbook .cover > * {
+    position: relative !important;
+    z-index: 1 !important;
   }
 
   .flipzy-handbook .eyebrow {
-    color: #4b3863 !important;
-    font-size: 8pt !important;
+    color: var(--purple) !important;
+    font-family: var(--font-heading-family, Poppins, system-ui, -apple-system, Segoe UI, sans-serif) !important;
+    font-size: 8.5pt !important;
+    font-weight: 800 !important;
     letter-spacing: 0.12em !important;
     margin: 0 0 4mm !important;
+    text-transform: uppercase !important;
   }
 
   .flipzy-handbook h1 {
-    color: #1e1712 !important;
+    color: var(--ink) !important;
+    font-family: var(--font-heading-family, Poppins, system-ui, -apple-system, Segoe UI, sans-serif) !important;
     font-size: 30pt !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
     line-height: 1.04 !important;
     margin: 0 0 5mm !important;
   }
 
   .flipzy-handbook .subtitle {
-    color: #4d4036 !important;
+    color: var(--muted) !important;
     font-size: 12.5pt !important;
     line-height: 1.35 !important;
     margin: 0 0 8mm !important;
@@ -565,6 +608,7 @@
   .flipzy-handbook .hero-img {
     border-radius: 0 !important;
     display: block !important;
+    filter: drop-shadow(0 10mm 9mm rgba(74, 48, 24, 0.14)) !important;
     height: auto !important;
     margin: 0 auto !important;
     max-height: 108mm !important;
@@ -574,7 +618,8 @@
   }
 
   .flipzy-handbook .caption {
-    color: #6a625b !important;
+    color: var(--muted) !important;
+    font-family: var(--font-body-family, Poppins, system-ui, -apple-system, Segoe UI, sans-serif) !important;
     font-size: 7.5pt !important;
     line-height: 1.3 !important;
     margin-top: 2.5mm !important;
@@ -582,14 +627,21 @@
   }
 
   .flipzy-handbook .toc {
+    background: #fff7e8 !important;
+    border-bottom: 0.25mm solid var(--line) !important;
+    border-top: 0.25mm solid var(--line) !important;
     break-before: page;
     page-break-before: always;
+    padding: 10mm !important;
   }
 
   .flipzy-handbook h2 {
     break-after: avoid;
-    color: #1e1712 !important;
+    color: var(--ink) !important;
+    font-family: var(--font-heading-family, Poppins, system-ui, -apple-system, Segoe UI, sans-serif) !important;
     font-size: 18pt !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
     line-height: 1.15 !important;
     margin: 0 0 5mm !important;
     page-break-after: avoid;
@@ -597,8 +649,11 @@
 
   .flipzy-handbook h3 {
     break-after: avoid;
-    color: #1e1712 !important;
+    color: var(--ink) !important;
+    font-family: var(--font-heading-family, Poppins, system-ui, -apple-system, Segoe UI, sans-serif) !important;
     font-size: 13pt !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
     line-height: 1.22 !important;
     margin: 7mm 0 2.5mm !important;
     page-break-after: avoid;
@@ -606,15 +661,18 @@
 
   .flipzy-handbook h4 {
     break-after: avoid;
-    color: #1e1712 !important;
+    color: var(--ink) !important;
+    font-family: var(--font-heading-family, Poppins, system-ui, -apple-system, Segoe UI, sans-serif) !important;
     font-size: 11pt !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
     line-height: 1.2 !important;
     margin: 0 0 2mm !important;
     page-break-after: avoid;
   }
 
   .flipzy-handbook p {
-    color: #241c16 !important;
+    color: var(--ink) !important;
     margin: 0 0 3.4mm !important;
     orphans: 3;
     widows: 3;
@@ -623,22 +681,21 @@
   .flipzy-handbook .lead,
   .flipzy-handbook .pull {
     break-before: avoid;
-    color: #2d241d !important;
+    color: #4e3f33 !important;
     font-size: 11.5pt !important;
     line-height: 1.45 !important;
     margin: 0 0 4mm !important;
     page-break-before: avoid;
   }
 
-  .flipzy-handbook section,
-  .flipzy-handbook .toc {
-    border-top: 0 !important;
+  .flipzy-handbook section {
     padding: 0 0 6mm !important;
   }
 
   .flipzy-handbook .chapter {
+    border-top: 0.25mm solid var(--line) !important;
     break-inside: auto !important;
-    padding-top: 7mm !important;
+    padding: 8mm 10mm 6mm !important;
   }
 
   .flipzy-handbook .toc h2 {
@@ -652,8 +709,10 @@
 
   .flipzy-handbook .toc-grid a {
     border-bottom: 0.2mm dotted #cfc5b8 !important;
-    color: #241c16 !important;
+    color: var(--ink) !important;
+    font-family: var(--font-body-family, Poppins, system-ui, -apple-system, Segoe UI, sans-serif) !important;
     font-size: 9.5pt !important;
+    font-weight: 600 !important;
     line-height: 1.35 !important;
     padding: 0 0 2mm !important;
   }
@@ -670,17 +729,27 @@
   .flipzy-handbook .note,
   .flipzy-handbook figure img,
   .flipzy-handbook .full-img img {
-    box-shadow: none !important;
+    box-shadow: 0 2mm 8mm rgba(74, 48, 24, 0.06) !important;
   }
 
   .flipzy-handbook .routine-card,
   .flipzy-handbook .scenario,
   .flipzy-handbook .note,
   .flipzy-handbook .method div {
+    background: #ffffff !important;
     border: 0.25mm solid #ded6cc !important;
     break-inside: avoid !important;
+    border-radius: 2.5mm !important;
     page-break-inside: avoid !important;
     padding: 4mm !important;
+  }
+
+  .flipzy-handbook .note {
+    border-left: 1.7mm solid var(--green) !important;
+  }
+
+  .flipzy-handbook .warning {
+    border-left-color: var(--orange) !important;
   }
 
   .flipzy-handbook .routine-card p,
@@ -700,10 +769,14 @@
 
   .flipzy-handbook .routine-head span,
   .flipzy-handbook .chip {
+    background: #fff3c4 !important;
     border: 0.2mm solid #ded6cc !important;
-    color: #342b23 !important;
+    border-radius: 999px !important;
+    color: #70551b !important;
     display: inline-block !important;
+    font-family: var(--font-body-family, Poppins, system-ui, -apple-system, Segoe UI, sans-serif) !important;
     font-size: 7.5pt !important;
+    font-weight: 700 !important;
     line-height: 1.2 !important;
     margin-top: 1.5mm !important;
     padding: 1.2mm 2mm !important;
@@ -716,13 +789,21 @@
 
   .flipzy-handbook figure img,
   .flipzy-handbook .full-img img {
-    border-radius: 0 !important;
+    background: #ffffff !important;
+    border-radius: 3mm !important;
     display: block !important;
     height: auto !important;
     max-height: 105mm !important;
     max-width: 100% !important;
     object-fit: contain !important;
     width: auto !important;
+  }
+
+  .flipzy-handbook .hero-img {
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    filter: drop-shadow(0 10mm 9mm rgba(74, 48, 24, 0.14)) !important;
   }
 
   .flipzy-handbook .image-row figure img {
@@ -734,8 +815,9 @@
   }
 
   .flipzy-handbook .age-table {
+    background: #ffffff !important;
     border: 0.25mm solid #ded6cc !important;
-    border-radius: 0 !important;
+    border-radius: 2.5mm !important;
     margin: 5mm 0 !important;
   }
 
@@ -746,8 +828,11 @@
   }
 
   .flipzy-handbook .age-table th {
-    color: #241c16 !important;
+    background: #fff3c4 !important;
+    color: var(--ink) !important;
+    font-family: var(--font-body-family, Poppins, system-ui, -apple-system, Segoe UI, sans-serif) !important;
     font-size: 8pt !important;
+    font-weight: 800 !important;
   }
 
   .flipzy-handbook .pagebreak {
