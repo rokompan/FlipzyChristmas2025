@@ -474,6 +474,82 @@
       "title": "Kérdése van?",
       "text": "Írjon nekünk egy üzenetet, és mi válaszolunk Önnek e-mailben.",
       "message_label": "Az Ön üzenete"
+    },
+    "reward_system": {
+      "print": {
+        "frame_title": "Jutalomplakát nyomtatvány",
+        "document_title": "Felfedezői plakát"
+      },
+      "poster": {
+        "fallback_title": "Jutalomküldetés",
+        "for_child": "Mivel {{ child }}",
+        "mini_reward": "Kis jutalom",
+        "sticker_default_name": "Jutalom",
+        "stickers_title": "{{ child }} matricák",
+        "sticker_subtitle": "Kivágott körök ehhez a jutalomposzterhez",
+        "poster_aria": "Felfedezői plakát"
+      },
+      "ui": {
+        "title": "Cím",
+        "mini_reward_presets_aria": "Mini jutalom-beállítások",
+        "heading": "A körözési plakát készítője",
+        "child_name": "A gyermek neve",
+        "agreement": "Megállapodás",
+        "reward_label": "Jutalomcímke",
+        "start_label": "Kezdő címke",
+        "restore_defaults": "Alapértelmezett beállítások visszaállítása",
+        "show_mini_reward_labels": "Mini jutalomcímkék megjelenítése",
+        "style": "Stílus",
+        "mini_rewards": "Kis jutalmak",
+        "poster_text": "A poszter szövege",
+        "steps": "Lépések",
+        "count": "Szám",
+        "theme": "Téma",
+        "preview_aria": "A nyomravezetői plakát előnézete",
+        "print_poster_stickers": "Plakát + matricák nyomtatása",
+        "controls_aria": "A nyomravezető plakát kezelése",
+        "path": "Útvonal",
+        "mini_reward_step_selection_aria": "Mini jutalomlépés kiválasztása",
+        "show_numbers": "Számok megjelenítése"
+      },
+      "defaults": {
+        "title": "{{ child }}Jutalomküldetése",
+        "subtitle": "Minden egyes lépést azzal érdemlek ki, hogy nyugodt testtel és bátor próbálkozással végigcsinálom a megegyezett gyakorlatot.",
+        "child_name": "Mia",
+        "start_label": "Kezdés",
+        "reward_label": "Családi filmest"
+      },
+      "themes": {
+        "candy": "Cukorkaparádé",
+        "garden": "Vidám kert",
+        "castle": "A kastély kalandja",
+        "dino": "Dino Trail",
+        "jungle": "Dzsungelszafari",
+        "farm": "Farmbarátok",
+        "princess": "Hercegnő-kert",
+        "space": "Űrkaland",
+        "ocean": "Óceáni kaland"
+      },
+      "presets": {
+        "quarters": "Negyedek",
+        "clear": "Törlés",
+        "thirds": "Harmadok",
+        "half": "Fele",
+        "every_5": "Minden 5.",
+        "every_3": "Minden 3."
+      },
+      "status": {
+        "storage_full": "A tárhely megtelt",
+        "preparing_print": "Nyomtatás előkészítése...",
+        "saved": "Helyileg mentve",
+        "saving": "Mentés...",
+        "print_failed": "A nyomtatás nem sikerült",
+        "print_ready": "Nyomtatásra kész"
+      },
+      "controls": {
+        "main_reward_step": "Fő jutalomlépés"
+      },
+      "name": "Jutalmazási rendszer"
     }
   },
   "localization": {
