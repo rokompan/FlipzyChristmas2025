@@ -601,6 +601,7 @@
   RewardApp.prototype.printPoster = function () {
     var self = this;
     var svg = this.poster && this.poster.querySelector('svg');
+    var posterSvg;
     var stickerSvg = buildStickerSheetSvg(this.state, this.instanceId, this.assetMap, this.copy);
     var frame;
     var doc;
@@ -608,6 +609,12 @@
 
     if (!svg) return;
     this.setStatusKey('preparingPrint');
+    posterSvg = svg.outerHTML;
+
+    if (shouldUseInlinePrint()) {
+      this.printInline(posterSvg, stickerSvg);
+      return;
+    }
 
     frame = document.createElement('iframe');
     frame.setAttribute('title', copyText(this.copy, 'print.frameTitle', DEFAULT_COPY.print.frameTitle));
@@ -626,36 +633,13 @@
 
     if (!win || !doc) {
       frame.remove();
-      window.print();
+      this.printInline(posterSvg, stickerSvg);
       return;
     }
 
-    waitForSvgImages(svg.outerHTML + stickerSvg, window, 5000).then(function () {
+    waitForSvgImages(posterSvg + stickerSvg, window, 5000).then(function () {
       doc.open();
-      doc.write([
-        '<!doctype html>',
-        '<html>',
-          '<head>',
-            '<meta charset="utf-8">',
-            '<title>' + escapeHtml(copyText(self.copy, 'print.documentTitle', DEFAULT_COPY.print.documentTitle)) + '</title>',
-            '<style>',
-              '@page{size:A4 portrait;margin:0;}',
-              'html,body{background:#fff;margin:0;padding:0;width:210mm;}',
-              '.flipzy-print-page{break-after:page;height:297mm;overflow:hidden;page-break-after:always;width:210mm;}',
-              '.flipzy-print-page:last-child{break-after:auto;page-break-after:auto;}',
-              'svg{display:block;height:297mm;width:210mm;print-color-adjust:exact;-webkit-print-color-adjust:exact;}',
-            '</style>',
-          '</head>',
-          '<body>',
-            '<div class="flipzy-print-page">',
-              svg.outerHTML,
-            '</div>',
-            '<div class="flipzy-print-page">',
-              stickerSvg,
-            '</div>',
-          '</body>',
-        '</html>'
-      ].join(''));
+      doc.write(buildPrintDocumentHtml(copyText(self.copy, 'print.documentTitle', DEFAULT_COPY.print.documentTitle), posterSvg, stickerSvg));
       doc.close();
       return waitForSvgImages(doc.body ? doc.body.innerHTML : '', win, 2500);
     }).then(function () {
@@ -670,6 +654,55 @@
     }).catch(function () {
       self.setStatusKey('printFailed');
       frame.remove();
+      self.printInline(posterSvg, stickerSvg);
+    });
+  };
+
+  RewardApp.prototype.printInline = function (posterSvg, stickerSvg) {
+    var self = this;
+    var root = document.documentElement;
+    var host = document.querySelector('[data-flipzy-print-host]');
+    var cleanupTimer;
+    var cleaned = false;
+
+    function cleanup() {
+      if (cleaned) return;
+      cleaned = true;
+      window.clearTimeout(cleanupTimer);
+      root.classList.remove('flipzy-rewards-printing');
+      window.removeEventListener('afterprint', cleanup);
+      window.removeEventListener('focus', cleanup);
+      if (host && host.parentNode) host.parentNode.removeChild(host);
+    }
+
+    if (!document.body) {
+      window.print();
+      return;
+    }
+
+    if (host && host.parentNode) host.parentNode.removeChild(host);
+
+    host = document.createElement('div');
+    host.className = 'flipzy-rewards__print-host';
+    host.setAttribute('data-flipzy-print-host', '');
+    host.setAttribute('aria-hidden', 'true');
+    host.innerHTML = buildPrintPagesMarkup(posterSvg, stickerSvg, 'flipzy-rewards__print-page');
+    document.body.appendChild(host);
+
+    waitForSvgImages(host.innerHTML, window, 5000).then(function () {
+      return waitForPaint(window);
+    }).then(function () {
+      self.setStatusKey('printReady');
+      root.classList.add('flipzy-rewards-printing');
+      window.addEventListener('afterprint', cleanup);
+      window.addEventListener('focus', cleanup);
+      cleanupTimer = window.setTimeout(cleanup, 30000);
+      window.setTimeout(function () {
+        window.print();
+      }, 80);
+    }).catch(function () {
+      self.setStatusKey('printFailed');
+      cleanup();
       window.print();
     });
   };
@@ -1045,7 +1078,7 @@
   }
 
   function renderFinalRewardHalo(point, radius, theme, assetUrl) {
-    var size = round(clamp(radius * 2.72, 230, 330));
+    var size = round(clamp(radius * 4.35, 390, 560));
     var x = round(point.x - size / 2);
     var y = round(point.y - size / 2);
 
@@ -1472,6 +1505,55 @@
     });
   }
 
+  function shouldUseInlinePrint() {
+    var userAgent = navigator.userAgent || '';
+    var isSmallScreen = false;
+    var isiOS = /iPad|iPhone|iPod/i.test(userAgent) || (/Macintosh/i.test(userAgent) && navigator.maxTouchPoints > 1);
+    var isAndroid = /Android/i.test(userAgent);
+
+    try {
+      isSmallScreen = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+    } catch (error) {
+      isSmallScreen = false;
+    }
+
+    return Boolean(isSmallScreen || isiOS || isAndroid);
+  }
+
+  function buildPrintPagesMarkup(posterSvg, stickerSvg, pageClass) {
+    return [
+      '<div class="' + pageClass + '">',
+        posterSvg,
+      '</div>',
+      '<div class="' + pageClass + '">',
+        stickerSvg,
+      '</div>'
+    ].join('');
+  }
+
+  function buildPrintDocumentHtml(title, posterSvg, stickerSvg) {
+    return [
+      '<!doctype html>',
+      '<html>',
+        '<head>',
+          '<meta charset="utf-8">',
+          '<meta name="viewport" content="width=device-width, initial-scale=1">',
+          '<title>' + escapeHtml(title) + '</title>',
+          '<style>',
+            '@page{size:A4 portrait;margin:0;}',
+            'html,body{background:#fff;margin:0;padding:0;width:210mm;}',
+            '.flipzy-print-page{break-after:page;height:297mm;overflow:hidden;page-break-after:always;width:210mm;}',
+            '.flipzy-print-page:last-child{break-after:auto;page-break-after:auto;}',
+            'svg{display:block;height:297mm;width:210mm;print-color-adjust:exact;-webkit-print-color-adjust:exact;}',
+          '</style>',
+        '</head>',
+        '<body>',
+          buildPrintPagesMarkup(posterSvg, stickerSvg, 'flipzy-print-page'),
+        '</body>',
+      '</html>'
+    ].join('');
+  }
+
   function normalizeAssetUrl(url) {
     var normalized = String(url || '')
       .replace(/&amp;/g, '&')
@@ -1803,12 +1885,12 @@
   function sourceTextValue(source, base, key) {
     if (typeof source[key] !== 'string') return base[key];
     if (source[key] === DEFAULT_STATE[key] && base[key] !== DEFAULT_STATE[key]) return base[key];
-    return source[key];
+    return decodeHtmlEntities(source[key]);
   }
 
   function readControlValue(control) {
     if (control.type === 'checkbox') return control.checked;
-    return control.value;
+    return decodeHtmlEntities(control.value);
   }
 
   function readThemeAssetMap(root) {
@@ -1884,7 +1966,7 @@
       output = output.replace(token, replacements[key]).replace(bracketToken, replacements[key]);
     });
 
-    return output;
+    return decodeHtmlEntities(output);
   }
 
   function getThemeWithAssets(id, assetMap, copy) {
@@ -1929,7 +2011,45 @@
   }
 
   function cleanText(value) {
-    return String(value || '').replace(/\s+/g, ' ').trim();
+    return decodeHtmlEntities(value).replace(/\s+/g, ' ').trim();
+  }
+
+  function decodeHtmlEntities(value) {
+    var output = String(value || '');
+    var previous;
+    var passes = 0;
+
+    do {
+      previous = output;
+      output = output
+        .replace(/&amp;/g, '&')
+        .replace(/&quot;/g, '"')
+        .replace(/&apos;|&#39;|&#x27;/gi, "'")
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&#(\d+);/g, function (match, code) {
+          return decodeEntityCode(match, code, 10);
+        })
+        .replace(/&#x([0-9a-f]+);/gi, function (match, code) {
+          return decodeEntityCode(match, code, 16);
+        });
+      passes += 1;
+    } while (output !== previous && passes < 3);
+
+    return output;
+  }
+
+  function decodeEntityCode(match, code, radix) {
+    var number = parseInt(code, radix);
+
+    if (!isFinite(number) || number < 0 || number > 1114111) return match;
+
+    try {
+      return String.fromCodePoint(number);
+    } catch (error) {
+      return match;
+    }
   }
 
   function approxTextWidth(text, fontSize, weight) {

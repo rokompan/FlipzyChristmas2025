@@ -741,9 +741,13 @@
   size: A4 portrait;
 }
 
+.flipzy-rewards__print-host {
+  display: none;
+}
+
 @media print {
-  html,
-  body {
+  html:not(.flipzy-rewards-printing),
+  html:not(.flipzy-rewards-printing) body {
     background: #ffffff !important;
     height: 297mm;
     margin: 0 !important;
@@ -753,17 +757,17 @@
     width: 210mm;
   }
 
-  body * {
+  html:not(.flipzy-rewards-printing) body * {
     visibility: hidden !important;
   }
 
-  .flipzy-rewards__poster-frame,
-  .flipzy-rewards__poster-frame *,
-  .flipzy-rewards__poster {
+  html:not(.flipzy-rewards-printing) .flipzy-rewards__poster-frame,
+  html:not(.flipzy-rewards-printing) .flipzy-rewards__poster-frame *,
+  html:not(.flipzy-rewards-printing) .flipzy-rewards__poster {
     visibility: visible !important;
   }
 
-  .flipzy-rewards__poster-frame {
+  html:not(.flipzy-rewards-printing) .flipzy-rewards__poster-frame {
     background: #ffffff !important;
     border: 0 !important;
     border-radius: 0 !important;
@@ -781,12 +785,12 @@
     width: 210mm !important;
   }
 
-  .flipzy-rewards__controls,
-  .flipzy-rewards__toolbar {
+  html:not(.flipzy-rewards-printing) .flipzy-rewards__controls,
+  html:not(.flipzy-rewards-printing) .flipzy-rewards__toolbar {
     display: none !important;
   }
 
-  .flipzy-rewards__poster {
+  html:not(.flipzy-rewards-printing) .flipzy-rewards__poster {
     aspect-ratio: auto !important;
     border: 0 !important;
     border-radius: 0 !important;
@@ -795,7 +799,66 @@
     width: 210mm !important;
   }
 
-  .flipzy-rewards__poster svg {
+  html:not(.flipzy-rewards-printing) .flipzy-rewards__poster svg {
+    display: block !important;
+    height: 297mm !important;
+    print-color-adjust: exact;
+    width: 210mm !important;
+    -webkit-print-color-adjust: exact;
+  }
+
+  html.flipzy-rewards-printing,
+  html.flipzy-rewards-printing body {
+    background: #ffffff !important;
+    height: auto !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    width: 210mm !important;
+  }
+
+  html.flipzy-rewards-printing body > *:not(.flipzy-rewards__print-host) {
+    display: none !important;
+  }
+
+  html.flipzy-rewards-printing body * {
+    visibility: hidden !important;
+  }
+
+  html.flipzy-rewards-printing .flipzy-rewards__print-host,
+  html.flipzy-rewards-printing .flipzy-rewards__print-host * {
+    visibility: visible !important;
+  }
+
+  html.flipzy-rewards-printing .flipzy-rewards__print-host {
+    background: #ffffff !important;
+    display: block !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+    width: 210mm !important;
+  }
+
+  html.flipzy-rewards-printing .flipzy-rewards__print-page {
+    background: #ffffff !important;
+    break-after: page;
+    display: block !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    page-break-after: always;
+    padding: 0 !important;
+    width: 210mm !important;
+  }
+
+  html.flipzy-rewards-printing .flipzy-rewards__print-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  html.flipzy-rewards-printing .flipzy-rewards__print-page svg {
     display: block !important;
     height: 297mm !important;
     print-color-adjust: exact;
