@@ -731,7 +731,8 @@
     var pathD = buildPath(points);
     var pathTextureId = theme.assets.pathTexture ? svgId(instanceId + '-' + theme.id + '-path-texture') : '';
     var finalRewardGraphic = {
-      url: theme.assets.mainRewardGift || ''
+      url: theme.assets.mainRewardGift || '',
+      haloUrl: theme.assets.finalRewardHalo || ''
     };
     var posterTitle = cleanText(state.title) || copyText(copy, 'poster.posterAria', DEFAULT_COPY.poster.posterAria);
 
@@ -1018,12 +1019,11 @@
       var text = isFinal ? theme.circleText : (isMini ? theme.miniText : theme.circleText);
       var strokeWidth = isFinal ? 15 : (isMini ? 13 : 11);
       var textStroke = isFinal ? ' stroke="' + theme.labelFill + '" stroke-width="' + round(r * 0.08) + '" stroke-linejoin="round" paint-order="stroke fill"' : '';
+      var hasFinalHalo = !!(finalRewardGraphic && finalRewardGraphic.haloUrl);
       var pieces = [
-        isFinal ? '<polygon points="' + starPoints(point.x, point.y, r * 1.64, r * 1.17, 22) + '" fill="' + theme.accent3 + '" opacity="0.92"/>' : '',
+        isFinal ? renderFinalRewardHalo(point, r, theme, finalRewardGraphic && finalRewardGraphic.haloUrl) : '',
         isMini ? '<polygon points="' + starPoints(point.x, point.y, r * 1.32, r * 1.08, 14) + '" fill="' + theme.accent3 + '" opacity="0.42"/>' : '',
-        isFinal ? '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + round(r * 1.28) + '" fill="' + theme.accent3 + '" opacity="0.18"/>' : '',
-        isFinal ? renderFinalRewardIcon(point, r, theme, finalRewardGraphic && finalRewardGraphic.url) : '',
-        isFinal ? renderFinalRewardRibbons(point, r, theme) : '',
+        isFinal && !hasFinalHalo ? renderFinalRewardIcon(point, r, theme, finalRewardGraphic && finalRewardGraphic.url) : '',
         '<circle cx="' + (point.x + (isFinal ? 11 : 8)) + '" cy="' + (point.y + (isFinal ? 15 : 12)) + '" r="' + r + '" fill="#000000" opacity="' + (isFinal ? 0.18 : (isMini ? 0.15 : 0.12)) + '"/>',
         '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + r + '" fill="' + fill + '" stroke="' + stroke + '" stroke-width="' + strokeWidth + '"/>',
         isFinal ? '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + round(r - strokeWidth * 0.9) + '" fill="none" stroke="' + theme.accent3 + '" stroke-width="7" opacity="0.95"/>' : '',
@@ -1042,6 +1042,29 @@
 
       return '<g>' + pieces.join('') + '</g>';
     }).join('');
+  }
+
+  function renderFinalRewardHalo(point, radius, theme, assetUrl) {
+    var size = round(clamp(radius * 2.72, 230, 330));
+    var x = round(point.x - size / 2);
+    var y = round(point.y - size / 2);
+
+    if (assetUrl) {
+      return [
+        '<g opacity="0.99">',
+          '<circle cx="' + round(point.x + size * 0.04) + '" cy="' + round(point.y + size * 0.05) + '" r="' + round(size * 0.38) + '" fill="#000000" opacity="0.12"/>',
+          svgImage(assetUrl, 'x="' + x + '" y="' + y + '" width="' + size + '" height="' + size + '" preserveAspectRatio="xMidYMid meet"'),
+        '</g>'
+      ].join('');
+    }
+
+    return [
+      '<g opacity="0.94">',
+        '<circle cx="' + point.x + '" cy="' + point.y + '" r="' + round(radius * 1.34) + '" fill="' + theme.accent3 + '" opacity="0.2"/>',
+        '<polygon points="' + starPoints(point.x, point.y, radius * 1.64, radius * 1.17, 22) + '" fill="' + theme.accent3 + '" opacity="0.92"/>',
+        renderFinalRewardRibbons(point, radius, theme),
+      '</g>'
+    ].join('');
   }
 
   function renderFinalRewardIcon(point, radius, theme, assetUrl) {

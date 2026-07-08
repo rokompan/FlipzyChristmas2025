@@ -14,7 +14,8 @@
   background: var(--frs-bg);
   color: var(--frs-ink);
   font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  padding: 14px 10px 24px;
+  overflow-x: hidden;
+  padding: 18px 10px 42px;
 }
 
 .flipzy-rewards *,
@@ -28,9 +29,22 @@
   display: grid;
   gap: 32px;
   grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.68fr);
-  margin: 0 auto 22px;
+  margin: 0 auto 34px;
   max-width: 1220px;
-  padding: 28px 0 12px;
+  padding: 36px 0 42px;
+  position: relative;
+}
+
+.flipzy-rewards__intro::after {
+  background: linear-gradient(90deg, transparent, rgba(32, 36, 44, 0.2), transparent);
+  bottom: 0;
+  content: "";
+  height: 1px;
+  left: 50%;
+  max-width: 1120px;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 100vw;
 }
 
 .flipzy-rewards__intro-copy {
@@ -126,10 +140,24 @@
 .flipzy-rewards__shell {
   align-items: start;
   display: grid;
-  gap: 16px;
+  gap: 22px;
   grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
   margin: 0 auto;
   max-width: 1460px;
+  padding: 22px 0 58px;
+  position: relative;
+}
+
+.flipzy-rewards__shell::after {
+  background: linear-gradient(90deg, transparent, rgba(32, 36, 44, 0.2), transparent);
+  bottom: 0;
+  content: "";
+  height: 1px;
+  left: 50%;
+  max-width: 1180px;
+  position: absolute;
+  transform: translateX(-50%);
+  width: 100vw;
 }
 
 .flipzy-rewards__controls {
@@ -389,34 +417,48 @@
 
 .flipzy-rewards__toolbar {
   align-items: center;
-  display: flex;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(214, 205, 194, 0.92);
+  border-radius: 999px;
+  box-shadow: 0 14px 34px rgba(32, 36, 44, 0.08);
+  display: grid;
   gap: 12px;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  margin: 0 auto 18px;
+  max-width: min(100%, 880px);
+  padding: 9px 12px 9px 16px;
 }
 
 .flipzy-rewards__toolbar > span {
   color: var(--frs-muted);
   font-size: 13px;
   font-weight: 700;
+  justify-self: start;
 }
 
 .flipzy-rewards__toolbar > div {
   display: flex;
   flex-wrap: wrap;
   gap: 9px;
-  justify-content: end;
+  grid-column: 2;
+  justify-content: center;
 }
 
 .flipzy-rewards__primary {
   background: var(--frs-blue) !important;
   border-color: var(--frs-blue) !important;
+  box-shadow: 0 12px 22px rgba(38, 119, 153, 0.24);
   color: #ffffff !important;
+  font-size: 14px !important;
+  min-height: 46px;
+  padding: 11px 24px !important;
 }
 
 .flipzy-rewards__primary:hover {
   background: var(--frs-blue-dark) !important;
   border-color: var(--frs-blue-dark) !important;
+  box-shadow: 0 14px 26px rgba(38, 119, 153, 0.3);
+  transform: translateY(-1px);
 }
 
 .flipzy-rewards__secondary {
@@ -453,7 +495,8 @@
   border-radius: 8px;
   color: var(--frs-ink);
   font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  margin: 48px auto 0;
+  box-shadow: 0 22px 70px rgba(32, 36, 44, 0.08);
+  margin: 64px auto 0;
   max-width: 920px;
   padding: 0;
 }
@@ -609,7 +652,8 @@
 
   .flipzy-rewards__intro {
     grid-template-columns: 1fr;
-    padding-top: 12px;
+    margin-bottom: 24px;
+    padding: 16px 0 32px;
   }
 
   .flipzy-rewards__hero {
@@ -618,6 +662,7 @@
 
   .flipzy-rewards__shell {
     grid-template-columns: 1fr;
+    padding: 18px 0 42px;
   }
 
   .flipzy-rewards__controls {
@@ -657,10 +702,13 @@
 
   .flipzy-rewards__toolbar {
     align-items: stretch;
-    flex-direction: column;
+    border-radius: 14px;
+    grid-template-columns: 1fr;
+    padding: 12px;
   }
 
   .flipzy-rewards__toolbar > div {
+    grid-column: 1;
     justify-content: stretch;
   }
 
