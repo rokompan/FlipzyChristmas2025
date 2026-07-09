@@ -864,20 +864,19 @@
 
   html.flipzy-rewards-printing.flipzy-rewards-mobile-printing .flipzy-rewards__print-host {
     margin: 0 auto !important;
-    max-width: 190mm !important;
-    width: 100% !important;
+    width: 178mm !important;
   }
 
   html.flipzy-rewards-printing.flipzy-rewards-mobile-printing .flipzy-rewards__print-page {
     break-after: page;
     break-inside: avoid;
-    height: auto !important;
+    height: 252mm !important;
     line-height: 0 !important;
     margin: 0 auto !important;
-    max-width: 190mm !important;
+    overflow: hidden !important;
     page-break-after: always;
     page-break-inside: avoid;
-    width: 100% !important;
+    width: 178mm !important;
   }
 
   html.flipzy-rewards-printing.flipzy-rewards-mobile-printing .flipzy-rewards__print-page:last-child {
@@ -886,9 +885,8 @@
   }
 
   html.flipzy-rewards-printing.flipzy-rewards-mobile-printing .flipzy-rewards__print-page svg {
-    height: auto !important;
+    height: 252mm !important;
     margin: 0 auto !important;
-    max-width: 190mm !important;
-    width: 100% !important;
+    width: 178mm !important;
   }
 }
