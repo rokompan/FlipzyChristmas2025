@@ -7,8 +7,7 @@
   var DEFAULT_COPY = {
     defaults: {
       childName: 'Mia',
-      title: "{{ child }}'s Reward Quest",
-      subtitle: 'I earn each step by finishing my agreed routine with a calm body and a brave try.',
+      title: 'I earn each step by finishing my agreed routine with a calm body and a brave try.',
       startLabel: 'Start',
       rewardLabel: 'Family movie night'
     },
@@ -37,7 +36,6 @@
     poster: {
       posterAria: 'Reward poster',
       fallbackTitle: 'Reward Quest',
-      forChild: 'For {{ child }}',
       miniReward: 'Mini reward',
       stickerDefaultName: 'Reward',
       stickersTitle: '{{ child }} stickers',
@@ -346,8 +344,7 @@
 
   var DEFAULT_STATE = {
     childName: 'Mia',
-    title: "Mia's Reward Quest",
-    subtitle: 'I earn each step by finishing my agreed routine with a calm body and a brave try.',
+    title: 'I earn each step by finishing my agreed routine with a calm body and a brave try.',
     startLabel: 'Start',
     rewardLabel: 'Family movie night',
     stepCount: 24,
@@ -1214,32 +1211,25 @@
   function layoutHeader(state, theme, copy) {
     var child = cleanText(state.childName);
     var title = cleanText(state.title) || copyText(copy, 'poster.fallbackTitle', DEFAULT_COPY.poster.fallbackTitle);
-    var subtitle = cleanText(state.subtitle);
-    var titleLayout = layoutText(title, 1540, 88, 58, 2);
-    var subtitleLayout = layoutText(subtitle, 1580, 34, 25, 2);
-    var y = child ? 210 : 142;
+    var titleLayout = layoutText(title, 1600, 78, 46, 3);
+    var childLayout = layoutText(child, 1280, 64, 42, 1);
+    var titleY = child ? 242 : 142;
     var pieces = [];
-    var titleY = y;
-    var subtitleY;
     var bottom;
     var halo = theme.assets && theme.assets.background ? theme.labelFill : '';
 
     if (child) {
-      var badgeText = copyText(copy, 'poster.forChild', DEFAULT_COPY.poster.forChild, { child: child });
-      var badgeW = clamp(approxTextWidth(badgeText, 28, 800) + 64, 180, 760);
-      pieces.push('<rect x="' + (1050 - badgeW / 2) + '" y="82" width="' + badgeW + '" height="54" rx="27" fill="' + theme.labelFill + '" stroke="' + theme.labelStroke + '" stroke-width="4"/>');
-      pieces.push('<text x="1050" y="118" text-anchor="middle" fill="' + theme.text + '" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="900">' + escapeHtml(badgeText) + '</text>');
+      var childText = childLayout.lines[0] || child;
+      var badgeH = Math.round(childLayout.fontSize * 1.36);
+      var badgeW = clamp(approxTextWidth(childText, childLayout.fontSize, 900) + 100, 260, 1380);
+      var badgeY = 76;
+      var childY = badgeY + badgeH / 2 + round(childLayout.fontSize * 0.34);
+      pieces.push('<rect x="' + (1050 - badgeW / 2) + '" y="' + badgeY + '" width="' + badgeW + '" height="' + badgeH + '" rx="' + round(badgeH / 2) + '" fill="' + theme.labelFill + '" stroke="' + theme.labelStroke + '" stroke-width="5"/>');
+      pieces.push('<text x="1050" y="' + childY + '" text-anchor="middle" fill="' + theme.text + '" font-family="Poppins, Arial, sans-serif" font-size="' + childLayout.fontSize + '" font-weight="900">' + escapeHtml(childText) + '</text>');
     }
 
     pieces.push(svgTextLines(titleLayout.lines, 1050, titleY, titleLayout.fontSize, titleLayout.lineHeight, theme.title, 900, 'middle', halo));
-    subtitleY = titleY + titleLayout.lineHeight * titleLayout.lines.length + 22;
-
-    if (subtitleLayout.lines.length) {
-      pieces.push(svgTextLines(subtitleLayout.lines, 1050, subtitleY, subtitleLayout.fontSize, subtitleLayout.lineHeight, theme.text, 800, 'middle', halo));
-      bottom = subtitleY + subtitleLayout.lineHeight * subtitleLayout.lines.length;
-    } else {
-      bottom = subtitleY;
-    }
+    bottom = titleY + titleLayout.lineHeight * titleLayout.lines.length;
 
     return {
       svg: '<g>' + pieces.join('') + '</g>',
@@ -1859,7 +1849,9 @@
 
     base.childName = sourceTextValue(source, base, 'childName');
     base.title = sourceTextValue(source, base, 'title');
-    base.subtitle = sourceTextValue(source, base, 'subtitle');
+    if (typeof source.subtitle === 'string' && cleanText(source.subtitle)) {
+      base.title = decodeHtmlEntities(source.subtitle);
+    }
     base.startLabel = sourceTextValue(source, base, 'startLabel');
     base.rewardLabel = sourceTextValue(source, base, 'rewardLabel');
     base.stepCount = clamp(parseInt(source.stepCount, 10) || base.stepCount, 1, 50);
@@ -1876,7 +1868,6 @@
 
     base.childName = copyText(copy, 'defaults.childName', DEFAULT_COPY.defaults.childName);
     base.title = copyText(copy, 'defaults.title', DEFAULT_COPY.defaults.title, { child: base.childName });
-    base.subtitle = copyText(copy, 'defaults.subtitle', DEFAULT_COPY.defaults.subtitle);
     base.startLabel = copyText(copy, 'defaults.startLabel', DEFAULT_COPY.defaults.startLabel);
     base.rewardLabel = copyText(copy, 'defaults.rewardLabel', DEFAULT_COPY.defaults.rewardLabel);
     return base;

@@ -84,7 +84,6 @@
       "defaults": {
         "childName": {{ 'sections.reward_system.defaults.child_name' | t | json }},
         "title": {{ 'sections.reward_system.defaults.title' | t: child: '[[child]]' | json }},
-        "subtitle": {{ 'sections.reward_system.defaults.subtitle' | t | json }},
         "startLabel": {{ 'sections.reward_system.defaults.start_label' | t | json }},
         "rewardLabel": {{ 'sections.reward_system.defaults.reward_label' | t | json }}
       },
@@ -113,7 +112,6 @@
       "poster": {
         "posterAria": {{ 'sections.reward_system.poster.poster_aria' | t | json }},
         "fallbackTitle": {{ 'sections.reward_system.poster.fallback_title' | t | json }},
-        "forChild": {{ 'sections.reward_system.poster.for_child' | t: child: '[[child]]' | json }},
         "miniReward": {{ 'sections.reward_system.poster.mini_reward' | t | json }},
         "stickerDefaultName": {{ 'sections.reward_system.poster.sticker_default_name' | t | json }},
         "stickersTitle": {{ 'sections.reward_system.poster.stickers_title' | t: child: '[[child]]' | json }},
@@ -164,10 +162,6 @@
         <label class="flipzy-rewards__field">
           <span>{{ 'sections.reward_system.ui.title' | t }}</span>
           <input data-flipzy-control="title" type="text">
-        </label>
-        <label class="flipzy-rewards__field">
-          <span>{{ 'sections.reward_system.ui.agreement' | t }}</span>
-          <textarea data-flipzy-control="subtitle" rows="3"></textarea>
         </label>
         <div class="flipzy-rewards__field-grid">
           <label class="flipzy-rewards__field">

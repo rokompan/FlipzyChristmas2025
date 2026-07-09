@@ -482,7 +482,6 @@
       },
       "poster": {
         "fallback_title": "Jutalomküldetés",
-        "for_child": "Mivel {{ child }}",
         "mini_reward": "Kis jutalom",
         "sticker_default_name": "Jutalom",
         "stickers_title": "{{ child }} matricák",
@@ -494,7 +493,6 @@
         "mini_reward_presets_aria": "Mini jutalom-beállítások",
         "heading": "A körözési plakát készítője",
         "child_name": "A gyermek neve",
-        "agreement": "Megállapodás",
         "reward_label": "Jutalomcímke",
         "start_label": "Kezdő címke",
         "restore_defaults": "Alapértelmezett beállítások visszaállítása",
@@ -513,8 +511,7 @@
         "show_numbers": "Számok megjelenítése"
       },
       "defaults": {
-        "title": "{{ child }}Jutalomküldetése",
-        "subtitle": "Minden egyes lépést azzal érdemlek ki, hogy nyugodt testtel és bátor próbálkozással végigcsinálom a megegyezett gyakorlatot.",
+        "title": "Minden egyes lépést azzal érdemlek ki, hogy nyugodt testtel és bátor próbálkozással végigcsinálom a megegyezett gyakorlatot.",
         "child_name": "Mia",
         "start_label": "Kezdés",
         "reward_label": "Családi filmest"
