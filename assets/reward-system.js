@@ -1,15 +1,15 @@
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'flipzyRewardSystem.settings.v1';
+  var STORAGE_KEY = 'flipzyRewardSystem.settings.v2';
   var BOARD = { width: 2100, height: 2970 };
 
   var DEFAULT_COPY = {
     defaults: {
-      childName: 'Mia',
-      title: 'I earn each step by finishing my agreed routine with a calm body and a brave try.',
+      childName: 'BINE',
+      title: 'Brushing teeth',
       startLabel: 'Start',
-      rewardLabel: 'Family movie night'
+      rewardLabel: 'Movie night'
     },
     themes: {
       castle: 'Castle Quest',
@@ -343,15 +343,15 @@
   ];
 
   var DEFAULT_STATE = {
-    childName: 'Mia',
-    title: 'I earn each step by finishing my agreed routine with a calm body and a brave try.',
+    childName: 'BINE',
+    title: 'Brushing teeth',
     startLabel: 'Start',
-    rewardLabel: 'Family movie night',
-    stepCount: 24,
+    rewardLabel: 'Movie night',
+    stepCount: 15,
     showNumbers: true,
     showMiniLabels: true,
-    theme: 'castle',
-    miniRewards: [6, 12, 18]
+    theme: 'space',
+    miniRewards: [5, 10]
   };
 
   function RewardApp(root) {

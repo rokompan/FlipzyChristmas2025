@@ -164,11 +164,7 @@
   background: var(--frs-panel);
   border: 1px solid var(--frs-line);
   border-radius: 8px;
-  max-height: calc(100dvh - 36px);
-  overflow: auto;
   padding: 10px;
-  position: sticky;
-  top: 12px;
 }
 
 .flipzy-rewards__masthead {
@@ -663,11 +659,6 @@
   .flipzy-rewards__shell {
     grid-template-columns: 1fr;
     padding: 18px 0 42px;
-  }
-
-  .flipzy-rewards__controls {
-    max-height: none;
-    position: static;
   }
 
   .flipzy-rewards__poster-frame {

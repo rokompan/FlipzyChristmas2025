@@ -475,10 +475,10 @@
         "print_poster_stickers": "Print poster + stickers"
       },
       "defaults": {
-        "child_name": "Mia",
-        "title": "I earn each step by finishing my agreed routine with a calm body and a brave try.",
+        "child_name": "BINE",
+        "title": "Brushing teeth",
         "start_label": "Start",
-        "reward_label": "Family movie night"
+        "reward_label": "Movie night"
       },
       "themes": {
         "castle": "Castle Quest",

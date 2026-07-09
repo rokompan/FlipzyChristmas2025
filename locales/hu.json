@@ -511,10 +511,10 @@
         "show_numbers": "Számok megjelenítése"
       },
       "defaults": {
-        "title": "Minden egyes lépést azzal érdemlek ki, hogy nyugodt testtel és bátor próbálkozással végigcsinálom a megegyezett gyakorlatot.",
-        "child_name": "Mia",
+        "title": "Fogmosás",
+        "child_name": "BINE",
         "start_label": "Kezdés",
-        "reward_label": "Családi filmest"
+        "reward_label": "Mozi este"
       },
       "themes": {
         "candy": "Cukorkaparádé",
