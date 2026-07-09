@@ -775,10 +775,10 @@
         renderRoadDecor(points, radius, theme),
         header.svg,
         renderStartLabel(startLabel, theme),
-        renderRewardLabel(rewardLabel, theme),
         renderSteps(points, radius, theme, miniSet, state.showNumbers, finalRewardGraphic),
         renderMiniLabels(miniLabels, theme, copy),
         state.showNumbers ? '' : renderFinalMarker(finalPoint, radius, theme),
+        renderRewardLabel(rewardLabel, theme),
       '</svg>'
     ].join('');
   }
@@ -1256,9 +1256,7 @@
     var h = Math.max(90, lines.lineHeight * lines.lines.length + 30);
     var w = clamp(longest + 112, 520, 760);
     var rewardRadius = finalBadgeRadius(radius);
-    var y = point.y + rewardRadius + 64;
-
-    if (y + h > BOARD.height - 120) y = point.y - rewardRadius - h - 80;
+    var y = point.y - rewardRadius - h - 50;
 
     return {
       visible: true,
@@ -1306,12 +1304,12 @@
     points.forEach(function (point) {
       var box;
       var y;
+      var alternateY;
 
       if (!miniSet[point.index] || point.index === points.length) return;
 
       y = point.row % 2 === 0 ? point.y - badgeRadius - 74 : point.y + badgeRadius + 18;
       if (y < headerBox.y + headerBox.h + 12) y = point.y + badgeRadius + 18;
-      if (y + labelHeight > rewardBox.y - 20) y = point.y - badgeRadius - 74;
 
       box = {
         x: clamp(point.x - labelWidth / 2, 70, BOARD.width - labelWidth - 70),
@@ -1319,6 +1317,14 @@
         w: labelWidth,
         h: labelHeight
       };
+
+      if (boxesOverlap(box, rewardBox, 18)) {
+        alternateY = y < point.y ? point.y + badgeRadius + 18 : point.y - badgeRadius - 74;
+
+        if (alternateY >= headerBox.y + headerBox.h + 12 && alternateY + labelHeight <= BOARD.height - 70) {
+          box.y = alternateY;
+        }
+      }
 
       labels.push({ point: point, box: box });
     });
@@ -2003,6 +2009,19 @@
 
   function cleanText(value) {
     return decodeHtmlEntities(value).replace(/\s+/g, ' ').trim();
+  }
+
+  function boxesOverlap(a, b, padding) {
+    var pad = padding || 0;
+
+    if (!a || !b || !a.w || !a.h || !b.w || !b.h) return false;
+
+    return (
+      a.x < b.x + b.w + pad &&
+      a.x + a.w + pad > b.x &&
+      a.y < b.y + b.h + pad &&
+      a.y + a.h + pad > b.y
+    );
   }
 
   function decodeHtmlEntities(value) {
