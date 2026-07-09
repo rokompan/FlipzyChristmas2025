@@ -659,6 +659,7 @@
     var self = this;
     var root = document.documentElement;
     var host = document.querySelector('[data-flipzy-print-host]');
+    var useMobilePrintLayout = isMobilePrintContext();
     var cleanupTimer;
     var cleaned = false;
 
@@ -667,6 +668,7 @@
       cleaned = true;
       window.clearTimeout(cleanupTimer);
       root.classList.remove('flipzy-rewards-printing');
+      root.classList.remove('flipzy-rewards-mobile-printing');
       window.removeEventListener('afterprint', cleanup);
       window.removeEventListener('focus', cleanup);
       if (host && host.parentNode) host.parentNode.removeChild(host);
@@ -691,6 +693,7 @@
     }).then(function () {
       self.setStatusKey('printReady');
       root.classList.add('flipzy-rewards-printing');
+      if (useMobilePrintLayout) root.classList.add('flipzy-rewards-mobile-printing');
       window.addEventListener('afterprint', cleanup);
       window.addEventListener('focus', cleanup);
       cleanupTimer = window.setTimeout(cleanup, 30000);
@@ -1502,6 +1505,10 @@
   }
 
   function shouldUseInlinePrint() {
+    return isMobilePrintContext();
+  }
+
+  function isMobilePrintContext() {
     var userAgent = navigator.userAgent || '';
     var isSmallScreen = false;
     var isiOS = /iPad|iPhone|iPod/i.test(userAgent) || (/Macintosh/i.test(userAgent) && navigator.maxTouchPoints > 1);

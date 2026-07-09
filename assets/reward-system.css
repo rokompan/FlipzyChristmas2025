@@ -856,4 +856,39 @@
     width: 210mm !important;
     -webkit-print-color-adjust: exact;
   }
+
+  html.flipzy-rewards-printing.flipzy-rewards-mobile-printing,
+  html.flipzy-rewards-printing.flipzy-rewards-mobile-printing body {
+    width: auto !important;
+  }
+
+  html.flipzy-rewards-printing.flipzy-rewards-mobile-printing .flipzy-rewards__print-host {
+    margin: 0 auto !important;
+    max-width: 190mm !important;
+    width: 100% !important;
+  }
+
+  html.flipzy-rewards-printing.flipzy-rewards-mobile-printing .flipzy-rewards__print-page {
+    break-after: page;
+    break-inside: avoid;
+    height: auto !important;
+    line-height: 0 !important;
+    margin: 0 auto !important;
+    max-width: 190mm !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+    width: 100% !important;
+  }
+
+  html.flipzy-rewards-printing.flipzy-rewards-mobile-printing .flipzy-rewards__print-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  html.flipzy-rewards-printing.flipzy-rewards-mobile-printing .flipzy-rewards__print-page svg {
+    height: auto !important;
+    margin: 0 auto !important;
+    max-width: 190mm !important;
+    width: 100% !important;
+  }
 }
