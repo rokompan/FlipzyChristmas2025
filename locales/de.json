@@ -1086,6 +1086,31 @@
       },
       "wallets": {
         "place_order": "Bestellung aufgeben"
+      },
+      "shipping": {
+        "subscription_delivery_description": {
+          "free_shipping_cycles": {
+            "one": "Gratisversand für %{count} weitere Zustellung",
+            "other": "Gratisversand für %{count} weitere Zustellungen"
+          },
+          "free_shipping_cycles_delivery_not_included": {
+            "one": "Gratisversand für %{count} Zustellung",
+            "other": "Gratisversand für %{count} Zustellungen"
+          },
+          "first_n_order_free_with_cycle": {
+            "one": "Gratisversand für %{count} weitere Zustellung, dann %{recurring_order_shipping_price}",
+            "other": "Gratisversand für %{count} weitere Zustellungen, dann %{recurring_order_shipping_price}"
+          },
+          "first_n_order_free_with_cycle_delivery_not_included": {
+            "one": "Gratisversand für %{count} Zustellung, dann %{recurring_order_shipping_price}",
+            "other": "Gratisversand für %{count} Zustellungen, dann %{recurring_order_shipping_price}"
+          },
+          "prepaid_free_shipping_with_cycles": {
+            "one": "Gratisversand im ersten %{cycle}, danach %{recurring_order_shipping_price}",
+            "other": "Gratisversand in den ersten %{cycle}, danach %{recurring_order_shipping_price}"
+          },
+          "subscription_free_with_frequency_label": "Gratisversand %{delivery_frequency}"
+        }
       }
     }
   },
