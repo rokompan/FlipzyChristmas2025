@@ -320,7 +320,7 @@
         "try_again": "Erneut versuchen",
         "image_alt": "Morgen- und Abendroutine",
         "unlock_shipping_title": "Versandkostenfrei freischalten! 🚚",
-        "unlock_shipping_text": "Holen Sie sich das Morgen- und Abendpaar + Kostenloser Versand.",
+        "unlock_shipping_text": "Holen Sie sich das Morgen- und Abendpaar + Gratisversand.",
         "perfect_gift_title": "Das perfekte Geschenk?",
         "perfect_gift_text": "Legen Sie ein weiteres für einen Freund oder Cousin dazu.",
         "button_text": "Einen weiteren hinzufügen (+1)",
@@ -875,7 +875,7 @@
     "flipzy_offer": {
       "unit_items": "Flipzy",
       "guarantee_2": "30-Tage-Garantie",
-      "free_shipping": "Kostenloser Versand",
+      "free_shipping": "Gratisversand",
       "offer_3": "20 % Rabatt + versandkostenfrei",
       "sold_out": "Ausverkauft",
       "calculating": "Wird berechnet...",
@@ -1105,6 +1105,11 @@
       "add_success": {
         "title": "Zahlungsmethode hinzugefügt",
         "done_button": "Weiter einkaufen"
+      }
+    },
+    "order_details": {
+      "shipping": {
+        "free_shipping_discount": "GRATISVERSAND"
       }
     }
   }
