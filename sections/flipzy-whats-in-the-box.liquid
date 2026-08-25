@@ -16,7 +16,9 @@
       "content": "Left Side (Images)"
     },
     { "type": "image_picker", "id": "image_1", "label": "Main Image (Contents)" },
+    { "type": "text", "id": "image_1_alt", "label": "Main Image Alt Text", "default": "Flipzy board, task tiles, stickers and mounting kit" },
     { "type": "image_picker", "id": "image_2", "label": "Secondary Image (Dimensions)" },
+    { "type": "text", "id": "image_2_alt", "label": "Secondary Image Alt Text", "default": "Flipzy picture stickers for everyday tasks" },
     { "type": "color", "id": "image_2_bg", "label": "Secondary Image Background", "default": "#EADBC8", "info": "Background color for the dimensions card." },
 
     {
@@ -98,7 +100,7 @@
     <div class="flipzy-box-media-col">
       <div class="flipzy-box-img-card">
         {% if section.settings.image_1 != blank %}
-          <img src="{{ section.settings.image_1 | image_url: width: 1000 }}" loading="lazy" alt="Box Contents" width="{{ section.settings.image_1.width }}" height="{{ section.settings.image_1.height }}">
+          <img src="{{ section.settings.image_1 | image_url: width: 1000 }}" loading="lazy" alt="{{ section.settings.image_1_alt | escape }}" width="{{ section.settings.image_1.width }}" height="{{ section.settings.image_1.height }}">
         {% else %}
           {{ 'product-1' | placeholder_svg_tag }}
         {% endif %}
@@ -106,7 +108,7 @@
 
       {% if section.settings.image_2 != blank %}
       <div class="flipzy-box-img-card dimensions-card" style="background-color: {{ section.settings.image_2_bg }};">
-        <img src="{{ section.settings.image_2 | image_url: width: 1000 }}" loading="lazy" alt="Dimensions" width="{{ section.settings.image_2.width }}" height="{{ section.settings.image_2.height }}">
+        <img src="{{ section.settings.image_2 | image_url: width: 1000 }}" loading="lazy" alt="{{ section.settings.image_2_alt | escape }}" width="{{ section.settings.image_2.width }}" height="{{ section.settings.image_2.height }}">
       </div>
       {% endif %}
     </div>

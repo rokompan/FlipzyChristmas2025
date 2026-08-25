@@ -1,0 +1,609 @@
+{{ 'section-flipzy-for-schools.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign step_blocks = section.blocks | where: 'type', 'step'
+  assign audience_blocks = section.blocks | where: 'type', 'audience'
+  assign routine_blocks = section.blocks | where: 'type', 'routine'
+  assign benefit_blocks = section.blocks | where: 'type', 'benefit'
+  assign hero_video_id = 'FlipzyHeroVideo-' | append: section.id
+-%}
+
+<section id="FlipzyForSchools-{{ section.id }}" class="flipzy-b2b flipzy-section">
+  <div class="flipzy-b2b__hero">
+    <div class="flipzy-b2b__page flipzy-b2b__hero-grid">
+      <div class="flipzy-b2b__hero-copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="flipzy-b2b__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h1 class="flipzy-b2b__hero-heading">{{ section.settings.heading }}</h1>
+        {%- endif -%}
+
+        <div class="flipzy-b2b__mobile-product-peek">
+          <img
+            src="{{ 'parent-handbook-01-cover-board.png' | asset_url }}"
+            alt="Flipzy wooden visual routine board with task tiles"
+            width="567"
+            height="343"
+            loading="eager"
+          >
+        </div>
+
+        {%- if section.settings.intro != blank -%}
+          <div class="flipzy-b2b__hero-intro rte">{{ section.settings.intro }}</div>
+        {%- endif -%}
+
+        <div class="flipzy-b2b__actions">
+          {%- if section.settings.primary_cta_label != blank -%}
+            <a class="flipzy-btn flipzy-b2b__button" href="{{ section.settings.primary_cta_link | default: '#for-schools-order' }}">
+              {{ section.settings.primary_cta_label | escape }}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.secondary_cta_label != blank -%}
+            <a class="flipzy-b2b__text-link" href="{{ section.settings.secondary_cta_link | default: '#how-flipzy-works' }}">
+              {{ section.settings.secondary_cta_label | escape }}
+              <span aria-hidden="true">↓</span>
+            </a>
+          {%- endif -%}
+        </div>
+
+        {%- if section.settings.microcopy != blank -%}
+          <p class="flipzy-b2b__microcopy">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+            {{ section.settings.microcopy | escape }}
+          </p>
+        {%- endif -%}
+      </div>
+
+      <div class="flipzy-b2b__hero-media">
+        <div class="flipzy-b2b__hero-frame">
+          {%- if section.settings.hero_video != blank -%}
+            {{
+              section.settings.hero_video
+              | video_tag:
+                autoplay: true,
+                loop: true,
+                muted: true,
+                controls: false,
+                playsinline: true,
+                image_size: '1400x',
+                id: hero_video_id,
+                title: section.settings.hero_image_alt,
+                class: 'flipzy-b2b__media-element',
+                preload: 'metadata'
+            }}
+            <button
+              class="flipzy-b2b__video-toggle"
+              type="button"
+              data-b2b-video-toggle
+              data-video-label="{{ section.settings.hero_media_label | default: 'Flipzy demonstration' | escape }}"
+              aria-controls="FlipzyHeroVideo-{{ section.id }}"
+              aria-label="Pause video: {{ section.settings.hero_media_label | default: 'Flipzy demonstration' | escape }}"
+            >
+              <span class="flipzy-b2b__pause-icon" aria-hidden="true"></span>
+              <span class="flipzy-b2b__play-icon" aria-hidden="true"></span>
+            </button>
+          {%- elsif section.settings.hero_image != blank -%}
+            {{
+              section.settings.hero_image
+              | image_url: width: 1600
+              | image_tag:
+                widths: '550, 750, 990, 1200, 1600',
+                sizes: '(min-width: 990px) 52vw, 100vw',
+                loading: 'eager',
+                fetchpriority: 'high',
+                class: 'flipzy-b2b__media-element',
+                alt: section.settings.hero_image_alt
+            }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'flipzy-b2b__media-element placeholder-svg' }}
+          {%- endif -%}
+
+          {%- if section.settings.hero_media_label != blank -%}
+            <div class="flipzy-b2b__media-label">
+              <span class="flipzy-b2b__media-label-dot" aria-hidden="true"></span>
+              {{ section.settings.hero_media_label | escape }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {%- if audience_blocks.size > 0 -%}
+    <div
+      class="flipzy-b2b__audiences"
+      {% if section.settings.audience_heading != blank %}
+        aria-labelledby="FlipzyAudiences-{{ section.id }}"
+      {% else %}
+        aria-label="Settings Flipzy is designed for"
+      {% endif %}
+    >
+      <div class="flipzy-b2b__page">
+        {%- if section.settings.audience_heading != blank -%}
+          <p id="FlipzyAudiences-{{ section.id }}" class="flipzy-b2b__audience-heading">
+            {{ section.settings.audience_heading | escape }}
+          </p>
+        {%- endif -%}
+        <ul class="flipzy-b2b__audience-list" role="list">
+          {%- for block in audience_blocks -%}
+            <li class="flipzy-b2b__audience-chip" {{ block.shopify_attributes }}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3 3 8l9 5 9-5-9-5Z" />
+                <path d="m7 11-4 2 9 5 9-5-4-2" />
+              </svg>
+              {{ block.settings.label | escape }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div id="how-flipzy-works" class="flipzy-b2b__steps">
+    <div class="flipzy-b2b__page">
+      <div class="flipzy-b2b__section-heading">
+        {%- if section.settings.steps_eyebrow != blank -%}
+          <p class="flipzy-b2b__eyebrow">{{ section.settings.steps_eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.steps_heading != blank -%}
+          <h2>{{ section.settings.steps_heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.steps_intro != blank -%}
+          <div class="rte">{{ section.settings.steps_intro }}</div>
+        {%- endif -%}
+      </div>
+
+      {%- if step_blocks.size > 0 -%}
+        <div class="flipzy-b2b__step-grid">
+          {%- for block in step_blocks -%}
+            {%- liquid
+              assign has_video = false
+              if block.settings.video_file != blank or block.settings.video_url != blank
+                assign has_video = true
+              endif
+              assign step_number = forloop.index
+              assign step_video_id = 'FlipzyStepVideo-' | append: section.id | append: '-' | append: block.id
+              assign step_video_title = block.settings.media_alt | default: block.settings.title
+            -%}
+            <article class="flipzy-b2b__step-card" {{ block.shopify_attributes }}>
+              <div class="flipzy-b2b__step-media">
+                {%- if block.settings.video_file != blank -%}
+                  {{
+                    block.settings.video_file
+                    | video_tag:
+                      autoplay: false,
+                      loop: true,
+                      muted: true,
+                      controls: false,
+                      playsinline: true,
+                      image_size: '900x',
+                      id: step_video_id,
+                      title: step_video_title,
+                      class: 'flipzy-b2b__media-element flipzy-b2b__step-video',
+                      preload: 'none'
+                  }}
+                {%- elsif block.settings.video_url != blank -%}
+                  <video
+                    id="{{ step_video_id }}"
+                    class="flipzy-b2b__media-element flipzy-b2b__step-video"
+                    loop
+                    muted
+                    playsinline
+                    preload="none"
+                    aria-hidden="true"
+                    title="{{ step_video_title | escape }}"
+                    {% if block.settings.image != blank %}poster="{{ block.settings.image | image_url: width: 900 }}"{% endif %}
+                  >
+                    {% # theme-check-disable RemoteAsset %}
+                    <source src="{{ block.settings.video_url }}" type="video/mp4">
+                    {% # theme-check-enable RemoteAsset %}
+                  </video>
+                {%- elsif block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 1000
+                    | image_tag:
+                      widths: '360, 540, 720, 1000',
+                      sizes: '(min-width: 990px) 33vw, (min-width: 600px) 50vw, 100vw',
+                      loading: 'lazy',
+                      class: 'flipzy-b2b__media-element',
+                      alt: block.settings.media_alt
+                  }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'flipzy-b2b__media-element placeholder-svg' }}
+                {%- endif -%}
+
+                {%- if has_video -%}
+                  <button
+                    class="flipzy-b2b__video-toggle"
+                    type="button"
+                    data-b2b-video-toggle
+                    data-video-label="{{ block.settings.title | escape }}"
+                    aria-controls="{{ step_video_id }}"
+                    aria-label="Pause video: {{ block.settings.title | escape }}"
+                  >
+                    <span class="flipzy-b2b__pause-icon" aria-hidden="true"></span>
+                    <span class="flipzy-b2b__play-icon" aria-hidden="true"></span>
+                  </button>
+                {%- endif -%}
+                <span class="flipzy-b2b__step-number" aria-hidden="true">{{ step_number }}</span>
+              </div>
+              <div class="flipzy-b2b__step-copy">
+                <h3>{{ block.settings.title | escape }}</h3>
+                <p>{{ block.settings.text | escape }}</p>
+              </div>
+            </article>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.steps_cta_label != blank -%}
+        <div class="flipzy-b2b__center-action">
+          <a class="flipzy-btn flipzy-b2b__button" href="{{ section.settings.steps_cta_link | default: '#for-schools-order' }}">
+            {{ section.settings.steps_cta_label | escape }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="flipzy-b2b__routines">
+    <div class="flipzy-b2b__page">
+      <div class="flipzy-b2b__section-heading flipzy-b2b__section-heading--left">
+        {%- if section.settings.routines_eyebrow != blank -%}
+          <p class="flipzy-b2b__eyebrow">{{ section.settings.routines_eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.routines_heading != blank -%}
+          <h2>{{ section.settings.routines_heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.routines_intro != blank -%}
+          <div class="rte">{{ section.settings.routines_intro }}</div>
+        {%- endif -%}
+      </div>
+
+      {%- if routine_blocks.size > 0 -%}
+        <div class="flipzy-b2b__routine-grid">
+          {%- for block in routine_blocks -%}
+            {%- liquid
+              case forloop.index
+                when 1
+                  assign routine_sizes = '(min-width: 990px) 62vw, 100vw'
+                when 2, 3
+                  assign routine_sizes = '(min-width: 990px) 38vw, 50vw'
+                else
+                  assign routine_sizes = '100vw'
+              endcase
+            -%}
+            <figure class="flipzy-b2b__routine-card flipzy-b2b__routine-card--{{ forloop.index }}" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 1600
+                  | image_tag:
+                    widths: '480, 720, 960, 1200, 1600',
+                    sizes: routine_sizes,
+                    loading: 'lazy',
+                    class: 'flipzy-b2b__media-element',
+                    alt: block.settings.image_alt
+                }}
+              {%- else -%}
+                {%- case forloop.index -%}
+                  {%- when 1 -%}
+                    <img
+                      src="{{ 'parent-handbook-02-flipping-progress.webp' | asset_url }}"
+                      alt="{{ block.settings.image_alt | default: 'A child and adult using a wall-mounted Flipzy routine board' | escape }}"
+                      width="1199"
+                      height="1085"
+                      loading="lazy"
+                      class="flipzy-b2b__media-element"
+                    >
+                  {%- when 2 -%}
+                    <img
+                      src="{{ 'parent-handbook-03-hinge-detail.jpg' | asset_url }}"
+                      alt="{{ block.settings.image_alt | default: 'Close-up of a hand flipping a wooden Flipzy task tile' | escape }}"
+                      width="2480"
+                      height="1860"
+                      loading="lazy"
+                      class="flipzy-b2b__media-element"
+                    >
+                  {%- when 3 -%}
+                    <img
+                      src="{{ 'parent-handbook-05-task-sticker-library.webp' | asset_url }}"
+                      alt="{{ block.settings.image_alt | default: 'Flipzy picture stickers for common daily tasks' | escape }}"
+                      width="1200"
+                      height="859"
+                      loading="lazy"
+                      class="flipzy-b2b__media-element"
+                    >
+                  {%- when 4 -%}
+                    <img
+                      src="{{ 'parent-handbook-04-box-contents-flatlay.jpeg' | asset_url }}"
+                      alt="{{ block.settings.image_alt | default: 'Flipzy wooden routine board and task tiles' | escape }}"
+                      width="542"
+                      height="369"
+                      loading="lazy"
+                      class="flipzy-b2b__media-element"
+                    >
+                  {%- else -%}
+                    {{ 'lifestyle-2' | placeholder_svg_tag: 'flipzy-b2b__media-element placeholder-svg' }}
+                {%- endcase -%}
+              {%- endif -%}
+              <figcaption>{{ block.settings.title | escape }}</figcaption>
+            </figure>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="flipzy-b2b__benefits">
+    <div class="flipzy-b2b__page">
+      <div class="flipzy-b2b__benefit-heading">
+        {%- if section.settings.benefits_eyebrow != blank -%}
+          <p class="flipzy-b2b__eyebrow">{{ section.settings.benefits_eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.benefits_heading != blank -%}
+          <h2>{{ section.settings.benefits_heading | escape }}</h2>
+        {%- endif -%}
+      </div>
+
+      {%- if benefit_blocks.size > 0 -%}
+        <div class="flipzy-b2b__benefit-grid">
+          {%- for block in benefit_blocks -%}
+            <article class="flipzy-b2b__benefit-card" {{ block.shopify_attributes }}>
+              <div class="flipzy-b2b__benefit-icon">
+                {%- case block.settings.icon -%}
+                  {%- when 'eye' -%}
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+                  {%- when 'cue' -%}
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V8a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v7Z"/><path d="M8 10h8M8 14h5"/></svg>
+                  {%- when 'flip' -%}
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-9a6 6 0 0 0-6 6v1"/><path d="m8 11-3 3-3-3"/><path d="M9 17h11V6"/></svg>
+                  {%- when 'independence' -%}
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/><path d="M4 4h16v16H4z"/></svg>
+                {%- endcase -%}
+              </div>
+              <h3>{{ block.settings.title | escape }}</h3>
+              <p>{{ block.settings.text | escape }}</p>
+            </article>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="flipzy-b2b__closing-card">
+        <div class="flipzy-b2b__closing-copy">
+          {%- if section.settings.closing_eyebrow != blank -%}
+            <p class="flipzy-b2b__eyebrow">{{ section.settings.closing_eyebrow | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.closing_heading != blank -%}
+            <h2>{{ section.settings.closing_heading | escape }}</h2>
+          {%- endif -%}
+          {%- if section.settings.closing_text != blank -%}
+            <p>{{ section.settings.closing_text | escape }}</p>
+          {%- endif -%}
+          {%- if section.settings.closing_cta_label != blank -%}
+            <a class="flipzy-btn flipzy-b2b__button" href="{{ section.settings.closing_cta_link | default: '#for-schools-order' }}">
+              {{ section.settings.closing_cta_label | escape }}
+            </a>
+          {%- endif -%}
+        </div>
+        <div class="flipzy-b2b__closing-media">
+          {%- if section.settings.closing_image != blank -%}
+            {{
+              section.settings.closing_image
+              | image_url: width: 1200
+              | image_tag:
+                widths: '480, 720, 960, 1200',
+                sizes: '(min-width: 990px) 50vw, 100vw',
+                loading: 'lazy',
+                class: 'flipzy-b2b__media-element',
+                alt: section.settings.closing_image_alt
+            }}
+          {%- else -%}
+            {{ 'product-2' | placeholder_svg_tag: 'flipzy-b2b__media-element placeholder-svg' }}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const initFlipzyB2BVideos = (section) => {
+      if (!section || section.dataset.videoControlsReady === 'true') return;
+      section.dataset.videoControlsReady = 'true';
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      section.querySelectorAll('[data-b2b-video-toggle]').forEach((button) => {
+        const wrapper = button.parentElement;
+        const video = wrapper ? wrapper.querySelector('video') : null;
+        if (!video) return;
+
+        const setButtonState = () => {
+          const paused = video.paused;
+          const videoLabel = button.dataset.videoLabel || 'Flipzy demonstration';
+          button.classList.toggle('is-paused', paused);
+          button.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} video: ${videoLabel}`);
+        };
+
+        if (reduceMotion) video.pause();
+        setButtonState();
+
+        button.addEventListener('click', () => {
+          if (video.paused) {
+            video.dataset.userPaused = 'false';
+            video.play().catch(() => {});
+          } else {
+            video.dataset.userPaused = 'true';
+            video.pause();
+          }
+          setButtonState();
+        });
+
+        video.addEventListener('play', setButtonState);
+        video.addEventListener('pause', setButtonState);
+      });
+
+      const stepVideos = section.querySelectorAll('.flipzy-b2b__step-video');
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+            if (entry.isIntersecting && video.dataset.userPaused !== 'true') {
+              video.play().catch(() => {});
+            } else if (!entry.isIntersecting) {
+              video.pause();
+            }
+          });
+        }, { rootMargin: '120px 0px', threshold: 0.2 });
+
+        stepVideos.forEach((video) => videoObserver.observe(video));
+      } else {
+        stepVideos.forEach((video) => video.pause());
+      }
+    };
+
+    initFlipzyB2BVideos(document.getElementById('FlipzyForSchools-{{ section.id }}'));
+
+    if (!window.flipzyB2BSectionListenerReady) {
+      window.flipzyB2BSectionListenerReady = true;
+      document.addEventListener('shopify:section:load', (event) => {
+        const loadedSection = event.target.matches('.flipzy-b2b')
+          ? event.target
+          : event.target.querySelector('.flipzy-b2b');
+        initFlipzyB2BVideos(loadedSection);
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Flipzy for Schools",
+  "class": "flipzy-section",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "For early-years teams, schools & therapists" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Help children see <strong>what comes next.</strong>" },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Flipzy is a simple visual routine board that helps children understand what comes next, follow routines and gradually become more independent.</p>" },
+    { "type": "video", "id": "hero_video", "label": "Hero video" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image (shown when no video is selected)" },
+    { "type": "text", "id": "hero_image_alt", "label": "Hero media description", "default": "A child using a wooden Flipzy visual routine board" },
+    { "type": "text", "id": "hero_media_label", "label": "Media label", "default": "See it. Do it. Flip it." },
+    { "type": "text", "id": "primary_cta_label", "label": "Primary button label", "default": "Choose Flipzy for your setting" },
+    { "type": "url", "id": "primary_cta_link", "label": "Primary button link" },
+    { "type": "text", "id": "secondary_cta_label", "label": "Secondary link label", "default": "See how it works" },
+    { "type": "url", "id": "secondary_cta_link", "label": "Secondary link" },
+    { "type": "text", "id": "microcopy", "label": "Hero reassurance", "default": "Screen-free • tactile • no app or charging" },
+    { "type": "text", "id": "audience_heading", "label": "Audience heading", "default": "Made for the adults supporting young children" },
+
+    { "type": "header", "content": "How it works" },
+    { "type": "text", "id": "steps_eyebrow", "label": "Eyebrow", "default": "Clear in seconds" },
+    { "type": "text", "id": "steps_heading", "label": "Heading", "default": "Choose. Follow. Flip." },
+    { "type": "richtext", "id": "steps_intro", "label": "Introduction", "default": "<p>A routine children can see—and a satisfying way to mark each step as done.</p>" },
+    { "type": "text", "id": "steps_cta_label", "label": "Button label", "default": "Choose Flipzy for your setting" },
+    { "type": "url", "id": "steps_cta_link", "label": "Button link" },
+
+    { "type": "header", "content": "Routine gallery" },
+    { "type": "text", "id": "routines_eyebrow", "label": "Eyebrow", "default": "One board. Many routines." },
+    { "type": "text", "id": "routines_heading", "label": "Heading", "default": "Use Flipzy wherever a child needs a clear next step." },
+    { "type": "richtext", "id": "routines_intro", "label": "Introduction", "default": "<p>Set it up for one child, one room or one part of the day. Rearrange the tiles whenever the routine changes.</p>" },
+
+    { "type": "header", "content": "Benefits" },
+    { "type": "text", "id": "benefits_eyebrow", "label": "Eyebrow", "default": "Less telling. More showing." },
+    { "type": "text", "id": "benefits_heading", "label": "Heading", "default": "A simple shared cue for children and the adults supporting them." },
+
+    { "type": "header", "content": "Closing call to action" },
+    { "type": "text", "id": "closing_eyebrow", "label": "Eyebrow", "default": "Ready for your setting?" },
+    { "type": "text", "id": "closing_heading", "label": "Heading", "default": "Make the next step visible." },
+    { "type": "textarea", "id": "closing_text", "label": "Text", "default": "Start with one Flipzy or choose several for different children, rooms and routines." },
+    { "type": "text", "id": "closing_cta_label", "label": "Button label", "default": "Choose Flipzy for your setting" },
+    { "type": "url", "id": "closing_cta_link", "label": "Button link" },
+    { "type": "image_picker", "id": "closing_image", "label": "Image" },
+    { "type": "text", "id": "closing_image_alt", "label": "Image alt text", "default": "Several Flipzy routine boards set up for different daily routines" }
+  ],
+  "blocks": [
+    {
+      "type": "audience",
+      "name": "Audience",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Kindergartens & preschools" }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "How-it-works step",
+      "limit": 3,
+      "settings": [
+        { "type": "video", "id": "video_file", "label": "Video" },
+        { "type": "url", "id": "video_url", "label": "MP4 video URL", "info": "Used when no Shopify-hosted video is selected." },
+        { "type": "image_picker", "id": "image", "label": "Image or video poster" },
+        { "type": "text", "id": "media_alt", "label": "Media description" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Choose the picture cues" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Pick the tasks that fit this child and this routine." }
+      ]
+    },
+    {
+      "type": "routine",
+      "name": "Routine image",
+      "limit": 4,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_alt", "label": "Image alt text" },
+        { "type": "text", "id": "title", "label": "Short caption", "default": "Arrival & getting ready" }
+      ]
+    },
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "eye",
+          "options": [
+            { "value": "eye", "label": "Visible" },
+            { "value": "cue", "label": "Prompt" },
+            { "value": "flip", "label": "Progress" },
+            { "value": "independence", "label": "Independence" }
+          ]
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Clear next steps" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Keep the sequence visible at child height." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flipzy for Schools",
+      "blocks": [
+        { "type": "audience", "settings": { "label": "Kindergartens & preschools" } },
+        { "type": "audience", "settings": { "label": "Primary schools" } },
+        { "type": "audience", "settings": { "label": "Special education" } },
+        { "type": "audience", "settings": { "label": "Autism organisations" } },
+        { "type": "audience", "settings": { "label": "Family support centres" } },
+        { "type": "audience", "settings": { "label": "Therapists & child services" } },
+        { "type": "step", "settings": { "title": "Choose the picture cues", "text": "Pick the tasks that fit this child and this routine." } },
+        { "type": "step", "settings": { "title": "Set today's sequence", "text": "Arrange the seven wooden tiles in the order they happen." } },
+        { "type": "step", "settings": { "title": "Flip each finished task", "text": "Progress becomes visible with one simple, tactile action." } },
+        { "type": "routine", "settings": { "title": "Arrival & getting ready" } },
+        { "type": "routine", "settings": { "title": "Hand-washing & self-care" } },
+        { "type": "routine", "settings": { "title": "Activity transitions" } },
+        { "type": "routine", "settings": { "title": "Pack-up & home time" } },
+        { "type": "benefit", "settings": { "icon": "eye", "title": "Clear next steps", "text": "Keep the sequence visible at child height." } },
+        { "type": "benefit", "settings": { "icon": "cue", "title": "A quieter cue", "text": "Point to the board alongside your usual support." } },
+        { "type": "benefit", "settings": { "icon": "flip", "title": "Concrete progress", "text": "Each flip makes “finished” easy to see." } },
+        { "type": "benefit", "settings": { "icon": "independence", "title": "Growing independence", "text": "Children can return to the routine and check what is next." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

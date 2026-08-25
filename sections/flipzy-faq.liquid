@@ -66,13 +66,26 @@
     <div class="flipzy-faq-list">
       {% for block in section.blocks %}
         <div class="flipzy-faq-item" {{ block.shopify_attributes }}>
-          <button class="flipzy-faq-trigger" aria-expanded="false">
+          <button
+            id="Flipzy-FAQ-Trigger-{{ section.id }}-{{ block.id }}"
+            class="flipzy-faq-trigger"
+            type="button"
+            aria-expanded="false"
+            aria-controls="Flipzy-FAQ-Content-{{ section.id }}-{{ block.id }}"
+          >
             <span class="flipzy-faq-question">{{ block.settings.question }}</span>
             <span class="flipzy-faq-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </span>
           </button>
-          <div class="flipzy-faq-content" style="max-height: 0; overflow: hidden; transition: all 0.3s ease-out;">
+          <div
+            id="Flipzy-FAQ-Content-{{ section.id }}-{{ block.id }}"
+            class="flipzy-faq-content"
+            role="region"
+            aria-labelledby="Flipzy-FAQ-Trigger-{{ section.id }}-{{ block.id }}"
+            hidden
+            style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;"
+          >
             <div class="flipzy-faq-answer">{{ block.settings.answer }}</div>
           </div>
         </div>
@@ -140,17 +153,48 @@
 </style>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const triggers = document.querySelectorAll('.flipzy-faq-trigger');
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
-      const content = trigger.nextElementSibling;
-      
-      // Toggle current
-      trigger.setAttribute('aria-expanded', !isExpanded);
-      content.style.maxHeight = isExpanded ? '0' : content.scrollHeight + 'px';
+(() => {
+  const initFlipzyFaq = (faq) => {
+    if (!faq || faq.dataset.ready === 'true') return;
+    faq.dataset.ready = 'true';
+
+    faq.querySelectorAll('.flipzy-faq-trigger').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+        const content = trigger.nextElementSibling;
+
+        trigger.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+        if (isExpanded) {
+          content.style.maxHeight = '0';
+          window.setTimeout(() => {
+            if (trigger.getAttribute('aria-expanded') === 'false') content.hidden = true;
+          }, 310);
+        } else {
+          content.hidden = false;
+          window.requestAnimationFrame(() => {
+            content.style.maxHeight = `${content.scrollHeight}px`;
+          });
+        }
+      });
     });
-  });
-});
+  };
+
+  const initCurrentFaq = () => initFlipzyFaq(document.getElementById('Flipzy-FAQ-{{ section.id }}'));
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCurrentFaq, { once: true });
+  } else {
+    initCurrentFaq();
+  }
+
+  if (!window.flipzyFaqSectionListenerReady) {
+    window.flipzyFaqSectionListenerReady = true;
+    document.addEventListener('shopify:section:load', (event) => {
+      const loadedFaq = event.target.matches('.flipzy-faq-section')
+        ? event.target
+        : event.target.querySelector('.flipzy-faq-section');
+      initFlipzyFaq(loadedFaq);
+    });
+  }
+})();
 </script>

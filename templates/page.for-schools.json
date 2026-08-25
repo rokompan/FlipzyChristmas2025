@@ -1,0 +1,429 @@
+/*
+ * ------------------------------------------------------------
+ * Dedicated landing page for schools and child-support settings.
+ * This template is intentionally separate from templates/index.json.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "for_schools_main": {
+      "type": "flipzy-for-schools",
+      "blocks": {
+        "audience_preschools": {
+          "type": "audience",
+          "settings": {
+            "label": "Kindergartens & preschools"
+          }
+        },
+        "audience_primary": {
+          "type": "audience",
+          "settings": {
+            "label": "Primary schools"
+          }
+        },
+        "audience_special": {
+          "type": "audience",
+          "settings": {
+            "label": "Special education"
+          }
+        },
+        "audience_autism": {
+          "type": "audience",
+          "settings": {
+            "label": "Autism organisations"
+          }
+        },
+        "audience_family": {
+          "type": "audience",
+          "settings": {
+            "label": "Family support centres"
+          }
+        },
+        "audience_therapists": {
+          "type": "audience",
+          "settings": {
+            "label": "Therapists & child services"
+          }
+        },
+        "step_choose": {
+          "type": "step",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/b79a29aed8e645aea74714d776f4436d.mp4",
+            "image": "shopify://shop_images/stickers.webp",
+            "media_alt": "Choosing picture stickers for a Flipzy visual routine",
+            "title": "Choose the picture cues",
+            "text": "Pick the tasks that fit this child and this routine."
+          }
+        },
+        "step_sequence": {
+          "type": "step",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/fa3e3ec79976459d9fdab5c109f4d906.mp4",
+            "image": "shopify://shop_images/natakni.webp",
+            "media_alt": "Arranging wooden Flipzy tiles into a daily sequence",
+            "title": "Set today’s sequence",
+            "text": "Arrange the seven wooden tiles in the order they happen."
+          }
+        },
+        "step_flip": {
+          "type": "step",
+          "settings": {
+            "video_url": "https://cdn.shopify.com/videos/c/o/v/fc3c3e1256e24560a76523635f8716c3.mp4",
+            "image": "shopify://shop_images/palca.jpg",
+            "media_alt": "A child flipping a completed task on a Flipzy board",
+            "title": "Flip each finished task",
+            "text": "Progress becomes visible with one simple, tactile action."
+          }
+        },
+        "routine_arrival": {
+          "type": "routine",
+          "settings": {
+            "image_alt": "A child following a Flipzy routine with adult support",
+            "title": "Arrival & getting ready"
+          }
+        },
+        "routine_self_care": {
+          "type": "routine",
+          "settings": {
+            "image_alt": "Close-up of the wooden Flipzy tile mechanism",
+            "title": "Hand-washing & self-care"
+          }
+        },
+        "routine_transitions": {
+          "type": "routine",
+          "settings": {
+            "image_alt": "Picture stickers for creating different Flipzy routines",
+            "title": "Activity transitions"
+          }
+        },
+        "routine_home": {
+          "type": "routine",
+          "settings": {
+            "image": "shopify://shop_images/moar.webp",
+            "image_alt": "Flipzy routine board with movable wooden task tiles",
+            "title": "Pack-up & home time"
+          }
+        },
+        "benefit_visible": {
+          "type": "benefit",
+          "settings": {
+            "icon": "eye",
+            "title": "Clear next steps",
+            "text": "Keep the sequence visible at child height."
+          }
+        },
+        "benefit_cue": {
+          "type": "benefit",
+          "settings": {
+            "icon": "cue",
+            "title": "A quieter cue",
+            "text": "Point to the board alongside your usual support."
+          }
+        },
+        "benefit_progress": {
+          "type": "benefit",
+          "settings": {
+            "icon": "flip",
+            "title": "Concrete progress",
+            "text": "Each flip makes “finished” easy to see."
+          }
+        },
+        "benefit_independence": {
+          "type": "benefit",
+          "settings": {
+            "icon": "independence",
+            "title": "Growing independence",
+            "text": "Children can return to the routine and check what is next."
+          }
+        }
+      },
+      "block_order": [
+        "audience_preschools",
+        "audience_primary",
+        "audience_special",
+        "audience_autism",
+        "audience_family",
+        "audience_therapists",
+        "step_choose",
+        "step_sequence",
+        "step_flip",
+        "routine_arrival",
+        "routine_self_care",
+        "routine_transitions",
+        "routine_home",
+        "benefit_visible",
+        "benefit_cue",
+        "benefit_progress",
+        "benefit_independence"
+      ],
+      "settings": {
+        "eyebrow": "For early-years teams, schools & therapists",
+        "heading": "Help children see <strong>what comes next.</strong>",
+        "intro": "<p>Flipzy is a simple visual routine board that helps children understand what comes next, follow routines and gradually become more independent.</p>",
+        "hero_video": "shopify://files/videos/hero04.mp4",
+        "hero_image": "shopify://shop_images/white_copy_2.jpg",
+        "hero_image_alt": "A child using a wooden Flipzy visual routine board",
+        "hero_media_label": "See it. Do it. Flip it.",
+        "primary_cta_label": "Choose Flipzy for your setting",
+        "primary_cta_link": "#for-schools-order",
+        "secondary_cta_label": "See how it works",
+        "secondary_cta_link": "#how-flipzy-works",
+        "microcopy": "Screen-free • tactile • no app or charging",
+        "audience_heading": "Made for the adults supporting young children",
+        "steps_eyebrow": "Clear in seconds",
+        "steps_heading": "Choose. Follow. Flip.",
+        "steps_intro": "<p>A routine children can see—and a satisfying way to mark each step as done.</p>",
+        "steps_cta_label": "Choose Flipzy for your setting",
+        "steps_cta_link": "#for-schools-order",
+        "routines_eyebrow": "One board. Many routines.",
+        "routines_heading": "Use Flipzy wherever a child needs a clear next step.",
+        "routines_intro": "<p>Set it up for one child, one room or one part of the day. Rearrange the tiles whenever the routine changes.</p>",
+        "benefits_eyebrow": "Less telling. More showing.",
+        "benefits_heading": "A simple shared cue for children and the adults supporting them.",
+        "closing_eyebrow": "Ready for your setting?",
+        "closing_heading": "Make the next step visible.",
+        "closing_text": "Start with one Flipzy or choose several for different children, rooms and routines.",
+        "closing_cta_label": "Choose Flipzy for your setting",
+        "closing_cta_link": "#for-schools-order",
+        "closing_image": "shopify://shop_images/moar.webp",
+        "closing_image_alt": "Several Flipzy routine boards set up for different daily routines"
+      }
+    },
+    "whats_included": {
+      "type": "flipzy-whats-in-the-box",
+      "blocks": {
+        "included_board": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "1 wooden wall board"
+          }
+        },
+        "included_tiles": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "7 movable task tiles + sun and moon"
+          }
+        },
+        "included_stickers": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "30 picture stickers for everyday tasks"
+          }
+        },
+        "included_mounting": {
+          "type": "list_item",
+          "settings": {
+            "icon": "check",
+            "text": "Mounting strips + instructions"
+          }
+        }
+      },
+      "block_order": [
+        "included_board",
+        "included_tiles",
+        "included_stickers",
+        "included_mounting"
+      ],
+      "settings": {
+        "bg_color": "#efe7da",
+        "main_heading": "Everything you need to make a routine visible.",
+        "subheading": "Set up your first routine in minutes, then change it whenever the day changes.",
+        "image_1": "shopify://shop_images/whatsinthebox7.jpg",
+        "image_1_alt": "Flipzy board, wooden task tiles, picture stickers and mounting kit",
+        "image_2": "shopify://shop_images/tasks-30.jpg",
+        "image_2_alt": "The 30 included Flipzy picture stickers for everyday tasks",
+        "image_2_bg": "#eadbc8",
+        "card_title": "One complete Flipzy set",
+        "featured_product": "flipzy-wooden-routine-board",
+        "trust_1": "Free shipping on qualifying orders",
+        "trust_2": "100% screen-free",
+        "trust_3": "Ships in 24h",
+        "trust_4": "30-day money-back guarantee",
+        "trust_5": "24-month warranty",
+        "description": "Need several boards? Choose the quantity for your rooms, routines or children below.",
+        "btn_text": "Choose Flipzy for your setting",
+        "btn_link": "#for-schools-order"
+      }
+    },
+    "order_anchor": {
+      "type": "flipzy-anchor",
+      "settings": {
+        "anchor_id": "for-schools-order",
+        "offset": 100
+      }
+    },
+    "school_order": {
+      "type": "featured-product",
+      "blocks": {
+        "order_context": {
+          "type": "text",
+          "settings": {
+            "text": "FOR SCHOOLS, SETTINGS & THERAPY ROOMS",
+            "text_style": "uppercase"
+          }
+        },
+        "order_title": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"b2b-order-heading\"><h2 class=\"product__title h1\">Flipzy visual routine board</h2><p>Choose the number of boards for your children, rooms or routines.</p></div>"
+          }
+        },
+        "order_price": {
+          "type": "price",
+          "settings": {}
+        },
+        "order_variants": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "order_quantity": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "order_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "order_note": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<p class=\"b2b-order-note\"><strong>Planning a larger order or need a formal quote?</strong><br><a href=\"mailto:info@flipzy.toys?subject=Flipzy%20for%20our%20organisation\">Email info@flipzy.toys</a> for purchasing details or help placing your order.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "order_context",
+        "order_title",
+        "order_price",
+        "order_variants",
+        "order_quantity",
+        "order_buttons",
+        "order_note"
+      ],
+      "settings": {
+        "product": "flipzy-wooden-routine-board",
+        "color_scheme": "scheme-1",
+        "secondary_background": false,
+        "media_size": "medium",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 72,
+        "padding_bottom": 72
+      }
+    },
+    "school_faq": {
+      "type": "flipzy-faq",
+      "blocks": {
+        "faq_multiple": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can we order for several rooms or children?",
+            "answer": "<p>Yes. Use the quantity selector above to choose the number of boards you need. For larger orders or a formal quote, email info@flipzy.toys.</p>"
+          }
+        },
+        "faq_invoice": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can our organisation request an invoice?",
+            "answer": "<p>Yes. Email info@flipzy.toys if you need a formal invoice, purchasing details or help before ordering.</p>"
+          }
+        },
+        "faq_change": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can we change the routine?",
+            "answer": "<p>Yes. Rearrange the wooden tiles whenever the order changes, and use the included picture stickers to create routines for different parts of the day.</p>"
+          }
+        },
+        "faq_additional": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is Flipzy suitable for children with additional needs?",
+            "answer": "<p>Its visual, tactile format can complement existing support for children who benefit from clear visual sequences. Every child is different; Flipzy is a supportive routine tool, not a medical or therapeutic device.</p>"
+          }
+        },
+        "faq_age": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What age is Flipzy for?",
+            "answer": "<p>Flipzy works best for children aged 3–8. Some older children may also find the clear sequence and physical flipping helpful.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_multiple",
+        "faq_invoice",
+        "faq_change",
+        "faq_additional",
+        "faq_age"
+      ],
+      "settings": {
+        "color_scheme": "scheme-white",
+        "heading": "Questions from schools & organisations"
+      }
+    },
+    "final_cta": {
+      "type": "rich-text",
+      "blocks": {
+        "final_heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Ready to make routines easier to see?",
+            "heading_size": "h1"
+          }
+        },
+        "final_text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Choose the number of boards for your children, rooms or routines.</p>"
+          }
+        },
+        "final_buttons": {
+          "type": "button",
+          "settings": {
+            "button_label": "Choose Flipzy for your setting",
+            "button_link": "#for-schools-order",
+            "button_style_secondary": false,
+            "button_label_2": "Ask about a larger order",
+            "button_link_2": "mailto:info@flipzy.toys?subject=Flipzy%20for%20our%20organisation",
+            "button_style_secondary_2": true
+          }
+        }
+      },
+      "block_order": [
+        "final_heading",
+        "final_text",
+        "final_buttons"
+      ],
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-e5083404-2c69-4411-b3b8-8cc5fe409702",
+        "full_width": true,
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    }
+  },
+  "order": [
+    "for_schools_main",
+    "whats_included",
+    "order_anchor",
+    "school_order",
+    "school_faq",
+    "final_cta"
+  ]
+}
