@@ -123,9 +123,20 @@
                     {%- endif -%}
                   </div>
                 {%- when 'b2b_order_note' -%}
-                  {%- if block.settings.text != blank -%}
+                  {%- if block.settings.heading != blank or block.settings.text != blank or block.settings.link_label != blank -%}
                     <div class="b2b-order-note rte" {{ block.shopify_attributes }}>
-                      {{ block.settings.text }}
+                      {%- if block.settings.heading != blank -%}
+                        <p><strong>{{ block.settings.heading | escape }}</strong></p>
+                      {%- endif -%}
+                      {%- if block.settings.text != blank or block.settings.link_label != blank -%}
+                        <p>
+                          {%- if block.settings.text != blank -%}{{ block.settings.text | escape }}{%- endif -%}
+                          {%- if block.settings.text != blank and block.settings.link_label != blank -%} {% endif -%}
+                          {%- if block.settings.link_label != blank -%}
+                            <a href="mailto:info@flipzy.toys">{{ block.settings.link_label | escape }}</a>
+                          {%- endif -%}
+                        </p>
+                      {%- endif -%}
                     </div>
                   {%- endif -%}
                 {%- when 'price' -%}
@@ -620,10 +631,22 @@
       "limit": 1,
       "settings": [
         {
-          "type": "richtext",
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Ordering for several groups or need a formal quote?"
+        },
+        {
+          "type": "textarea",
           "id": "text",
           "label": "Text",
-          "default": "<p>Need a formal quote or invoice? Contact us for help with your order.</p>"
+          "default": "For an invoice, purchasing details or help with your order."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Email link label",
+          "default": "Email info@flipzy.toys"
         }
       ]
     },

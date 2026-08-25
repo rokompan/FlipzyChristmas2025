@@ -50,9 +50,9 @@
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/o/v/b79a29aed8e645aea74714d776f4436d.mp4",
             "image": "shopify://shop_images/stickers.webp",
-            "media_alt": "An educator choosing picture cues for a preschool group",
-            "title": "Choose today’s pictures",
-            "text": "Pick the moments your group will move through."
+            "media_alt": "Picture cues being selected for a seven-step preschool routine",
+            "title": "Choose up to seven tasks",
+            "text": "Add picture cues for the routine you want to show."
           }
         },
         "step_sequence": {
@@ -60,9 +60,9 @@
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/o/v/fa3e3ec79976459d9fdab5c109f4d906.mp4",
             "image": "shopify://shop_images/natakni.webp",
-            "media_alt": "An educator arranging wooden Flipzy tiles for the preschool day",
-            "title": "Set the routine",
-            "text": "Arrange up to seven wooden tiles in the order they will happen."
+            "media_alt": "Seven open Flipzy tiles showing the next tasks in a preschool routine",
+            "title": "Leave the next tasks open",
+            "text": "Children can see the sequence and what comes next."
           }
         },
         "step_flip": {
@@ -70,83 +70,83 @@
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/o/v/fc3c3e1256e24560a76523635f8716c3.mp4",
             "image": "shopify://shop_images/palca.jpg",
-            "media_alt": "Young children flipping a completed task on a Flipzy board",
-            "title": "Flip what is finished",
-            "text": "Children turn each completed step over and see what comes next."
+            "media_alt": "A finished Flipzy tile closing to reveal its green checkmark",
+            "title": "Close finished tiles",
+            "text": "Each closed tile reveals a green checkmark, making progress visible."
           }
         },
         "routine_preschool": {
           "type": "routine",
           "settings": {
-            "image_alt": "Children using Flipzy together during morning arrival at preschool",
-            "title": "Morning welcome"
+            "image_alt": "Five preschool children and an educator checking seven open task tiles during morning arrival",
+            "title": "Morning arrival"
           }
         },
         "routine_school": {
           "type": "routine",
           "settings": {
-            "image_alt": "A preschool group checking Flipzy before moving from playtime to circle time",
-            "title": "Circle time & activities"
+            "image_alt": "Five preschool children and an educator checking seven open tasks before an activity transition",
+            "title": "Activity transitions"
           }
         },
         "routine_therapy": {
           "type": "routine",
           "settings": {
-            "image_alt": "Children following a hand-washing and snack routine in a daycare room",
+            "image_alt": "Five preschool children and an educator checking seven open self-care tasks beside the wash area",
             "title": "Hand-washing & snack"
           }
         },
         "routine_flip_detail": {
           "type": "routine",
           "settings": {
-            "image_alt": "Close-up of a hand flipping a wooden Flipzy task tile",
-            "title": "Flip each finished step"
+            "image_alt": "Authentic Flipzy board with two closed green-check tiles and five open task tiles",
+            "title": "Open tasks show what comes next"
           }
         },
         "routine_hinge": {
           "type": "routine",
           "settings": {
-            "image_alt": "Close-up of the solid wooden Flipzy hinge and movable task tiles",
-            "title": "Tactile wooden tiles"
+            "image_alt": "Close-up of a hand closing one of Flipzy’s seven task tiles",
+            "title": "Close each finished tile"
           }
         },
         "routine_complete": {
           "type": "routine",
           "settings": {
             "image_alt": "Complete Flipzy set with board, seven task tiles, picture stickers and mounting materials",
-            "title": "Everything included"
+            "title": "Everything needed to begin"
           }
         },
         "benefit_visible": {
           "type": "benefit",
           "settings": {
             "icon": "eye",
-            "title": "Clear group routines",
-            "text": "Keep the day visible where children can see it."
+            "title": "Clearer transitions",
+            "text": "Show the group what is happening now and what comes next."
           }
         },
         "benefit_cue": {
           "type": "benefit",
           "settings": {
             "icon": "cue",
-            "title": "Gentler reminders",
-            "text": "Point to the board alongside your usual support."
+            "title": "Fewer repeated prompts",
+            "text": "Point to one shared visual cue alongside your usual support."
           }
         },
         "benefit_progress": {
           "type": "benefit",
           "settings": {
             "icon": "flip",
-            "title": "Progress they can see",
-            "text": "Every flip makes “finished” clear and satisfying."
+            "title": "Progress children can see",
+            "text": "Every closed tile gives a clear, satisfying sign of completion."
           }
         },
         "benefit_independence": {
           "type": "benefit",
           "settings": {
             "icon": "independence",
-            "title": "Growing independence",
-            "text": "Children can check the routine and take the next step with less help."
+            "title": "Gradual independence",
+            "text": "Children can begin checking the routine and taking the next step themselves."
           }
         }
       },
@@ -172,32 +172,38 @@
         "benefit_independence"
       ],
       "settings": {
-        "heading": "Help young children see <strong>what comes next.</strong>",
-        "intro": "<p>Flipzy is a simple visual routine board that shows young children what happens now, what comes next and what is already done.</p>",
-        "hero_image_alt": "Preschool children following a visual routine with their educator at daycare",
-        "hero_media_label": "See it. Do it. Flip it.",
+        "heading": "Make the preschool day <strong>easier to see.</strong>",
+        "intro": "<p>Flipzy is a wooden visual routine board with seven hinged tiles. Open tiles show the tasks. Close each finished tile to reveal a green checkmark.</p>",
+        "hero_product_alt": "Authentic Flipzy wooden visual routine board with exactly seven hinged tiles: two closed green-check tiles and five open task tiles",
+        "hero_product_label": "Exactly seven hinged tiles.",
+        "hero_video": "shopify://files/videos/hero04.mp4",
+        "hero_video_alt": "Close-up video showing a Flipzy task tile closing so its green checkmark becomes visible",
+        "hero_image_alt": "Five preschool children and an educator using a seven-tile Flipzy routine board in daycare",
+        "hero_media_label": "Watch a task turn into done.",
+        "open_tile_label": "Open tile = task to do",
+        "closed_tile_label": "Closed tile = green checkmark—done",
         "primary_cta_label": "Choose Flipzy for your group",
         "primary_cta_link": "#for-schools-order",
-        "secondary_cta_label": "See it in action",
+        "secondary_cta_label": "See how it works",
         "secondary_cta_link": "#how-flipzy-works",
-        "microcopy": "Ages 3–8 • screen-free • no app or charging",
-        "audience_heading": "Made for preschool days—and every team supporting young children.",
-        "steps_eyebrow": "Ready in minutes",
-        "steps_heading": "Choose. Follow. Flip.",
-        "steps_intro": "<p>A simple rhythm young children can see and follow throughout the day.</p>",
+        "microcopy": "No reading required • screen-free • made for ages 3–8",
+        "audience_heading": "Built for preschool groups—and useful wherever young children need clear routines.",
+        "steps_eyebrow": "How Flipzy works",
+        "steps_heading": "From picture cues to green checkmarks.",
+        "steps_intro": "<p>A physical routine children can understand without reading, an app or a screen.</p>",
         "steps_cta_label": "Choose Flipzy for your group",
         "steps_cta_link": "#for-schools-order",
-        "routines_eyebrow": "Made for busy preschool days.",
-        "routines_heading": "One board. Every part of the day.",
-        "routines_intro": "<p>Use Flipzy with a whole group, a small group or one child. Change the tiles whenever the routine changes.</p>",
-        "benefits_eyebrow": "Less telling. More showing.",
-        "benefits_heading": "A calm, shared cue for the whole group.",
-        "closing_eyebrow": "Ready for your group?",
-        "closing_heading": "Make the next part of the day easier to see.",
-        "closing_text": "Start with one Flipzy—or use several across groups, rooms and routines.",
+        "routines_eyebrow": "In everyday early-years care",
+        "routines_heading": "Use it through the whole preschool day.",
+        "routines_intro": "<p>Set one routine for the whole group, a small group or one child. Rearrange the tiles whenever the day changes.</p>",
+        "benefits_eyebrow": "Less repeating. More showing.",
+        "benefits_heading": "A shared visual cue for the busiest parts of the day.",
+        "closing_eyebrow": "One routine. Shared by the group.",
+        "closing_heading": "Less repeating. More children knowing what comes next.",
+        "closing_text": "Keep Flipzy at child height and use it as a calm visual cue alongside your usual support.",
         "closing_cta_label": "Choose Flipzy for your group",
         "closing_cta_link": "#for-schools-order",
-        "closing_image_alt": "Preschool children completing a shared routine with their educator"
+        "closing_image_alt": "Five preschool children and an educator beside a completed Flipzy routine with exactly seven closed green-check tiles"
       }
     },
     "whats_included": {
@@ -207,28 +213,28 @@
           "type": "list_item",
           "settings": {
             "icon": "check",
-            "text": "1 wooden routine board"
+            "text": "1 wooden board with 7 flip-over tiles"
           }
         },
         "included_tiles": {
           "type": "list_item",
           "settings": {
             "icon": "check",
-            "text": "7 movable task tiles + sun and moon"
+            "text": "30 routine picture stickers"
           }
         },
         "included_stickers": {
           "type": "list_item",
           "settings": {
             "icon": "check",
-            "text": "30 picture stickers for everyday routines"
+            "text": "10 green checkmark stickers"
           }
         },
         "included_mounting": {
           "type": "list_item",
           "settings": {
             "icon": "check",
-            "text": "Mounting strips + instructions"
+            "text": "Morning/evening symbols + mounting materials"
           }
         }
       },
@@ -240,21 +246,21 @@
       ],
       "settings": {
         "bg_color": "#efe7da",
-        "main_heading": "Everything you need to show the day.",
-        "subheading": "Set up your first routine in minutes, then rearrange it whenever the day changes.",
+        "main_heading": "Everything you need to make a routine visible.",
+        "subheading": "Build a seven-step routine, then rearrange the tiles whenever the day changes.",
         "image_1": "shopify://shop_images/whatsinthebox7.jpg",
-        "image_1_alt": "Flipzy board, wooden task tiles, picture stickers and mounting kit",
+        "image_1_alt": "Complete Flipzy set with one wooden seven-tile board, routine stickers and mounting materials",
         "image_2": "shopify://shop_images/tasks-30.jpg",
         "image_2_alt": "The 30 included Flipzy picture stickers for everyday routines",
         "image_2_bg": "#eadbc8",
-        "card_title": "One complete Flipzy set",
+        "card_title": "One complete seven-tile Flipzy set",
         "featured_product": "flipzy-wooden-routine-board",
         "trust_1": "Free shipping on qualifying orders",
         "trust_2": "100% screen-free",
         "trust_3": "Ships in 24 hours",
         "trust_4": "30-day money-back guarantee",
         "trust_5": "24-month warranty",
-        "description": "Need a board for more than one group or room? Choose your quantity below.",
+        "description": "Choose one board for a group, or equip several rooms and routines.",
         "btn_text": "Choose Flipzy for your group",
         "btn_link": "#for-schools-order"
       }
@@ -272,7 +278,7 @@
         "order_context": {
           "type": "text",
           "settings": {
-            "text": "FOR PRESCHOOLS, DAYCARE & EARLY LEARNING",
+            "text": "FOR PRESCHOOLS, DAYCARE & EARLY-YEARS TEAMS",
             "text_style": "uppercase"
           }
         },
@@ -308,7 +314,9 @@
         "order_note": {
           "type": "b2b_order_note",
           "settings": {
-            "text": "<p><strong>Ordering for several groups or need a formal quote?</strong></p><p><a href=\"mailto:info@flipzy.toys\">Email info@flipzy.toys</a> for an invoice, purchasing details or help with your order.</p>"
+            "heading": "Ordering for several groups or need a formal quote?",
+            "text": "For an invoice, purchasing details or help with your order.",
+            "link_label": "Email info@flipzy.toys"
           }
         }
       },
@@ -346,6 +354,13 @@
             "answer": "<p>Yes. Place it where children can see it and use it for shared moments such as arrival, circle time, meals, outdoor play and home time. You can also use Flipzy with a small group or one child.</p>"
           }
         },
+        "faq_tiles": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What do the open and closed tiles mean?",
+            "answer": "<p>An open tile shows a picture cue for a task that is still to do. When the task is complete, close that same tile so its green checkmark becomes visible. Each Flipzy has exactly seven hinged tiles.</p>"
+          }
+        },
         "faq_invoice": {
           "type": "faq_item",
           "settings": {
@@ -377,9 +392,10 @@
       },
       "block_order": [
         "faq_multiple",
-        "faq_invoice",
+        "faq_tiles",
         "faq_change",
         "faq_additional",
+        "faq_invoice",
         "faq_age"
       ],
       "settings": {
@@ -393,14 +409,14 @@
         "final_heading": {
           "type": "heading",
           "settings": {
-            "heading": "Ready for a routine children can see?",
+            "heading": "Make the next part of the day easier to see.",
             "heading_size": "h1"
           }
         },
         "final_text": {
           "type": "text",
           "settings": {
-            "text": "<p>Choose one Flipzy for your group or equip several rooms.</p>"
+            "text": "<p>Choose one seven-tile Flipzy for your group or equip several rooms.</p>"
           }
         },
         "final_buttons": {

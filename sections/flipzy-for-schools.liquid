@@ -10,6 +10,14 @@
   assign hero_video_label = section.settings.hero_media_label | default: default_video_label
   assign hero_video_play_label = 'sections.flipzy_for_schools.video.play_label' | t: label: hero_video_label
   assign hero_video_pause_label = 'sections.flipzy_for_schools.video.pause_label' | t: label: hero_video_label
+  assign hero_product_alt = section.settings.hero_product_alt
+  if hero_product_alt == blank
+    assign hero_product_alt = 'sections.flipzy_for_schools.media.product_alt' | t
+  endif
+  assign hero_video_alt = section.settings.hero_video_alt
+  if hero_video_alt == blank
+    assign hero_video_alt = 'sections.flipzy_for_schools.media.demo_alt' | t
+  endif
   assign hero_image_alt = section.settings.hero_image_alt
   if hero_image_alt == blank
     assign hero_image_alt = 'sections.flipzy_for_schools.media.hero_alt' | t
@@ -33,13 +41,30 @@
         {%- endif -%}
 
         <div class="flipzy-b2b__mobile-product-peek">
-          <img
-            src="{{ 'b2b-product-clean.jpg' | asset_url }}"
-            alt="{{ 'sections.flipzy_for_schools.media.product_alt' | t | escape }}"
-            width="871"
-            height="535"
-            loading="eager"
-          >
+          {%- if section.settings.hero_product_image != blank -%}
+            {{
+              section.settings.hero_product_image
+              | image_url: width: 900
+              | image_tag:
+                widths: '480, 720, 900',
+                sizes: '340px',
+                loading: 'eager',
+                fetchpriority: 'high',
+                alt: hero_product_alt
+            }}
+          {%- else -%}
+            <img
+              src="{{ 'b2b-product-clean.jpg' | asset_url }}"
+              alt="{{ hero_product_alt | escape }}"
+              width="871"
+              height="535"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- endif -%}
+          {%- if section.settings.hero_product_label != blank -%}
+            <span>{{ section.settings.hero_product_label | escape }}</span>
+          {%- endif -%}
         </div>
 
         {%- if section.settings.intro != blank -%}
@@ -71,98 +96,114 @@
       </div>
 
       <div class="flipzy-b2b__hero-media">
-        <div class="flipzy-b2b__hero-frame">
-          {%- if section.settings.hero_video != blank -%}
-            {{
-              section.settings.hero_video
-              | video_tag:
-                autoplay: true,
-                loop: true,
-                muted: true,
-                controls: false,
-                playsinline: true,
-                image_size: '1400x',
-                id: hero_video_id,
-                title: hero_image_alt,
-                class: 'flipzy-b2b__media-element',
-                preload: 'metadata'
-            }}
-            <button
-              class="flipzy-b2b__video-toggle"
-              type="button"
-              data-b2b-video-toggle
-              data-play-label="{{ hero_video_play_label | escape }}"
-              data-pause-label="{{ hero_video_pause_label | escape }}"
-              aria-controls="FlipzyHeroVideo-{{ section.id }}"
-              aria-label="{{ hero_video_pause_label | escape }}"
-            >
-              <span class="flipzy-b2b__pause-icon" aria-hidden="true"></span>
-              <span class="flipzy-b2b__play-icon" aria-hidden="true"></span>
-            </button>
-          {%- elsif section.settings.hero_image != blank -%}
-            {{
-              section.settings.hero_image
-              | image_url: width: 1600
-              | image_tag:
-                widths: '550, 750, 990, 1200, 1600',
-                sizes: '(min-width: 990px) 52vw, 100vw',
-                loading: 'eager',
-                fetchpriority: 'high',
-                class: 'flipzy-b2b__media-element',
-                alt: hero_image_alt
-            }}
-          {%- else -%}
-            <img
-              src="{{ 'b2b-daycare-hero.jpg' | asset_url }}"
-              alt="{{ hero_image_alt | escape }}"
-              width="1536"
-              height="1024"
-              loading="eager"
-              fetchpriority="high"
-              class="flipzy-b2b__media-element"
-            >
-          {%- endif -%}
+        <div class="flipzy-b2b__hero-showcase">
+          <figure class="flipzy-b2b__hero-product-card">
+            {%- if section.settings.hero_product_image != blank -%}
+              {{
+                section.settings.hero_product_image
+                | image_url: width: 1400
+                | image_tag:
+                  widths: '550, 750, 990, 1200, 1400',
+                  sizes: '(min-width: 990px) 45vw, 100vw',
+                  loading: 'eager',
+                  fetchpriority: 'high',
+                  class: 'flipzy-b2b__media-element',
+                  alt: hero_product_alt
+              }}
+            {%- else -%}
+              <img
+                src="{{ 'b2b-product-clean.jpg' | asset_url }}"
+                alt="{{ hero_product_alt | escape }}"
+                width="871"
+                height="535"
+                loading="eager"
+                fetchpriority="high"
+                class="flipzy-b2b__media-element"
+              >
+            {%- endif -%}
+            {%- if section.settings.hero_product_label != blank -%}
+              <figcaption>{{ section.settings.hero_product_label | escape }}</figcaption>
+            {%- endif -%}
+          </figure>
 
-          {%- if section.settings.hero_media_label != blank -%}
-            <div class="flipzy-b2b__media-label">
-              <span class="flipzy-b2b__media-label-dot" aria-hidden="true"></span>
-              {{ section.settings.hero_media_label | escape }}
-            </div>
-          {%- endif -%}
+          <div class="flipzy-b2b__hero-frame flipzy-b2b__hero-demo-card">
+            {%- if section.settings.hero_video != blank -%}
+              {{
+                section.settings.hero_video
+                | video_tag:
+                  autoplay: true,
+                  loop: true,
+                  muted: true,
+                  controls: false,
+                  playsinline: true,
+                  image_size: '1000x',
+                  id: hero_video_id,
+                  title: hero_video_alt,
+                  class: 'flipzy-b2b__media-element',
+                  preload: 'metadata'
+              }}
+              <button
+                class="flipzy-b2b__video-toggle"
+                type="button"
+                data-b2b-video-toggle
+                data-play-label="{{ hero_video_play_label | escape }}"
+                data-pause-label="{{ hero_video_pause_label | escape }}"
+                aria-controls="FlipzyHeroVideo-{{ section.id }}"
+                aria-label="{{ hero_video_pause_label | escape }}"
+              >
+                <span class="flipzy-b2b__pause-icon" aria-hidden="true"></span>
+                <span class="flipzy-b2b__play-icon" aria-hidden="true"></span>
+              </button>
+            {%- elsif section.settings.hero_image != blank -%}
+              {{
+                section.settings.hero_image
+                | image_url: width: 1200
+                | image_tag:
+                  widths: '480, 720, 960, 1200',
+                  sizes: '(min-width: 990px) 28vw, 100vw',
+                  loading: 'eager',
+                  class: 'flipzy-b2b__media-element',
+                  alt: hero_image_alt
+              }}
+            {%- else -%}
+              <img
+                src="{{ 'b2b-daycare-hero.jpg' | asset_url }}"
+                alt="{{ hero_image_alt | escape }}"
+                width="1536"
+                height="1024"
+                loading="eager"
+                class="flipzy-b2b__media-element"
+              >
+            {%- endif -%}
+
+            {%- if section.settings.hero_media_label != blank -%}
+              <div class="flipzy-b2b__media-label">
+                <span class="flipzy-b2b__media-label-dot" aria-hidden="true"></span>
+                {{ section.settings.hero_media_label | escape }}
+              </div>
+            {%- endif -%}
+          </div>
         </div>
+
+        {%- if section.settings.open_tile_label != blank or section.settings.closed_tile_label != blank -%}
+          <ul class="flipzy-b2b__mechanism-legend" role="list">
+            {%- if section.settings.open_tile_label != blank -%}
+              <li>
+                <span class="flipzy-b2b__legend-icon flipzy-b2b__legend-icon--open" aria-hidden="true"></span>
+                {{ section.settings.open_tile_label | escape }}
+              </li>
+            {%- endif -%}
+            {%- if section.settings.closed_tile_label != blank -%}
+              <li>
+                <span class="flipzy-b2b__legend-icon flipzy-b2b__legend-icon--done" aria-hidden="true">✓</span>
+                {{ section.settings.closed_tile_label | escape }}
+              </li>
+            {%- endif -%}
+          </ul>
+        {%- endif -%}
       </div>
     </div>
   </div>
-
-  {%- if audience_blocks.size > 0 -%}
-    <div
-      class="flipzy-b2b__audiences"
-      {% if section.settings.audience_heading != blank %}
-        aria-labelledby="FlipzyAudiences-{{ section.id }}"
-      {% else %}
-        aria-label="{{ 'sections.flipzy_for_schools.audience_aria_label' | t | escape }}"
-      {% endif %}
-    >
-      <div class="flipzy-b2b__page">
-        {%- if section.settings.audience_heading != blank -%}
-          <p id="FlipzyAudiences-{{ section.id }}" class="flipzy-b2b__audience-heading">
-            {{ section.settings.audience_heading | escape }}
-          </p>
-        {%- endif -%}
-        <ul class="flipzy-b2b__audience-list" role="list">
-          {%- for block in audience_blocks -%}
-            <li class="flipzy-b2b__audience-chip" {{ block.shopify_attributes }}>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 3 3 8l9 5 9-5-9-5Z" />
-                <path d="m7 11-4 2 9 5 9-5-4-2" />
-              </svg>
-              {{ block.settings.label | escape }}
-            </li>
-          {%- endfor -%}
-        </ul>
-      </div>
-    </div>
-  {%- endif -%}
 
   <div id="how-flipzy-works" class="flipzy-b2b__steps">
     <div class="flipzy-b2b__page">
@@ -276,6 +317,36 @@
     </div>
   </div>
 
+  {%- if audience_blocks.size > 0 -%}
+    <div
+      class="flipzy-b2b__audiences"
+      {% if section.settings.audience_heading != blank %}
+        aria-labelledby="FlipzyAudiences-{{ section.id }}"
+      {% else %}
+        aria-label="{{ 'sections.flipzy_for_schools.audience_aria_label' | t | escape }}"
+      {% endif %}
+    >
+      <div class="flipzy-b2b__page">
+        {%- if section.settings.audience_heading != blank -%}
+          <p id="FlipzyAudiences-{{ section.id }}" class="flipzy-b2b__audience-heading">
+            {{ section.settings.audience_heading | escape }}
+          </p>
+        {%- endif -%}
+        <ul class="flipzy-b2b__audience-list" role="list">
+          {%- for block in audience_blocks -%}
+            <li class="flipzy-b2b__audience-chip" {{ block.shopify_attributes }}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3 3 8l9 5 9-5-9-5Z" />
+                <path d="m7 11-4 2 9 5 9-5-4-2" />
+              </svg>
+              {{ block.settings.label | escape }}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  {%- endif -%}
+
   <div class="flipzy-b2b__routines">
     <div class="flipzy-b2b__page">
       <div class="flipzy-b2b__section-heading flipzy-b2b__section-heading--left">
@@ -315,9 +386,9 @@
                   when 3
                     assign routine_alt = 'sections.flipzy_for_schools.media.self_care_alt' | t
                   when 4
-                    assign routine_alt = 'sections.flipzy_for_schools.media.flip_alt' | t
+                    assign routine_alt = 'sections.flipzy_for_schools.media.product_state_alt' | t
                   when 5
-                    assign routine_alt = 'sections.flipzy_for_schools.media.hinge_alt' | t
+                    assign routine_alt = 'sections.flipzy_for_schools.media.flip_alt' | t
                   when 6
                     assign routine_alt = 'sections.flipzy_for_schools.media.complete_set_alt' | t
                   else
@@ -368,19 +439,19 @@
                     >
                   {%- when 4 -%}
                     <img
-                      src="{{ 'b2b-product-flip-action.jpg' | asset_url }}"
+                      src="{{ 'b2b-product-clean.jpg' | asset_url }}"
                       alt="{{ routine_alt | escape }}"
-                      width="2349"
-                      height="1651"
+                      width="871"
+                      height="535"
                       loading="lazy"
                       class="flipzy-b2b__media-element"
                     >
                   {%- when 5 -%}
                     <img
-                      src="{{ 'b2b-product-hinge-detail.jpg' | asset_url }}"
+                      src="{{ 'b2b-product-flip-action.jpg' | asset_url }}"
                       alt="{{ routine_alt | escape }}"
-                      width="2215"
-                      height="2953"
+                      width="2349"
+                      height="1651"
                       loading="lazy"
                       class="flipzy-b2b__media-element"
                     >
@@ -561,43 +632,49 @@
   "settings": [
     { "type": "header", "content": "Hero" },
     { "type": "text", "id": "eyebrow", "label": "Optional eyebrow" },
-    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Help young children see <strong>what comes next.</strong>" },
-    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Flipzy is a simple visual routine board that shows young children what happens now, what comes next and what is already done.</p>" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Make the preschool day <strong>easier to see.</strong>" },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Flipzy is a wooden visual routine board with seven hinged tiles. Open tiles show the tasks. Close each finished tile to reveal a green checkmark.</p>" },
+    { "type": "image_picker", "id": "hero_product_image", "label": "Product image" },
+    { "type": "text", "id": "hero_product_alt", "label": "Product image description", "default": "Authentic Flipzy wooden visual routine board with exactly seven hinged tiles" },
+    { "type": "text", "id": "hero_product_label", "label": "Product image label", "default": "Exactly seven hinged tiles." },
     { "type": "video", "id": "hero_video", "label": "Hero video" },
-    { "type": "image_picker", "id": "hero_image", "label": "Hero image (shown when no video is selected)" },
-    { "type": "text", "id": "hero_image_alt", "label": "Hero media description", "default": "Preschool children following a visual routine with their educator at daycare" },
-    { "type": "text", "id": "hero_media_label", "label": "Media label", "default": "See it. Do it. Flip it." },
+    { "type": "text", "id": "hero_video_alt", "label": "Video description", "default": "Close-up demonstration of a Flipzy tile closing to reveal a green checkmark" },
+    { "type": "image_picker", "id": "hero_image", "label": "Video fallback image" },
+    { "type": "text", "id": "hero_image_alt", "label": "Fallback image description", "default": "Preschool children following a seven-tile Flipzy routine with their educator" },
+    { "type": "text", "id": "hero_media_label", "label": "Video label", "default": "Watch a task turn into done." },
+    { "type": "text", "id": "open_tile_label", "label": "Open-tile explanation", "default": "Open tile = task to do" },
+    { "type": "text", "id": "closed_tile_label", "label": "Closed-tile explanation", "default": "Closed tile = green checkmark—done" },
     { "type": "text", "id": "primary_cta_label", "label": "Primary button label", "default": "Choose Flipzy for your group" },
     { "type": "url", "id": "primary_cta_link", "label": "Primary button link" },
-    { "type": "text", "id": "secondary_cta_label", "label": "Secondary link label", "default": "See it in action" },
+    { "type": "text", "id": "secondary_cta_label", "label": "Secondary link label", "default": "See how it works" },
     { "type": "url", "id": "secondary_cta_link", "label": "Secondary link" },
-    { "type": "text", "id": "microcopy", "label": "Hero reassurance", "default": "Ages 3–8 • screen-free • no app or charging" },
-    { "type": "text", "id": "audience_heading", "label": "Audience heading", "default": "Made for preschool days—and every team supporting young children." },
+    { "type": "text", "id": "microcopy", "label": "Hero reassurance", "default": "No reading required • screen-free • made for ages 3–8" },
+    { "type": "text", "id": "audience_heading", "label": "Audience heading", "default": "Built for preschool groups—and useful wherever young children need clear routines." },
 
     { "type": "header", "content": "How it works" },
-    { "type": "text", "id": "steps_eyebrow", "label": "Eyebrow", "default": "Ready in minutes" },
-    { "type": "text", "id": "steps_heading", "label": "Heading", "default": "Choose. Follow. Flip." },
-    { "type": "richtext", "id": "steps_intro", "label": "Introduction", "default": "<p>A simple rhythm young children can see and follow throughout the day.</p>" },
+    { "type": "text", "id": "steps_eyebrow", "label": "Eyebrow", "default": "How Flipzy works" },
+    { "type": "text", "id": "steps_heading", "label": "Heading", "default": "From picture cues to green checkmarks." },
+    { "type": "richtext", "id": "steps_intro", "label": "Introduction", "default": "<p>A physical routine children can understand without reading, an app or a screen.</p>" },
     { "type": "text", "id": "steps_cta_label", "label": "Button label", "default": "Choose Flipzy for your group" },
     { "type": "url", "id": "steps_cta_link", "label": "Button link" },
 
     { "type": "header", "content": "Routine gallery" },
-    { "type": "text", "id": "routines_eyebrow", "label": "Eyebrow", "default": "Made for busy preschool days." },
-    { "type": "text", "id": "routines_heading", "label": "Heading", "default": "One board. Every part of the day." },
-    { "type": "richtext", "id": "routines_intro", "label": "Introduction", "default": "<p>Use Flipzy with a whole group, a small group or one child. Change the tiles whenever the routine changes.</p>" },
+    { "type": "text", "id": "routines_eyebrow", "label": "Eyebrow", "default": "In everyday early-years care" },
+    { "type": "text", "id": "routines_heading", "label": "Heading", "default": "Use it through the whole preschool day." },
+    { "type": "richtext", "id": "routines_intro", "label": "Introduction", "default": "<p>Set one routine for the whole group, a small group or one child. Rearrange the tiles whenever the day changes.</p>" },
 
     { "type": "header", "content": "Benefits" },
-    { "type": "text", "id": "benefits_eyebrow", "label": "Eyebrow", "default": "Less telling. More showing." },
-    { "type": "text", "id": "benefits_heading", "label": "Heading", "default": "A calm, shared cue for the whole group." },
+    { "type": "text", "id": "benefits_eyebrow", "label": "Eyebrow", "default": "Less repeating. More showing." },
+    { "type": "text", "id": "benefits_heading", "label": "Heading", "default": "A shared visual cue for the busiest parts of the day." },
 
     { "type": "header", "content": "Closing call to action" },
-    { "type": "text", "id": "closing_eyebrow", "label": "Eyebrow", "default": "Ready for your group?" },
-    { "type": "text", "id": "closing_heading", "label": "Heading", "default": "Make the next part of the day easier to see." },
-    { "type": "textarea", "id": "closing_text", "label": "Text", "default": "Start with one Flipzy—or use several across groups, rooms and routines." },
+    { "type": "text", "id": "closing_eyebrow", "label": "Eyebrow", "default": "One routine. Shared by the group." },
+    { "type": "text", "id": "closing_heading", "label": "Heading", "default": "Less repeating. More children knowing what comes next." },
+    { "type": "textarea", "id": "closing_text", "label": "Text", "default": "Keep Flipzy at child height and use it as a calm visual cue alongside your usual support." },
     { "type": "text", "id": "closing_cta_label", "label": "Button label", "default": "Choose Flipzy for your group" },
     { "type": "url", "id": "closing_cta_link", "label": "Button link" },
     { "type": "image_picker", "id": "closing_image", "label": "Image" },
-    { "type": "text", "id": "closing_image_alt", "label": "Image alt text", "default": "Preschool children completing a shared routine with their educator" }
+    { "type": "text", "id": "closing_image_alt", "label": "Image alt text", "default": "Preschool children and an educator beside a completed Flipzy routine with exactly seven closed green-check tiles" }
   ],
   "blocks": [
     {
@@ -662,19 +739,19 @@
         { "type": "audience", "settings": { "label": "Autism support organisations" } },
         { "type": "audience", "settings": { "label": "Therapists & family centres" } },
         { "type": "audience", "settings": { "label": "Primary schools" } },
-        { "type": "step", "settings": { "title": "Choose today’s pictures", "text": "Pick the moments your group will move through." } },
-        { "type": "step", "settings": { "title": "Set the routine", "text": "Arrange up to seven wooden tiles in the order they will happen." } },
-        { "type": "step", "settings": { "title": "Flip what is finished", "text": "Children turn each completed step over and see what comes next." } },
-        { "type": "routine", "settings": { "title": "Morning welcome" } },
-        { "type": "routine", "settings": { "title": "Circle time & activities" } },
+        { "type": "step", "settings": { "title": "Choose up to seven tasks", "text": "Add picture cues for the routine you want to show." } },
+        { "type": "step", "settings": { "title": "Leave the next tasks open", "text": "Children can see the sequence and what comes next." } },
+        { "type": "step", "settings": { "title": "Close finished tiles", "text": "Each closed tile reveals a green checkmark, making progress visible." } },
+        { "type": "routine", "settings": { "title": "Morning arrival" } },
+        { "type": "routine", "settings": { "title": "Activity transitions" } },
         { "type": "routine", "settings": { "title": "Hand-washing & snack" } },
-        { "type": "routine", "settings": { "title": "Flip each finished step" } },
-        { "type": "routine", "settings": { "title": "Tactile wooden tiles" } },
-        { "type": "routine", "settings": { "title": "Everything included" } },
-        { "type": "benefit", "settings": { "icon": "eye", "title": "Clear group routines", "text": "Keep the day visible where children can see it." } },
-        { "type": "benefit", "settings": { "icon": "cue", "title": "Gentler reminders", "text": "Point to the board alongside your usual support." } },
-        { "type": "benefit", "settings": { "icon": "flip", "title": "Progress they can see", "text": "Every flip makes “finished” clear and satisfying." } },
-        { "type": "benefit", "settings": { "icon": "independence", "title": "Growing independence", "text": "Children can check the routine and take the next step with less help." } }
+        { "type": "routine", "settings": { "title": "Open tasks show what comes next" } },
+        { "type": "routine", "settings": { "title": "Close each finished tile" } },
+        { "type": "routine", "settings": { "title": "Everything needed to begin" } },
+        { "type": "benefit", "settings": { "icon": "eye", "title": "Clearer transitions", "text": "Show the group what is happening now and what comes next." } },
+        { "type": "benefit", "settings": { "icon": "cue", "title": "Fewer repeated prompts", "text": "Point to one shared visual cue alongside your usual support." } },
+        { "type": "benefit", "settings": { "icon": "flip", "title": "Progress children can see", "text": "Every closed tile gives a clear, satisfying sign of completion." } },
+        { "type": "benefit", "settings": { "icon": "independence", "title": "Gradual independence", "text": "Children can begin checking the routine and taking the next step themselves." } }
       ]
     }
   ]
