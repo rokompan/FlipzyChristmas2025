@@ -113,6 +113,21 @@
                       {{ 'onboarding.product_title' | t }}
                     {%- endunless -%}
                   </h2>
+                {%- when 'b2b_heading' -%}
+                  <div class="b2b-order-heading" {{ block.shopify_attributes }}>
+                    {%- if block.settings.heading != blank -%}
+                      <h2 class="product__title h1">{{ block.settings.heading }}</h2>
+                    {%- endif -%}
+                    {%- if block.settings.text != blank -%}
+                      <div class="rte">{{ block.settings.text }}</div>
+                    {%- endif -%}
+                  </div>
+                {%- when 'b2b_order_note' -%}
+                  {%- if block.settings.text != blank -%}
+                    <div class="b2b-order-note rte" {{ block.shopify_attributes }}>
+                      {{ block.settings.text }}
+                    </div>
+                  {%- endif -%}
                 {%- when 'price' -%}
                   <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                     {%- render 'price',
@@ -577,6 +592,38 @@
           ],
           "default": "h1",
           "label": "t:sections.all.heading_size.label"
+        }
+      ]
+    },
+    {
+      "type": "b2b_heading",
+      "name": "B2B order heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Flipzy visual routine board"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Choose how many boards you need for your groups, rooms or routines.</p>"
+        }
+      ]
+    },
+    {
+      "type": "b2b_order_note",
+      "name": "B2B order note",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Need a formal quote or invoice? Contact us for help with your order.</p>"
         }
       ]
     },

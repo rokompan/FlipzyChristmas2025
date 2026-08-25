@@ -1,6 +1,6 @@
 /*
  * ------------------------------------------------------------
- * Dedicated landing page for schools and child-support settings.
+ * Dedicated landing page for preschools, daycare and child-support settings.
  * This template is intentionally separate from templates/index.json.
  * ------------------------------------------------------------
  */
@@ -12,37 +12,37 @@
         "audience_preschools": {
           "type": "audience",
           "settings": {
-            "label": "Kindergartens & preschools"
+            "label": "Preschools & kindergartens"
           }
         },
         "audience_primary": {
           "type": "audience",
           "settings": {
-            "label": "Primary schools"
+            "label": "Daycare & childcare centres"
           }
         },
         "audience_special": {
           "type": "audience",
           "settings": {
-            "label": "Special education"
+            "label": "Special education settings"
           }
         },
         "audience_autism": {
           "type": "audience",
           "settings": {
-            "label": "Autism organisations"
+            "label": "Autism support organisations"
           }
         },
         "audience_family": {
           "type": "audience",
           "settings": {
-            "label": "Family support centres"
+            "label": "Therapists & family centres"
           }
         },
         "audience_therapists": {
           "type": "audience",
           "settings": {
-            "label": "Therapists & child services"
+            "label": "Primary schools"
           }
         },
         "step_choose": {
@@ -50,9 +50,9 @@
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/o/v/b79a29aed8e645aea74714d776f4436d.mp4",
             "image": "shopify://shop_images/stickers.webp",
-            "media_alt": "Choosing picture stickers for a Flipzy visual routine",
-            "title": "Choose the picture cues",
-            "text": "Pick the tasks that fit this child and this routine."
+            "media_alt": "An educator choosing picture cues for a preschool group",
+            "title": "Choose today’s pictures",
+            "text": "Pick the moments your group will move through."
           }
         },
         "step_sequence": {
@@ -60,9 +60,9 @@
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/o/v/fa3e3ec79976459d9fdab5c109f4d906.mp4",
             "image": "shopify://shop_images/natakni.webp",
-            "media_alt": "Arranging wooden Flipzy tiles into a daily sequence",
-            "title": "Set today’s sequence",
-            "text": "Arrange the seven wooden tiles in the order they happen."
+            "media_alt": "An educator arranging wooden Flipzy tiles for the preschool day",
+            "title": "Set the routine",
+            "text": "Arrange up to seven wooden tiles in the order they will happen."
           }
         },
         "step_flip": {
@@ -70,37 +70,37 @@
           "settings": {
             "video_url": "https://cdn.shopify.com/videos/c/o/v/fc3c3e1256e24560a76523635f8716c3.mp4",
             "image": "shopify://shop_images/palca.jpg",
-            "media_alt": "A child flipping a completed task on a Flipzy board",
-            "title": "Flip each finished task",
-            "text": "Progress becomes visible with one simple, tactile action."
+            "media_alt": "Young children flipping a completed task on a Flipzy board",
+            "title": "Flip what is finished",
+            "text": "Children turn each completed step over and see what comes next."
           }
         },
         "routine_preschool": {
           "type": "routine",
           "settings": {
-            "image_alt": "A preschool child using Flipzy with an educator during morning arrival",
-            "title": "Morning arrival"
+            "image_alt": "Children using Flipzy together during morning arrival at preschool",
+            "title": "Morning welcome"
           }
         },
         "routine_school": {
           "type": "routine",
           "settings": {
-            "image_alt": "A primary-school child flipping a completed Flipzy task with an educator nearby",
-            "title": "Classroom transitions"
+            "image_alt": "A preschool group checking Flipzy before moving from playtime to circle time",
+            "title": "Circle time & activities"
           }
         },
         "routine_therapy": {
           "type": "routine",
           "settings": {
-            "image_alt": "A child using Flipzy with a therapist in a calm support room",
-            "title": "One-to-one support"
+            "image_alt": "Children following a hand-washing and snack routine in a daycare room",
+            "title": "Hand-washing & snack"
           }
         },
         "routine_flip_detail": {
           "type": "routine",
           "settings": {
             "image_alt": "Close-up of a hand flipping a wooden Flipzy task tile",
-            "title": "Flip each finished task"
+            "title": "Flip each finished step"
           }
         },
         "routine_hinge": {
@@ -114,22 +114,22 @@
           "type": "routine",
           "settings": {
             "image_alt": "Complete Flipzy set with board, seven task tiles, picture stickers and mounting materials",
-            "title": "Everything to get started"
+            "title": "Everything included"
           }
         },
         "benefit_visible": {
           "type": "benefit",
           "settings": {
             "icon": "eye",
-            "title": "Clear next steps",
-            "text": "Keep the sequence visible at child height."
+            "title": "Clear group routines",
+            "text": "Keep the day visible where children can see it."
           }
         },
         "benefit_cue": {
           "type": "benefit",
           "settings": {
             "icon": "cue",
-            "title": "A quieter cue",
+            "title": "Gentler reminders",
             "text": "Point to the board alongside your usual support."
           }
         },
@@ -137,8 +137,8 @@
           "type": "benefit",
           "settings": {
             "icon": "flip",
-            "title": "Concrete progress",
-            "text": "Each flip makes “finished” easy to see."
+            "title": "Progress they can see",
+            "text": "Every flip makes “finished” clear and satisfying."
           }
         },
         "benefit_independence": {
@@ -146,7 +146,7 @@
           "settings": {
             "icon": "independence",
             "title": "Growing independence",
-            "text": "Children can return to the routine and check what is next."
+            "text": "Children can check the routine and take the next step with less help."
           }
         }
       },
@@ -172,35 +172,32 @@
         "benefit_independence"
       ],
       "settings": {
-        "eyebrow": "For early-years teams, schools & therapists",
-        "heading": "Help children see <strong>what comes next.</strong>",
-        "intro": "<p>Flipzy is a simple visual routine board that helps children understand what comes next, follow routines and gradually become more independent.</p>",
-        "hero_video": "shopify://files/videos/hero04.mp4",
-        "hero_image": "shopify://shop_images/white_copy_2.jpg",
-        "hero_image_alt": "A child using a wooden Flipzy visual routine board",
+        "heading": "Help young children see <strong>what comes next.</strong>",
+        "intro": "<p>Flipzy is a simple visual routine board that shows young children what happens now, what comes next and what is already done.</p>",
+        "hero_image_alt": "Preschool children following a visual routine with their educator at daycare",
         "hero_media_label": "See it. Do it. Flip it.",
-        "primary_cta_label": "Choose Flipzy for your setting",
+        "primary_cta_label": "Choose Flipzy for your group",
         "primary_cta_link": "#for-schools-order",
-        "secondary_cta_label": "See how it works",
+        "secondary_cta_label": "See it in action",
         "secondary_cta_link": "#how-flipzy-works",
-        "microcopy": "Screen-free • tactile • no app or charging",
-        "audience_heading": "Made for the adults supporting young children",
-        "steps_eyebrow": "Clear in seconds",
+        "microcopy": "Ages 3–8 • screen-free • no app or charging",
+        "audience_heading": "Made for preschool days—and every team supporting young children.",
+        "steps_eyebrow": "Ready in minutes",
         "steps_heading": "Choose. Follow. Flip.",
-        "steps_intro": "<p>A routine children can see—and a satisfying way to mark each step as done.</p>",
-        "steps_cta_label": "Choose Flipzy for your setting",
+        "steps_intro": "<p>A simple rhythm young children can see and follow throughout the day.</p>",
+        "steps_cta_label": "Choose Flipzy for your group",
         "steps_cta_link": "#for-schools-order",
-        "routines_eyebrow": "Built for shared routines.",
-        "routines_heading": "See Flipzy at work—in your setting.",
-        "routines_intro": "<p>Use it for arrivals, classroom transitions, self-care or one-to-one support. Children can always see what is next.</p>",
+        "routines_eyebrow": "Made for busy preschool days.",
+        "routines_heading": "One board. Every part of the day.",
+        "routines_intro": "<p>Use Flipzy with a whole group, a small group or one child. Change the tiles whenever the routine changes.</p>",
         "benefits_eyebrow": "Less telling. More showing.",
-        "benefits_heading": "A simple shared cue for children and the adults supporting them.",
-        "closing_eyebrow": "Ready for your setting?",
-        "closing_heading": "Make the next step visible.",
-        "closing_text": "Start with one Flipzy or choose several for different children, rooms and routines.",
-        "closing_cta_label": "Choose Flipzy for your setting",
+        "benefits_heading": "A calm, shared cue for the whole group.",
+        "closing_eyebrow": "Ready for your group?",
+        "closing_heading": "Make the next part of the day easier to see.",
+        "closing_text": "Start with one Flipzy—or use several across groups, rooms and routines.",
+        "closing_cta_label": "Choose Flipzy for your group",
         "closing_cta_link": "#for-schools-order",
-        "closing_image_alt": "Flipzy wooden visual routine board with seven movable task tiles"
+        "closing_image_alt": "Preschool children completing a shared routine with their educator"
       }
     },
     "whats_included": {
@@ -210,7 +207,7 @@
           "type": "list_item",
           "settings": {
             "icon": "check",
-            "text": "1 wooden wall board"
+            "text": "1 wooden routine board"
           }
         },
         "included_tiles": {
@@ -224,7 +221,7 @@
           "type": "list_item",
           "settings": {
             "icon": "check",
-            "text": "30 picture stickers for everyday tasks"
+            "text": "30 picture stickers for everyday routines"
           }
         },
         "included_mounting": {
@@ -243,22 +240,22 @@
       ],
       "settings": {
         "bg_color": "#efe7da",
-        "main_heading": "Everything you need to make a routine visible.",
-        "subheading": "Set up your first routine in minutes, then change it whenever the day changes.",
+        "main_heading": "Everything you need to show the day.",
+        "subheading": "Set up your first routine in minutes, then rearrange it whenever the day changes.",
         "image_1": "shopify://shop_images/whatsinthebox7.jpg",
         "image_1_alt": "Flipzy board, wooden task tiles, picture stickers and mounting kit",
         "image_2": "shopify://shop_images/tasks-30.jpg",
-        "image_2_alt": "The 30 included Flipzy picture stickers for everyday tasks",
+        "image_2_alt": "The 30 included Flipzy picture stickers for everyday routines",
         "image_2_bg": "#eadbc8",
         "card_title": "One complete Flipzy set",
         "featured_product": "flipzy-wooden-routine-board",
         "trust_1": "Free shipping on qualifying orders",
         "trust_2": "100% screen-free",
-        "trust_3": "Ships in 24h",
+        "trust_3": "Ships in 24 hours",
         "trust_4": "30-day money-back guarantee",
         "trust_5": "24-month warranty",
-        "description": "Need several boards? Choose the quantity for your rooms, routines or children below.",
-        "btn_text": "Choose Flipzy for your setting",
+        "description": "Need a board for more than one group or room? Choose your quantity below.",
+        "btn_text": "Choose Flipzy for your group",
         "btn_link": "#for-schools-order"
       }
     },
@@ -275,14 +272,15 @@
         "order_context": {
           "type": "text",
           "settings": {
-            "text": "FOR SCHOOLS, SETTINGS & THERAPY ROOMS",
+            "text": "FOR PRESCHOOLS, DAYCARE & EARLY LEARNING",
             "text_style": "uppercase"
           }
         },
         "order_title": {
-          "type": "custom_liquid",
+          "type": "b2b_heading",
           "settings": {
-            "custom_liquid": "<div class=\"b2b-order-heading\"><h2 class=\"product__title h1\">Flipzy visual routine board</h2><p>Choose the number of boards for your children, rooms or routines.</p></div>"
+            "heading": "Flipzy visual routine board",
+            "text": "<p>Choose how many boards you need for your groups, rooms or routines.</p>"
           }
         },
         "order_price": {
@@ -308,9 +306,9 @@
           }
         },
         "order_note": {
-          "type": "custom_liquid",
+          "type": "b2b_order_note",
           "settings": {
-            "custom_liquid": "<p class=\"b2b-order-note\"><strong>Planning a larger order or need a formal quote?</strong><br><a href=\"mailto:info@flipzy.toys?subject=Flipzy%20for%20our%20organisation\">Email info@flipzy.toys</a> for purchasing details or help placing your order.</p>"
+            "text": "<p><strong>Ordering for several groups or need a formal quote?</strong></p><p><a href=\"mailto:info@flipzy.toys\">Email info@flipzy.toys</a> for an invoice, purchasing details or help with your order.</p>"
           }
         }
       },
@@ -344,36 +342,36 @@
         "faq_multiple": {
           "type": "faq_item",
           "settings": {
-            "question": "Can we order for several rooms or children?",
-            "answer": "<p>Yes. Use the quantity selector above to choose the number of boards you need. For larger orders or a formal quote, email info@flipzy.toys.</p>"
+            "question": "Can a whole preschool group use one Flipzy?",
+            "answer": "<p>Yes. Place it where children can see it and use it for shared moments such as arrival, circle time, meals, outdoor play and home time. You can also use Flipzy with a small group or one child.</p>"
           }
         },
         "faq_invoice": {
           "type": "faq_item",
           "settings": {
-            "question": "Can our organisation request an invoice?",
-            "answer": "<p>Yes. Email info@flipzy.toys if you need a formal invoice, purchasing details or help before ordering.</p>"
+            "question": "Can we order several boards or request an invoice?",
+            "answer": "<p>Yes. Choose the quantity you need above. For a larger order, formal quote or invoice details, email info@flipzy.toys.</p>"
           }
         },
         "faq_change": {
           "type": "faq_item",
           "settings": {
-            "question": "Can we change the routine?",
-            "answer": "<p>Yes. Rearrange the wooden tiles whenever the order changes, and use the included picture stickers to create routines for different parts of the day.</p>"
+            "question": "Can we change the routine during the day?",
+            "answer": "<p>Yes. Rearrange the wooden tiles whenever plans change. Use the included picture stickers to create routines for different parts of the day.</p>"
           }
         },
         "faq_additional": {
           "type": "faq_item",
           "settings": {
-            "question": "Is Flipzy suitable for children with additional needs?",
+            "question": "Can Flipzy support children with additional needs?",
             "answer": "<p>Its visual, tactile format can complement existing support for children who benefit from clear visual sequences. Every child is different; Flipzy is a supportive routine tool, not a medical or therapeutic device.</p>"
           }
         },
         "faq_age": {
           "type": "faq_item",
           "settings": {
-            "question": "What age is Flipzy for?",
-            "answer": "<p>Flipzy works best for children aged 3–8. Some older children may also find the clear sequence and physical flipping helpful.</p>"
+            "question": "What ages is Flipzy for?",
+            "answer": "<p>Flipzy is designed primarily for children aged 3–8, making it a natural fit for preschool and early primary settings. Older children who benefit from a clear visual sequence may also find it useful.</p>"
           }
         }
       },
@@ -386,7 +384,7 @@
       ],
       "settings": {
         "color_scheme": "scheme-white",
-        "heading": "Questions from schools & organisations"
+        "heading": "Questions from preschool & childcare teams"
       }
     },
     "final_cta": {
@@ -395,24 +393,24 @@
         "final_heading": {
           "type": "heading",
           "settings": {
-            "heading": "Ready to make routines easier to see?",
+            "heading": "Ready for a routine children can see?",
             "heading_size": "h1"
           }
         },
         "final_text": {
           "type": "text",
           "settings": {
-            "text": "<p>Choose the number of boards for your children, rooms or routines.</p>"
+            "text": "<p>Choose one Flipzy for your group or equip several rooms.</p>"
           }
         },
         "final_buttons": {
           "type": "button",
           "settings": {
-            "button_label": "Choose Flipzy for your setting",
+            "button_label": "Choose Flipzy for your group",
             "button_link": "#for-schools-order",
             "button_style_secondary": false,
             "button_label_2": "Ask about a larger order",
-            "button_link_2": "mailto:info@flipzy.toys?subject=Flipzy%20for%20our%20organisation",
+            "button_link_2": "mailto:info@flipzy.toys",
             "button_style_secondary_2": true
           }
         }

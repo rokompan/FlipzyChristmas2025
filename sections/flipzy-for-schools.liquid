@@ -6,6 +6,18 @@
   assign routine_blocks = section.blocks | where: 'type', 'routine'
   assign benefit_blocks = section.blocks | where: 'type', 'benefit'
   assign hero_video_id = 'FlipzyHeroVideo-' | append: section.id
+  assign default_video_label = 'sections.flipzy_for_schools.video.default_label' | t
+  assign hero_video_label = section.settings.hero_media_label | default: default_video_label
+  assign hero_video_play_label = 'sections.flipzy_for_schools.video.play_label' | t: label: hero_video_label
+  assign hero_video_pause_label = 'sections.flipzy_for_schools.video.pause_label' | t: label: hero_video_label
+  assign hero_image_alt = section.settings.hero_image_alt
+  if hero_image_alt == blank
+    assign hero_image_alt = 'sections.flipzy_for_schools.media.hero_alt' | t
+  endif
+  assign closing_image_alt = section.settings.closing_image_alt
+  if closing_image_alt == blank
+    assign closing_image_alt = 'sections.flipzy_for_schools.media.home_time_alt' | t
+  endif
 -%}
 
 <section id="FlipzyForSchools-{{ section.id }}" class="flipzy-b2b flipzy-section">
@@ -23,7 +35,7 @@
         <div class="flipzy-b2b__mobile-product-peek">
           <img
             src="{{ 'b2b-product-clean.jpg' | asset_url }}"
-            alt="Flipzy wooden visual routine board with task tiles"
+            alt="{{ 'sections.flipzy_for_schools.media.product_alt' | t | escape }}"
             width="871"
             height="535"
             loading="eager"
@@ -71,7 +83,7 @@
                 playsinline: true,
                 image_size: '1400x',
                 id: hero_video_id,
-                title: section.settings.hero_image_alt,
+                title: hero_image_alt,
                 class: 'flipzy-b2b__media-element',
                 preload: 'metadata'
             }}
@@ -79,9 +91,10 @@
               class="flipzy-b2b__video-toggle"
               type="button"
               data-b2b-video-toggle
-              data-video-label="{{ section.settings.hero_media_label | default: 'Flipzy demonstration' | escape }}"
+              data-play-label="{{ hero_video_play_label | escape }}"
+              data-pause-label="{{ hero_video_pause_label | escape }}"
               aria-controls="FlipzyHeroVideo-{{ section.id }}"
-              aria-label="Pause video: {{ section.settings.hero_media_label | default: 'Flipzy demonstration' | escape }}"
+              aria-label="{{ hero_video_pause_label | escape }}"
             >
               <span class="flipzy-b2b__pause-icon" aria-hidden="true"></span>
               <span class="flipzy-b2b__play-icon" aria-hidden="true"></span>
@@ -96,10 +109,18 @@
                 loading: 'eager',
                 fetchpriority: 'high',
                 class: 'flipzy-b2b__media-element',
-                alt: section.settings.hero_image_alt
+                alt: hero_image_alt
             }}
           {%- else -%}
-            {{ 'lifestyle-1' | placeholder_svg_tag: 'flipzy-b2b__media-element placeholder-svg' }}
+            <img
+              src="{{ 'b2b-daycare-hero.jpg' | asset_url }}"
+              alt="{{ hero_image_alt | escape }}"
+              width="1536"
+              height="1024"
+              loading="eager"
+              fetchpriority="high"
+              class="flipzy-b2b__media-element"
+            >
           {%- endif -%}
 
           {%- if section.settings.hero_media_label != blank -%}
@@ -119,7 +140,7 @@
       {% if section.settings.audience_heading != blank %}
         aria-labelledby="FlipzyAudiences-{{ section.id }}"
       {% else %}
-        aria-label="Settings Flipzy is designed for"
+        aria-label="{{ 'sections.flipzy_for_schools.audience_aria_label' | t | escape }}"
       {% endif %}
     >
       <div class="flipzy-b2b__page">
@@ -168,6 +189,9 @@
               assign step_number = forloop.index
               assign step_video_id = 'FlipzyStepVideo-' | append: section.id | append: '-' | append: block.id
               assign step_video_title = block.settings.media_alt | default: block.settings.title
+              assign step_video_label = block.settings.title | default: default_video_label
+              assign step_video_play_label = 'sections.flipzy_for_schools.video.play_label' | t: label: step_video_label
+              assign step_video_pause_label = 'sections.flipzy_for_schools.video.pause_label' | t: label: step_video_label
             -%}
             <article class="flipzy-b2b__step-card" {{ block.shopify_attributes }}>
               <div class="flipzy-b2b__step-media">
@@ -222,9 +246,10 @@
                     class="flipzy-b2b__video-toggle"
                     type="button"
                     data-b2b-video-toggle
-                    data-video-label="{{ block.settings.title | escape }}"
+                    data-play-label="{{ step_video_play_label | escape }}"
+                    data-pause-label="{{ step_video_pause_label | escape }}"
                     aria-controls="{{ step_video_id }}"
-                    aria-label="Pause video: {{ block.settings.title | escape }}"
+                    aria-label="{{ step_video_pause_label | escape }}"
                   >
                     <span class="flipzy-b2b__pause-icon" aria-hidden="true"></span>
                     <span class="flipzy-b2b__play-icon" aria-hidden="true"></span>
@@ -279,6 +304,26 @@
                 else
                   assign routine_sizes = '(min-width: 990px) 33vw, 100vw'
               endcase
+
+              assign routine_alt = block.settings.image_alt
+              if routine_alt == blank
+                case forloop.index
+                  when 1
+                    assign routine_alt = 'sections.flipzy_for_schools.media.arrival_alt' | t
+                  when 2
+                    assign routine_alt = 'sections.flipzy_for_schools.media.transition_alt' | t
+                  when 3
+                    assign routine_alt = 'sections.flipzy_for_schools.media.self_care_alt' | t
+                  when 4
+                    assign routine_alt = 'sections.flipzy_for_schools.media.flip_alt' | t
+                  when 5
+                    assign routine_alt = 'sections.flipzy_for_schools.media.hinge_alt' | t
+                  when 6
+                    assign routine_alt = 'sections.flipzy_for_schools.media.complete_set_alt' | t
+                  else
+                    assign routine_alt = 'sections.flipzy_for_schools.media.default_alt' | t
+                endcase
+              endif
             -%}
             <figure class="flipzy-b2b__routine-card flipzy-b2b__routine-card--{{ forloop.index }}" {{ block.shopify_attributes }}>
               {%- if block.settings.image != blank -%}
@@ -290,14 +335,14 @@
                     sizes: routine_sizes,
                     loading: 'lazy',
                     class: 'flipzy-b2b__media-element',
-                    alt: block.settings.image_alt
+                    alt: routine_alt
                 }}
               {%- else -%}
                 {%- case forloop.index -%}
                   {%- when 1 -%}
                     <img
-                      src="{{ 'b2b-preschool-routine.jpg' | asset_url }}"
-                      alt="{{ block.settings.image_alt | default: 'A preschool child using Flipzy with an educator during morning arrival' | escape }}"
+                      src="{{ 'b2b-daycare-arrival-group.jpg' | asset_url }}"
+                      alt="{{ routine_alt | escape }}"
                       width="1536"
                       height="1024"
                       loading="lazy"
@@ -305,8 +350,8 @@
                     >
                   {%- when 2 -%}
                     <img
-                      src="{{ 'b2b-primary-school-routine.jpg' | asset_url }}"
-                      alt="{{ block.settings.image_alt | default: 'A primary-school child flipping a completed Flipzy task with an educator nearby' | escape }}"
+                      src="{{ 'b2b-daycare-transition-group.jpg' | asset_url }}"
+                      alt="{{ routine_alt | escape }}"
                       width="1536"
                       height="1024"
                       loading="lazy"
@@ -314,8 +359,8 @@
                     >
                   {%- when 3 -%}
                     <img
-                      src="{{ 'b2b-therapy-routine.jpg' | asset_url }}"
-                      alt="{{ block.settings.image_alt | default: 'A child using Flipzy with a therapist in a calm support room' | escape }}"
+                      src="{{ 'b2b-daycare-self-care-group.jpg' | asset_url }}"
+                      alt="{{ routine_alt | escape }}"
                       width="1536"
                       height="1024"
                       loading="lazy"
@@ -324,7 +369,7 @@
                   {%- when 4 -%}
                     <img
                       src="{{ 'b2b-product-flip-action.jpg' | asset_url }}"
-                      alt="{{ block.settings.image_alt | default: 'Close-up of a hand flipping a wooden Flipzy task tile' | escape }}"
+                      alt="{{ routine_alt | escape }}"
                       width="2349"
                       height="1651"
                       loading="lazy"
@@ -333,7 +378,7 @@
                   {%- when 5 -%}
                     <img
                       src="{{ 'b2b-product-hinge-detail.jpg' | asset_url }}"
-                      alt="{{ block.settings.image_alt | default: 'Close-up of the solid wooden Flipzy hinge and movable task tiles' | escape }}"
+                      alt="{{ routine_alt | escape }}"
                       width="2215"
                       height="2953"
                       loading="lazy"
@@ -342,7 +387,7 @@
                   {%- when 6 -%}
                     <img
                       src="{{ 'b2b-product-complete-set.jpg' | asset_url }}"
-                      alt="{{ block.settings.image_alt | default: 'Complete Flipzy set with board, seven task tiles, picture stickers and mounting materials' | escape }}"
+                      alt="{{ routine_alt | escape }}"
                       width="2480"
                       height="1860"
                       loading="lazy"
@@ -421,16 +466,16 @@
                 sizes: '(min-width: 990px) 50vw, 100vw',
                 loading: 'lazy',
                 class: 'flipzy-b2b__media-element',
-                alt: section.settings.closing_image_alt
+                alt: closing_image_alt
             }}
           {%- else -%}
             <img
-              src="{{ 'b2b-product-clean.jpg' | asset_url }}"
-              alt="{{ section.settings.closing_image_alt | default: 'Flipzy wooden visual routine board with seven movable task tiles' | escape }}"
-              width="871"
-              height="535"
+              src="{{ 'b2b-daycare-home-time-group.jpg' | asset_url }}"
+              alt="{{ closing_image_alt | escape }}"
+              width="1536"
+              height="1024"
               loading="lazy"
-              class="flipzy-b2b__media-element flipzy-b2b__closing-product"
+              class="flipzy-b2b__media-element"
             >
           {%- endif -%}
         </div>
@@ -454,9 +499,8 @@
 
         const setButtonState = () => {
           const paused = video.paused;
-          const videoLabel = button.dataset.videoLabel || 'Flipzy demonstration';
           button.classList.toggle('is-paused', paused);
-          button.setAttribute('aria-label', `${paused ? 'Play' : 'Pause'} video: ${videoLabel}`);
+          button.setAttribute('aria-label', paused ? button.dataset.playLabel : button.dataset.pauseLabel);
         };
 
         if (reduceMotion) video.pause();
@@ -512,55 +556,55 @@
 
 {% schema %}
 {
-  "name": "Flipzy for Schools",
+  "name": "Flipzy for Preschools",
   "class": "flipzy-section",
   "settings": [
     { "type": "header", "content": "Hero" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "For early-years teams, schools & therapists" },
-    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Help children see <strong>what comes next.</strong>" },
-    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Flipzy is a simple visual routine board that helps children understand what comes next, follow routines and gradually become more independent.</p>" },
+    { "type": "text", "id": "eyebrow", "label": "Optional eyebrow" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Help young children see <strong>what comes next.</strong>" },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Flipzy is a simple visual routine board that shows young children what happens now, what comes next and what is already done.</p>" },
     { "type": "video", "id": "hero_video", "label": "Hero video" },
     { "type": "image_picker", "id": "hero_image", "label": "Hero image (shown when no video is selected)" },
-    { "type": "text", "id": "hero_image_alt", "label": "Hero media description", "default": "A child using a wooden Flipzy visual routine board" },
+    { "type": "text", "id": "hero_image_alt", "label": "Hero media description", "default": "Preschool children following a visual routine with their educator at daycare" },
     { "type": "text", "id": "hero_media_label", "label": "Media label", "default": "See it. Do it. Flip it." },
-    { "type": "text", "id": "primary_cta_label", "label": "Primary button label", "default": "Choose Flipzy for your setting" },
+    { "type": "text", "id": "primary_cta_label", "label": "Primary button label", "default": "Choose Flipzy for your group" },
     { "type": "url", "id": "primary_cta_link", "label": "Primary button link" },
-    { "type": "text", "id": "secondary_cta_label", "label": "Secondary link label", "default": "See how it works" },
+    { "type": "text", "id": "secondary_cta_label", "label": "Secondary link label", "default": "See it in action" },
     { "type": "url", "id": "secondary_cta_link", "label": "Secondary link" },
-    { "type": "text", "id": "microcopy", "label": "Hero reassurance", "default": "Screen-free • tactile • no app or charging" },
-    { "type": "text", "id": "audience_heading", "label": "Audience heading", "default": "Made for the adults supporting young children" },
+    { "type": "text", "id": "microcopy", "label": "Hero reassurance", "default": "Ages 3–8 • screen-free • no app or charging" },
+    { "type": "text", "id": "audience_heading", "label": "Audience heading", "default": "Made for preschool days—and every team supporting young children." },
 
     { "type": "header", "content": "How it works" },
-    { "type": "text", "id": "steps_eyebrow", "label": "Eyebrow", "default": "Clear in seconds" },
+    { "type": "text", "id": "steps_eyebrow", "label": "Eyebrow", "default": "Ready in minutes" },
     { "type": "text", "id": "steps_heading", "label": "Heading", "default": "Choose. Follow. Flip." },
-    { "type": "richtext", "id": "steps_intro", "label": "Introduction", "default": "<p>A routine children can see—and a satisfying way to mark each step as done.</p>" },
-    { "type": "text", "id": "steps_cta_label", "label": "Button label", "default": "Choose Flipzy for your setting" },
+    { "type": "richtext", "id": "steps_intro", "label": "Introduction", "default": "<p>A simple rhythm young children can see and follow throughout the day.</p>" },
+    { "type": "text", "id": "steps_cta_label", "label": "Button label", "default": "Choose Flipzy for your group" },
     { "type": "url", "id": "steps_cta_link", "label": "Button link" },
 
     { "type": "header", "content": "Routine gallery" },
-    { "type": "text", "id": "routines_eyebrow", "label": "Eyebrow", "default": "Built for shared routines." },
-    { "type": "text", "id": "routines_heading", "label": "Heading", "default": "See Flipzy at work—in your setting." },
-    { "type": "richtext", "id": "routines_intro", "label": "Introduction", "default": "<p>Use it for arrivals, classroom transitions, self-care or one-to-one support. Children can always see what is next.</p>" },
+    { "type": "text", "id": "routines_eyebrow", "label": "Eyebrow", "default": "Made for busy preschool days." },
+    { "type": "text", "id": "routines_heading", "label": "Heading", "default": "One board. Every part of the day." },
+    { "type": "richtext", "id": "routines_intro", "label": "Introduction", "default": "<p>Use Flipzy with a whole group, a small group or one child. Change the tiles whenever the routine changes.</p>" },
 
     { "type": "header", "content": "Benefits" },
     { "type": "text", "id": "benefits_eyebrow", "label": "Eyebrow", "default": "Less telling. More showing." },
-    { "type": "text", "id": "benefits_heading", "label": "Heading", "default": "A simple shared cue for children and the adults supporting them." },
+    { "type": "text", "id": "benefits_heading", "label": "Heading", "default": "A calm, shared cue for the whole group." },
 
     { "type": "header", "content": "Closing call to action" },
-    { "type": "text", "id": "closing_eyebrow", "label": "Eyebrow", "default": "Ready for your setting?" },
-    { "type": "text", "id": "closing_heading", "label": "Heading", "default": "Make the next step visible." },
-    { "type": "textarea", "id": "closing_text", "label": "Text", "default": "Start with one Flipzy or choose several for different children, rooms and routines." },
-    { "type": "text", "id": "closing_cta_label", "label": "Button label", "default": "Choose Flipzy for your setting" },
+    { "type": "text", "id": "closing_eyebrow", "label": "Eyebrow", "default": "Ready for your group?" },
+    { "type": "text", "id": "closing_heading", "label": "Heading", "default": "Make the next part of the day easier to see." },
+    { "type": "textarea", "id": "closing_text", "label": "Text", "default": "Start with one Flipzy—or use several across groups, rooms and routines." },
+    { "type": "text", "id": "closing_cta_label", "label": "Button label", "default": "Choose Flipzy for your group" },
     { "type": "url", "id": "closing_cta_link", "label": "Button link" },
     { "type": "image_picker", "id": "closing_image", "label": "Image" },
-    { "type": "text", "id": "closing_image_alt", "label": "Image alt text", "default": "Flipzy wooden visual routine board with seven movable task tiles" }
+    { "type": "text", "id": "closing_image_alt", "label": "Image alt text", "default": "Preschool children completing a shared routine with their educator" }
   ],
   "blocks": [
     {
       "type": "audience",
       "name": "Audience",
       "settings": [
-        { "type": "text", "id": "label", "label": "Label", "default": "Kindergartens & preschools" }
+        { "type": "text", "id": "label", "label": "Label", "default": "Preschools & kindergartens" }
       ]
     },
     {
@@ -572,8 +616,8 @@
         { "type": "url", "id": "video_url", "label": "MP4 video URL", "info": "Used when no Shopify-hosted video is selected." },
         { "type": "image_picker", "id": "image", "label": "Image or video poster" },
         { "type": "text", "id": "media_alt", "label": "Media description" },
-        { "type": "text", "id": "title", "label": "Title", "default": "Choose the picture cues" },
-        { "type": "textarea", "id": "text", "label": "Text", "default": "Pick the tasks that fit this child and this routine." }
+        { "type": "text", "id": "title", "label": "Title", "default": "Choose today’s pictures" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Pick the moments your group will move through." }
       ]
     },
     {
@@ -583,7 +627,7 @@
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
         { "type": "text", "id": "image_alt", "label": "Image alt text" },
-        { "type": "text", "id": "title", "label": "Short caption", "default": "Arrival & getting ready" }
+        { "type": "text", "id": "title", "label": "Short caption", "default": "Morning welcome" }
       ]
     },
     {
@@ -603,34 +647,34 @@
             { "value": "independence", "label": "Independence" }
           ]
         },
-        { "type": "text", "id": "title", "label": "Title", "default": "Clear next steps" },
-        { "type": "textarea", "id": "text", "label": "Text", "default": "Keep the sequence visible at child height." }
+        { "type": "text", "id": "title", "label": "Title", "default": "Clear group routines" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Keep the day visible where children can see it." }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Flipzy for Schools",
+      "name": "Flipzy for Preschools",
       "blocks": [
-        { "type": "audience", "settings": { "label": "Kindergartens & preschools" } },
+        { "type": "audience", "settings": { "label": "Preschools & kindergartens" } },
+        { "type": "audience", "settings": { "label": "Daycare & childcare centres" } },
+        { "type": "audience", "settings": { "label": "Special education settings" } },
+        { "type": "audience", "settings": { "label": "Autism support organisations" } },
+        { "type": "audience", "settings": { "label": "Therapists & family centres" } },
         { "type": "audience", "settings": { "label": "Primary schools" } },
-        { "type": "audience", "settings": { "label": "Special education" } },
-        { "type": "audience", "settings": { "label": "Autism organisations" } },
-        { "type": "audience", "settings": { "label": "Family support centres" } },
-        { "type": "audience", "settings": { "label": "Therapists & child services" } },
-        { "type": "step", "settings": { "title": "Choose the picture cues", "text": "Pick the tasks that fit this child and this routine." } },
-        { "type": "step", "settings": { "title": "Set today's sequence", "text": "Arrange the seven wooden tiles in the order they happen." } },
-        { "type": "step", "settings": { "title": "Flip each finished task", "text": "Progress becomes visible with one simple, tactile action." } },
-        { "type": "routine", "settings": { "title": "Morning arrival" } },
-        { "type": "routine", "settings": { "title": "Classroom transitions" } },
-        { "type": "routine", "settings": { "title": "One-to-one support" } },
-        { "type": "routine", "settings": { "title": "Flip each finished task" } },
+        { "type": "step", "settings": { "title": "Choose today’s pictures", "text": "Pick the moments your group will move through." } },
+        { "type": "step", "settings": { "title": "Set the routine", "text": "Arrange up to seven wooden tiles in the order they will happen." } },
+        { "type": "step", "settings": { "title": "Flip what is finished", "text": "Children turn each completed step over and see what comes next." } },
+        { "type": "routine", "settings": { "title": "Morning welcome" } },
+        { "type": "routine", "settings": { "title": "Circle time & activities" } },
+        { "type": "routine", "settings": { "title": "Hand-washing & snack" } },
+        { "type": "routine", "settings": { "title": "Flip each finished step" } },
         { "type": "routine", "settings": { "title": "Tactile wooden tiles" } },
-        { "type": "routine", "settings": { "title": "Everything to get started" } },
-        { "type": "benefit", "settings": { "icon": "eye", "title": "Clear next steps", "text": "Keep the sequence visible at child height." } },
-        { "type": "benefit", "settings": { "icon": "cue", "title": "A quieter cue", "text": "Point to the board alongside your usual support." } },
-        { "type": "benefit", "settings": { "icon": "flip", "title": "Concrete progress", "text": "Each flip makes “finished” easy to see." } },
-        { "type": "benefit", "settings": { "icon": "independence", "title": "Growing independence", "text": "Children can return to the routine and check what is next." } }
+        { "type": "routine", "settings": { "title": "Everything included" } },
+        { "type": "benefit", "settings": { "icon": "eye", "title": "Clear group routines", "text": "Keep the day visible where children can see it." } },
+        { "type": "benefit", "settings": { "icon": "cue", "title": "Gentler reminders", "text": "Point to the board alongside your usual support." } },
+        { "type": "benefit", "settings": { "icon": "flip", "title": "Progress they can see", "text": "Every flip makes “finished” clear and satisfying." } },
+        { "type": "benefit", "settings": { "icon": "independence", "title": "Growing independence", "text": "Children can check the routine and take the next step with less help." } }
       ]
     }
   ]

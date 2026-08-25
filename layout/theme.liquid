@@ -29,8 +29,8 @@
         assign seo_title_override = 'Free Printable Reward Chart for Kids | FLIPZY'
         assign seo_description_override = 'Create a free printable reward chart for kids. Customize the poster, print stickers, and help your child practice routines, chores, and positive habits.'
       elsif template == 'page.for-schools' or template.suffix == 'for-schools'
-        assign seo_title_override = 'Visual Routine Board for Schools & Childcare | FLIPZY'
-        assign seo_description_override = 'Help children see what comes next with Flipzy, a tactile visual routine board for preschools, schools, therapists, and child-support settings.'
+        assign seo_title_override = 'sections.flipzy_for_schools.seo.title' | t
+        assign seo_description_override = 'sections.flipzy_for_schools.seo.description' | t
       endif
     -%}
 
