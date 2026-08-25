@@ -75,33 +75,46 @@
             "text": "Progress becomes visible with one simple, tactile action."
           }
         },
-        "routine_arrival": {
+        "routine_preschool": {
           "type": "routine",
           "settings": {
-            "image_alt": "A child following a Flipzy routine with adult support",
-            "title": "Arrival & getting ready"
+            "image_alt": "A preschool child using Flipzy with an educator during morning arrival",
+            "title": "Morning arrival"
           }
         },
-        "routine_self_care": {
+        "routine_school": {
           "type": "routine",
           "settings": {
-            "image_alt": "Close-up of the wooden Flipzy tile mechanism",
-            "title": "Hand-washing & self-care"
+            "image_alt": "A primary-school child flipping a completed Flipzy task with an educator nearby",
+            "title": "Classroom transitions"
           }
         },
-        "routine_transitions": {
+        "routine_therapy": {
           "type": "routine",
           "settings": {
-            "image_alt": "Picture stickers for creating different Flipzy routines",
-            "title": "Activity transitions"
+            "image_alt": "A child using Flipzy with a therapist in a calm support room",
+            "title": "One-to-one support"
           }
         },
-        "routine_home": {
+        "routine_flip_detail": {
           "type": "routine",
           "settings": {
-            "image": "shopify://shop_images/moar.webp",
-            "image_alt": "Flipzy routine board with movable wooden task tiles",
-            "title": "Pack-up & home time"
+            "image_alt": "Close-up of a hand flipping a wooden Flipzy task tile",
+            "title": "Flip each finished task"
+          }
+        },
+        "routine_hinge": {
+          "type": "routine",
+          "settings": {
+            "image_alt": "Close-up of the solid wooden Flipzy hinge and movable task tiles",
+            "title": "Tactile wooden tiles"
+          }
+        },
+        "routine_complete": {
+          "type": "routine",
+          "settings": {
+            "image_alt": "Complete Flipzy set with board, seven task tiles, picture stickers and mounting materials",
+            "title": "Everything to get started"
           }
         },
         "benefit_visible": {
@@ -147,10 +160,12 @@
         "step_choose",
         "step_sequence",
         "step_flip",
-        "routine_arrival",
-        "routine_self_care",
-        "routine_transitions",
-        "routine_home",
+        "routine_preschool",
+        "routine_school",
+        "routine_therapy",
+        "routine_flip_detail",
+        "routine_hinge",
+        "routine_complete",
         "benefit_visible",
         "benefit_cue",
         "benefit_progress",
@@ -175,9 +190,9 @@
         "steps_intro": "<p>A routine children can see—and a satisfying way to mark each step as done.</p>",
         "steps_cta_label": "Choose Flipzy for your setting",
         "steps_cta_link": "#for-schools-order",
-        "routines_eyebrow": "One board. Many routines.",
-        "routines_heading": "Use Flipzy wherever a child needs a clear next step.",
-        "routines_intro": "<p>Set it up for one child, one room or one part of the day. Rearrange the tiles whenever the routine changes.</p>",
+        "routines_eyebrow": "Built for shared routines.",
+        "routines_heading": "See Flipzy at work—in your setting.",
+        "routines_intro": "<p>Use it for arrivals, classroom transitions, self-care or one-to-one support. Children can always see what is next.</p>",
         "benefits_eyebrow": "Less telling. More showing.",
         "benefits_heading": "A simple shared cue for children and the adults supporting them.",
         "closing_eyebrow": "Ready for your setting?",
@@ -185,8 +200,7 @@
         "closing_text": "Start with one Flipzy or choose several for different children, rooms and routines.",
         "closing_cta_label": "Choose Flipzy for your setting",
         "closing_cta_link": "#for-schools-order",
-        "closing_image": "shopify://shop_images/moar.webp",
-        "closing_image_alt": "Several Flipzy routine boards set up for different daily routines"
+        "closing_image_alt": "Flipzy wooden visual routine board with seven movable task tiles"
       }
     },
     "whats_included": {

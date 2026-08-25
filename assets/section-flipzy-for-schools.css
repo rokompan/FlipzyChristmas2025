@@ -485,8 +485,8 @@
 
 .flipzy-b2b__routine-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
-  grid-template-rows: repeat(2, minmax(24rem, 32rem)) minmax(28rem, 38rem);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(22rem, 30rem));
   gap: 1.8rem;
 }
 
@@ -500,11 +500,33 @@
 }
 
 .flipzy-b2b__routine-card--1 {
+  grid-column: 1 / 8;
   grid-row: 1 / span 2;
 }
 
+.flipzy-b2b__routine-card--2 {
+  grid-column: 8 / 13;
+  grid-row: 1;
+}
+
+.flipzy-b2b__routine-card--3 {
+  grid-column: 8 / 13;
+  grid-row: 2;
+}
+
 .flipzy-b2b__routine-card--4 {
-  grid-column: 1 / -1;
+  grid-column: 1 / 5;
+  grid-row: 3;
+}
+
+.flipzy-b2b__routine-card--5 {
+  grid-column: 5 / 9;
+  grid-row: 3;
+}
+
+.flipzy-b2b__routine-card--6 {
+  grid-column: 9 / 13;
+  grid-row: 3;
 }
 
 .flipzy-b2b__routine-card::after {
@@ -519,10 +541,8 @@
   transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.flipzy-b2b__routine-card--3 img {
-  object-fit: contain;
-  padding: clamp(1.5rem, 3vw, 3rem);
-  background: #f8f4ea;
+.flipzy-b2b__routine-card--5 img {
+  object-position: center 58%;
 }
 
 .flipzy-b2b__routine-card:hover img {
@@ -540,6 +560,12 @@
   font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.2;
+}
+
+.flipzy-b2b__routine-card--4 figcaption,
+.flipzy-b2b__routine-card--5 figcaption,
+.flipzy-b2b__routine-card--6 figcaption {
+  font-size: clamp(1.7rem, 1.6vw, 2.1rem);
 }
 
 .flipzy-b2b__benefits {
@@ -636,6 +662,12 @@
 
 .flipzy-b2b__closing-media {
   min-height: 44rem;
+}
+
+.flipzy-b2b__closing-product {
+  object-fit: contain;
+  padding: clamp(2.5rem, 5vw, 6rem);
+  background: #fff;
 }
 
 /* The stylesheet is loaded only by the dedicated page, so these rules can
@@ -928,7 +960,9 @@
   }
 
   .flipzy-b2b__routine-card--1,
-  .flipzy-b2b__routine-card--4 {
+  .flipzy-b2b__routine-card--2,
+  .flipzy-b2b__routine-card--3,
+  .flipzy-b2b__routine-card--6 {
     grid-column: 1 / -1;
     aspect-ratio: 16 / 10;
   }

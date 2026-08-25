@@ -22,10 +22,10 @@
 
         <div class="flipzy-b2b__mobile-product-peek">
           <img
-            src="{{ 'parent-handbook-01-cover-board.png' | asset_url }}"
+            src="{{ 'b2b-product-clean.jpg' | asset_url }}"
             alt="Flipzy wooden visual routine board with task tiles"
-            width="567"
-            height="343"
+            width="871"
+            height="535"
             loading="eager"
           >
         </div>
@@ -271,11 +271,13 @@
             {%- liquid
               case forloop.index
                 when 1
-                  assign routine_sizes = '(min-width: 990px) 62vw, 100vw'
+                  assign routine_sizes = '(min-width: 990px) 58vw, 100vw'
                 when 2, 3
-                  assign routine_sizes = '(min-width: 990px) 38vw, 50vw'
+                  assign routine_sizes = '(min-width: 990px) 42vw, 100vw'
+                when 4, 5
+                  assign routine_sizes = '(min-width: 990px) 33vw, 50vw'
                 else
-                  assign routine_sizes = '100vw'
+                  assign routine_sizes = '(min-width: 990px) 33vw, 100vw'
               endcase
             -%}
             <figure class="flipzy-b2b__routine-card flipzy-b2b__routine-card--{{ forloop.index }}" {{ block.shopify_attributes }}>
@@ -294,37 +296,55 @@
                 {%- case forloop.index -%}
                   {%- when 1 -%}
                     <img
-                      src="{{ 'parent-handbook-02-flipping-progress.webp' | asset_url }}"
-                      alt="{{ block.settings.image_alt | default: 'A child and adult using a wall-mounted Flipzy routine board' | escape }}"
-                      width="1199"
-                      height="1085"
+                      src="{{ 'b2b-preschool-routine.jpg' | asset_url }}"
+                      alt="{{ block.settings.image_alt | default: 'A preschool child using Flipzy with an educator during morning arrival' | escape }}"
+                      width="1536"
+                      height="1024"
                       loading="lazy"
                       class="flipzy-b2b__media-element"
                     >
                   {%- when 2 -%}
                     <img
-                      src="{{ 'parent-handbook-03-hinge-detail.jpg' | asset_url }}"
-                      alt="{{ block.settings.image_alt | default: 'Close-up of a hand flipping a wooden Flipzy task tile' | escape }}"
-                      width="2480"
-                      height="1860"
+                      src="{{ 'b2b-primary-school-routine.jpg' | asset_url }}"
+                      alt="{{ block.settings.image_alt | default: 'A primary-school child flipping a completed Flipzy task with an educator nearby' | escape }}"
+                      width="1536"
+                      height="1024"
                       loading="lazy"
                       class="flipzy-b2b__media-element"
                     >
                   {%- when 3 -%}
                     <img
-                      src="{{ 'parent-handbook-05-task-sticker-library.webp' | asset_url }}"
-                      alt="{{ block.settings.image_alt | default: 'Flipzy picture stickers for common daily tasks' | escape }}"
-                      width="1200"
-                      height="859"
+                      src="{{ 'b2b-therapy-routine.jpg' | asset_url }}"
+                      alt="{{ block.settings.image_alt | default: 'A child using Flipzy with a therapist in a calm support room' | escape }}"
+                      width="1536"
+                      height="1024"
                       loading="lazy"
                       class="flipzy-b2b__media-element"
                     >
                   {%- when 4 -%}
                     <img
-                      src="{{ 'parent-handbook-04-box-contents-flatlay.jpeg' | asset_url }}"
-                      alt="{{ block.settings.image_alt | default: 'Flipzy wooden routine board and task tiles' | escape }}"
-                      width="542"
-                      height="369"
+                      src="{{ 'b2b-product-flip-action.jpg' | asset_url }}"
+                      alt="{{ block.settings.image_alt | default: 'Close-up of a hand flipping a wooden Flipzy task tile' | escape }}"
+                      width="2349"
+                      height="1651"
+                      loading="lazy"
+                      class="flipzy-b2b__media-element"
+                    >
+                  {%- when 5 -%}
+                    <img
+                      src="{{ 'b2b-product-hinge-detail.jpg' | asset_url }}"
+                      alt="{{ block.settings.image_alt | default: 'Close-up of the solid wooden Flipzy hinge and movable task tiles' | escape }}"
+                      width="2215"
+                      height="2953"
+                      loading="lazy"
+                      class="flipzy-b2b__media-element"
+                    >
+                  {%- when 6 -%}
+                    <img
+                      src="{{ 'b2b-product-complete-set.jpg' | asset_url }}"
+                      alt="{{ block.settings.image_alt | default: 'Complete Flipzy set with board, seven task tiles, picture stickers and mounting materials' | escape }}"
+                      width="2480"
+                      height="1860"
                       loading="lazy"
                       class="flipzy-b2b__media-element"
                     >
@@ -404,7 +424,14 @@
                 alt: section.settings.closing_image_alt
             }}
           {%- else -%}
-            {{ 'product-2' | placeholder_svg_tag: 'flipzy-b2b__media-element placeholder-svg' }}
+            <img
+              src="{{ 'b2b-product-clean.jpg' | asset_url }}"
+              alt="{{ section.settings.closing_image_alt | default: 'Flipzy wooden visual routine board with seven movable task tiles' | escape }}"
+              width="871"
+              height="535"
+              loading="lazy"
+              class="flipzy-b2b__media-element flipzy-b2b__closing-product"
+            >
           {%- endif -%}
         </div>
       </div>
@@ -511,9 +538,9 @@
     { "type": "url", "id": "steps_cta_link", "label": "Button link" },
 
     { "type": "header", "content": "Routine gallery" },
-    { "type": "text", "id": "routines_eyebrow", "label": "Eyebrow", "default": "One board. Many routines." },
-    { "type": "text", "id": "routines_heading", "label": "Heading", "default": "Use Flipzy wherever a child needs a clear next step." },
-    { "type": "richtext", "id": "routines_intro", "label": "Introduction", "default": "<p>Set it up for one child, one room or one part of the day. Rearrange the tiles whenever the routine changes.</p>" },
+    { "type": "text", "id": "routines_eyebrow", "label": "Eyebrow", "default": "Built for shared routines." },
+    { "type": "text", "id": "routines_heading", "label": "Heading", "default": "See Flipzy at work—in your setting." },
+    { "type": "richtext", "id": "routines_intro", "label": "Introduction", "default": "<p>Use it for arrivals, classroom transitions, self-care or one-to-one support. Children can always see what is next.</p>" },
 
     { "type": "header", "content": "Benefits" },
     { "type": "text", "id": "benefits_eyebrow", "label": "Eyebrow", "default": "Less telling. More showing." },
@@ -526,7 +553,7 @@
     { "type": "text", "id": "closing_cta_label", "label": "Button label", "default": "Choose Flipzy for your setting" },
     { "type": "url", "id": "closing_cta_link", "label": "Button link" },
     { "type": "image_picker", "id": "closing_image", "label": "Image" },
-    { "type": "text", "id": "closing_image_alt", "label": "Image alt text", "default": "Several Flipzy routine boards set up for different daily routines" }
+    { "type": "text", "id": "closing_image_alt", "label": "Image alt text", "default": "Flipzy wooden visual routine board with seven movable task tiles" }
   ],
   "blocks": [
     {
@@ -552,7 +579,7 @@
     {
       "type": "routine",
       "name": "Routine image",
-      "limit": 4,
+      "limit": 6,
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Image" },
         { "type": "text", "id": "image_alt", "label": "Image alt text" },
@@ -594,10 +621,12 @@
         { "type": "step", "settings": { "title": "Choose the picture cues", "text": "Pick the tasks that fit this child and this routine." } },
         { "type": "step", "settings": { "title": "Set today's sequence", "text": "Arrange the seven wooden tiles in the order they happen." } },
         { "type": "step", "settings": { "title": "Flip each finished task", "text": "Progress becomes visible with one simple, tactile action." } },
-        { "type": "routine", "settings": { "title": "Arrival & getting ready" } },
-        { "type": "routine", "settings": { "title": "Hand-washing & self-care" } },
-        { "type": "routine", "settings": { "title": "Activity transitions" } },
-        { "type": "routine", "settings": { "title": "Pack-up & home time" } },
+        { "type": "routine", "settings": { "title": "Morning arrival" } },
+        { "type": "routine", "settings": { "title": "Classroom transitions" } },
+        { "type": "routine", "settings": { "title": "One-to-one support" } },
+        { "type": "routine", "settings": { "title": "Flip each finished task" } },
+        { "type": "routine", "settings": { "title": "Tactile wooden tiles" } },
+        { "type": "routine", "settings": { "title": "Everything to get started" } },
         { "type": "benefit", "settings": { "icon": "eye", "title": "Clear next steps", "text": "Keep the sequence visible at child height." } },
         { "type": "benefit", "settings": { "icon": "cue", "title": "A quieter cue", "text": "Point to the board alongside your usual support." } },
         { "type": "benefit", "settings": { "icon": "flip", "title": "Concrete progress", "text": "Each flip makes “finished” easy to see." } },
