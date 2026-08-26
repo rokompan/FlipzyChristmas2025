@@ -169,7 +169,7 @@
           {%- for block in step_blocks -%}
             {%- liquid
               assign has_video = false
-              if block.settings.video_file != blank or block.settings.video_url != blank
+              if block.settings.video_file != blank or block.settings.use_task_completion_video or block.settings.video_url != blank
                 assign has_video = true
               endif
               assign step_number = forloop.index
@@ -196,6 +196,20 @@
                       class: 'flipzy-b2b__media-element flipzy-b2b__step-video',
                       preload: 'none'
                   }}
+                {%- elsif block.settings.use_task_completion_video -%}
+                  <video
+                    id="{{ step_video_id }}"
+                    class="flipzy-b2b__media-element flipzy-b2b__step-video"
+                    loop
+                    muted
+                    playsinline
+                    preload="none"
+                    aria-hidden="true"
+                    title="{{ step_video_title | escape }}"
+                    {% if block.settings.image != blank %}poster="{{ block.settings.image | image_url: width: 900 }}"{% endif %}
+                  >
+                    <source src="{{ 'b2b-task-completion.mp4' | asset_url }}" type="video/mp4">
+                  </video>
                 {%- elsif block.settings.video_url != blank -%}
                   <video
                     id="{{ step_video_id }}"
@@ -627,6 +641,7 @@
       "limit": 3,
       "settings": [
         { "type": "video", "id": "video_file", "label": "Video" },
+        { "type": "checkbox", "id": "use_task_completion_video", "label": "Use built-in task-completion video", "default": false },
         { "type": "url", "id": "video_url", "label": "MP4 video URL", "info": "Used when no Shopify-hosted video is selected." },
         { "type": "image_picker", "id": "image", "label": "Image or video poster" },
         { "type": "text", "id": "media_alt", "label": "Media description" },

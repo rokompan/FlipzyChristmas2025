@@ -68,7 +68,7 @@
         "step_flip": {
           "type": "step",
           "settings": {
-            "video_url": "https://cdn.shopify.com/videos/c/o/v/fc3c3e1256e24560a76523635f8716c3.mp4",
+            "use_task_completion_video": true,
             "image": "shopify://shop_images/palca.jpg",
             "media_alt": "A finished Flipzy tile closing to reveal its green checkmark",
             "title": "Close finished tiles",
