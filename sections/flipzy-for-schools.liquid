@@ -43,93 +43,10 @@
         {%- if section.settings.heading != blank -%}
           <h1 class="flipzy-b2b__hero-heading">{{ section.settings.heading }}</h1>
         {%- endif -%}
-
-        <div class="flipzy-b2b__mobile-product-peek">
-          {%- if section.settings.hero_product_image != blank -%}
-            {{
-              section.settings.hero_product_image
-              | image_url: width: 900
-              | image_tag:
-                widths: '480, 720, 900',
-                sizes: '340px',
-                loading: 'eager',
-                fetchpriority: 'high',
-                alt: hero_product_alt
-            }}
-          {%- else -%}
-            <img
-              src="{{ 'b2b-product-clean.jpg' | asset_url }}"
-              alt="{{ hero_product_alt | escape }}"
-              width="871"
-              height="535"
-              loading="eager"
-              fetchpriority="high"
-            >
-          {%- endif -%}
-          {%- if section.settings.hero_product_label != blank -%}
-            <span>{{ section.settings.hero_product_label | escape }}</span>
-          {%- endif -%}
-        </div>
-
-        {%- if section.settings.intro != blank -%}
-          <div class="flipzy-b2b__hero-intro rte">{{ section.settings.intro }}</div>
-        {%- endif -%}
-
-        <div class="flipzy-b2b__actions">
-          {%- if section.settings.primary_cta_label != blank -%}
-            <a class="flipzy-btn flipzy-b2b__button" href="{{ section.settings.primary_cta_link | default: '#for-schools-order' }}">
-              {{ section.settings.primary_cta_label | escape }}
-            </a>
-          {%- endif -%}
-          {%- if section.settings.secondary_cta_label != blank -%}
-            <a class="flipzy-b2b__text-link" href="{{ section.settings.secondary_cta_link | default: '#how-flipzy-works' }}">
-              {{ section.settings.secondary_cta_label | escape }}
-              <span aria-hidden="true">↓</span>
-            </a>
-          {%- endif -%}
-        </div>
-
-        {%- if section.settings.microcopy != blank -%}
-          <p class="flipzy-b2b__microcopy">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 6 9 17l-5-5" />
-            </svg>
-            {{ section.settings.microcopy | escape }}
-          </p>
-        {%- endif -%}
       </div>
 
       <div class="flipzy-b2b__hero-media">
         <div class="flipzy-b2b__hero-showcase">
-          <figure class="flipzy-b2b__hero-product-card">
-            {%- if section.settings.hero_product_image != blank -%}
-              {{
-                section.settings.hero_product_image
-                | image_url: width: 1400
-                | image_tag:
-                  widths: '550, 750, 990, 1200, 1400',
-                  sizes: '(min-width: 990px) 45vw, 100vw',
-                  loading: 'eager',
-                  fetchpriority: 'high',
-                  class: 'flipzy-b2b__media-element',
-                  alt: hero_product_alt
-              }}
-            {%- else -%}
-              <img
-                src="{{ 'b2b-product-clean.jpg' | asset_url }}"
-                alt="{{ hero_product_alt | escape }}"
-                width="871"
-                height="535"
-                loading="eager"
-                fetchpriority="high"
-                class="flipzy-b2b__media-element"
-              >
-            {%- endif -%}
-            {%- if section.settings.hero_product_label != blank -%}
-              <figcaption>{{ section.settings.hero_product_label | escape }}</figcaption>
-            {%- endif -%}
-          </figure>
-
           <div class="flipzy-b2b__hero-frame flipzy-b2b__hero-demo-card{% if section.settings.use_for_schools_video %} flipzy-b2b__hero-demo-card--portrait{% endif %}">
             {%- if section.settings.use_for_schools_video -%}
               <video
@@ -204,25 +121,41 @@
               </div>
             {%- endif -%}
           </div>
-        </div>
 
-        {%- if section.settings.open_tile_label != blank or section.settings.closed_tile_label != blank -%}
-          <ul class="flipzy-b2b__mechanism-legend" role="list">
-            {%- if section.settings.open_tile_label != blank -%}
-              <li>
-                <span class="flipzy-b2b__legend-icon flipzy-b2b__legend-icon--open" aria-hidden="true"></span>
-                {{ section.settings.open_tile_label | escape }}
-              </li>
+          <figure class="flipzy-b2b__hero-product-card">
+            {%- if section.settings.hero_product_image != blank -%}
+              {{
+                section.settings.hero_product_image
+                | image_url: width: 1400
+                | image_tag:
+                  widths: '550, 750, 990, 1200, 1400',
+                  sizes: '(min-width: 990px) 58vw, 100vw',
+                  loading: 'eager',
+                  fetchpriority: 'high',
+                  class: 'flipzy-b2b__media-element',
+                  alt: hero_product_alt
+              }}
+            {%- else -%}
+              <img
+                src="{{ 'b2b-product-clean.jpg' | asset_url }}"
+                alt="{{ hero_product_alt | escape }}"
+                width="871"
+                height="535"
+                loading="eager"
+                fetchpriority="high"
+                class="flipzy-b2b__media-element"
+              >
             {%- endif -%}
-            {%- if section.settings.closed_tile_label != blank -%}
-              <li>
-                <span class="flipzy-b2b__legend-icon flipzy-b2b__legend-icon--done" aria-hidden="true">✓</span>
-                {{ section.settings.closed_tile_label | escape }}
-              </li>
+            {%- if section.settings.hero_product_label != blank -%}
+              <figcaption>{{ section.settings.hero_product_label | escape }}</figcaption>
             {%- endif -%}
-          </ul>
-        {%- endif -%}
+          </figure>
+        </div>
       </div>
+
+      {%- if section.settings.intro != blank -%}
+        <div class="flipzy-b2b__hero-intro rte">{{ section.settings.intro }}</div>
+      {%- endif -%}
     </div>
   </div>
 
@@ -664,20 +597,13 @@
     { "type": "image_picker", "id": "hero_image", "label": "Video fallback image" },
     { "type": "text", "id": "hero_image_alt", "label": "Fallback image description", "default": "Preschool children following a Flipzy routine with their educator" },
     { "type": "text", "id": "hero_media_label", "label": "Video label", "default": "See Flipzy in action." },
-    { "type": "text", "id": "open_tile_label", "label": "Open-tile explanation", "default": "Open tile = task to do" },
-    { "type": "text", "id": "closed_tile_label", "label": "Closed-tile explanation", "default": "Closed tile = green checkmark—done" },
-    { "type": "text", "id": "primary_cta_label", "label": "Primary button label", "default": "Choose Flipzy for your group" },
-    { "type": "url", "id": "primary_cta_link", "label": "Primary button link" },
-    { "type": "text", "id": "secondary_cta_label", "label": "Secondary link label", "default": "See how it works" },
-    { "type": "url", "id": "secondary_cta_link", "label": "Secondary link" },
-    { "type": "text", "id": "microcopy", "label": "Hero reassurance", "default": "No reading required • screen-free • made for ages 3–8" },
     { "type": "text", "id": "audience_heading", "label": "Audience heading", "default": "Built for preschool groups—and useful wherever young children need clear routines." },
 
     { "type": "header", "content": "How it works" },
     { "type": "text", "id": "steps_eyebrow", "label": "Eyebrow", "default": "How Flipzy works" },
     { "type": "text", "id": "steps_heading", "label": "Heading", "default": "From picture cues to green checkmarks." },
     { "type": "richtext", "id": "steps_intro", "label": "Introduction", "default": "<p>A physical routine children can understand without reading, an app or a screen.</p>" },
-    { "type": "text", "id": "steps_cta_label", "label": "Button label", "default": "Choose Flipzy for your group" },
+    { "type": "text", "id": "steps_cta_label", "label": "Button label", "default": "Get your Flipzy" },
     { "type": "url", "id": "steps_cta_link", "label": "Button link" },
 
     { "type": "header", "content": "Routine gallery" },
@@ -693,7 +619,7 @@
     { "type": "text", "id": "closing_eyebrow", "label": "Eyebrow", "default": "One routine. Shared by the group." },
     { "type": "text", "id": "closing_heading", "label": "Heading", "default": "Less repeating. More children knowing what comes next." },
     { "type": "textarea", "id": "closing_text", "label": "Text", "default": "Keep Flipzy at child height and use it as a calm visual cue alongside your usual support." },
-    { "type": "text", "id": "closing_cta_label", "label": "Button label", "default": "Choose Flipzy for your group" },
+    { "type": "text", "id": "closing_cta_label", "label": "Button label", "default": "Get your Flipzy" },
     { "type": "url", "id": "closing_cta_link", "label": "Button link" },
     { "type": "image_picker", "id": "closing_image", "label": "Image" },
     { "type": "text", "id": "closing_image_alt", "label": "Image alt text", "default": "Preschool children and an educator beside a completed Flipzy routine with closed green-check tiles" }

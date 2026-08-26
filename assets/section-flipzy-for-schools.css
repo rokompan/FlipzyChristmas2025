@@ -57,16 +57,17 @@
 .flipzy-b2b__hero-grid {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: clamp(4rem, 7vw, 10rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.4rem, 4vw, 4.5rem);
   align-items: center;
-  min-height: min(78rem, calc(100svh - 10rem));
-  padding-block: clamp(5rem, 8vw, 10rem);
+  padding-block: clamp(3.5rem, 6vw, 7rem);
 }
 
 .flipzy-b2b__hero-copy {
-  max-width: 64rem;
+  width: 100%;
+  max-width: 92rem;
+  text-align: center;
 }
 
 .flipzy-b2b__eyebrow {
@@ -86,10 +87,10 @@
 }
 
 .flipzy-b2b__hero-heading {
-  max-width: 12ch;
-  margin: 0;
+  max-width: 18ch;
+  margin: 0 auto;
   color: var(--b2b-ink);
-  font-size: clamp(4.2rem, 5.4vw, 7.4rem);
+  font-size: clamp(3.4rem, 4.2vw, 5.6rem);
   font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 0.99;
@@ -116,28 +117,17 @@
 }
 
 .flipzy-b2b__hero-intro {
-  max-width: 59rem;
-  margin-top: 2.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
   color: #374151;
   font-size: clamp(1.7rem, 1.5vw, 2.15rem);
   line-height: 1.55;
+  text-align: center;
 }
 
 .flipzy-b2b__hero-intro p,
 .flipzy-b2b__section-heading .rte p {
   margin: 0;
-}
-
-.flipzy-b2b__mobile-product-peek {
-  display: none;
-}
-
-.flipzy-b2b__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem 2.2rem;
-  align-items: center;
-  margin-top: 3.2rem;
 }
 
 .flipzy-b2b .flipzy-b2b__button {
@@ -149,52 +139,9 @@
   text-align: center;
 }
 
-.flipzy-b2b__text-link {
-  display: inline-flex;
-  gap: 0.8rem;
-  align-items: center;
-  min-height: 4.8rem;
-  color: var(--b2b-ink);
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-decoration-thickness: 0.16rem;
-  text-underline-offset: 0.5rem;
-}
-
-.flipzy-b2b__text-link span {
-  transition: transform 180ms ease;
-}
-
-.flipzy-b2b__text-link:hover span {
-  transform: translateY(0.3rem);
-}
-
-.flipzy-b2b__microcopy {
-  display: flex;
-  gap: 0.9rem;
-  align-items: center;
-  margin: 1.7rem 0 0;
-  color: #526158;
-  font-size: 1.35rem;
-  font-weight: 600;
-}
-
-.flipzy-b2b__microcopy svg {
-  width: 2rem;
-  height: 2rem;
-  flex: 0 0 2rem;
-  padding: 0.3rem;
-  border-radius: 50%;
-  background: var(--b2b-mint);
-  fill: none;
-  stroke: var(--b2b-ink);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.5;
-}
-
 .flipzy-b2b__hero-media {
   position: relative;
+  width: min(100%, 112rem);
 }
 
 .flipzy-b2b__hero-media::before {
@@ -212,7 +159,10 @@
 
 .flipzy-b2b__hero-showcase {
   position: relative;
-  padding: 0 3rem 10rem 0;
+  display: grid;
+  grid-template-columns: minmax(25rem, 34rem) minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 7rem);
+  align-items: center;
 }
 
 .flipzy-b2b__hero-product-card {
@@ -224,7 +174,7 @@
   border-radius: clamp(2.8rem, 4vw, 5rem);
   background: #fff;
   box-shadow: 0 3rem 8rem rgba(17, 24, 39, 0.18);
-  transform: rotate(-1deg);
+  transform: rotate(0.6deg);
 }
 
 .flipzy-b2b__hero-product-card .flipzy-b2b__media-element {
@@ -259,19 +209,16 @@
 }
 
 .flipzy-b2b__hero-demo-card {
-  position: absolute;
-  width: min(48%, 34rem);
+  position: relative;
+  width: 100%;
   aspect-ratio: 4 / 3;
-  right: -1rem;
-  bottom: 0;
-  transform: rotate(1.5deg);
+  transform: rotate(-0.8deg);
 }
 
 .flipzy-b2b__hero-demo-card--portrait {
-  width: min(38%, 25rem);
+  width: 100%;
   aspect-ratio: 9 / 16;
-  right: 0;
-  transform: rotate(1deg);
+  transform: rotate(-0.8deg);
 }
 
 .flipzy-b2b__media-element {
@@ -283,53 +230,6 @@
 
 .flipzy-b2b__hero-frame .flipzy-b2b__media-element {
   object-position: center;
-}
-
-.flipzy-b2b__mechanism-legend {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 1.8rem 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.flipzy-b2b__mechanism-legend li {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  min-height: 5.4rem;
-  padding: 1.1rem 1.3rem;
-  border: 1px solid rgba(17, 24, 39, 0.08);
-  border-radius: 1.6rem;
-  background: rgba(255, 255, 255, 0.78);
-  color: var(--b2b-ink);
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-.flipzy-b2b__legend-icon {
-  display: grid;
-  width: 3.2rem;
-  height: 3.2rem;
-  flex: 0 0 3.2rem;
-  border-radius: 0.8rem;
-  place-items: center;
-}
-
-.flipzy-b2b__legend-icon--open {
-  border: 0.2rem solid #c59d69;
-  border-bottom-width: 0.55rem;
-  background: #efd4a8;
-  transform: perspective(4rem) rotateX(-12deg);
-}
-
-.flipzy-b2b__legend-icon--done {
-  background: #eef7d8;
-  color: #6a9c1d;
-  font-size: 2.3rem;
-  font-weight: 900;
 }
 
 .flipzy-b2b__media-label {
@@ -855,10 +755,8 @@
 
 @media screen and (max-width: 989px) {
   .flipzy-b2b__hero-grid {
-    grid-template-columns: 1fr;
-    gap: 4.5rem;
-    min-height: 0;
-    padding-top: 5.5rem;
+    gap: 3.5rem;
+    padding-top: 4.5rem;
   }
 
   .flipzy-b2b__hero-copy {
@@ -867,35 +765,26 @@
     text-align: center;
   }
 
-  .flipzy-b2b__hero-heading,
-  .flipzy-b2b__hero-intro {
-    margin-inline: auto;
-  }
-
-  .flipzy-b2b__actions,
-  .flipzy-b2b__microcopy {
-    justify-content: center;
-  }
-
   .flipzy-b2b__hero-media {
-    width: min(100%, 64rem);
+    width: min(100%, 82rem);
     margin-inline: auto;
-  }
-
-  .flipzy-b2b__hero-frame {
-    aspect-ratio: 4 / 3;
   }
 
   .flipzy-b2b__hero-showcase {
-    padding-right: 2rem;
+    grid-template-columns: minmax(22rem, 0.72fr) minmax(0, 1.28fr);
+    gap: 3rem;
   }
 
   .flipzy-b2b__hero-demo-card {
-    width: min(46%, 28rem);
+    width: 100%;
   }
 
   .flipzy-b2b__hero-demo-card--portrait {
-    width: min(38%, 24rem);
+    width: 100%;
+  }
+
+  .flipzy-b2b__hero-frame.flipzy-b2b__hero-demo-card--portrait {
+    aspect-ratio: 9 / 16;
   }
 
   .flipzy-b2b__step-grid {
@@ -937,27 +826,18 @@
   }
 
   .flipzy-b2b__hero-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    align-items: stretch;
-    padding-block: 4.5rem 5rem;
-  }
-
-  .flipzy-b2b__hero-copy {
-    display: contents;
+    gap: 2.6rem;
+    padding-block: 3.5rem 4.5rem;
   }
 
   .flipzy-b2b__hero-copy > .flipzy-b2b__eyebrow {
-    order: 0;
-    align-self: center;
+    margin-bottom: 1.4rem;
   }
 
   .flipzy-b2b__hero-heading {
-    order: 1;
-    max-width: 10ch;
+    max-width: 13ch;
     text-align: center;
-    font-size: clamp(3.9rem, 12vw, 5.7rem);
+    font-size: clamp(3.2rem, 9.5vw, 4.5rem);
   }
 
   .flipzy-b2b__hero-heading strong {
@@ -965,74 +845,29 @@
   }
 
   .flipzy-b2b__hero-intro {
-    order: 3;
-    margin-top: 2rem;
+    margin: 0 auto;
     text-align: center;
     font-size: 1.7rem;
-  }
-
-  .flipzy-b2b__mobile-product-peek {
-    order: 2;
-    display: grid;
-    width: min(100%, 34rem);
-    min-height: 10rem;
-    margin: 1.8rem auto 0;
-    padding: 1.2rem 2.2rem;
-    border: 1px solid rgba(17, 24, 39, 0.07);
-    border-radius: 2rem;
-    place-items: center;
-    background: rgba(255, 255, 255, 0.62);
-    box-shadow: 0 1.2rem 3rem rgba(17, 24, 39, 0.07);
-  }
-
-  .flipzy-b2b__mobile-product-peek img {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    height: 10rem;
-    object-fit: contain;
-  }
-
-  .flipzy-b2b__mobile-product-peek span {
-    margin-top: 0.7rem;
-    color: #374151;
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.25;
-  }
-
-  .flipzy-b2b__actions {
-    order: 5;
-    flex-direction: column;
-    align-items: stretch;
-    margin-top: 2.6rem;
   }
 
   .flipzy-b2b .flipzy-b2b__button {
     width: 100%;
   }
 
-  .flipzy-b2b__text-link {
-    justify-content: center;
-  }
-
-  .flipzy-b2b__microcopy {
-    order: 6;
-    align-items: flex-start;
-    text-align: left;
-  }
-
   .flipzy-b2b__hero-media {
-    order: 4;
-    margin-top: 2.8rem;
+    width: 100%;
+    margin: 0;
   }
 
   .flipzy-b2b__hero-showcase {
-    padding: 0;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+    justify-items: center;
   }
 
   .flipzy-b2b__hero-product-card {
-    display: none;
+    width: 100%;
+    transform: none;
   }
 
   .flipzy-b2b__hero-demo-card {
@@ -1058,10 +893,6 @@
 
   .flipzy-b2b__hero-frame.flipzy-b2b__hero-demo-card--portrait {
     aspect-ratio: 9 / 16;
-  }
-
-  .flipzy-b2b__mechanism-legend {
-    grid-template-columns: 1fr;
   }
 
   .flipzy-b2b__media-label {

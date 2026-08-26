@@ -180,18 +180,11 @@
         "hero_video_alt": "Flipzy visual routine board being used through a preschool routine",
         "hero_image_alt": "Five preschool children and an educator using a Flipzy routine board in daycare",
         "hero_media_label": "See Flipzy in action.",
-        "open_tile_label": "Open tile = task to do",
-        "closed_tile_label": "Closed tile = green checkmark—done",
-        "primary_cta_label": "Choose Flipzy for your group",
-        "primary_cta_link": "#for-schools-order",
-        "secondary_cta_label": "See how it works",
-        "secondary_cta_link": "#how-flipzy-works",
-        "microcopy": "No reading required • screen-free • made for ages 3–8",
         "audience_heading": "Built for preschool groups—and useful wherever young children need clear routines.",
         "steps_eyebrow": "How Flipzy works",
         "steps_heading": "From picture cues to green checkmarks.",
         "steps_intro": "<p>A physical routine children can understand without reading, an app or a screen.</p>",
-        "steps_cta_label": "Choose Flipzy for your group",
+        "steps_cta_label": "Get your Flipzy",
         "steps_cta_link": "#for-schools-order",
         "routines_eyebrow": "In everyday early-years care",
         "routines_heading": "Use it through the whole preschool day.",
@@ -201,7 +194,7 @@
         "closing_eyebrow": "One routine. Shared by the group.",
         "closing_heading": "Less repeating. More children knowing what comes next.",
         "closing_text": "Keep Flipzy at child height and use it as a calm visual cue alongside your usual support.",
-        "closing_cta_label": "Choose Flipzy for your group",
+        "closing_cta_label": "Get your Flipzy",
         "closing_cta_link": "#for-schools-order",
         "closing_image_alt": "Five preschool children and an educator beside a completed Flipzy routine with closed green-check tiles"
       }
@@ -261,7 +254,7 @@
         "trust_4": "30-day money-back guarantee",
         "trust_5": "24-month warranty",
         "description": "Choose one board for a group, or equip several rooms and routines.",
-        "btn_text": "Choose Flipzy for your group",
+        "btn_text": "Get your Flipzy",
         "btn_link": "#for-schools-order"
       }
     },
@@ -307,6 +300,7 @@
         "order_buttons": {
           "type": "buy_buttons",
           "settings": {
+            "button_label": "Get your Flipzy",
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
           }
@@ -422,7 +416,7 @@
         "final_buttons": {
           "type": "button",
           "settings": {
-            "button_label": "Choose Flipzy for your group",
+            "button_label": "Get your Flipzy",
             "button_link": "#for-schools-order",
             "button_style_secondary": false,
             "button_label_2": "Ask about a larger order",
