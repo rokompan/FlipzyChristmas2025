@@ -182,23 +182,6 @@
   padding: clamp(2rem, 3.5vw, 4.5rem);
 }
 
-.flipzy-b2b__hero-product-card figcaption {
-  position: absolute;
-  right: 2rem;
-  bottom: 2rem;
-  left: 2rem;
-  width: fit-content;
-  max-width: calc(100% - 4rem);
-  padding: 1rem 1.5rem;
-  border-radius: 999px;
-  background: rgba(17, 24, 39, 0.84);
-  color: #fff;
-  font-size: 1.25rem;
-  font-weight: 700;
-  line-height: 1.25;
-  backdrop-filter: blur(10px);
-}
-
 .flipzy-b2b__hero-frame {
   position: relative;
   overflow: hidden;
@@ -230,33 +213,6 @@
 
 .flipzy-b2b__hero-frame .flipzy-b2b__media-element {
   object-position: center;
-}
-
-.flipzy-b2b__media-label {
-  position: absolute;
-  right: 2rem;
-  bottom: 2rem;
-  display: flex;
-  gap: 0.9rem;
-  align-items: center;
-  padding: 1.2rem 1.7rem;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 999px;
-  background: rgba(17, 24, 39, 0.84);
-  box-shadow: 0 1rem 3rem rgba(17, 24, 39, 0.2);
-  color: var(--b2b-white);
-  font-size: 1.35rem;
-  font-weight: 700;
-  line-height: 1;
-  backdrop-filter: blur(10px);
-}
-
-.flipzy-b2b__media-label-dot {
-  width: 0.9rem;
-  height: 0.9rem;
-  border-radius: 50%;
-  background: var(--b2b-mustard);
-  box-shadow: 0 0 0 0.5rem rgba(244, 211, 94, 0.2);
 }
 
 .flipzy-b2b__video-toggle {
@@ -893,14 +849,6 @@
 
   .flipzy-b2b__hero-frame.flipzy-b2b__hero-demo-card--portrait {
     aspect-ratio: 9 / 16;
-  }
-
-  .flipzy-b2b__media-label {
-    right: 1.2rem;
-    bottom: 1.2rem;
-    left: 1.2rem;
-    justify-content: center;
-    font-size: 1.2rem;
   }
 
   .flipzy-b2b__audiences {

@@ -88,11 +88,7 @@
               {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                 {{ 'products.product.sold_out' | t }}
               {%- else -%}
-                {%- if block.settings.button_label != blank -%}
-                  {{ block.settings.button_label | escape }}
-                {%- else -%}
-                  {{ 'products.product.add_to_cart' | t }}
-                {%- endif -%}
+                {{ 'products.product.add_to_cart' | t }}
               {%- endif -%}
             </span>
             {%- render 'loading-spinner' -%}

@@ -919,10 +919,10 @@
       "grid_of_30_flipzy_task_sticker_illustrations": "Grid of 30 Flipzy task sticker illustrations"
     },
     "flipzy_for_schools": {
-      "audience_aria_label": "Early-years settings where Flipzy can be used",
+      "audience_aria_label": "Organisations and settings where Flipzy can be used",
       "seo": {
-        "title": "Visual Routine Board for Preschools & Childcare | Flipzy",
-        "description": "Show young children what comes next with Flipzy—a screen-free wooden visual routine board for preschools, daycare and early-years teams."
+        "title": "Visual Routine Board for Education, Care & Support | Flipzy",
+        "description": "Help children see what comes next with Flipzy—a simple, screen-free wooden visual routine board for education, care, therapy and family-support settings."
       },
       "video": {
         "default_label": "Flipzy demonstration",
@@ -932,16 +932,16 @@
       "media": {
         "product_alt": "Authentic Flipzy wooden routine board with open task tiles and closed green-check tiles",
         "demo_alt": "Close-up demonstration of a Flipzy task tile closing so its green checkmark becomes visible",
-        "hero_alt": "Five preschool children and an educator using a Flipzy routine board in daycare",
-        "arrival_alt": "Five preschool children and an educator checking open task tiles during morning arrival",
-        "transition_alt": "Five preschool children and an educator checking open tasks before an activity transition",
-        "self_care_alt": "Five preschool children and an educator checking open self-care tasks beside the wash area",
+        "hero_alt": "A group of children and an educator using a Flipzy visual routine board",
+        "arrival_alt": "A group of children and an educator checking open task tiles during morning arrival",
+        "transition_alt": "A group of children and an educator checking open tasks before an activity transition",
+        "self_care_alt": "A group of children and an educator checking open self-care tasks beside the wash area",
         "product_state_alt": "Authentic Flipzy board with two closed green-check tiles and five open task tiles",
         "flip_alt": "Close-up of a hand closing a Flipzy task tile",
         "hinge_alt": "Close-up of the solid wooden Flipzy hinge and movable task tiles",
         "complete_set_alt": "Complete Flipzy set with a wooden board, picture stickers and mounting materials",
-        "home_time_alt": "Five preschool children and an educator beside a completed Flipzy routine with closed green-check tiles",
-        "default_alt": "Flipzy visual routine board in a preschool setting"
+        "home_time_alt": "A group of children and an educator beside a completed Flipzy routine with closed green-check tiles",
+        "default_alt": "Flipzy visual routine board in an education or care setting"
       }
     }
   },
