@@ -267,6 +267,13 @@
   transform: rotate(1.5deg);
 }
 
+.flipzy-b2b__hero-demo-card--portrait {
+  width: min(38%, 25rem);
+  aspect-ratio: 9 / 16;
+  right: 0;
+  transform: rotate(1deg);
+}
+
 .flipzy-b2b__media-element {
   display: block;
   width: 100%;
@@ -887,6 +894,10 @@
     width: min(46%, 28rem);
   }
 
+  .flipzy-b2b__hero-demo-card--portrait {
+    width: min(38%, 24rem);
+  }
+
   .flipzy-b2b__step-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1032,11 +1043,21 @@
     transform: none;
   }
 
+  .flipzy-b2b__hero-demo-card--portrait {
+    width: min(100%, 36rem);
+    aspect-ratio: 9 / 16;
+    margin-inline: auto;
+  }
+
   .flipzy-b2b__hero-frame {
     aspect-ratio: 4 / 3;
     max-height: none;
     border-width: 0.5rem;
     border-radius: 3rem;
+  }
+
+  .flipzy-b2b__hero-frame.flipzy-b2b__hero-demo-card--portrait {
+    aspect-ratio: 9 / 16;
   }
 
   .flipzy-b2b__mechanism-legend {

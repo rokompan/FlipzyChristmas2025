@@ -10,6 +10,10 @@
   assign hero_video_label = section.settings.hero_media_label | default: default_video_label
   assign hero_video_play_label = 'sections.flipzy_for_schools.video.play_label' | t: label: hero_video_label
   assign hero_video_pause_label = 'sections.flipzy_for_schools.video.pause_label' | t: label: hero_video_label
+  assign has_hero_video = false
+  if section.settings.use_for_schools_video or section.settings.hero_video != blank
+    assign has_hero_video = true
+  endif
   assign hero_product_alt = section.settings.hero_product_alt
   if hero_product_alt == blank
     assign hero_product_alt = 'sections.flipzy_for_schools.media.product_alt' | t
@@ -126,8 +130,22 @@
             {%- endif -%}
           </figure>
 
-          <div class="flipzy-b2b__hero-frame flipzy-b2b__hero-demo-card">
-            {%- if section.settings.hero_video != blank -%}
+          <div class="flipzy-b2b__hero-frame flipzy-b2b__hero-demo-card{% if section.settings.use_for_schools_video %} flipzy-b2b__hero-demo-card--portrait{% endif %}">
+            {%- if section.settings.use_for_schools_video -%}
+              <video
+                id="{{ hero_video_id }}"
+                class="flipzy-b2b__media-element"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                poster="{{ 'b2b-daycare-hero.jpg' | asset_url }}"
+                title="{{ hero_video_alt | escape }}"
+              >
+                <source src="{{ 'b2b-for-schools.mp4' | asset_url }}" type="video/mp4">
+              </video>
+            {%- elsif section.settings.hero_video != blank -%}
               {{
                 section.settings.hero_video
                 | video_tag:
@@ -142,18 +160,6 @@
                   class: 'flipzy-b2b__media-element',
                   preload: 'metadata'
               }}
-              <button
-                class="flipzy-b2b__video-toggle"
-                type="button"
-                data-b2b-video-toggle
-                data-play-label="{{ hero_video_play_label | escape }}"
-                data-pause-label="{{ hero_video_pause_label | escape }}"
-                aria-controls="FlipzyHeroVideo-{{ section.id }}"
-                aria-label="{{ hero_video_pause_label | escape }}"
-              >
-                <span class="flipzy-b2b__pause-icon" aria-hidden="true"></span>
-                <span class="flipzy-b2b__play-icon" aria-hidden="true"></span>
-              </button>
             {%- elsif section.settings.hero_image != blank -%}
               {{
                 section.settings.hero_image
@@ -174,6 +180,21 @@
                 loading="eager"
                 class="flipzy-b2b__media-element"
               >
+            {%- endif -%}
+
+            {%- if has_hero_video -%}
+              <button
+                class="flipzy-b2b__video-toggle"
+                type="button"
+                data-b2b-video-toggle
+                data-play-label="{{ hero_video_play_label | escape }}"
+                data-pause-label="{{ hero_video_pause_label | escape }}"
+                aria-controls="FlipzyHeroVideo-{{ section.id }}"
+                aria-label="{{ hero_video_pause_label | escape }}"
+              >
+                <span class="flipzy-b2b__pause-icon" aria-hidden="true"></span>
+                <span class="flipzy-b2b__play-icon" aria-hidden="true"></span>
+              </button>
             {%- endif -%}
 
             {%- if section.settings.hero_media_label != blank -%}
@@ -637,11 +658,12 @@
     { "type": "image_picker", "id": "hero_product_image", "label": "Product image" },
     { "type": "text", "id": "hero_product_alt", "label": "Product image description", "default": "Authentic Flipzy wooden visual routine board with open task tiles and closed green-check tiles" },
     { "type": "text", "id": "hero_product_label", "label": "Product image label", "default": "A routine children can see at a glance." },
+    { "type": "checkbox", "id": "use_for_schools_video", "label": "Use built-in for-schools video", "default": true },
     { "type": "video", "id": "hero_video", "label": "Hero video" },
-    { "type": "text", "id": "hero_video_alt", "label": "Video description", "default": "Close-up demonstration of a Flipzy tile closing to reveal a green checkmark" },
+    { "type": "text", "id": "hero_video_alt", "label": "Video description", "default": "Flipzy visual routine board being used through a preschool routine" },
     { "type": "image_picker", "id": "hero_image", "label": "Video fallback image" },
     { "type": "text", "id": "hero_image_alt", "label": "Fallback image description", "default": "Preschool children following a Flipzy routine with their educator" },
-    { "type": "text", "id": "hero_media_label", "label": "Video label", "default": "Watch a task turn into done." },
+    { "type": "text", "id": "hero_media_label", "label": "Video label", "default": "See Flipzy in action." },
     { "type": "text", "id": "open_tile_label", "label": "Open-tile explanation", "default": "Open tile = task to do" },
     { "type": "text", "id": "closed_tile_label", "label": "Closed-tile explanation", "default": "Closed tile = green checkmark—done" },
     { "type": "text", "id": "primary_cta_label", "label": "Primary button label", "default": "Choose Flipzy for your group" },
