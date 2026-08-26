@@ -12,37 +12,29 @@
         "audience_preschools": {
           "type": "audience",
           "settings": {
-            "label": "Preschools & kindergartens"
+            "label": "Preschools",
+            "text": "Transitions, hygiene, getting ready, tidying up"
           }
         },
         "audience_primary": {
           "type": "audience",
           "settings": {
-            "label": "Daycare & childcare centres"
+            "label": "Early primary",
+            "text": "Morning routines, independent work, classroom transitions"
           }
         },
         "audience_special": {
           "type": "audience",
           "settings": {
-            "label": "Special education settings"
-          }
-        },
-        "audience_autism": {
-          "type": "audience",
-          "settings": {
-            "label": "Autism support organisations"
+            "label": "Additional support",
+            "text": "Simple visual sequences for routines and transitions"
           }
         },
         "audience_family": {
           "type": "audience",
           "settings": {
-            "label": "Therapists & family centres"
-          }
-        },
-        "audience_therapists": {
-          "type": "audience",
-          "settings": {
-            "label": "Primary schools"
+            "label": "Family centres",
+            "text": "A practical tool for demonstrating home routines to parents"
           }
         },
         "step_choose": {
@@ -154,9 +146,7 @@
         "audience_preschools",
         "audience_primary",
         "audience_special",
-        "audience_autism",
         "audience_family",
-        "audience_therapists",
         "step_choose",
         "step_sequence",
         "step_flip",
@@ -172,20 +162,20 @@
         "benefit_independence"
       ],
       "settings": {
-        "heading": "Help children <strong>see what comes next.</strong>",
-        "intro": "<p>Flipzy is a simple wooden visual routine board. Picture cues show what comes next. When a task is finished, children close its tile to reveal a green checkmark—and gradually learn to follow routines more independently.</p>",
+        "heading": "Make routines <strong>easier to see.</strong>",
+        "intro": "<p>A hands-on visual routine board for preschools, schools, support centres and families.</p>",
         "hero_product_alt": "Authentic Flipzy wooden visual routine board with open task tiles and closed green-check tiles",
         "use_for_schools_video": true,
         "hero_video_alt": "Children using a Flipzy visual routine board together",
         "hero_image_alt": "A group of children and an educator using a Flipzy visual routine board",
-        "audience_heading": "Made for organisations and professionals who help children through everyday routines.",
+        "audience_heading": "Where Flipzy fits",
         "steps_eyebrow": "How Flipzy works",
         "steps_heading": "From picture cues to green checkmarks.",
         "steps_intro": "<p>A physical routine children can follow without reading or using a screen.</p>",
         "steps_cta_label": "Get your Flipzy",
         "steps_cta_link": "#for-schools-order",
         "routines_eyebrow": "One board. Many routines.",
-        "routines_heading": "Use Flipzy wherever the day needs more clarity.",
+        "routines_heading": "Use it wherever a routine needs to be visible.",
         "routines_intro": "<p>Set one routine for a whole group, a small group or one child. Rearrange the tiles whenever plans change.</p>",
         "benefits_eyebrow": "Less repeating. More showing.",
         "benefits_heading": "A clear visual cue for busy moments and transitions.",
@@ -305,9 +295,9 @@
         "order_note": {
           "type": "b2b_order_note",
           "settings": {
-            "heading": "Ordering several boards or need a formal quote?",
-            "text": "For an invoice, purchasing details or help with your order.",
-            "link_label": "Email info@flipzy.toys"
+            "heading": "Ordering for a kindergarten, school or organisation? We can provide an invoice and help with larger orders.",
+            "text": "",
+            "link_label": ""
           }
         }
       },

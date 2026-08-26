@@ -125,6 +125,10 @@
   text-align: center;
 }
 
+.flipzy-b2b__hero-copy .flipzy-b2b__hero-intro {
+  margin-top: 1.6rem;
+}
+
 .flipzy-b2b__hero-intro p,
 .flipzy-b2b__section-heading .rte p {
   margin: 0;
@@ -275,27 +279,24 @@
 }
 
 .flipzy-b2b__audience-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.2rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .flipzy-b2b__audience-chip {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  min-height: 4.5rem;
-  padding: 1rem 1.45rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  min-height: 11rem;
+  padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 999px;
+  border-radius: 1.8rem;
   background: rgba(255, 255, 255, 0.08);
-  font-size: 1.3rem;
-  font-weight: 600;
-  line-height: 1.25;
 }
 
 .flipzy-b2b__audience-chip svg {
@@ -307,6 +308,25 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.8;
+}
+
+.flipzy-b2b__audience-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.flipzy-b2b__audience-copy strong {
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+
+.flipzy-b2b__audience-copy > span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  line-height: 1.4;
 }
 
 .flipzy-b2b__steps,
@@ -743,6 +763,10 @@
     aspect-ratio: 9 / 16;
   }
 
+  .flipzy-b2b__audience-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .flipzy-b2b__step-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -856,16 +880,13 @@
   }
 
   .flipzy-b2b__audience-list {
-    flex-wrap: wrap;
-    justify-content: center;
+    gap: 0.9rem;
   }
 
   .flipzy-b2b__audience-chip {
-    flex: 1 1 calc(50% - 1rem);
-    justify-content: center;
-    padding-inline: 1rem;
-    font-size: 1.15rem;
-    text-align: center;
+    min-height: 12rem;
+    padding: 1.2rem;
+    text-align: left;
   }
 
   .flipzy-b2b__steps,

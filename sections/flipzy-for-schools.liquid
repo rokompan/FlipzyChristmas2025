@@ -43,6 +43,10 @@
         {%- if section.settings.heading != blank -%}
           <h1 class="flipzy-b2b__hero-heading">{{ section.settings.heading }}</h1>
         {%- endif -%}
+
+        {%- if section.settings.intro != blank -%}
+          <div class="flipzy-b2b__hero-intro rte">{{ section.settings.intro }}</div>
+        {%- endif -%}
       </div>
 
       <div class="flipzy-b2b__hero-media">
@@ -144,11 +148,43 @@
         </div>
       </div>
 
-      {%- if section.settings.intro != blank -%}
-        <div class="flipzy-b2b__hero-intro rte">{{ section.settings.intro }}</div>
-      {%- endif -%}
     </div>
   </div>
+
+  {%- if audience_blocks.size > 0 -%}
+    <div
+      class="flipzy-b2b__audiences"
+      {% if section.settings.audience_heading != blank %}
+        aria-labelledby="FlipzyAudiences-{{ section.id }}"
+      {% else %}
+        aria-label="{{ 'sections.flipzy_for_schools.audience_aria_label' | t | escape }}"
+      {% endif %}
+    >
+      <div class="flipzy-b2b__page">
+        {%- if section.settings.audience_heading != blank -%}
+          <p id="FlipzyAudiences-{{ section.id }}" class="flipzy-b2b__audience-heading">
+            {{ section.settings.audience_heading | escape }}
+          </p>
+        {%- endif -%}
+        <ul class="flipzy-b2b__audience-list" role="list">
+          {%- for block in audience_blocks -%}
+            <li class="flipzy-b2b__audience-chip" {{ block.shopify_attributes }}>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3 3 8l9 5 9-5-9-5Z" />
+                <path d="m7 11-4 2 9 5 9-5-4-2" />
+              </svg>
+              <span class="flipzy-b2b__audience-copy">
+                <strong>{{ block.settings.label | escape }}</strong>
+                {%- if block.settings.text != blank -%}
+                  <span>{{ block.settings.text | escape }}</span>
+                {%- endif -%}
+              </span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  {%- endif -%}
 
   <div id="how-flipzy-works" class="flipzy-b2b__steps">
     <div class="flipzy-b2b__page">
@@ -275,36 +311,6 @@
       {%- endif -%}
     </div>
   </div>
-
-  {%- if audience_blocks.size > 0 -%}
-    <div
-      class="flipzy-b2b__audiences"
-      {% if section.settings.audience_heading != blank %}
-        aria-labelledby="FlipzyAudiences-{{ section.id }}"
-      {% else %}
-        aria-label="{{ 'sections.flipzy_for_schools.audience_aria_label' | t | escape }}"
-      {% endif %}
-    >
-      <div class="flipzy-b2b__page">
-        {%- if section.settings.audience_heading != blank -%}
-          <p id="FlipzyAudiences-{{ section.id }}" class="flipzy-b2b__audience-heading">
-            {{ section.settings.audience_heading | escape }}
-          </p>
-        {%- endif -%}
-        <ul class="flipzy-b2b__audience-list" role="list">
-          {%- for block in audience_blocks -%}
-            <li class="flipzy-b2b__audience-chip" {{ block.shopify_attributes }}>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 3 3 8l9 5 9-5-9-5Z" />
-                <path d="m7 11-4 2 9 5 9-5-4-2" />
-              </svg>
-              {{ block.settings.label | escape }}
-            </li>
-          {%- endfor -%}
-        </ul>
-      </div>
-    </div>
-  {%- endif -%}
 
   <div class="flipzy-b2b__routines">
     <div class="flipzy-b2b__page">
@@ -591,8 +597,8 @@
   "settings": [
     { "type": "header", "content": "Hero" },
     { "type": "text", "id": "eyebrow", "label": "Optional eyebrow" },
-    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Help children see <strong>what comes next.</strong>" },
-    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>Flipzy is a simple wooden visual routine board. Picture cues show what comes next. When a task is finished, children close its tile to reveal a green checkmark—and gradually learn to follow routines more independently.</p>" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Make routines <strong>easier to see.</strong>" },
+    { "type": "richtext", "id": "intro", "label": "Introduction", "default": "<p>A hands-on visual routine board for preschools, schools, support centres and families.</p>" },
     { "type": "image_picker", "id": "hero_product_image", "label": "Product image" },
     { "type": "text", "id": "hero_product_alt", "label": "Product image description", "default": "Authentic Flipzy wooden visual routine board with open task tiles and closed green-check tiles" },
     { "type": "checkbox", "id": "use_for_schools_video", "label": "Use built-in for-schools video", "default": true },
@@ -600,7 +606,7 @@
     { "type": "text", "id": "hero_video_alt", "label": "Video description", "default": "Children using a Flipzy visual routine board together" },
     { "type": "image_picker", "id": "hero_image", "label": "Video fallback image" },
     { "type": "text", "id": "hero_image_alt", "label": "Fallback image description", "default": "Children following a Flipzy routine with an educator" },
-    { "type": "text", "id": "audience_heading", "label": "Audience heading", "default": "Made for organisations and professionals who help children through everyday routines." },
+    { "type": "text", "id": "audience_heading", "label": "Audience heading", "default": "Where Flipzy fits" },
 
     { "type": "header", "content": "How it works" },
     { "type": "text", "id": "steps_eyebrow", "label": "Eyebrow", "default": "How Flipzy works" },
@@ -611,7 +617,7 @@
 
     { "type": "header", "content": "Routine gallery" },
     { "type": "text", "id": "routines_eyebrow", "label": "Eyebrow", "default": "One board. Many routines." },
-    { "type": "text", "id": "routines_heading", "label": "Heading", "default": "Use Flipzy wherever the day needs more clarity." },
+    { "type": "text", "id": "routines_heading", "label": "Heading", "default": "Use it wherever a routine needs to be visible." },
     { "type": "richtext", "id": "routines_intro", "label": "Introduction", "default": "<p>Set one routine for a whole group, a small group or one child. Rearrange the tiles whenever plans change.</p>" },
 
     { "type": "header", "content": "Benefits" },
@@ -631,8 +637,10 @@
     {
       "type": "audience",
       "name": "Audience",
+      "limit": 4,
       "settings": [
-        { "type": "text", "id": "label", "label": "Label", "default": "Preschools & kindergartens" }
+        { "type": "text", "id": "label", "label": "Title", "default": "Preschools" },
+        { "type": "textarea", "id": "text", "label": "Use cases", "default": "Transitions, hygiene, getting ready, tidying up" }
       ]
     },
     {
@@ -685,12 +693,10 @@
     {
       "name": "Flipzy for Organisations",
       "blocks": [
-        { "type": "audience", "settings": { "label": "Preschools & kindergartens" } },
-        { "type": "audience", "settings": { "label": "Daycare & childcare centres" } },
-        { "type": "audience", "settings": { "label": "Special education settings" } },
-        { "type": "audience", "settings": { "label": "Autism support organisations" } },
-        { "type": "audience", "settings": { "label": "Therapists & family centres" } },
-        { "type": "audience", "settings": { "label": "Primary schools" } },
+        { "type": "audience", "settings": { "label": "Preschools", "text": "Transitions, hygiene, getting ready, tidying up" } },
+        { "type": "audience", "settings": { "label": "Early primary", "text": "Morning routines, independent work, classroom transitions" } },
+        { "type": "audience", "settings": { "label": "Additional support", "text": "Simple visual sequences for routines and transitions" } },
+        { "type": "audience", "settings": { "label": "Family centres", "text": "A practical tool for demonstrating home routines to parents" } },
         { "type": "step", "settings": { "title": "Choose the picture cues", "text": "Add picture cues for the routine you want to show." } },
         { "type": "step", "settings": { "title": "Leave the next tasks open", "text": "Children can see the sequence and what comes next." } },
         { "type": "step", "settings": { "title": "Close finished tiles", "text": "Each closed tile reveals a green checkmark, making progress visible." } },
