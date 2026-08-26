@@ -589,6 +589,47 @@
       "for_more_structured_support_see": "Za bolj sistematično podporo glejte",
       "harder_behavior_explosions_and_collaborative_problem_sol": "Bolj zahtevno ravnanje, eksplozije in skupinsko reševanje problemov.",
       "developmentally_appropriate_practice_position_statement": "Izjava o stališču glede razvojno ustreznih praks"
+    },
+    "reward_system": {
+      "themes": {
+        "farm": "Prijatelji s kmetije",
+        "princess": "Princesin vrt",
+        "castle": "Iskanje gradu",
+        "dino": "Dino pot",
+        "space": "Vesoljska pustolovščina",
+        "candy": "Sladkarska parada",
+        "ocean": "Morska pustolovščina",
+        "garden": "Igriv vrt"
+      },
+      "ui": {
+        "child_name": "Ime otroka",
+        "theme": "Tema",
+        "reward_label": "Nagrada",
+        "show_numbers": "Prikaži številke",
+        "restore_defaults": "Obnovi privzete nastavitve",
+        "style": "Slog",
+        "mini_reward_presets_aria": "Prednastavitve za mini nagrade",
+        "print_poster_stickers": "Natisni plakat + nalepke",
+        "heading": "Avtor plakata z nagrado",
+        "title": "Naslov",
+        "preview_aria": "Predogled plakata z nagrado",
+        "start_label": "Začetna oznaka",
+        "path": "Pot",
+        "mini_reward_step_selection_aria": "Izbiranje korakov za mini nagrado",
+        "controls_aria": "Nadzor nad plakati z nagradami",
+        "show_mini_reward_labels": "Prikaži majhne nalepke z nagradami",
+        "steps": "Koraki",
+        "count": "Število",
+        "mini_rewards": "Mini nagrade",
+        "poster_text": "Besedilo na plakatu"
+      },
+      "defaults": {
+        "reward_label": "Filmski večer",
+        "start_label": "Začetek",
+        "child_name": "BINE",
+        "title": "Umivanje zob"
+      },
+      "name": "Sistem nagrad"
     }
   },
   "localization": {
