@@ -128,6 +128,66 @@
     gap: 6px;
   }
 
+  /* Low-stock alert */
+  .flipzy-low-stock {
+    margin: 0 0 20px;
+    padding: 12px 14px 14px;
+    background: #fff1f2;
+    border: 2px solid #ef4444;
+    border-radius: 12px;
+    box-shadow: 0 5px 0 #fecaca;
+  }
+
+  .flipzy-low-stock__heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-bottom: 9px;
+    color: #b91c1c;
+    font-size: 1.05rem;
+    font-weight: 900;
+    letter-spacing: 0.11em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .flipzy-low-stock__pulse {
+    width: 10px;
+    height: 10px;
+    flex: 0 0 10px;
+    background: #dc2626;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.55);
+    animation: flipzy-low-stock-pulse 1.35s ease-out infinite;
+  }
+
+  .flipzy-low-stock__track {
+    height: 12px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #fecaca;
+    border-radius: 999px;
+  }
+
+  .flipzy-low-stock__fill {
+    display: block;
+    width: 9%;
+    min-width: 18px;
+    height: 100%;
+    background: linear-gradient(90deg, #991b1b 0%, #ef4444 100%);
+    border-radius: inherit;
+  }
+
+  @keyframes flipzy-low-stock-pulse {
+    70% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flipzy-low-stock__pulse { animation: none; }
+  }
+
   /* --- QUANTITY SELECTOR --- */
   .flipzy-qty-label {
     font-size: 0.95rem;
@@ -411,10 +471,22 @@
 
           <!-- Urgency snippet -->
           {%- if section.settings.inventory_text != blank -%}
-          <div style="text-align: center; margin-bottom: 20px;">
-             <span style="display:inline-flex; align-items:center; gap:6px; font-weight:700; color:#dc2626; font-size:1.05rem; background:#fee2e2; padding:8px 16px; border-radius:30px;">
-               {{ section.settings.inventory_text }}
-             </span>
+          <div class="flipzy-low-stock" role="status">
+            <div class="flipzy-low-stock__heading">
+              <span class="flipzy-low-stock__pulse" aria-hidden="true"></span>
+              <span>{{ section.settings.inventory_text }}</span>
+              <span aria-hidden="true">!</span>
+            </div>
+            <div
+              class="flipzy-low-stock__track"
+              role="progressbar"
+              aria-label="{{ section.settings.inventory_text | escape }}"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="9"
+            >
+              <span class="flipzy-low-stock__fill"></span>
+            </div>
           </div>
           {%- endif -%}
 
@@ -780,7 +852,7 @@ function formatMoney(cents) {
       "type": "text",
       "id": "inventory_text",
       "label": "Inventory Text",
-      "default": "⚡ Only 64 left in stock"
+      "default": "Low stock"
     },
     {
       "type": "header",
