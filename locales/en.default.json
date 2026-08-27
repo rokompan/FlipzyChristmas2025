@@ -452,6 +452,16 @@
     },
     "reward_system": {
       "name": "Reward System",
+      "intro": {
+        "eyebrow": "Free printable reward chart",
+        "heading": "Free Printable Reward Chart for Kids",
+        "subtitle": "Create a custom reward poster and sticker sheet for routines, chores, and positive habits.",
+        "body": "Build a personalized reward chart, choose a playful theme, set mini rewards, and print an A4 poster with a matching sticker sheet. Start with one clear habit and let your child see every small win.",
+        "actions_aria": "Reward chart page links",
+        "make_chart": "Make a chart",
+        "read_guide": "Read the guide",
+        "hero_alt": "Parent and child looking at a printable reward chart with a matching sticker sheet"
+      },
       "ui": {
         "controls_aria": "Reward poster controls",
         "heading": "Reward poster maker",

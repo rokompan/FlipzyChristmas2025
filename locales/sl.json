@@ -487,6 +487,89 @@
       "qty_final_2": "2x Flipzy (⭐ Priljubljeno + brezplačna dostava)",
       "qty_final_3": "3x Flipzy (ponudba 3 za 2)",
       "qty_final_4": "4x Flipzy (🔥 Najboljša vrednost)"
+    },
+    "reward_system": {
+      "name": "Sistem nagrad",
+      "intro": {
+        "eyebrow": "Brezplačen plakat z nagradami za tisk",
+        "heading": "Brezplačen plakat z nagradami za otroke",
+        "subtitle": "Ustvarite prilagojen plakat z nagradami in list z nalepkami za rutine, opravila in pozitivne navade.",
+        "body": "Izdelajte personaliziran plakat z nagradami, izberite igrivo temo, nastavite male nagrade in natisnite A4 plakat z ujemajočim listom nalepk. Začnite z eno jasno navado in otroku pokažite vsak majhen uspeh.",
+        "actions_aria": "Povezave na strani plakata z nagradami",
+        "make_chart": "Ustvari plakat",
+        "read_guide": "Preberi priročnik",
+        "hero_alt": "Starš in otrok gledata natisljiv plakat z nagradami z ujemajočim listom nalepk"
+      },
+      "ui": {
+        "controls_aria": "Nastavitve plakata z nagradami",
+        "heading": "Ustvarjalnik plakata z nagradami",
+        "poster_text": "Besedilo plakata",
+        "child_name": "Ime otroka",
+        "title": "Naslov",
+        "start_label": "Oznaka za začetek",
+        "reward_label": "Oznaka nagrade",
+        "path": "Pot",
+        "steps": "Koraki",
+        "count": "Število",
+        "show_numbers": "Prikaži številke",
+        "show_mini_reward_labels": "Prikaži oznake malih nagrad",
+        "theme": "Tema",
+        "style": "Slog",
+        "mini_rewards": "Male nagrade",
+        "mini_reward_presets_aria": "Prednastavitve malih nagrad",
+        "mini_reward_step_selection_aria": "Izbira koraka za malo nagrado",
+        "preview_aria": "Predogled plakata z nagradami",
+        "restore_defaults": "Obnovi privzeto",
+        "print_poster_stickers": "Natisni plakat + nalepke"
+      },
+      "defaults": {
+        "child_name": "BINE",
+        "title": "Umivanje zob",
+        "start_label": "Začetek",
+        "reward_label": "Filmski večer"
+      },
+      "themes": {
+        "castle": "Grajska pustolovščina",
+        "princess": "Princeskin vrt",
+        "garden": "Igrivi vrt",
+        "space": "Vesoljska odprava",
+        "ocean": "Morska pustolovščina",
+        "candy": "Sladkorna parada",
+        "dino": "Dino steza",
+        "farm": "Kmečki prijatelji",
+        "jungle": "Džungelski safari"
+      },
+      "presets": {
+        "half": "Polovica",
+        "thirds": "Tretjine",
+        "quarters": "Četrtine",
+        "every_3": "Vsak 3.",
+        "every_5": "Vsak 5.",
+        "clear": "Počisti"
+      },
+      "status": {
+        "saved": "Shranjeno lokalno",
+        "saving": "Shranjevanje ...",
+        "storage_full": "Shramba je polna",
+        "preparing_print": "Priprava za tisk ...",
+        "print_ready": "Tisk pripravljen",
+        "print_failed": "Tisk ni uspel"
+      },
+      "controls": {
+        "main_reward_step": "Korak glavne nagrade"
+      },
+      "poster": {
+        "poster_aria": "Plakat z nagradami",
+        "fallback_title": "Nagradna pot",
+        "mini_reward": "Mala nagrada",
+        "sticker_default_name": "Nagrada",
+        "stickers_title": "Nalepke za {{ child }}",
+        "sticker_subtitle": "Krogi za izrez za ta plakat z nagradami"
+      },
+      "print": {
+        "frame_title": "Tisk plakata z nagradami",
+        "document_title": "Plakat z nagradami"
+      }
     }
   },
   "localization": {

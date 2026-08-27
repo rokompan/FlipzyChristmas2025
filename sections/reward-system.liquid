@@ -126,19 +126,19 @@
 
   <header class="flipzy-rewards__intro">
     <div class="flipzy-rewards__intro-copy">
-      <p class="flipzy-rewards__eyebrow">Free printable reward chart</p>
-      <h1>Free Printable Reward Chart for Kids</h1>
-      <p class="flipzy-rewards__subtitle">Create a custom reward poster and sticker sheet for routines, chores, and positive habits.</p>
-      <p>Build a personalized reward chart, choose a playful theme, set mini rewards, and print an A4 poster with a matching sticker sheet. Start with one clear habit and let your child see every small win.</p>
-      <div class="flipzy-rewards__intro-actions" aria-label="Reward chart page links">
-        <a href="#reward-chart-maker">Make a chart</a>
-        <a href="#reward-system-guide">Read the guide</a>
+      <p class="flipzy-rewards__eyebrow">{{ 'sections.reward_system.intro.eyebrow' | t }}</p>
+      <h1>{{ 'sections.reward_system.intro.heading' | t }}</h1>
+      <p class="flipzy-rewards__subtitle">{{ 'sections.reward_system.intro.subtitle' | t }}</p>
+      <p>{{ 'sections.reward_system.intro.body' | t }}</p>
+      <div class="flipzy-rewards__intro-actions" aria-label="{{ 'sections.reward_system.intro.actions_aria' | t | escape }}">
+        <a href="#reward-chart-maker">{{ 'sections.reward_system.intro.make_chart' | t }}</a>
+        <a href="#reward-system-guide">{{ 'sections.reward_system.intro.read_guide' | t }}</a>
       </div>
     </div>
     <figure class="flipzy-rewards__hero">
       <img
         src="{{ 'reward-system-hero.jpg' | asset_url }}"
-        alt="Parent and child looking at a printable reward chart with a matching sticker sheet"
+        alt="{{ 'sections.reward_system.intro.hero_alt' | t | escape }}"
         width="1055"
         height="1491"
         loading="eager"
