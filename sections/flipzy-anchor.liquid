@@ -33,7 +33,7 @@
 {%- assign anchor = section.settings.anchor_id | strip | handleize -%}
 
 <div 
-  id="buy"
+  id="{{ anchor | default: 'buy' }}"
   style="
     display: block; 
     position: relative; 
