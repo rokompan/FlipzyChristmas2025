@@ -823,7 +823,18 @@
       "connect": "Poveži se",
       "point_to_the_routine_or_tile_check_flipzy": "Pokazaj na rutino ali ploščico. »Poglej Flipzy. Prva pižama.«",
       "when_it_fails_adjust_instead_of_quitting_tomorrow": "Ko ti ne uspe, se prilagodi, namesto da bi obupal. »Jutri bomo naredili manjši prvi korak.«",
-      "the_flipzy_loop_is_the_method_behind_the": "Metoda »Flipzy Loop« je osnova priročnika. Preprečuje, da bi rutine postale zgolj še en sistem ukazov. To metodo uporabite vsakič, ko uvedete novo rutino, popravite obstoječo rutino ali pomagate otroku pri premagovanju težkega prehoda."
+      "the_flipzy_loop_is_the_method_behind_the": "Metoda »Flipzy Loop« je osnova priročnika. Preprečuje, da bi rutine postale zgolj še en sistem ukazov. To metodo uporabite vsakič, ko uvedete novo rutino, popravite obstoječo rutino ali pomagate otroku pri premagovanju težkega prehoda.",
+      "4_why_play_belongs_in_routines": "4. Zakaj je igra del vsakdanjih navad",
+      "flipzy_parent_handbook": "Flipzy: Priročnik za starše",
+      "a_practical_evidence_informed_handbook_for_parents_who": "Praktični priročnik, ki temelji na znanstvenih dognanjih, za starše, ki si želijo manj prigovarjanja, manj sporov zaradi uporabe elektronskih naprav, bolj mirnih jutranjih in večernih ur ter bolj samostojnih otrok.",
+      "1_what_this_handbook_is_really_for": "1. Za kaj je ta priročnik dejansko namenjen",
+      "3_why_routines_work": "3. Zakaj rutine delujejo",
+      "table_of_contents": "Kazalo",
+      "5_rewards_motivation_and_pride": "5. Nagrade, motivacija in ponos",
+      "flipzy_turns_routine_steps_into_visible_tactile_progress": "Flipzy spremeni rutinske korake v vidni in otipljivi napredek.",
+      "2_the_flipzy_philosophy": "2. Filozofija podjetja Flipzy",
+      "calmer_routines_more_capable_kids": "Mirnejši dnevni ritem, bolj sposobni otroci.",
+      "print_save_as_pdf": "Natisni / Shrani kot PDF"
     },
     "reward_system": {
       "name": "Sistem nagrad",
@@ -928,6 +939,17 @@
         "description": "Pomagajte otrokom, da vidijo, kaj sledi, s Flipzyjem – preprosto, leseno vizualno tablo za rutino brez zaslona, namenjeno izobraževanju, varstvu, terapiji in podpori družinam.",
         "title": "Vizualna tabla za rutinske dejavnosti v izobraževanju, negi in podpori | Flipzy"
       }
+    },
+    "flipzy_help": {
+      "email_placeholder": "Vaš e-naslov (če želite prejeti odgovor)",
+      "message_placeholder": "Kako vam lahko pomagamo?",
+      "title": "Imate kakšno vprašanje?",
+      "text": "Pošljite nam sporočilo in odgovorili vam bomo po e-pošti.",
+      "email_label": "E-pošta (neobvezno)",
+      "ask_question": "💬 Zastavi vprašanje",
+      "message_label": "Vaše sporočilo",
+      "submit": "Pošlji sporočilo",
+      "reply_to": "ODGOVOR NA:"
     }
   },
   "localization": {
