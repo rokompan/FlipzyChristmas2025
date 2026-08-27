@@ -788,7 +788,18 @@
       "13_real_life_scenarios": "13. Scenariji iz resničnega življenja",
       "the_third_layer_is_rewards_but_rewards_are": "Tretja raven so nagrade, vendar nagrade niso temelj. Nagrade lahko pomagajo sprožiti novo vedenje, zlasti kadar je otrok sposoben, a ni motiviran, ali kadar je rutina postala čustveno obremenjena. Najboljša dolgoročna motivacija pa izhaja iz obvladovanja, samostojnosti, pripadnosti in ponosa. Flipzyjevo obračanje je močno, ker ustvari majhen trenutek zaključka. Otrok vidi napredek, ga čuti in sodeluje pri zaključku rutine.",
       "routines_also_help_because_they_make_expectations_visibl": "Rutine pomagajo tudi zato, ker pojasnjujejo pričakovanja. »Bodi priden« je preveč abstraktno. »Daj pižamo v košaro« je jasno. »Pohiti« je stresno. »Čevlji, jakna, torba« je izvedljivo. Otrok lahko po končanem koraku obrne ploščico, saj ima korak začetek in konec. Ta občutek konca je pomemben.",
-      "play_is_not_a_decoration_added_to_parenting": "Igra ni le okras, ki ga dodamo vzgoji, ko je resno delo že opravljeno. Za majhne otroke je igra pogosto pot do učenja. Otrok se morda upira ukazu »obleci si nogavice«, vendar se z veseljem pridruži igri »ali lahko tvoje nogavice skočijo na tvoje noge?«. Otrok morda ignorira ukaz »pojdi v kopalnico«, vendar z veseljem sledi igri »zobna ščetka čaka na svojega voznika«. Igra zmanjšuje občutek grožnje in spodbuja sodelovanje."
+      "play_is_not_a_decoration_added_to_parenting": "Igra ni le okras, ki ga dodamo vzgoji, ko je resno delo že opravljeno. Za majhne otroke je igra pogosto pot do učenja. Otrok se morda upira ukazu »obleci si nogavice«, vendar se z veseljem pridruži igri »ali lahko tvoje nogavice skočijo na tvoje noge?«. Otrok morda ignorira ukaz »pojdi v kopalnico«, vendar z veseljem sledi igri »zobna ščetka čaka na svojega voznika«. Igra zmanjšuje občutek grožnje in spodbuja sodelovanje.",
+      "no_drama_discipline": "Disciplina brez dram",
+      "bantam_isbn_13_978_0345548047": ", Bantam, ISBN-13: 978-0345548047.",
+      "flipzy_context": "Kontekst Flipzy.",
+      "flipzy_board_with_a_hand_flipping_one_wooden": "Flipzy-plošča z roko, ki obrača eno leseno ploščico z nalogo",
+      "the_routine_examples_in_this_handbook_are_designed": "Primeri rutinskih dejavnosti v tem priročniku so zasnovani za modularno tablo za rutinske dejavnosti z nalepkami za naloge, vidnim napredkom in prilagodljivo uporabo za jutranje in večerne dejavnosti, popoldanske naloge, gospodinjska opravila ter mirne prehode.",
+      "parent_handbook": "Priročnik za starše",
+      "table_of_contents_2": "Kazalo",
+      "grid_of_30_flipzy_task_sticker_illustrations": "Mreža s 30 ilustracijami nalepk z nalogami Flipzy",
+      "flipzy_wooden_routine_board_with_flipped_task_tiles": "Lesena tabla za vaje Flipzy s ploščicami z nalogami, ki se lahko obrnejo",
+      "parent_and_child_using_a_wall_mounted_flipzy": "Starš in otrok uporabljata na steno pritrjeno tablo za rutine Flipzy",
+      "hand_flipping_a_wooden_flipzy_routine_tile_on": "Ročno obračanje lesene ploščice Flipzy na tečaju"
     },
     "reward_system": {
       "name": "Sistem nagrad",
@@ -871,6 +882,27 @@
       "print": {
         "frame_title": "Tisk plakata z nagradami",
         "document_title": "Plakat z nagradami"
+      }
+    },
+    "flipzy_for_schools": {
+      "video": {
+        "play_label": "Predvajaj video: {{ label }}",
+        "pause_label": "Zaustavi video: {{ label }}",
+        "default_label": "Predstavitev Flipzyja"
+      },
+      "media": {
+        "arrival_alt": "Skupina otrok in vzgojiteljica pregledujeta ploščice z odprtimi nalogami ob jutranjem prihodu",
+        "transition_alt": "Skupina otrok in vzgojiteljica pregledujeta odprte naloge pred prehodom na naslednjo dejavnost",
+        "product_state_alt": "Pristna Flipzy-plošča z dvema zaprtima ploščicama z zelenim kockastim vzorcem in petimi odprtimi ploščicami z nalogami",
+        "demo_alt": "Približna prikaz zapiranja ploščice naloge v aplikaciji Flipzy, tako da postane vidna njena zelena kljukica",
+        "hero_alt": "Skupina otrok in vzgojiteljica, ki uporabljata vizualno tablo z rutinskimi dejavnostmi Flipzy",
+        "product_alt": "Avtentična lesena plošča za vaje Flipzy z odprtimi ploščicami z nalogami in zaprtimi ploščicami z zelenim kljukičem",
+        "self_care_alt": "Skupina otrok in vzgojiteljica preverjata odprte naloge za osebno nego ob umivalnem prostoru"
+      },
+      "audience_aria_label": "Organizacije in okolja, v katerih se lahko uporablja Flipzy",
+      "seo": {
+        "description": "Pomagajte otrokom, da vidijo, kaj sledi, s Flipzyjem – preprosto, leseno vizualno tablo za rutino brez zaslona, namenjeno izobraževanju, varstvu, terapiji in podpori družinam.",
+        "title": "Vizualna tabla za rutinske dejavnosti v izobraževanju, negi in podpori | Flipzy"
       }
     }
   },
