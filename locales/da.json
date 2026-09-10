@@ -796,6 +796,11 @@
       "these_are_useful_because_they_separate_the_larger": ". De er nyttige, fordi de adskiller de overordnede familierutiner – såsom måltider, bad og sengetid – fra de mindre, trinvise rutiner inden for hver del af dagen."
     },
     "reward_system": {
+      "themes": {
+        "racing": "Racerdag",
+        "robots": "Robotværksted",
+        "pirates": "Pirateventyr"
+      },
       "print": {
         "document_title": "Efterlysningsplakat",
         "frame_title": "Plakat med belønning"

@@ -517,6 +517,9 @@
         "reward_label": "Mozi este"
       },
       "themes": {
+        "racing": "Versenynap",
+        "robots": "Robotműhely",
+        "pirates": "Kalózkaland",
         "candy": "Cukorkaparádé",
         "garden": "Vidám kert",
         "castle": "A kastély kalandja",

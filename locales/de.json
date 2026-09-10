@@ -808,6 +808,9 @@
       },
       "themes": {
         "jungle": "Dschungel-Safari",
+        "racing": "Renntag",
+        "robots": "Roboterwerkstatt",
+        "pirates": "Piratenabenteuer",
         "farm": "Freunde vom Bauernhof",
         "dino": "Dino-Pfad",
         "candy": "Süßigkeiten-Parade",

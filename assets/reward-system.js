@@ -3,6 +3,7 @@
 
   var STORAGE_KEY = 'flipzyRewardSystem.settings.v2';
   var BOARD = { width: 2100, height: 2970 };
+  var textMeasureContext;
 
   var DEFAULT_COPY = {
     defaults: {
@@ -20,7 +21,10 @@
       candy: 'Candy Parade',
       dino: 'Dino Trail',
       farm: 'Farm Friends',
-      jungle: 'Jungle Safari'
+      jungle: 'Jungle Safari',
+      racing: 'Race Day',
+      robots: 'Robot Workshop',
+      pirates: 'Pirate Adventure'
     },
     status: {
       saved: 'Saved locally',
@@ -339,6 +343,94 @@
         mainRewardGift: 'safariBadge',
         miniRewardGift: 'pawToken'
       }
+    },
+    {
+      id: 'racing',
+      name: 'Race Day',
+      background: '#edf7fc',
+      backgroundAlt: '#d9eef5',
+      backgroundBand: '#b8dfac',
+      title: '#26343e',
+      text: '#344951',
+      pathOuter: '#3d5059',
+      pathInner: '#c7d7df',
+      pathDash: '#ffffff',
+      circleFill: '#ffffff',
+      circleStroke: '#bc3e39',
+      circleText: '#26343e',
+      miniFill: '#ffda62',
+      miniStroke: '#a77920',
+      miniText: '#3b2e13',
+      rewardFill: '#e4554f',
+      rewardStroke: '#a53430',
+      rewardText: '#ffffff',
+      labelFill: '#ffffff',
+      labelStroke: '#91b4c3',
+      accent: '#e4554f',
+      accent2: '#178ca2',
+      accent3: '#ffda62',
+      roadStyle: 'racing',
+      roadDecor: 'flag',
+      motifs: { mainRewardGift: 'flag', miniRewardGift: 'flag' }
+    },
+    {
+      id: 'robots',
+      name: 'Robot Workshop',
+      background: '#effbf7',
+      backgroundAlt: '#cdeee7',
+      backgroundBand: '#f7d387',
+      title: '#164c50',
+      text: '#31575a',
+      pathOuter: '#29878b',
+      pathInner: '#afe2dc',
+      pathDash: '#ffffff',
+      circleFill: '#ffffff',
+      circleStroke: '#287d82',
+      circleText: '#164c50',
+      miniFill: '#ffd66a',
+      miniStroke: '#a77521',
+      miniText: '#3b2c13',
+      rewardFill: '#ee923b',
+      rewardStroke: '#a85e23',
+      rewardText: '#ffffff',
+      labelFill: '#ffffff',
+      labelStroke: '#7bbdb6',
+      accent: '#ee923b',
+      accent2: '#287d82',
+      accent3: '#ffd66a',
+      roadStyle: 'robots',
+      roadDecor: 'bolt',
+      motifs: { mainRewardGift: 'gift', miniRewardGift: 'miniGift' }
+    },
+    {
+      id: 'pirates',
+      name: 'Pirate Adventure',
+      background: '#e5faf9',
+      backgroundAlt: '#c7efed',
+      backgroundBand: '#f3da9b',
+      title: '#563c27',
+      text: '#4a5143',
+      pathOuter: '#a16a37',
+      pathInner: '#f4d88b',
+      pathDash: '#fffae4',
+      pathAccent: '#c19048',
+      circleFill: '#fffbed',
+      circleStroke: '#93602e',
+      circleText: '#533b25',
+      miniFill: '#ffd25c',
+      miniStroke: '#a67722',
+      miniText: '#3c2a12',
+      rewardFill: '#d95045',
+      rewardStroke: '#963e31',
+      rewardText: '#ffffff',
+      labelFill: '#fffbed',
+      labelStroke: '#cba661',
+      accent: '#d95045',
+      accent2: '#198b8b',
+      accent3: '#ffd25c',
+      roadStyle: 'cobble',
+      roadDecor: 'star',
+      motifs: { mainRewardGift: 'treasure', miniRewardGift: 'gem' }
     }
   ];
 
@@ -369,11 +461,15 @@
   }
 
   RewardApp.prototype.init = function () {
+    var self = this;
     this.populateThemes();
     this.bindEvents();
     this.renderFormState();
     this.renderMiniStepPicker();
     this.renderPoster();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { self.renderPoster(); });
+    }
   };
 
   RewardApp.prototype.populateThemes = function () {
@@ -747,20 +843,25 @@
     var theme = getThemeWithAssets(state.theme, assetMap, copy);
     var radius = stepRadius(state.stepCount);
     var header = layoutHeader(state, theme, copy);
+    var rewardLabelSpace = layoutRewardLabel(state, theme, { x: 1050, y: 0 }, radius);
+    var finalArtRadius = finalHaloSize(finalBadgeRadius(radius)) / 2;
     var pathInset = radius >= 90 ? 340 : radius >= 78 ? 300 : 270;
     var pathBottomInset = radius >= 90 ? 390 : radius >= 78 ? 350 : 320;
     var pathArea = {
       left: pathInset,
       right: BOARD.width - pathInset,
-      top: Math.max(660, header.box.y + header.box.h + radius + 78),
+      top: Math.max(660, header.box.y + header.box.h + 24 + Math.max(finalArtRadius, rewardLabelSpace.visible ? -rewardLabelSpace.box.y : 0)),
       bottom: BOARD.height - pathBottomInset
     };
-    var points = buildStepPoints(state.stepCount, pathArea);
+    var points = buildStepPoints(state.stepCount, pathArea, finalArtRadius + miniBadgeRadius(radius) * 1.32 + 24);
     var finalPoint = points[points.length - 1];
     var rewardLabel = layoutRewardLabel(state, theme, finalPoint, radius);
-    var startLabel = layoutStartLabel(state, points[0], radius, header.box, copy);
+    var startLabel = layoutStartLabel(state, points[0], radius, header.box, rewardLabel.box, state.stepCount === 1 ? finalArtRadius : radius, copy);
     var miniSet = toSet(state.miniRewards);
-    var miniLabels = buildMiniLabels(points, miniSet, state.showMiniLabels, radius, header.box, rewardLabel.box);
+    var miniLabels = buildMiniLabels(points, miniSet, state.showMiniLabels, radius, header.box, rewardLabel.box, copy);
+    if (miniLabels.some(function (label) { return boxesOverlap(label.box, startLabel.box, 18); })) {
+      startLabel.box.y = points[0].y + miniBadgeRadius(radius) + 90;
+    }
     var pathD = buildPath(points);
     var pathTextureId = theme.assets.pathTexture ? svgId(instanceId + '-' + theme.id + '-path-texture') : '';
     var finalRewardGraphic = {
@@ -779,7 +880,7 @@
         header.svg,
         renderStartLabel(startLabel, theme),
         renderSteps(points, radius, theme, miniSet, state.showNumbers, finalRewardGraphic),
-        renderMiniLabels(miniLabels, theme, copy),
+        renderMiniLabels(miniLabels, theme),
         state.showNumbers ? '' : renderFinalMarker(finalPoint, radius, theme),
         renderRewardLabel(rewardLabel, theme),
       '</svg>'
@@ -795,13 +896,16 @@
     var stickerChild = cleanText(state.childName) || copyText(copy, 'poster.stickerDefaultName', DEFAULT_COPY.poster.stickerDefaultName);
     var title = copyText(copy, 'poster.stickersTitle', DEFAULT_COPY.poster.stickersTitle, { child: stickerChild });
     var subtitle = copyText(copy, 'poster.stickerSubtitle', DEFAULT_COPY.poster.stickerSubtitle);
+    var titleLayout = layoutText(title, 1740, 74, 34, 2);
+    var subtitleLayout = layoutText(subtitle, 1740, 30, 22, 2);
+    var subtitleY = 150 + (titleLayout.lines.length - 1) * titleLayout.lineHeight + 72;
     var pieces = [
       '<svg class="flipzy-rewards__sticker-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 ' + BOARD.width + ' ' + BOARD.height + '" role="img" aria-label="' + escapeAttr(title) + '">',
         '<title>' + escapeHtml(title) + '</title>',
         '<rect width="' + BOARD.width + '" height="' + BOARD.height + '" fill="#ffffff"/>',
         '<path d="M0 0 H' + BOARD.width + ' V260 C1700 345 1360 220 1030 310 C640 416 310 350 0 500 Z" fill="' + theme.backgroundAlt + '" opacity="0.42"/>',
-        '<text x="1050" y="150" text-anchor="middle" fill="' + theme.title + '" font-family="Poppins, Arial, sans-serif" font-size="74" font-weight="900" stroke="' + theme.labelFill + '" stroke-width="12" stroke-linejoin="round" paint-order="stroke fill">' + escapeHtml(title) + '</text>',
-        '<text x="1050" y="222" text-anchor="middle" fill="' + theme.text + '" font-family="Poppins, Arial, sans-serif" font-size="30" font-weight="800">' + escapeHtml(subtitle) + '</text>'
+        svgTextLines(titleLayout.lines, 1050, 150, titleLayout.fontSize, titleLayout.lineHeight, theme.title, 900, 'middle', theme.labelFill),
+        svgTextLines(subtitleLayout.lines, 1050, subtitleY, subtitleLayout.fontSize, subtitleLayout.lineHeight, theme.text, 800, 'middle', '')
     ];
     var i;
 
@@ -880,7 +984,7 @@
     var marginX = 150;
     var top = 500;
     var bottom = 170;
-    var diameter = radius * 2;
+    var diameter = radius * 2.16;
     var minGap = clamp(radius * 0.34, 26, 40);
     var usableW = BOARD.width - marginX * 2;
     var usableH = BOARD.height - top - bottom;
@@ -890,13 +994,9 @@
     var count = Math.min(requested, maxCount);
     var cols = clamp(Math.ceil(Math.sqrt(count * usableW / usableH)), 1, maxCols);
     var rows = Math.ceil(count / cols);
-    var totalSlots;
     var xStep;
     var yStep;
-    var jitterX;
-    var jitterY;
     var positions = [];
-    var usedSlots = {};
     var i;
 
     while (rows > maxRows && cols < maxCols) {
@@ -904,34 +1004,19 @@
       rows = Math.ceil(count / cols);
     }
 
-    totalSlots = rows * cols;
     xStep = cols > 1 ? (usableW - diameter) / (cols - 1) : 0;
     yStep = rows > 1 ? (usableH - diameter) / (rows - 1) : 0;
-    jitterX = cols > 1 ? Math.min(radius * 0.42, Math.max(0, (xStep - diameter - minGap) / 2)) : 0;
-    jitterY = rows > 1 ? Math.min(radius * 0.36, Math.max(0, (yStep - diameter - minGap) / 2)) : 0;
 
     for (i = 0; i < count; i += 1) {
-      var slot = count === totalSlots || count === 1 ? i : Math.round(i * (totalSlots - 1) / (count - 1));
-      var guard = 0;
-      var row;
-      var col;
-      var cx;
-      var cy;
-
-      while (usedSlots[slot] && guard < totalSlots) {
-        slot = (slot + 1) % totalSlots;
-        guard += 1;
-      }
-
-      usedSlots[slot] = true;
-      row = Math.floor(slot / cols);
-      col = slot % cols;
-      cx = marginX + radius + (cols > 1 ? col * xStep : (usableW - diameter) / 2) + stickerJitter(i, 11) * jitterX;
-      cy = top + radius + (rows > 1 ? row * yStep : (usableH - diameter) / 2) + stickerJitter(i, 23) * jitterY;
+      var row = Math.floor(i / cols);
+      var col = i % cols;
+      var rowCount = Math.min(cols, count - row * cols);
+      var cx = BOARD.width / 2 + (col - (rowCount - 1) / 2) * xStep;
+      var cy = top + diameter / 2 + (rows > 1 ? row * yStep : (usableH - diameter) / 2);
 
       positions.push({
-        x: round(clamp(cx, marginX + radius, BOARD.width - marginX - radius)),
-        y: round(clamp(cy, top + radius, BOARD.height - bottom - radius))
+        x: round(cx),
+        y: round(cy)
       });
     }
 
@@ -940,11 +1025,6 @@
       count: count,
       positions: positions
     };
-  }
-
-  function stickerJitter(index, salt) {
-    var value = Math.sin((index + 1) * (salt + 17) * 12.9898) * 43758.5453;
-    return (value - Math.floor(value)) * 2 - 1;
   }
 
   function stickerAssetUrl(theme) {
@@ -999,6 +1079,12 @@
   }
 
   function renderRoadDecorShape(kind, x, y, size, theme, index) {
+    if (kind === 'flag') {
+      return '<path d="M' + round(x - size * 0.65) + ' ' + round(y + size) + ' v-' + round(size * 2) + ' h' + round(size * 1.6) + ' v' + round(size) + ' h-' + round(size * 1.6) + '" fill="' + theme.labelFill + '" stroke="' + theme.pathOuter + '" stroke-width="4"/>';
+    }
+    if (kind === 'bolt') {
+      return '<path d="M' + round(x + size * 0.15) + ' ' + round(y - size) + ' l-' + round(size * 0.8) + ' ' + round(size * 1.15) + ' h' + round(size * 0.65) + ' l-' + round(size * 0.15) + ' ' + round(size) + ' l' + round(size * 0.85) + ' -' + round(size * 1.3) + ' h-' + round(size * 0.65) + ' Z" fill="' + theme.accent3 + '" stroke="' + theme.miniStroke + '" stroke-width="2"/>';
+    }
     if (kind === 'bubble') {
       return '<g fill="none" stroke="' + theme.accent2 + '" stroke-width="4"><circle cx="' + round(x) + '" cy="' + round(y) + '" r="' + round(size * 0.75) + '"/><circle cx="' + round(x + size * 0.9) + '" cy="' + round(y - size * 0.65) + '" r="' + round(size * 0.38) + '"/></g>';
     }
@@ -1042,6 +1128,10 @@
     return radius + clamp(Math.round(radius * 0.28), 20, 28);
   }
 
+  function finalHaloSize(radius) {
+    return round(clamp(radius * 4.35, 390, 560));
+  }
+
   function renderSteps(points, radius, theme, miniSet, showNumbers, finalRewardGraphic) {
     return points.map(function (point) {
       var isFinal = point.index === points.length;
@@ -1078,7 +1168,7 @@
   }
 
   function renderFinalRewardHalo(point, radius, theme, assetUrl) {
-    var size = round(clamp(radius * 4.35, 390, 560));
+    var size = finalHaloSize(radius);
     var x = round(point.x - size / 2);
     var y = round(point.y - size / 2);
 
@@ -1167,16 +1257,14 @@
     ].join('');
   }
 
-  function renderMiniLabels(labels, theme, copy) {
-    var labelText = copyText(copy, 'poster.miniReward', DEFAULT_COPY.poster.miniReward);
-
+  function renderMiniLabels(labels, theme) {
     return labels.map(function (label) {
       return [
         '<g>',
           '<rect x="' + (label.box.x + 5) + '" y="' + (label.box.y + 7) + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="27" fill="#000000" opacity="0.12"/>',
           '<rect x="' + label.box.x + '" y="' + label.box.y + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="27" fill="' + theme.miniFill + '" stroke="' + theme.miniStroke + '" stroke-width="5"/>',
           '<rect x="' + (label.box.x + 13) + '" y="' + (label.box.y + 10) + '" width="' + (label.box.w - 26) + '" height="' + round(label.box.h * 0.32) + '" rx="13" fill="' + theme.labelFill + '" opacity="0.38"/>',
-          '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + (label.box.y + label.box.h / 2 + 11) + '" text-anchor="middle" fill="' + theme.miniText + '" font-family="Poppins, Arial, sans-serif" font-size="28" font-weight="900">' + escapeHtml(labelText) + '</text>',
+          '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + (label.box.y + label.box.h / 2) + '" text-anchor="middle" dominant-baseline="central" fill="' + theme.miniText + '" font-family="Poppins, Arial, sans-serif" font-size="' + label.fontSize + '" font-weight="900">' + escapeHtml(label.text) + '</text>',
         '</g>'
       ].join('');
     }).join('');
@@ -1185,7 +1273,7 @@
   function renderStartLabel(label, theme) {
     return [
       '<g>',
-        '<text x="' + (label.box.x + label.box.w / 2) + '" y="' + (label.box.y + label.box.h / 2 + 12) + '" text-anchor="middle" fill="' + theme.title + '" font-family="Poppins, Arial, sans-serif" font-size="50" font-weight="900">' + escapeHtml(label.text) + '</text>',
+        svgTextLines(label.lines, label.box.x + label.box.w / 2, label.box.y + label.fontSize, label.fontSize, label.lineHeight, theme.title, 900, 'middle', theme.labelFill),
       '</g>'
     ].join('');
   }
@@ -1194,7 +1282,7 @@
     if (!label.visible) return '';
 
     var centerY = label.box.y + label.box.h / 2 - ((label.lines.length - 1) * label.lineHeight) / 2;
-    var iconCx = label.box.x + label.box.h * 0.5;
+    var iconCx = label.box.x + 45;
     var iconCy = label.box.y + label.box.h * 0.5;
 
     return [
@@ -1202,10 +1290,10 @@
         '<rect x="' + (label.box.x + 7) + '" y="' + (label.box.y + 10) + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="' + round(label.box.h / 2) + '" fill="#000000" opacity="0.16"/>',
         '<rect x="' + label.box.x + '" y="' + label.box.y + '" width="' + label.box.w + '" height="' + label.box.h + '" rx="' + round(label.box.h / 2) + '" fill="' + theme.labelFill + '" stroke="' + theme.circleStroke + '" stroke-width="7"/>',
         '<rect x="' + (label.box.x + 18) + '" y="' + (label.box.y + 14) + '" width="' + (label.box.w - 36) + '" height="' + round(label.box.h * 0.3) + '" rx="' + round(label.box.h * 0.15) + '" fill="' + theme.accent3 + '" opacity="0.24"/>',
-        '<circle cx="' + round(iconCx) + '" cy="' + round(iconCy) + '" r="' + round(label.box.h * 0.34) + '" fill="' + theme.accent3 + '" stroke="' + theme.miniStroke + '" stroke-width="4"/>',
-        '<polygon points="' + starPoints(iconCx, iconCy, label.box.h * 0.2, label.box.h * 0.09, 5) + '" fill="' + theme.labelFill + '" opacity="0.95"/>',
+        '<circle cx="' + round(iconCx) + '" cy="' + round(iconCy) + '" r="30" fill="' + theme.accent3 + '" stroke="' + theme.miniStroke + '" stroke-width="4"/>',
+        '<polygon points="' + starPoints(iconCx, iconCy, 18, 8, 5) + '" fill="' + theme.labelFill + '" opacity="0.95"/>',
         label.lines.map(function (line, index) {
-          return '<text x="' + round(label.box.x + label.box.w / 2 + label.box.h * 0.14) + '" y="' + round(centerY + index * label.lineHeight) + '" text-anchor="middle" dominant-baseline="middle" fill="' + theme.title + '" stroke="' + theme.labelFill + '" stroke-width="' + round(label.fontSize * 0.09) + '" stroke-linejoin="round" paint-order="stroke fill" font-family="Poppins, Arial, sans-serif" font-size="' + label.fontSize + '" font-weight="900">' + escapeHtml(line) + '</text>';
+          return '<text x="' + round(label.box.x + 90 + (label.box.w - 112) / 2) + '" y="' + round(centerY + index * label.lineHeight) + '" text-anchor="middle" dominant-baseline="central" fill="' + theme.title + '" stroke="' + theme.labelFill + '" stroke-width="' + round(label.fontSize * 0.09) + '" stroke-linejoin="round" paint-order="stroke fill" font-family="Poppins, Arial, sans-serif" font-size="' + label.fontSize + '" font-weight="900">' + escapeHtml(line) + '</text>';
         }).join(''),
       '</g>'
     ].join('');
@@ -1252,7 +1340,7 @@
       };
     }
 
-    var lines = layoutText(text, 660, 52, 34, 2);
+    var lines = layoutText(text, 648, 52, 34, 2);
     var longest = lines.lines.reduce(function (width, line) {
       return Math.max(width, approxTextWidth(line, lines.fontSize, 900));
     }, 0);
@@ -1275,20 +1363,24 @@
     };
   }
 
-  function layoutStartLabel(state, point, radius, headerBox, copy) {
+  function layoutStartLabel(state, point, radius, headerBox, rewardBox, artRadius, copy) {
     var text = cleanText(state.startLabel) || copyText(copy, 'defaults.startLabel', DEFAULT_COPY.defaults.startLabel);
-    var width = clamp(approxTextWidth(text, 50, 900) + 60, 180, 520);
-    var height = 72;
+    var layout = layoutText(text, 460, 50, 28, 2);
+    var width = clamp(Math.max.apply(null, layout.lines.map(function (line) { return approxTextWidth(line, layout.fontSize, 900); })) + 60, 180, 520);
+    var height = Math.max(72, layout.lineHeight * layout.lines.length + 12);
     var y = point.y - radius - height - 34;
+    var x = clamp(point.x - width / 2, 90, BOARD.width - width - 90);
 
-    if (y < headerBox.y + headerBox.h + 14) {
-      y = point.y + radius + 24;
+    if (y < headerBox.y + headerBox.h + 14 || boxesOverlap({ x: x, y: y, w: width, h: height }, rewardBox, 18)) {
+      y = point.y + artRadius + 24;
     }
 
     return {
-      text: text,
+      lines: layout.lines,
+      fontSize: layout.fontSize,
+      lineHeight: layout.lineHeight,
       box: {
-        x: clamp(point.x - width / 2, 90, BOARD.width - width - 90),
+        x: x,
         y: y,
         w: width,
         h: height
@@ -1296,13 +1388,22 @@
     };
   }
 
-  function buildMiniLabels(points, miniSet, showLabels, radius, headerBox, rewardBox) {
+  function buildMiniLabels(points, miniSet, showLabels, radius, headerBox, rewardBox, copy) {
     var labels = [];
     var badgeRadius = miniBadgeRadius(radius);
-    var labelWidth = 220;
+    var labelText = copyText(copy, 'poster.miniReward', DEFAULT_COPY.poster.miniReward);
     var labelHeight = 54;
 
     if (!showLabels) return labels;
+
+    points.forEach(function (point) {
+      points.forEach(function (other) {
+        if (other.row === point.row - 1) {
+          labelHeight = Math.min(labelHeight, other.y - point.y - badgeRadius * 2 - 24);
+        }
+      });
+    });
+    labelHeight = Math.max(20, Math.floor(labelHeight));
 
     points.forEach(function (point) {
       var box;
@@ -1311,8 +1412,14 @@
 
       if (!miniSet[point.index] || point.index === points.length) return;
 
-      y = point.row % 2 === 0 ? point.y - badgeRadius - 74 : point.y + badgeRadius + 18;
-      if (y < headerBox.y + headerBox.h + 12) y = point.y + badgeRadius + 18;
+      var maxWidth = points.reduce(function (width, other) {
+        return other.row === point.row && other.index !== point.index ? Math.min(width, Math.abs(other.x - point.x) - 24) : width;
+      }, 300);
+      var preferredSize = Math.min(28, labelHeight - 10);
+      var layout = layoutText(labelText, maxWidth - 32, preferredSize, Math.min(14, preferredSize), 1);
+      var labelWidth = Math.min(maxWidth, Math.max(220, approxTextWidth(layout.lines[0], layout.fontSize, 900) + 32));
+
+      y = point.y + badgeRadius + 12;
 
       box = {
         x: clamp(point.x - labelWidth / 2, 70, BOARD.width - labelWidth - 70),
@@ -1322,26 +1429,27 @@
       };
 
       if (boxesOverlap(box, rewardBox, 18)) {
-        alternateY = y < point.y ? point.y + badgeRadius + 18 : point.y - badgeRadius - 74;
+        alternateY = point.y - badgeRadius - labelHeight - 12;
 
         if (alternateY >= headerBox.y + headerBox.h + 12 && alternateY + labelHeight <= BOARD.height - 70) {
           box.y = alternateY;
         }
       }
 
-      labels.push({ point: point, box: box });
+      labels.push({ point: point, box: box, text: layout.lines[0], fontSize: layout.fontSize });
     });
 
     return labels;
   }
 
-  function buildStepPoints(count, area) {
+  function buildStepPoints(count, area, finalClearance) {
     var cols = count <= 8 ? 4 : count <= 30 ? 5 : count <= 42 ? 6 : 7;
     var rows = Math.ceil(count / cols);
     if (rows % 2 === 0 && rows < count) rows += 1;
     var base = Math.floor(count / rows);
     var extra = count % rows;
     var yGap = rows === 1 ? 0 : (area.bottom - area.top) / (rows - 1);
+    var finalRowGap = rows > 2 ? Math.max(yGap, finalClearance || 0) : yGap;
     var points = [];
     var index = 1;
     var row;
@@ -1352,14 +1460,22 @@
       var rowLeft = area.left + rowInset;
       var rowRight = area.right - rowInset;
       var xGap = rowCount === 1 ? 0 : (rowRight - rowLeft) / (rowCount - 1);
+      var finalGap = row === rows - 1 && rowCount > 1 ? Math.max(xGap, finalClearance || 0) : xGap;
       var rowY = rows === 1 ? (area.top + area.bottom) / 2 : area.bottom - yGap * row;
-      var wave = clamp(yGap * 0.055, 5, 15);
+      if (finalRowGap > yGap) {
+        rowY = row === rows - 1 ? area.top : area.bottom - (area.bottom - area.top - finalRowGap) * row / (rows - 2);
+      }
+      var wave = count > 24 ? 0 : clamp(yGap * 0.055, 5, 15);
       var col;
 
       for (col = 0; col < rowCount; col += 1) {
         var displayCol = row % 2 === 1 ? rowCount - 1 - col : col;
         var t = rowCount === 1 ? 0.5 : displayCol / (rowCount - 1);
         var x = rowCount === 1 ? (area.left + area.right) / 2 : rowLeft + xGap * displayCol;
+        // Leave space for the final artwork without shrinking the numbered circles.
+        if (finalGap > xGap && rowCount > 2 && col < rowCount - 1) {
+          x = row % 2 === 0 ? rowLeft + (rowRight - rowLeft - finalGap) * col / (rowCount - 2) : rowRight - (rowRight - rowLeft - finalGap) * col / (rowCount - 2);
+        }
         var y = rowY + Math.sin(t * Math.PI * 2 + row * 0.65) * wave;
 
         points.push({
@@ -1771,8 +1887,20 @@
     var current = '';
 
     words.forEach(function (word) {
+      if (approxTextWidth(word, fontSize, 900) > maxWidth) {
+        if (current) lines.push(current);
+        current = '';
+        Array.from(word).forEach(function (character) {
+          if (current && approxTextWidth(current + character, fontSize, 900) > maxWidth) {
+            lines.push(current);
+            current = '';
+          }
+          current += character;
+        });
+        return;
+      }
       var next = current ? current + ' ' + word : word;
-      if (current && approxTextWidth(next, fontSize, 700) > maxWidth) {
+      if (current && approxTextWidth(next, fontSize, 900) > maxWidth) {
         lines.push(current);
         current = word;
       } else {
@@ -1791,7 +1919,7 @@
     if (lines.length <= maxLines) return lines;
     last = trimmed[trimmed.length - 1] || '';
 
-    while (last.length > 3 && approxTextWidth(last + '...', fontSize, 700) > maxWidth) {
+    while (last.length > 3 && approxTextWidth(last + '...', fontSize, 900) > maxWidth) {
       last = last.slice(0, -1);
     }
 
@@ -2070,6 +2198,11 @@
   }
 
   function approxTextWidth(text, fontSize, weight) {
+    if (!textMeasureContext) textMeasureContext = document.createElement('canvas').getContext('2d');
+    if (textMeasureContext) {
+      textMeasureContext.font = weight + ' ' + fontSize + 'px Poppins, Arial, sans-serif';
+      return textMeasureContext.measureText(cleanText(text)).width * 1.04;
+    }
     var factor = weight >= 800 ? 0.61 : 0.55;
     return cleanText(text).length * fontSize * factor;
   }

@@ -141,7 +141,7 @@
   align-items: start;
   display: grid;
   gap: 22px;
-  grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
+  grid-template-columns: minmax(320px, 380px) minmax(0, 1fr);
   margin: 0 auto;
   max-width: 1460px;
   padding: 22px 0 58px;
@@ -164,7 +164,8 @@
   background: var(--frs-panel);
   border: 1px solid var(--frs-line);
   border-radius: 8px;
-  padding: 10px;
+  min-width: 0;
+  padding: 14px;
 }
 
 .flipzy-rewards__masthead {
@@ -188,17 +189,19 @@
   letter-spacing: 0;
   line-height: 1.08;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .flipzy-rewards__group {
   border: 0;
   border-top: 1px solid var(--frs-line);
   margin: 0;
-  padding: 8px 0 0;
+  min-width: 0;
+  padding: 12px 0 0;
 }
 
 .flipzy-rewards__group + .flipzy-rewards__group {
-  margin-top: 8px;
+  margin-top: 14px;
 }
 
 .flipzy-rewards__group legend {
@@ -212,15 +215,18 @@
 .flipzy-rewards__field {
   display: grid;
   gap: 3px;
-  margin: 0 0 6px;
+  margin: 0 0 8px;
+  min-width: 0;
 }
 
 .flipzy-rewards__field span,
 .flipzy-rewards__checks span {
   color: var(--frs-muted);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1.3;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .flipzy-rewards__field input,
@@ -231,9 +237,10 @@
   border: 1px solid #cfc7bb;
   border-radius: 7px;
   color: var(--frs-ink);
-  font: 600 12px/1.2 Poppins, system-ui, sans-serif;
-  min-height: 30px;
-  padding: 5px 8px;
+  font: 600 14px/1.3 Poppins, system-ui, sans-serif;
+  min-height: 36px;
+  min-width: 0;
+  padding: 7px 9px;
   width: 100%;
 }
 
@@ -244,8 +251,12 @@
 
 .flipzy-rewards__field input[type="range"] {
   accent-color: var(--frs-blue);
+  appearance: auto;
+  background: transparent;
   border: 0;
-  min-height: 22px;
+  height: 36px;
+  margin: 0;
+  min-height: 36px;
   padding: 0;
 }
 
@@ -258,9 +269,10 @@
 }
 
 .flipzy-rewards__field-grid {
+  align-items: end;
   display: grid;
   gap: 6px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .flipzy-rewards__step-control {
@@ -273,20 +285,24 @@
 .flipzy-rewards__checks {
   display: grid;
   gap: 5px 8px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .flipzy-rewards__checks label {
-  align-items: center;
+  align-items: start;
   cursor: pointer;
   display: flex;
-  gap: 5px;
+  gap: 7px;
+  min-width: 0;
+  padding: 4px 0;
 }
 
 .flipzy-rewards__checks input {
   accent-color: var(--frs-blue);
-  height: 15px;
-  width: 15px;
+  flex: 0 0 17px;
+  height: 17px;
+  margin: 0;
+  width: 17px;
 }
 
 .flipzy-rewards__presets {
@@ -304,37 +320,42 @@
   color: var(--frs-ink);
   cursor: pointer;
   display: inline-flex;
-  font: 800 11px/1.1 Poppins, system-ui, sans-serif;
+  font: 800 12px/1.3 Poppins, system-ui, sans-serif;
   justify-content: center;
-  min-height: 29px;
+  letter-spacing: 0;
+  min-height: 36px;
+  min-width: 0;
+  overflow-wrap: anywhere;
   padding: 6px 7px;
   text-decoration: none;
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 
 .flipzy-rewards button:hover {
   border-color: var(--frs-blue);
   color: var(--frs-blue-dark);
-  transform: translateY(-1px);
 }
 
 .flipzy-rewards__theme-buttons {
   display: grid;
   gap: 6px;
+  grid-auto-rows: 1fr;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.flipzy-rewards__theme-button {
+.flipzy-rewards .flipzy-rewards__theme-button {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.18)),
     linear-gradient(135deg, var(--theme-bg), var(--theme-path)) !important;
   border-color: var(--theme-edge) !important;
   border-color: color-mix(in srgb, var(--theme-edge) 72%, #ffffff) !important;
   color: var(--frs-ink);
-  gap: 7px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 28px minmax(0, 1fr);
   justify-content: start;
-  min-height: 38px;
-  padding: 6px 7px;
+  min-height: 60px;
+  padding: 8px;
   text-align: left;
 }
 
@@ -344,9 +365,8 @@
 
 .flipzy-rewards__theme-button > span:last-child {
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  white-space: normal;
 }
 
 .flipzy-rewards__theme-button[aria-pressed="true"] {
@@ -365,7 +385,7 @@
   grid-template-columns: repeat(3, 1fr);
   height: 18px;
   overflow: hidden;
-  width: 34px;
+  width: 28px;
 }
 
 .flipzy-rewards__theme-swatch span:nth-child(1) {
@@ -388,7 +408,7 @@
 
 .flipzy-rewards__step-picker button {
   aspect-ratio: 1;
-  font-size: 10px;
+  font-size: 12px;
   min-height: 0;
   padding: 0;
 }
@@ -415,29 +435,34 @@
   align-items: center;
   background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(214, 205, 194, 0.92);
-  border-radius: 999px;
-  box-shadow: 0 14px 34px rgba(32, 36, 44, 0.08);
-  display: grid;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   margin: 0 auto 18px;
   max-width: min(100%, 880px);
-  padding: 9px 12px 9px 16px;
+  padding: 12px;
 }
 
 .flipzy-rewards__toolbar > span {
   color: var(--frs-muted);
   font-size: 13px;
   font-weight: 700;
-  justify-self: start;
+  flex: 1 1 100px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .flipzy-rewards__toolbar > div {
   display: flex;
   flex-wrap: wrap;
-  gap: 9px;
-  grid-column: 2;
-  justify-content: center;
+  gap: 8px;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.flipzy-rewards__toolbar button {
+  min-height: 44px;
 }
 
 .flipzy-rewards__primary {
@@ -454,7 +479,6 @@
   background: var(--frs-blue-dark) !important;
   border-color: var(--frs-blue-dark) !important;
   box-shadow: 0 14px 26px rgba(38, 119, 153, 0.3);
-  transform: translateY(-1px);
 }
 
 .flipzy-rewards__secondary {
@@ -633,7 +657,7 @@
 
 @media screen and (max-width: 1180px) {
   .flipzy-rewards__shell {
-    grid-template-columns: minmax(260px, 330px) minmax(0, 1fr);
+    grid-template-columns: minmax(320px, 360px) minmax(0, 1fr);
   }
 
   .flipzy-rewards__step-picker {
@@ -681,26 +705,39 @@
     width: 100%;
   }
 
-  .flipzy-rewards__field-grid,
-  .flipzy-rewards__presets,
-  .flipzy-rewards__theme-buttons {
-    grid-template-columns: 1fr;
+  .flipzy-rewards__field input,
+  .flipzy-rewards__field textarea,
+  .flipzy-rewards__field select {
+    font-size: 16px;
+    min-height: 44px;
+  }
+
+  .flipzy-rewards__checks label,
+  .flipzy-rewards__presets button {
+    min-height: 44px;
   }
 
   .flipzy-rewards__step-picker {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
+  .flipzy-rewards__step-picker button {
+    font-size: 14px;
+  }
+
   .flipzy-rewards__toolbar {
     align-items: stretch;
-    border-radius: 14px;
-    grid-template-columns: 1fr;
+    flex-direction: column;
     padding: 12px;
   }
 
   .flipzy-rewards__toolbar > div {
-    grid-column: 1;
-    justify-content: stretch;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .flipzy-rewards__toolbar > span {
+    flex: none;
   }
 
   .flipzy-rewards__toolbar button {

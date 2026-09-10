@@ -499,7 +499,10 @@
         "candy": "Candy Parade",
         "dino": "Dino Trail",
         "farm": "Farm Friends",
-        "jungle": "Jungle Safari"
+        "jungle": "Jungle Safari",
+        "racing": "Race Day",
+        "robots": "Robot Workshop",
+        "pirates": "Pirate Adventure"
       },
       "presets": {
         "half": "Half",

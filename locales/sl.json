@@ -885,7 +885,10 @@
         "candy": "Sladkorna parada",
         "dino": "Dino steza",
         "farm": "Kmečki prijatelji",
-        "jungle": "Džungelski safari"
+        "jungle": "Džungelski safari",
+        "racing": "Dirkaški dan",
+        "robots": "Robotska delavnica",
+        "pirates": "Piratska pustolovščina"
       },
       "presets": {
         "half": "Polovica",
