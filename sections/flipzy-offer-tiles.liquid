@@ -421,16 +421,13 @@
              </div>
              
              <div class="flipzy-header-text">
-                <div class="flipzy-mag-rating" style="margin-bottom: 5px;">
-                  <span style="font-size:0.95rem; font-weight:700;">{{ 'sections.flipzy_offer.rating_prefix' | t | default: '⭐️⭐️⭐️⭐️⭐️ 4.8/5 from ' }}<span class="dynamic-parent-count">346</span>{{ 'sections.flipzy_offer.rating_suffix' | t | default: ' parents' }}</span>
-                </div>
                 <h2 class="flipzy-offer-title">{{ section.settings.title | default: product.title }}</h2>
              </div>
           </div>
           
           <ul class="flipzy-mag-list">
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#9989;</span> {{ 'sections.flipzy_offer.benefit_1' | t | default: 'Kids WANT to complete their routine' }}</li>
-            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#9200;</span> {{ 'sections.flipzy_offer.benefit_2' | t | default: '10–20 minutes of peace every morning' }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#9989;</span> {{ 'sections.flipzy_policy.visual_steps' | t }}</li>
+            <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#9200;</span> {{ 'sections.flipzy_policy.screen_free' | t }}</li>
             <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#128524;</span> {{ 'sections.flipzy_offer.benefit_3' | t | default: 'Less nagging. More cooperation.' }}</li>
             <li class="flipzy-mag-item"><span class="flipzy-mag-icon">&#128170;</span> {{ 'sections.flipzy_offer.benefit_4' | t | default: 'Builds independence & responsibility' }}</li>
           </ul>
@@ -449,15 +446,13 @@
               <span class="flipzy-btn-badge" style="background:#F4D35E; color:#111;">{{ 'sections.flipzy_offer.badge_popular' | t }}</span>
               <span class="mt-qty-big">2x</span>
               <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_items' | t }}</span>
-              <span class="flipzy-free-shipping-tag">{{ 'sections.flipzy_offer.free_shipping' | t | default: 'Free Shipping' }}</span>
             </div>
 
             <!-- 3x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(3, this)" data-badge="true">
-              <span class="flipzy-btn-badge">{{ 'sections.flipzy_offer.badge_3for2' | t }}</span>
+              <span class="flipzy-btn-badge">3× Flipzy</span>
               <span class="mt-qty-big">3x</span>
               <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_items' | t }}</span>
-              <span class="flipzy-free-shipping-tag">{{ 'sections.flipzy_offer.free_shipping' | t | default: 'Free Shipping' }}</span>
             </div>
 
             <!-- 4x -->
@@ -465,7 +460,6 @@
                <span class="flipzy-btn-badge">{{ 'sections.flipzy_offer.badge_best_value' | t }}</span>
                <span class="mt-qty-big">4x</span>
                <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_items' | t }}</span>
-               <span class="flipzy-free-shipping-tag">{{ 'sections.flipzy_offer.free_shipping' | t | default: 'Free Shipping' }}</span>
             </div>
           </div>
 
@@ -513,8 +507,8 @@
             <div style="display: flex; flex-direction: column; justify-content: center; padding-left: 5px;">
                <ul class="flipzy-mag-list" style="margin-bottom: 0; padding: 0; display: flex; flex-direction: column; gap: 8px;">
                  <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> {{ 'sections.flipzy_offer.guarantee_1' | t | default: 'Secure checkout' }}</li>
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> {{ 'sections.flipzy_offer.guarantee_2' | t | default: '30-day guarantee' }}</li>
-                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> {{ 'sections.flipzy_offer.guarantee_3' | t | default: 'Used by 1000+ families' }}</li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> <a href="{{ shop.refund_policy.url }}">{{ 'sections.flipzy_policy.return_summary' | t }}</a></li>
+                 <li class="flipzy-mag-item" style="font-size: 0.95rem; line-height: 1.1; color: #4b5563; margin: 0; padding: 0; align-items: center;"><span class="flipzy-mag-icon" style="font-size: 1.1rem; color:#16a34a; margin-right: 6px;">✔</span> {{ 'sections.flipzy_policy.age_summary' | t }}</li>
                </ul>
             </div>
             
@@ -543,7 +537,7 @@
                 <circle cx="5.5" cy="18.5" r="2.5"></circle>
                 <circle cx="18.5" cy="18.5" r="2.5"></circle>
              </svg>
-             {{ 'sections.flipzy_offer.delivered_by' | t }} <span id="flipzy-delivery-date">{{ 'sections.flipzy_offer.calculating' | t }}</span>
+             <a href="{{ shop.shipping_policy.url }}">{{ 'sections.flipzy_policy.delivery_summary' | t }}</a>
           </div>
           
           <!-- Empty to cleanup the old guarantee list previously placed here. -->
@@ -717,9 +711,9 @@ function formatMoney(cents) {
     compareAtPrice: {{ variant.compare_at_price | default: product.compare_at_price | default: variant.price | default: product.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
     strings: {
-       offer2: {{ 'sections.flipzy_offer.offer_2' | t | json }},
-       offer3: {{ 'sections.flipzy_offer.offer_3' | t | json }},
-       offer4: {{ 'sections.flipzy_offer.offer_4' | t | json }}
+       offer2: "",
+       offer3: "",
+       offer4: ""
     },
     tiers: {
       1: { discount: 0, label: {{ 'sections.flipzy_offer.unit_item' | t | json }} },
@@ -729,57 +723,6 @@ function formatMoney(cents) {
     }
   };
 
-  // Dynamic Delivery Date: 3 Business Days
-  function calculateDeliveryDate() {
-      const today = new Date();
-      let addedDays = 0;
-      let checkDate = new Date(today);
-      
-      while (addedDays < 3) {
-          checkDate.setDate(checkDate.getDate() + 1);
-          // 0 is Sunday, 6 is Saturday
-          if (checkDate.getDay() !== 0 && checkDate.getDay() !== 6) {
-              addedDays++;
-          }
-      }
-      
-      // Format: Localized Date (e.g. "Tue, Feb 10" or "tor, 10. feb")
-      const userLocale = {{ request.locale.iso_code | json }};
-      const options = { weekday: 'short', month: 'short', day: 'numeric' };
-      const dateString = checkDate.toLocaleDateString(userLocale, options);
-      
-      const el = document.getElementById('flipzy-delivery-date');
-      if (el) el.innerText = dateString;
-  }
-  
-  // Dynamic Parent Rating count
-  function calculateParentRating() {
-      const startDate = new Date('2026-03-02T00:00:00');
-      const today = new Date();
-      const diffTime = today - startDate;
-      let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays < 0) diffDays = 0;
-      
-      const baseParents = 346;
-      const currentParents = baseParents + (diffDays * 3);
-      
-      const elements = document.querySelectorAll('.dynamic-parent-count');
-      elements.forEach(function(el) {
-          el.innerText = currentParents;
-      });
-  }
-
-          // The FAQ hide logic has been moved to flipzy-sticky-bar.liquid
-  // Run on load
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-      calculateDeliveryDate();
-      calculateParentRating();
-    });
-  } else {
-    calculateDeliveryDate();
-    calculateParentRating();
-  }
 </script>
 
 <style>
@@ -852,7 +795,7 @@ function formatMoney(cents) {
       "type": "text",
       "id": "inventory_text",
       "label": "Inventory Text",
-      "default": "Low stock"
+      "info": "Only use an inventory claim supported by current stock data."
     },
     {
       "type": "header",
@@ -872,7 +815,7 @@ function formatMoney(cents) {
       "type": "text",
       "id": "qty_2_label",
       "label": "Badge Text",
-      "default": "Free Shipping"
+      "default": "Shipping at checkout"
     },
     {
       "type": "range",
@@ -957,8 +900,8 @@ function formatMoney(cents) {
     { "type": "image_picker", "id": "image_2", "label": "Thumb 2" },
     { "type": "image_picker", "id": "image_3", "label": "Thumb 3" },
     { "type": "image_picker", "id": "image_4", "label": "Thumb 4" },
-    { "type": "text", "id": "guarantee_1", "label": "Guarantee 1", "default": "30-Day Money Back" },
-    { "type": "text", "id": "guarantee_2", "label": "Guarantee 2", "default": "2-Year Warranty" }
+    { "type": "text", "id": "guarantee_1", "label": "Guarantee 1", "default": "30-day return requests · conditions apply" },
+    { "type": "text", "id": "guarantee_2", "label": "Guarantee 2", "default": "Legal guarantee applies" }
   ],
   "presets": [
     {

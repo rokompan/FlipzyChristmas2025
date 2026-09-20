@@ -162,9 +162,9 @@
             <select id="stick-quantity-selector-final" class="flipzy-quantity-select" onchange="updateStickyPrice(this)">
                 <!-- Options populated by JS for dynamic price, but we keep hardcoded fallbacks for SEO/No-JS -->
                 <option value="1">{{ 'sections.flipzy_sticky.qty_final_1' | t }}</option>
-                <option value="2">{{ 'sections.flipzy_sticky.qty_final_2' | t }}</option>
-                <option value="3">{{ 'sections.flipzy_sticky.qty_final_3' | t }}</option>
-                <option value="4">{{ 'sections.flipzy_sticky.qty_final_4' | t }}</option>
+                <option value="2">2× Flipzy</option>
+                <option value="3">3× Flipzy</option>
+                <option value="4">4× Flipzy</option>
             </select>
         </div>
   
@@ -233,9 +233,9 @@
     moneyFormat: {{ shop.money_format | json }},
     tiers: {
       1: { discount: 0, label: {{ 'sections.flipzy_sticky.qty_final_1' | t | json }} },
-      2: { discount: qty2_disc, label: {{ 'sections.flipzy_sticky.qty_final_2' | t | json }} },
-      3: { discount: qty3_disc, label: {{ 'sections.flipzy_sticky.qty_final_3' | t | json }} },
-      4: { discount: qty4_disc, label: {{ 'sections.flipzy_sticky.qty_final_4' | t | json }} }
+      2: { discount: qty2_disc, label: "2\u00d7 Flipzy" },
+      3: { discount: qty3_disc, label: "3\u00d7 Flipzy" },
+      4: { discount: qty4_disc, label: "4\u00d7 Flipzy" }
     }
   };
 
@@ -404,8 +404,8 @@
       "name": "Flipzy Sticky Bar",
       "blocks": [
         { "type": "bundle", "settings": { "short_name": "1x", "badge_text": "Single" } },
-        { "type": "bundle", "settings": { "short_name": "2x", "badge_text": "Most Popular", "show_free_shipping": true } },
-        { "type": "bundle", "settings": { "short_name": "3x", "badge_text": "3 for 2", "show_free_shipping": true } }
+        { "type": "bundle", "settings": { "short_name": "2x", "badge_text": "Most Popular", "show_free_shipping": false } },
+        { "type": "bundle", "settings": { "short_name": "3x", "badge_text": "3× Flipzy", "show_free_shipping": false } }
       ]
     } 
   ]

@@ -276,6 +276,13 @@
     }
   },
   "sections": {
+    "flipzy_policy": {
+      "return_summary": "30-day return requests · conditions apply",
+      "age_summary": "Ages 3+ · adult setup and supervision",
+      "delivery_summary": "Processing: normally 1–2 business days. Estimated EU delivery: 3–7 business days after dispatch. Shipping costs at checkout.",
+      "visual_steps": "Clear steps to see and follow",
+      "screen_free": "A screen-free, hands-on routine"
+    },
     "announcements": {
       "previous_announcement": "Previous announcement",
       "next_announcement": "Next announcement",

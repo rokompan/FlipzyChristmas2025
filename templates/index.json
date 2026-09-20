@@ -17,7 +17,7 @@
           "settings": {
             "video_file": "shopify://files/videos/hero04.mp4",
             "image_fallback": "shopify://shop_images/white_copy_2.jpg",
-            "heading": "<p>No More Morning <strong>Battles.</strong></p>",
+            "heading": "<p>Make morning steps <strong>clear.</strong></p>",
             "button_text": "Get Flipzy Now"
           }
         },
@@ -49,7 +49,7 @@
           "type": "slide",
           "settings": {
             "image_fallback": "shopify://shop_images/mom_boy-wide3.jpg",
-            "heading": "<p>Start your day <strong>screen-free</strong> and <strong>fight-free</strong>.</p>",
+            "heading": "<p>Start your day with a <strong>screen-free routine.</strong></p>",
             "button_text": "Get Flipzy Now"
           }
         }
@@ -79,19 +79,19 @@
       "name": "Flipzy Offer Tiles",
       "settings": {
         "main_product": "flipzy-wooden-routine-board",
-        "inventory_text": "Low stock",
+        "inventory_text": "",
         "qty_1_label": "1x Flipzy",
-        "qty_2_label": "Free Shipping",
+        "qty_2_label": "Shipping at checkout",
         "qty_2_discount": 0,
-        "qty_3_label": "3 for 2",
+        "qty_3_label": "3× Flipzy",
         "qty_3_discount": 33,
         "qty_4_label": "-30% OFF",
         "qty_4_discount": 30,
         "padding_top": 16,
         "padding_bottom": 16,
         "badge_text": "Bestseller",
-        "guarantee_1": "30-Day Money Back",
-        "guarantee_2": "2-Year Warranty"
+        "guarantee_1": "30-day return requests · conditions apply",
+        "guarantee_2": "Legal guarantee applies"
       }
     },
     "flipzy_feature_video_Wf8y33": {
@@ -172,7 +172,7 @@
           "type": "feature_point",
           "settings": {
             "icon_type": "wrench",
-            "text": "<p>Mount your Flipzy <strong>easily and securely</strong> in <strong>seconds</strong> with the included <strong>damage-free adhesive</strong> strips. Just peel, press, and you’re done.</p>"
+            "text": "<p>An adult should mount Flipzy indoors with the included adhesive strips on a smooth, clean, dry surface. Avoid wallpaper, loose paint, textured, damp, dusty or greasy surfaces. Follow the supplied instructions.</p>"
           }
         }
       },
@@ -303,17 +303,17 @@
       "settings": {
         "bg_color": "#efe7da",
         "main_heading": "What's in the Box?",
-        "subheading": "One Flipzy contains what you need for smooth routine. Premium materials ensure Flipzy lasts throughout childhood.",
+        "subheading": "A wooden routine set with the components listed below.",
         "image_1": "shopify://shop_images/whatsinthebox7.jpg",
         "image_2_bg": "#eadbc8",
         "card_title": "Everything you need to start your journey to smoother routines",
         "featured_product": "flipzy-wooden-routine-board",
-        "trust_1": "Free shipping over 60€",
+        "trust_1": "Shipping calculated at checkout",
         "trust_2": "Taxes included",
-        "trust_3": "Ships in 24h",
-        "trust_4": "30-day money-back guarantee",
-        "trust_5": "24 months warranty",
-        "description": "Take advantage of the special price and give your family calmer days at a great value. Get the complete Flipzy system at the lowest price of the season.",
+        "trust_3": "Processing: normally 1–2 business days",
+        "trust_4": "30-day return requests · conditions apply",
+        "trust_5": "Legal guarantee applies",
+        "description": "Choose the setup that fits your family. Current prices are shown above; shipping is calculated at checkout.",
         "btn_text": "Go to Shop",
         "btn_link": "#buy"
       }
@@ -327,7 +327,7 @@
         "badge_text": "🎅🦌🛷 CHRISTMAS OFFER 🎅🦌🛷",
         "custom_title": "",
         "text": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>",
-        "guarantee_text": "30-day money-back guarantee • 24 months warranty",
+        "guarantee_text": "30-day return requests · conditions apply",
         "show_dynamic_checkout": true,
         "color_scheme": "offer-scheme-cream",
         "secondary_background": false,
@@ -399,7 +399,8 @@
         "color_scheme": "cream",
         "heading": "Join Hundreds of Happy Families",
         "subheading": "Real stories from parents using Flipzy"
-      }
+      },
+      "disabled": true
     },
     "featured_product_x9hCHm": {
       "type": "featured-product",
@@ -482,7 +483,7 @@
           "type": "feature_point",
           "settings": {
             "icon_type": "play",
-            "text": "<p>Choose from our extensive collection of pre-made task stickers. With over 30 different activities, you can create the perfect routine that matches your family's unique needs.</p>"
+            "text": "<p>Choose from the 30 included task stickers to create a routine that fits your family.</p>"
           }
         }
       },
@@ -514,8 +515,8 @@
           "type": "badge",
           "settings": {
             "icon": "leaf",
-            "title": "Eco-Friendly",
-            "text": "sustainable wood from responsible sources and minimal packaging"
+            "title": "Natural wood",
+            "text": "A wooden routine board with a tactile flip action."
           }
         },
         "badge_4xbG9n": {
@@ -523,7 +524,7 @@
           "settings": {
             "icon": "shield",
             "title": "Durable",
-            "text": "built for daily child enthusiasm to last for years"
+            "text": "Designed for daily routines. Follow the supplied care instructions."
           }
         },
         "badge_9KLC7x": {
@@ -531,15 +532,15 @@
           "settings": {
             "icon": "tools",
             "title": "Easy to Mount",
-            "text": "stick damage-free or secure with screws, your choice"
+            "text": "Included adhesive strips for suitable smooth, clean, dry indoor surfaces. Adult installation required."
           }
         },
         "badge_FBFExU": {
           "type": "badge",
           "settings": {
             "icon": "ce",
-            "title": "EU Safety Certified",
-            "text": "Tested to strictly meet European health and safety standards for children."
+            "title": "Ages 3+",
+            "text": "Contains small parts. Adult setup and supervision required."
           }
         }
       },
@@ -553,7 +554,7 @@
       "name": "Flipzy Badges (4-up)",
       "settings": {
         "bg_color": "#ffffff",
-        "heading": "Trusted by thousands of families",
+        "heading": "Made for everyday routines",
         "show_checkmark": true
       }
     },
@@ -564,7 +565,7 @@
           "type": "feature_point",
           "settings": {
             "icon_type": "heart",
-            "text": "<p>Imagine your child finishing their morning routine without a single reminder. Now stop imagining. Try Flipzy</p>"
+            "text": "<p>Help your child see the next step and celebrate progress together.</p>"
           }
         }
       },
@@ -595,14 +596,14 @@
           "type": "faq_item",
           "settings": {
             "question": "What age is Flipzy for?",
-            "answer": "<p>Flipzy works best for children aged 3 to 8 years. Younger kids enjoy the physical flipping and clear structure, while older kids benefit from independence and predictability. Many families continue using it beyond 8, especially for morning and evening routines.</p>"
+            "answer": "<p>Flipzy is for children aged 3+. It contains small parts and requires adult setup and supervision. Choose routine steps that suit your child’s abilities and support them as they learn.</p>"
           }
         },
         "faq_item_AHPRqe": {
           "type": "faq_item",
           "settings": {
             "question": "Is Flipzy suitable for children with special needs?",
-            "answer": "<p>Yes. Many parents successfully use Flipzy with children who are Autistic, ADHD, Highly sensitive, or easily overwhelmed by verbal instructions. Flipzy is non-verbal, visual, and pressure-free. Note: it is a supportive tool, not a medical device.</p>"
+            "answer": "<p>Some children find visual routines helpful, but needs vary. Adapt the steps with your child and ask a relevant professional for individual guidance when needed. Flipzy is a routine tool, not a medical device or treatment.</p>"
           }
         },
         "faq_item_cbWwBA": {
@@ -616,35 +617,35 @@
           "type": "faq_item",
           "settings": {
             "question": "Does Flipzy really work?",
-            "answer": "<p>Flipzy doesn’t rely on rewards or punishment. Instead, parents stop repeating instructions and kids clearly see what comes next. Consistency matters, but Flipzy removes much of the daily friction.</p>"
+            "answer": "<p>Flipzy makes routine steps visible and gives children a way to mark progress. Results vary. Parents still guide, practise and adjust the routine with their child.</p>"
           }
         },
         "faq_item_Bfz7Tj": {
           "type": "faq_item",
           "settings": {
             "question": "Do I need to explain Flipzy to my child?",
-            "answer": "<p>Yes—but only once. We recommend introducing it calmly, explaining that flipping a tile means 'this task is done,' and letting them try it. Most kids understand intuitively after that.</p>"
+            "answer": "<p>Introduce it during a calm moment and practise the steps together. Show that flipping a tile means the task is done. Repeat or simplify the routine whenever your child needs support.</p>"
           }
         },
         "faq_item_YNGFBQ": {
           "type": "faq_item",
           "settings": {
             "question": "Is Flipzy a reward system?",
-            "answer": "<p>No. The motivation comes from visual progress, physical flipping, and a sense of completion and control. This makes it more sustainable and less stressful than points or prizes.</p>"
+            "answer": "<p>Flipping tiles shows progress and completion. You can use Flipzy on its own or alongside optional rewards and our printable reward chart. Choose an approach that suits your child.</p>"
           }
         },
         "faq_item_hP9Gy6": {
           "type": "faq_item",
           "settings": {
             "question": "What is Flipzy made of?",
-            "answer": "<p>Flipzy is made from solid natural wood, smooth child-safe finishes, and durable hinges designed for daily use.</p>"
+            "answer": "<p>Flipzy has a wooden rail and hinged wooden tiles with rounded edges. Follow the care and safety information supplied with your product.</p>"
           }
         },
         "faq_item_4NyFKC": {
           "type": "faq_item",
           "settings": {
             "question": "Is Flipzy safe?",
-            "answer": "<p>Yes. It features no sharp edges, child-safe coatings, and sturdy construction. Adult supervision is recommended for younger children.</p>"
+            "answer": "<p>Flipzy is for children aged 3+. It contains small parts. Adult setup and supervision are required. Follow the safety information supplied with the product.</p>"
           }
         },
         "faq_item_7PTDmT": {
@@ -672,7 +673,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How long does shipping take?",
-            "answer": "<p>Shipping times depend on your location and are shown during checkout. You will receive a confirmation email with tracking once it ships.</p>"
+            "answer": "<p>Orders are normally processed within 1–2 business days, excluding weekends and public holidays. Estimated EU delivery is 3–7 business days after dispatch. These times are estimates, not guaranteed arrival dates. Shipping options and costs appear at checkout. We email tracking when your order ships; allow up to 48 hours for tracking to become active. Read our <a href=\"/policies/shipping-policy\">shipping policy</a>.</p>"
           }
         },
         "faq_item_K7LPGk": {
@@ -693,14 +694,14 @@
           "type": "faq_item",
           "settings": {
             "question": "Can I return Flipzy?",
-            "answer": "<p>Yes, according to our return policy. The product must be unused and in original condition. Return shipping costs may apply.</p>"
+            "answer": "<p>Request a return within 30 days of receiving your order by emailing info@flipzy.toys. After the statutory 14-day withdrawal period, items must be unused, undamaged and complete, with original packaging where reasonably possible. You pay change-of-mind return shipping. For defective, damaged or incorrect items, we cover reasonable return costs or provide another appropriate solution. Your statutory rights are unaffected. Read our <a href=\"/policies/refund-policy\">return policy</a> for instructions and refund timing.</p>"
           }
         },
         "faq_item_k9fNFe": {
           "type": "faq_item",
           "settings": {
             "question": "Is Flipzy a toy?",
-            "answer": "<p>Flipzy is a routine and learning tool, not a toy. Its purpose is to support structure, independence, and calmer transitions.</p>"
+            "answer": "<p>Flipzy is a physical routine tool for ages 3+. It contains small parts and requires adult setup and supervision. Follow the product safety information.</p>"
           }
         },
         "faq_item_rYyPLn": {
@@ -752,7 +753,7 @@
           "type": "feature_point",
           "settings": {
             "icon_type": "heart",
-            "text": "<p>We know new routines can feel like a big step - that’s why we stand behind Flipzy with a 30-day money-back guarantee. If your family tries Flipzy and it doesn’t fit your daily life, just send it back.</p>"
+            "text": "<p>Request a return within 30 days of receiving your order by emailing info@flipzy.toys. After the statutory 14-day withdrawal period, items must be unused, undamaged and complete, with original packaging where reasonably possible. You pay change-of-mind return shipping. For defective, damaged or incorrect items, we cover reasonable return costs or provide another appropriate solution. Your statutory rights are unaffected. Read our <a href=\"/policies/refund-policy\">return policy</a> for instructions and refund timing.</p>"
           }
         }
       },
@@ -764,7 +765,7 @@
         "color_scheme": "scheme-night",
         "desktop_layout": "media_left",
         "mobile_layout": "text_first",
-        "heading": "Our Happiness Guarantee",
+        "heading": "Returns, made clear",
         "video_url": "",
         "fallback_image": "shopify://shop_images/night.jpg"
       }
@@ -795,7 +796,7 @@
           "settings": {
             "product": "flipzy-3-pack-full-day-siblings",
             "short_name": "3x Flipzy",
-            "badge_text": "3 for 2",
+            "badge_text": "3× Flipzy",
             "show_free_shipping": true
           }
         },
@@ -817,7 +818,7 @@
       ],
       "name": "Flipzy Sticky Bar",
       "settings": {
-        "text": "Kids Routine Board That Finally Works",
+        "text": "A visual routine for your family",
         "subline_text": "Special offer available while supplies last",
         "button_label": "Add to Cart",
         "default_selected": 1
