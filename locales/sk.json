@@ -427,6 +427,18 @@
       "min_error": "Minimálne množstvo tejto položky je {{ min }}",
       "max_error": "Maximálne množstvo tejto položky je {{ max }}",
       "step_error": "Túto položku môžete pridať iba v prírastkoch po {{ step }}"
+    },
+    "reward_system": {
+      "intro": {
+        "eyebrow": "Tabuľka odmien na vytlačenie zadarmo",
+        "heading": "Tabuľka odmien pre deti na vytlačenie zadarmo",
+        "subtitle": "Vytvor vlastný plagát odmien a hárok nálepiek na rutiny, domáce povinnosti a dobré návyky.",
+        "body": "Priprav osobnú tabuľku odmien, vyber hravý motív, nastav malé odmeny a vytlač plagát A4 s príslušným hárkom nálepiek. Začni jedným jasným návykom a nechaj dieťa vidieť každý malý úspech.",
+        "actions_aria": "Odkazy na stránke tabuľky odmien",
+        "make_chart": "Vytvoriť tabuľku",
+        "read_guide": "Prečítať príručku",
+        "hero_alt": "Rodič a dieťa si prezerajú tabuľku odmien na vytlačenie s príslušným hárkom nálepiek"
+      }
     }
   },
   "localization": {
