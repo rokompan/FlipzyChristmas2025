@@ -404,6 +404,18 @@
       "min_error": "Cet article a un minimum de {{ min }}",
       "max_error": "Cet article a un maximum de {{ max }}",
       "step_error": "Vous pouvez ajouter cet article uniquement par incréments de {{ step }}"
+    },
+    "reward_system": {
+      "intro": {
+        "eyebrow": "Tableau de récompenses gratuit à imprimer",
+        "heading": "Tableau de récompenses gratuit à imprimer pour enfants",
+        "subtitle": "Créez une affiche de récompenses et une planche d’autocollants personnalisées pour les routines, les tâches et les bonnes habitudes.",
+        "body": "Personnalisez un tableau de récompenses, choisissez un thème ludique, prévoyez de petites récompenses et imprimez une affiche A4 avec sa planche d’autocollants assortie. Commencez par une habitude précise et rendez chaque petite réussite visible.",
+        "actions_aria": "Liens de la page du tableau de récompenses",
+        "make_chart": "Créer un tableau",
+        "read_guide": "Lire le guide",
+        "hero_alt": "Un parent et son enfant regardent un tableau de récompenses à imprimer avec sa planche d’autocollants assortie"
+      }
     }
   },
   "localization": {
