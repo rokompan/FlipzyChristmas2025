@@ -404,6 +404,18 @@
       "min_error": "Este artículo tiene un mínimo de {{ min }}.",
       "max_error": "Este artículo tiene un máximo de {{ max }}.",
       "step_error": "Solo puedes agregar este artículo en incrementos de {{ step }}"
+    },
+    "reward_system": {
+      "intro": {
+        "eyebrow": "Tabla de recompensas gratis para imprimir",
+        "heading": "Tabla de recompensas infantil gratis para imprimir",
+        "subtitle": "Crea un póster de recompensas y una hoja de pegatinas personalizados para las rutinas, las tareas del hogar y los hábitos positivos.",
+        "body": "Diseña una tabla de recompensas personalizada, elige un tema divertido, añade pequeñas recompensas e imprime un póster A4 con su hoja de pegatinas a juego. Empieza con un hábito claro y deja que tu hijo vea cada pequeño logro.",
+        "actions_aria": "Enlaces de la página de la tabla de recompensas",
+        "make_chart": "Crear una tabla",
+        "read_guide": "Leer la guía",
+        "hero_alt": "Un adulto y un niño miran una tabla de recompensas para imprimir con una hoja de pegatinas a juego"
+      }
     }
   },
   "localization": {
