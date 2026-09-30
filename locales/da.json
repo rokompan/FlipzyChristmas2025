@@ -809,6 +809,16 @@
         "stickers_title": "{{ child }} klistermærker",
         "sticker_default_name": "Belønning",
         "sticker_subtitle": "Udskårne cirkler til denne belønningsplakat"
+      },
+      "intro": {
+        "eyebrow": "Gratis belønningsskema til at printe",
+        "heading": "Gratis belønningsskema til børn – klar til print",
+        "subtitle": "Lav din egen belønningsplakat og et ark med klistermærker til rutiner, pligter og gode vaner.",
+        "body": "Lav et personligt belønningsskema, vælg et legende tema, tilføj små belønninger, og print en A4-plakat med et matchende ark klistermærker. Begynd med én tydelig vane, og lad dit barn se hver lille succes.",
+        "actions_aria": "Links på siden med belønningsskemaet",
+        "make_chart": "Lav et skema",
+        "read_guide": "Læs guiden",
+        "hero_alt": "En forælder og et barn ser på et belønningsskema til print med et matchende ark klistermærker"
       }
     }
   },
