@@ -822,11 +822,11 @@
       },
       "print": {
         "document_title": "Steckbrief",
-        "frame_title": "Druck des Fahndungsplakats"
+        "frame_title": "Belohnungsposter drucken"
       },
       "ui": {
         "mini_rewards": "Kleine Belohnungen",
-        "heading": "Ersteller des Fahndungsplakats",
+        "heading": "Belohnungsposter gestalten",
         "start_label": "Startbeschriftung",
         "child_name": "Name des Kindes",
         "title": "Titel",
@@ -838,7 +838,7 @@
         "count": "Anzahl",
         "show_numbers": "Zahlen anzeigen",
         "mini_reward_step_selection_aria": "Auswahl der Mini-Belohnungsstufen",
-        "controls_aria": "Steuerelemente für Fahndungsplakate",
+        "controls_aria": "Einstellungen für das Belohnungsposter",
         "preview_aria": "Vorschau auf das Belohnungsplakat",
         "poster_text": "Text auf dem Plakat",
         "reward_label": "Belohnungsetikett",
@@ -852,7 +852,17 @@
         "child_name": "BINE",
         "reward_label": "Filmabend"
       },
-      "name": "Belohnungssystem"
+      "name": "Belohnungssystem",
+      "intro": {
+        "eyebrow": "Kostenloser Belohnungsplan zum Ausdrucken",
+        "heading": "Kostenloser Belohnungsplan für Kinder zum Ausdrucken",
+        "subtitle": "Gestalte ein eigenes Belohnungsposter und einen Stickerbogen für Routinen, Aufgaben im Haushalt und positive Gewohnheiten.",
+        "body": "Erstelle einen persönlichen Belohnungsplan, wähle ein fröhliches Motiv, lege kleine Belohnungen fest und drucke ein A4-Poster mit passendem Stickerbogen. Beginne mit einer klaren Gewohnheit und lass dein Kind jeden kleinen Erfolg sehen.",
+        "actions_aria": "Links auf der Seite zum Belohnungsplan",
+        "make_chart": "Plan erstellen",
+        "read_guide": "Ratgeber lesen",
+        "hero_alt": "Elternteil und Kind betrachten einen Belohnungsplan zum Ausdrucken mit passendem Stickerbogen"
+      }
     },
     "cart_upsell": {
       "upsell_1_head": "⭐ Beliebt & versandkostenfrei",
