@@ -458,6 +458,18 @@
       "upsell_2_badge": "Najbolja vrijednost",
       "upgrade_btn": "Samo nadogradnja",
       "upsell_2_sub": "Dodajte još 1 i ostvarite 25% POPUSTA!"
+    },
+    "reward_system": {
+      "intro": {
+        "eyebrow": "Besplatna tablica nagrada za ispis",
+        "heading": "Besplatna tablica nagrada za djecu za ispis",
+        "subtitle": "Izradite vlastiti plakat s nagradama i list naljepnica za rutine, kućanske zadatke i dobre navike.",
+        "body": "Izradite personaliziranu tablicu nagrada, odaberite razigranu temu, postavite male nagrade i ispišite plakat A4 s odgovarajućim listom naljepnica. Počnite s jednom jasnom navikom i omogućite djetetu da vidi svaki mali uspjeh.",
+        "actions_aria": "Poveznice na stranici tablice nagrada",
+        "make_chart": "Izradi tablicu",
+        "read_guide": "Pročitaj vodič",
+        "hero_alt": "Roditelj i dijete gledaju tablicu nagrada za ispis s odgovarajućim listom naljepnica"
+      }
     }
   },
   "localization": {
