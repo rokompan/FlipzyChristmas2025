@@ -474,6 +474,18 @@
       "qty_final_2": "2x Flipzy (⭐ Populární + doprava zdarma)",
       "qty_final_3": "3x Flipzy (3 za 2)",
       "qty_final_4": "4x Flipzy (🔥 Best Value)"
+    },
+    "reward_system": {
+      "intro": {
+        "eyebrow": "Bezplatná tabulka odměn k vytištění",
+        "heading": "Tabulka odměn pro děti zdarma k vytištění",
+        "subtitle": "Vytvořte vlastní plakát s odměnami a arch samolepek pro rutiny, domácí úkoly a dobré návyky.",
+        "body": "Sestavte osobní tabulku odměn, vyberte hravý motiv, nastavte malé odměny a vytiskněte plakát A4 s odpovídajícím archem samolepek. Začněte jedním jasným návykem a nechte dítě vidět každý malý úspěch.",
+        "actions_aria": "Odkazy na stránce tabulky odměn",
+        "make_chart": "Vytvořit tabulku",
+        "read_guide": "Přečíst příručku",
+        "hero_alt": "Rodič a dítě si prohlížejí tabulku odměn k vytištění a odpovídající arch samolepek"
+      }
     }
   },
   "localization": {
