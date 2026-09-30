@@ -404,6 +404,18 @@
       "min_error": "Pentru acest articol, valoarea minimă este de {{ min }}",
       "max_error": "Pentru acest articol, valoarea maximă este de {{ max }}",
       "step_error": "Poți introduce acest articol numai în incrementuri de {{ step }}"
+    },
+    "reward_system": {
+      "intro": {
+        "eyebrow": "Tabel de recompense gratuit, de imprimat",
+        "heading": "Tabel de recompense pentru copii, gratuit și de imprimat",
+        "subtitle": "Creează un poster personalizat cu recompense și o coală de autocolante pentru rutine, treburi și obiceiuri pozitive.",
+        "body": "Creează un tabel de recompense personalizat, alege o temă jucăușă, stabilește mici recompense și imprimă un poster A4 cu o coală de autocolante asortată. Începe cu un obicei clar și lasă copilul să vadă fiecare mică reușită.",
+        "actions_aria": "Linkurile paginii cu tabelul de recompense",
+        "make_chart": "Creează un tabel",
+        "read_guide": "Citește ghidul",
+        "hero_alt": "Părinte și copil privind un tabel de recompense de imprimat, cu o coală de autocolante asortată"
+      }
     }
   },
   "localization": {
