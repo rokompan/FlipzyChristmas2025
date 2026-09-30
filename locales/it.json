@@ -404,6 +404,18 @@
       "min_error": "Questo articolo ha un minimo di {{ min }}",
       "max_error": "Questo articolo ha un massimo di {{ max }}",
       "step_error": "Puoi aggiungere questo articolo solo in incrementi di {{ step }}"
+    },
+    "reward_system": {
+      "intro": {
+        "eyebrow": "Tabella delle ricompense da stampare gratis",
+        "heading": "Tabella delle ricompense per bambini da stampare gratis",
+        "subtitle": "Crea un poster delle ricompense e un foglio di adesivi personalizzati per routine, piccoli compiti e buone abitudini.",
+        "body": "Prepara una tabella delle ricompense personalizzata, scegli un tema divertente, imposta piccole ricompense e stampa un poster A4 con il foglio di adesivi abbinato. Parti da un’abitudine chiara e rendi visibile ogni piccolo successo.",
+        "actions_aria": "Collegamenti della pagina della tabella delle ricompense",
+        "make_chart": "Crea una tabella",
+        "read_guide": "Leggi la guida",
+        "hero_alt": "Un genitore e un bambino guardano una tabella delle ricompense da stampare con il foglio di adesivi abbinato"
+      }
     }
   },
   "localization": {
