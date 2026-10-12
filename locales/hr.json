@@ -336,7 +336,7 @@
         "button_text": "Dodaj još (+1)",
         "updating": "Ažuriranje...",
         "headline_2pack": "✨ Otključaj besplatnu dostavu!",
-        "subline_3pack": "Nadogradite na Plati 2, Dobij 1 Gratis (Paket od 3 komada).",
+        "subline_3pack": "Odaberite 3 Flipzy i uštedite 34 %.",
         "button_3pack": "Nadogradite na paket od 3 komada",
         "headline_4pack": "🏆 Najbolja vrijednost - maksimalna ušteda",
         "button_4pack": "Nadogradite na paket od 4 komada",
@@ -419,17 +419,17 @@
     "flipzy_offer": {
       "total_price": "Ukupna cijena:",
       "heading": "Pridružite se stotinama sretnih obitelji",
-      "offer_4": "25% popusta + besplatna dostava",
+      "offer_4": "35 % popusta + Besplatna standardna dostava",
       "unit_item": "Flipzy",
       "qty_label": "Odaberite količinu:",
       "badge_popular": "⭐ Popularno",
-      "offer_2": "10% popusta + besplatna dostava",
+      "offer_2": "10 % popusta + Besplatna standardna dostava",
       "rating_text": "Ocjena 4,8 / 5",
       "bullet_1": "Flip motivira djecu da završe",
       "badge_best_value": "🔥 Najbolja vrijednost",
-      "badge_3for2": "3 za 2",
+      "badge_3for2": "34 % popusta",
       "badge_bestseller": "Bestseler",
-      "guarantee_1": "Povrat novca u roku od 30 dana",
+      "guarantee_1": "Sigurna kupnja",
       "bullet_2": "Manje podsjećanja, manje svađe",
       "price_per_item": "Cijena po artiklu:",
       "add_to_cart": "Dodaj u košaricu",
@@ -438,26 +438,32 @@
       "delivered_by": "Dostavlja",
       "bullet_3": "Izgrađuje neovisnost",
       "calculating": "Izračunavanje...",
-      "offer_3": "20% popusta + besplatna dostava",
+      "offer_3": "34 % popusta + Besplatna standardna dostava",
       "unit_items": "Flipzy",
-      "guarantee_2": "2-godišnje jamstvo"
+      "guarantee_2": "30 dana isprobavanja uz povrat novca · besplatni povrati"
     },
     "flipzy_sticky": {
       "qty_label": "Količina:",
       "opt_1": "1x Flipzy",
       "opt_2": "2x Flipzy (⭐ Popularno + Besplatna dostava)",
       "opt_4": "4x Flipzy (🔥 Najbolja vrijednost)",
-      "opt_3": "3x Flipzy (ponuda 3 za 2)"
+      "opt_3": "3× Flipzy (34 % popusta + Besplatna standardna dostava)",
+      "qty_final_2": "2× Flipzy (10 % popusta + Besplatna standardna dostava)",
+      "qty_final_3": "3× Flipzy (34 % popusta + Besplatna standardna dostava)",
+      "qty_final_4": "4× Flipzy (35 % popusta + Besplatna standardna dostava)"
     },
     "cart_upsell": {
       "upsell_1_badge": "Popularan",
       "upsell_2_head": "⚡ Najbolja vrijednost i besplatna dostava",
       "add_plus_one": "Dodaj +1",
       "upsell_1_head": "⭐ Popularno i besplatna dostava",
-      "upsell_1_sub": "Dodajte još 1 da biste otključali besplatnu dostavu!",
+      "upsell_1_sub": "Dodajte još jedan Flipzy za 10 % popusta",
       "upsell_2_badge": "Najbolja vrijednost",
       "upgrade_btn": "Samo nadogradnja",
-      "upsell_2_sub": "Dodajte još 1 i ostvarite 25% POPUSTA!"
+      "upsell_2_sub": "Dodajte još jedan Flipzy za 35 % popusta",
+      "upsell_3_sub": "Dodajte još jedan Flipzy za 34 % popusta",
+      "upsell_3_head": "34 % popusta + Besplatna standardna dostava",
+      "upsell_3_badge": "34 % popusta"
     },
     "reward_system": {
       "intro": {
@@ -470,6 +476,13 @@
         "read_guide": "Pročitaj vodič",
         "hero_alt": "Roditelj i dijete gledaju tablicu nagrada za ispis s odgovarajućim listom naljepnica"
       }
+    },
+    "flipzy_policy": {
+      "return_summary": "30 dana isprobavanja uz povrat novca · besplatni povrati",
+      "delivery_summary": "Šaljemo u roku od 1–2 radna dana. Dostava u EU: 3–7 radnih dana nakon slanja. Besplatna standardna dostava od 50 € nakon popusta ili uz 2 ili više Baza Flipzy.",
+      "age_summary": "Dob 3+ · postavljanje i nadzor odrasle osobe",
+      "visual_steps": "Jasni koraci koje dijete vidi i slijedi",
+      "screen_free": "Praktična rutina bez zaslona"
     }
   },
   "localization": {

@@ -81,16 +81,16 @@
         "main_product": "flipzy-wooden-routine-board",
         "inventory_text": "",
         "qty_1_label": "1x Flipzy",
-        "qty_2_label": "Shipping at checkout",
-        "qty_2_discount": 0,
-        "qty_3_label": "3× Flipzy",
-        "qty_3_discount": 33,
-        "qty_4_label": "-30% OFF",
-        "qty_4_discount": 30,
+        "qty_2_label": "10% off + free shipping",
+        "qty_2_discount": 10,
+        "qty_3_label": "34% off + free shipping",
+        "qty_3_discount": 34,
+        "qty_4_label": "35% off + free shipping",
+        "qty_4_discount": 35,
         "padding_top": 16,
         "padding_bottom": 16,
         "badge_text": "Bestseller",
-        "guarantee_1": "30-day return requests · conditions apply",
+        "guarantee_1": "30-day money-back trial · free returns",
         "guarantee_2": "Legal guarantee applies"
       }
     },
@@ -308,12 +308,12 @@
         "image_2_bg": "#eadbc8",
         "card_title": "Everything you need to start your journey to smoother routines",
         "featured_product": "flipzy-wooden-routine-board",
-        "trust_1": "Shipping calculated at checkout",
+        "trust_1": "Free standard shipping from €50 after discounts or with 2+ Flipzy Bases",
         "trust_2": "Taxes included",
         "trust_3": "Processing: normally 1–2 business days",
-        "trust_4": "30-day return requests · conditions apply",
+        "trust_4": "30-day money-back trial · free returns",
         "trust_5": "Legal guarantee applies",
-        "description": "Choose the setup that fits your family. Current prices are shown above; shipping is calculated at checkout.",
+        "description": "Choose the setup that fits your family. Try it at home for 30 days with free returns. Standard shipping is free from €50 after discounts.",
         "btn_text": "Go to Shop",
         "btn_link": "#buy"
       }
@@ -327,7 +327,7 @@
         "badge_text": "🎅🦌🛷 CHRISTMAS OFFER 🎅🦌🛷",
         "custom_title": "",
         "text": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>",
-        "guarantee_text": "30-day return requests · conditions apply",
+        "guarantee_text": "30-day money-back trial · free returns",
         "show_dynamic_checkout": true,
         "color_scheme": "offer-scheme-cream",
         "secondary_background": false,
@@ -673,7 +673,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How long does shipping take?",
-            "answer": "<p>Orders are normally processed within 1–2 business days, excluding weekends and public holidays. Estimated EU delivery is 3–7 business days after dispatch. These times are estimates, not guaranteed arrival dates. Shipping options and costs appear at checkout. We email tracking when your order ships; allow up to 48 hours for tracking to become active. Read our <a href=\"/policies/shipping-policy\">shipping policy</a>.</p>"
+            "answer": "<p>Standard shipping is free on orders of €50 or more after discounts, or with 2 or more Flipzy Bases. Below the threshold, standard shipping costs €4.90 in the EU or €6.90 to selected other European destinations; local-currency equivalents appear at checkout. We process and dispatch orders within 1–2 business days, excluding weekends and public holidays. EU delivery takes 3–7 business days after dispatch. We email tracking when your order ships; allow up to 48 hours for it to become active. Read our <a href=\"/policies/shipping-policy\">shipping policy</a> for details.</p>"
           }
         },
         "faq_item_K7LPGk": {
@@ -694,7 +694,7 @@
           "type": "faq_item",
           "settings": {
             "question": "Can I return Flipzy?",
-            "answer": "<p>Request a return within 30 days of receiving your order by emailing info@flipzy.toys. After the statutory 14-day withdrawal period, items must be unused, undamaged and complete, with original packaging where reasonably possible. You pay change-of-mind return shipping. For defective, damaged or incorrect items, we cover reasonable return costs or provide another appropriate solution. Your statutory rights are unaffected. Read our <a href=\"/policies/refund-policy\">return policy</a> for instructions and refund timing.</p>"
+            "answer": "<p>Try Flipzy at home for 30 days from delivery, including normal use. If it is not right for your family, email info@flipzy.toys within 30 days and we will arrange free return shipping from our supported delivery destinations. Return all the items you are sending back; the original packaging is welcome but not required. There is no restocking fee. For a full return, we refund the full order amount, including standard delivery. For a partial return, we refund the returned items and never deduct shipping that was originally free. Your statutory rights remain unaffected. Read our <a href=\"/policies/refund-policy\">return policy</a> for instructions and refund timing.</p>"
           }
         },
         "faq_item_k9fNFe": {
@@ -753,7 +753,7 @@
           "type": "feature_point",
           "settings": {
             "icon_type": "heart",
-            "text": "<p>Request a return within 30 days of receiving your order by emailing info@flipzy.toys. After the statutory 14-day withdrawal period, items must be unused, undamaged and complete, with original packaging where reasonably possible. You pay change-of-mind return shipping. For defective, damaged or incorrect items, we cover reasonable return costs or provide another appropriate solution. Your statutory rights are unaffected. Read our <a href=\"/policies/refund-policy\">return policy</a> for instructions and refund timing.</p>"
+            "text": "<p>Try Flipzy at home for 30 days from delivery, including normal use. If it is not right for your family, email info@flipzy.toys within 30 days and we will arrange free return shipping from our supported delivery destinations. Return all the items you are sending back; the original packaging is welcome but not required. There is no restocking fee. For a full return, we refund the full order amount, including standard delivery. For a partial return, we refund the returned items and never deduct shipping that was originally free. Your statutory rights remain unaffected. Read our <a href=\"/policies/refund-policy\">return policy</a> for instructions and refund timing.</p>"
           }
         }
       },

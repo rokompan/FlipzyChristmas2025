@@ -351,7 +351,7 @@
         "subline_2pack": "Aktualizacja do pary Poranek i Wieczór.",
         "button_2pack": "Aktualizacja do 2-paku",
         "headline_3pack": "🔥 Najpopularniejszy wybór",
-        "subline_3pack": "Uaktualnij do opcji Zapłać 2, otrzymaj 1 gratis (3-pak).",
+        "subline_3pack": "Wybierz 3 Flipzy i oszczędź 34%.",
         "headline_4pack": "🏆 Najlepsza wartość - maksymalne oszczędności",
         "subline_4pack": "Aktualizacja do pakietu rodzinnego (4x).",
         "button_4pack": "Aktualizacja do 4-paku"
@@ -433,10 +433,13 @@
       "add_plus_one": "Dodaj +1",
       "upsell_2_badge": "Najlepsza wartość",
       "upsell_1_badge": "Popularny",
-      "upsell_1_sub": "Dodaj jeszcze 1, aby odblokować darmową wysyłkę!",
+      "upsell_1_sub": "Dodaj jeszcze jeden Flipzy i oszczędź 10%",
       "upsell_2_head": "⚡ Najlepsza wartość i bezpłatna wysyłka",
-      "upsell_2_sub": "Dodaj jeszcze 1, aby otrzymać 25% zniżki!",
-      "upsell_1_head": "⭐ Popularne i bezpłatna wysyłka"
+      "upsell_2_sub": "Dodaj jeszcze jeden Flipzy i oszczędź 35%",
+      "upsell_1_head": "⭐ Popularne i bezpłatna wysyłka",
+      "upsell_3_sub": "Dodaj jeszcze jeden Flipzy i oszczędź 34%",
+      "upsell_3_head": "34% rabatu + Darmowa dostawa standardowa",
+      "upsell_3_badge": "34% rabatu"
     },
     "flipzy_help": {
       "ask_question": "💬 Zadaj pytanie",
@@ -454,18 +457,18 @@
       "bullet_1": "Flip motywuje dzieci do ukończenia gry",
       "unit_items": "Flipzy",
       "badge_popular": "⭐ Popularny",
-      "badge_3for2": "3 za 2",
-      "guarantee_2": "2-letnia gwarancja",
+      "badge_3for2": "34% rabatu",
+      "guarantee_2": "30 dni na wypróbowanie w domu · zwrot pieniędzy i darmowe zwroty",
       "bullet_3": "Buduje niezależność",
       "bullet_4": "Bez ekranów, bez aplikacji",
       "sold_out": "Wyprzedane",
       "badge_bestseller": "Bestseller",
-      "guarantee_1": "30-dniowy zwrot pieniędzy",
+      "guarantee_1": "Bezpieczna płatność",
       "badge_best_value": "🔥 Najlepsza wartość",
       "add_to_cart": "Dodaj do koszyka",
       "delivered_by": "Dostarczone przez",
-      "offer_2": "10% zniżki + darmowa wysyłka",
-      "offer_3": "20% zniżki + darmowa wysyłka",
+      "offer_2": "10% rabatu + Darmowa dostawa standardowa",
+      "offer_3": "34% rabatu + Darmowa dostawa standardowa",
       "qty_label": "Wybierz ilość:",
       "total_price": "Cena całkowita:",
       "unit_item": "Flipzy",
@@ -473,7 +476,7 @@
       "heading": "Dołącz do setek szczęśliwych rodzin",
       "bullet_2": "Mniej przypominania, mniej kłótni",
       "price_per_item": "Cena za sztukę:",
-      "offer_4": "25% zniżki + darmowa wysyłka",
+      "offer_4": "35% rabatu + Darmowa dostawa standardowa",
       "calculating": "Obliczanie...",
       "rating_suffix": " rodzice",
       "benefit_2": "10-20 minut spokoju każdego ranka",
@@ -490,10 +493,17 @@
     },
     "flipzy_sticky": {
       "qty_final_1": "1x Flipzy",
-      "qty_final_2": "2x Flipzy (⭐ Popularne + Darmowa wysyłka)",
-      "qty_final_4": "4x Flipzy (🔥 Najlepsza wartość)",
+      "qty_final_2": "2× Flipzy (10% rabatu + Darmowa dostawa standardowa)",
+      "qty_final_4": "4× Flipzy (35% rabatu + Darmowa dostawa standardowa)",
       "qty_label": "Ilość:",
-      "qty_final_3": "3x Flipzy (oferta 3 za 2)"
+      "qty_final_3": "3× Flipzy (34% rabatu + Darmowa dostawa standardowa)"
+    },
+    "flipzy_policy": {
+      "return_summary": "30 dni na wypróbowanie w domu · zwrot pieniędzy i darmowe zwroty",
+      "delivery_summary": "Wysyłamy w ciągu 1–2 dni roboczych. Dostawa w UE: 3–7 dni roboczych od wysyłki. Darmowa dostawa standardowa od 50 € po rabatach lub z co najmniej 2 Bazami Flipzy.",
+      "age_summary": "Od 3 lat · montaż i nadzór osoby dorosłej",
+      "visual_steps": "Jasne kroki do zobaczenia i wykonania",
+      "screen_free": "Praktyczna rutyna bez ekranów"
     }
   },
   "localization": {

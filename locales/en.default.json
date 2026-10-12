@@ -277,9 +277,9 @@
   },
   "sections": {
     "flipzy_policy": {
-      "return_summary": "30-day return requests · conditions apply",
+      "return_summary": "30-day money-back trial · free returns",
       "age_summary": "Ages 3+ · adult setup and supervision",
-      "delivery_summary": "Processing: normally 1–2 business days. Estimated EU delivery: 3–7 business days after dispatch. Shipping costs at checkout.",
+      "delivery_summary": "Ships within 1–2 business days. EU delivery: 3–7 business days after dispatch. Free standard shipping from €50 after discounts or with 2+ Flipzy Bases.",
       "visual_steps": "Clear steps to see and follow",
       "screen_free": "A screen-free, hands-on routine"
     },
@@ -343,7 +343,7 @@
         "subline_2pack": "Upgrade to the Morning & Evening pair.",
         "button_2pack": "Upgrade to 2-Pack",
         "headline_3pack": "🔥 Most Popular Choice",
-        "subline_3pack": "Upgrade to Pay 2, Get 1 Free (3-Pack).",
+        "subline_3pack": "Upgrade to 3 Flipzy and save 34%.",
         "button_3pack": "Upgrade to 3-Pack",
         "headline_4pack": "🏆 Best Value - Max Savings",
         "subline_4pack": "Upgrade to the Family Pack (4x).",
@@ -430,7 +430,7 @@
       "today_price": "Today:",
       "qty_label": "Choose Quantity:",
       "badge_popular": "⭐ Popular",
-      "badge_3for2": "3 for 2",
+      "badge_3for2": "34% off",
       "badge_best_value": "🔥 Best value",
       "total_price": "Total Price:",
       "price_per_item": "Price Per Item:",
@@ -438,14 +438,14 @@
       "sold_out": "Sold Out",
       "delivered_by": "Delivered by",
       "calculating": "Calculating...",
-      "offer_2": "10% off + Free shipping",
-      "offer_3": "20% off + Free shipping",
-      "offer_4": "25% off + Free shipping",
+      "offer_2": "10% off + Free standard shipping",
+      "offer_3": "34% off + Free standard shipping",
+      "offer_4": "35% off + Free standard shipping",
       "unit_item": "Flipzy",
       "unit_items": "Flipzy",
       "badge_bestseller": "Bestseller",
       "guarantee_1": "Secure checkout",
-      "guarantee_2": "30-day guarantee",
+      "guarantee_2": "30-day money-back trial · free returns",
       "guarantee_3": "Used by 1000+ families",
       "free_shipping": "Free Shipping",
       "please_select_product": "Please select a product in the section settings."
@@ -453,9 +453,9 @@
     "flipzy_sticky": {
       "qty_label": "Quantity:",
       "qty_final_1": "1x Flipzy",
-      "qty_final_2": "2x Flipzy (⭐ Popular + Free Shipping)",
-      "qty_final_3": "3x Flipzy (3 for 2 Deal)",
-      "qty_final_4": "4x Flipzy (🔥 Best Value)"
+      "qty_final_2": "2× Flipzy (10% off + Free standard shipping)",
+      "qty_final_3": "3× Flipzy (34% off + Free standard shipping)",
+      "qty_final_4": "4× Flipzy (35% off + Free standard shipping)"
     },
     "reward_system": {
       "name": "Reward System",
@@ -545,13 +545,16 @@
     },
     "cart_upsell": {
       "upsell_1_head": "⭐ Popular & Free Shipping",
-      "upsell_1_sub": "Add 1 more to unlock Free Shipping!",
+      "upsell_1_sub": "Add 1 more to save 10%",
       "upsell_1_badge": "Popular",
       "upsell_2_head": "⚡ Best Value & Free Shipping",
-      "upsell_2_sub": "Add 1 more to get 25% OFF!",
+      "upsell_2_sub": "Add 1 more to save 35%",
       "upsell_2_badge": "Best Value",
       "upgrade_btn": "Upgrade only",
-      "add_plus_one": "Add +1"
+      "add_plus_one": "Add +1",
+      "upsell_3_sub": "Add 1 more to save 34%",
+      "upsell_3_head": "34% off + Free standard shipping",
+      "upsell_3_badge": "34% off"
     },
     "flipzy_help": {
       "ask_question": "💬 Ask a Question",

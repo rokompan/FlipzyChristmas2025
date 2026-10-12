@@ -333,7 +333,8 @@
         "unlock_shipping_text": "Consigue el par Morning & Evening + Envío gratuito.",
         "perfect_gift_title": "¿El regalo perfecto?",
         "perfect_gift_text": "Añade uno más para un amigo o primo.",
-        "button_text": "Añadir otro (+1)"
+        "button_text": "Añadir otro (+1)",
+        "subline_3pack": "Elige 3 Flipzy y ahorra un 34%."
       }
     },
     "footer": {
@@ -416,6 +417,33 @@
         "read_guide": "Leer la guía",
         "hero_alt": "Un adulto y un niño miran una tabla de recompensas para imprimir con una hoja de pegatinas a juego"
       }
+    },
+    "flipzy_policy": {
+      "return_summary": "Prueba de 30 días en casa · reembolso y devoluciones gratis",
+      "delivery_summary": "Envío en 1–2 días laborables. Entrega en la UE: 3–7 días laborables tras el envío. Envío estándar gratis desde 50 € después de descuentos o con 2 o más Bases Flipzy.",
+      "age_summary": "A partir de 3 años · montaje y supervisión de un adulto",
+      "visual_steps": "Pasos claros para ver y seguir",
+      "screen_free": "Una rutina práctica sin pantallas"
+    },
+    "flipzy_offer": {
+      "offer_2": "10% de descuento + Envío estándar gratis",
+      "offer_3": "34% de descuento + Envío estándar gratis",
+      "offer_4": "35% de descuento + Envío estándar gratis",
+      "badge_3for2": "34% de descuento",
+      "guarantee_1": "Pago seguro",
+      "guarantee_2": "Prueba de 30 días en casa · reembolso y devoluciones gratis"
+    },
+    "flipzy_sticky": {
+      "qty_final_2": "2× Flipzy (10% de descuento + Envío estándar gratis)",
+      "qty_final_3": "3× Flipzy (34% de descuento + Envío estándar gratis)",
+      "qty_final_4": "4× Flipzy (35% de descuento + Envío estándar gratis)"
+    },
+    "cart_upsell": {
+      "upsell_1_sub": "Añade otro Flipzy y ahorra un 10%",
+      "upsell_2_sub": "Añade otro Flipzy y ahorra un 35%",
+      "upsell_3_sub": "Añade otro Flipzy y ahorra un 34%",
+      "upsell_3_head": "34% de descuento + Envío estándar gratis",
+      "upsell_3_badge": "34% de descuento"
     }
   },
   "localization": {

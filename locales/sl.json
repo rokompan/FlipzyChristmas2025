@@ -346,7 +346,7 @@
         "button_text": "Dodaj še eno (+1)",
         "headline_2pack": "✨ Odklepanje brezplačne dostave!",
         "headline_3pack": "🔥 Najbolj priljubljena izbira",
-        "subline_3pack": "Nadgradite na možnost Plačajte 2, dobite 1 brezplačno (paket 3).",
+        "subline_3pack": "Izberi 3 Flipzy in prihrani 34 %.",
         "button_3pack": "Nadgradnja na paket 3",
         "subline_4pack": "Nadgradite družinski paket (4x).",
         "button_4pack": "Nadgradnja na paket 4",
@@ -431,29 +431,32 @@
     "cart_upsell": {
       "add_plus_one": "Dodaj +1",
       "upsell_1_head": "⭐ Priljubljena in brezplačna dostava",
-      "upsell_2_sub": "Dodajte še 1 za 25% OFF!",
+      "upsell_2_sub": "Dodaj še en Flipzy za 35 % popusta",
       "upsell_1_badge": "Priljubljeni",
       "upsell_2_head": "⚡ Najboljša vrednost in brezplačna dostava",
       "upsell_2_badge": "Najboljša vrednost",
-      "upsell_1_sub": "Dodajte še 1 za odklepanje brezplačne dostave!",
-      "upgrade_btn": "Samo nadgradnja"
+      "upsell_1_sub": "Dodaj še en Flipzy za 10 % popusta",
+      "upgrade_btn": "Samo nadgradnja",
+      "upsell_3_sub": "Dodaj še en Flipzy za 34 % popusta",
+      "upsell_3_head": "34 % popusta + Brezplačna standardna dostava",
+      "upsell_3_badge": "34 % popusta"
     },
     "flipzy_offer": {
       "bullet_3": "Krepi neodvisnost",
-      "badge_3for2": "3 za 2",
+      "badge_3for2": "34 % popusta",
       "delivered_by": "dostavlja",
       "unit_item": "Flipzy",
       "badge_bestseller": "Najbolje prodajana",
       "bullet_4": "Brez zaslonov, brez aplikacij",
       "price_per_item": "Cena na kos:",
-      "offer_2": "10% off + Brezplačna dostava",
-      "guarantee_2": "2-letna garancija",
+      "offer_2": "10 % popusta + Brezplačna standardna dostava",
+      "guarantee_2": "30-dnevni preizkus z vračilom denarja · brezplačna vračila",
       "bullet_1": "Flip motivira otroke za dokončanje",
       "badge_best_value": "🔥 Najboljša vrednost",
       "total_price": "Skupna cena:",
-      "offer_3": "20% off + Brezplačna dostava",
-      "guarantee_1": "30-dnevni denar nazaj",
-      "offer_4": "25% off + Brezplačna dostava",
+      "offer_3": "34 % popusta + Brezplačna standardna dostava",
+      "guarantee_1": "Varen nakup",
+      "offer_4": "35 % popusta + Brezplačna standardna dostava",
       "rating_text": "4,8 / 5 ocenjeno",
       "bullet_2": "Manj opominjanja, manj prepirov",
       "add_to_cart": "Dodaj v košarico",
@@ -480,13 +483,13 @@
     "flipzy_sticky": {
       "opt_2": "2x Flipzy (⭐ Priljubljeno + brezplačna dostava)",
       "opt_1": "1x Flipzy",
-      "opt_3": "3x Flipzy (ponudba 3 za 2)",
+      "opt_3": "3× Flipzy (34 % popusta + Brezplačna standardna dostava)",
       "opt_4": "4x Flipzy (🔥 Najboljša vrednost)",
       "qty_label": "Količina:",
       "qty_final_1": "1x Flipzy",
-      "qty_final_2": "2x Flipzy (⭐ Priljubljeno + brezplačna dostava)",
-      "qty_final_3": "3x Flipzy (ponudba 3 za 2)",
-      "qty_final_4": "4x Flipzy (🔥 Najboljša vrednost)"
+      "qty_final_2": "2× Flipzy (10 % popusta + Brezplačna standardna dostava)",
+      "qty_final_3": "3× Flipzy (34 % popusta + Brezplačna standardna dostava)",
+      "qty_final_4": "4× Flipzy (35 % popusta + Brezplačna standardna dostava)"
     },
     "parent_handbook": {
       "7_cleanup_without_tears": "7. Pospravljanje brez solz",
@@ -953,6 +956,13 @@
       "message_label": "Vaše sporočilo",
       "submit": "Pošlji sporočilo",
       "reply_to": "ODGOVOR NA:"
+    },
+    "flipzy_policy": {
+      "return_summary": "30-dnevni preizkus z vračilom denarja · brezplačna vračila",
+      "delivery_summary": "Odpošljemo v 1–2 delovnih dneh. Dostava v EU: 3–7 delovnih dni po odpremi. Brezplačna standardna dostava od 50 € po popustih ali z 2 ali več Bazami Flipzy.",
+      "age_summary": "Starost 3+ · namestitev in nadzor odrasle osebe",
+      "visual_steps": "Jasni koraki, ki jih otrok vidi in jim sledi",
+      "screen_free": "Rutina brez zaslonov, ki jo otrok opravi z rokami"
     }
   },
   "localization": {

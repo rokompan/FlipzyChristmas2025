@@ -162,9 +162,9 @@
             <select id="stick-quantity-selector-final" class="flipzy-quantity-select" onchange="updateStickyPrice(this)">
                 <!-- Options populated by JS for dynamic price, but we keep hardcoded fallbacks for SEO/No-JS -->
                 <option value="1">{{ 'sections.flipzy_sticky.qty_final_1' | t }}</option>
-                <option value="2">2× Flipzy</option>
-                <option value="3">3× Flipzy</option>
-                <option value="4">4× Flipzy</option>
+                <option value="2">{{ 'sections.flipzy_sticky.qty_final_2' | t }}</option>
+                <option value="3">{{ 'sections.flipzy_sticky.qty_final_3' | t }}</option>
+                <option value="4">{{ 'sections.flipzy_sticky.qty_final_4' | t }}</option>
             </select>
         </div>
   
@@ -209,66 +209,25 @@
 {% endunless %}
 
 <script>
-  // Hardcoded Config to Match Main Offer
-  // HUF Overrides for Consistency
-  var currency = {{ cart.currency.iso_code | json }};
-  var qty2_disc = 7.4;
-  var qty3_disc = 20;
-  var qty4_disc = 25;
-
-  if (currency === 'HUF') {
-      qty2_disc = 7.337; 
-      qty3_disc = 19.56;
-      qty4_disc = 24.94;
-  }
-  if (currency === 'CZK') {
-      // 19.6% matches the effective backend rate for 3x (approx 80.4% paid)
-      qty2_disc = 7.337;
-      qty3_disc = 19.6;
-      qty4_disc = 24.99;
-  }
-
+  // The main offer's merchant settings take precedence; other pages use the
+  // same native original-set tiers from the shared pricing helper.
   window.stickyConfig = {
     basePrice: {{ variant.price | default: prod.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
     tiers: {
       1: { discount: 0, label: {{ 'sections.flipzy_sticky.qty_final_1' | t | json }} },
-      2: { discount: qty2_disc, label: "2\u00d7 Flipzy" },
-      3: { discount: qty3_disc, label: "3\u00d7 Flipzy" },
-      4: { discount: qty4_disc, label: "4\u00d7 Flipzy" }
+      2: { discount: 10, label: "2\u00d7 Flipzy" },
+      3: { discount: 34, label: "3\u00d7 Flipzy" },
+      4: { discount: 35, label: "4\u00d7 Flipzy" }
     }
   };
 
-  // Helper to format number with separators
-  function formatWithSeparators(number, precision, thousands, decimal) {
-      if (precision === 0 && number % 1 === 0) precision = 0; // Force integer if whole
-      
-      var parts = number.toFixed(precision).split('.');
-      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
-      return parts.join(decimal);
-  }
 
   // Mirrored Format Money Logic
   function formatStickyMoney(cents) {
-    const currencyCode = {{ cart.currency.iso_code | json }};
-    const currencySymbol = {{ cart.currency.symbol | json }};
-    
-    // STRICT RULE: NO decimals for any currency
-    let val = Math.round(cents / 100);
-    
-    let thousands = '.';
-    if (currencyCode === 'USD' || currencyCode === 'GBP' || currencyCode === 'CAD' || currencyCode === 'AUD') {
-        thousands = ',';
-    }
-    
-    let numStr = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
-    
-    // Native positioning based on currency
-    if (currencyCode === 'HUF' || currencyCode === 'CZK' || currencyCode === 'RON' || currencyCode === 'PLN' || currencyCode === 'SEK' || currencyCode === 'DKK' || currencyCode === 'NOK') {
-        return numStr + ' ' + currencySymbol;
-    } else {
-        return currencySymbol + numStr;
-    }
+    return window.FlipzyLegacyOfferPricing.format(
+      cents, {{ cart.currency.iso_code | json }}, document.documentElement.lang
+    );
   }
 
   function updateStickyPrice(select) {
@@ -276,14 +235,10 @@
     
     // 1. Calculate Price
     const basePrice = window.stickyConfig.basePrice;
-    const tier = window.stickyConfig.tiers[qty] || { discount: 0 };
+    const tier = window.offerConfig?.tiers[qty] || window.stickyConfig.tiers[qty] || { discount: 0 };
     const discountPct = tier.discount;
     
-    const baseTotal = basePrice * qty;
-    const rawPrice = baseTotal * (1 - (discountPct / 100));
-    
-    // 2. Rounding Logic (Math.ceil)
-    const finalPrice = Math.ceil(rawPrice / 100) * 100;
+    const finalPrice = window.FlipzyLegacyOfferPricing.total(basePrice, qty, discountPct);
     
     // 3. Update Text
     document.getElementById('sticky-price-new').innerText = formatStickyMoney(finalPrice);
@@ -394,7 +349,7 @@
       "settings": [
         { "type": "product", "id": "product", "label": "Product Bundle" },
         { "type": "text", "id": "short_name", "label": "Short Label", "default": "1x", "info": "e.g. '1x' or '2 Pack'" },
-        { "type": "text", "id": "badge_text", "label": "Badge Label", "default": "Best Value", "info": "e.g. '3 for 2' or 'Most Popular'. Short text works best." },
+        { "type": "text", "id": "badge_text", "label": "Badge Label", "default": "Best Value", "info": "e.g. '34% off' or 'Most Popular'. Short text works best." },
         { "type": "checkbox", "id": "show_free_shipping", "label": "Show Free Shipping Badge", "default": false }
       ]
     }

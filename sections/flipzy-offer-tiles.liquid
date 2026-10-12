@@ -450,7 +450,7 @@
 
             <!-- 3x -->
             <div class="flipzy-qty-btn" onclick="selectOfferQty(3, this)" data-badge="true">
-              <span class="flipzy-btn-badge">3× Flipzy</span>
+              <span class="flipzy-btn-badge">{{ 'sections.flipzy_offer.badge_3for2' | t }}</span>
               <span class="mt-qty-big">3x</span>
               <span class="mt-qty-small">{{ 'sections.flipzy_offer.unit_items' | t }}</span>
             </div>
@@ -573,37 +573,11 @@
 
 <script>
   let currentOfferQty = 1;
-  // Hardcoded Currency Formatter as requested to fix display glitch
-  // Helper to format number with separators
-// Helper to format number with separators
-function formatWithSeparators(number, precision, thousands, decimal) {
-  if (precision === 0 && number % 1 === 0) precision = 0; 
-  
-  var parts = number.toFixed(precision).split('.');
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
-  return parts.join(decimal);
-}
 
 function formatMoney(cents) {
-  const currencyCode = {{ cart.currency.iso_code | json }};
-  const currencySymbol = {{ cart.currency.symbol | json }};
-  
-  // STRICT RULE: NO decimals for any currency (EUR, HUF, CZK, etc)
-  let val = Math.round(cents / 100);
-  
-  let thousands = '.';
-  if (currencyCode === 'USD' || currencyCode === 'GBP' || currencyCode === 'CAD' || currencyCode === 'AUD') {
-      thousands = ',';
-  }
-  
-  let numStr = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
-  
-  // Native positioning based on currency
-  if (currencyCode === 'HUF' || currencyCode === 'CZK' || currencyCode === 'RON' || currencyCode === 'PLN' || currencyCode === 'SEK' || currencyCode === 'DKK' || currencyCode === 'NOK') {
-      return numStr + ' ' + currencySymbol;
-  } else {
-      return currencySymbol + numStr;
-  }
+  return window.FlipzyLegacyOfferPricing.format(
+    cents, {{ cart.currency.iso_code | json }}, document.documentElement.lang
+  );
 }
 
   function selectOfferQty(qty, element) {
@@ -613,7 +587,6 @@ function formatMoney(cents) {
     element.classList.add('is-selected');
 
     // 2. Calculate Dynamic Price using Config
-    let finalPrice = 0;
     const basePrice = window.offerConfig.basePrice;
     const compareAtPrice = window.offerConfig.compareAtPrice > basePrice ? window.offerConfig.compareAtPrice : basePrice;
     
@@ -621,18 +594,10 @@ function formatMoney(cents) {
     const tier = window.offerConfig.tiers[qty] || { discount: 0 };
     const discountPct = tier.discount;
     
-    // Calculate raw discounted price
-    const baseTotal = basePrice * qty;
-    let rawPrice = baseTotal * (1 - (discountPct / 100));
+    const finalPrice = window.FlipzyLegacyOfferPricing.total(basePrice, qty, discountPct);
 
     // Calculate dynamic compare total
-    let compareTotal = compareAtPrice * qty;
-
-    // DYNAMIC ROUNDING (Math.ceil)
-    // Example: €63.24 (6324 cents) -> 63.24 / 100 = 63.24 -> ceil(63.24) = 64 -> 64 * 100 = 6400 cents (€64.00)
-    // This ensures prices are always rounded UP to the nearest whole number currency unit.
-    // Note: This logic assumes the currency has 2 decimal places. 
-    finalPrice = Math.ceil(rawPrice / 100) * 100;
+    const compareTotal = compareAtPrice * qty;
 
     // 3. Format Money
     const priceEl = document.getElementById('offer-total-price');
@@ -687,33 +652,19 @@ function formatMoney(cents) {
 </script>
 
 <script>
-  // Hardcoded Discounts: Default is EUR (7.4%, 20%, 25%)
-  // For HUF, we override these to match the checkout's specific tax/conversion logic to ensure consistency.
-  var currency = {{ cart.currency.iso_code | json }};
-  var qty2_disc = 7.4;
-  var qty3_disc = 20;
-  var qty4_disc = 25;
-
-  if (currency === 'HUF') {
-      qty2_disc = 7.337; 
-      qty3_disc = 19.56;
-      qty4_disc = 24.94;
-  }
-  // CZK Overrides (Close to HUF but slightly adjusted for 3x to hit ~2041)
-  if (currency === 'CZK') {
-      qty2_disc = 7.337; 
-      qty3_disc = 19.6; 
-      qty4_disc = 24.99;
-  }
+  // Values mirror the native original-set discounts configured in Shopify.
+  var qty2_disc = {{ section.settings.qty_2_discount | default: 10 | json }};
+  var qty3_disc = {{ section.settings.qty_3_discount | default: 34 | json }};
+  var qty4_disc = {{ section.settings.qty_4_discount | default: 35 | json }};
 
   window.offerConfig = {
     basePrice: {{ variant.price | default: product.price | default: 0 | json }},
     compareAtPrice: {{ variant.compare_at_price | default: product.compare_at_price | default: variant.price | default: product.price | default: 0 | json }},
     moneyFormat: {{ shop.money_format | json }},
     strings: {
-       offer2: "",
-       offer3: "",
-       offer4: ""
+       offer2: {{ 'sections.flipzy_offer.offer_2' | t | json }},
+       offer3: {{ 'sections.flipzy_offer.offer_3' | t | json }},
+       offer4: {{ 'sections.flipzy_offer.offer_4' | t | json }}
     },
     tiers: {
       1: { discount: 0, label: {{ 'sections.flipzy_offer.unit_item' | t | json }} },
@@ -815,7 +766,7 @@ function formatMoney(cents) {
       "type": "text",
       "id": "qty_2_label",
       "label": "Badge Text",
-      "default": "Shipping at checkout"
+      "default": "10% off + free shipping"
     },
     {
       "type": "range",
@@ -825,7 +776,7 @@ function formatMoney(cents) {
       "step": 1,
       "unit": "%",
       "label": "Discount Percentage",
-      "default": 7
+      "default": 10
     },
     {
       "type": "header",
@@ -835,17 +786,17 @@ function formatMoney(cents) {
       "type": "text",
       "id": "qty_3_label",
       "label": "Badge Text",
-      "default": "⭐ Popular"
+      "default": "34% off + free shipping"
     },
     {
       "type": "range",
       "id": "qty_3_discount",
+      "label": "Discount Percentage",
+      "default": 34,
       "min": 0,
       "max": 100,
       "step": 1,
-      "unit": "%",
-      "label": "Discount Percentage",
-      "default": 20
+      "unit": "%"
     },
     {
       "type": "header",
@@ -855,7 +806,7 @@ function formatMoney(cents) {
       "type": "text",
       "id": "qty_4_label",
       "label": "Badge Text",
-      "default": "-30% OFF"
+      "default": "35% off + free shipping"
     },
     {
       "type": "range",
@@ -865,7 +816,7 @@ function formatMoney(cents) {
       "step": 1,
       "unit": "%",
       "label": "Discount Percentage",
-      "default": 25
+      "default": 35
     },
     {
       "type": "header",
@@ -895,13 +846,44 @@ function formatMoney(cents) {
       "type": "header",
       "content": "Images & Details"
     },
-    { "type": "image_picker", "id": "image_1", "label": "Main Image" },
-    { "type": "text", "id": "badge_text", "label": "Image Badge", "default": "Bestseller" },
-    { "type": "image_picker", "id": "image_2", "label": "Thumb 2" },
-    { "type": "image_picker", "id": "image_3", "label": "Thumb 3" },
-    { "type": "image_picker", "id": "image_4", "label": "Thumb 4" },
-    { "type": "text", "id": "guarantee_1", "label": "Guarantee 1", "default": "30-day return requests · conditions apply" },
-    { "type": "text", "id": "guarantee_2", "label": "Guarantee 2", "default": "Legal guarantee applies" }
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Main Image"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Image Badge",
+      "default": "Bestseller"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Thumb 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Thumb 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Thumb 4"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_1",
+      "label": "Guarantee 1",
+      "default": "30-day money-back trial · free returns"
+    },
+    {
+      "type": "text",
+      "id": "guarantee_2",
+      "label": "Guarantee 2",
+      "default": "Legal guarantee applies"
+    }
   ],
   "presets": [
     {

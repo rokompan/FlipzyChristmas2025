@@ -348,7 +348,7 @@
         "updating": "Aktualizácia...",
         "button_2pack": "Upgrade na balenie 2",
         "headline_3pack": "🔥 Najobľúbenejšia voľba",
-        "subline_3pack": "Upgrade na Platíte 2, dostanete 1 zdarma (balenie 3).",
+        "subline_3pack": "Vyberte 3 Flipzy a ušetrite 34 %.",
         "button_3pack": "Upgrade na balenie 3-Pack",
         "headline_4pack": "🏆 Najlepšia hodnota - maximálna úspora",
         "subline_4pack": "Upgrade na rodinný balík (4x).",
@@ -439,6 +439,33 @@
         "read_guide": "Prečítať príručku",
         "hero_alt": "Rodič a dieťa si prezerajú tabuľku odmien na vytlačenie s príslušným hárkom nálepiek"
       }
+    },
+    "flipzy_policy": {
+      "return_summary": "30 dní na vyskúšanie doma · vrátenie peňazí a bezplatné vrátenie",
+      "delivery_summary": "Odosielame do 1–2 pracovných dní. Doručenie v EÚ: 3–7 pracovných dní od odoslania. Štandardná doprava zdarma od 50 € po zľavách alebo s 2 a viac Základňami Flipzy.",
+      "age_summary": "Od 3 rokov · inštalácia a dohľad dospelej osoby",
+      "visual_steps": "Jasné kroky, ktoré dieťa vidí a nasleduje",
+      "screen_free": "Praktická rutina bez obrazoviek"
+    },
+    "flipzy_offer": {
+      "offer_2": "10 % zľava + Štandardná doprava zdarma",
+      "offer_3": "34 % zľava + Štandardná doprava zdarma",
+      "offer_4": "35 % zľava + Štandardná doprava zdarma",
+      "badge_3for2": "34 % zľava",
+      "guarantee_1": "Bezpečná platba",
+      "guarantee_2": "30 dní na vyskúšanie doma · vrátenie peňazí a bezplatné vrátenie"
+    },
+    "flipzy_sticky": {
+      "qty_final_2": "2× Flipzy (10 % zľava + Štandardná doprava zdarma)",
+      "qty_final_3": "3× Flipzy (34 % zľava + Štandardná doprava zdarma)",
+      "qty_final_4": "4× Flipzy (35 % zľava + Štandardná doprava zdarma)"
+    },
+    "cart_upsell": {
+      "upsell_1_sub": "Pridajte ďalší Flipzy a ušetrite 10 %",
+      "upsell_2_sub": "Pridajte ďalší Flipzy a ušetrite 35 %",
+      "upsell_3_sub": "Pridajte ďalší Flipzy a ušetrite 34 %",
+      "upsell_3_head": "34 % zľava + Štandardná doprava zdarma",
+      "upsell_3_badge": "34 % zľava"
     }
   },
   "localization": {

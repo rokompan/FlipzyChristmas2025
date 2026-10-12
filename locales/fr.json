@@ -333,7 +333,8 @@
         "unlock_shipping_text": "Obtenez la paire Matin & Soir + Livraison gratuite.",
         "perfect_gift_title": "Le cadeau idéal ?",
         "perfect_gift_text": "Ajoutez-en un autre pour un ami ou un cousin.",
-        "button_text": "Ajouter un autre (+1)"
+        "button_text": "Ajouter un autre (+1)",
+        "subline_3pack": "Choisissez 3 Flipzy et économisez 34 %."
       }
     },
     "footer": {
@@ -416,6 +417,33 @@
         "read_guide": "Lire le guide",
         "hero_alt": "Un parent et son enfant regardent un tableau de récompenses à imprimer avec sa planche d’autocollants assortie"
       }
+    },
+    "flipzy_policy": {
+      "return_summary": "Essai de 30 jours à la maison · remboursé · retours gratuits",
+      "delivery_summary": "Expédition sous 1 à 2 jours ouvrés. Livraison dans l’UE : 3 à 7 jours ouvrés après expédition. Livraison standard offerte dès 50 € après réductions ou avec au moins 2 Bases Flipzy.",
+      "age_summary": "Dès 3 ans · installation et surveillance par un adulte",
+      "visual_steps": "Des étapes claires à voir et à suivre",
+      "screen_free": "Une routine concrète sans écran"
+    },
+    "flipzy_offer": {
+      "offer_2": "10 % de réduction + Livraison standard offerte",
+      "offer_3": "34 % de réduction + Livraison standard offerte",
+      "offer_4": "35 % de réduction + Livraison standard offerte",
+      "badge_3for2": "34 % de réduction",
+      "guarantee_1": "Paiement sécurisé",
+      "guarantee_2": "Essai de 30 jours à la maison · remboursé · retours gratuits"
+    },
+    "flipzy_sticky": {
+      "qty_final_2": "2× Flipzy (10 % de réduction + Livraison standard offerte)",
+      "qty_final_3": "3× Flipzy (34 % de réduction + Livraison standard offerte)",
+      "qty_final_4": "4× Flipzy (35 % de réduction + Livraison standard offerte)"
+    },
+    "cart_upsell": {
+      "upsell_1_sub": "Ajoutez un Flipzy pour économiser 10 %",
+      "upsell_2_sub": "Ajoutez un Flipzy pour économiser 35 %",
+      "upsell_3_sub": "Ajoutez un Flipzy pour économiser 34 %",
+      "upsell_3_head": "34 % de réduction + Livraison standard offerte",
+      "upsell_3_badge": "34 % de réduction"
     }
   },
   "localization": {

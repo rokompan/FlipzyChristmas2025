@@ -333,7 +333,8 @@
         "unlock_shipping_text": "Ottenete la coppia Mattina e Sera + Spedizione gratuita.",
         "perfect_gift_title": "Il regalo perfetto?",
         "perfect_gift_text": "Aggiungetene uno in più per un amico o un cugino.",
-        "button_text": "Aggiungi un altro (+1)"
+        "button_text": "Aggiungi un altro (+1)",
+        "subline_3pack": "Scegli 3 Flipzy e risparmia il 34%."
       }
     },
     "footer": {
@@ -416,6 +417,33 @@
         "read_guide": "Leggi la guida",
         "hero_alt": "Un genitore e un bambino guardano una tabella delle ricompense da stampare con il foglio di adesivi abbinato"
       }
+    },
+    "flipzy_policy": {
+      "return_summary": "Prova a casa per 30 giorni · rimborso e reso gratuito",
+      "delivery_summary": "Spedizione entro 1–2 giorni lavorativi. Consegna nell’UE: 3–7 giorni lavorativi dalla spedizione. Spedizione standard gratuita da 50 € dopo gli sconti o con almeno 2 Basi Flipzy.",
+      "age_summary": "Da 3 anni · montaggio e supervisione di un adulto",
+      "visual_steps": "Passaggi chiari da vedere e seguire",
+      "screen_free": "Una routine pratica senza schermi"
+    },
+    "flipzy_offer": {
+      "offer_2": "10% di sconto + Spedizione standard gratuita",
+      "offer_3": "34% di sconto + Spedizione standard gratuita",
+      "offer_4": "35% di sconto + Spedizione standard gratuita",
+      "badge_3for2": "34% di sconto",
+      "guarantee_1": "Pagamento sicuro",
+      "guarantee_2": "Prova a casa per 30 giorni · rimborso e reso gratuito"
+    },
+    "flipzy_sticky": {
+      "qty_final_2": "2× Flipzy (10% di sconto + Spedizione standard gratuita)",
+      "qty_final_3": "3× Flipzy (34% di sconto + Spedizione standard gratuita)",
+      "qty_final_4": "4× Flipzy (35% di sconto + Spedizione standard gratuita)"
+    },
+    "cart_upsell": {
+      "upsell_1_sub": "Aggiungi un altro Flipzy e risparmia il 10%",
+      "upsell_2_sub": "Aggiungi un altro Flipzy e risparmia il 35%",
+      "upsell_3_sub": "Aggiungi un altro Flipzy e risparmia il 34%",
+      "upsell_3_head": "34% di sconto + Spedizione standard gratuita",
+      "upsell_3_badge": "34% di sconto"
     }
   },
   "localization": {

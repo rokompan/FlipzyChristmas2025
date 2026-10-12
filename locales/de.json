@@ -328,7 +328,7 @@
         "subline_2pack": "Upgrade auf das Morgen- & Abend-Set.",
         "button_2pack": "Upgrade auf 2er-Pack",
         "headline_3pack": "🔥 Beliebteste Wahl",
-        "subline_3pack": "Zahle 2, erhalte 1 gratis (3er-Pack).",
+        "subline_3pack": "Wähle 3 Flipzy und spare 34 %.",
         "button_3pack": "Upgrade auf 3er-Pack",
         "headline_4pack": "🏆 Bester Wert - Max. Ersparnis",
         "subline_4pack": "Upgrade auf das Familienpaket (4 Stk.).",
@@ -866,13 +866,16 @@
     },
     "cart_upsell": {
       "upsell_1_head": "⭐ Beliebt & versandkostenfrei",
-      "upsell_1_sub": "Füge noch 1 Artikel hinzu, um den kostenlosen Versand freizuschalten!",
+      "upsell_1_sub": "Füge einen weiteren Flipzy hinzu und spare 10 %",
       "upsell_1_badge": "Beliebt",
       "upsell_2_badge": "Top-Angebot",
       "upsell_2_head": "⚡ Top-Angebot + Gratisversand",
-      "upsell_2_sub": "Füge noch 1 Artikel hinzu, um 25 % Rabatt zu erhalten!",
+      "upsell_2_sub": "Füge einen weiteren Flipzy hinzu und spare 35 %",
       "upgrade_btn": "Nur Upgrade",
-      "add_plus_one": "+1 hinzufügen"
+      "add_plus_one": "+1 hinzufügen",
+      "upsell_3_sub": "Füge einen weiteren Flipzy hinzu und spare 34 %",
+      "upsell_3_head": "34 % Rabatt + Kostenloser Standardversand",
+      "upsell_3_badge": "34 % Rabatt"
     },
     "flipzy_help": {
       "title": "Haben Sie eine Frage?",
@@ -887,27 +890,27 @@
     },
     "flipzy_offer": {
       "unit_items": "Flipzy",
-      "guarantee_2": "30-Tage-Garantie",
+      "guarantee_2": "30 Tage zu Hause testen · Geld zurück · kostenlose Rücksendung",
       "free_shipping": "Gratisversand",
-      "offer_3": "20 % Rabatt + versandkostenfrei",
+      "offer_3": "34 % Rabatt + Kostenloser Standardversand",
       "sold_out": "Ausverkauft",
       "calculating": "Wird berechnet...",
       "guarantee_3": "Von über 1000 Familien genutzt",
       "add_to_cart": "In den Warenkorb",
-      "offer_4": "25 % Rabatt + versandkostenfrei",
+      "offer_4": "35 % Rabatt + Kostenloser Standardversand",
       "unit_item": "Flipzy",
       "please_select_product": "Bitte wählen Sie in den Abschnitts-Einstellungen ein Produkt aus.",
       "badge_bestseller": "Bestseller",
       "guarantee_1": "Sichere Kaufabwicklung",
       "delivered_by": "Bereitgestellt von",
-      "offer_2": "10 % Rabatt + versandkostenfrei",
+      "offer_2": "10 % Rabatt + Kostenloser Standardversand",
       "inventory_suffix": " noch vorrätig",
       "bullet_4": "Keine Bildschirme, keine Apps",
       "benefit_3": "Weniger Nörgeln. Mehr Zusammenarbeit.",
       "benefit_4": "Fördert Selbstständigkeit und Verantwortungsbewusstsein",
       "bullet_2": "Weniger Erinnern, weniger Streiten",
       "benefit_1": "Kinder WOLLEN ihre Übungen zu Ende bringen",
-      "badge_3for2": "3 für 2",
+      "badge_3for2": "34 % Rabatt",
       "badge_best_value": "🔥 Bestpreis",
       "heading": "Schließen Sie sich Hunderten von glücklichen Familien an",
       "rating_text": "Bewertung: 4,8 / 5",
@@ -925,11 +928,18 @@
       "inventory_prefix": "⚡ Nur "
     },
     "flipzy_sticky": {
-      "qty_final_3": "3x Flipzy (3-für-2-Angebot)",
+      "qty_final_3": "3× Flipzy (34 % Rabatt + Kostenloser Standardversand)",
       "qty_final_1": "1x Flipzy",
-      "qty_final_2": "2x Flipzy (⭐, beliebt + versandkostenfrei)",
+      "qty_final_2": "2× Flipzy (10 % Rabatt + Kostenloser Standardversand)",
       "qty_label": "Anzahl:",
-      "qty_final_4": "4x Flipzy (🔥 s beste Preis-Leistungs-Verhältnis)"
+      "qty_final_4": "4× Flipzy (35 % Rabatt + Kostenloser Standardversand)"
+    },
+    "flipzy_policy": {
+      "return_summary": "30 Tage zu Hause testen · Geld zurück · kostenlose Rücksendung",
+      "delivery_summary": "Versand innerhalb von 1–2 Werktagen. EU-Lieferung: 3–7 Werktage nach Versand. Kostenloser Standardversand ab 50 € nach Rabatten oder mit mindestens 2 Flipzy Bases.",
+      "age_summary": "Ab 3 Jahren · Montage und Aufsicht durch Erwachsene",
+      "visual_steps": "Klare Schritte zum Sehen und Nachmachen",
+      "screen_free": "Eine bildschirmfreie Routine zum Anfassen"
     }
   },
   "localization": {

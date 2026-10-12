@@ -327,7 +327,7 @@
         "headline_4pack": "🏆 Legjobb érték - maximális megtakarítás",
         "subline_4pack": "Upgrade a családi csomagra (4x).",
         "button_2pack": "Upgrade 2-Packre",
-        "subline_3pack": "Upgrade a Pay 2, Get 1 Free (3-Pack).",
+        "subline_3pack": "Válassz 3 Flipzyt, és spórolj 34%-ot.",
         "button_3pack": "Upgrade 3-Packre",
         "button_4pack": "Upgrade 4-es csomagra",
         "save_badge": "SAVE {{ percent }}%",
@@ -410,23 +410,23 @@
       "rating_text": "4.8 / 5 értékelt",
       "total_price": "Teljes ár:",
       "delivered_by": "Kézbesítette",
-      "offer_3": "20% le + Ingyenes szállítás",
-      "offer_4": "25% le + Ingyenes szállítás",
+      "offer_3": "34% kedvezmény + Ingyenes normál szállítás",
+      "offer_4": "35% kedvezmény + Ingyenes normál szállítás",
       "heading": "Csatlakozzon több száz boldog családhoz",
       "bullet_4": "Nincsenek képernyők, nincsenek alkalmazások",
-      "badge_3for2": "3 a 2-ből",
+      "badge_3for2": "34% kedvezmény",
       "calculating": "Számítás...",
       "badge_bestseller": "Bestseller",
       "bullet_1": "A Flip motiválja a gyerekeket a befejezésre",
       "bullet_2": "Kevesebb emlékeztetés, kevesebb vita",
       "qty_label": "Válasszon mennyiséget:",
       "badge_best_value": "🔥 Legjobb érték",
-      "offer_2": "10% le + Ingyenes szállítás",
-      "guarantee_1": "30-napos pénzvisszafizetés",
+      "offer_2": "10% kedvezmény + Ingyenes normál szállítás",
+      "guarantee_1": "Biztonságos fizetés",
       "price_per_item": "Tételenkénti ár:",
       "unit_item": "Flipzy",
       "unit_items": "Flipzy",
-      "guarantee_2": "2 év garancia",
+      "guarantee_2": "30 napos otthoni próba · pénzvisszafizetés és ingyenes visszaküldés",
       "bullet_3": "Függetlenséget épít",
       "add_to_cart": "Hozzáadás a kosárhoz",
       "free_shipping": "Ingyenes szállítás",
@@ -445,13 +445,13 @@
     },
     "flipzy_sticky": {
       "opt_4": "4x Flipzy (🔥 Best Value)",
-      "opt_3": "3x Flipzy (3 for 2 Deal)",
+      "opt_3": "3× Flipzy (34% kedvezmény + Ingyenes normál szállítás)",
       "opt_1": "1x Flipzy",
       "qty_label": "Mennyiség:",
       "opt_2": "2x Flipzy (⭐ Népszerű + Ingyenes szállítás)",
-      "qty_final_2": "2x Flipzy (⭐ Népszerű + Ingyenes szállítás)",
-      "qty_final_3": "3x Flipzy (3 for 2 Deal)",
-      "qty_final_4": "4x Flipzy (🔥 Best Value)",
+      "qty_final_2": "2× Flipzy (10% kedvezmény + Ingyenes normál szállítás)",
+      "qty_final_3": "3× Flipzy (34% kedvezmény + Ingyenes normál szállítás)",
+      "qty_final_4": "4× Flipzy (35% kedvezmény + Ingyenes normál szállítás)",
       "qty_final_1": "1x Flipzy"
     },
     "cart_upsell": {
@@ -460,9 +460,12 @@
       "upsell_1_head": "⭐ Népszerű & Ingyenes szállítás",
       "upsell_1_badge": "Népszerű",
       "upsell_2_badge": "Legjobb érték",
-      "upsell_1_sub": "Adj hozzá még 1-et az ingyenes szállításhoz!",
-      "upsell_2_sub": "Hozzáadás 1 még kap 25% LE!",
-      "add_plus_one": "+1 hozzáadása"
+      "upsell_1_sub": "Adj hozzá még egy Flipzyt, és spórolj 10%-ot",
+      "upsell_2_sub": "Adj hozzá még egy Flipzyt, és spórolj 35%-ot",
+      "add_plus_one": "+1 hozzáadása",
+      "upsell_3_sub": "Adj hozzá még egy Flipzyt, és spórolj 34%-ot",
+      "upsell_3_head": "34% kedvezmény + Ingyenes normál szállítás",
+      "upsell_3_badge": "34% kedvezmény"
     },
     "flipzy_help": {
       "email_label": "Email (nem kötelező)",
@@ -550,6 +553,13 @@
         "main_reward_step": "Fő jutalomlépés"
       },
       "name": "Jutalmazási rendszer"
+    },
+    "flipzy_policy": {
+      "return_summary": "30 napos otthoni próba · pénzvisszafizetés és ingyenes visszaküldés",
+      "delivery_summary": "1–2 munkanapon belül feladjuk. EU-s kézbesítés: 3–7 munkanap a feladástól. Ingyenes normál szállítás 50 €-tól a kedvezmények után, vagy legalább 2 Flipzy Alappal.",
+      "age_summary": "3 éves kortól · felnőtt általi felszerelés és felügyelet",
+      "visual_steps": "Jól látható, követhető lépések",
+      "screen_free": "Kézzel végezhető rutin képernyő nélkül"
     }
   },
   "localization": {

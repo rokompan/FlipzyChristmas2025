@@ -58,7 +58,7 @@
         "flipzy_policy": {
           "type": "custom_liquid",
           "settings": {
-            "custom_liquid": "<div class=\"rte\"><p>For ages 3+. Contains small parts. Adult setup and supervision required.</p><p><a href=\"{{ shop.shipping_policy.url }}\">Normally 1–2 business days processing. Estimated EU delivery: 3–7 business days after dispatch.</a></p><p><a href=\"{{ shop.refund_policy.url }}\">30-day return requests. Conditions apply; statutory rights are unaffected.</a></p></div>"
+            "custom_liquid": "<div class=\"rte\"><p>For ages 3+. Contains small parts. Adult setup and supervision required.</p><p><a href=\"{{ shop.shipping_policy.url }}\">Free standard shipping from €50 after discounts or with 2+ Flipzy Bases. Ships within 1–2 business days. EU delivery: 3–7 business days after dispatch.</a></p><p><a href=\"{{ shop.refund_policy.url }}\">30-day money-back trial · free returns. Normal use is welcome; statutory rights are unaffected.</a></p></div>"
           }
         }
       },

@@ -349,7 +349,7 @@
         "subline_2pack": "Přejít na Ranní & Večerní sadu.",
         "button_2pack": "Přejít na sadu 2 ks",
         "headline_3pack": "🔥 Nejoblíbenější volba",
-        "subline_3pack": "Zaplaťte 2, získejte 1 zdarma (3 ks).",
+        "subline_3pack": "Vyberte 3 Flipzy a ušetřete 34 %.",
         "button_3pack": "Přejít na sadu 3 ks",
         "headline_4pack": "🏆 Nejlepší hodnota - Max. úspora",
         "subline_4pack": "Přejít na Rodinné balení (4 ks).",
@@ -440,40 +440,43 @@
       "rating_text": "4,8 / 5 hodnoceno",
       "bullet_4": "Žádné obrazovky, žádné aplikace",
       "bullet_3": "Podporuje samostatnost",
-      "badge_3for2": "3 za 2",
-      "offer_3": "20% sleva + doprava zdarma",
+      "badge_3for2": "34 % sleva",
+      "offer_3": "34 % sleva + Standardní doprava zdarma",
       "badge_bestseller": "Bestseller",
-      "guarantee_1": "30denní vrácení peněz",
+      "guarantee_1": "Bezpečná platba",
       "badge_popular": "⭐ Oblíbené stránky",
       "add_to_cart": "Přidat do košíku",
       "calculating": "Výpočet...",
-      "offer_2": "10% sleva + doprava zdarma",
+      "offer_2": "10 % sleva + Standardní doprava zdarma",
       "heading": "Připojte se ke stovkám šťastných rodin",
       "total_price": "Celková cena:",
-      "offer_4": "25% sleva + doprava zdarma",
+      "offer_4": "35 % sleva + Standardní doprava zdarma",
       "unit_item": "Flipzy",
-      "guarantee_2": "2letá záruka"
+      "guarantee_2": "30 dní na vyzkoušení doma · vrácení peněz a bezplatné vrácení"
     },
     "cart_upsell": {
-      "upsell_2_sub": "Přidejte ještě 1 a získejte 25% SLEVU!",
+      "upsell_2_sub": "Přidejte další Flipzy a ušetřete 35 %",
       "upsell_1_head": "⭐ Oblíbené a doprava zdarma",
       "upsell_2_badge": "Nejlepší hodnota",
       "add_plus_one": "Přidat +1",
       "upgrade_btn": "Pouze aktualizace",
       "upsell_2_head": "⚡ Nejlepší hodnota a doprava zdarma",
-      "upsell_1_sub": "Přidejte ještě 1 a odemkněte dopravu zdarma!",
-      "upsell_1_badge": "Oblíbené stránky"
+      "upsell_1_sub": "Přidejte další Flipzy a ušetřete 10 %",
+      "upsell_1_badge": "Oblíbené stránky",
+      "upsell_3_sub": "Přidejte další Flipzy a ušetřete 34 %",
+      "upsell_3_head": "34 % sleva + Standardní doprava zdarma",
+      "upsell_3_badge": "34 % sleva"
     },
     "flipzy_sticky": {
       "opt_2": "2x Flipzy (⭐ Populární + doprava zdarma)",
       "qty_label": "Množství:",
       "opt_4": "4x Flipzy (🔥 Best Value)",
-      "opt_3": "3x Flipzy (3 za 2)",
+      "opt_3": "3× Flipzy (34 % sleva + Standardní doprava zdarma)",
       "opt_1": "1x Flipzy",
       "qty_final_1": "1x Flipzy",
-      "qty_final_2": "2x Flipzy (⭐ Populární + doprava zdarma)",
-      "qty_final_3": "3x Flipzy (3 za 2)",
-      "qty_final_4": "4x Flipzy (🔥 Best Value)"
+      "qty_final_2": "2× Flipzy (10 % sleva + Standardní doprava zdarma)",
+      "qty_final_3": "3× Flipzy (34 % sleva + Standardní doprava zdarma)",
+      "qty_final_4": "4× Flipzy (35 % sleva + Standardní doprava zdarma)"
     },
     "reward_system": {
       "intro": {
@@ -486,6 +489,13 @@
         "read_guide": "Přečíst příručku",
         "hero_alt": "Rodič a dítě si prohlížejí tabulku odměn k vytištění a odpovídající arch samolepek"
       }
+    },
+    "flipzy_policy": {
+      "return_summary": "30 dní na vyzkoušení doma · vrácení peněz a bezplatné vrácení",
+      "delivery_summary": "Odesíláme do 1–2 pracovních dnů. Doručení v EU: 3–7 pracovních dnů od odeslání. Standardní doprava zdarma od 50 € po slevách nebo se 2 a více Základnami Flipzy.",
+      "age_summary": "Od 3 let · instalace a dohled dospělého",
+      "visual_steps": "Jasné kroky, které dítě vidí a následuje",
+      "screen_free": "Praktická rutina bez obrazovek"
     }
   },
   "localization": {

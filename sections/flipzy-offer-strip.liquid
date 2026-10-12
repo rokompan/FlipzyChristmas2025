@@ -208,26 +208,6 @@
           {%- unless placeholder -%}
             {%- render 'buy-buttons', block: section, product: product, product_form_id: product_form_id, section_id: section.id, show_dynamic_checkout: section.settings.show_dynamic_checkout -%}
 
-            {% comment %} 
-              FLIPZY: 3-Day Business Day Delivery (Saturday included, Sunday excluded)
-              0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu, 5=Fri, 6=Sat
-              
-              Thu (4) + 3 = Sun (Skip) -> Mon (Total +4)
-              Fri (5) + 3 days: Sat(1), Sun(Skip), Mon(2), Tue(3) -> Tue (Total +4)
-              Sat (6) + 3 days: Sun(Skip), Mon(1), Tue(2), Wed(3) -> Wed (Total +4)
-              Others: +3 days
-            {% endcomment %}
-            {%- liquid
-              assign current_day_index = 'now' | date: "%w" | plus: 0
-              if current_day_index >= 4 and current_day_index <= 6
-                 assign days_to_add = 4
-              else
-                 assign days_to_add = 3
-              endif
-              assign seconds_to_add = days_to_add | times: 86400
-              assign delivery_date = 'now' | date: "%s" | plus: seconds_to_add | date: "%b %d"
-            -%}
-            
             <div class="flipzy-delivery-banner">
               <svg class="flipzy-delivery-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                  <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-1 0-2 1-2 2v9c0 .6.4 1 1 1h2"></path>
@@ -237,7 +217,7 @@
                  <path d="M5 9h5" stroke-linecap="round"></path>
                  <path d="M5 12h3" stroke-linecap="round"></path>
               </svg>
-              <span>Estimated delivery: <strong>{{ delivery_date }}</strong></span>
+              <a href="{{ shop.shipping_policy.url }}">{{ 'sections.flipzy_policy.delivery_summary' | t }}</a>
             </div>
 
             <div class="flipzy-trust-wrapper">
@@ -272,7 +252,7 @@
     { "type": "text", "id": "badge_text", "label": "Top Badge Text", "default": "SPECIAL OFFER – WHILE SUPPLIES LAST" },
     { "type": "text", "id": "custom_title", "label": "Custom Title Override", "info": "Optional. Replaces product title." },
     { "type": "richtext", "id": "text", "label": "Description Text", "default": "<p>Don't miss this exclusive opportunity to transform your family's daily routines.</p>" },
-    { "type": "text", "id": "guarantee_text", "label": "Guarantee Text", "default": "30-day return requests · conditions apply" },
+    { "type": "text", "id": "guarantee_text", "label": "Guarantee Text", "default": "30-day money-back trial · free returns" },
     { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show Dynamic Checkout (PayPal/GPay)", "default": true },
     { "type": "color_scheme", "id": "color_scheme", "label": "Color Scheme", "default": "scheme-1" },
     { "type": "checkbox", "id": "secondary_background", "default": false, "label": "Secondary Background" },

@@ -333,7 +333,8 @@
         "unlock_shipping_text": "Obțineți perechea Morning & Evening + Livrare gratuită.",
         "perfect_gift_title": "Cadoul perfect?",
         "perfect_gift_text": "Adăugați încă una pentru un prieten sau un văr.",
-        "button_text": "Adaugă altul (+1)"
+        "button_text": "Adaugă altul (+1)",
+        "subline_3pack": "Alege 3 Flipzy și economisește 34%."
       }
     },
     "footer": {
@@ -416,6 +417,33 @@
         "read_guide": "Citește ghidul",
         "hero_alt": "Părinte și copil privind un tabel de recompense de imprimat, cu o coală de autocolante asortată"
       }
+    },
+    "flipzy_policy": {
+      "return_summary": "Probă acasă timp de 30 de zile · banii înapoi și retur gratuit",
+      "delivery_summary": "Expediem în 1–2 zile lucrătoare. Livrare în UE: 3–7 zile lucrătoare după expediere. Livrare standard gratuită de la 50 € după reduceri sau cu cel puțin 2 Baze Flipzy.",
+      "age_summary": "De la 3 ani · montare și supraveghere de către un adult",
+      "visual_steps": "Pași clari de văzut și urmat",
+      "screen_free": "O rutină practică, fără ecrane"
+    },
+    "flipzy_offer": {
+      "offer_2": "10% reducere + Livrare standard gratuită",
+      "offer_3": "34% reducere + Livrare standard gratuită",
+      "offer_4": "35% reducere + Livrare standard gratuită",
+      "badge_3for2": "34% reducere",
+      "guarantee_1": "Plată sigură",
+      "guarantee_2": "Probă acasă timp de 30 de zile · banii înapoi și retur gratuit"
+    },
+    "flipzy_sticky": {
+      "qty_final_2": "2× Flipzy (10% reducere + Livrare standard gratuită)",
+      "qty_final_3": "3× Flipzy (34% reducere + Livrare standard gratuită)",
+      "qty_final_4": "4× Flipzy (35% reducere + Livrare standard gratuită)"
+    },
+    "cart_upsell": {
+      "upsell_1_sub": "Adaugă încă un Flipzy și economisește 10%",
+      "upsell_2_sub": "Adaugă încă un Flipzy și economisește 35%",
+      "upsell_3_sub": "Adaugă încă un Flipzy și economisește 34%",
+      "upsell_3_head": "34% reducere + Livrare standard gratuită",
+      "upsell_3_badge": "34% reducere"
     }
   },
   "localization": {
