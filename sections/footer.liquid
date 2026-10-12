@@ -307,9 +307,15 @@
           <ul class="policies list-unstyled">
             {%- for policy in shop.policies -%}
               {%- if policy != blank -%}
+                {%- liquid
+                  assign footer_policy_url = policy.url
+                  if policy.url contains '/policies/contact-information'
+                    assign footer_policy_url = pages['contact'].url
+                  endif
+                -%}
                 <li>
                   <small class="copyright__content"
-                    ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
+                    ><a href="{{ footer_policy_url }}">{{ policy.title | escape }}</a></small
                   >
                 </li>
               {%- endif -%}
