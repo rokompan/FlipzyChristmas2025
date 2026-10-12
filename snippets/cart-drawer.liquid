@@ -543,16 +543,17 @@
         assign update_variant_id = 0
         assign current_line_price = 0
         assign base_variant_price = 0
+        assign matching_line_count = 0
 
         # Check if the product is in the cart
         if target_product != blank
            for item in cart.items
              if item.product.id == target_product.id
+               assign matching_line_count = matching_line_count | plus: 1
                assign current_qty = item.quantity
                assign update_variant_id = item.variant.id
                assign current_line_price = item.final_line_price
                assign base_variant_price = item.variant.price
-               break
              endif
            endfor
         endif
@@ -568,7 +569,8 @@
         assign show_upsell = false
         assign upgrade_cost = 0
 
-        if current_qty > 0
+        # Split product lines cannot be upgraded safely with one variant update.
+        if current_qty > 0 and matching_line_count == 1
            # Native original-set tiers apply consistently in every currency.
            assign discount2 = base_variant_price | times: 0.10 | floor
            assign discount3 = base_variant_price | times: 0.34 | floor
