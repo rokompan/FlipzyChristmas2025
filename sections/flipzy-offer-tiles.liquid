@@ -131,61 +131,66 @@
   /* Low-stock alert */
   .flipzy-low-stock {
     margin: 0 0 20px;
-    padding: 12px 14px 14px;
-    background: #fff1f2;
-    border: 2px solid #ef4444;
-    border-radius: 12px;
-    box-shadow: 0 5px 0 #fecaca;
+    padding: 12px 14px;
+    background: #fff7f7;
+    border: 1px solid #f5d4d4;
+    border-radius: 10px;
   }
 
   .flipzy-low-stock__heading {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 9px;
-    margin-bottom: 9px;
-    color: #b91c1c;
-    font-size: 1.05rem;
-    font-weight: 900;
-    letter-spacing: 0.11em;
-    line-height: 1;
-    text-transform: uppercase;
+    gap: 7px;
+    margin-bottom: 8px;
+    color: #b83e3e;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.3;
   }
 
   .flipzy-low-stock__pulse {
-    width: 10px;
-    height: 10px;
-    flex: 0 0 10px;
-    background: #dc2626;
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    background: #d65353;
     border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.55);
-    animation: flipzy-low-stock-pulse 1.35s ease-out infinite;
+    animation: flipzy-low-stock-pulse 2.8s ease-in-out infinite;
   }
 
   .flipzy-low-stock__track {
-    height: 12px;
+    height: 6px;
     overflow: hidden;
-    background: #ffffff;
-    border: 1px solid #fecaca;
+    background: #f3dddd;
     border-radius: 999px;
   }
 
   .flipzy-low-stock__fill {
     display: block;
-    width: 9%;
+    width: 18%;
     min-width: 18px;
     height: 100%;
-    background: linear-gradient(90deg, #991b1b 0%, #ef4444 100%);
+    background: #d65353;
     border-radius: inherit;
   }
 
+  .flipzy-low-stock.is-visible .flipzy-low-stock__fill {
+    animation: flipzy-low-stock-drain 3s cubic-bezier(0.22, 1, 0.36, 1) both,
+      flipzy-low-stock-pulse 2.8s ease-in-out 3s infinite;
+  }
+
+  @keyframes flipzy-low-stock-drain {
+    from { width: 55%; }
+    to { width: 18%; }
+  }
+
   @keyframes flipzy-low-stock-pulse {
-    70% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .flipzy-low-stock__pulse { animation: none; }
+    .flipzy-low-stock__pulse,
+    .flipzy-low-stock.is-visible .flipzy-low-stock__fill { animation: none; }
   }
 
   /* --- QUANTITY SELECTOR --- */
@@ -464,20 +469,15 @@
           </div>
 
           <!-- Urgency snippet -->
-          {%- if section.settings.inventory_text != blank -%}
+          {%- if section.settings.inventory_text != blank and variant.available -%}
           <div class="flipzy-low-stock" role="status">
             <div class="flipzy-low-stock__heading">
               <span class="flipzy-low-stock__pulse" aria-hidden="true"></span>
               <span>{{ section.settings.inventory_text }}</span>
-              <span aria-hidden="true">!</span>
             </div>
             <div
               class="flipzy-low-stock__track"
-              role="progressbar"
-              aria-label="{{ section.settings.inventory_text | escape }}"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              aria-valuenow="9"
+              aria-hidden="true"
             >
               <span class="flipzy-low-stock__fill"></span>
             </div>
@@ -572,6 +572,22 @@
 </div>
 
 <script>
+  // Start the decorative depletion only when the indicator enters the viewport.
+  (() => {
+    const indicator = document.querySelector('#shopify-section-{{ section.id }} .flipzy-low-stock');
+    if (!indicator) return;
+    if (!('IntersectionObserver' in window)) {
+      indicator.classList.add('is-visible');
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      indicator.classList.add('is-visible');
+      observer.disconnect();
+    }, { threshold: 0.5 });
+    observer.observe(indicator);
+  })();
+
   let currentOfferQty = 1;
 
 function formatMoney(cents) {
